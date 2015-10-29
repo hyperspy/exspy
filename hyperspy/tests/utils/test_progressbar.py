@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2015 The HyperSpy developers
 #
 # This file is part of  HyperSpy.
@@ -14,12 +13,27 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with  HyperSpy.  If not, see <http://www.gnu.org/licenses/>.
+# along with  HyperSpy.  If not, see <http://www.gnu.org/licenses/>.import
+# nose.tools
 
 
-from hyperspy._signals.spectrum import Spectrum
-from hyperspy._signals.simulation import Simulation
+import nose.tools as nt
+from hyperspy.external import progressbar
 
 
-class SpectrumSimulation(Simulation, Spectrum):
-    pass
+class TestProgressBar:
+
+    def setUp(self):
+        pass
+
+    def test_progressbar_not_shown(self):
+        pbar = progressbar.progressbar(maxval=2, disabled=True)
+        for i in xrange(2):
+            pbar.update(i)
+        pbar.finish()
+
+    def test_progressbar_shown(self):
+        pbar = progressbar.progressbar(maxval=2, disabled=False)
+        for i in xrange(2):
+            pbar.update(i)
+        pbar.finish()

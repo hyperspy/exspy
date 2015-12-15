@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2015 The HyperSpy developers
 #
 # This file is part of  HyperSpy.
@@ -14,26 +13,27 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with  HyperSpy.  If not, see <http://www.gnu.org/licenses/>.
-
-import numpy as np
-
-from hyperspy.component import Component
+# along with  HyperSpy.  If not, see <http://www.gnu.org/licenses/>.import
+# nose.tools
 
 
-class RC(Component):
+import nose.tools as nt
+from hyperspy.external import progressbar
 
-    """
-    """
 
-    def __init__(self, V=1, V0=0, tau=1.):
-        Component.__init__(self, ('Vmax', 'V0', 'tau'))
-        self.Vmax.value, self.V0.value, self.tau.value = V, V0, tau
+class TestProgressBar:
 
-    def function(self, x):
-        """
-        """
-        Vmax = self.Vmax.value
-        V0 = self.V0.value
-        tau = self.tau.value
-        return V0 + Vmax * (1 - np.exp(-x / tau))
+    def setUp(self):
+        pass
+
+    def test_progressbar_not_shown(self):
+        pbar = progressbar.progressbar(maxval=2, disabled=True)
+        for i in xrange(2):
+            pbar.update(i)
+        pbar.finish()
+
+    def test_progressbar_shown(self):
+        pbar = progressbar.progressbar(maxval=2, disabled=False)
+        for i in xrange(2):
+            pbar.update(i)
+        pbar.finish()

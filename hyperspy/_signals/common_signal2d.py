@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2007-2016 The HyperSpy developers
 #
 # This file is part of  HyperSpy.
@@ -13,27 +14,24 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with  HyperSpy.  If not, see <http://www.gnu.org/licenses/>.import
-# nose.tools
+# along with  HyperSpy.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import nose.tools as nt
-from hyperspy.external import progressbar
+from hyperspy.signal import BaseSignal
 
 
-class TestProgressBar:
+class CommonSignal2D(object):
 
-    def setUp(self):
-        pass
+    """Common functions for 2-dimensional signals."""
 
-    def test_progressbar_not_shown(self):
-        pbar = progressbar.progressbar(maxval=2, disabled=True)
-        for i in xrange(2):
-            pbar.update(i)
-        pbar.finish()
+    def to_signal1D(self):
+        """Returns the image as a spectrum.
 
-    def test_progressbar_shown(self):
-        pbar = progressbar.progressbar(maxval=2, disabled=False)
-        for i in xrange(2):
-            pbar.update(i)
-        pbar.finish()
+        See Also
+        --------
+        as_signal1D : a method for the same purpose with more options.
+        signals.Signal1D.to_signal1D : performs the inverse operation on one
+        dimensional signals.
+
+        """
+        return self.as_signal1D(0 + 3j)

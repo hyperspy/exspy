@@ -17,18 +17,21 @@
 # along with  HyperSpy.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from scipy.interpolate import splev
-
-from hyperspy.component import Component
+from hyperspy.signal import BaseSignal
 
 
-class Spline(Component):
+class CommonSignal2D(object):
 
-    def __init__(self, tck):
-        Component.__init__(self, ('c', 'dump'))
-        self._whitelist['tck'] = ('init', tck)
-        self.t, self.c.value, self.k = tck
-        self.dump.free = False
+    """Common functions for 2-dimensional signals."""
 
-    def function(self, x):
-        return splev(x, (self.t, self.c.value, 3))
+    def to_signal1D(self):
+        """Returns the image as a spectrum.
+
+        See Also
+        --------
+        as_signal1D : a method for the same purpose with more options.
+        signals.Signal1D.to_signal1D : performs the inverse operation on one
+        dimensional signals.
+
+        """
+        return self.as_signal1D(0 + 3j)

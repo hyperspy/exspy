@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2020 The HyperSpy developers
 #
 # This file is part of  HyperSpy.
@@ -17,21 +16,22 @@
 # along with  HyperSpy.  If not, see <http://www.gnu.org/licenses/>.
 
 import numpy as np
+import pytest
 
-from hyperspy.misc import math_tools
+from hyperspy.misc.eels.tools import get_edges_near_energy
 
+def test_single_edge():
+    edges = get_edges_near_energy(532, width=0)
+    assert len(edges) == 1
+    assert edges == ['O_K']
 
-def test_isfloat_float():
-    assert math_tools.isfloat(3.)
-
-
-def test_isfloat_int():
-    assert not math_tools.isfloat(3)
-
-
-def test_isfloat_npfloat():
-    assert math_tools.isfloat(np.float32(3.))
-
-
-def test_isfloat_npint():
-    assert not math_tools.isfloat(np.int16(3))
+def test_multiple_edges():
+    edges = get_edges_near_energy(640, width=100)
+    assert len(edges) == 12
+    assert edges == ['Mn_L3','I_M4','Cd_M2','Mn_L2','V_L1','I_M5','Cd_M3',
+                     'In_M3','Xe_M5','Ag_M2','F_K','Xe_M4']
+    
+def test_negative_energy_width():
+    with pytest.raises(Exception):
+        get_edges_near_energy(849, width=-5)
+        

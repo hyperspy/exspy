@@ -21,10 +21,9 @@ import numpy as np
 from hyperspy.component import Component
 from hyperspy._components.gaussian import _estimate_gaussian_parameters
 from hyperspy.docstrings.parameters import FUNCTION_ND_DOCSTRING
-
+from hyperspy.misc.utils import is_binned # remove in v2.0
 
 sqrt2pi = np.sqrt(2 * np.pi)
-
 
 class SplitVoigt(Component):
 
@@ -74,6 +73,7 @@ class SplitVoigt(Component):
         self.sigma2.value = sigma2
         self.centre.value = centre
         self.fraction.value = fraction
+        self._position = self.centre
 
         # Boundaries
         self.A.bmin = 1.0e-8
@@ -200,14 +200,18 @@ class SplitVoigt(Component):
             self.sigma1.value = sigma
             self.sigma2.value = sigma
             self.A.value = height * sigma * sqrt2pi
-            if self.binned:
+            if is_binned(signal) is True:
+            # in v2 replace by
+            #if axis.is_binned:
                 self.A.value /= axis.scale
             return True
         else:
             if self.A.map is None:
                 self._create_arrays()
             self.A.map['values'][:] = height * sigma * sqrt2pi
-            if self.binned:
+            if is_binned(signal) is True:
+            # in v2 replace by
+            #if axis.is_binned:
                 self.A.map['values'][:] /= axis.scale
             self.A.map['is_set'][:] = True
             self.sigma1.map['values'][:] = sigma
@@ -220,9 +224,13 @@ class SplitVoigt(Component):
             return True
 
     @property
+    def _sigma(self):
+        return (self.sigma1.value + self.sigma2.value) * 0.5
+
+    @property
     def height(self):
-        return self.A.value / (self.sigma.value * sqrt2pi)
+        return self.A.value / (self._sigma * sqrt2pi)
 
     @height.setter
     def height(self, value):
-        self.A.value = value * self.sigma.value * sqrt2pi
+        self.A.value = value * self._sigma * sqrt2pi

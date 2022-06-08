@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2007-2022 The HyperSpy developers
 #
 # This file is part of HyperSpy.
@@ -13,25 +14,16 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with HyperSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
+# along with HyperSpy. If not, see <http://www.gnu.org/licenses/>.
 
-import numpy as np
 import pytest
 
-import hyperspy.api as hs
+from hyperspy.misc.signal_tools import broadcast_signals
+from hyperspy.signals import Signal1D
 
 
-def test_check_navigation_mask():
-    s = hs.signals.Signal1D(np.arange(2*3*4).reshape(3, 2, 4))
-    navigation_mask = s.sum(-1)
-    s._check_navigation_mask(navigation_mask)
+def test_boardcast_signals_error():
     with pytest.raises(ValueError):
-        s._check_navigation_mask(navigation_mask.T)
-
-
-def test_check_signal_mask():
-    s = hs.signals.Signal1D(np.arange(2*3*4).reshape(3, 2, 4))
-    signal_mask = s.sum([0, 1])
-    s._check_signal_mask(signal_mask)
+        broadcast_signals([0, 1], [2, 3])
     with pytest.raises(ValueError):
-        s._check_signal_mask(signal_mask.T)
+        broadcast_signals(Signal1D([0, 1]))

@@ -16,13 +16,26 @@
 # You should have received a copy of the GNU General Public License
 # along with HyperSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import pytest
+import numpy as np
 
-from hyperspy.misc.eds.utils import _get_element_and_line
+from hyperspy.components1d import DoublePowerLaw
 
 
-def test_get_element_and_line():
-    assert _get_element_and_line('Mn_Ka') == ('Mn', 'Ka')
-
-    with pytest.raises(ValueError):
-        _get_element_and_line('MnKa') == -1
+def test_function():
+    g = DoublePowerLaw()
+    g.A.value = 3
+    g.r.value = 2
+    g.origin.value = 1
+    g.shift.value = 2
+    g.ratio.value = 2
+    assert np.isinf(g.function(1))
+    assert np.isinf(g.function(3))
+    assert g.function(-1) == 0
+    assert g.function(0) == 0
+    assert g.function(2) == 9
+    np.testing.assert_allclose(g.function(10), 0.15948602)
+    assert g.grad_A(2) == 3
+    np.testing.assert_allclose(g.grad_r(4), -0.3662041)
+    assert g.grad_origin(2)  == -6
+    assert g.grad_shift(2)  == -12
+    assert g.grad_ratio(2)  == 3

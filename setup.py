@@ -26,6 +26,12 @@ exec(open("exspy/release_info.py").read())  # grab version info
 # https://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-extras-optional-features-with-their-own-dependencies
 
 extra_feature_requirements = {
+    "gui-jupyter": [
+        "hyperspy_gui_ipywidgets @ git+https://github.com/ericpre/hyperspy_gui_ipywidgets.git@hyperspy2.0",
+    ],
+    "gui-traitsui": [
+        "hyperspy_gui_traitsui @ git+https://github.com/ericpre/hyperspy_gui_traitsui.git@hyperspy2.0",
+    ],
     "doc": [
         "numpydoc",
         "pydata-sphinx-theme>=0.13",
@@ -36,6 +42,7 @@ extra_feature_requirements = {
     ],
     "tests": [
         "pytest     >= 5.0",
+        "pytest-mpl",
         "pytest-cov >= 2.8.1",
     ],
     "dev": ["black", "pre-commit >=1.16"],
@@ -58,10 +65,10 @@ setup(
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Development Status :: 4 - Beta",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
@@ -76,10 +83,19 @@ setup(
     package_dir={"exspy": "exspy"},
     extras_require=extra_feature_requirements,
     install_requires=[
-        "hyperspy_gui_ipywidgets @ git+https://github.com/ericpre/hyperspy_gui_ipywidgets.git@hyperspy2.0",
-        "hyperspy_gui_traitsui @ git+https://github.com/ericpre/hyperspy_gui_traitsui.git@hyperspy2.0",
+        "dask[array]",
+        "hyperspy @ git+https://github.com/hyperspy/hyperspy@RELEASE_next_major",
+        "matplotlib",
+        "numexpr",
+        "numpy",
+        "pint",
+        "pooch",
+        "prettytable",
+        "requests",
+        "scipy",
+        "traits",
         ],
-    python_requires=">=3.7",
+    python_requires="~=3.8",
     package_data={
         "": ["LICENSE", "README.rst"],
         "exspy": [

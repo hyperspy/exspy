@@ -45,4 +45,3 @@ def test_eds_tem_binned_default():
 def test_eds_sem_binned_default():
     s = exspy.signals.EDSSEMSpectrum([0])
     assert s.axes_manager[-1].is_binned
-

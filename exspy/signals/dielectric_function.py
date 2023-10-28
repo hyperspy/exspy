@@ -23,7 +23,7 @@ from scipy.integrate import simps, cumtrapz
 from hyperspy._signals.complex_signal1d import (
     ComplexSignal1D,
     LazyComplexSignal1D,
-    )
+)
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 from exspy.misc.eels.tools import eels_constant
 
@@ -71,49 +71,61 @@ class DielectricFunction(ComplexSignal1D):
 
         Notes
         -----
-        .. [*] Ray Egerton, "Electron Energy-Loss Spectroscopy 
+        .. [*] Ray Egerton, "Electron Energy-Loss Spectroscopy
            in the Electron Microscope", Springer-Verlag, 2011.
 
         """
 
         m0 = constants.value("electron mass")
-        epsilon0 = constants.epsilon_0    # Vacuum permittivity [F/m]
-        hbar = constants.hbar     # Reduced Plank constant [J·s]
-        k = 2 * epsilon0 * m0 / (np.pi * nat * hbar ** 2)
+        epsilon0 = constants.epsilon_0  # Vacuum permittivity [F/m]
+        hbar = constants.hbar  # Reduced Plank constant [J·s]
+        k = 2 * epsilon0 * m0 / (np.pi * nat * hbar**2)
 
         axis = self.axes_manager.signal_axes[0]
         if cumulative is False:
-            dneff1 = k * simps((-1. / self.data).imag * axis.axis,
-                               x=axis.axis,
-                               axis=axis.index_in_array)
-            dneff2 = k * simps(self.data.imag * axis.axis,
-                               x=axis.axis,
-                               axis=axis.index_in_array)
+            dneff1 = k * simps(
+                (-1.0 / self.data).imag * axis.axis,
+                x=axis.axis,
+                axis=axis.index_in_array,
+            )
+            dneff2 = k * simps(
+                self.data.imag * axis.axis, x=axis.axis, axis=axis.index_in_array
+            )
             neff1 = self._get_navigation_signal(data=dneff1)
             neff2 = self._get_navigation_signal(data=dneff2)
         else:
             neff1 = self._deepcopy_with_new_data(
-                k * cumtrapz((-1. / self.data).imag * axis.axis,
-                             x=axis.axis,
-                             axis=axis.index_in_array,
-                             initial=0))
+                k
+                * cumtrapz(
+                    (-1.0 / self.data).imag * axis.axis,
+                    x=axis.axis,
+                    axis=axis.index_in_array,
+                    initial=0,
+                )
+            )
             neff2 = self._deepcopy_with_new_data(
-                k * cumtrapz(self.data.imag * axis.axis,
-                             x=axis.axis,
-                             axis=axis.index_in_array,
-                             initial=0))
+                k
+                * cumtrapz(
+                    self.data.imag * axis.axis,
+                    x=axis.axis,
+                    axis=axis.index_in_array,
+                    initial=0,
+                )
+            )
 
         # Prepare return
         neff1.metadata.General.title = (
             r"$n_{\mathrm{eff}}\left(-\Im\left(\epsilon^{-1}\right)\right)$ "
-            "calculated from " +
-            self.metadata.General.title +
-            " using the Bethe f-sum rule.")
+            "calculated from "
+            + self.metadata.General.title
+            + " using the Bethe f-sum rule."
+        )
         neff2.metadata.General.title = (
             r"$n_{\mathrm{eff}}\left(\epsilon_{2}\right)$ "
-            "calculated from " +
-            self.metadata.General.title +
-            " using the Bethe f-sum rule.")
+            "calculated from "
+            + self.metadata.General.title
+            + " using the Bethe f-sum rule."
+        )
 
         return neff1, neff2
 
@@ -145,14 +157,17 @@ class DielectricFunction(ComplexSignal1D):
         for axis in self.axes_manager.signal_axes:
             if not axis.is_uniform:
                 raise NotImplementedError(
-                    "The function is not implemented for non-uniform axes.")
-        data = ((-1 / self.data).imag * eels_constant(self, zlp, t).data *
-                self.axes_manager.signal_axes[0].scale)
+                    "The function is not implemented for non-uniform axes."
+                )
+        data = (
+            (-1 / self.data).imag
+            * eels_constant(self, zlp, t).data
+            * self.axes_manager.signal_axes[0].scale
+        )
         s = self._deepcopy_with_new_data(data)
         s.data = s.data.real
         s.set_signal_type("EELS")
-        s.metadata.General.title = ("EELS calculated from " +
-                                    self.metadata.General.title)
+        s.metadata.General.title = "EELS calculated from " + self.metadata.General.title
         return s
 
 

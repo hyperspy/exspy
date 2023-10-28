@@ -43,8 +43,7 @@ def __dir__():
     return sorted(__all__)
 
 
-_ADD_NOISE_DOCSTRING = \
-"""add_noise : bool
+_ADD_NOISE_DOCSTRING = """add_noise : bool
         If True, add noise to the signal. See note to seed the noise to
         generate reproducible noise.
     random_state : None or int or RandomState instance, default None
@@ -52,8 +51,7 @@ _ADD_NOISE_DOCSTRING = \
     """
 
 
-_RETURNS_DOCSTRING = \
-"""Returns
+_RETURNS_DOCSTRING = """Returns
     -------
     :py:class:`~hyperspy._signals.eels.EELSSpectrum`
     """
@@ -99,7 +97,7 @@ def EDS_TEM_FePt_nanoparticles():
         return hs.load(file_path, mode="r", reader="hspy")
 
 
-def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10, )):
+def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10,)):
     """
     Get an artificial low loss electron energy loss spectrum.
 
@@ -133,18 +131,18 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10, )):
         s = hs.signals.Signal1D(np.ones(navigation_shape[::-1] + x.shape))
         plasmon._axes_manager = s.axes_manager
         plasmon._create_arrays()
-        plasmon.centre.map['values'][:] = random_state.uniform(
+        plasmon.centre.map["values"][:] = random_state.uniform(
             low=14.5, high=15.5, size=navigation_shape[::-1]
-            )
-        plasmon.centre.map['is_set'][:] = True
-        plasmon.A.map['values'][:] = random_state.uniform(
+        )
+        plasmon.centre.map["is_set"][:] = True
+        plasmon.A.map["values"][:] = random_state.uniform(
             low=50, high=70, size=navigation_shape[::-1]
-            )
-        plasmon.A.map['is_set'][:] = True
-        plasmon.sigma.map['values'][:] = random_state.uniform(
+        )
+        plasmon.A.map["is_set"][:] = True
+        plasmon.sigma.map["values"][:] = random_state.uniform(
             low=1.8, high=2.2, size=navigation_shape[::-1]
-            )
-        plasmon.sigma.map['is_set'][:] = True
+        )
+        plasmon.sigma.map["is_set"][:] = True
 
     data = np.broadcast_to(zero_loss.function(x), navigation_shape[::-1] + x.shape)
     data = data + plasmon.function_nd(x)
@@ -153,14 +151,16 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10, )):
         data = data + random_state.uniform(size=len(x))
 
     from exspy.signals import EELSSpectrum
+
     s = EELSSpectrum(data)
     s.axes_manager[-1].offset = x[0]
     s.axes_manager[-1].scale = x[1] - x[0]
-    s.metadata.General.title = 'Artifical low loss EEL spectrum'
-    s.axes_manager[-1].name = 'Electron energy loss'
-    s.axes_manager[-1].units = 'eV'
+    s.metadata.General.title = "Artifical low loss EEL spectrum"
+    s.axes_manager[-1].name = "Electron energy loss"
+    s.axes_manager[-1].units = "eV"
     s.set_microscope_parameters(
-        beam_energy=200, convergence_angle=26, collection_angle=20)
+        beam_energy=200, convergence_angle=26, collection_angle=20
+    )
 
     return s
 
@@ -169,11 +169,8 @@ EELS_low_loss.__doc__ %= (_ADD_NOISE_DOCSTRING, _RETURNS_DOCSTRING)
 
 
 def EELS_MnFe(
-        add_powerlaw=True,
-        add_noise=True,
-        random_state=None,
-        navigation_shape=(10, )
-        ):
+    add_powerlaw=True, add_noise=True, random_state=None, navigation_shape=(10,)
+):
     """
     Get an artificial core loss electron energy loss spectrum.
 
@@ -222,7 +219,7 @@ def EELS_MnFe(
     Fe_l3 = hs.model.components1D.Gaussian(A=150, centre=708, sigma=4)
     Fe_l2 = hs.model.components1D.Gaussian(A=50, centre=730, sigma=3)
 
-    if len(navigation_shape) == 0 or navigation_shape == (1, ):
+    if len(navigation_shape) == 0 or navigation_shape == (1,):
         Mn = 0.5
         Fe = 0.5
     else:
@@ -230,8 +227,8 @@ def EELS_MnFe(
         Fe = np.array([0, 0, 0.25, 0.5, 1])
         Mn_interpolate = interpolate.interp1d(np.arange(0, len(Mn)), Mn)
         Fe_interpolate = interpolate.interp1d(np.arange(0, len(Fe)), Fe)
-        Mn = Mn_interpolate(np.linspace(0, len(Mn)-1, navigation_shape[0]))
-        Fe = Fe_interpolate(np.linspace(0, len(Fe)-1, navigation_shape[0]))
+        Mn = Mn_interpolate(np.linspace(0, len(Mn) - 1, navigation_shape[0]))
+        Fe = Fe_interpolate(np.linspace(0, len(Fe) - 1, navigation_shape[0]))
 
     def get_data(component, element_distribution):
         data_ = np.broadcast_to(component.function(x), navigation_shape + x.shape)
@@ -244,26 +241,31 @@ def EELS_MnFe(
     Fe_l3_data = get_data(Fe_l3, Fe)
     Fe_l2_data = get_data(Fe_l2, Fe)
 
-    data = arctan_Mn_data + Mn_l3_data + Mn_l2_data + arctan_Fe_data + Fe_l3_data + Fe_l2_data
+    data = (
+        arctan_Mn_data
+        + Mn_l3_data
+        + Mn_l2_data
+        + arctan_Fe_data
+        + Fe_l3_data
+        + Fe_l2_data
+    )
 
     if add_noise:
         data += random_state.uniform(size=navigation_shape + x.shape) * 0.7
 
     if add_powerlaw:
         powerlaw = hs.model.components1D.PowerLaw(A=10e8, r=2.9, origin=0)
-        data = data + np.broadcast_to(
-            powerlaw.function(x), navigation_shape + x.shape
-            )
+        data = data + np.broadcast_to(powerlaw.function(x), navigation_shape + x.shape)
 
     s = exspy.signals.EELSSpectrum(data)
     s.axes_manager[-1].offset = x[0]
     s.axes_manager[-1].scale = x[1] - x[0]
-    s.metadata.General.title = 'Artifical core loss EEL spectrum'
-    s.axes_manager[-1].name = 'Electron energy loss'
-    s.axes_manager[-1].units = 'eV'
+    s.metadata.General.title = "Artifical core loss EEL spectrum"
+    s.axes_manager[-1].name = "Electron energy loss"
+    s.axes_manager[-1].units = "eV"
     s.set_microscope_parameters(
         beam_energy=200, convergence_angle=26, collection_angle=20
-        )
+    )
     s.add_elements(["Fe", "Mn"])
     return s.squeeze()
 

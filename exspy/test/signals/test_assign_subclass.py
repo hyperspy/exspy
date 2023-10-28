@@ -1,4 +1,3 @@
-
 import numpy as np
 import pytest
 
@@ -10,7 +9,6 @@ import exspy
 
 
 class TestConvertSigna:
-
     def setup_method(self, method):
         self.s = hs.signals.Signal1D([0, 1])
 
@@ -45,7 +43,6 @@ class TestConvertSigna:
 
 
 class TestConvertComplexSignal1D:
-
     def setup_method(self, method):
         self.s = hs.signals.ComplexSignal1D([0, 1])
 
@@ -75,7 +72,6 @@ def test_complex_to_dielectric_function():
 
 @lazifyTestClass
 class Test1d:
-
     def setup_method(self, method):
         self.s = hs.signals.BaseSignal([0, 1, 2])
 
@@ -92,7 +88,6 @@ class Test1d:
 
 @lazifyTestClass
 class Test2d:
-
     def setup_method(self, method):
         self.s = hs.signals.BaseSignal(np.random.random((2, 3)))  # (|3, 2)
 
@@ -106,8 +101,10 @@ class Test2d:
         assert s.metadata.Signal.signal_type == "EELS"
         if s._lazy:
             from exspy.signals import LazyEELSSpectrum
+
             _class = LazyEELSSpectrum
         else:
             from exspy.signals import EELSSpectrum
+
             _class = EELSSpectrum
         assert isinstance(s, _class)

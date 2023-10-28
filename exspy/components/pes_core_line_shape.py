@@ -33,11 +33,10 @@ def _calculate_shirley_background(values):
 
 class PESCoreLineShape(Component):
 
-    """
-    """
+    """ """
 
-    def __init__(self, A=1., FWHM=1., origin=0., ab=0.0, shirley=0.0):
-        Component.__init__(self, ['A', 'FWHM', 'origin', 'ab', 'shirley'])
+    def __init__(self, A=1.0, FWHM=1.0, origin=0.0, ab=0.0, shirley=0.0):
+        Component.__init__(self, ["A", "FWHM", "origin", "ab", "shirley"])
         self.ab.value = 0
         self.ab.free = False
         self.A.value = A
@@ -46,7 +45,7 @@ class PESCoreLineShape(Component):
         self._position = self.origin
 
         # Boundaries
-        self.A.bmin = 0.
+        self.A.bmin = 0.0
         self.A.bmax = None
         self.FWHM.bmin = None
         self.FWHM.bmax = None
@@ -62,7 +61,7 @@ class PESCoreLineShape(Component):
 
         # Options
         self.Shirley = False
-        self._whitelist['Shirley'] = None
+        self._whitelist["Shirley"] = None
 
     @property
     def Shirley(self):
@@ -86,23 +85,24 @@ class PESCoreLineShape(Component):
             return f
 
     def function(self, x):
-        return self._function(x, self.A.value,
-                              self.origin.value,
-                              self.FWHM.value,
-                              self.ab.value,
-                              self.shirley.value)
+        return self._function(
+            x,
+            self.A.value,
+            self.origin.value,
+            self.FWHM.value,
+            self.ab.value,
+            self.shirley.value,
+        )
 
     def function_nd(self, axis):
-        """%s
-
-        """
+        """%s"""
         if self._is_navigation_multidimensional:
             x = axis[np.newaxis, :]
-            A = self.A.map['values'][..., np.newaxis]
-            origin = self.origin.map['values'][..., np.newaxis]
-            FWHM = self.FWHM.map['values'][..., np.newaxis]
-            ab = self.ab.map['values'][..., np.newaxis]
-            shirley = self.shirley.map['values'][..., np.newaxis]
+            A = self.A.map["values"][..., np.newaxis]
+            origin = self.origin.map["values"][..., np.newaxis]
+            FWHM = self.FWHM.map["values"][..., np.newaxis]
+            ab = self.ab.map["values"][..., np.newaxis]
+            shirley = self.shirley.map["values"][..., np.newaxis]
             return self._function(x, A, origin, FWHM, ab, shirley)
         else:
             return self.function(axis)
@@ -117,16 +117,26 @@ class PESCoreLineShape(Component):
         a1 = self.origin.value
         a2 = self.FWHM.value
         a3 = self.ab.value
-        return (2 * math.log(2) * a0 * (x + a3 - a1) ** 2 *
-                np.exp(-(math.log(2) * (x + a3 - a1) ** 2) / a2 ** 2)) / a2 ** 3
+        return (
+            2
+            * math.log(2)
+            * a0
+            * (x + a3 - a1) ** 2
+            * np.exp(-(math.log(2) * (x + a3 - a1) ** 2) / a2**2)
+        ) / a2**3
 
     def grad_origin(self, x):
         a0 = self.A.value
         a1 = self.origin.value
         a2 = self.FWHM.value
         a3 = self.ab.value
-        return (2 * math.log(2) * a0 * (x + a3 - a1) *
-                np.exp(-(math.log(2) * (x + a3 - a1) ** 2) / a2 ** 2)) / a2 ** 2
+        return (
+            2
+            * math.log(2)
+            * a0
+            * (x + a3 - a1)
+            * np.exp(-(math.log(2) * (x + a3 - a1) ** 2) / a2**2)
+        ) / a2**2
 
     def grad_ab(self, x):
         return -self.grad_origin(x)

@@ -91,11 +91,13 @@ html_theme_options = {
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = '_static/hyperspy_logo.png'
+html_logo = "_static/hyperspy_logo.png"
 
 # -- Options for sphinx_favicon extension -----------------------------------
 
-favicons = ["hyperspy.ico", ]
+favicons = [
+    "hyperspy.ico",
+]
 
 # Check links to API when building documentation
 nitpicky = False
@@ -110,10 +112,10 @@ numpydoc_xref_ignore = {"type", "optional", "default", "of"}
 if Version(numpydoc.__version__) >= Version("1.6.0rc0"):
     numpydoc_validation_checks = {"all", "ES01", "EX01", "GL02", "GL03", "SA01", "SS06"}
 
-autoclass_content = 'both'
+autoclass_content = "both"
 
 autodoc_default_options = {
-    'show-inheritance': True,
+    "show-inheritance": True,
 }
 toc_object_entries_show_parents = "hide"
 

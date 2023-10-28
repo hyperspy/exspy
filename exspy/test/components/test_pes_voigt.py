@@ -41,6 +41,7 @@ def test_function():
     np.testing.assert_allclose(g.function(1), 5.06863535)
     assert g._position is g.centre
 
+
 def test_function_resolution():
     g = PESVoigt()
     g.area.value = 5
@@ -52,18 +53,20 @@ def test_function_resolution():
     np.testing.assert_allclose(g.function(1), 3.70472923)
     assert g._position is g.centre
 
+
 def test_function_spinorbit():
     g = PESVoigt()
     g.area.value = 5
     g.FWHM.value = 0.5
     g.gamma.value = 0.2
     g.centre.value = 1
-    g.spin_orbit_splitting=True
-    spin_orbit_branching_ratio=0.4
-    spin_orbit_splitting_energy=0.72
+    g.spin_orbit_splitting = True
+    spin_orbit_branching_ratio = 0.4
+    spin_orbit_splitting_energy = 0.72
     np.testing.assert_allclose(g.function(0), 1.553312)
     np.testing.assert_allclose(g.function(1), 5.612734)
     assert g._position is g.centre
+
 
 def test_function_shirleybackground():
     g = PESVoigt()
@@ -77,6 +80,7 @@ def test_function_shirleybackground():
     np.testing.assert_allclose(g.function(1), 5.06863535)
     assert g._position is g.centre
 
+
 @pytest.mark.parametrize(("lazy"), (True, False))
 @pytest.mark.parametrize(("uniform"), (True, False))
 @pytest.mark.parametrize(("mapnone"), (True, False))
@@ -85,11 +89,11 @@ def test_estimate_parameters_binned(only_current, binned, lazy, uniform, mapnone
     s = Signal1D(np.empty((200,)))
     s.axes_manager.signal_axes[0].is_binned = binned
     axis = s.axes_manager.signal_axes[0]
-    axis.scale = .05
+    axis.scale = 0.05
     axis.offset = -5
     g1 = PESVoigt()
     g1.centre.value = 1
-    g1.area.value = 5.
+    g1.area.value = 5.0
     g1.gamma.value = 0.001
     g1.FWHM.value = 0.5
     s.data = g1.function(axis.axis)
@@ -106,11 +110,10 @@ def test_estimate_parameters_binned(only_current, binned, lazy, uniform, mapnone
         factor = 1
     if mapnone:
         g2.area.map = None
-    assert g2.estimate_parameters(s, axis.low_value, axis.high_value,
-                                  only_current=only_current)
+    assert g2.estimate_parameters(
+        s, axis.low_value, axis.high_value, only_current=only_current
+    )
     assert g2._axes_manager[-1].is_binned == binned
     np.testing.assert_allclose(g2.FWHM.value, 1, 0.5)
     np.testing.assert_allclose(g1.area.value, g2.area.value * factor, 0.04)
     np.testing.assert_allclose(g2.centre.value, 1, 1e-3)
-    
-

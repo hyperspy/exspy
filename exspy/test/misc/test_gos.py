@@ -36,31 +36,33 @@ GOSH10 = pooch.retrieve(
 )
 
 
-@pytest.mark.skipif(not Path(preferences.EELS.eels_gos_files_path).exists(),
-                    reason="Hartree-Slater GOS not available")
+@pytest.mark.skipif(
+    not Path(preferences.EELS.eels_gos_files_path).exists(),
+    reason="Hartree-Slater GOS not available",
+)
 def test_hartree_slater_gos():
-    gos = HartreeSlaterGOS('Ti_L3')
+    gos = HartreeSlaterGOS("Ti_L3")
     gos.read_elements()
 
 
 def test_hydrogenic_gos_error_M_shells():
     with pytest.raises(ValueError):
-        _ = HydrogenicGOS('Ti_M2')
+        _ = HydrogenicGOS("Ti_M2")
 
 
 def test_element_not_in_database():
     with pytest.raises(ValueError):
-        _ = HydrogenicGOS('Lr_M2')
+        _ = HydrogenicGOS("Lr_M2")
 
 
 def test_subshell_not_in_database():
     with pytest.raises(ValueError):
-        _ = HydrogenicGOS('Ti_L4')
+        _ = HydrogenicGOS("Ti_L4")
 
 
 def test_gosh_not_in_conventions():
-    gos = GoshGOS('Ti_L2')
-    gos.subshell = 'L234'
+    gos = GoshGOS("Ti_L2")
+    gos.subshell = "L234"
     with pytest.raises(ValueError):
         gos.read_gos_data()
 
@@ -68,13 +70,13 @@ def test_gosh_not_in_conventions():
 def test_gosh_not_in_file():
     # Use version 1.0 which doesn't have the Ac element
     with pytest.raises(ValueError):
-        _ = GoshGOS('Ac_L3', gos_file_path=GOSH10)
+        _ = GoshGOS("Ac_L3", gos_file_path=GOSH10)
 
 
 def test_binding_energy_database():
-    gos = GoshGOS('Ti_L3')
+    gos = GoshGOS("Ti_L3")
     gosh15 = h5py.File(gos.gos_file_path)
     for element in gosh15.keys():
         # These elements are not in the database
-        if element not in ['Bk', 'Cf', 'Cm', 'metadata']:
-            assert 'Binding_energies' in elements[element]['Atomic_properties'].keys()
+        if element not in ["Bk", "Cf", "Cm", "metadata"]:
+            assert "Binding_energies" in elements[element]["Atomic_properties"].keys()

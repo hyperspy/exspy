@@ -29,7 +29,6 @@ from exspy.signals import EELSSpectrum
 
 
 class Test2D:
-
     def setup_method(self, method):
         """To test the kramers_kronig_analysis we will generate 3
         EELSSpectrum instances. First a model energy loss function(ELF),
@@ -41,7 +40,7 @@ class Test2D:
         """
 
         # Parameters
-        i0 = 1.
+        i0 = 1.0
         t = hs.signals.BaseSignal(np.arange(10, 70, 10).reshape((2, 3)))
         t = t.transpose(signal_axes=0)
         scale = 0.02
@@ -49,23 +48,22 @@ class Test2D:
         # Create an 3x2x2048 spectrum with Drude plasmon
         s = EELSSpectrum(np.zeros((2, 3, 2 * 2048)))
         s.set_microscope_parameters(
-            beam_energy=300.0,
-            convergence_angle=5,
-            collection_angle=10.0)
+            beam_energy=300.0, convergence_angle=5, collection_angle=10.0
+        )
         s.axes_manager.signal_axes[0].scale = scale
         k = eels_constant(s, i0, t)
 
         vpm = VolumePlasmonDrude()
         m = s.create_model(auto_background=False)
         m.append(vpm)
-        vpm.intensity.map['values'][:] = 1
-        vpm.plasmon_energy.map['values'] = np.array([[8., 18.4, 15.8],
-                                                     [16.6, 4.3, 3.7]])
-        vpm.fwhm.map['values'] = np.array([[2.3, 4.8, 0.53],
-                                           [3.7, 0.3, 0.3]])
-        vpm.intensity.map['is_set'][:] = True
-        vpm.plasmon_energy.map['is_set'][:] = True
-        vpm.fwhm.map['is_set'][:] = True
+        vpm.intensity.map["values"][:] = 1
+        vpm.plasmon_energy.map["values"] = np.array(
+            [[8.0, 18.4, 15.8], [16.6, 4.3, 3.7]]
+        )
+        vpm.fwhm.map["values"] = np.array([[2.3, 4.8, 0.53], [3.7, 0.3, 0.3]])
+        vpm.intensity.map["is_set"][:] = True
+        vpm.plasmon_energy.map["is_set"][:] = True
+        vpm.fwhm.map["is_set"][:] = True
         s.data = (m.as_signal() * k).data
 
         # Create ZLP
@@ -90,13 +88,9 @@ class Test2D:
 
         """
         # i use n=1000 to simulate a metal (enormous n)
-        cdf = self.s.kramers_kronig_analysis(zlp=self.zlp,
-                                             iterations=1,
-                                             n=1000.)
+        cdf = self.s.kramers_kronig_analysis(zlp=self.zlp, iterations=1, n=1000.0)
         s = cdf.get_electron_energy_loss_spectrum(self.zlp, self.thickness)
-        np.testing.assert_allclose(s.data,
-                           self.s.data[..., 1:],
-                           rtol=0.01)
+        np.testing.assert_allclose(s.data, self.s.data[..., 1:], rtol=0.01)
 
     def test_df_given_thickness(self):
         """The kramers kronig analysis method applied to the signal we
@@ -104,28 +98,35 @@ class Test2D:
         plasmon. Hopefully, we recover the signal by inverting the CDF.
 
         """
-        cdf = self.s.kramers_kronig_analysis(zlp=self.zlp,
-                                             iterations=1,
-                                             t=self.thickness)
+        cdf = self.s.kramers_kronig_analysis(
+            zlp=self.zlp, iterations=1, t=self.thickness
+        )
         s = cdf.get_electron_energy_loss_spectrum(self.zlp, self.thickness)
-        np.testing.assert_allclose(s.data,
-                           self.s.data[..., 1:],
-                           rtol=0.01)
+        np.testing.assert_allclose(s.data, self.s.data[..., 1:], rtol=0.01)
 
     def test_bethe_sum_rule(self):
-        df = self.s.kramers_kronig_analysis(zlp=self.zlp,
-                                            iterations=1,
-                                            n=1000.)
-        neff1, neff2 = df.get_number_of_effective_electrons(nat=50e27,
-                                                            cumulative=False)
-        np.testing.assert_allclose(neff1.data,
-                           np.array([[0.91187657, 4.72490711, 3.60594653],
-                                     [3.88077047, 0.26759741, 0.19813647]]),
-                           rtol=1e-6)
-        np.testing.assert_allclose(neff2.data,
-                           np.array([[0.91299039, 4.37469112, 3.41580094],
-                                     [3.64866394, 0.15693674, 0.11146413]]),
-                           rtol=1e-6)
+        df = self.s.kramers_kronig_analysis(zlp=self.zlp, iterations=1, n=1000.0)
+        neff1, neff2 = df.get_number_of_effective_electrons(nat=50e27, cumulative=False)
+        np.testing.assert_allclose(
+            neff1.data,
+            np.array(
+                [
+                    [0.91187657, 4.72490711, 3.60594653],
+                    [3.88077047, 0.26759741, 0.19813647],
+                ]
+            ),
+            rtol=1e-6,
+        )
+        np.testing.assert_allclose(
+            neff2.data,
+            np.array(
+                [
+                    [0.91299039, 4.37469112, 3.41580094],
+                    [3.64866394, 0.15693674, 0.11146413],
+                ]
+            ),
+            rtol=1e-6,
+        )
 
     def test_thickness_estimation(self):
         """Kramers kronig analysis gives a rough estimation of sample
@@ -133,25 +134,23 @@ class Test2D:
         scattering distribution, we can use it for testing putposes.
 
         """
-        cdf, output = self.s.kramers_kronig_analysis(zlp=self.zlp,
-                                                     iterations=1,
-                                                     n=1000.,
-                                                     full_output=True)
+        cdf, output = self.s.kramers_kronig_analysis(
+            zlp=self.zlp, iterations=1, n=1000.0, full_output=True
+        )
         np.testing.assert_allclose(
-            self.thickness.data,
-            output['thickness'].data,
-            rtol=0.01)
+            self.thickness.data, output["thickness"].data, rtol=0.01
+        )
 
     def test_thicness_input_array(self):
         with pytest.raises(ValueError):
-            self.s.kramers_kronig_analysis(zlp=self.zlp,
-                                           iterations=1,
-                                           t=self.thickness.data)
+            self.s.kramers_kronig_analysis(
+                zlp=self.zlp, iterations=1, t=self.thickness.data
+            )
 
     def test_single_spectrum_dielectric(self):
         s_in = self.s.inav[0, 0]
         z = self.zlp.inav[0, 0]
         t = self.thickness.data[0, 0]
-        cdf = s_in.kramers_kronig_analysis(zlp=z, iterations=1, n=1000.)
+        cdf = s_in.kramers_kronig_analysis(zlp=z, iterations=1, n=1000.0)
         s_out = cdf.get_electron_energy_loss_spectrum(z, t)
         np.testing.assert_allclose(s_out.data, s_in.data[1:], rtol=0.01)

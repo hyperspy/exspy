@@ -23,18 +23,18 @@ from exspy.misc.eds.utils import (
     get_xray_lines_near_energy,
     take_off_angle,
     xray_range,
-    zeta_to_edx_cross_section
-    )
+    zeta_to_edx_cross_section,
+)
 
 
 __all__ = [
-    'edx_cross_section_to_zeta',
-    'electron_range',
-    'get_xray_lines_near_energy',
-    'take_off_angle',
-    'xray_range',
-    'zeta_to_edx_cross_section',
-    ]
+    "edx_cross_section_to_zeta",
+    "electron_range",
+    "get_xray_lines_near_energy",
+    "take_off_angle",
+    "xray_range",
+    "zeta_to_edx_cross_section",
+]
 
 
 def __dir__():

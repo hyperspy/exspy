@@ -34,19 +34,37 @@ a0 = constants.value("Bohr radius")
 # This dictionary accounts for conventions chosen in naming the data files, as well as normalisation.
 # These cross sections contain only odd-number edges such as N3, or M5, and are normalised accordingly.
 # Other edges can be obtained as scaled copies of the provided ones.
-conventions = { 'K' : {'table': 'K1', 'factor': 1},
-                'L1': {'table': 'L1', 'factor': 1},
-                    'L2,3': {'table':'L3', 'factor': 3/2}, 'L2': {'table':'L3', 'factor': 1/2}, 'L3': {'table':'L3', 'factor': 1},
-                'M1': {'table': 'M1', 'factor': 1},
-                    'M2,3': {'table':'M3', 'factor': 3/2}, 'M2': {'table':'M3', 'factor': 1/2}, 'M3': {'table':'M3', 'factor': 1},
-                            'M4,5': {'table':'M5', 'factor': 5/3}, 'M4': {'table':'M5', 'factor': 2/3}, 'M5': {'table':'M5', 'factor': 1},
-                'N1': {'table': 'N1', 'factor': 1},
-                    'N2,3': {'table':'N3', 'factor': 3/2}, 'N2': {'table':'N3', 'factor': 1/2}, 'N3': {'table':'N3', 'factor': 1},
-                            'N4,5': {'table':'N5', 'factor': 5/3}, 'N4': {'table':'N5', 'factor': 2/3}, 'N5': {'table':'N5', 'factor': 1},
-                                'N6,7': {'table': 'N7', 'factor': 7/4}, 'N6': {'table':'N7', 'factor': 4/7}, 'N7': {'table':'N7', 'factor': 1},
-                'O1': {'table': 'O1', 'factor': 1},
-                    'O2,3': {'table':'O3', 'factor': 3/2}, 'O2': {'table':'O3', 'factor': 1/2}, 'O3': {'table':'O3', 'factor': 1},
-                        'O4,5': {'table':'O5', 'factor': 5/3}, 'O4': {'table':'O5', 'factor': 2/3}, 'O5': {'table':'O5', 'factor': 1}}
+conventions = {
+    "K": {"table": "K1", "factor": 1},
+    "L1": {"table": "L1", "factor": 1},
+    "L2,3": {"table": "L3", "factor": 3 / 2},
+    "L2": {"table": "L3", "factor": 1 / 2},
+    "L3": {"table": "L3", "factor": 1},
+    "M1": {"table": "M1", "factor": 1},
+    "M2,3": {"table": "M3", "factor": 3 / 2},
+    "M2": {"table": "M3", "factor": 1 / 2},
+    "M3": {"table": "M3", "factor": 1},
+    "M4,5": {"table": "M5", "factor": 5 / 3},
+    "M4": {"table": "M5", "factor": 2 / 3},
+    "M5": {"table": "M5", "factor": 1},
+    "N1": {"table": "N1", "factor": 1},
+    "N2,3": {"table": "N3", "factor": 3 / 2},
+    "N2": {"table": "N3", "factor": 1 / 2},
+    "N3": {"table": "N3", "factor": 1},
+    "N4,5": {"table": "N5", "factor": 5 / 3},
+    "N4": {"table": "N5", "factor": 2 / 3},
+    "N5": {"table": "N5", "factor": 1},
+    "N6,7": {"table": "N7", "factor": 7 / 4},
+    "N6": {"table": "N7", "factor": 4 / 7},
+    "N7": {"table": "N7", "factor": 1},
+    "O1": {"table": "O1", "factor": 1},
+    "O2,3": {"table": "O3", "factor": 3 / 2},
+    "O2": {"table": "O3", "factor": 1 / 2},
+    "O3": {"table": "O3", "factor": 1},
+    "O4,5": {"table": "O5", "factor": 5 / 3},
+    "O4": {"table": "O5", "factor": 2 / 3},
+    "O5": {"table": "O5", "factor": 1},
+}
 
 
 class HartreeSlaterGOS(TabulatedGOS):
@@ -83,18 +101,18 @@ class HartreeSlaterGOS(TabulatedGOS):
 
     """
 
-    _name = 'Hartree-Slater'
+    _name = "Hartree-Slater"
     _whitelist = {
-        'gos_array': None,
-        'rel_energy_axis': None,
-        'qaxis': None,
-        'element': None,
-        'subshell': None,
-        }
+        "gos_array": None,
+        "rel_energy_axis": None,
+        "qaxis": None,
+        "element": None,
+        "subshell": None,
+    }
 
     def read_elements(self):
         super().read_elements()
-        self.subshell_factor = conventions[self.subshell]['factor']
+        self.subshell_factor = conventions[self.subshell]["factor"]
 
     def read_gos_data(self):  # pragma: no cover
         _logger.info(
@@ -105,7 +123,7 @@ class HartreeSlaterGOS(TabulatedGOS):
         )
         element = self.element
         subshell = self.subshell
-        table = conventions[subshell]['table']
+        table = conventions[subshell]["table"]
 
         # Check if the Peter Rez's Hartree Slater GOS distributed by
         # Gatan are available. Otherwise exit
@@ -121,7 +139,7 @@ class HartreeSlaterGOS(TabulatedGOS):
             )
 
         with open(gos_file) as f:
-            GOS_list = f.read().replace('\r', '').split()
+            GOS_list = f.read().replace("\r", "").split()
 
         # Map the parameters
         info1_1 = float(GOS_list[2])
@@ -137,8 +155,6 @@ class HartreeSlaterGOS(TabulatedGOS):
         del GOS_list
 
         # Calculate the scale of the matrix
-        self.rel_energy_axis = self.get_parametrized_energy_axis(
-            info2_1, info2_2, nrow)
-        self.qaxis = self.get_parametrized_qaxis(
-            info1_1, info1_2, ncol)
+        self.rel_energy_axis = self.get_parametrized_energy_axis(info2_1, info2_2, nrow)
+        self.qaxis = self.get_parametrized_qaxis(info1_1, info1_2, ncol)
         self.energy_axis = self.rel_energy_axis + self.onset_energy

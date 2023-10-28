@@ -20,6 +20,7 @@ import pytest
 
 import exspy
 
+
 def test_eels():
     s = exspy.signals.EELSSpectrum(([0, 1]))
     s0 = s.deepcopy()
@@ -41,7 +42,7 @@ def test_eels():
     with pytest.raises(NotImplementedError):
         s.kramers_kronig_analysis()
     m = s.create_model()
-    g = exspy.components.EELSCLEdge('N_K')
+    g = exspy.components.EELSCLEdge("N_K")
     with pytest.raises(NotImplementedError):
         m.append(g)
 
@@ -58,8 +59,8 @@ def test_eds():
         s2.get_calibration_from(s2)
     m = s.create_model()
     with pytest.raises(NotImplementedError):
-        m.add_family_lines('Al_Ka')
+        m.add_family_lines("Al_Ka")
     with pytest.raises(NotImplementedError):
-        m._set_energy_scale('Al_Ka', [1.0])
+        m._set_energy_scale("Al_Ka", [1.0])
     with pytest.raises(NotImplementedError):
-        m._set_energy_offset('Al_Ka', [1.0])
+        m._set_energy_offset("Al_Ka", [1.0])

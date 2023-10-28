@@ -69,14 +69,14 @@ class GoshGOS(TabulatedGOS):
 
     """
 
-    _name = 'gosh'
+    _name = "gosh"
     _whitelist = {
-        'gos_array': None,
-        'rel_energy_axis': None,
-        'qaxis': None,
-        'element': None,
-        'subshell': None,
-        }
+        "gos_array": None,
+        "rel_energy_axis": None,
+        "qaxis": None,
+        "element": None,
+        "subshell": None,
+    }
 
     def __init__(self, element_subshell, gos_file_path=None):
         """
@@ -113,20 +113,20 @@ class GoshGOS(TabulatedGOS):
             f"of {element}. Please select a different database."
         )
 
-        with h5py.File(self.gos_file_path, 'r') as h:
-            conventions = h['metadata/edges_info']
+        with h5py.File(self.gos_file_path, "r") as h:
+            conventions = h["metadata/edges_info"]
             if subshell not in conventions:
                 raise ValueError(error_message)
-            table = conventions[subshell].attrs['table']
-            self.subshell_factor = conventions[subshell].attrs['occupancy_ratio']
-            stem = f'/{element}/{table}'
+            table = conventions[subshell].attrs["table"]
+            self.subshell_factor = conventions[subshell].attrs["occupancy_ratio"]
+            stem = f"/{element}/{table}"
             if stem not in h:
                 raise ValueError(error_message)
             gos_group = h[stem]
-            gos = gos_group['data'][:]
-            q = gos_group['q'][:]
-            free_energies = gos_group['free_energies'][:]
-            doi = h['/metadata/data_ref'].attrs['data_doi']
+            gos = gos_group["data"][:]
+            q = gos_group["q"][:]
+            free_energies = gos_group["free_energies"][:]
+            doi = h["/metadata/data_ref"].attrs["data_doi"]
 
         gos = np.squeeze(gos.T)
         self.doi = doi

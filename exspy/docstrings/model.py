@@ -22,16 +22,16 @@
 """
 from exspy.misc.eels.gosh_gos import _GOSH_DOI
 
-GOS_PARAMETER = \
-    """GOS : 'hydrogenic', 'gosh', 'Hartree-Slater'.
+GOS_PARAMETER = """GOS : 'hydrogenic', 'gosh', 'Hartree-Slater'.
             The GOS to use. Default is ``'gosh'``.
 
         gos_file_path : str, None
             Only with GOS='gosh'. Specify the file path of the gosh file
-            to use. If None, use the file from doi:{}""".format(_GOSH_DOI)
+            to use. If None, use the file from doi:{}""".format(
+    _GOSH_DOI
+)
 
-EELSMODEL_PARAMETERS = \
-    """ll : None or EELSSpectrum
+EELSMODEL_PARAMETERS = """ll : None or EELSSpectrum
             If an EELSSpectrum is provided, it will be assumed that it is
             a low-loss EELS spectrum, and it will be used to simulate the
             effect of multiple scattering by convolving it with the EELS
@@ -49,4 +49,6 @@ EELSMODEL_PARAMETERS = \
         {}
         dictionary : None or dict
             A dictionary to be used to recreate a model. Usually generated using
-            :meth:`~.model.BaseModel.as_dictionary`""".format(GOS_PARAMETER)
+            :meth:`~.model.BaseModel.as_dictionary`""".format(
+    GOS_PARAMETER
+)

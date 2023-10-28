@@ -26,7 +26,6 @@ _logger = logging.getLogger(__name__)
 
 
 class SEE(Expression):
-
     r"""Secondary electron emission component for Photoemission Spectroscopy.
 
     .. math::
@@ -62,11 +61,13 @@ class SEE(Expression):
 
     """
 
-    def __init__(self, A=1., Phi=1., B=0., module="numexpr",
-                 compute_gradients=False, **kwargs):
-        if kwargs.pop('sigma', False):
-            _logger.warning('The `sigma` parameter was broken and it has been '
-                            'removed.')
+    def __init__(
+        self, A=1.0, Phi=1.0, B=0.0, module="numexpr", compute_gradients=False, **kwargs
+    ):
+        if kwargs.pop("sigma", False):
+            _logger.warning(
+                "The `sigma` parameter was broken and it has been " "removed."
+            )
 
         super().__init__(
             expression="where(x > Phi, A * (x - Phi) / (x - Phi + B) ** 4, 0)",
@@ -78,34 +79,39 @@ class SEE(Expression):
             module=module,
             autodoc=False,
             compute_gradients=compute_gradients,
-            linear_parameter_list=['A'],
+            linear_parameter_list=["A"],
             check_parameter_linearity=False,
             **kwargs,
         )
 
         # Boundaries
-        self.A.bmin = 0.
+        self.A.bmin = 0.0
         self.A.bmax = None
 
         self.convolved = True
 
     def grad_A(self, x):
-        """
-        """
-        return np.where(x > self.Phi.value, (x - self.Phi.value) /
-                            (x - self.Phi.value + self.B.value) ** 4, 0)
+        """ """
+        return np.where(
+            x > self.Phi.value,
+            (x - self.Phi.value) / (x - self.Phi.value + self.B.value) ** 4,
+            0,
+        )
 
     def grad_Phi(self, x):
-        """
-        """
+        """ """
         return np.where(
-                x > self.Phi.value,
-                (4 * (x - self.Phi.value) * self.A.value) /
-                (self.B.value + x - self.Phi.value) ** 5 -
-                self.A.value / (self.B.value + x - self.Phi.value) ** 4, 0)
+            x > self.Phi.value,
+            (4 * (x - self.Phi.value) * self.A.value)
+            / (self.B.value + x - self.Phi.value) ** 5
+            - self.A.value / (self.B.value + x - self.Phi.value) ** 4,
+            0,
+        )
 
     def grad_B(self, x):
         return np.where(
-                x > self.Phi.value,
-                -(4 * (x - self.Phi.value) * self.A.value) /
-                (self.B.value + x - self.Phi.value) ** 5, 0)
+            x > self.Phi.value,
+            -(4 * (x - self.Phi.value) * self.A.value)
+            / (self.B.value + x - self.Phi.value) ** 5,
+            0,
+        )

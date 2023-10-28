@@ -46,40 +46,26 @@ _logger = logging.getLogger(__name__)
 
 @add_gui_method(toolkey="exspy.microscope_parameters_EDS_TEM")
 class EDSTEMParametersUI(BaseSetMetadataItems):
-    beam_energy = t.Float(t.Undefined,
-                          label='Beam energy (keV)')
-    real_time = t.Float(t.Undefined,
-                        label='Real time (s)')
-    tilt_stage = t.Float(t.Undefined,
-                         label='Stage tilt (degree)')
-    live_time = t.Float(t.Undefined,
-                        label='Live time (s)')
-    probe_area = t.Float(t.Undefined,
-                         label='Beam/probe area (nm²)')
-    azimuth_angle = t.Float(t.Undefined,
-                            label='Azimuth angle (degree)')
-    elevation_angle = t.Float(t.Undefined,
-                              label='Elevation angle (degree)')
-    energy_resolution_MnKa = t.Float(t.Undefined,
-                                     label='Energy resolution MnKa (eV)')
-    beam_current = t.Float(t.Undefined,
-                           label='Beam current (nA)')
+    beam_energy = t.Float(t.Undefined, label="Beam energy (keV)")
+    real_time = t.Float(t.Undefined, label="Real time (s)")
+    tilt_stage = t.Float(t.Undefined, label="Stage tilt (degree)")
+    live_time = t.Float(t.Undefined, label="Live time (s)")
+    probe_area = t.Float(t.Undefined, label="Beam/probe area (nm²)")
+    azimuth_angle = t.Float(t.Undefined, label="Azimuth angle (degree)")
+    elevation_angle = t.Float(t.Undefined, label="Elevation angle (degree)")
+    energy_resolution_MnKa = t.Float(t.Undefined, label="Energy resolution MnKa (eV)")
+    beam_current = t.Float(t.Undefined, label="Beam current (nA)")
     mapping = {
-        'Acquisition_instrument.TEM.beam_energy': 'beam_energy',
-        'Acquisition_instrument.TEM.Stage.tilt_alpha': 'tilt_stage',
-        'Acquisition_instrument.TEM.Detector.EDS.live_time': 'live_time',
-        'Acquisition_instrument.TEM.Detector.EDS.azimuth_angle':
-        'azimuth_angle',
-        'Acquisition_instrument.TEM.Detector.EDS.elevation_angle':
-        'elevation_angle',
-        'Acquisition_instrument.TEM.Detector.EDS.energy_resolution_MnKa':
-        'energy_resolution_MnKa',
-        'Acquisition_instrument.TEM.beam_current':
-        'beam_current',
-        'Acquisition_instrument.TEM.probe_area':
-        'probe_area',
-        'Acquisition_instrument.TEM.Detector.EDS.real_time':
-        'real_time', }
+        "Acquisition_instrument.TEM.beam_energy": "beam_energy",
+        "Acquisition_instrument.TEM.Stage.tilt_alpha": "tilt_stage",
+        "Acquisition_instrument.TEM.Detector.EDS.live_time": "live_time",
+        "Acquisition_instrument.TEM.Detector.EDS.azimuth_angle": "azimuth_angle",
+        "Acquisition_instrument.TEM.Detector.EDS.elevation_angle": "elevation_angle",
+        "Acquisition_instrument.TEM.Detector.EDS.energy_resolution_MnKa": "energy_resolution_MnKa",
+        "Acquisition_instrument.TEM.beam_current": "beam_current",
+        "Acquisition_instrument.TEM.probe_area": "probe_area",
+        "Acquisition_instrument.TEM.Detector.EDS.real_time": "real_time",
+    }
 
 
 class EDSTEMSpectrum(EDSSpectrum):
@@ -91,17 +77,17 @@ class EDSTEMSpectrum(EDSSpectrum):
     def __init__(self, *args, **kwards):
         super().__init__(*args, **kwards)
         # Attributes defaults
-        if 'Acquisition_instrument.TEM.Detector.EDS' not in self.metadata:
-            if 'Acquisition_instrument.SEM.Detector.EDS' in self.metadata:
+        if "Acquisition_instrument.TEM.Detector.EDS" not in self.metadata:
+            if "Acquisition_instrument.SEM.Detector.EDS" in self.metadata:
                 self.metadata.set_item(
                     "Acquisition_instrument.TEM",
-                    self.metadata.Acquisition_instrument.SEM)
+                    self.metadata.Acquisition_instrument.SEM,
+                )
                 del self.metadata.Acquisition_instrument.SEM
         self._set_default_param()
 
     def _set_default_param(self):
-        """Set to value to default (defined in preferences)
-        """
+        """Set to value to default (defined in preferences)"""
 
         mp = self.metadata
         mp.Signal.signal_type = "EDS_TEM"
@@ -110,36 +96,51 @@ class EDSTEMSpectrum(EDSSpectrum):
         if "Acquisition_instrument.TEM.Stage.tilt_alpha" not in mp:
             mp.set_item(
                 "Acquisition_instrument.TEM.Stage.tilt_alpha",
-                preferences.EDS.eds_tilt_stage)
+                preferences.EDS.eds_tilt_stage,
+            )
         if "Acquisition_instrument.TEM.Detector.EDS.elevation_angle" not in mp:
             mp.set_item(
                 "Acquisition_instrument.TEM.Detector.EDS.elevation_angle",
-                preferences.EDS.eds_detector_elevation)
-        if "Acquisition_instrument.TEM.Detector.EDS.energy_resolution_MnKa"\
-                not in mp:
-            mp.set_item("Acquisition_instrument.TEM.Detector.EDS." +
-                        "energy_resolution_MnKa",
-                        preferences.EDS.eds_mn_ka)
+                preferences.EDS.eds_detector_elevation,
+            )
+        if "Acquisition_instrument.TEM.Detector.EDS.energy_resolution_MnKa" not in mp:
+            mp.set_item(
+                "Acquisition_instrument.TEM.Detector.EDS." + "energy_resolution_MnKa",
+                preferences.EDS.eds_mn_ka,
+            )
         if "Acquisition_instrument.TEM.Detector.EDS.azimuth_angle" not in mp:
             mp.set_item(
                 "Acquisition_instrument.TEM.Detector.EDS.azimuth_angle",
-                preferences.EDS.eds_detector_azimuth)
+                preferences.EDS.eds_detector_azimuth,
+            )
 
-    def set_microscope_parameters(self,
-                                  beam_energy=None,
-                                  live_time=None,
-                                  tilt_stage=None,
-                                  azimuth_angle=None,
-                                  elevation_angle=None,
-                                  energy_resolution_MnKa=None,
-                                  beam_current=None,
-                                  probe_area=None,
-                                  real_time=None,
-                                  display=True,
-                                  toolkit=None):
-        if set([beam_energy, live_time, tilt_stage, azimuth_angle,
-                elevation_angle, energy_resolution_MnKa, beam_current,
-                probe_area, real_time]) == {None}:
+    def set_microscope_parameters(
+        self,
+        beam_energy=None,
+        live_time=None,
+        tilt_stage=None,
+        azimuth_angle=None,
+        elevation_angle=None,
+        energy_resolution_MnKa=None,
+        beam_current=None,
+        probe_area=None,
+        real_time=None,
+        display=True,
+        toolkit=None,
+    ):
+        if set(
+            [
+                beam_energy,
+                live_time,
+                tilt_stage,
+                azimuth_angle,
+                elevation_angle,
+                energy_resolution_MnKa,
+                beam_current,
+                probe_area,
+                real_time,
+            ]
+        ) == {None}:
             tem_par = EDSTEMParametersUI(self)
             return tem_par.gui(display=display, toolkit=toolkit)
         md = self.metadata
@@ -147,41 +148,31 @@ class EDSTEMSpectrum(EDSSpectrum):
         if beam_energy is not None:
             md.set_item("Acquisition_instrument.TEM.beam_energy ", beam_energy)
         if live_time is not None:
-            md.set_item(
-                "Acquisition_instrument.TEM.Detector.EDS.live_time",
-                live_time)
+            md.set_item("Acquisition_instrument.TEM.Detector.EDS.live_time", live_time)
         if tilt_stage is not None:
-            md.set_item(
-                "Acquisition_instrument.TEM.Stage.tilt_alpha",
-                tilt_stage)
+            md.set_item("Acquisition_instrument.TEM.Stage.tilt_alpha", tilt_stage)
         if azimuth_angle is not None:
             md.set_item(
-                "Acquisition_instrument.TEM.Detector.EDS.azimuth_angle",
-                azimuth_angle)
+                "Acquisition_instrument.TEM.Detector.EDS.azimuth_angle", azimuth_angle
+            )
         if elevation_angle is not None:
             md.set_item(
                 "Acquisition_instrument.TEM.Detector.EDS.elevation_angle",
-                elevation_angle)
+                elevation_angle,
+            )
         if energy_resolution_MnKa is not None:
             md.set_item(
-                "Acquisition_instrument.TEM.Detector.EDS." +
-                "energy_resolution_MnKa",
-                energy_resolution_MnKa)
+                "Acquisition_instrument.TEM.Detector.EDS." + "energy_resolution_MnKa",
+                energy_resolution_MnKa,
+            )
         if beam_current is not None:
-            md.set_item(
-                "Acquisition_instrument.TEM.beam_current",
-                beam_current)
+            md.set_item("Acquisition_instrument.TEM.beam_current", beam_current)
         if probe_area is not None:
-            md.set_item(
-                "Acquisition_instrument.TEM.probe_area",
-                probe_area)
+            md.set_item("Acquisition_instrument.TEM.probe_area", probe_area)
         if real_time is not None:
-            md.set_item(
-                "Acquisition_instrument.TEM.Detector.EDS.real_time",
-                real_time)
+            md.set_item("Acquisition_instrument.TEM.Detector.EDS.real_time", real_time)
 
-    set_microscope_parameters.__doc__ = \
-        """
+    set_microscope_parameters.__doc__ = """
         Set the microscope parameters.
 
         If no arguments are given, raises an interactive mode to fill
@@ -221,14 +212,17 @@ class EDSTEMSpectrum(EDSSpectrum):
         133.312296
         135.0
 
-        """.format(DISPLAY_DT, TOOLKIT_DT)
+        """.format(
+        DISPLAY_DT, TOOLKIT_DT
+    )
 
     def _are_microscope_parameters_missing(self):
         """Check if the EDS parameters necessary for quantification are
         defined in metadata."""
         must_exist = (
-            'Acquisition_instrument.TEM.beam_energy',
-            'Acquisition_instrument.TEM.Detector.EDS.live_time',)
+            "Acquisition_instrument.TEM.beam_energy",
+            "Acquisition_instrument.TEM.Detector.EDS.live_time",
+        )
 
         missing_parameters = []
         for item in must_exist:
@@ -281,43 +275,49 @@ class EDSTEMSpectrum(EDSSpectrum):
         for _axis in [ax_m, ax_ref]:
             if not _axis.is_uniform:
                 raise NotImplementedError(
-                    "The function is not implemented for non-uniform axes.")
+                    "The function is not implemented for non-uniform axes."
+                )
         ax_m.scale = ax_ref.scale
         ax_m.units = ax_ref.units
         ax_m.offset = ax_ref.offset
 
         # Setup metadata
-        if 'Acquisition_instrument.TEM' in ref.metadata:
+        if "Acquisition_instrument.TEM" in ref.metadata:
             mp_ref = ref.metadata.Acquisition_instrument.TEM
-        elif 'Acquisition_instrument.SEM' in ref.metadata:
+        elif "Acquisition_instrument.SEM" in ref.metadata:
             mp_ref = ref.metadata.Acquisition_instrument.SEM
         else:
-            raise ValueError("The reference has no metadata "
-                             "'Acquisition_instrument.TEM '"
-                             "or 'metadata.Acquisition_instrument.SEM'.")
+            raise ValueError(
+                "The reference has no metadata "
+                "'Acquisition_instrument.TEM '"
+                "or 'metadata.Acquisition_instrument.SEM'."
+            )
 
         mp = self.metadata
         mp.Acquisition_instrument.TEM = mp_ref.deepcopy()
         if mp_ref.has_item("Detector.EDS.live_time"):
-            mp.Acquisition_instrument.TEM.Detector.EDS.live_time = \
+            mp.Acquisition_instrument.TEM.Detector.EDS.live_time = (
                 mp_ref.Detector.EDS.live_time / nb_pix
+            )
 
-    def quantification(self,
-                       intensities,
-                       method,
-                       factors,
-                       composition_units='atomic',
-                       absorption_correction=False,
-                       take_off_angle='auto',
-                       thickness='auto',
-                       convergence_criterion=0.5,
-                       navigation_mask=1.0,
-                       closing=True,
-                       plot_result=False,
-                       probe_area='auto',
-                       max_iterations=30,
-                       show_progressbar=None,
-                       **kwargs):
+    def quantification(
+        self,
+        intensities,
+        method,
+        factors,
+        composition_units="atomic",
+        absorption_correction=False,
+        take_off_angle="auto",
+        thickness="auto",
+        convergence_criterion=0.5,
+        navigation_mask=1.0,
+        closing=True,
+        plot_result=False,
+        probe_area="auto",
+        max_iterations=30,
+        show_progressbar=None,
+        **kwargs,
+    ):
         """
         Absorption corrected quantification using Cliff-Lorimer, the zeta-factor
         method, or ionization cross sections. The function iterates through
@@ -405,120 +405,124 @@ class EDSTEMSpectrum(EDSSpectrum):
         --------
         vacuum_mask
         """
-        if (not isinstance(intensities, (list, tuple)) or
-                not isinstance(intensities[0], BaseSignal)):
-            raise ValueError(
-                "The parameter `intensities` must be a list of signals."
-                )
+        if not isinstance(intensities, (list, tuple)) or not isinstance(
+            intensities[0], BaseSignal
+        ):
+            raise ValueError("The parameter `intensities` must be a list of signals.")
         elif len(intensities) <= 1:
             raise ValueError("Several X-ray line intensities are required.")
-        
+
         if isinstance(navigation_mask, float):
             if self.axes_manager.navigation_dimension > 0:
                 navigation_mask = self.vacuum_mask(navigation_mask, closing)
             else:
                 navigation_mask = None
 
-        xray_lines = [intensity.metadata.Sample.xray_lines[0]
-                      for intensity in intensities]
+        xray_lines = [
+            intensity.metadata.Sample.xray_lines[0] for intensity in intensities
+        ]
         it = 0
         if absorption_correction:
             if show_progressbar is None:  # pragma: no cover
                 show_progressbar = hs.preferences.General.show_progressbar
             if show_progressbar:
-                pbar = progressbar(total=None,
-                                   desc='Absorption correction calculation')
+                pbar = progressbar(total=None, desc="Absorption correction calculation")
 
-        composition = utils.stack(intensities, lazy=False,
-                                  show_progressbar=False)
+        composition = utils.stack(intensities, lazy=False, show_progressbar=False)
 
-        if take_off_angle == 'auto':
+        if take_off_angle == "auto":
             toa = self.get_take_off_angle()
         else:
             toa = take_off_angle
 
-        #determining illumination area for cross sections quantification.
-        if method == 'cross_section':
-            if probe_area == 'auto':
+        # determining illumination area for cross sections quantification.
+        if method == "cross_section":
+            if probe_area == "auto":
                 parameters = self.metadata.Acquisition_instrument.TEM
                 if probe_area in parameters:
                     probe_area = parameters.TEM.probe_area
                 else:
                     probe_area = self.get_probe_area(
-                        navigation_axes=self.axes_manager.navigation_axes)
+                        navigation_axes=self.axes_manager.navigation_axes
+                    )
 
-        int_stack = utils.stack(intensities, lazy=False,
-                                show_progressbar=False)
+        int_stack = utils.stack(intensities, lazy=False, show_progressbar=False)
         comp_old = np.zeros_like(int_stack.data)
 
-        abs_corr_factor = None # initial
+        abs_corr_factor = None  # initial
 
-        if method == 'CL':
+        if method == "CL":
             quantification_method = utils_eds.quantification_cliff_lorimer
-            kwargs = {"intensities" : int_stack.data,
-                      "kfactors" : factors,
-                      "absorption_correction" : abs_corr_factor,
-                      "mask": navigation_mask}
+            kwargs = {
+                "intensities": int_stack.data,
+                "kfactors": factors,
+                "absorption_correction": abs_corr_factor,
+                "mask": navigation_mask,
+            }
 
-        elif method == 'zeta':
+        elif method == "zeta":
             quantification_method = utils_eds.quantification_zeta_factor
-            kwargs = {"intensities" : int_stack.data,
-                      "zfactors" : factors,
-                      "dose" : self._get_dose(method),
-                      "absorption_correction" : abs_corr_factor}
+            kwargs = {
+                "intensities": int_stack.data,
+                "zfactors": factors,
+                "dose": self._get_dose(method),
+                "absorption_correction": abs_corr_factor,
+            }
 
-        elif method =='cross_section':
+        elif method == "cross_section":
             quantification_method = utils_eds.quantification_cross_section
-            kwargs = {"intensities" : int_stack.data,
-                      "cross_sections" : factors,
-                      "dose" : self._get_dose(method, **kwargs),
-                      "absorption_correction" : abs_corr_factor}
+            kwargs = {
+                "intensities": int_stack.data,
+                "cross_sections": factors,
+                "dose": self._get_dose(method, **kwargs),
+                "absorption_correction": abs_corr_factor,
+            }
 
         else:
-            raise ValueError('Please specify method for quantification, '
-                             'as "CL", "zeta" or "cross_section".')
+            raise ValueError(
+                "Please specify method for quantification, "
+                'as "CL", "zeta" or "cross_section".'
+            )
 
         while True:
             results = quantification_method(**kwargs)
 
-            if method == 'CL':
-                composition.data = results * 100.
+            if method == "CL":
+                composition.data = results * 100.0
                 if absorption_correction:
                     if thickness is not None:
                         mass_thickness = intensities[0].deepcopy()
                         mass_thickness.data = self.CL_get_mass_thickness(
-                            composition.split(),
-                            thickness
-                            )
-                        mass_thickness.metadata.General.title = 'Mass thickness'
+                            composition.split(), thickness
+                        )
+                        mass_thickness.metadata.General.title = "Mass thickness"
                     else:
                         raise ValueError(
-                            'Thickness is required for absorption correction '
-                            'with k-factor method. Results will contain no '
-                            'correction for absorption.'
+                            "Thickness is required for absorption correction "
+                            "with k-factor method. Results will contain no "
+                            "correction for absorption."
                         )
 
-            elif method == 'zeta':
+            elif method == "zeta":
                 composition.data = results[0] * 100
                 mass_thickness = intensities[0].deepcopy()
                 mass_thickness.data = results[1]
 
             else:
-                composition.data = results[0] * 100.
+                composition.data = results[0] * 100.0
                 number_of_atoms = composition._deepcopy_with_new_data(results[1])
 
-            if method == 'cross_section':
+            if method == "cross_section":
                 if absorption_correction:
-                    abs_corr_factor = utils_eds.get_abs_corr_cross_section(composition.split(),
-                                                       number_of_atoms.split(),
-                                                       toa,
-                                                       probe_area)
+                    abs_corr_factor = utils_eds.get_abs_corr_cross_section(
+                        composition.split(), number_of_atoms.split(), toa, probe_area
+                    )
                     kwargs["absorption_correction"] = abs_corr_factor
             else:
                 if absorption_correction:
-                    abs_corr_factor = utils_eds.get_abs_corr_zeta(composition.split(),
-                                                       mass_thickness,
-                                                       toa)
+                    abs_corr_factor = utils_eds.get_abs_corr_zeta(
+                        composition.split(), mass_thickness, toa
+                    )
                     kwargs["absorption_correction"] = abs_corr_factor
 
             res_max = np.max(composition.data - comp_old)
@@ -530,68 +534,68 @@ class EDSTEMSpectrum(EDSSpectrum):
             if not absorption_correction or abs(res_max) < convergence_criterion:
                 break
             elif it >= max_iterations:
-                raise Exception('Absorption correction failed as solution '
-                                f'did not converge after {max_iterations} '
-                                'iterations')
+                raise Exception(
+                    "Absorption correction failed as solution "
+                    f"did not converge after {max_iterations} "
+                    "iterations"
+                )
 
-        if method == 'cross_section':
+        if method == "cross_section":
             number_of_atoms = composition._deepcopy_with_new_data(results[1])
             number_of_atoms = number_of_atoms.split()
             composition = composition.split()
         else:
             composition = composition.split()
 
-        #convert ouput units to selection as required.
-        if composition_units == 'atomic':
-            if method != 'cross_section':
+        # convert ouput units to selection as required.
+        if composition_units == "atomic":
+            if method != "cross_section":
                 composition = material.weight_to_atomic(composition)
         else:
-            if method == 'cross_section':
+            if method == "cross_section":
                 composition = material.atomic_to_weight(composition)
 
-        #Label each of the elemental maps in the image stacks for composition.
+        # Label each of the elemental maps in the image stacks for composition.
         for i, xray_line in enumerate(xray_lines):
             element, line = utils_eds._get_element_and_line(xray_line)
-            composition[i].metadata.General.title = composition_units + \
-                ' percent of ' + element
+            composition[i].metadata.General.title = (
+                composition_units + " percent of " + element
+            )
             composition[i].metadata.set_item("Sample.elements", ([element]))
-            composition[i].metadata.set_item(
-                "Sample.xray_lines", ([xray_line]))
+            composition[i].metadata.set_item("Sample.xray_lines", ([xray_line]))
             if plot_result and composition[i].axes_manager.navigation_size == 1:
                 c = float(composition[i].data)
                 print(f"{element} ({xray_line}): Composition = {c:.2f} percent")
-        #For the cross section method this is repeated for the number of atom maps
-        if method == 'cross_section':
+        # For the cross section method this is repeated for the number of atom maps
+        if method == "cross_section":
             for i, xray_line in enumerate(xray_lines):
                 element, line = utils_eds._get_element_and_line(xray_line)
-                number_of_atoms[i].metadata.General.title = \
-                    'atom counts of ' + element
-                number_of_atoms[i].metadata.set_item("Sample.elements",
-                                                     ([element]))
-                number_of_atoms[i].metadata.set_item(
-                    "Sample.xray_lines", ([xray_line]))
+                number_of_atoms[i].metadata.General.title = "atom counts of " + element
+                number_of_atoms[i].metadata.set_item("Sample.elements", ([element]))
+                number_of_atoms[i].metadata.set_item("Sample.xray_lines", ([xray_line]))
         if plot_result and composition[i].axes_manager.navigation_size != 1:
             utils.plot.plot_signals(composition, **kwargs)
 
         if absorption_correction:
-            _logger.info(f'Convergence reached after {it} interations.')
+            _logger.info(f"Convergence reached after {it} interations.")
 
-        if method == 'zeta':
-            mass_thickness.metadata.General.title = 'Mass thickness'
+        if method == "zeta":
+            mass_thickness.metadata.General.title = "Mass thickness"
             self.metadata.set_item("Sample.mass_thickness", mass_thickness)
             return composition, mass_thickness
-        elif method == 'cross_section':
+        elif method == "cross_section":
             return composition, number_of_atoms
-        elif method == 'CL':
+        elif method == "CL":
             if absorption_correction:
-                mass_thickness.metadata.General.title = 'Mass thickness'
+                mass_thickness.metadata.General.title = "Mass thickness"
                 return composition, mass_thickness
             else:
                 return composition
         else:
-            raise ValueError('Please specify method for quantification, as '
-                             '"CL", "zeta" or "cross_section"')
-
+            raise ValueError(
+                "Please specify method for quantification, as "
+                '"CL", "zeta" or "cross_section"'
+            )
 
     def vacuum_mask(self, threshold=1.0, closing=True, opening=False):
         """
@@ -624,10 +628,13 @@ class EDSTEMSpectrum(EDSSpectrum):
         array([False, False, False,  True], dtype=bool)
         """
         if self.axes_manager.navigation_dimension == 0:
-            raise RuntimeError('Navigation dimenstion must be higher than 0 '
-                               'to estimate a vacuum mask.')
+            raise RuntimeError(
+                "Navigation dimenstion must be higher than 0 "
+                "to estimate a vacuum mask."
+            )
         from scipy.ndimage import binary_dilation, binary_erosion
-        mask = (self.max(-1) <= threshold)
+
+        mask = self.max(-1) <= threshold
         if closing:
             mask.data = binary_dilation(mask.data, border_value=0)
             mask.data = binary_erosion(mask.data, border_value=1)
@@ -636,12 +643,14 @@ class EDSTEMSpectrum(EDSSpectrum):
             mask.data = binary_dilation(mask.data, border_value=0)
         return mask
 
-    def decomposition(self,
-                      normalize_poissonian_noise=True,
-                      navigation_mask=1.0,
-                      closing=True,
-                      *args,
-                      **kwargs):
+    def decomposition(
+        self,
+        normalize_poissonian_noise=True,
+        navigation_mask=1.0,
+        closing=True,
+        *args,
+        **kwargs,
+    ):
         """Apply a decomposition to a dataset with a choice of algorithms.
 
         The results are stored in ``self.learning_results``.
@@ -751,12 +760,13 @@ class EDSTEMSpectrum(EDSSpectrum):
             navigation_mask = self.vacuum_mask(navigation_mask, closing)
         super().decomposition(
             normalize_poissonian_noise=normalize_poissonian_noise,
-            navigation_mask=navigation_mask, *args, **kwargs)
-        self.learning_results.loadings = np.nan_to_num(
-            self.learning_results.loadings)
+            navigation_mask=navigation_mask,
+            *args,
+            **kwargs,
+        )
+        self.learning_results.loadings = np.nan_to_num(self.learning_results.loadings)
 
-    def create_model(self, auto_background=True, auto_add_lines=True,
-                     *args, **kwargs):
+    def create_model(self, auto_background=True, auto_add_lines=True, *args, **kwargs):
         """Create a model for the current TEM EDS data.
 
         Parameters
@@ -778,10 +788,14 @@ class EDSTEMSpectrum(EDSSpectrum):
 
         """
         from exspy.models.edstemmodel import EDSTEMModel
-        model = EDSTEMModel(self,
-                            auto_background=auto_background,
-                            auto_add_lines=auto_add_lines,
-                            *args, **kwargs)
+
+        model = EDSTEMModel(
+            self,
+            auto_background=auto_background,
+            auto_add_lines=auto_add_lines,
+            *args,
+            **kwargs,
+        )
         return model
 
     def get_probe_area(self, navigation_axes=None):
@@ -817,22 +831,27 @@ class EDSTEMSpectrum(EDSSpectrum):
         elif not isiterable(navigation_axes):
             navigation_axes = [navigation_axes]
         if len(navigation_axes) == 0:
-            raise ValueError("The navigation dimension is zero, the probe "
-                             "area can not be calculated automatically.")
+            raise ValueError(
+                "The navigation dimension is zero, the probe "
+                "area can not be calculated automatically."
+            )
         elif len(navigation_axes) > 2:
-            raise ValueError("The navigation axes corresponding to the probe "
-                             "are ambiguous and the probe area can not be "
-                             "calculated automatically.")
+            raise ValueError(
+                "The navigation axes corresponding to the probe "
+                "are ambiguous and the probe area can not be "
+                "calculated automatically."
+            )
         scales = []
 
         for axis in navigation_axes:
             try:
                 if not isinstance(navigation_axes, DataAxis):
                     axis = self.axes_manager[axis]
-                scales.append(axis.convert_to_units('nm', inplace=False)[0])
+                scales.append(axis.convert_to_units("nm", inplace=False)[0])
             except pint.DimensionalityError:
-                raise ValueError(f"The unit of the axis {axis} has not the "
-                                 "dimension of length.")
+                raise ValueError(
+                    f"The unit of the axis {axis} has not the " "dimension of length."
+                )
 
         if len(scales) == 1:
             probe_area = scales[0] ** 2
@@ -840,16 +859,18 @@ class EDSTEMSpectrum(EDSSpectrum):
             probe_area = scales[0] * scales[1]
 
         if probe_area == 1:
-            warnings.warn("Please note that the probe area has been "
-                          "calculated to be 1 nm², meaning that it is highly "
-                          "likley that the scale of the navigation axes have not "
-                          "been set correctly. Please read the user "
-                          "guide for how to set this.")
+            warnings.warn(
+                "Please note that the probe area has been "
+                "calculated to be 1 nm², meaning that it is highly "
+                "likley that the scale of the navigation axes have not "
+                "been set correctly. Please read the user "
+                "guide for how to set this."
+            )
         return probe_area
 
-
-    def _get_dose(self, method, beam_current='auto', live_time='auto',
-                  probe_area='auto'):
+    def _get_dose(
+        self, method, beam_current="auto", live_time="auto", probe_area="auto"
+    ):
         """
         Calculates the total electron dose for the zeta-factor or cross section
         methods of quantification.
@@ -887,33 +908,37 @@ class EDSTEMSpectrum(EDSSpectrum):
 
         parameters = self.metadata.Acquisition_instrument.TEM
 
-        if beam_current == 'auto':
-            beam_current = parameters.get_item('beam_current')
+        if beam_current == "auto":
+            beam_current = parameters.get_item("beam_current")
             if beam_current is None:
-                raise Exception('Electron dose could not be calculated as the '
-                                'beam current is not set. It can set using '
-                                '`set_microscope_parameters()`.')
+                raise Exception(
+                    "Electron dose could not be calculated as the "
+                    "beam current is not set. It can set using "
+                    "`set_microscope_parameters()`."
+                )
 
-        if live_time == 'auto':
-            live_time = parameters.get_item('Detector.EDS.live_time')
+        if live_time == "auto":
+            live_time = parameters.get_item("Detector.EDS.live_time")
             if live_time is None:
-                raise Exception('Electron dose could not be calculated as '
-                                'live time is not set. It can set using '
-                                '`set_microscope_parameters()`.')
+                raise Exception(
+                    "Electron dose could not be calculated as "
+                    "live time is not set. It can set using "
+                    "`set_microscope_parameters()`."
+                )
 
-        if method == 'cross_section':
-            if probe_area == 'auto':
-                probe_area = parameters.get_item('probe_area')
+        if method == "cross_section":
+            if probe_area == "auto":
+                probe_area = parameters.get_item("probe_area")
                 if probe_area is None:
                     probe_area = self.get_probe_area(
-                        navigation_axes=self.axes_manager.navigation_axes)
+                        navigation_axes=self.axes_manager.navigation_axes
+                    )
             return (live_time * beam_current * 1e-9) / (constants.e * probe_area)
             # 1e-9 is included here because the beam_current is in nA.
-        elif method == 'zeta':
+        elif method == "zeta":
             return live_time * beam_current * 1e-9 / constants.e
         else:
             raise Exception("Method need to be 'zeta' or 'cross_section'.")
-
 
     @staticmethod
     def CL_get_mass_thickness(weight_percent, thickness):
@@ -941,16 +966,21 @@ class EDSTEMSpectrum(EDSSpectrum):
         else:
             thickness_map = thickness
 
-        elements = [intensity.metadata.Sample.elements[0] for intensity in weight_percent]
+        elements = [
+            intensity.metadata.Sample.elements[0] for intensity in weight_percent
+        ]
         mass_thickness = np.zeros_like(weight_percent[0])
         densities = np.array(
-            [elements_db[element]['Physical_properties']['density (g/cm^3)']
-                    for element in elements])
+            [
+                elements_db[element]["Physical_properties"]["density (g/cm^3)"]
+                for element in elements
+            ]
+        )
         for density, element_composition in zip(densities, weight_percent):
             # convert composition from % to fraction: factor of 1E-2
             # convert thickness from nm to m: factor of 1E-9
             # convert density from g/cm3 to kg/m2: factor of 1E3
-            elemental_mt = element_composition * thickness_map * density * 1E-8
+            elemental_mt = element_composition * thickness_map * density * 1e-8
             mass_thickness += elemental_mt
         return mass_thickness
 

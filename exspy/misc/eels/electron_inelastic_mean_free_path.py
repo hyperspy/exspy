@@ -20,11 +20,14 @@
 import numpy as np
 import math
 
+
 def _F(electron_energy):
     return (1 + electron_energy / 1022) / (1 + electron_energy / 511) ** 2
 
+
 def _theta_E(density, electron_energy):
-    return 5.5 * density ** 0.3 / (_F(electron_energy) * electron_energy)
+    return 5.5 * density**0.3 / (_F(electron_energy) * electron_energy)
+
 
 def iMFP_Iakoubovskii(density, electron_energy):
     """Estimate electron inelastic mean free path from density
@@ -50,8 +53,13 @@ def iMFP_Iakoubovskii(density, electron_energy):
     float
         Inelastic mean free path in nanometers
     """
-    theta_C = 20 # mrad
-    inv_lambda = 11 * density ** 0.3 / (200 * _F(electron_energy) * electron_energy) * np.log(theta_C ** 2 / _theta_E(density, electron_energy) ** 2)
+    theta_C = 20  # mrad
+    inv_lambda = (
+        11
+        * density**0.3
+        / (200 * _F(electron_energy) * electron_energy)
+        * np.log(theta_C**2 / _theta_E(density, electron_energy) ** 2)
+    )
     return 1 / inv_lambda
 
 
@@ -89,15 +97,20 @@ def iMFP_TPP2M(electron_energy, density, M, N_v, E_g):
     """
     E = electron_energy * 1e3
     rho = density
-    alpha = (1 + E / 1021999.8) / (1 + E / 510998.9)**2
+    alpha = (1 + E / 1021999.8) / (1 + E / 510998.9) ** 2
     E_p = 28.816 * math.sqrt(N_v * rho / M)
     gamma = 0.191 / math.sqrt(rho)
     U = (E_p / 28.816) ** 2
     C = 19.7 - 9.1 * U
     D = 534 - 208 * U
-    beta = -1 + 9.44 / math.sqrt(E_p **2 + E_g**2) + 0.69 * rho ** 0.1
-    iMFP = alpha * E / (E_p ** 2 * (beta * math.log(gamma * alpha * E) - C / E + D / E**2))
+    beta = -1 + 9.44 / math.sqrt(E_p**2 + E_g**2) + 0.69 * rho**0.1
+    iMFP = (
+        alpha
+        * E
+        / (E_p**2 * (beta * math.log(gamma * alpha * E) - C / E + D / E**2))
+    )
     return iMFP
+
 
 def iMFP_angular_correction(density, beam_energy, alpha, beta):
     """Estimate the effect of limited collection angle on EELS mean free path
@@ -120,8 +133,14 @@ def iMFP_angular_correction(density, beam_energy, alpha, beta):
        Microscopy Research and Technique 71, no. 8 (2008): 626–31.
        https://onlinelibrary.wiley.com/doi/10.1002/jemt.20597
     """
-    theta_C = 20 # mrad
-    A = alpha ** 2 + beta ** 2 + 2 * _theta_E(density, beam_energy) ** 2 + abs(alpha ** 2 - beta ** 2)
-    B = alpha ** 2 + beta ** 2 + 2 * theta_C ** 2 + abs(alpha ** 2 - beta ** 2)
-    return np.log(theta_C ** 2 / _theta_E(density, beam_energy) ** 2) / np.log(A * theta_C ** 2 / B / _theta_E(density, beam_energy) ** 2)
-
+    theta_C = 20  # mrad
+    A = (
+        alpha**2
+        + beta**2
+        + 2 * _theta_E(density, beam_energy) ** 2
+        + abs(alpha**2 - beta**2)
+    )
+    B = alpha**2 + beta**2 + 2 * theta_C**2 + abs(alpha**2 - beta**2)
+    return np.log(theta_C**2 / _theta_E(density, beam_energy) ** 2) / np.log(
+        A * theta_C**2 / B / _theta_E(density, beam_energy) ** 2
+    )

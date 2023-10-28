@@ -27,9 +27,33 @@ from exspy.misc.eels.base_gos import BaseGOS
 _logger = logging.getLogger(__name__)
 
 XU = [
-    .82, .52, .52, .42, .30, .29, .22, .30, .22, .16, .12, .13, .13, .14, .16,
-    .18, .19, .22, .14, .11, .12, .12, .12, .10, .10, .10
-    ]
+    0.82,
+    0.52,
+    0.52,
+    0.42,
+    0.30,
+    0.29,
+    0.22,
+    0.30,
+    0.22,
+    0.16,
+    0.12,
+    0.13,
+    0.13,
+    0.14,
+    0.16,
+    0.18,
+    0.19,
+    0.22,
+    0.14,
+    0.11,
+    0.12,
+    0.12,
+    0.12,
+    0.10,
+    0.10,
+    0.10,
+]
 # IE3=[73,99,135,164,200,245,294,347,402,455,513,575,641,710,
 # 779,855,931,1021,1115,1217,1323,1436,1550,1675]
 
@@ -75,7 +99,8 @@ class HydrogenicGOS(BaseGOS):
     I. Iyengar. See http://www.tem-eels.ca/ for the original code.
 
     """
-    _name = 'hydrogenic'
+
+    _name = "hydrogenic"
 
     def __init__(self, element_subshell):
         """
@@ -89,64 +114,77 @@ class HydrogenicGOS(BaseGOS):
         # Check if the Peter Rez's Hartree Slater GOS distributed by
         # Gatan are available. Otherwise exit
 
-        self.element, self.subshell = element_subshell.split('_')
+        self.element, self.subshell = element_subshell.split("_")
         self.read_elements()
         self.energy_shift = 0
 
-        if self.subshell[:1] == 'K':
+        if self.subshell[:1] == "K":
             self.gosfunc = self.gosfuncK
-            self.rel_energy_axis = self.get_parametrized_energy_axis(
-                50, 3, 50)
-        elif self.subshell[:1] == 'L':
+            self.rel_energy_axis = self.get_parametrized_energy_axis(50, 3, 50)
+        elif self.subshell[:1] == "L":
             self.gosfunc = self.gosfuncL
-            self.onset_energy_L3 = self.element_dict['Atomic_properties'][
-                'Binding_energies']['L3']['onset_energy (eV)']
-            self.onset_energy_L1 = self.element_dict['Atomic_properties'][
-                'Binding_energies']['L1']['onset_energy (eV)']
+            self.onset_energy_L3 = self.element_dict["Atomic_properties"][
+                "Binding_energies"
+            ]["L3"]["onset_energy (eV)"]
+            self.onset_energy_L1 = self.element_dict["Atomic_properties"][
+                "Binding_energies"
+            ]["L1"]["onset_energy (eV)"]
             self.onset_energy = self.onset_energy_L3
-            relative_axis = self.get_parametrized_energy_axis(
-                50, 3, 50)
+            relative_axis = self.get_parametrized_energy_axis(50, 3, 50)
             dL3L2 = self.onset_energy_L1 - self.onset_energy_L3
-            self.rel_energy_axis = np.hstack((
-                relative_axis[:relative_axis.searchsorted(dL3L2)],
-                relative_axis + dL3L2))
+            self.rel_energy_axis = np.hstack(
+                (
+                    relative_axis[: relative_axis.searchsorted(dL3L2)],
+                    relative_axis + dL3L2,
+                )
+            )
         else:
             raise ValueError(
-                'The Hydrogenic GOS currently can only'
-                'compute K or L shells. Try using other GOS.')
+                "The Hydrogenic GOS currently can only"
+                "compute K or L shells. Try using other GOS."
+            )
 
         self.energy_axis = self.rel_energy_axis + self.onset_energy
 
         info_str = (
-            "\nHydrogenic GOS\n" +
-            ("\tElement: %s " % self.element) +
-            ("\tSubshell: %s " % self.subshell) +
-            ("\tOnset Energy = %s " % self.onset_energy))
+            "\nHydrogenic GOS\n"
+            + ("\tElement: %s " % self.element)
+            + ("\tSubshell: %s " % self.subshell)
+            + ("\tOnset Energy = %s " % self.onset_energy)
+        )
         _logger.info(info_str)
 
     def integrateq(self, onset_energy, angle, E0):
         energy_shift = onset_energy - self.onset_energy
         self.energy_shift = energy_shift
         gamma = 1 + E0 / 511.06
-        T = 511060 * (1 - 1 / gamma ** 2) / 2
+        T = 511060 * (1 - 1 / gamma**2) / 2
         qint = np.zeros((self.energy_axis.shape[0]))
         for i, E in enumerate(self.energy_axis + energy_shift):
-            qa0sqmin = (E ** 2) / (4 * R * T) + (E ** 3) / (
-                8 * gamma ** 3 * R * T ** 2)
+            qa0sqmin = (E**2) / (4 * R * T) + (E**3) / (8 * gamma**3 * R * T**2)
             p02 = T / (R * (1 - 2 * T / 511060))
             pp2 = p02 - E / R * (gamma - E / 1022120)
-            qa0sqmax = qa0sqmin + 4 * np.sqrt(p02 * pp2) * \
-                (math.sin(angle / 2)) ** 2
+            qa0sqmax = qa0sqmin + 4 * np.sqrt(p02 * pp2) * (math.sin(angle / 2)) ** 2
 
             # dsbyde IS THE ENERGY-DIFFERENTIAL X-SECN (barn/eV/atom)
-            qint[i] = 3.5166e8 * (R / T) * (R / E) * (
-                integrate.quad(
-                    lambda x: self.gosfunc(E, np.exp(x)),
-                    math.log(qa0sqmin), math.log(qa0sqmax))[0])
+            qint[i] = (
+                3.5166e8
+                * (R / T)
+                * (R / E)
+                * (
+                    integrate.quad(
+                        lambda x: self.gosfunc(E, np.exp(x)),
+                        math.log(qa0sqmin),
+                        math.log(qa0sqmax),
+                    )[0]
+                )
+            )
         self.qint = qint
         return interpolate.make_interp_spline(
-            self.energy_axis + energy_shift, qint, k=1,
-            )
+            self.energy_axis + energy_shift,
+            qint,
+            k=1,
+        )
 
     def gosfuncK(self, E, qa02):
         # gosfunc calculates (=DF/DE) which IS PER EV AND PER ATOM
@@ -158,8 +196,8 @@ class HydrogenicGOS(BaseGOS):
             zs = z - 0.5
             rnk = 2
 
-        q = qa02 / zs ** 2
-        kh2 = E / (r * zs ** 2) - 1
+        q = qa02 / zs**2
+        kh2 = E / (r * zs**2) - 1
         akh = np.sqrt(abs(kh2))
         if akh < 0.01:
             akh = 0.01
@@ -171,12 +209,10 @@ class HydrogenicGOS(BaseGOS):
             c = np.e ** ((-2 / akh) * bp)
         else:
             d = 1
-            y = -1 / akh * np.log((q + 1 - kh2 + 2 * akh) / (
-                q + 1 - kh2 - 2 * akh))
-            c = np.e ** y
+            y = -1 / akh * np.log((q + 1 - kh2 + 2 * akh) / (q + 1 - kh2 - 2 * akh))
+            c = np.e**y
         a = ((q - kh2 + 1) ** 2 + 4 * kh2) ** 3
-        return 128 * rnk * E / (
-            r * zs ** 4) * c / d * (q + kh2 / 3 + 1 / 3) / (a * r)
+        return 128 * rnk * E / (r * zs**4) * c / d * (q + kh2 / 3 + 1 / 3) / (a * r)
 
     def gosfuncL(self, E, qa02):
         # gosfunc calculates (=DF/DE) which IS PER EV AND PER ATOM
@@ -191,15 +227,15 @@ class HydrogenicGOS(BaseGOS):
             # Egerton does not tabulate the correction for Z>36.
             # This produces XSs that are within 10% of Hartree-Slater XSs
             # for these elements.
-            u = .1
+            u = 0.1
         else:
             # Egerton's correction to the Hydrogenic XS
             u = XU[int(iz)]
         el3 = self.onset_energy_L3 + self.energy_shift
         el1 = self.onset_energy_L1 + self.energy_shift
 
-        q = qa02 / zs ** 2
-        kh2 = E / (r * zs ** 2) - 0.25
+        q = qa02 / zs**2
+        kh2 = E / (r * zs**2) - 0.25
         akh = np.sqrt(abs(kh2))
         if kh2 >= 0.0:
             d = 1 - np.exp(-2 * np.pi / akh)
@@ -209,22 +245,33 @@ class HydrogenicGOS(BaseGOS):
             c = np.exp((-2 / akh) * bp)
         else:
             d = 1
-            y = -1 / akh * \
-                np.log((q + 0.25 - kh2 + akh) / (q + 0.25 - kh2 - akh))
+            y = -1 / akh * np.log((q + 0.25 - kh2 + akh) / (q + 0.25 - kh2 - akh))
             c = np.exp(y)
 
         if E - el1 <= 0:
-            g = 2.25 * q ** 4 - (0.75 + 3 * kh2) * q ** 3 + (
-                0.59375 - 0.75 * kh2 - 0.5 * kh2 ** 2) * q * q + (
-                0.11146 + 0.85417 * kh2 + 1.8833 * kh2 * kh2 + kh2 ** 3) * \
-                q + 0.0035807 + kh2 / 21.333 + kh2 * kh2 / 4.5714 + kh2 ** 3 \
-                / 2.4 + kh2 ** 4 / 4
+            g = (
+                2.25 * q**4
+                - (0.75 + 3 * kh2) * q**3
+                + (0.59375 - 0.75 * kh2 - 0.5 * kh2**2) * q * q
+                + (0.11146 + 0.85417 * kh2 + 1.8833 * kh2 * kh2 + kh2**3) * q
+                + 0.0035807
+                + kh2 / 21.333
+                + kh2 * kh2 / 4.5714
+                + kh2**3 / 2.4
+                + kh2**4 / 4
+            )
 
             a = ((q - kh2 + 0.25) ** 2 + kh2) ** 5
         else:
-            g = q ** 3 - (5 / 3 * kh2 + 11 / 12) * q ** 2 + (
-                kh2 * kh2 / 3 + 1.5 * kh2 + 65 / 48) * q + kh2 ** 3 / 3 + \
-                0.75 * kh2 * kh2 + 23 / 48 * kh2 + 5 / 64
+            g = (
+                q**3
+                - (5 / 3 * kh2 + 11 / 12) * q**2
+                + (kh2 * kh2 / 3 + 1.5 * kh2 + 65 / 48) * q
+                + kh2**3 / 3
+                + 0.75 * kh2 * kh2
+                + 23 / 48 * kh2
+                + 5 / 64
+            )
             a = ((q - kh2 + 0.25) ** 2 + kh2) ** 4
         rf = ((E + 0.1 - el3) / 1.8 / z / z) ** u
         # The following commented lines are to give a more accurate GOS
@@ -232,4 +279,4 @@ class HydrogenicGOS(BaseGOS):
         # for quantification by curve fitting.
         # if abs(iz - 11) <= 5 and E - el3 <= 20:
         #     rf = 1
-        return rf * 32 * g * c / a / d * E / r / r / zs ** 4
+        return rf * 32 * g * c / a / d * E / r / r / zs**4

@@ -27,7 +27,7 @@ from hyperspy.ui_registry import add_gui_method
 
 config_path = Path("~/.exspy").expanduser()
 config_path.mkdir(parents=True, exist_ok=True)
-defaults_file = Path(config_path, 'exspyrc')
+defaults_file = Path(config_path, "exspyrc")
 
 _logger = logging.getLogger(__name__)
 
@@ -37,52 +37,56 @@ def guess_gos_path():
         # If DM is installed, use the GOS tables from the default
         # installation
         # location in windows
-        program_files = os.environ['PROGRAMFILES']
-        gos = 'Gatan\\DigitalMicrograph\\EELS Reference Data\\H-S GOS Tables'
+        program_files = os.environ["PROGRAMFILES"]
+        gos = "Gatan\\DigitalMicrograph\\EELS Reference Data\\H-S GOS Tables"
         gos_path = Path(program_files, gos)
 
         # Else, use the default location in the .hyperspy forlder
-        if not gos_path.is_dir() and 'PROGRAMFILES(X86)' in os.environ:
-            program_files = os.environ['PROGRAMFILES(X86)']
+        if not gos_path.is_dir() and "PROGRAMFILES(X86)" in os.environ:
+            program_files = os.environ["PROGRAMFILES(X86)"]
             gos_path = Path(program_files, gos)
             if not gos_path.is_dir():
-                gos_path = Path(config_path, 'EELS_GOS')
+                gos_path = Path(config_path, "EELS_GOS")
     else:
-        gos_path = Path(config_path, 'EELS_GOS')
+        gos_path = Path(config_path, "EELS_GOS")
     return gos_path
 
 
 class EELSConfig(t.HasTraits):
     eels_gos_files_path = t.Directory(
         guess_gos_path(),
-        label='Hartree-Slater GOS directory',
-        desc='The GOS files are used to create the EELS edge components')
+        label="Hartree-Slater GOS directory",
+        desc="The GOS files are used to create the EELS edge components",
+    )
 
 
 class EDSConfig(t.HasTraits):
-    eds_mn_ka = t.CFloat(130.,
-                         label='Energy resolution at Mn Ka (eV)',
-                         desc='default value for FWHM of the Mn Ka peak in eV,'
-                         'This value is used as a first approximation'
-                         'of the energy resolution of the detector.')
+    eds_mn_ka = t.CFloat(
+        130.0,
+        label="Energy resolution at Mn Ka (eV)",
+        desc="default value for FWHM of the Mn Ka peak in eV,"
+        "This value is used as a first approximation"
+        "of the energy resolution of the detector.",
+    )
     eds_tilt_stage = t.CFloat(
-        0.,
-        label='Stage tilt',
-        desc='default value for the stage tilt in degree.')
+        0.0, label="Stage tilt", desc="default value for the stage tilt in degree."
+    )
     eds_detector_azimuth = t.CFloat(
-        0.,
-        label='Azimuth angle',
-        desc='default value for the azimuth angle in degree. If the azimuth'
-        ' is zero, the detector is perpendicular to the tilt axis.')
+        0.0,
+        label="Azimuth angle",
+        desc="default value for the azimuth angle in degree. If the azimuth"
+        " is zero, the detector is perpendicular to the tilt axis.",
+    )
     eds_detector_elevation = t.CFloat(
-        35.,
-        label='Elevation angle',
-        desc='default value for the elevation angle in degree.')
+        35.0,
+        label="Elevation angle",
+        desc="default value for the elevation angle in degree.",
+    )
 
 
 template = {
-    'EELS': EELSConfig(),
-    'EDS': EDSConfig(),
+    "EELS": EELSConfig(),
+    "EDS": EDSConfig(),
 }
 
 
@@ -97,9 +101,9 @@ def config2template(template, config):
     for section, traited_class in template.items():
         config_dict = {}
         for name, value in config.items(section):
-            if value == 'True':
+            if value == "True":
                 value = True
-            elif value == 'False':
+            elif value == "False":
                 value = False
             config_dict[name] = value
         traited_class.trait_set(True, **config_dict)
@@ -128,7 +132,7 @@ if defaults_file_exists:
             rewrite = True
 
 if not defaults_file_exists or rewrite is True:
-    _logger.info('Writing the config file')
+    _logger.info("Writing the config file")
     with open(defaults_file, "w") as df:
         config.write(df)
 
@@ -144,10 +148,10 @@ class Preferences(t.HasTraits):
     def save(self):
         config = configparser.ConfigParser(allow_no_value=True)
         template2config(template, config)
-        config.write(open(defaults_file, 'w'))
+        config.write(open(defaults_file, "w"))
 
 
 preferences = Preferences(
-    EELS=template['EELS'],
-    EDS=template['EDS'],
+    EELS=template["EELS"],
+    EDS=template["EDS"],
 )

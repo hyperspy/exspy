@@ -1,4 +1,3 @@
-
 """
 Modules containing the exSpy signals and their lazy counterparts.
 
@@ -35,7 +34,7 @@ __all__ = [
     "LazyEELSSpectrum",
     "EDSSEMSpectrum",
     "LazyEDSSEMSpectrum",
-    ]
+]
 
 
 def __dir__():

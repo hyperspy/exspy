@@ -33,7 +33,7 @@ __all__ = [
     "density_of_mixture",
     "mass_absorption_coefficient",
     "mass_absorption_mixture",
-    ]
+]
 
 
 def __dir__():
@@ -62,21 +62,24 @@ def _weight_to_atomic(weight_percent, elements):
     """
     if len(elements) != len(weight_percent):
         raise ValueError(
-            'The number of elements must match the size of the first axis'
-            'of weight_percent.')
+            "The number of elements must match the size of the first axis"
+            "of weight_percent."
+        )
     atomic_weights = np.array(
-        [elements_db[element]['General_properties']['atomic_weight']
-            for element in elements])
-    atomic_percent = np.array(
-        list(map(np.divide, weight_percent, atomic_weights)))
-    sum_weight = atomic_percent.sum(axis=0) / 100.
+        [
+            elements_db[element]["General_properties"]["atomic_weight"]
+            for element in elements
+        ]
+    )
+    atomic_percent = np.array(list(map(np.divide, weight_percent, atomic_weights)))
+    sum_weight = atomic_percent.sum(axis=0) / 100.0
     for i, el in enumerate(elements):
         atomic_percent[i] /= sum_weight
         atomic_percent[i] = np.where(sum_weight == 0.0, 0.0, atomic_percent[i])
     return atomic_percent
 
 
-def weight_to_atomic(weight_percent, elements='auto'):
+def weight_to_atomic(weight_percent, elements="auto"):
     """Convert weight percent (wt%) to atomic percent (at.%).
 
     Parameters
@@ -101,16 +104,16 @@ def weight_to_atomic(weight_percent, elements='auto'):
 
     """
     from hyperspy.signals import BaseSignal
+
     elements = _elements_auto(weight_percent, elements)
 
     if isinstance(weight_percent[0], BaseSignal):
         atomic_percent = stack(weight_percent)
-        atomic_percent.data = _weight_to_atomic(
-            atomic_percent.data, elements)
+        atomic_percent.data = _weight_to_atomic(atomic_percent.data, elements)
         atomic_percent.data = np.nan_to_num(atomic_percent.data)
         atomic_percent = atomic_percent.split()
         for i, el in enumerate(elements):
-            atomic_percent[i].metadata.General.title = 'atomic percent of ' + el
+            atomic_percent[i].metadata.General.title = "atomic percent of " + el
         return atomic_percent
     else:
         return _weight_to_atomic(weight_percent, elements)
@@ -140,21 +143,24 @@ def _atomic_to_weight(atomic_percent, elements):
     """
     if len(elements) != len(atomic_percent):
         raise ValueError(
-            'The number of elements must match the size of the first axis'
-            'of atomic_percent.')
+            "The number of elements must match the size of the first axis"
+            "of atomic_percent."
+        )
     atomic_weights = np.array(
-        [elements_db[element]['General_properties']['atomic_weight']
-            for element in elements])
-    weight_percent = np.array(
-        list(map(np.multiply, atomic_percent, atomic_weights)))
-    sum_atomic = weight_percent.sum(axis=0) / 100.
+        [
+            elements_db[element]["General_properties"]["atomic_weight"]
+            for element in elements
+        ]
+    )
+    weight_percent = np.array(list(map(np.multiply, atomic_percent, atomic_weights)))
+    sum_atomic = weight_percent.sum(axis=0) / 100.0
     for i, el in enumerate(elements):
         weight_percent[i] /= sum_atomic
         weight_percent[i] = np.where(sum_atomic == 0.0, 0.0, weight_percent[i])
     return weight_percent
 
 
-def atomic_to_weight(atomic_percent, elements='auto'):
+def atomic_to_weight(atomic_percent, elements="auto"):
     """Convert atomic percent to weight percent.
 
     Parameters
@@ -179,22 +185,20 @@ def atomic_to_weight(atomic_percent, elements='auto'):
 
     """
     from hyperspy.signals import BaseSignal
+
     elements = _elements_auto(atomic_percent, elements)
     if isinstance(atomic_percent[0], BaseSignal):
         weight_percent = stack(atomic_percent, show_progressbar=False)
-        weight_percent.data = _atomic_to_weight(
-            weight_percent.data, elements)
+        weight_percent.data = _atomic_to_weight(weight_percent.data, elements)
         weight_percent = weight_percent.split()
         for i, el in enumerate(elements):
-            atomic_percent[i].metadata.General.title = 'weight percent of ' + el
+            atomic_percent[i].metadata.General.title = "weight percent of " + el
         return weight_percent
     else:
         return _atomic_to_weight(atomic_percent, elements)
 
 
-def _density_of_mixture(weight_percent,
-                        elements,
-                        mean='harmonic'):
+def _density_of_mixture(weight_percent, elements, mean="harmonic"):
     """Calculate the density a mixture of elements.
 
     The density of the elements is retrieved from an internal database. The
@@ -225,34 +229,37 @@ def _density_of_mixture(weight_percent,
     """
     if len(elements) != len(weight_percent):
         raise ValueError(
-            'The number of elements must match the size of the first axis'
-            'of weight_percent.')
+            "The number of elements must match the size of the first axis"
+            "of weight_percent."
+        )
     densities = np.array(
-        [elements_db[element]['Physical_properties']['density (g/cm^3)']
-            for element in elements])
-    sum_densities = np.zeros_like(weight_percent, dtype='float')
-    try :
-        if mean == 'harmonic':
+        [
+            elements_db[element]["Physical_properties"]["density (g/cm^3)"]
+            for element in elements
+        ]
+    )
+    sum_densities = np.zeros_like(weight_percent, dtype="float")
+    try:
+        if mean == "harmonic":
             for i, weight in enumerate(weight_percent):
                 sum_densities[i] = weight / densities[i]
             sum_densities = sum_densities.sum(axis=0)
             density = np.sum(weight_percent, axis=0) / sum_densities
             return np.where(sum_densities == 0.0, 0.0, density)
-        elif mean == 'weighted':
+        elif mean == "weighted":
             for i, weight in enumerate(weight_percent):
                 sum_densities[i] = weight * densities[i]
             sum_densities = sum_densities.sum(axis=0)
             sum_weight = np.sum(weight_percent, axis=0)
             density = sum_densities / sum_weight
             return np.where(sum_weight == 0.0, 0.0, density)
-    except TypeError :
+    except TypeError:
         raise ValueError(
-            'The density of one of the elements is unknown (Probably At or Fr).')
+            "The density of one of the elements is unknown (Probably At or Fr)."
+        )
 
 
-def density_of_mixture(weight_percent,
-                       elements='auto',
-                       mean='harmonic'):
+def density_of_mixture(weight_percent, elements="auto", mean="harmonic"):
     """Calculate the density of a mixture of elements.
 
     The density of the elements is retrieved from an internal database. The
@@ -284,11 +291,12 @@ def density_of_mixture(weight_percent,
 
     """
     from hyperspy.signals import BaseSignal
+
     elements = _elements_auto(weight_percent, elements)
     if isinstance(weight_percent[0], BaseSignal):
         density = weight_percent[0]._deepcopy_with_new_data(
-            _density_of_mixture(stack(weight_percent).data,
-                                elements, mean=mean))
+            _density_of_mixture(stack(weight_percent).data, elements, mean=mean)
+        )
         return density
     else:
         return _density_of_mixture(weight_percent, elements, mean=mean)
@@ -340,16 +348,18 @@ def mass_absorption_coefficient(element, energies):
             if isinstance(energy, str):
                 energies[i] = utils_eds._get_energy_xray_line(energy)
     index = np.searchsorted(energies_db, energies)
-    mac_res = np.exp(np.log(macs[index - 1]) +
-                     np.log(macs[index] / macs[index - 1]) *
-                     (np.log(energies / energies_db[index - 1]) /
-                      np.log(energies_db[index] / energies_db[index - 1])))
+    mac_res = np.exp(
+        np.log(macs[index - 1])
+        + np.log(macs[index] / macs[index - 1])
+        * (
+            np.log(energies / energies_db[index - 1])
+            / np.log(energies_db[index] / energies_db[index - 1])
+        )
+    )
     return np.nan_to_num(mac_res)
 
 
-def _mass_absorption_mixture(weight_percent,
-                             elements,
-                             energies):
+def _mass_absorption_mixture(weight_percent, elements, energies):
     """Calculate the mass absorption coefficient for X-ray absorbed in a
     mixture of elements.
 
@@ -390,8 +400,7 @@ def _mass_absorption_mixture(weight_percent,
     Scattering Tables (version 2.1).
     """
     if len(elements) != len(weight_percent):
-        raise ValueError(
-            "Elements and weight_fraction should have the same length")
+        raise ValueError("Elements and weight_fraction should have the same length")
     if isinstance(weight_percent[0], Iterable):
         weight_fraction = np.array(weight_percent)
         weight_fraction /= np.sum(weight_fraction, 0)
@@ -401,15 +410,14 @@ def _mass_absorption_mixture(weight_percent,
             mac_res += np.array([weight * ma for ma in mac_re])
         return mac_res
     else:
-        mac_res = np.array([mass_absorption_coefficient(
-            el, energies) for el in elements])
+        mac_res = np.array(
+            [mass_absorption_coefficient(el, energies) for el in elements]
+        )
         mac_res = np.dot(weight_percent, mac_res) / np.sum(weight_percent, 0)
         return mac_res
 
 
-def mass_absorption_mixture(weight_percent,
-                            elements='auto',
-                            energies='auto'):
+def mass_absorption_mixture(weight_percent, elements="auto", energies="auto"):
     """Calculate the mass absorption coefficient for X-ray absorbed in a
     mixture of elements.
 
@@ -454,20 +462,23 @@ def mass_absorption_mixture(weight_percent,
 
     """
     from hyperspy.signals import BaseSignal
+
     elements = _elements_auto(weight_percent, elements)
     energies = _lines_auto(weight_percent, energies)
     if isinstance(weight_percent[0], BaseSignal):
         weight_per = np.array([wt.data for wt in weight_percent])
-        mac_res = stack([weight_percent[0].deepcopy()] * len(energies),
-                        show_progressbar=False)
-        mac_res.data = \
-            _mass_absorption_mixture(weight_per, elements, energies)
+        mac_res = stack(
+            [weight_percent[0].deepcopy()] * len(energies), show_progressbar=False
+        )
+        mac_res.data = _mass_absorption_mixture(weight_per, elements, energies)
         mac_res = mac_res.split()
         for i, energy in enumerate(energies):
             mac_res[i].metadata.set_item("Sample.xray_lines", ([energy]))
             mac_res[i].metadata.General.set_item(
-                "title", "Absoprtion coeff of"
-                " %s in %s" % (energy, mac_res[i].metadata.General.title))
+                "title",
+                "Absoprtion coeff of"
+                " %s in %s" % (energy, mac_res[i].metadata.General.title),
+            )
             if mac_res[i].metadata.has_item("Sample.elements"):
                 del mac_res[i].metadata.Sample.elements
         return mac_res
@@ -478,18 +489,19 @@ def mass_absorption_mixture(weight_percent,
 def _lines_auto(composition, xray_lines):
     if isinstance(composition[0], numbers.Number):
         if isinstance(xray_lines, str):
-            if xray_lines == 'auto':
+            if xray_lines == "auto":
                 raise ValueError("The X-ray lines needs to be provided.")
     else:
         if isinstance(xray_lines, str):
-            if xray_lines == 'auto':
+            if xray_lines == "auto":
                 xray_lines = []
                 for compo in composition:
                     if len(compo.metadata.Sample.xray_lines) > 1:
                         raise ValueError(
                             "The signal %s contains more than one X-ray lines "
                             "but this function requires only one X-ray lines "
-                            "per signal." % compo.metadata.General.title)
+                            "per signal." % compo.metadata.General.title
+                        )
                     else:
                         xray_lines.append(compo.metadata.Sample.xray_lines[0])
     return xray_lines
@@ -498,18 +510,19 @@ def _lines_auto(composition, xray_lines):
 def _elements_auto(composition, elements):
     if isinstance(composition[0], numbers.Number):
         if isinstance(elements, str):
-            if elements == 'auto':
+            if elements == "auto":
                 raise ValueError("The elements needs to be provided.")
     else:
         if isinstance(elements, str):
-            if elements == 'auto':
+            if elements == "auto":
                 elements = []
                 for compo in composition:
                     if len(compo.metadata.Sample.elements) > 1:
                         raise ValueError(
                             "The signal %s contains more than one element "
                             "but this function requires only one element "
-                            "per signal." % compo.metadata.General.title)
+                            "per signal." % compo.metadata.General.title
+                        )
                     else:
                         elements.append(compo.metadata.Sample.elements[0])
     return elements

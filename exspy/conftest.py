@@ -21,6 +21,7 @@ try:
     # Capture error when toolkit is already previously set which typically
     # occurs when building the doc locally
     from traits.etsconfig.api import ETSConfig
+
     ETSConfig.toolkit = "null"
 except ValueError:
     # in case ETSConfig.toolkit was already set previously.
@@ -38,9 +39,9 @@ import hyperspy.api as hs
 
 @pytest.fixture(autouse=True)
 def add_np(doctest_namespace):
-    doctest_namespace['np'] = np
-    doctest_namespace['plt'] = plt
-    doctest_namespace['hs'] = hs
+    doctest_namespace["np"] = np
+    doctest_namespace["plt"] = plt
+    doctest_namespace["hs"] = hs
 
 
 @pytest.fixture
@@ -51,7 +52,9 @@ def pdb_cmdopt(request):
 def setup_module(mod, pdb_cmdopt):
     if pdb_cmdopt:
         import dask
+
         dask.set_options(get=dask.local.get_sync)
+
 
 from matplotlib.testing.conftest import mpl_test_settings
 
@@ -64,5 +67,5 @@ except ImportError:
         config.addinivalue_line(
             "markers",
             "mpl_image_compare: dummy marker registration to allow running "
-            "without the pytest-mpl plugin."
+            "without the pytest-mpl plugin.",
         )

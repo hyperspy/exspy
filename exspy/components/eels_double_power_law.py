@@ -24,7 +24,6 @@ from hyperspy._components.expression import Expression
 
 
 class DoublePowerLaw(Expression):
-
     r"""Double power law component for EELS spectra.
 
     .. math::
@@ -63,9 +62,18 @@ class DoublePowerLaw(Expression):
         For x <= left_cutoff, the function returns 0. Default value is 0.0.
     """
 
-    def __init__(self, A=1e-5, r=3., origin=0., shift=20., ratio=1.,
-                 left_cutoff=0.0, module="numexpr", compute_gradients=False,
-                 **kwargs):
+    def __init__(
+        self,
+        A=1e-5,
+        r=3.0,
+        origin=0.0,
+        shift=20.0,
+        ratio=1.0,
+        left_cutoff=0.0,
+        module="numexpr",
+        compute_gradients=False,
+        **kwargs
+    ):
         super().__init__(
             expression="where(x > left_cutoff, \
                         A * (ratio * (x - origin - shift) ** -r \
@@ -81,24 +89,22 @@ class DoublePowerLaw(Expression):
             autodoc=False,
             module=module,
             compute_gradients=compute_gradients,
-            linear_parameter_list=['A'],
+            linear_parameter_list=["A"],
             check_parameter_linearity=False,
             **kwargs,
         )
-    
+
         # Boundaries
-        self.A.bmin = 0.
+        self.A.bmin = 0.0
         self.A.bmax = None
-        self.r.bmin = 1.
-        self.r.bmax = 5.
+        self.r.bmin = 1.0
+        self.r.bmax = 5.0
 
         self.isbackground = True
         self.convolved = True
 
     def function_nd(self, axis):
-        """%s
-
-        """
+        """%s"""
         return super().function_nd(axis)
 
     function_nd.__doc__ %= FUNCTION_ND_DOCSTRING
@@ -108,25 +114,45 @@ class DoublePowerLaw(Expression):
         return self.function(x) / self.A.value
 
     def grad_r(self, x):
-        return np.where(x > self.left_cutoff.value, -self.A.value *
-                        self.ratio.value * (x - self.origin.value -
-                        self.shift.value) ** (-self.r.value) *
-                        np.log(x - self.origin.value - self.shift.value) -
-                        self.A.value * (x - self.origin.value) **
-                        (-self.r.value) * np.log(x - self.origin.value), 0)
+        return np.where(
+            x > self.left_cutoff.value,
+            -self.A.value
+            * self.ratio.value
+            * (x - self.origin.value - self.shift.value) ** (-self.r.value)
+            * np.log(x - self.origin.value - self.shift.value)
+            - self.A.value
+            * (x - self.origin.value) ** (-self.r.value)
+            * np.log(x - self.origin.value),
+            0,
+        )
 
     def grad_origin(self, x):
-        return np.where(x > self.left_cutoff.value, self.A.value * self.r.value
-                        * self.ratio.value * (x - self.origin.value - self.shift.value)
-                        ** (-self.r.value - 1) + self.A.value * self.r.value
-                        * (x - self.origin.value) ** (-self.r.value - 1), 0)
+        return np.where(
+            x > self.left_cutoff.value,
+            self.A.value
+            * self.r.value
+            * self.ratio.value
+            * (x - self.origin.value - self.shift.value) ** (-self.r.value - 1)
+            + self.A.value
+            * self.r.value
+            * (x - self.origin.value) ** (-self.r.value - 1),
+            0,
+        )
 
     def grad_shift(self, x):
-        return np.where(x > self.left_cutoff.value, self.A.value * self.r.value
-                        * self.ratio.value * (x - self.origin.value -
-                        self.shift.value) ** (-self.r.value - 1), 0)
+        return np.where(
+            x > self.left_cutoff.value,
+            self.A.value
+            * self.r.value
+            * self.ratio.value
+            * (x - self.origin.value - self.shift.value) ** (-self.r.value - 1),
+            0,
+        )
 
     def grad_ratio(self, x):
-        return np.where(x > self.left_cutoff.value, self.A.value *
-                        (x - self.origin.value - self.shift.value) **
-                        (-self.r.value), 0)
+        return np.where(
+            x > self.left_cutoff.value,
+            self.A.value
+            * (x - self.origin.value - self.shift.value) ** (-self.r.value),
+            0,
+        )

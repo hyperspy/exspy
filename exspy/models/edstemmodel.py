@@ -38,9 +38,9 @@ class EDSTEMModel(EDSModel):
     Any extra arguments are passed to the Model constructor.
     """
 
-    def __init__(self, spectrum,
-                 auto_background=True,
-                 auto_add_lines=True,
-                 *args, **kwargs):
-        EDSModel.__init__(self, spectrum, auto_background, auto_add_lines,
-                          *args, **kwargs)
+    def __init__(
+        self, spectrum, auto_background=True, auto_add_lines=True, *args, **kwargs
+    ):
+        EDSModel.__init__(
+            self, spectrum, auto_background, auto_add_lines, *args, **kwargs
+        )

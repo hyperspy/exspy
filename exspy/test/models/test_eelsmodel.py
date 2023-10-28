@@ -37,11 +37,12 @@ from exspy.signals import EELSSpectrum
 # when the test is lazy. When the test is not lazy,
 # internal use of np.errstate means the warnings never
 # appear in the first place.
-@pytest.mark.filterwarnings("ignore:invalid value encountered in subtract:RuntimeWarning")
+@pytest.mark.filterwarnings(
+    "ignore:invalid value encountered in subtract:RuntimeWarning"
+)
 @pytest.mark.filterwarnings("ignore:divide by zero encountered in log:RuntimeWarning")
 @lazifyTestClass
 class TestCreateEELSModel:
-
     def setup_method(self, method):
         s = EELSSpectrum(np.zeros(200))
         s.set_microscope_parameters(100, 10, 10)
@@ -51,6 +52,7 @@ class TestCreateEELSModel:
 
     def test_create_eelsmodel(self):
         from exspy.models.eelsmodel import EELSModel
+
         assert isinstance(self.s.create_model(), EELSModel)
 
     def test_create_eelsmodel_no_md(self):
@@ -87,12 +89,14 @@ class TestCreateEELSModel:
     def test_auto_add_background_true(self):
         m = self.s.create_model(auto_background=True)
         from hyperspy.components1d import PowerLaw
+
         is_pl_instance = [isinstance(c, PowerLaw) for c in m]
         assert True in is_pl_instance
 
     def test_auto_add_edges_false(self):
         m = self.s.create_model(auto_background=False)
         from hyperspy.components1d import PowerLaw
+
         is_pl_instance = [isinstance(c, PowerLaw) for c in m]
         assert not True in is_pl_instance
 
@@ -122,7 +126,6 @@ class TestCreateEELSModel:
 
 @lazifyTestClass
 class TestEELSModel:
-
     def setup_method(self, method):
         s = EELSSpectrum(np.ones(200))
         s.set_microscope_parameters(100, 10, 10)
@@ -133,7 +136,7 @@ class TestEELSModel:
 
     def test_suspend_auto_fsw(self):
         m = self.m
-        m["B_K"].fine_structure_width = 140.
+        m["B_K"].fine_structure_width = 140.0
         m.suspend_auto_fine_structure_width()
         m.enable_fine_structure()
         m.resolve_fine_structure()
@@ -141,11 +144,14 @@ class TestEELSModel:
 
     def test_resume_fsw(self):
         m = self.m
-        m["B_K"].fine_structure_width = 140.
+        m["B_K"].fine_structure_width = 140.0
         m.suspend_auto_fine_structure_width()
         m.resume_auto_fine_structure_width()
-        window = (m["C_K"].onset_energy.value -
-                  m["B_K"].onset_energy.value - m._preedge_safe_window_width)
+        window = (
+            m["C_K"].onset_energy.value
+            - m["B_K"].onset_energy.value
+            - m._preedge_safe_window_width
+        )
         m.enable_fine_structure()
         m.resolve_fine_structure()
         assert window == m["B_K"].fine_structure_width
@@ -158,13 +164,17 @@ class TestEELSModel:
         assert not self.m.components.B_K.fine_structure_active
 
     def test_get_first_ionization_edge_energy_C_B(self):
-        assert (self.m._get_first_ionization_edge_energy() ==
-                self.m["B_K"].onset_energy.value)
+        assert (
+            self.m._get_first_ionization_edge_energy()
+            == self.m["B_K"].onset_energy.value
+        )
 
     def test_get_first_ionization_edge_energy_C(self):
         self.m["B_K"].active = False
-        assert (self.m._get_first_ionization_edge_energy() ==
-                self.m["C_K"].onset_energy.value)
+        assert (
+            self.m._get_first_ionization_edge_energy()
+            == self.m["C_K"].onset_energy.value
+        )
 
     def test_get_first_ionization_edge_energy_None(self):
         self.m["B_K"].active = False
@@ -172,53 +182,50 @@ class TestEELSModel:
         assert self.m._get_first_ionization_edge_energy() is None
 
     def test_two_area_powerlaw_estimation_BC(self):
-        self.m.signal.data = 2. * self.m.axis.axis ** (-3)  # A= 2, r=3
-        #self.m.signal.axes_manager[-1].is_binned = False
+        self.m.signal.data = 2.0 * self.m.axis.axis ** (-3)  # A= 2, r=3
+        # self.m.signal.axes_manager[-1].is_binned = False
         self.m.two_area_background_estimation()
         np.testing.assert_allclose(
-            self.m._background_components[0].A.value,
-            2.1451237089380295)
+            self.m._background_components[0].A.value, 2.1451237089380295
+        )
         np.testing.assert_allclose(
-            self.m._background_components[0].r.value,
-            3.0118980767392736)
+            self.m._background_components[0].r.value, 3.0118980767392736
+        )
 
     def test_two_area_powerlaw_estimation_C(self):
         self.m["B_K"].active = False
-        self.m.signal.data = 2. * self.m.axis.axis ** (-3)  # A= 2, r=3
-        #self.m.signal.axes_manager[-1].is_binned = False
+        self.m.signal.data = 2.0 * self.m.axis.axis ** (-3)  # A= 2, r=3
+        # self.m.signal.axes_manager[-1].is_binned = False
         self.m.two_area_background_estimation()
         np.testing.assert_allclose(
-            self.m._background_components[0].A.value,
-            2.3978438900878087)
+            self.m._background_components[0].A.value, 2.3978438900878087
+        )
         np.testing.assert_allclose(
-            self.m._background_components[0].r.value,
-            3.031884021065014)
+            self.m._background_components[0].r.value, 3.031884021065014
+        )
 
     def test_two_area_powerlaw_estimation_no_edge(self):
         self.m["B_K"].active = False
         self.m["C_K"].active = False
-        self.m.signal.data = 2. * self.m.axis.axis ** (-3)  # A= 2, r=3
+        self.m.signal.data = 2.0 * self.m.axis.axis ** (-3)  # A= 2, r=3
         print(self.m.signal.axes_manager[-1].is_binned)
-        #self.m.signal.axes_manager[-1].is_binned = False
+        # self.m.signal.axes_manager[-1].is_binned = False
         self.m.two_area_background_estimation()
         np.testing.assert_allclose(
-            self.m._background_components[0].A.value,
-            2.6598803469440986)
+            self.m._background_components[0].A.value, 2.6598803469440986
+        )
         np.testing.assert_allclose(
-            self.m._background_components[0].r.value,
-            3.0494030409062058)
+            self.m._background_components[0].r.value, 3.0494030409062058
+        )
 
     def test_get_start_energy_none(self):
-        assert (self.m._get_start_energy() ==
-                150)
+        assert self.m._get_start_energy() == 150
 
     def test_get_start_energy_above(self):
-        assert (self.m._get_start_energy(170) ==
-                170)
+        assert self.m._get_start_energy(170) == 170
 
     def test_get_start_energy_below(self):
-        assert (self.m._get_start_energy(100) ==
-                150)
+        assert self.m._get_start_energy(100) == 150
 
     def test_remove_components(self):
         comp = self.m[1]
@@ -265,7 +272,10 @@ class TestEELSModel:
         with contextlib.redirect_stdout(f):
             self.m.quantify()
         out = f.getvalue()
-        assert out == '\nAbsolute quantification:\nElem.\tIntensity\nB\t1.000000\nC\t1.000000\n'
+        assert (
+            out
+            == "\nAbsolute quantification:\nElem.\tIntensity\nB\t1.000000\nC\t1.000000\n"
+        )
 
     def test_enable_edges(self):
         m = self.m
@@ -384,14 +394,13 @@ class TestEELSModel:
 
 @lazifyTestClass
 class TestEELSModelFitting:
-
     def setup_method(self, method):
         data = np.zeros(200)
         data[25:] = 100
         s = EELSSpectrum(data)
         s.set_microscope_parameters(100, 10, 10)
         s.axes_manager[-1].offset = 150
-        s.add_elements(("B", ))
+        s.add_elements(("B",))
         self.m = s.create_model(auto_background=False)
 
     @pytest.mark.parametrize("kind", ["std", "smart"])
@@ -424,7 +433,6 @@ class TestEELSModelFitting:
 
 @lazifyTestClass
 class TestFitBackground:
-
     def setup_method(self, method):
         s = EELSSpectrum(np.ones(200))
         s.set_microscope_parameters(100, 10, 10)
@@ -439,16 +447,14 @@ class TestFitBackground:
 
     def test_fit_background_B_C(self):
         self.m.fit_background()
-        np.testing.assert_allclose(self.m["Offset"].offset.value,
-                        1)
+        np.testing.assert_allclose(self.m["Offset"].offset.value, 1)
         assert self.m["B_K"].active
         assert self.m["C_K"].active
 
     def test_fit_background_C(self):
         self.m["B_K"].active = False
         self.m.fit_background()
-        np.testing.assert_allclose(self.m["Offset"].offset.value,
-                        1.7142857)
+        np.testing.assert_allclose(self.m["Offset"].offset.value, 1.7142857)
         assert not self.m["B_K"].active
         assert self.m["C_K"].active
 
@@ -456,15 +462,13 @@ class TestFitBackground:
         self.m["B_K"].active = False
         self.m["C_K"].active = False
         self.m.fit_background()
-        np.testing.assert_allclose(self.m["Offset"].offset.value,
-                        2.14)
+        np.testing.assert_allclose(self.m["Offset"].offset.value, 2.14)
         assert not self.m["B_K"].active
         assert not self.m["C_K"].active
 
 
 @lazifyTestClass
 class TestFitBackground2D:
-
     def setup_method(self):
         pl = hs.model.components1D.PowerLaw()
         data = np.empty((2, 250))
@@ -482,9 +486,9 @@ class TestFitBackground2D:
         residual = self.s - self.m.as_signal()
         assert pytest.approx(residual.data) == 0
 
+
 @lazifyTestClass
 class TestEELSFineStructure:
-
     def setup_method(self, method):
         s = EELSSpectrum(np.zeros((1024)))
         s.axes_manager[0].units = "eV"
@@ -516,10 +520,9 @@ class TestEELSFineStructure:
         self.m.components.Fe_L3.fine_structure_components.update((self.g1, self.g2))
         for component in self.m.components.Fe_L3.fine_structure_components:
             assert component.active == fine_structure_active
-        self.m.components.Fe_L3.fine_structure_active = (not fine_structure_active)
+        self.m.components.Fe_L3.fine_structure_active = not fine_structure_active
         for component in self.m.components.Fe_L3.fine_structure_components:
             assert component.active == (not fine_structure_active)
-
 
     def test_fine_structure_smoothing(self):
         Fe = self.m.components.Fe_L3
@@ -558,7 +561,6 @@ class TestEELSFineStructure:
                 else:
                     assert not parameter.free
 
-
     def test_fine_structure_active_frees_coeff(self):
         Fe = self.m.components.Fe_L3
         Fe.fine_structure_active = True
@@ -590,15 +592,30 @@ class TestEELSFineStructure:
         Fe.fine_structure_spline_active = True
         Fe.fine_structure_width = 30
         onset = Fe.onset_energy.value
-        axis1 = np.linspace(Fe.onset_energy.value, Fe.onset_energy.value + Fe.fine_structure_width, endpoint=False)
+        axis1 = np.linspace(
+            Fe.onset_energy.value,
+            Fe.onset_energy.value + Fe.fine_structure_width,
+            endpoint=False,
+        )
         assert np.all(Fe.function(axis1) == 0)
-        Fe.fine_structure_coeff.value = np.arange(len(Fe.fine_structure_coeff.value)) + 1
+        Fe.fine_structure_coeff.value = (
+            np.arange(len(Fe.fine_structure_coeff.value)) + 1
+        )
         assert np.all(Fe.function(axis1) != 0)
         Fe.fine_structure_spline_onset = 10
-        Fe.fine_structure_coeff.value = np.arange(len(Fe.fine_structure_coeff.value)) + 1
-        axis2 = np.linspace(Fe.onset_energy.value, Fe.onset_energy.value + Fe.fine_structure_spline_onset, endpoint=False)
-        axis3 = np.linspace(Fe.onset_energy.value + Fe.fine_structure_spline_onset,
-                            Fe.onset_energy.value + Fe.fine_structure_width, endpoint=False)
+        Fe.fine_structure_coeff.value = (
+            np.arange(len(Fe.fine_structure_coeff.value)) + 1
+        )
+        axis2 = np.linspace(
+            Fe.onset_energy.value,
+            Fe.onset_energy.value + Fe.fine_structure_spline_onset,
+            endpoint=False,
+        )
+        axis3 = np.linspace(
+            Fe.onset_energy.value + Fe.fine_structure_spline_onset,
+            Fe.onset_energy.value + Fe.fine_structure_width,
+            endpoint=False,
+        )
         assert np.all(Fe.function(axis2) == 0)
         assert np.all(Fe.function(axis3) != 0)
 
@@ -607,7 +624,9 @@ class TestEELSFineStructure:
         Fe.fine_structure_active = True
         Fe.fine_structure_components.update((self.g1, self.g2))
         Fe.fine_structure_spline_onset = 20
-        Fe.fine_structure_coeff.value = np.arange(len(Fe.fine_structure_coeff.value)) + 1
+        Fe.fine_structure_coeff.value = (
+            np.arange(len(Fe.fine_structure_coeff.value)) + 1
+        )
         m = self.m
         m.store()
         mc = m.signal.models.a.restore()
@@ -660,6 +679,7 @@ class TestModelJacobians:
         assert m[1].centre.value == 4
         assert m[1].sigma.value == 5
 
+
 class TestModelSettingPZero:
     def setup_method(self, method):
         s = EELSSpectrum(np.empty(1))
@@ -687,13 +707,11 @@ class TestModelSettingPZero:
         np.testing.assert_equal(ll_axis.value2index.call_args[0][0], 0)
 
 
-
 @lazifyTestClass
 class TestConvolveModelSlicing:
-
     def setup_method(self, method):
         s = EELSSpectrum(np.random.random((10, 10, 600)))
-        s.axes_manager[-1].offset = -150.
+        s.axes_manager[-1].offset = -150.0
         s.axes_manager[-1].scale = 0.5
         m = s.create_model(auto_add_edges=False, auto_background=False)
         m.low_loss = s + 1
@@ -711,8 +729,8 @@ class TestConvolveModelSlicing:
         m1 = m.isig[::2]
         assert m.signal.data.shape == m1.low_loss.data.shape
 
-class TestModelDictionary:
 
+class TestModelDictionary:
     def setup_method(self, method):
         s = EELSSpectrum(np.array([1.0, 2, 4, 7, 12, 7, 4, 2, 1]))
         m = s.create_model(auto_add_edges=False, auto_background=False)
@@ -730,7 +748,7 @@ class TestModelDictionary:
         m = self.model
         d = m.as_dictionary()
 
-        np.testing.assert_allclose(m.low_loss.data, d['low_loss']['data'])
+        np.testing.assert_allclose(m.low_loss.data, d["low_loss"]["data"])
 
     def test_load_dictionary(self):
         d = self.model.as_dictionary()
@@ -739,13 +757,11 @@ class TestModelDictionary:
         mn._load_dictionary(d)
         mo = self.model
 
-        np.testing.assert_allclose(
-            mn.low_loss.data, mo.low_loss.data
-            )
+        np.testing.assert_allclose(mn.low_loss.data, mo.low_loss.data)
         for i in range(len(mn)):
             assert mn[i]._id_name == mo[i]._id_name
             for po, pn in zip(mo[i].parameters, mn[i].parameters):
-                np.testing.assert_allclose(po.map['values'], pn.map['values'])
-                np.testing.assert_allclose(po.map['is_set'], pn.map['is_set'])
+                np.testing.assert_allclose(po.map["values"], pn.map["values"])
+                np.testing.assert_allclose(po.map["is_set"], pn.map["is_set"])
 
         assert mn[0].A.twin is mn[1].A

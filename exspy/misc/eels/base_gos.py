@@ -26,7 +26,7 @@ from exspy.misc.elements import elements
 from hyperspy.misc.export_dictionary import (
     export_to_dictionary,
     load_from_dictionary,
-    )
+)
 from hyperspy.misc.math_tools import get_linear_interpolation
 
 
@@ -35,30 +35,25 @@ a0 = constants.value("Bohr radius")
 
 
 class BaseGOS:
-
     def read_elements(self):
         element = self.element
         subshell = self.subshell
         # Convert to the "GATAN" nomenclature
         if (element in elements) is not True:
-            raise ValueError(
-                f"The given element {element} is not in the database."
-                )
-        elif subshell not in elements[element]['Atomic_properties']['Binding_energies']:
-            subshells = ", ".join(list(elements[element]['Atomic_properties']['Binding_energies'].keys()))
+            raise ValueError(f"The given element {element} is not in the database.")
+        elif subshell not in elements[element]["Atomic_properties"]["Binding_energies"]:
+            subshells = ", ".join(
+                list(elements[element]["Atomic_properties"]["Binding_energies"].keys())
+            )
             raise ValueError(
                 f"The given subshell {subshell} is not in the database. The "
                 f"available subshells are:\n{subshells}"
-                )
+            )
 
-        self.onset_energy = \
-            elements[
-                element][
-                'Atomic_properties'][
-                'Binding_energies'][
-                subshell][
-                'onset_energy (eV)']
-        self.Z = elements[element]['General_properties']['Z']
+        self.onset_energy = elements[element]["Atomic_properties"]["Binding_energies"][
+            subshell
+        ]["onset_energy (eV)"]
+        self.Z = elements[element]["General_properties"]["Z"]
         self.element_dict = elements[element]
 
     def get_parametrized_qaxis(self, k1, k2, n):
@@ -78,24 +73,28 @@ class BaseGOS:
             qgosi = np.hstack((qgosi, gosqmax))
         else:
             index = self.qaxis.searchsorted(qmax)
-            g1, g2 = qgosi[index - 1:index + 1]
-            q1, q2 = self.qaxis[index - 1: index + 1]
+            g1, g2 = qgosi[index - 1 : index + 1]
+            q1, q2 = self.qaxis[index - 1 : index + 1]
             gosqmax = get_linear_interpolation((q1, g1), (q2, g2), qmax)
             qaxis = np.hstack((self.qaxis[:index], qmax))
-            qgosi = np.hstack((qgosi[:index, ], gosqmax))
+            qgosi = np.hstack((qgosi[:index,], gosqmax))
 
         if qmin > 0:
             index = self.qaxis.searchsorted(qmin)
-            g1, g2 = qgosi[index - 1:index + 1]
-            q1, q2 = qaxis[index - 1:index + 1]
+            g1, g2 = qgosi[index - 1 : index + 1]
+            q1, q2 = qaxis[index - 1 : index + 1]
             gosqmin = get_linear_interpolation((q1, g1), (q2, g2), qmin)
             qaxis = np.hstack((qmin, qaxis[index:]))
-            qgosi = np.hstack((gosqmin, qgosi[index:],))
+            qgosi = np.hstack(
+                (
+                    gosqmin,
+                    qgosi[index:],
+                )
+            )
         return qaxis, qgosi.clip(0)
 
 
 class TabulatedGOS(BaseGOS):
-
     def __init__(self, element_subshell):
         """
         Parameters
@@ -104,14 +103,14 @@ class TabulatedGOS(BaseGOS):
             For example, 'Ti_L3' for the GOS of the titanium L3 subshell
 
         """
-        self.subshell_factor = 1.
+        self.subshell_factor = 1.0
         if isinstance(element_subshell, dict):
-            self.element = element_subshell['element']
-            self.subshell = element_subshell['subshell']
+            self.element = element_subshell["element"]
+            self.subshell = element_subshell["subshell"]
             self.read_elements()
             self._load_dictionary(element_subshell)
         else:
-            self.element, self.subshell = element_subshell.split('_')
+            self.element, self.subshell = element_subshell.split("_")
             self.read_elements()
             self.read_gos_data()
 
@@ -120,8 +119,7 @@ class TabulatedGOS(BaseGOS):
         self.energy_axis = self.rel_energy_axis + self.onset_energy
 
     def as_dictionary(self, fullcopy=True):
-        """Export the GOS as a dictionary.
-        """
+        """Export the GOS as a dictionary."""
         dic = {}
         export_to_dictionary(self, self._whitelist, dic, fullcopy)
         return dic
@@ -133,16 +131,14 @@ class TabulatedGOS(BaseGOS):
         # Calculate the cross section at each energy position of the
         # tabulated GOS
         gamma = 1 + E0 / 511.06
-        T = 511060 * (1 - 1 / gamma ** 2) / 2
+        T = 511060 * (1 - 1 / gamma**2) / 2
         for i in range(0, self.gos_array.shape[0]):
             E = self.energy_axis[i] + energy_shift
             # Calculate the limits of the q integral
-            qa0sqmin = (E ** 2) / (4 * R * T) + (E ** 3) / (
-                    8 * gamma ** 3 * R * T ** 2)
+            qa0sqmin = (E**2) / (4 * R * T) + (E**3) / (8 * gamma**3 * R * T**2)
             p02 = T / (R * (1 - 2 * T / 511060))
             pp2 = p02 - E / R * (gamma - E / 1022120)
-            qa0sqmax = qa0sqmin + 4 * np.sqrt(p02 * pp2) * \
-                       (math.sin(angle / 2)) ** 2
+            qa0sqmax = qa0sqmin + 4 * np.sqrt(p02 * pp2) * (math.sin(angle / 2)) ** 2
             qmin = math.sqrt(qa0sqmin) / a0
             qmax = math.sqrt(qa0sqmax) / a0
             # Perform the integration in a log grid
@@ -151,7 +147,6 @@ class TabulatedGOS(BaseGOS):
             qint[i] = integrate.simps(gos, logsqa0qaxis)
         E = self.energy_axis + energy_shift
         # Energy differential cross section in (barn/eV/atom)
-        qint *= (4.0 * np.pi * a0 ** 2.0 * R ** 2 / E / T *
-                 self.subshell_factor) * 1e28
+        qint *= (4.0 * np.pi * a0**2.0 * R**2 / E / T * self.subshell_factor) * 1e28
         self.qint = qint
         return interpolate.make_interp_spline(E, qint, k=3)

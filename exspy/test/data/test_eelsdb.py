@@ -31,7 +31,8 @@ def _eelsdb(**kwargs):
     except SSLError:
         warnings.warn(
             "The https://eelsdb.eu certificate seems to be invalid. "
-            "Consider notifying the issue to the EELSdb webmaster.")
+            "Consider notifying the issue to the EELSdb webmaster."
+        )
         ss = eelsdb(verify_certificate=False, **kwargs)
     except Exception as e:
         # e.g. failures such as ConnectionError or MaxRetryError
@@ -41,10 +42,10 @@ def _eelsdb(**kwargs):
 
 def eelsdb_down():
     try:
-        _ = requests.get('https://api.eelsdb.eu', verify=True)
+        _ = requests.get("https://api.eelsdb.eu", verify=True)
         return False
     except SSLError:
-        _ = requests.get('https://api.eelsdb.eu', verify=False)
+        _ = requests.get("https://api.eelsdb.eu", verify=False)
         return False
     except requests.exceptions.ConnectionError:
         return True
@@ -65,15 +66,14 @@ def test_eelsdb_eels():
         resolution_compare="lt",
         max_n=2,
         order="spectrumMin",
-        order_direction='DESC',
+        order_direction="DESC",
         monochromated=False,
-        )
+    )
 
     assert len(ss) == 2
     md = ss[0].metadata
     assert md.General.author == "Odile Stephan"
-    assert (
-        md.Acquisition_instrument.TEM.Detector.EELS.collection_angle == 24)
+    assert md.Acquisition_instrument.TEM.Detector.EELS.collection_angle == 24
     assert md.Acquisition_instrument.TEM.convergence_angle == 15
     assert md.Acquisition_instrument.TEM.beam_energy == 100
     assert md.Signal.signal_type == "EELS"
@@ -85,7 +85,10 @@ def test_eelsdb_eels():
 
 @pytest.mark.skipif(eelsdb_down(), reason="Unable to connect to EELSdb")
 def test_eelsdb_xas():
-    ss = _eelsdb(spectrum_type="xrayabs", max_n=1,)
+    ss = _eelsdb(
+        spectrum_type="xrayabs",
+        max_n=1,
+    )
     assert len(ss) == 1
     md = ss[0].metadata
     assert md.Signal.signal_type == "XAS"
@@ -93,17 +96,15 @@ def test_eelsdb_xas():
 
 @pytest.mark.skipif(eelsdb_down(), reason="Unable to connect to EELSdb")
 def test_eelsdb_corrupted_file():
-    ss = _eelsdb(
-        spectrum_type='coreloss', element='Cu', edge='K', formula='Cu4O3'
-        )
+    ss = _eelsdb(spectrum_type="coreloss", element="Cu", edge="K", formula="Cu4O3")
     assert len(ss) == 1
-    assert ss[0].metadata.General.title == 'O-K edge in Cu4O3'
+    assert ss[0].metadata.General.title == "O-K edge in Cu4O3"
 
 
 @pytest.mark.skipif(eelsdb_down(), reason="Unable to connect to EELSdb")
 def test_eelsdb_elements_no():
     title = "Zero-loss c-FEG Hitachi Disp 0.214 eV"
-    ss = _eelsdb(author='Luc Lajaunie', title=title)
+    ss = _eelsdb(author="Luc Lajaunie", title=title)
     assert len(ss) == 1
     assert ss[0].metadata.General.title == title
 

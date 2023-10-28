@@ -19,7 +19,7 @@ __all__ = [
     "SEE",
     "Vignetting",
     "VolumePlasmonDrude",
-    ]
+]
 
 
 def __dir__():

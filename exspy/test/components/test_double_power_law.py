@@ -39,13 +39,12 @@ def test_function():
     np.testing.assert_allclose(g.function(10), 0.15948602)
     assert g.grad_A(2) == 3
     np.testing.assert_allclose(g.grad_r(4), -0.3662041)
-    assert g.grad_origin(2)  == -6
-    assert g.grad_shift(2)  == -12
-    assert g.grad_ratio(2)  == 3
+    assert g.grad_origin(2) == -6
+    assert g.grad_shift(2) == -12
+    assert g.grad_ratio(2) == 3
 
 
 class TestDoublePowerLaw:
-
     def setup_method(self, method):
         s = hs.signals.Signal1D(np.zeros(1024))
         s.axes_manager[0].offset = 100
@@ -53,6 +52,7 @@ class TestDoublePowerLaw:
         m = s.create_model()
         exspy = pytest.importorskip("exspy")
         from exspy.components import DoublePowerLaw
+
         m.append(DoublePowerLaw())
         m[0].A.value = 1000
         m[0].r.value = 4
@@ -76,4 +76,4 @@ class TestDoublePowerLaw:
         m.fit_component(g, signal_range=(None, None))
         np.testing.assert_allclose(g.A.value, 1000.0)
         np.testing.assert_allclose(g.r.value, 4.0)
-        np.testing.assert_allclose(g.ratio.value, 200.)
+        np.testing.assert_allclose(g.ratio.value, 200.0)

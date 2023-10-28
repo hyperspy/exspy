@@ -1,4 +1,3 @@
-
 from . import components
 from . import data
 from . import models
@@ -11,7 +10,7 @@ __all__ = [
     "components",
     "data",
     "preferences",
-    "material"
+    "material",
     "models",
     "signals",
 ]

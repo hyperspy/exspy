@@ -1,0 +1,5 @@
+[tool.black]
+force-exclude = '''
+  exspy/misc/eds/ffast_mac.py
+  | exspy/misc/elements.py
+'''

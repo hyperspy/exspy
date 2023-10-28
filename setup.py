@@ -49,7 +49,6 @@ extra_feature_requirements = {
 }
 
 
-
 setup(
     name=name,
     version=version,
@@ -78,7 +77,6 @@ setup(
         "Topic :: Scientific/Engineering :: Physics",
     ],
     entry_points={"hyperspy.extensions": "exspy = exspy"},
-
     packages=find_packages(),
     package_dir={"exspy": "exspy"},
     extras_require=extra_feature_requirements,
@@ -94,7 +92,7 @@ setup(
         "requests",
         "scipy",
         "traits",
-        ],
+    ],
     python_requires="~=3.8",
     package_data={
         "": ["LICENSE", "README.rst"],
@@ -102,5 +100,7 @@ setup(
             "data/*hspy",
             "test/drawing/data/*hspy",
             "test/signals/data/*hspy",
-            "hyperspy_extension.yaml"],
-    },)
+            "hyperspy_extension.yaml",
+        ],
+    },
+)

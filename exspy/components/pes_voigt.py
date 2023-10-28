@@ -75,6 +75,7 @@ def voigt(x, FWHM=1, gamma=1, center=0, scale=1):
     """
     # wofz function = w(z) = Fad[d][e][y]eva function = exp(-z**2)erfc(-iz)
     from scipy.special import wofz
+
     sigma = FWHM / 2.3548200450309493
     z = (np.asarray(x) - center + 1j * gamma) / (sigma * math.sqrt(2))
     V = wofz(z) / (math.sqrt(2 * np.pi) * sigma)
@@ -82,7 +83,6 @@ def voigt(x, FWHM=1, gamma=1, center=0, scale=1):
 
 
 class PESVoigt(Component):
-
     r"""Voigt component for photoemission spectroscopy data analysis.
 
     Voigt profile component with support for shirley background,
@@ -124,15 +124,19 @@ class PESVoigt(Component):
     """
 
     def __init__(self):
-        Component.__init__(self, (
-            'area',
-            'centre',
-            'FWHM',
-            'gamma',
-            'resolution',
-            'shirley_background',
-            'non_isochromaticity',
-            'transmission_function'))
+        Component.__init__(
+            self,
+            (
+                "area",
+                "centre",
+                "FWHM",
+                "gamma",
+                "resolution",
+                "shirley_background",
+                "non_isochromaticity",
+                "transmission_function",
+            ),
+        )
         self._position = self.centre
         self.FWHM.value = 1
         self.gamma.value = 0
@@ -159,16 +163,20 @@ class PESVoigt(Component):
         if self.resolution.value == 0:
             FWHM = self.FWHM.value
         else:
-            FWHM = math.sqrt(self.FWHM.value ** 2 + self.resolution.value ** 2)
+            FWHM = math.sqrt(self.FWHM.value**2 + self.resolution.value**2)
         gamma = self.gamma.value
         k = self.shirley_background.value
-        f = voigt(x,
-                  FWHM=FWHM, gamma=gamma, center=centre - ab, scale=area)
+        f = voigt(x, FWHM=FWHM, gamma=gamma, center=centre - ab, scale=area)
         if self.spin_orbit_splitting:
             ratio = self.spin_orbit_branching_ratio
             shift = self.spin_orbit_splitting_energy
-            f2 = voigt(x, FWHM=FWHM, gamma=gamma,
-                       center=centre - ab - shift, scale=area * ratio)
+            f2 = voigt(
+                x,
+                FWHM=FWHM,
+                gamma=gamma,
+                center=centre - ab - shift,
+                scale=area * ratio,
+            )
             f += f2
         if self.shirley_background.active:
             cf = np.cumsum(f)
@@ -220,8 +228,9 @@ class PESVoigt(Component):
         """
         super()._estimate_parameters(signal)
         axis = signal.axes_manager.signal_axes[0]
-        centre, height, sigma = _estimate_gaussian_parameters(signal, E1, E2,
-                                                              only_current)
+        centre, height, sigma = _estimate_gaussian_parameters(
+            signal, E1, E2, only_current
+        )
         scaling_factor = _get_scaling_factor(signal, axis, centre)
 
         if only_current is True:
@@ -234,13 +243,13 @@ class PESVoigt(Component):
         else:
             if self.area.map is None:
                 self._create_arrays()
-            self.area.map['values'][:] = height * sigma * sqrt2pi
+            self.area.map["values"][:] = height * sigma * sqrt2pi
             if axis.is_binned:
-                self.area.map['values'][:] /= scaling_factor
-            self.area.map['is_set'][:] = True
-            self.FWHM.map['values'][:] = sigma * sigma2fwhm
-            self.FWHM.map['is_set'][:] = True
-            self.centre.map['values'][:] = centre
-            self.centre.map['is_set'][:] = True
+                self.area.map["values"][:] /= scaling_factor
+            self.area.map["is_set"][:] = True
+            self.FWHM.map["values"][:] = sigma * sigma2fwhm
+            self.FWHM.map["is_set"][:] = True
+            self.centre.map["values"][:] = centre
+            self.centre.map["is_set"][:] = True
             self.fetch_stored_values()
             return True

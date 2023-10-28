@@ -28,7 +28,7 @@ from matplotlib.collections import LineCollection
 
 import hyperspy.api as hs
 from hyperspy.signal import BaseSetMetadataItems, BaseSignal
-from hyperspy._signals.signal1d import (Signal1D, LazySignal1D)
+from hyperspy._signals.signal1d import Signal1D, LazySignal1D
 import hyperspy.axes
 from hyperspy.components1d import PowerLaw
 from hyperspy.misc.utils import display, isiterable, underline
@@ -41,7 +41,7 @@ from hyperspy.docstrings.signal1d import (
     SPIKES_DIAGNOSIS_DOCSTRING,
     MASK_ZERO_LOSS_PEAK_WIDTH,
     SPIKES_REMOVAL_TOOL_DOCSTRING,
-    )
+)
 from hyperspy.docstrings.signal import (
     SHOW_PROGRESSBAR_ARG,
     NUM_WORKERS_ARG,
@@ -53,7 +53,10 @@ from hyperspy.docstrings.signal import (
 from exspy.docstrings.model import EELSMODEL_PARAMETERS
 from exspy.misc.elements import elements as elements_db
 from exspy.misc.eels.tools import get_edges_near_energy
-from exspy.misc.eels.electron_inelastic_mean_free_path import iMFP_Iakoubovskii, iMFP_angular_correction
+from exspy.misc.eels.electron_inelastic_mean_free_path import (
+    iMFP_Iakoubovskii,
+    iMFP_angular_correction,
+)
 from exspy.signal_tools import EdgesRange
 
 
@@ -62,19 +65,13 @@ _logger = logging.getLogger(__name__)
 
 @add_gui_method(toolkey="exspy.microscope_parameters_EELS")
 class EELSTEMParametersUI(BaseSetMetadataItems):
-    convergence_angle = t.Float(t.Undefined,
-                                label='Convergence semi-angle (mrad)')
-    beam_energy = t.Float(t.Undefined,
-                          label='Beam energy (keV)')
-    collection_angle = t.Float(t.Undefined,
-                               label='Collection semi-angle (mrad)')
+    convergence_angle = t.Float(t.Undefined, label="Convergence semi-angle (mrad)")
+    beam_energy = t.Float(t.Undefined, label="Beam energy (keV)")
+    collection_angle = t.Float(t.Undefined, label="Collection semi-angle (mrad)")
     mapping = {
-        'Acquisition_instrument.TEM.convergence_angle':
-        'convergence_angle',
-        'Acquisition_instrument.TEM.beam_energy':
-        'beam_energy',
-        'Acquisition_instrument.TEM.Detector.EELS.collection_angle':
-        'collection_angle',
+        "Acquisition_instrument.TEM.convergence_angle": "convergence_angle",
+        "Acquisition_instrument.TEM.beam_energy": "beam_energy",
+        "Acquisition_instrument.TEM.Detector.EELS.collection_angle": "collection_angle",
     }
 
 
@@ -91,13 +88,12 @@ class EELSSpectrum(Signal1D):
         self.subshells = set()
         self.elements = set()
         self.edges = list()
-        if hasattr(self.metadata, 'Sample') and \
-                hasattr(self.metadata.Sample, 'elements'):
+        if hasattr(self.metadata, "Sample") and hasattr(
+            self.metadata.Sample, "elements"
+        ):
             self.add_elements(self.metadata.Sample.elements)
         self.axes_manager.signal_axes[0].is_binned = True
-        self._edge_markers = {"names": [],
-                              "lines": None,
-                              "texts": None}
+        self._edge_markers = {"names": [], "lines": None, "texts": None}
 
     def add_elements(self, elements, include_pre_edges=False):
         """Declare the elemental composition of the sample.
@@ -131,7 +127,8 @@ class EELSSpectrum(Signal1D):
                 "Input must be in the form of a tuple. For example, "
                 "if `s` is the variable containing this EELS spectrum:\n "
                 ">>> s.add_elements(('C',))\n"
-                "See the docstring for more information.")
+                "See the docstring for more information."
+            )
 
         for element in elements:
             if isinstance(element, bytes):
@@ -140,10 +137,10 @@ class EELSSpectrum(Signal1D):
                 self.elements.add(element)
             else:
                 raise ValueError(
-                    "%s is not a valid symbol of a chemical element"
-                    % element)
-        if not hasattr(self.metadata, 'Sample'):
-            self.metadata.add_node('Sample')
+                    "%s is not a valid symbol of a chemical element" % element
+                )
+        if not hasattr(self.metadata, "Sample"):
+            self.metadata.add_node("Sample")
         self.metadata.Sample.elements = list(self.elements)
         if self.elements:
             self.generate_subshells(include_pre_edges)
@@ -163,24 +160,30 @@ class EELSSpectrum(Signal1D):
         if not include_pre_edges:
             start_energy = Eaxis[0]
         else:
-            start_energy = 0.
+            start_energy = 0.0
         end_energy = Eaxis[-1]
         for element in self.elements:
             e_shells = list()
-            for shell in elements_db[element][
-                    'Atomic_properties']['Binding_energies']:
-                if shell[-1] != 'a':
-                    energy = (elements_db[element]['Atomic_properties']
-                              ['Binding_energies'][shell]['onset_energy (eV)'])
+            for shell in elements_db[element]["Atomic_properties"]["Binding_energies"]:
+                if shell[-1] != "a":
+                    energy = elements_db[element]["Atomic_properties"][
+                        "Binding_energies"
+                    ][shell]["onset_energy (eV)"]
                     if start_energy <= energy <= end_energy:
-                        subshell = '%s_%s' % (element, shell)
+                        subshell = "%s_%s" % (element, shell)
                         if subshell not in self.subshells:
-                            self.subshells.add(
-                                '%s_%s' % (element, shell))
+                            self.subshells.add("%s_%s" % (element, shell))
                             e_shells.append(subshell)
 
-    def edges_at_energy(self, energy='interactive', width=10, only_major=False,
-                        order='closest', display=True, toolkit=None):
+    def edges_at_energy(
+        self,
+        energy="interactive",
+        width=10,
+        only_major=False,
+        order="closest",
+        display=True,
+        toolkit=None,
+    ):
         """Show EELS edges according to an energy range selected from the
         spectrum or within a provided energy window
 
@@ -208,15 +211,16 @@ class EELSSpectrum(Signal1D):
         table or ASCII table, depends on the environment.
         """
 
-        if energy == 'interactive':
+        if energy == "interactive":
             er = EdgesRange(self, interactive=True)
             return er.gui(display=display, toolkit=toolkit)
         else:
             self.print_edges_near_energy(energy, width, only_major, order)
 
     @staticmethod
-    def print_edges_near_energy(energy=None, width=10, only_major=False,
-                                order='closest', edges=None):
+    def print_edges_near_energy(
+        energy=None, width=10, only_major=False, order="closest", edges=None
+    ):
         """Find and print a table of edges near a given energy that are within
         the given energy window.
 
@@ -245,28 +249,26 @@ class EELSSpectrum(Signal1D):
         """
 
         if edges is None and energy is not None:
-            edges = get_edges_near_energy(energy=energy, width=width,
-                                          only_major=only_major, order=order)
+            edges = get_edges_near_energy(
+                energy=energy, width=width, only_major=only_major, order=order
+            )
         elif edges is None and energy is None:
-            raise ValueError('Either energy or edges should be provided.')
+            raise ValueError("Either energy or edges should be provided.")
 
         table = PrettyTable()
-        table.field_names = [
-        'edge',
-        'onset energy (eV)',
-        'relevance',
-        'description']
+        table.field_names = ["edge", "onset energy (eV)", "relevance", "description"]
 
         for edge in edges:
-            element, shell = edge.split('_')
-            shell_dict = elements_db[element]['Atomic_properties'][
-                         'Binding_energies'][shell]
+            element, shell = edge.split("_")
+            shell_dict = elements_db[element]["Atomic_properties"]["Binding_energies"][
+                shell
+            ]
 
-            onset = shell_dict['onset_energy (eV)']
-            relevance = shell_dict['relevance']
-            threshold = shell_dict['threshold']
-            edge_ = shell_dict['edge']
-            description = threshold + '. '*(threshold !='' and edge_ !='') + edge_
+            onset = shell_dict["onset_energy (eV)"]
+            relevance = shell_dict["relevance"]
+            threshold = shell_dict["threshold"]
+            edge_ = shell_dict["edge"]
+            description = threshold + ". " * (threshold != "" and edge_ != "") + edge_
 
             table.add_row([edge, onset, relevance, description])
 
@@ -319,16 +321,17 @@ class EELSSpectrum(Signal1D):
         return zlpc
 
     def align_zero_loss_peak(
-            self,
-            calibrate=True,
-            also_align=[],
-            print_stats=True,
-            subpixel=True,
-            mask=None,
-            signal_range=None,
-            show_progressbar=None,
-            crop=True,
-            **kwargs):
+        self,
+        calibrate=True,
+        also_align=[],
+        print_stats=True,
+        subpixel=True,
+        mask=None,
+        signal_range=None,
+        show_progressbar=None,
+        crop=True,
+        **kwargs,
+    ):
         """Align the zero-loss peak.
 
         This function first aligns the spectra using the result of
@@ -401,8 +404,10 @@ class EELSSpectrum(Signal1D):
         def substract_from_offset(value, signals):
             # Test that axes is uniform
             if not self.axes_manager[-1].is_uniform:
-                raise NotImplementedError("Support for EELS signals with "
-                            "non-uniform signal axes is not yet implemented.")
+                raise NotImplementedError(
+                    "Support for EELS signals with "
+                    "non-uniform signal axes is not yet implemented."
+                )
             if isinstance(value, da.Array):
                 value = value.compute()
             for signal in signals:
@@ -411,14 +416,16 @@ class EELSSpectrum(Signal1D):
 
         def estimate_zero_loss_peak_centre(s, mask, signal_range):
             if signal_range:
-                zlpc = s.isig[signal_range[0]:signal_range[1]].\
-                    estimate_zero_loss_peak_centre(mask=mask)
+                zlpc = s.isig[
+                    signal_range[0] : signal_range[1]
+                ].estimate_zero_loss_peak_centre(mask=mask)
             else:
                 zlpc = s.estimate_zero_loss_peak_centre(mask=mask)
             return zlpc
 
         zlpc = estimate_zero_loss_peak_centre(
-            self, mask=mask, signal_range=signal_range)
+            self, mask=mask, signal_range=signal_range
+        )
 
         mean_ = np.nanmean(zlpc.data)
 
@@ -433,26 +440,31 @@ class EELSSpectrum(Signal1D):
                 # axes_manager of the signal later in the workflow may result in
                 # a wrong shift_array
                 shift_array = shift_array.compute()
-            signal.shift1D(
-                shift_array, crop=crop, show_progressbar=show_progressbar)
+            signal.shift1D(shift_array, crop=crop, show_progressbar=show_progressbar)
 
         if calibrate is True:
             zlpc = estimate_zero_loss_peak_centre(
-                self, mask=mask, signal_range=signal_range)
-            substract_from_offset(np.nanmean(zlpc.data),
-                                  also_align + [self])
+                self, mask=mask, signal_range=signal_range
+            )
+            substract_from_offset(np.nanmean(zlpc.data), also_align + [self])
 
         if subpixel is False:
             return
-        left, right = -3., 3.
+        left, right = -3.0, 3.0
         if calibrate is False:
             left += mean_
             right += mean_
 
-        left = (left if left > self.axes_manager[-1].axis[0]
-                else self.axes_manager[-1].axis[0])
-        right = (right if right < self.axes_manager[-1].axis[-1]
-                 else self.axes_manager[-1].axis[-1])
+        left = (
+            left
+            if left > self.axes_manager[-1].axis[0]
+            else self.axes_manager[-1].axis[0]
+        )
+        right = (
+            right
+            if right < self.axes_manager[-1].axis[-1]
+            else self.axes_manager[-1].axis[-1]
+        )
 
         if self.axes_manager.navigation_size > 1:
             self.align1D(
@@ -462,16 +474,17 @@ class EELSSpectrum(Signal1D):
                 show_progressbar=show_progressbar,
                 mask=mask,
                 crop=crop,
-                **kwargs)
+                **kwargs,
+            )
         if calibrate is True:
             zlpc = estimate_zero_loss_peak_centre(
-                self, mask=mask, signal_range=signal_range)
-            substract_from_offset(np.nanmean(zlpc.data),
-                                  also_align + [self])
+                self, mask=mask, signal_range=signal_range
+            )
+            substract_from_offset(np.nanmean(zlpc.data), also_align + [self])
+
     align_zero_loss_peak.__doc__ %= (SHOW_PROGRESSBAR_ARG, CROP_PARAMETER_DOC)
 
-    def get_zero_loss_peak_mask(self, zero_loss_peak_mask_width=5.0,
-                                signal_mask=None):
+    def get_zero_loss_peak_mask(self, zero_loss_peak_mask_width=5.0, signal_mask=None):
         """Return boolean array with True value at the position of the zero
         loss peak. This mask can be used to restrict operation to the signal
         locations not marked as True (masked).
@@ -487,7 +500,7 @@ class EELSSpectrum(Signal1D):
         bool array
         """
         zlpc = self.estimate_zero_loss_peak_centre()
-        (signal_axis, ) = self.axes_manager[self.axes_manager.signal_axes]
+        (signal_axis,) = self.axes_manager[self.axes_manager.signal_axes]
         axis = signal_axis.axis
         mini_value = zlpc.data.mean() - zero_loss_peak_mask_width / 2
         maxi_value = zlpc.data.mean() + zero_loss_peak_mask_width / 2
@@ -498,43 +511,64 @@ class EELSSpectrum(Signal1D):
             signal_mask = mask
         return signal_mask
 
-    get_zero_loss_peak_mask.__doc__ %= (SIGNAL_MASK_ARG)
+    get_zero_loss_peak_mask.__doc__ %= SIGNAL_MASK_ARG
 
-    def spikes_diagnosis(self, signal_mask=None, navigation_mask=None,
-                         zero_loss_peak_mask_width=None, **kwargs):
+    def spikes_diagnosis(
+        self,
+        signal_mask=None,
+        navigation_mask=None,
+        zero_loss_peak_mask_width=None,
+        **kwargs,
+    ):
         if zero_loss_peak_mask_width is not None:
-            signal_mask = self.get_zero_loss_peak_mask(zero_loss_peak_mask_width,
-                                                       signal_mask)
-        super().spikes_diagnosis(signal_mask=signal_mask, navigation_mask=None,
-                                 **kwargs)
+            signal_mask = self.get_zero_loss_peak_mask(
+                zero_loss_peak_mask_width, signal_mask
+            )
+        super().spikes_diagnosis(
+            signal_mask=signal_mask, navigation_mask=None, **kwargs
+        )
 
     spikes_diagnosis.__doc__ = SPIKES_DIAGNOSIS_DOCSTRING % MASK_ZERO_LOSS_PEAK_WIDTH
 
-    def spikes_removal_tool(self, signal_mask=None,
-                            navigation_mask=None,
-                            threshold='auto',
-                            zero_loss_peak_mask_width=None,
-                            interactive=True,
-                            display=True,
-                            toolkit=None):
+    def spikes_removal_tool(
+        self,
+        signal_mask=None,
+        navigation_mask=None,
+        threshold="auto",
+        zero_loss_peak_mask_width=None,
+        interactive=True,
+        display=True,
+        toolkit=None,
+    ):
         if zero_loss_peak_mask_width is not None:
             axis = self.axes_manager.signal_axes[0].axis
             # check the zero_loss is in the signal
-            if (axis[0] - zero_loss_peak_mask_width / 2 > 0 or
-                axis[-1] + zero_loss_peak_mask_width / 2 < 0):
+            if (
+                axis[0] - zero_loss_peak_mask_width / 2 > 0
+                or axis[-1] + zero_loss_peak_mask_width / 2 < 0
+            ):
                 raise ValueError("The zero loss peaks isn't in the energy range.")
-            signal_mask = self.get_zero_loss_peak_mask(zero_loss_peak_mask_width,
-                                                       signal_mask)
-        super().spikes_removal_tool(signal_mask=signal_mask,
-                                    navigation_mask=navigation_mask,
-                                    threshold=threshold,
-                                    interactive=interactive,
-                                    display=display, toolkit=toolkit)
-    spikes_removal_tool.__doc__ = SPIKES_REMOVAL_TOOL_DOCSTRING % (
-        SIGNAL_MASK_ARG, NAVIGATION_MASK_ARG, MASK_ZERO_LOSS_PEAK_WIDTH, DISPLAY_DT, TOOLKIT_DT,)
+            signal_mask = self.get_zero_loss_peak_mask(
+                zero_loss_peak_mask_width, signal_mask
+            )
+        super().spikes_removal_tool(
+            signal_mask=signal_mask,
+            navigation_mask=navigation_mask,
+            threshold=threshold,
+            interactive=interactive,
+            display=display,
+            toolkit=toolkit,
+        )
 
-    def estimate_elastic_scattering_intensity(
-            self, threshold, show_progressbar=None):
+    spikes_removal_tool.__doc__ = SPIKES_REMOVAL_TOOL_DOCSTRING % (
+        SIGNAL_MASK_ARG,
+        NAVIGATION_MASK_ARG,
+        MASK_ZERO_LOSS_PEAK_WIDTH,
+        DISPLAY_DT,
+        TOOLKIT_DT,
+    )
+
+    def estimate_elastic_scattering_intensity(self, threshold, show_progressbar=None):
         """Rough estimation of the elastic scattering intensity by
         truncation of a EELS low-loss spectrum.
 
@@ -588,31 +622,32 @@ class EELSSpectrum(Signal1D):
                         return data.sum()
                     else:
                         from scipy.integrate import simps
+
                         axis = ax.axis[:ind]
                         return simps(y=data, x=axis)
 
-            I0 = self.map(estimating_function, threshold=threshold,
-                          ragged=False, show_progressbar=show_progressbar,
-                          inplace=False)
-        I0.metadata.General.title = (
-            self.metadata.General.title + ' elastic intensity')
+            I0 = self.map(
+                estimating_function,
+                threshold=threshold,
+                ragged=False,
+                show_progressbar=show_progressbar,
+                inplace=False,
+            )
+        I0.metadata.General.title = self.metadata.General.title + " elastic intensity"
         I0.set_signal_type("")
-        if self.tmp_parameters.has_item('filename'):
+        if self.tmp_parameters.has_item("filename"):
             I0.tmp_parameters.filename = (
-                self.tmp_parameters.filename +
-                '_elastic_intensity')
+                self.tmp_parameters.filename + "_elastic_intensity"
+            )
             I0.tmp_parameters.folder = self.tmp_parameters.folder
-            I0.tmp_parameters.extension = \
-                self.tmp_parameters.extension
+            I0.tmp_parameters.extension = self.tmp_parameters.extension
         return I0
+
     estimate_elastic_scattering_intensity.__doc__ %= SHOW_PROGRESSBAR_ARG
 
-    def estimate_elastic_scattering_threshold(self,
-                                              window=10.,
-                                              tol=None,
-                                              window_length=5,
-                                              polynomial_order=3,
-                                              start=1.):
+    def estimate_elastic_scattering_threshold(
+        self, window=10.0, tol=None, window_length=5, polynomial_order=3, start=1.0
+    ):
         """Calculate the first inflexion point of the spectrum derivative
         within a window.
 
@@ -679,15 +714,16 @@ class EELSSpectrum(Signal1D):
 
         # Progress Bar
         axis = self.axes_manager.signal_axes[0]
-        min_index, max_index = axis.value_range_to_indices(start,
-                                                           start + window)
+        min_index, max_index = axis.value_range_to_indices(start, start + window)
         if max_index < min_index + 10:
             raise ValueError("Please select a bigger window")
         s = self.isig[min_index:max_index].deepcopy()
         if window_length:
-            s.smooth_savitzky_golay(polynomial_order=polynomial_order,
-                                    window_length=window_length,
-                                    differential_order=1)
+            s.smooth_savitzky_golay(
+                polynomial_order=polynomial_order,
+                window_length=window_length,
+                differential_order=1,
+            )
         else:
             s = s.derivative(-1)
         if tol is None:
@@ -706,26 +742,28 @@ class EELSSpectrum(Signal1D):
         if np.isnan(threshold.data).any():
             _logger.warning(
                 "No inflexion point could be found in some positions "
-                "that have been marked with nans.")
+                "that have been marked with nans."
+            )
         # Create spectrum image, stop and return value
         threshold.metadata.General.title = (
-            self.metadata.General.title +
-            ' elastic scattering threshold')
-        if self.tmp_parameters.has_item('filename'):
+            self.metadata.General.title + " elastic scattering threshold"
+        )
+        if self.tmp_parameters.has_item("filename"):
             threshold.tmp_parameters.filename = (
-                self.tmp_parameters.filename +
-                '_elastic_scattering_threshold')
+                self.tmp_parameters.filename + "_elastic_scattering_threshold"
+            )
             threshold.tmp_parameters.folder = self.tmp_parameters.folder
-            threshold.tmp_parameters.extension = \
-                self.tmp_parameters.extension
+            threshold.tmp_parameters.extension = self.tmp_parameters.extension
         threshold.set_signal_type("")
         return threshold
 
-    def estimate_thickness(self,
-                           threshold=None,
-                           zlp=None,
-                           density=None,
-                           mean_free_path=None,):
+    def estimate_thickness(
+        self,
+        threshold=None,
+        zlp=None,
+        density=None,
+        mean_free_path=None,
+    ):
         """Estimates the thickness (relative and absolute)
         of a sample using the log-ratio method.
 
@@ -770,13 +808,15 @@ class EELSSpectrum(Signal1D):
         axis = self.axes_manager.signal_axes[0]
         total_intensity = self.integrate1D(axis.index_in_array).data
         if threshold is None and zlp is None:
-            raise ValueError("Please provide one of the following keywords: "
-                             "`threshold`, `zlp`")
+            raise ValueError(
+                "Please provide one of the following keywords: " "`threshold`, `zlp`"
+            )
         if zlp is not None:
             I0 = zlp.integrate1D(axis.index_in_array).data
         else:
             I0 = self.estimate_elastic_scattering_intensity(
-                threshold=threshold,).data
+                threshold=threshold,
+            ).data
 
         t_over_lambda = np.log(total_intensity / I0)
 
@@ -798,44 +838,40 @@ class EELSSpectrum(Signal1D):
                 if mean_free_path is None:
                     mean_free_path = iMFP_Iakoubovskii(
                         electron_energy=self.metadata.Acquisition_instrument.TEM.beam_energy,
-                        density=density)
+                        density=density,
+                    )
                     _logger.info(f"The estimated iMFP is {mean_free_path} nm")
         else:
             _logger.warning(
                 "Computing the thickness without taking into account the effect of "
                 "the limited collection angle, what usually leads to underestimating "
                 "the thickness. To perform the angular corrections you must provide "
-                "the density of the material.")
+                "the density of the material."
+            )
 
         s = self._get_navigation_signal(data=t_over_lambda)
         if mean_free_path is not None:
             s.data *= mean_free_path
-            s.metadata.General.title = (
-                self.metadata.General.title +
-                ' thickness (nm)')
+            s.metadata.General.title = self.metadata.General.title + " thickness (nm)"
             s.metadata.Signal.quantity = "thickness (nm)"
         else:
             _logger.warning(
                 "Computing the relative thickness. To compute the absolute "
-                "thickness provide the `mean_free_path` and/or the `density`")
-            s.metadata.General.title = (self.metadata.General.title +
-                                        ' $\\frac{t}{\\lambda}$')
+                "thickness provide the `mean_free_path` and/or the `density`"
+            )
+            s.metadata.General.title = (
+                self.metadata.General.title + " $\\frac{t}{\\lambda}$"
+            )
             s.metadata.Signal.quantity = "$\\frac{t}{\\lambda}$"
-        if self.tmp_parameters.has_item('filename'):
-            s.tmp_parameters.filename = (
-                self.tmp_parameters.filename +
-                '_thickness')
+        if self.tmp_parameters.has_item("filename"):
+            s.tmp_parameters.filename = self.tmp_parameters.filename + "_thickness"
             s.tmp_parameters.folder = self.tmp_parameters.folder
-            s.tmp_parameters.extension = \
-                self.tmp_parameters.extension
+            s.tmp_parameters.extension = self.tmp_parameters.extension
         s = s.transpose(signal_axes=[])
         s.set_signal_type("")
         return s
 
-    def fourier_log_deconvolution(self,
-                                  zlp,
-                                  add_zlp=False,
-                                  crop=False):
+    def fourier_log_deconvolution(self, zlp, add_zlp=False, crop=False):
         """Performs fourier-log deconvolution.
 
         Parameters
@@ -868,7 +904,8 @@ class EELSSpectrum(Signal1D):
         self._check_signal_dimension_equals_one()
         if not self.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
-                "This operation is not yet implemented for non-uniform energy axes")
+                "This operation is not yet implemented for non-uniform energy axes"
+            )
         s = self.deepcopy()
         zlp_size = zlp.axes_manager.signal_axes[0].size
         self_size = self.axes_manager.signal_axes[0].size
@@ -876,7 +913,7 @@ class EELSSpectrum(Signal1D):
         # Conservative new size to solve the wrap-around problem
         size = zlp_size + self_size - 1
         # Calculate optimal FFT padding for performance
-        complex_result = (zlp.data.dtype.kind == 'c' or s.data.dtype.kind == 'c')
+        complex_result = zlp.data.dtype.kind == "c" or s.data.dtype.kind == "c"
         size = optimal_fft_size(size, not complex_result)
 
         axis = self.axes_manager.signal_axes[0]
@@ -886,46 +923,69 @@ class EELSSpectrum(Signal1D):
         if self._lazy or zlp._lazy:
             j1 = z * da.log(j / z).map_blocks(np.nan_to_num)
         else:
-
             j1 = z * np.nan_to_num(np.log(j / z))
         sdata = np.fft.irfft(j1, axis=axis.index_in_array)
 
-        s.data = sdata[s.axes_manager._get_data_slice(
-            [(axis.index_in_array, slice(None, self_size)), ])]
+        s.data = sdata[
+            s.axes_manager._get_data_slice(
+                [
+                    (axis.index_in_array, slice(None, self_size)),
+                ]
+            )
+        ]
         if add_zlp is True:
             if self_size >= zlp_size:
                 if self._lazy:
                     _slices_before = s.axes_manager._get_data_slice(
-                        [(axis.index_in_array, slice(None, zlp_size)), ])
+                        [
+                            (axis.index_in_array, slice(None, zlp_size)),
+                        ]
+                    )
                     _slices_after = s.axes_manager._get_data_slice(
-                        [(axis.index_in_array, slice(zlp_size, None)), ])
-                    s.data = da.stack((s.data[_slices_before] + zlp.data,
-                                       s.data[_slices_after]),
-                                      axis=axis.index_in_array)
+                        [
+                            (axis.index_in_array, slice(zlp_size, None)),
+                        ]
+                    )
+                    s.data = da.stack(
+                        (s.data[_slices_before] + zlp.data, s.data[_slices_after]),
+                        axis=axis.index_in_array,
+                    )
                 else:
-                    s.data[s.axes_manager._get_data_slice(
-                        [(axis.index_in_array, slice(None, zlp_size)), ])
+                    s.data[
+                        s.axes_manager._get_data_slice(
+                            [
+                                (axis.index_in_array, slice(None, zlp_size)),
+                            ]
+                        )
                     ] += zlp.data
             else:
-                s.data += zlp.data[s.axes_manager._get_data_slice(
-                    [(axis.index_in_array, slice(None, self_size)), ])]
+                s.data += zlp.data[
+                    s.axes_manager._get_data_slice(
+                        [
+                            (axis.index_in_array, slice(None, self_size)),
+                        ]
+                    )
+                ]
 
-        s.metadata.General.title = (s.metadata.General.title +
-                                    ' after Fourier-log deconvolution')
-        if s.tmp_parameters.has_item('filename'):
+        s.metadata.General.title = (
+            s.metadata.General.title + " after Fourier-log deconvolution"
+        )
+        if s.tmp_parameters.has_item("filename"):
             s.tmp_parameters.filename = (
-                self.tmp_parameters.filename +
-                '_after_fourier_log_deconvolution')
+                self.tmp_parameters.filename + "_after_fourier_log_deconvolution"
+            )
         if crop is True:
-            s.crop(axis.index_in_axes_manager,
-                   None, int(-tapped_channels))
+            s.crop(axis.index_in_axes_manager, None, int(-tapped_channels))
         return s
 
-    def fourier_ratio_deconvolution(self, ll,
-                                    fwhm=None,
-                                    threshold=None,
-                                    extrapolate_lowloss=True,
-                                    extrapolate_coreloss=True):
+    def fourier_ratio_deconvolution(
+        self,
+        ll,
+        fwhm=None,
+        threshold=None,
+        extrapolate_lowloss=True,
+        extrapolate_coreloss=True,
+    ):
         """Performs Fourier-ratio deconvolution.
 
         The core-loss should have the background removed. To reduce the noise
@@ -962,27 +1022,25 @@ class EELSSpectrum(Signal1D):
         self._check_signal_dimension_equals_one()
         if not self.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
-                "This operation is not yet implemented for non-uniform energy axes.")
+                "This operation is not yet implemented for non-uniform energy axes."
+            )
         if not ll.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
                 "The low-loss energy axis is non-uniform. "
-                "This operation is not yet implemented for non-uniform energy axes")
+                "This operation is not yet implemented for non-uniform energy axes"
+            )
         orig_cl_size = self.axes_manager.signal_axes[0].size
 
         if threshold is None:
             threshold = ll.estimate_elastic_scattering_threshold()
 
         if extrapolate_coreloss is True:
-            cl = self.power_law_extrapolation(
-                window_size=20,
-                extrapolation_size=100)
+            cl = self.power_law_extrapolation(window_size=20, extrapolation_size=100)
         else:
             cl = self.deepcopy()
 
         if extrapolate_lowloss is True:
-            ll = ll.power_law_extrapolation(
-                window_size=100,
-                extrapolation_size=100)
+            ll = ll.power_law_extrapolation(window_size=100, extrapolation_size=100)
         else:
             ll = ll.deepcopy()
 
@@ -998,7 +1056,9 @@ class EELSSpectrum(Signal1D):
 
         axis = ll.axes_manager.signal_axes[0]
         if fwhm is None:
-            fwhm = float(ll.get_current_signal().estimate_peak_width()._get_current_data())
+            fwhm = float(
+                ll.get_current_signal().estimate_peak_width()._get_current_data()
+            )
             _logger.info("FWHM = %1.2f" % fwhm)
 
         I0 = ll.estimate_elastic_scattering_intensity(threshold=threshold)
@@ -1009,34 +1069,36 @@ class EELSSpectrum(Signal1D):
             I0 = I0.reshape(I0_shape)
 
         from hyperspy.components1d import Gaussian
+
         g = Gaussian()
         g.sigma.value = fwhm / 2.3548
         g.A.value = 1
         g.centre.value = 0
         zl = g.function(
-            np.linspace(axis.offset,
-                        axis.offset + axis.scale * (size - 1),
-                        size))
+            np.linspace(axis.offset, axis.offset + axis.scale * (size - 1), size)
+        )
         z = np.fft.rfft(zl)
         jk = np.fft.rfft(cl.data, n=size, axis=axis.index_in_array)
         jl = np.fft.rfft(ll.data, n=size, axis=axis.index_in_array)
-        zshape = [1, ] * len(cl.data.shape)
+        zshape = [
+            1,
+        ] * len(cl.data.shape)
         zshape[axis.index_in_array] = jk.shape[axis.index_in_array]
-        cl.data = np.fft.irfft(z.reshape(zshape) * jk / jl,
-                               axis=axis.index_in_array)
+        cl.data = np.fft.irfft(z.reshape(zshape) * jk / jl, axis=axis.index_in_array)
         cl.data *= I0
         cl.crop(-1, None, int(orig_cl_size))
-        cl.metadata.General.title = (self.metadata.General.title +
-                                     ' after Fourier-ratio deconvolution')
-        if cl.tmp_parameters.has_item('filename'):
+        cl.metadata.General.title = (
+            self.metadata.General.title + " after Fourier-ratio deconvolution"
+        )
+        if cl.tmp_parameters.has_item("filename"):
             cl.tmp_parameters.filename = (
-                self.tmp_parameters.filename +
-                'after_fourier_ratio_deconvolution')
+                self.tmp_parameters.filename + "after_fourier_ratio_deconvolution"
+            )
         return cl
 
-    def richardson_lucy_deconvolution(self, psf, iterations=15,
-                                      show_progressbar=None,
-                                      num_workers=None):
+    def richardson_lucy_deconvolution(
+        self, psf, iterations=15, show_progressbar=None, num_workers=None
+    ):
         """1D Richardson-Lucy Poissonian deconvolution of
         the spectrum by the given kernel.
 
@@ -1067,7 +1129,8 @@ class EELSSpectrum(Signal1D):
         """
         if not self.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
-                "This operation is not yet implemented for non-uniform energy axes.")
+                "This operation is not yet implemented for non-uniform energy axes."
+            )
         if show_progressbar is None:
             show_progressbar = hs.preferences.General.show_progressbar
         self._check_signal_dimension_equals_one()
@@ -1075,27 +1138,33 @@ class EELSSpectrum(Signal1D):
         maxval = self.axes_manager.navigation_size
         show_progressbar = show_progressbar and (maxval > 0)
 
-        def deconv_function(signal, kernel=None,
-                            iterations=15, psf_size=None):
+        def deconv_function(signal, kernel=None, iterations=15, psf_size=None):
             imax = kernel.argmax()
             result = np.array(signal).copy()
             mimax = psf_size - 1 - imax
             for _ in range(iterations):
-                first = np.convolve(kernel, result)[imax: imax + psf_size]
-                result *= np.convolve(kernel[::-1], signal /
-                                      first)[mimax:mimax + psf_size]
+                first = np.convolve(kernel, result)[imax : imax + psf_size]
+                result *= np.convolve(kernel[::-1], signal / first)[
+                    mimax : mimax + psf_size
+                ]
             return result
 
-        ds = self.map(deconv_function, kernel=psf, iterations=iterations,
-                      psf_size=psf_size, show_progressbar=show_progressbar,
-                      num_workers=num_workers, ragged=False, inplace=False)
+        ds = self.map(
+            deconv_function,
+            kernel=psf,
+            iterations=iterations,
+            psf_size=psf_size,
+            show_progressbar=show_progressbar,
+            num_workers=num_workers,
+            ragged=False,
+            inplace=False,
+        )
 
         ds.metadata.General.title += (
-            ' after Richardson-Lucy deconvolution %i iterations' %
-            iterations)
-        if ds.tmp_parameters.has_item('filename'):
-            ds.tmp_parameters.filename += (
-                '_after_R-L_deconvolution_%iiter' % iterations)
+            " after Richardson-Lucy deconvolution %i iterations" % iterations
+        )
+        if ds.tmp_parameters.has_item("filename"):
+            ds.tmp_parameters.filename += "_after_R-L_deconvolution_%iiter" % iterations
         return ds
 
     richardson_lucy_deconvolution.__doc__ %= (SHOW_PROGRESSBAR_ARG, NUM_WORKERS_ARG)
@@ -1108,14 +1177,14 @@ class EELSSpectrum(Signal1D):
         The `ignore_parameters` list can be to ignore parameters.
         """
         must_exist = (
-            'Acquisition_instrument.TEM.convergence_angle',
-            'Acquisition_instrument.TEM.beam_energy',
-            'Acquisition_instrument.TEM.Detector.EELS.collection_angle',)
+            "Acquisition_instrument.TEM.convergence_angle",
+            "Acquisition_instrument.TEM.beam_energy",
+            "Acquisition_instrument.TEM.Detector.EELS.collection_angle",
+        )
         missing_parameters = []
         for item in must_exist:
             exists = self.metadata.has_item(item)
-            if exists is False and item.split(
-                    '.')[-1] not in ignore_parameters:
+            if exists is False and item.split(".")[-1] not in ignore_parameters:
                 missing_parameters.append(item)
         if missing_parameters:
             _logger.info("Missing parameters {}".format(missing_parameters))
@@ -1123,12 +1192,14 @@ class EELSSpectrum(Signal1D):
         else:
             return False
 
-    def set_microscope_parameters(self,
-                                  beam_energy=None,
-                                  convergence_angle=None,
-                                  collection_angle=None,
-                                  toolkit=None,
-                                  display=True):
+    def set_microscope_parameters(
+        self,
+        beam_energy=None,
+        convergence_angle=None,
+        collection_angle=None,
+        toolkit=None,
+        display=True,
+    ):
         if set((beam_energy, convergence_angle, collection_angle)) == {None}:
             tem_par = EELSTEMParametersUI(self)
             return tem_par.gui(toolkit=toolkit, display=display)
@@ -1137,14 +1208,15 @@ class EELSSpectrum(Signal1D):
             mp.set_item("Acquisition_instrument.TEM.beam_energy", beam_energy)
         if convergence_angle is not None:
             mp.set_item(
-                "Acquisition_instrument.TEM.convergence_angle",
-                convergence_angle)
+                "Acquisition_instrument.TEM.convergence_angle", convergence_angle
+            )
         if collection_angle is not None:
             mp.set_item(
                 "Acquisition_instrument.TEM.Detector.EELS.collection_angle",
-                collection_angle)
-    set_microscope_parameters.__doc__ = \
-        """
+                collection_angle,
+            )
+
+    set_microscope_parameters.__doc__ = """
         Set the microscope parameters that are necessary to calculate
         the GOS.
 
@@ -1159,13 +1231,13 @@ class EELSSpectrum(Signal1D):
             The collection semi-angle in mrad.
         {}
         {}
-        """.format(TOOLKIT_DT, DISPLAY_DT)
+        """.format(
+        TOOLKIT_DT, DISPLAY_DT
+    )
 
-    def power_law_extrapolation(self,
-                                window_size=20,
-                                extrapolation_size=1024,
-                                add_noise=False,
-                                fix_neg_r=False):
+    def power_law_extrapolation(
+        self, window_size=20, extrapolation_size=1024, add_noise=False, fix_neg_r=False
+    ):
         """
         Extrapolate the spectrum to the right using a powerlaw.
 
@@ -1192,12 +1264,11 @@ class EELSSpectrum(Signal1D):
         self._check_signal_dimension_equals_one()
         axis = self.axes_manager.signal_axes[0]
         s = self.deepcopy()
-        s.metadata.General.title += (
-            ' %i channels extrapolated' %
-            extrapolation_size)
-        if s.tmp_parameters.has_item('filename'):
+        s.metadata.General.title += " %i channels extrapolated" % extrapolation_size
+        if s.tmp_parameters.has_item("filename"):
             s.tmp_parameters.filename += (
-                '_%i_channels_extrapolated' % extrapolation_size)
+                "_%i_channels_extrapolated" % extrapolation_size
+            )
         new_shape = list(self.data.shape)
         new_shape[axis.index_in_array] += extrapolation_size
         if self._lazy:
@@ -1205,17 +1276,17 @@ class EELSSpectrum(Signal1D):
             right_shape = list(self.data.shape)
             right_shape[axis.index_in_array] = extrapolation_size
             right_chunks = list(self.data.chunks)
-            right_chunks[axis.index_in_array] = (extrapolation_size, )
+            right_chunks[axis.index_in_array] = (extrapolation_size,)
             right_data = da.zeros(
                 shape=tuple(right_shape),
                 chunks=tuple(right_chunks),
-                dtype=self.data.dtype)
-            s.data = da.concatenate(
-                [left_data, right_data], axis=axis.index_in_array)
+                dtype=self.data.dtype,
+            )
+            s.data = da.concatenate([left_data, right_data], axis=axis.index_in_array)
         else:
             # just old code
             s.data = np.zeros(new_shape)
-            s.data[..., :axis.size] = self.data
+            s.data[..., : axis.size] = self.data
         s.get_dimensions_from_data()
         pl = PowerLaw()
         pl._axes_manager = self.axes_manager
@@ -1223,7 +1294,8 @@ class EELSSpectrum(Signal1D):
             s,
             axis.index2value(axis.size - window_size),
             axis.index2value(axis.size - 1),
-            out=True)
+            out=True,
+        )
         if fix_neg_r is True:
             A = np.where(r <= 0, 0, A)
         # If the signal is binned we need to bin the extrapolated power law
@@ -1239,31 +1311,29 @@ class EELSSpectrum(Signal1D):
                 rightslice = (..., None)
                 axisslice = (None, slice(axis.size, None))
             else:
-                rightslice = (..., )
-                axisslice = (slice(axis.size, None), )
+                rightslice = (...,)
+                axisslice = (slice(axis.size, None),)
             right_chunks[axis.index_in_array] = 1
             x = da.from_array(
                 s.axes_manager.signal_axes[0].axis[axisslice],
-                chunks=(extrapolation_size, ))
+                chunks=(extrapolation_size,),
+            )
             A = A[rightslice]
             r = r[rightslice]
-            right_data = factor * A * x**(-r)
-            s.data = da.concatenate(
-                [left_data, right_data], axis=axis.index_in_array)
+            right_data = factor * A * x ** (-r)
+            s.data = da.concatenate([left_data, right_data], axis=axis.index_in_array)
         else:
-            s.data[..., axis.size:] = (
-                factor * A[..., np.newaxis] *
-                s.axes_manager.signal_axes[0].axis[np.newaxis, axis.size:]**(
-                    -r[..., np.newaxis]))
+            s.data[..., axis.size :] = (
+                factor
+                * A[..., np.newaxis]
+                * s.axes_manager.signal_axes[0].axis[np.newaxis, axis.size :]
+                ** (-r[..., np.newaxis])
+            )
         return s
 
-    def kramers_kronig_analysis(self,
-                                zlp=None,
-                                iterations=1,
-                                n=None,
-                                t=None,
-                                delta=0.5,
-                                full_output=False):
+    def kramers_kronig_analysis(
+        self, zlp=None, iterations=1, n=None, t=None, delta=0.5, full_output=False
+    ):
         r"""
         Calculate the complex dielectric function from a single scattering
         distribution (SSD) using the Kramers-Kronig relations.
@@ -1358,77 +1428,86 @@ class EELSSpectrum(Signal1D):
         """
         if not self.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
-                "This operation is not yet implemented for non-uniform energy axes.")
+                "This operation is not yet implemented for non-uniform energy axes."
+            )
         output = {}
         if iterations == 1:
             # In this case s.data is not modified so there is no need to make
             # a deep copy.
-            s = self.isig[0.:]
+            s = self.isig[0.0:]
         else:
-            s = self.isig[0.:].deepcopy()
+            s = self.isig[0.0:].deepcopy()
 
-        sorig = self.isig[0.:]
+        sorig = self.isig[0.0:]
         # Avoid singularity at 0
         if s.axes_manager.signal_axes[0].axis[0] == 0:
             s = s.isig[1:]
             sorig = self.isig[1:]
 
         # Constants and units
-        me = constants.value(
-            'electron mass energy equivalent in MeV') * 1e3  # keV
+        me = constants.value("electron mass energy equivalent in MeV") * 1e3  # keV
 
         # Mapped parameters
-        self._are_microscope_parameters_missing(
-            ignore_parameters=['convergence_angle'])
+        self._are_microscope_parameters_missing(ignore_parameters=["convergence_angle"])
         e0 = s.metadata.Acquisition_instrument.TEM.beam_energy
-        beta = s.metadata.Acquisition_instrument.TEM.Detector.EELS.\
-            collection_angle
+        beta = s.metadata.Acquisition_instrument.TEM.Detector.EELS.collection_angle
 
         axis = s.axes_manager.signal_axes[0]
         eaxis = axis.axis.copy()
 
         if isinstance(zlp, hyperspy.signal.BaseSignal):
-            if (zlp.axes_manager.navigation_dimension ==
-                    self.axes_manager.navigation_dimension):
+            if (
+                zlp.axes_manager.navigation_dimension
+                == self.axes_manager.navigation_dimension
+            ):
                 if zlp.axes_manager.signal_dimension == 0:
                     i0 = zlp.data
                 else:
                     i0 = zlp.integrate1D(axis.index_in_axes_manager).data
             else:
-                raise ValueError('The ZLP signal dimensions are not '
-                                 'compatible with the dimensions of the '
-                                 'low-loss signal')
+                raise ValueError(
+                    "The ZLP signal dimensions are not "
+                    "compatible with the dimensions of the "
+                    "low-loss signal"
+                )
             # The following prevents errors if the signal is a single spectrum
             if len(i0) != 1:
-                i0 = i0.reshape(
-                    np.insert(i0.shape, axis.index_in_array, 1))
+                i0 = i0.reshape(np.insert(i0.shape, axis.index_in_array, 1))
         elif isinstance(zlp, numbers.Number):
             i0 = zlp
         else:
-            raise ValueError('The zero-loss peak input is not valid, it must be\
-                             in the BaseSignal class or a Number.')
+            raise ValueError(
+                "The zero-loss peak input is not valid, it must be\
+                             in the BaseSignal class or a Number."
+            )
 
         if isinstance(t, hyperspy.signal.BaseSignal):
-            if (t.axes_manager.navigation_dimension ==
-                    self.axes_manager.navigation_dimension) and (
-                    t.axes_manager.signal_dimension == 0):
+            if (
+                t.axes_manager.navigation_dimension
+                == self.axes_manager.navigation_dimension
+            ) and (t.axes_manager.signal_dimension == 0):
                 t = t.data
-                t = t.reshape(
-                    np.insert(t.shape, axis.index_in_array, 1))
+                t = t.reshape(np.insert(t.shape, axis.index_in_array, 1))
             else:
-                raise ValueError('The thickness signal dimensions are not '
-                                 'compatible with the dimensions of the '
-                                 'low-loss signal')
+                raise ValueError(
+                    "The thickness signal dimensions are not "
+                    "compatible with the dimensions of the "
+                    "low-loss signal"
+                )
         elif isinstance(t, np.ndarray) and t.shape and t.shape != (1,):
-            raise ValueError("thickness must be a HyperSpy signal or a number,"
-                             " not a NumPy array.")
+            raise ValueError(
+                "thickness must be a HyperSpy signal or a number," " not a NumPy array."
+            )
 
         # Slicer to get the signal data from 0 to axis.size
         slicer = s.axes_manager._get_data_slice(
-            [(axis.index_in_array, slice(None, axis.size)), ])
+            [
+                (axis.index_in_array, slice(None, axis.size)),
+            ]
+        )
 
         # Kinetic definitions
-        ke = e0 * (1 + e0 / 2. / me) / (1 + e0 / me) ** 2
+        ke = e0 * (1 + e0 / 2.0 / me) / (1 + e0 / me) ** 2
         tgt = e0 * (2 * me + e0) / (me + e0)
         rk0 = 2590 * (1 + e0 / me) * np.sqrt(2 * ke / me)
 
@@ -1439,28 +1518,34 @@ class EELSSpectrum(Signal1D):
             # We start by the "angular corrections"
             Im = s.data / (np.log(1 + (beta * tgt / eaxis) ** 2)) / axis.scale
             if n is None and t is None:
-                raise ValueError("The thickness and the refractive index are "
-                                 "not defined. Please provide one of them.")
+                raise ValueError(
+                    "The thickness and the refractive index are "
+                    "not defined. Please provide one of them."
+                )
             elif n is not None and t is not None:
-                raise ValueError("Please provide the refractive index OR the "
-                                 "thickness information, not both")
+                raise ValueError(
+                    "Please provide the refractive index OR the "
+                    "thickness information, not both"
+                )
             elif n is not None:
                 # normalize using the refractive index.
-                K = (Im / eaxis).sum(axis=axis.index_in_array, keepdims=True) \
-                    * axis.scale
-                K = (K / (np.pi / 2) / (1 - 1. / n ** 2))
+                K = (Im / eaxis).sum(
+                    axis=axis.index_in_array, keepdims=True
+                ) * axis.scale
+                K = K / (np.pi / 2) / (1 - 1.0 / n**2)
                 # K = (K / (np.pi / 2) / (1 - 1. / n ** 2)).reshape(
                 #    np.insert(K.shape, axis.index_in_array, 1))
                 # Calculate the thickness only if possible and required
-                if zlp is not None and (full_output is True or
-                                        iterations > 1):
-                    te = (332.5 * K * ke / i0)
+                if zlp is not None and (full_output is True or iterations > 1):
+                    te = 332.5 * K * ke / i0
                     if full_output is True:
-                        output['thickness'] = te
+                        output["thickness"] = te
             elif t is not None:
                 if zlp is None:
-                    raise ValueError("The ZLP must be provided when the  "
-                                     "thickness is used for normalization.")
+                    raise ValueError(
+                        "The ZLP must be provided when the  "
+                        "thickness is used for normalization."
+                    )
                 # normalize using the thickness
                 K = t * i0 / (332.5 * ke)
                 te = t
@@ -1473,8 +1558,7 @@ class EELSSpectrum(Signal1D):
             # make it double the closest upper value to workaround the
             # wrap-around problem.
             esize = optimal_fft_size(2 * axis.size)
-            q = -2 * np.fft.fft(Im, esize,
-                                axis.index_in_array).imag / esize
+            q = -2 * np.fft.fft(Im, esize, axis.index_in_array).imag / esize
 
             q[slicer] *= -1
             q = np.fft.fft(q, axis=axis.index_in_array)
@@ -1494,56 +1578,64 @@ class EELSSpectrum(Signal1D):
 
             # Epsilon appears:
             #  We calculate the real and imaginary parts of the CDF
-            e1 = Re / (Re ** 2 + Im ** 2)
-            e2 = Im / (Re ** 2 + Im ** 2)
+            e1 = Re / (Re**2 + Im**2)
+            e2 = Im / (Re**2 + Im**2)
 
             if iterations > 1 and zlp is not None:
                 # Surface losses correction:
                 #  Calculates the surface ELF from a vacuum border effect
                 #  A simulated surface plasmon is subtracted from the ELF
-                Srfelf = 4 * e2 / ((e1 + 1) ** 2 + e2 ** 2) - Im
-                adep = (tgt / (eaxis + delta) *
-                        np.arctan(beta * tgt / axis.axis) -
-                        beta / 1000. /
-                        (beta ** 2 + axis.axis ** 2. / tgt ** 2))
+                Srfelf = 4 * e2 / ((e1 + 1) ** 2 + e2**2) - Im
+                adep = tgt / (eaxis + delta) * np.arctan(
+                    beta * tgt / axis.axis
+                ) - beta / 1000.0 / (beta**2 + axis.axis**2.0 / tgt**2)
                 Srfint = 2000 * K * adep * Srfelf / rk0 / te * axis.scale
                 s.data = sorig.data - Srfint
-                _logger.debug('Iteration number: %d / %d', io + 1, iterations)
+                _logger.debug("Iteration number: %d / %d", io + 1, iterations)
                 if iterations == io + 1 and full_output is True:
                     sp = sorig._deepcopy_with_new_data(Srfint)
                     sp.metadata.General.title += (
-                        " estimated surface plasmon excitation.")
-                    output['surface plasmon estimation'] = sp
+                        " estimated surface plasmon excitation."
+                    )
+                    output["surface plasmon estimation"] = sp
                     del sp
                 del Srfint
 
         eps = s._deepcopy_with_new_data(e1 + e2 * 1j)
         del s
         eps.set_signal_type("DielectricFunction")
-        eps.metadata.General.title = (self.metadata.General.title +
-                                      'dielectric function '
-                                      '(from Kramers-Kronig analysis)')
-        if eps.tmp_parameters.has_item('filename'):
+        eps.metadata.General.title = (
+            self.metadata.General.title + "dielectric function "
+            "(from Kramers-Kronig analysis)"
+        )
+        if eps.tmp_parameters.has_item("filename"):
             eps.tmp_parameters.filename = (
-                self.tmp_parameters.filename +
-                '_CDF_after_Kramers_Kronig_transform')
-        if 'thickness' in output:
+                self.tmp_parameters.filename + "_CDF_after_Kramers_Kronig_transform"
+            )
+        if "thickness" in output:
             # As above,prevent errors if the signal is a single spectrum
             if len(te) != 1:
-                te = te[self.axes_manager._get_data_slice(
-                        [(axis.index_in_array, 0)])]
+                te = te[self.axes_manager._get_data_slice([(axis.index_in_array, 0)])]
             thickness = eps._get_navigation_signal(data=te)
             thickness.metadata.General.title = (
-                self.metadata.General.title + ' thickness '
-                '(calculated using Kramers-Kronig analysis)')
-            output['thickness'] = thickness
+                self.metadata.General.title + " thickness "
+                "(calculated using Kramers-Kronig analysis)"
+            )
+            output["thickness"] = thickness
         if full_output is False:
             return eps
         else:
             return eps, output
 
-    def create_model(self, low_loss=None, auto_background=True, auto_add_edges=True,
-                     GOS="gosh", gos_file_path=None, dictionary=None):
+    def create_model(
+        self,
+        low_loss=None,
+        auto_background=True,
+        auto_add_edges=True,
+        GOS="gosh",
+        gos_file_path=None,
+        dictionary=None,
+    ):
         """Create a model for the current EELS data.
 
         Parameters
@@ -1560,24 +1652,26 @@ class EELSSpectrum(Signal1D):
             If the signal axis is a non-uniform axis.
         """
         from exspy.models.eelsmodel import EELSModel
+
         if low_loss is not None and not self.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
                 "Multiple scattering is not implemented for spectra with a "
                 "non-uniform energy axis. To create a model that does not "
                 "account for multiple-scattering do not set the `ll` keyword."
-                )
-        model = EELSModel(self,
-                          low_loss=low_loss,
-                          auto_background=auto_background,
-                          auto_add_edges=auto_add_edges,
-                          GOS=GOS,
-                          dictionary=dictionary)
+            )
+        model = EELSModel(
+            self,
+            low_loss=low_loss,
+            auto_background=auto_background,
+            auto_add_edges=auto_add_edges,
+            GOS=GOS,
+            dictionary=dictionary,
+        )
         return model
 
     create_model.__doc__ %= EELSMODEL_PARAMETERS
 
-    def plot(self, plot_edges=False, only_edges=('Major', 'Minor'),
-             **kwargs):
+    def plot(self, plot_edges=False, only_edges=("Major", "Minor"), **kwargs):
         """
         Plot the EELS spectrum. Markers indicating the position of the
         EELS edges can be added.
@@ -1603,14 +1697,13 @@ class EELSSpectrum(Signal1D):
             edges = self._get_edges_to_plot(plot_edges, only_edges)
             self._plot_edge_labels(edges)
 
-        self._plot.signal_plot.events.closed.connect(
-            self._on_signal_plot_closing, [])
+        self._plot.signal_plot.events.closed.connect(self._on_signal_plot_closing, [])
 
     def _on_signal_plot_closing(self):
         self._edge_markers = {"lines": None, "texts": None, "names": []}
 
     def _get_offsets_and_segments(self, edges):
-        index = np.array([float(v) for v in edges.values()]) # dictionaries
+        index = np.array([float(v) for v in edges.values()])  # dictionaries
         segments = np.empty((len(index), 2, 2))
         offsets = np.empty((len(index), 2))
         for i, ind in enumerate(index):
@@ -1620,19 +1713,21 @@ class EELSSpectrum(Signal1D):
 
     def _initialise_markers(self):
         self._edge_markers["lines"] = Lines(
-            segments=np.empty((0, 2, 2)), transform="relative",
-            color='black', shift=np.array([0., 0.19]),
-            )
+            segments=np.empty((0, 2, 2)),
+            transform="relative",
+            color="black",
+            shift=np.array([0.0, 0.19]),
+        )
         self._edge_markers["texts"] = Texts(
             offsets=np.empty((0, 2)),
             texts=np.empty((0,)),
             offset_transform="relative",
-            rotation=np.pi/2,
+            rotation=np.pi / 2,
             horizontalalignment="left",
             verticalalignment="bottom",
-            facecolor='black',
-            shift=.2,
-            )
+            facecolor="black",
+            shift=0.2,
+        )
         for key in ["lines", "texts"]:
             self.add_marker(self._edge_markers[key], render_figure=False)
 
@@ -1660,16 +1755,17 @@ class EELSSpectrum(Signal1D):
             try:
                 elements = self.metadata.Sample.elements
             except AttributeError:
-                raise ValueError("No elements defined. Add them with "
-                                 "s.add_elements, or specify elements, edge "
-                                 "families or edges directly")
+                raise ValueError(
+                    "No elements defined. Add them with "
+                    "s.add_elements, or specify elements, edge "
+                    "families or edges directly"
+                )
         else:
             extra_element_edge_family.extend(np.atleast_1d(plot_edges))
             try:
                 elements = self.metadata.Sample.elements
             except:
                 elements = []
-
 
         element_edge_family = elements + extra_element_edge_family
         edges_dict = self._get_edges(element_edge_family, only_edges)
@@ -1685,27 +1781,28 @@ class EELSSpectrum(Signal1D):
         names_and_energies = {}
         shells = ["K", "L", "M", "N", "O"]
 
-        errmsg = ("Edge family '{}' is not supported. Supported edge family "
-                  "is {}.")
+        errmsg = "Edge family '{}' is not supported. Supported edge family " "is {}."
         for member in element_edge_family:
             try:
                 element, ss = member.split("_")
 
                 if len(ss) == 1:
-                    memtype = 'family'
+                    memtype = "family"
                     if ss not in shells:
                         raise AttributeError(errmsg.format(ss, shells))
                 if len(ss) == 2:
-                    memtype = 'edge'
+                    memtype = "edge"
                     if ss[0] not in shells:
                         raise AttributeError(errmsg.format(ss[0], shells))
             except ValueError:
                 element = member
-                ss = ''
-                memtype = 'element'
+                ss = ""
+                memtype = "element"
 
             try:
-                Binding_energies = elements_db[element]["Atomic_properties"]["Binding_energies"]
+                Binding_energies = elements_db[element]["Atomic_properties"][
+                    "Binding_energies"
+                ]
             except KeyError as err:
                 raise ValueError("'{}' is not a valid element".format(element)) from err
 
@@ -1717,13 +1814,13 @@ class EELSSpectrum(Signal1D):
                 isInRng = axis_min < energy < axis_max
                 isSameFamily = ss in edge
 
-                if memtype == 'element':
+                if memtype == "element":
                     flag = isInRel & isInRng
                     edge_key = element + "_" + edge
-                elif memtype == 'edge':
+                elif memtype == "edge":
                     flag = isInRng & (edge == ss)
                     edge_key = member
-                elif memtype == 'family':
+                elif memtype == "family":
                     flag = isInRel & isInRng & isSameFamily
                     edge_key = element + "_" + edge
 
@@ -1762,7 +1859,7 @@ class EELSSpectrum(Signal1D):
             self._edge_markers["names"] = np.delete(self._edge_markers["names"], ind)
 
         if render_figure:
-            self._render_figure(plot=['signal_plot'])
+            self._render_figure(plot=["signal_plot"])
 
     def _add_edge_labels(self, edges, render_figure=True):
         """
@@ -1781,7 +1878,9 @@ class EELSSpectrum(Signal1D):
             edges_dict = {}
             for edge in edges:
                 element, ss = edge.split("_")
-                Binding_energies = elements_db[element]["Atomic_properties"]["Binding_energies"]
+                Binding_energies = elements_db[element]["Atomic_properties"][
+                    "Binding_energies"
+                ]
                 edges_dict[edge] = Binding_energies[ss]["onset_energy (eV)"]
             edges = edges_dict
 
@@ -1795,7 +1894,7 @@ class EELSSpectrum(Signal1D):
         self._edge_markers["names"] = np.append(self._edge_markers["names"], names)
 
         if render_figure:
-            self._render_figure(plot=['signal_plot'])
+            self._render_figure(plot=["signal_plot"])
 
     def _get_complementary_edges(self, edges, only_major=False):
         """
@@ -1823,38 +1922,41 @@ class EELSSpectrum(Signal1D):
 
         elements = set()
         for edge in edges:
-            element, _ = edge.split('_')
+            element, _ = edge.split("_")
             elements.update([element])
 
         for element in elements:
-            ss_info = elements_db[element]['Atomic_properties'][
-                        'Binding_energies']
+            ss_info = elements_db[element]["Atomic_properties"]["Binding_energies"]
 
             for subshell in ss_info:
-                sse = ss_info[subshell]['onset_energy (eV)']
-                ssr = ss_info[subshell]['relevance']
+                sse = ss_info[subshell]["onset_energy (eV)"]
+                ssr = ss_info[subshell]["relevance"]
 
                 if only_major:
-                    if ssr != 'Major':
+                    if ssr != "Major":
                         continue
 
-                edge = element + '_' + subshell
-                if (emin <= sse <= emax) and (subshell[-1] != 'a') and \
-                    (edge not in edges):
+                edge = element + "_" + subshell
+                if (
+                    (emin <= sse <= emax)
+                    and (subshell[-1] != "a")
+                    and (edge not in edges)
+                ):
                     complmt_edges.append(edge)
 
         return complmt_edges
 
-    def rebin(self, new_shape=None, scale=None, crop=True, dtype=None,
-              out=None):
+    def rebin(self, new_shape=None, scale=None, crop=True, dtype=None, out=None):
         factors = self._validate_rebin_args_and_get_factors(
-            new_shape=new_shape,
-            scale=scale)
-        m = super().rebin(new_shape=new_shape, scale=scale, crop=crop,
-                          dtype=dtype, out=out)
+            new_shape=new_shape, scale=scale
+        )
+        m = super().rebin(
+            new_shape=new_shape, scale=scale, crop=crop, dtype=dtype, out=out
+        )
         m = out or m
-        time_factor = np.prod([factors[axis.index_in_array]
-                               for axis in m.axes_manager.navigation_axes])
+        time_factor = np.prod(
+            [factors[axis.index_in_array] for axis in m.axes_manager.navigation_axes]
+        )
         mdeels = m.metadata
         m.get_dimensions_from_data()
         if m.metadata.get_item("Acquisition_instrument.TEM.Detector.EELS"):
@@ -1864,17 +1966,21 @@ class EELSSpectrum(Signal1D):
             if "exposure" in mdeels:
                 mdeels.exposure *= time_factor
         else:
-            _logger.info('No dwell_time could be found in the metadata so '
-                         'this has not been updated.')
+            _logger.info(
+                "No dwell_time could be found in the metadata so "
+                "this has not been updated."
+            )
         if out is None:
             return m
         else:
             out.events.data_changed.trigger(obj=out)
         return m
+
     rebin.__doc__ = hyperspy.signal.BaseSignal.rebin.__doc__
 
-    def vacuum_mask(self, threshold=10.0, start_energy=None,
-                    closing=True, opening=False):
+    def vacuum_mask(
+        self, threshold=10.0, start_energy=None, closing=True, opening=False
+    ):
         """
         Generate mask of the vacuum region
 
@@ -1898,15 +2004,18 @@ class EELSSpectrum(Signal1D):
             The mask of the region.
         """
         if self.axes_manager.navigation_dimension == 0:
-            raise RuntimeError('Navigation dimenstion must be higher than 0 '
-                               'to estimate a vacuum mask.')
+            raise RuntimeError(
+                "Navigation dimenstion must be higher than 0 "
+                "to estimate a vacuum mask."
+            )
         signal_axis = self.axes_manager.signal_axes[0]
         if start_energy is None:
             start_energy = 0.75 * signal_axis.high_value
 
-        mask = (self.isig[start_energy:].mean(-1) <= threshold)
+        mask = self.isig[start_energy:].mean(-1) <= threshold
 
         from scipy.ndimage import binary_dilation, binary_erosion
+
         if closing:
             mask.data = binary_dilation(mask.data, border_value=0)
             mask.data = binary_erosion(mask.data, border_value=1)

@@ -12,13 +12,12 @@ class EdgesRange(SpanSelectorInSignal1D):
     units = t.Unicode()
     edges_list = t.Tuple()
     only_major = t.Bool()
-    order = t.Unicode('closest')
+    order = t.Unicode("closest")
     complementary = t.Bool(True)
 
     def __init__(self, signal, interactive=True):
         if signal.axes_manager.signal_dimension != 1:
-            raise SignalDimensionError(
-                signal.axes_manager.signal_dimension, 1)
+            raise SignalDimensionError(signal.axes_manager.signal_dimension, 1)
 
         if interactive:
             super().__init__(signal)
@@ -38,27 +37,32 @@ class EdgesRange(SpanSelectorInSignal1D):
         self._get_edges_info_within_energy_axis()
 
         self.signal.axes_manager.events.indices_changed.connect(
-            self._on_navigation_indices_changed, [])
+            self._on_navigation_indices_changed, []
+        )
         self.signal._plot.signal_plot.events.closed.connect(
             lambda: self.signal.axes_manager.events.indices_changed.disconnect(
-            self._on_navigation_indices_changed), [])
+                self._on_navigation_indices_changed
+            ),
+            [],
+        )
 
     def _get_edges_info_within_energy_axis(self):
         mid_energy = (self.axis.low_value + self.axis.high_value) / 2
         rng = self.axis.high_value - self.axis.low_value
-        self.edge_all = np.asarray(get_edges_near_energy(mid_energy, rng,
-                                                         order=self.order))
+        self.edge_all = np.asarray(
+            get_edges_near_energy(mid_energy, rng, order=self.order)
+        )
         info = get_info_from_edges(self.edge_all)
 
         energy_all = []
         relevance_all = []
         description_all = []
         for d in info:
-            onset = d['onset_energy (eV)']
-            relevance = d['relevance']
-            threshold = d['threshold']
-            edge_ = d['edge']
-            description = threshold + '. '*(threshold !='' and edge_ !='') + edge_
+            onset = d["onset_energy (eV)"]
+            relevance = d["relevance"]
+            threshold = d["threshold"]
+            edge_ = d["edge"]
+            description = threshold + ". " * (threshold != "" and edge_ != "") + edge_
 
             energy_all.append(onset)
             relevance_all.append(relevance)
@@ -73,10 +77,11 @@ class EdgesRange(SpanSelectorInSignal1D):
 
     def update_table(self):
         if self.span_selector is not None:
-            energy_mask = (self.ss_left_value <= self.energy_all) & \
-                (self.energy_all <= self.ss_right_value)
+            energy_mask = (self.ss_left_value <= self.energy_all) & (
+                self.energy_all <= self.ss_right_value
+            )
             if self.only_major:
-                relevance_mask = self.relevance_all == 'Major'
+                relevance_mask = self.relevance_all == "Major"
             else:
                 relevance_mask = np.ones(len(self.edge_all), bool)
 
@@ -96,21 +101,21 @@ class EdgesRange(SpanSelectorInSignal1D):
     def _keep_valid_edges(self):
         edge_all = list(self.signal._edge_markers["names"])
         for edge in edge_all:
-            if (edge not in self.edges_list):
+            if edge not in self.edges_list:
                 if edge in self.active_edges:
                     self.active_edges.remove(edge)
                 elif edge in self.active_complementary_edges:
                     self.active_complementary_edges.remove(edge)
                 self.signal._remove_edge_labels([edge], render_figure=False)
-            elif (edge not in self.active_edges):
+            elif edge not in self.active_edges:
                 self.active_edges.append(edge)
 
         self._on_complementary()
         self._update_labels()
 
     def update_active_edge(self, change):
-        state = change['new']
-        edge = change['owner'].description
+        state = change["new"]
+        edge = change["owner"].description
 
         if state:
             self.active_edges.append(edge)
@@ -125,9 +130,9 @@ class EdgesRange(SpanSelectorInSignal1D):
 
     def _on_complementary(self):
         if self.complementary:
-            self.active_complementary_edges = \
-                self.signal._get_complementary_edges(self.active_edges,
-                                                    self.only_major)
+            self.active_complementary_edges = self.signal._get_complementary_edges(
+                self.active_edges, self.only_major
+            )
         else:
             self.active_complementary_edges = []
 
@@ -143,8 +148,9 @@ class EdgesRange(SpanSelectorInSignal1D):
                     btn.value = True
 
             if btn.value is True and self.complementary:
-                comp = self.signal._get_complementary_edges(self.active_edges,
-                                                           self.only_major)
+                comp = self.signal._get_complementary_edges(
+                    self.active_edges, self.only_major
+                )
                 for cedge in comp:
                     if cedge in edges:
                         pos = edges.index(cedge)
@@ -171,7 +177,7 @@ class EdgesRange(SpanSelectorInSignal1D):
             self.signal._add_edge_labels(edge_add, render_figure=False)
         if edge_remove or edge_add:
             # Render figure only once
-            self.signal._render_figure(plot=['signal_plot'])
+            self.signal._render_figure(plot=["signal_plot"])
 
     def _clear_markers(self):
         # Used in hyperspy_gui_ipywidgets

@@ -25,34 +25,32 @@ def test_eds_sem():
     s = exspy.data.EDS_SEM_TM002()
     assert isinstance(s, exspy.signals.EDSSEMSpectrum)
     assert s.axes_manager.navigation_dimension == 0
-    assert s.metadata.Sample.elements == ['Al', 'C', 'Cu', 'Mn', 'Zr']
+    assert s.metadata.Sample.elements == ["Al", "C", "Cu", "Mn", "Zr"]
 
 
 def test_eds_tem():
     s = exspy.data.EDS_TEM_FePt_nanoparticles()
     assert isinstance(s, exspy.signals.EDSTEMSpectrum)
     assert s.axes_manager.navigation_dimension == 0
-    assert s.metadata.Sample.elements == ['Fe', 'Pt']
+    assert s.metadata.Sample.elements == ["Fe", "Pt"]
 
 
-@pytest.mark.parametrize('navigation_shape', [(), (2, ), (3, 4), (5, 6, 7)])
+@pytest.mark.parametrize("navigation_shape", [(), (2,), (3, 4), (5, 6, 7)])
 @pytest.mark.parametrize(
-    ['add_noise', 'random_state'],
-    [[True, 0], [True, None], [False, None]]
-    )
+    ["add_noise", "random_state"], [[True, 0], [True, None], [False, None]]
+)
 def test_EELS_low_loss(add_noise, random_state, navigation_shape):
     s = exspy.data.EELS_low_loss(add_noise, random_state, navigation_shape)
     assert s.axes_manager.navigation_shape == navigation_shape
 
 
-@pytest.mark.parametrize('add_powerlaw', [True, False])
-@pytest.mark.parametrize('navigation_shape', [(1,), (2, )])
+@pytest.mark.parametrize("add_powerlaw", [True, False])
+@pytest.mark.parametrize("navigation_shape", [(1,), (2,)])
 @pytest.mark.parametrize(
-    ['add_noise', 'random_state'],
-    [[True, 0], [True, None], [False, None]]
-    )
+    ["add_noise", "random_state"], [[True, 0], [True, None], [False, None]]
+)
 def test_EELS_MnFe(add_powerlaw, add_noise, random_state, navigation_shape):
     s = exspy.data.EELS_MnFe(add_powerlaw, add_noise, random_state, navigation_shape)
-    if navigation_shape == (1, ):
+    if navigation_shape == (1,):
         navigation_shape = ()
     assert s.axes_manager.navigation_shape == navigation_shape

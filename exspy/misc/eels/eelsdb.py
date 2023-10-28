@@ -31,12 +31,26 @@ from rsciio.msa import parse_msa_string
 _logger = logging.getLogger(__name__)
 
 
-def eelsdb(spectrum_type=None, title=None, author=None, element=None, formula=None,
-           edge=None, min_energy=None, max_energy=None, resolution=None,
-           min_energy_compare="gt", max_energy_compare="lt",
-           resolution_compare="lt", max_n=-1, monochromated=None, order=None,
-           order_direction="ASC", verify_certificate=True,
-           show_progressbar=None):
+def eelsdb(
+    spectrum_type=None,
+    title=None,
+    author=None,
+    element=None,
+    formula=None,
+    edge=None,
+    min_energy=None,
+    max_energy=None,
+    resolution=None,
+    min_energy_compare="gt",
+    max_energy_compare="lt",
+    resolution_compare="lt",
+    max_n=-1,
+    monochromated=None,
+    order=None,
+    order_direction="ASC",
+    verify_certificate=True,
+    show_progressbar=None,
+):
     r"""Download spectra from the EELS Data Base.
 
     Parameters
@@ -134,11 +148,16 @@ def eelsdb(spectrum_type=None, title=None, author=None, element=None, formula=No
     """
     # Verify arguments
     if spectrum_type is not None and spectrum_type not in {
-            'coreloss', 'lowloss', 'zeroloss', 'xrayabs'}:
-        raise ValueError("spectrum_type must be one of \'coreloss\', \'lowloss\', "
-                         "\'zeroloss\', \'xrayabs\'.")
-    valid_edges = [
-        'K', 'L1', 'L2,3', 'M2,3', 'M4,5', 'N2,3', 'N4,5', 'O2,3', 'O4,5']
+        "coreloss",
+        "lowloss",
+        "zeroloss",
+        "xrayabs",
+    }:
+        raise ValueError(
+            "spectrum_type must be one of 'coreloss', 'lowloss', "
+            "'zeroloss', 'xrayabs'."
+        )
+    valid_edges = ["K", "L1", "L2,3", "M2,3", "M4,5", "N2,3", "N4,5", "O2,3", "O4,5"]
     valid_order_keys = [
         "spectrumType",
         "spectrumMin",
@@ -184,22 +203,22 @@ def eelsdb(spectrum_type=None, title=None, author=None, element=None, formula=No
         "ref_page",
         "ref_year",
         "ref_title",
-        "otherURLs"]
+        "otherURLs",
+    ]
     if edge is not None and edge not in valid_edges:
         raise ValueError("`edge` must be one of %s." % ", ".join(valid_edges))
 
     if order is not None and order not in valid_order_keys:
-        raise ValueError("`order` must be one of %s." % ", ".join(
-            valid_order_keys))
+        raise ValueError("`order` must be one of %s." % ", ".join(valid_order_keys))
     if order_direction is not None and order_direction not in ["ASC", "DESC"]:
-        raise ValueError("`order_direction` must be \"ASC\" or \"DESC\".")
+        raise ValueError('`order_direction` must be "ASC" or "DESC".')
     for kwarg, label in (
-            (resolution_compare, "resolution_compare"),
-            (min_energy_compare, "min_energy_compare"),
-            (max_energy_compare, "max_energy_compare")):
+        (resolution_compare, "resolution_compare"),
+        (min_energy_compare, "min_energy_compare"),
+        (max_energy_compare, "max_energy_compare"),
+    ):
         if kwarg not in ("lt", "gt", "eq"):
-            raise ValueError("`%s` must be \"lt\", \"eq\" or \"gt\"." %
-                             label)
+            raise ValueError('`%s` must be "lt", "eq" or "gt".' % label)
     if monochromated is not None:
         monochromated = 1 if monochromated else 0
     params = {
@@ -228,7 +247,9 @@ def eelsdb(spectrum_type=None, title=None, author=None, element=None, formula=No
     if show_progressbar is None:
         show_progressbar = preferences.General.show_progressbar
 
-    request = requests.get('https://api.eelsdb.eu/spectra', params=params, verify=verify_certificate)
+    request = requests.get(
+        "https://api.eelsdb.eu/spectra", params=params, verify=verify_certificate
+    )
     spectra = []
     jsons = request.json()
     if "message" in jsons:
@@ -236,26 +257,24 @@ def eelsdb(spectrum_type=None, title=None, author=None, element=None, formula=No
         raise IOError(
             "Please report the following error to the exSpy developers: "
             f"{jsons['message']}."
-            )
+        )
 
     for json_spectrum in progressbar(jsons, disable=not show_progressbar):
-        download_link = json_spectrum['download_link']
-        if download_link.split('.')[-1].lower() != 'msa':
+        download_link = json_spectrum["download_link"]
+        if download_link.split(".")[-1].lower() != "msa":
             _logger.exception(
                 "The source file is not a msa file, please report this error "
                 "to https://eelsdb.eu/about with the following details:\n"
                 f"Title: {json_spectrum['title']}\nid: {json_spectrum['id']}\n"
                 f"Download link: {download_link}\n"
                 f"Permalink: {json_spectrum['permalink']}"
-                )
+            )
             continue
         msa_string = requests.get(download_link, verify=verify_certificate).text
         try:
             s = dict2signal(parse_msa_string(msa_string)[0])
             emsa = s.original_metadata
-            s._original_metadata = type(s.original_metadata)(
-                {'json': json_spectrum}
-                )
+            s._original_metadata = type(s.original_metadata)({"json": json_spectrum})
             s.original_metadata.emsa = emsa
             spectra.append(s)
 
@@ -265,14 +284,16 @@ def eelsdb(spectrum_type=None, title=None, author=None, element=None, formula=No
             _logger.exception(
                 "Failed to load the spectrum.\n"
                 "Title: %s id: %s.\n"
-                "Please report this error to https://eelsdb.eu/about \n" %
-                (json_spectrum["title"], json_spectrum["id"]))
+                "Please report this error to https://eelsdb.eu/about \n"
+                % (json_spectrum["title"], json_spectrum["id"])
+            )
 
     if not spectra:
         _logger.info(
             "The EELS database does not contain any spectra matching your query"
             ". If you have some, why not submitting them "
-            "https://eelsdb.eu/submit-data/ ?\n")
+            "https://eelsdb.eu/submit-data/ ?\n"
+        )
     else:
         # Add some info from json to metadata
         # Values with units are not yet supported by HyperSpy (v0.8) so
@@ -283,11 +304,11 @@ def eelsdb(spectrum_type=None, title=None, author=None, element=None, formula=No
             json_md = s.original_metadata.json
             s.metadata.General.title = json_md.title
             if s.metadata.Signal.signal_type == "EELS":
-                if json_md.get_item('elements'):
+                if json_md.get_item("elements"):
                     try:
                         # When 'No' is in the list of elements
                         # https://api.eelsdb.eu/spectra/zero-loss-c-feg-hitachi-disp-0-214-ev/
-                        if json_md.elements[0].lower() != 'no':
+                        if json_md.elements[0].lower() != "no":
                             s.add_elements(json_md.elements)
                     except ValueError:
                         _logger.exception(
@@ -295,29 +316,35 @@ def eelsdb(spectrum_type=None, title=None, author=None, element=None, formula=No
                             "element information:\n"
                             "Title: %s id: %s. Elements: %s.\n"
                             "Please report this error in "
-                            "https://eelsdb.eu/about \n" %
-                            (json_md.title, json_md.id, json_md.elements))
+                            "https://eelsdb.eu/about \n"
+                            % (json_md.title, json_md.id, json_md.elements)
+                        )
                 if "collection" in json_md and " mrad" in json_md.collection:
                     beta = float(json_md.collection.replace(" mrad", ""))
                     s.metadata.set_item(
                         "Acquisition_instrument.TEM.Detector.EELS.collection_angle",
-                        beta)
+                        beta,
+                    )
                 if "convergence" in json_md and " mrad" in json_md.convergence:
                     alpha = float(json_md.convergence.replace(" mrad", ""))
                     s.metadata.set_item(
-                        "Acquisition_instrument.TEM.convergence_angle", alpha)
+                        "Acquisition_instrument.TEM.convergence_angle", alpha
+                    )
                 if "beamenergy" in json_md and " kV" in json_md.beamenergy:
                     beam_energy = float(json_md.beamenergy.replace(" kV", ""))
                     s.metadata.set_item(
-                        "Acquisition_instrument.TEM.beam_energy", beam_energy)
+                        "Acquisition_instrument.TEM.beam_energy", beam_energy
+                    )
             # We don't yet support units, so we cannot map the thickness
             # s.metadata.set_item("Sample.thickness", json_md.thickness)
             s.metadata.set_item("Sample.description", json_md.description)
             s.metadata.set_item("Sample.chemical_formula", json_md.formula)
             s.metadata.set_item("General.author", json_md.author.name)
-            s.metadata.set_item("Acquisition_instrument.TEM.microscope",
-                                json_md.microscope)
+            s.metadata.set_item(
+                "Acquisition_instrument.TEM.microscope", json_md.microscope
+            )
 
     return spectra
+
 
 eelsdb.__doc__ %= SHOW_PROGRESSBAR_ARG

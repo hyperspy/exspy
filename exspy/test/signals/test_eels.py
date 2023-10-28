@@ -32,7 +32,6 @@ MYPATH = Path(__file__).resolve().parent
 
 @lazifyTestClass
 class Test_Estimate_Elastic_Scattering_Threshold:
-
     def setup_method(self, method):
         # Create an empty spectrum
         s = exspy.signals.EELSSpectrum(np.zeros((3, 2, 1024)))
@@ -49,8 +48,7 @@ class Test_Estimate_Elastic_Scattering_Threshold:
         # Inflexion point 1.5
         gauss2.A.value = 5000
         gauss2.centre.value = 5
-        s.data[:] = (gauss.function(energy_axis.axis) +
-                     gauss2.function(energy_axis.axis))
+        s.data[:] = gauss.function(energy_axis.axis) + gauss2.function(energy_axis.axis)
         self.signal = s
 
     def test_min_in_window_with_smoothing(self):
@@ -86,14 +84,15 @@ class Test_Estimate_Elastic_Scattering_Threshold:
         # If I use a much lower window, this is the value that has to be
         # returned as threshold.
         s = self.signal
-        data = s.estimate_elastic_scattering_threshold(window=1.5,
-                                                       tol=0.001,
-                                                       ).data
+        data = s.estimate_elastic_scattering_threshold(
+            window=1.5,
+            tol=0.001,
+        ).data
         assert np.all(np.isnan(data))
 
     def test_estimate_elastic_scattering_intensity(self):
         s = self.signal
-        threshold = s.estimate_elastic_scattering_threshold(window=4.)
+        threshold = s.estimate_elastic_scattering_threshold(window=4.0)
         # Threshold is nd signal
         t = s.estimate_elastic_scattering_intensity(threshold=threshold)
         assert t.metadata.Signal.signal_type == ""
@@ -101,7 +100,7 @@ class Test_Estimate_Elastic_Scattering_Threshold:
         np.testing.assert_array_almost_equal(t.data, 249999.985133)
         # Threshold is signal, 1 spectrum
         s0 = s.inav[0]
-        t0 = s0.estimate_elastic_scattering_threshold(window=4.)
+        t0 = s0.estimate_elastic_scattering_threshold(window=4.0)
         t = s0.estimate_elastic_scattering_intensity(threshold=t0)
         np.testing.assert_array_almost_equal(t.data, 249999.985133)
         # Threshold is value
@@ -111,7 +110,6 @@ class Test_Estimate_Elastic_Scattering_Threshold:
 
 @lazifyTestClass
 class TestEstimateZLPCentre:
-
     def setup_method(self, method):
         s = exspy.signals.EELSSpectrum(np.diag(np.arange(1, 11)))
         s.axes_manager[-1].scale = 0.1
@@ -121,17 +119,13 @@ class TestEstimateZLPCentre:
     def test_estimate_zero_loss_peak_centre(self):
         s = self.signal
         zlpc = s.estimate_zero_loss_peak_centre()
-        np.testing.assert_allclose(zlpc.data,
-                                   np.arange(100,
-                                             101,
-                                             0.1))
+        np.testing.assert_allclose(zlpc.data, np.arange(100, 101, 0.1))
         assert zlpc.metadata.Signal.signal_type == ""
         assert zlpc.axes_manager.signal_dimension == 0
 
 
 @lazifyTestClass
 class TestAlignZLP:
-
     def setup_method(self, method):
         s = exspy.signals.EELSSpectrum(np.zeros((10, 100)))
         self.scale = 0.1
@@ -150,9 +144,7 @@ class TestAlignZLP:
 
     def test_align_zero_loss_peak_calibrate_true(self):
         s = self.signal
-        s.align_zero_loss_peak(
-            calibrate=True,
-            print_stats=False)
+        s.align_zero_loss_peak(calibrate=True, print_stats=False)
         zlpc = s.estimate_zero_loss_peak_centre()
         np.testing.assert_allclose(zlpc.data.mean(), 0)
         np.testing.assert_allclose(zlpc.data.std(), 0)
@@ -161,30 +153,21 @@ class TestAlignZLP:
         s = self.signal
         mask = s._get_navigation_signal(dtype="bool").T
         mask.data[[3, 5]] = (True, True)
-        s.align_zero_loss_peak(
-            calibrate=True,
-            print_stats=False,
-            mask=mask)
+        s.align_zero_loss_peak(calibrate=True, print_stats=False, mask=mask)
         zlpc = s.estimate_zero_loss_peak_centre(mask=mask)
-        np.testing.assert_allclose(np.nanmean(zlpc.data), 0,
-                                   atol=np.finfo(float).eps)
-        np.testing.assert_allclose(np.nanstd(zlpc.data), 0,
-                                   atol=np.finfo(float).eps)
+        np.testing.assert_allclose(np.nanmean(zlpc.data), 0, atol=np.finfo(float).eps)
+        np.testing.assert_allclose(np.nanstd(zlpc.data), 0, atol=np.finfo(float).eps)
 
     def test_align_zero_loss_peak_calibrate_false(self):
         s = self.signal
-        s.align_zero_loss_peak(
-            calibrate=False,
-            print_stats=False)
+        s.align_zero_loss_peak(calibrate=False, print_stats=False)
         zlpc = s.estimate_zero_loss_peak_centre()
         np.testing.assert_allclose(zlpc.data.std(), 0, atol=10e-3)
 
     def test_also_aligns(self):
         s = self.signal
         s2 = s.deepcopy()
-        s.align_zero_loss_peak(calibrate=True,
-                               print_stats=False,
-                               also_align=[s2])
+        s.align_zero_loss_peak(calibrate=True, print_stats=False, also_align=[s2])
         zlpc = s2.estimate_zero_loss_peak_centre()
         assert zlpc.data.mean() == 0
         assert zlpc.data.std() == 0
@@ -196,7 +179,8 @@ class TestAlignZLP:
         spike[:, 75] = spike_amplitude
         s.data += spike
         s.align_zero_loss_peak(
-            print_stats=False, subpixel=False, signal_range=(98., 102.))
+            print_stats=False, subpixel=False, signal_range=(98.0, 102.0)
+        )
         zlp_max = s.isig[-0.5:0.5].max(-1).data
         # Max value in the original spectrum is 12, but due to the aligning
         # the peak is split between two different channels. So 8 is the
@@ -206,15 +190,12 @@ class TestAlignZLP:
     def test_align_zero_loss_peak_crop_false(self):
         s = self.signal
         original_size = s.axes_manager.signal_axes[0].size
-        s.align_zero_loss_peak(
-            crop=False,
-            print_stats=False)
+        s.align_zero_loss_peak(crop=False, print_stats=False)
         assert original_size == s.axes_manager.signal_axes[0].size
 
 
 @lazifyTestClass
 class TestSpikesRemovalToolZLP:
-
     def setup_method(self, method):
         # Create an empty spectrum
         s = exspy.signals.EELSSpectrum(np.zeros((2, 3, 64)))
@@ -238,21 +219,17 @@ class TestSpikesRemovalToolZLP:
 
     def test_get_zero_loss_peak_mask(self):
         mask = self.signal.get_zero_loss_peak_mask()
-        expected_mask = np.zeros(self.signal.axes_manager.signal_size,
-                                 dtype=bool)
+        expected_mask = np.zeros(self.signal.axes_manager.signal_size, dtype=bool)
         expected_mask[13:38] = True
         np.testing.assert_allclose(mask, expected_mask)
 
     def test_get_zero_loss_peak_mask_signal_mask(self):
-        signal_mask = np.zeros(self.signal.axes_manager.signal_size,
-                               dtype=bool)
+        signal_mask = np.zeros(self.signal.axes_manager.signal_size, dtype=bool)
         signal_mask[40:50] = True
         mask = self.signal.get_zero_loss_peak_mask(signal_mask=signal_mask)
-        expected_mask = np.zeros(self.signal.axes_manager.signal_size,
-                                 dtype=bool)
+        expected_mask = np.zeros(self.signal.axes_manager.signal_size, dtype=bool)
         expected_mask[13:38] = True
-        np.testing.assert_allclose(mask, np.logical_or(expected_mask,
-                                                       signal_mask))
+        np.testing.assert_allclose(mask, np.logical_or(expected_mask, signal_mask))
 
     def test_spikes_diagnosis(self):
         if self.signal._lazy:
@@ -269,11 +246,11 @@ class TestSpikesRemovalToolZLP:
         np.testing.assert_allclose(hist_data.data, expected_data)
 
         hist_data2 = self.signal._spikes_diagnosis(bins=25)
-        expected_data2 = np.array([286, 10, 13, 0, 0, 1, 12,  0])
+        expected_data2 = np.array([286, 10, 13, 0, 0, 1, 12, 0])
         np.testing.assert_allclose(hist_data2.data[:8], expected_data2)
 
         # mask all to check that it raises an error when there is no data
-        signal_mask = self.signal.inav[0,1].data.astype(bool)
+        signal_mask = self.signal.inav[0, 1].data.astype(bool)
         with pytest.raises(ValueError):
             self.signal.spikes_diagnosis(signal_mask=signal_mask)
 
@@ -297,6 +274,7 @@ def test_spikes_diagnosis_constant_derivative():
     hs.preferences.GUIs.enable_traitsui_gui = True
     try:
         import hyperspy_gui_traitsui
+
         s._spikes_diagnosis(use_gui=True)
     except ImportError:
         pass
@@ -304,9 +282,8 @@ def test_spikes_diagnosis_constant_derivative():
 
 @lazifyTestClass
 class TestPowerLawExtrapolation:
-
     def setup_method(self, method):
-        s = exspy.signals.EELSSpectrum(0.1 * np.arange(50, 250, 0.5) ** -3.)
+        s = exspy.signals.EELSSpectrum(0.1 * np.arange(50, 250, 0.5) ** -3.0)
         s.axes_manager[-1].is_binned = False
         s.axes_manager[-1].offset = 50
         s.axes_manager[-1].scale = 0.5
@@ -327,8 +304,7 @@ class TestPowerLawExtrapolation:
 
 @lazifyTestClass
 class TestFourierRatioDeconvolution:
-
-    @pytest.mark.parametrize(('extrapolate_lowloss'), [True, False])
+    @pytest.mark.parametrize(("extrapolate_lowloss"), [True, False])
     def test_running(self, extrapolate_lowloss):
         s = exspy.signals.EELSSpectrum(np.arange(200))
         gaussian = hs.model.components1D.Gaussian()
@@ -337,8 +313,7 @@ class TestFourierRatioDeconvolution:
         gaussian.centre.value = 20
         s_ll = exspy.signals.EELSSpectrum(gaussian.function(np.arange(0, 200, 1)))
         s_ll.axes_manager[0].offset = -50
-        s.fourier_ratio_deconvolution(s_ll,
-                                      extrapolate_lowloss=extrapolate_lowloss)
+        s.fourier_ratio_deconvolution(s_ll, extrapolate_lowloss=extrapolate_lowloss)
 
 
 @lazifyTestClass
@@ -382,7 +357,6 @@ class TestRebin:
 
 @lazifyTestClass
 class Test_Estimate_Thickness:
-
     def setup_method(self, method):
         # Create an empty spectrum
         self.s = hs.load(
@@ -394,34 +368,36 @@ class Test_Estimate_Thickness:
 
     def test_relative_thickness(self):
         t = self.s.estimate_thickness(zlp=self.zlp)
-        np.testing.assert_allclose(t.data, np.arange(0.3,2,0.1), atol=4e-3)
+        np.testing.assert_allclose(t.data, np.arange(0.3, 2, 0.1), atol=4e-3)
         assert t.metadata.Signal.quantity == "$\\frac{t}{\\lambda}$"
 
     def test_thickness_mfp(self):
         t = self.s.estimate_thickness(zlp=self.zlp, mean_free_path=120)
-        np.testing.assert_allclose(t.data, 120 * np.arange(0.3,2,0.1), rtol=3e-3)
+        np.testing.assert_allclose(t.data, 120 * np.arange(0.3, 2, 0.1), rtol=3e-3)
         assert t.metadata.Signal.quantity == "thickness (nm)"
 
     def test_thickness_density(self):
         t = self.s.estimate_thickness(zlp=self.zlp, density=3.6)
-        np.testing.assert_allclose(t.data, 142 * np.arange(0.3,2,0.1), rtol=3e-3)
+        np.testing.assert_allclose(t.data, 142 * np.arange(0.3, 2, 0.1), rtol=3e-3)
         assert t.metadata.Signal.quantity == "thickness (nm)"
 
     def test_thickness_density_and_mfp(self):
         t = self.s.estimate_thickness(zlp=self.zlp, density=3.6, mean_free_path=120)
-        np.testing.assert_allclose(t.data, 127.5 * np.arange(0.3,2,0.1), rtol=3e-3)
+        np.testing.assert_allclose(t.data, 127.5 * np.arange(0.3, 2, 0.1), rtol=3e-3)
         assert t.metadata.Signal.quantity == "thickness (nm)"
 
     def test_threshold(self):
         t = self.s.estimate_thickness(threshold=4.5, density=3.6, mean_free_path=120)
-        np.testing.assert_allclose(t.data, 127.5 * np.arange(0.3,2,0.1), rtol=3e-3)
+        np.testing.assert_allclose(t.data, 127.5 * np.arange(0.3, 2, 0.1), rtol=3e-3)
         assert t.metadata.Signal.quantity == "thickness (nm)"
 
     def test_threshold_nd(self):
         threshold = self.s._get_navigation_signal()
         threshold.data[:] = 4.5
-        t = self.s.estimate_thickness(threshold=threshold, density=3.6, mean_free_path=120)
-        np.testing.assert_allclose(t.data, 127.5 * np.arange(0.3,2,0.1), rtol=3e-3)
+        t = self.s.estimate_thickness(
+            threshold=threshold, density=3.6, mean_free_path=120
+        )
+        np.testing.assert_allclose(t.data, 127.5 * np.arange(0.3, 2, 0.1), rtol=3e-3)
         assert t.metadata.Signal.quantity == "thickness (nm)"
 
     def test_no_zlp_or_threshold(self):
@@ -445,31 +421,31 @@ class TestPrintEdgesNearEnergy:
         s.print_edges_near_energy(532)
         captured = capsys.readouterr()
         expected_out = (
-            '+-------+-------------------+-----------+-----------------+\n'
-            '|  edge | onset energy (eV) | relevance |   description   |\n'
-            '+-------+-------------------+-----------+-----------------+\n'
-            '|  O_K  |       532.0       |   Major   |   Abrupt onset  |\n'
-            '| Pd_M3 |       531.0       |   Minor   |                 |\n'
-            '| At_N5 |       533.0       |   Minor   |                 |\n'
-            '| Sb_M5 |       528.0       |   Major   | Delayed maximum |\n'
-            '| Sb_M4 |       537.0       |   Major   | Delayed maximum |\n'
-            '+-------+-------------------+-----------+-----------------+\n'
+            "+-------+-------------------+-----------+-----------------+\n"
+            "|  edge | onset energy (eV) | relevance |   description   |\n"
+            "+-------+-------------------+-----------+-----------------+\n"
+            "|  O_K  |       532.0       |   Major   |   Abrupt onset  |\n"
+            "| Pd_M3 |       531.0       |   Minor   |                 |\n"
+            "| At_N5 |       533.0       |   Minor   |                 |\n"
+            "| Sb_M5 |       528.0       |   Major   | Delayed maximum |\n"
+            "| Sb_M4 |       537.0       |   Major   | Delayed maximum |\n"
+            "+-------+-------------------+-----------+-----------------+\n"
         )
         assert captured.out == expected_out
 
     def test_sequence_edges(self, capsys):
         s = self.signal
-        s.print_edges_near_energy(123, edges=['Mn_L2', 'O_K', 'Fe_L2'])
+        s.print_edges_near_energy(123, edges=["Mn_L2", "O_K", "Fe_L2"])
         captured = capsys.readouterr()
         expected_out = (
-            '+-------+-------------------+-----------+-----------------------------+\n'
-            '|  edge | onset energy (eV) | relevance |         description         |\n'
-            '+-------+-------------------+-----------+-----------------------------+\n'
-            '| Mn_L2 |       651.0       |   Major   | Sharp peak. Delayed maximum |\n'
-            '|  O_K  |       532.0       |   Major   |         Abrupt onset        |\n'
-            '| Fe_L2 |       721.0       |   Major   | Sharp peak. Delayed maximum |\n'
-            '+-------+-------------------+-----------+-----------------------------+\n'
-            )
+            "+-------+-------------------+-----------+-----------------------------+\n"
+            "|  edge | onset energy (eV) | relevance |         description         |\n"
+            "+-------+-------------------+-----------+-----------------------------+\n"
+            "| Mn_L2 |       651.0       |   Major   | Sharp peak. Delayed maximum |\n"
+            "|  O_K  |       532.0       |   Major   |         Abrupt onset        |\n"
+            "| Fe_L2 |       721.0       |   Major   | Sharp peak. Delayed maximum |\n"
+            "+-------+-------------------+-----------+-----------------------------+\n"
+        )
         assert captured.out == expected_out
 
     def test_no_energy_and_edges(self):
@@ -486,18 +462,18 @@ class Test_Edges_At_Energy:
 
     def test_at_532eV(self, capsys):
         s = self.signal
-        s.edges_at_energy(532, width=20, only_major=True, order='ascending')
+        s.edges_at_energy(532, width=20, only_major=True, order="ascending")
         captured = capsys.readouterr()
 
         expected_out = (
-            '+-------+-------------------+-----------+-----------------+\n'
-            '|  edge | onset energy (eV) | relevance |   description   |\n'
-            '+-------+-------------------+-----------+-----------------+\n'
-            '| Sb_M5 |       528.0       |   Major   | Delayed maximum |\n'
-            '|  O_K  |       532.0       |   Major   |   Abrupt onset  |\n'
-            '| Sb_M4 |       537.0       |   Major   | Delayed maximum |\n'
-            '+-------+-------------------+-----------+-----------------+\n'
-            )
+            "+-------+-------------------+-----------+-----------------+\n"
+            "|  edge | onset energy (eV) | relevance |   description   |\n"
+            "+-------+-------------------+-----------+-----------------+\n"
+            "| Sb_M5 |       528.0       |   Major   | Delayed maximum |\n"
+            "|  O_K  |       532.0       |   Major   |   Abrupt onset  |\n"
+            "| Sb_M4 |       537.0       |   Major   | Delayed maximum |\n"
+            "+-------+-------------------+-----------+-----------------+\n"
+        )
         assert captured.out == expected_out
 
 
@@ -509,16 +485,15 @@ class Test_Get_Complementary_Edges:
 
     def test_Fe_O(self):
         s = self.signal
-        complementary = s._get_complementary_edges(['Fe_L2', 'O_K'])
+        complementary = s._get_complementary_edges(["Fe_L2", "O_K"])
 
-        assert complementary == ['Fe_L1', 'Fe_L3', 'Fe_M3', 'Fe_M2']
+        assert complementary == ["Fe_L1", "Fe_L3", "Fe_M3", "Fe_M2"]
 
     def test_Fe_O_only_major(self):
         s = self.signal
-        complementary = s._get_complementary_edges(['Fe_L2', 'O_K'],
-                                                  only_major=True)
+        complementary = s._get_complementary_edges(["Fe_L2", "O_K"], only_major=True)
 
-        assert complementary == ['Fe_L3', 'Fe_M3', 'Fe_M2']
+        assert complementary == ["Fe_L3", "Fe_M3", "Fe_M2"]
 
 
 class Test_Plot_EELS:
@@ -528,22 +503,29 @@ class Test_Plot_EELS:
 
     def test_plot_no_markers(self):
         s = self.signal
-        s.add_elements(('Mn','Cr'))
+        s.add_elements(("Mn", "Cr"))
         s.plot()
 
         assert len(s._edge_markers["names"]) == 0
 
     def test_plot_edges_True(self):
         s = self.signal
-        s.add_elements(('Mn','Cr'))
+        s.add_elements(("Mn", "Cr"))
         s.plot(plot_edges=True)
 
         print(s._edge_markers["names"])
 
         assert len(s._edge_markers["names"]) == 8
         assert set(s._edge_markers["names"]) == {
-            'Cr_L2', 'Cr_L3', 'Cr_L1', 'Fe_L2', 'Fe_L3', 'Mn_L2', 'Mn_L3', 'Mn_L1'
-            }
+            "Cr_L2",
+            "Cr_L3",
+            "Cr_L1",
+            "Fe_L2",
+            "Fe_L3",
+            "Mn_L2",
+            "Mn_L3",
+            "Mn_L1",
+        }
 
     def test_plot_edges_True_without_elements(self):
         s = self.signal
@@ -554,58 +536,61 @@ class Test_Plot_EELS:
 
     def test_plot_edges_from_element_family_specific(self):
         s = self.signal
-        s.plot(plot_edges=['Mn', 'Ti_L', 'Cr_L3'], only_edges=('Major'))
+        s.plot(plot_edges=["Mn", "Ti_L", "Cr_L3"], only_edges=("Major"))
 
         print(s._edge_markers["names"])
 
         assert len(s._edge_markers["names"]) == 7
         assert set(s._edge_markers["names"]) == {
-            'Fe_L2', 'Fe_L3', 'Mn_L2', 'Mn_L3', 'Ti_L2', 'Ti_L3', 'Cr_L3'
-            }
+            "Fe_L2",
+            "Fe_L3",
+            "Mn_L2",
+            "Mn_L3",
+            "Ti_L2",
+            "Ti_L3",
+            "Cr_L3",
+        }
 
     def test_unsupported_edge_family(self):
         s = self.signal
         with pytest.raises(AttributeError):
-            s.plot(plot_edges=['Cr_P'])
+            s.plot(plot_edges=["Cr_P"])
 
     def test_unsupported_edge(self):
         s = self.signal
         with pytest.raises(AttributeError):
-            s.plot(plot_edges=['Xe_P4'])
+            s.plot(plot_edges=["Xe_P4"])
 
     def test_unsupported_element(self):
         s = self.signal
         with pytest.raises(ValueError):
-            s.plot(plot_edges=['ABC_L1'])
+            s.plot(plot_edges=["ABC_L1"])
 
     def test_remove_edge_labels(self):
         s = self.signal
         del s.metadata.Sample.elements
-        s.plot(plot_edges=['Cr_L', 'Fe_L2'])
-        s._remove_edge_labels(['Cr_L1', 'Fe_L2'])
+        s.plot(plot_edges=["Cr_L", "Fe_L2"])
+        s._remove_edge_labels(["Cr_L1", "Fe_L2"])
 
         assert len(s._edge_markers["names"]) == 2
-        assert set(s._edge_markers["names"]) == set(['Cr_L2', 'Cr_L3'])
+        assert set(s._edge_markers["names"]) == set(["Cr_L2", "Cr_L3"])
 
     def test_plot_edges_without_markers_provided(self):
         s = self.signal
         s.plot()
-        s._plot_edge_labels({'Fe_L2': 721.0, 'O_K': 532.0})
+        s._plot_edge_labels({"Fe_L2": 721.0, "O_K": 532.0})
 
         assert len(s._edge_markers["names"]) == 2
-        assert set(s._edge_markers["names"]) == set(['Fe_L2', 'O_K'])
+        assert set(s._edge_markers["names"]) == set(["Fe_L2", "O_K"])
 
 
 @lazifyTestClass
 class TestVacuumMask:
-
     def setup_method(self, method):
-        s = exspy.signals.EELSSpectrum(
-            np.array([np.linspace(0.001, 0.5, 20)] * 100).T
-            )
+        s = exspy.signals.EELSSpectrum(np.array([np.linspace(0.001, 0.5, 20)] * 100).T)
         s.add_poissonian_noise(random_state=1)
         s.axes_manager[-1].scale = 0.25
-        s.axes_manager[-1].units = 'eV'
+        s.axes_manager[-1].units = "eV"
         s.inav[:10] += 20
         self.signal = s
 

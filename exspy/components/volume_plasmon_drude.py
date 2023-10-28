@@ -22,7 +22,6 @@ import hyperspy.api as hs
 
 
 class VolumePlasmonDrude(hs.model.components1D.Expression):
-
     r"""
     Drude volume plasmon energy loss function component, the energy loss
     function is defined as:
@@ -55,8 +54,15 @@ class VolumePlasmonDrude(hs.model.components1D.Expression):
     for details, including original equations.
     """
 
-    def __init__(self, intensity=1., plasmon_energy=15., fwhm=1.5,
-                 module="numexpr", compute_gradients=False, **kwargs):
+    def __init__(
+        self,
+        intensity=1.0,
+        plasmon_energy=15.0,
+        fwhm=1.5,
+        module="numexpr",
+        compute_gradients=False,
+        **kwargs
+    ):
         super().__init__(
             expression="where(x > 0, intensity * (pe2 * x * fwhm) \
                         / ((x ** 2 - pe2) ** 2 + (x * fwhm) ** 2), 0); \
@@ -69,7 +75,7 @@ class VolumePlasmonDrude(hs.model.components1D.Expression):
             module=module,
             autodoc=False,
             compute_gradients=compute_gradients,
-            linear_parameter_list=['intensity'],
+            linear_parameter_list=["intensity"],
             check_parameter_linearity=False,
             **kwargs,
         )
@@ -82,11 +88,22 @@ class VolumePlasmonDrude(hs.model.components1D.Expression):
 
         return np.where(
             x > 0,
-            2 * x * fwhm * plasmon_energy * intensity * (
-                (x ** 4 + (x * fwhm) ** 2 - plasmon_energy ** 4) /
-                (x ** 4 + x ** 2 * (fwhm ** 2 - 2 * plasmon_energy ** 2) +
-                    plasmon_energy ** 4) ** 2),
-            0)
+            2
+            * x
+            * fwhm
+            * plasmon_energy
+            * intensity
+            * (
+                (x**4 + (x * fwhm) ** 2 - plasmon_energy**4)
+                / (
+                    x**4
+                    + x**2 * (fwhm**2 - 2 * plasmon_energy**2)
+                    + plasmon_energy**4
+                )
+                ** 2
+            ),
+            0,
+        )
 
     # Partial derivative with respect to the plasmon linewidth delta_E_p
     def grad_fwhm(self, x):
@@ -96,12 +113,24 @@ class VolumePlasmonDrude(hs.model.components1D.Expression):
 
         return np.where(
             x > 0,
-            x * plasmon_energy * intensity * (
-                (x ** 4 - x ** 2 * (2 * plasmon_energy ** 2 + fwhm ** 2) +
-                    plasmon_energy ** 4) /
-                (x ** 4 + x ** 2 * (fwhm ** 2 - 2 * plasmon_energy ** 2) +
-                    plasmon_energy ** 4) ** 2),
-            0)
+            x
+            * plasmon_energy
+            * intensity
+            * (
+                (
+                    x**4
+                    - x**2 * (2 * plasmon_energy**2 + fwhm**2)
+                    + plasmon_energy**4
+                )
+                / (
+                    x**4
+                    + x**2 * (fwhm**2 - 2 * plasmon_energy**2)
+                    + plasmon_energy**4
+                )
+                ** 2
+            ),
+            0,
+        )
 
     def grad_intensity(self, x):
         return self.function(x) / self.intensity.value

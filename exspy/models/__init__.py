@@ -10,7 +10,7 @@ __all__ = [
     "EDSSEMModel",
     "EDSTEMModel",
     "EELSModel",
-    ]
+]
 
 
 def __dir__():

@@ -30,24 +30,28 @@ class Vignetting(Component):
     """
 
     def __init__(self):
-        Component.__init__(self,
-                           ['optical_center',
-                            'height',
-                            'period',
-                            'left_slope',
-                            'right_slope',
-                            'left',
-                            'right',
-                            'sigma'])
+        Component.__init__(
+            self,
+            [
+                "optical_center",
+                "height",
+                "period",
+                "left_slope",
+                "right_slope",
+                "left",
+                "right",
+                "sigma",
+            ],
+        )
         self.left.value = np.nan
         self.right.value = np.nan
         self.side_vignetting = False
         self.fix_side_vignetting()
         self.gaussian = Gaussian()
         self.gaussian.centre.free, self.gaussian.A.free = False, False
-        self.sigma.value = 1.
-        self.gaussian.A.value = 1.
-        self.period.value = 1.
+        self.sigma.value = 1.0
+        self.gaussian.A.value = 1.0
+        self.period.value = 1.0
         self.extension_nch = 100
         self._position = self.optical_center
 
@@ -62,20 +66,20 @@ class Vignetting(Component):
         r = self.right.value
         ex = self.extension_nch
         if self.side_vignetting is True:
-
             x = x.tolist()
-            x = list(range(-ex, 0)) + x + \
-                list(range(int(x[-1]) + 1, int(x[-1]) + ex + 1))
+            x = (
+                list(range(-ex, 0))
+                + x
+                + list(range(int(x[-1]) + 1, int(x[-1]) + ex + 1))
+            )
             x = np.array(x)
             v1 = A * np.cos((x - x0) / (2 * np.pi * period)) ** 4
-            v2 = np.where(x < l,
-                          1. - (l - x) * la,
-                          np.where(x < r,
-                                   1.,
-                                   1. - (x - r) * ra))
+            v2 = np.where(
+                x < l, 1.0 - (l - x) * la, np.where(x < r, 1.0, 1.0 - (x - r) * ra)
+            )
             self.gaussian.sigma.value = sigma
             self.gaussian.origin.value = (x[-1] + x[0]) / 2
-            result = np.convolve(self.gaussian.function(x), v1 * v2, 'same')
+            result = np.convolve(self.gaussian.function(x), v1 * v2, "same")
             return result[ex:-ex]
         else:
             return A * np.cos((x - x0) / (2 * np.pi * period)) ** 4

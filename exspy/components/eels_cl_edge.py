@@ -17,7 +17,6 @@
 # along with exSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-
 import functools
 import logging
 import math
@@ -141,7 +140,9 @@ class EELSCLEdge(Component):
     fine_structure_components : set, default ``set()``
         A set containing components to model the fine structure region
         of the EELS ionization edge.
-    """.format(_GOSH_DOI)
+    """.format(
+        _GOSH_DOI
+    )
 
     _fine_structure_smoothing = 0.3
     _fine_structure_coeff_free = True
@@ -200,11 +201,9 @@ class EELSCLEdge(Component):
         self._whitelist["fine_structure_spline_onset"] = None
         self._whitelist["fine_structure_spline_active"] = None
         self._whitelist["_fine_structure_coeff_free"] = None
-        self.effective_angle.events.value_changed.connect(
-            self._integrate_GOS, [])
+        self.effective_angle.events.value_changed.connect(self._integrate_GOS, [])
         self.onset_energy.events.value_changed.connect(self._integrate_GOS, [])
-        self.onset_energy.events.value_changed.connect(
-            self._calculate_knots, [])
+        self.onset_energy.events.value_changed.connect(self._calculate_knots, [])
         self._fine_structure_spline_onset = 0
         self.events.active_changed.connect(self._set_active_fine_structure_components)
 
@@ -249,25 +248,25 @@ class EELSCLEdge(Component):
     @property
     def E0(self):
         return self.__E0
-    
+
     @E0.setter
     def E0(self, arg):
         self.__E0 = arg
         self._calculate_effective_angle()
-    
+
     @property
     def collection_angle(self):
         return self.__collection_angle
-    
+
     @collection_angle.setter
     def collection_angle(self, arg):
         self.__collection_angle = arg
         self._calculate_effective_angle()
-    
+
     @property
     def convergence_angle(self):
         return self.__convergence_angle
-    
+
     @convergence_angle.setter
     def convergence_angle(self, arg):
         self.__convergence_angle = arg
@@ -306,7 +305,7 @@ class EELSCLEdge(Component):
         if 0 <= value <= 1:
             self._fine_structure_smoothing = value
             self._set_fine_structure_coeff()
-            if self.fine_structure_active and  self.model:
+            if self.fine_structure_active and self.model:
                 self.model.update_plot()
         else:
             raise ValueError("The value must be a number between 0 and 1")
@@ -324,7 +323,7 @@ class EELSCLEdge(Component):
         if not np.allclose(value, self._fine_structure_spline_onset):
             self._fine_structure_spline_onset = value
             self._set_fine_structure_coeff()
-            if self.fine_structure_active and  self.model:
+            if self.fine_structure_active and self.model:
                 self.model.update_plot()
 
     @property
@@ -341,16 +340,22 @@ class EELSCLEdge(Component):
             self._fine_structure_coeff_free = self.fine_structure_coeff.free
             self.fine_structure_coeff.free = False
             self._fine_structure_spline_active = value
-        if self.fine_structure_active and  self.model:
+        if self.fine_structure_active and self.model:
             self.model.update_plot()
 
     def _set_fine_structure_coeff(self):
         if self.energy_scale is None:
             return
-        self.fine_structure_coeff._number_of_elements = int(
-            round(self.fine_structure_smoothing *
-                  (self.fine_structure_width - self.fine_structure_spline_onset) /
-                  self.energy_scale)) + 4
+        self.fine_structure_coeff._number_of_elements = (
+            int(
+                round(
+                    self.fine_structure_smoothing
+                    * (self.fine_structure_width - self.fine_structure_spline_onset)
+                    / self.energy_scale
+                )
+            )
+            + 4
+        )
         self.fine_structure_coeff.bmin = None
         self.fine_structure_coeff.bmax = None
         self._calculate_knots()
@@ -376,10 +381,10 @@ class EELSCLEdge(Component):
     def free_fine_structure(self):
         """Frees the parameters of the fine structure
 
-        If there are fine structure components, only the 
+        If there are fine structure components, only the
         parameters that have been previously fixed with
         ``fix_fine_structure`` will be set free.
-        
+
         The spline parameters set free only if
         ``fine_structure_spline_active`` is ``True``.
 
@@ -468,7 +473,8 @@ class EELSCLEdge(Component):
                 if np.any(bifs):
                     cts[bifs] = splev(
                         E[bifs],
-                        (self.__knots, self.fine_structure_coeff.value + (0,) * 4, 3))
+                        (self.__knots, self.fine_structure_coeff.value + (0,) * 4, 3),
+                    )
             # The cross-section is set to 0 in the fine structure region
             itab = (E < Emax) & (E >= ifsx2)
         else:
@@ -530,6 +536,8 @@ class EELSCLEdge(Component):
 
     def as_dictionary(self, fullcopy=True):
         dic = super().as_dictionary(fullcopy=fullcopy)
-        dic["fine_structure_components"] = [t.name for t in self.fine_structure_components]
+        dic["fine_structure_components"] = [
+            t.name for t in self.fine_structure_components
+        ]
         dic["_whitelist"]["fine_structure_components"] = ""
         return dic

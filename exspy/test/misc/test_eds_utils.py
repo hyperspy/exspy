@@ -22,7 +22,7 @@ from exspy.misc.eds.utils import _get_element_and_line
 
 
 def test_get_element_and_line():
-    assert _get_element_and_line('Mn_Ka') == ('Mn', 'Ka')
+    assert _get_element_and_line("Mn_Ka") == ("Mn", "Ka")
 
     with pytest.raises(ValueError):
-        _get_element_and_line('MnKa') == -1
+        _get_element_and_line("MnKa") == -1

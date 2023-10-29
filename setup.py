@@ -27,10 +27,10 @@ exec(open("exspy/release_info.py").read())  # grab version info
 
 extra_feature_requirements = {
     "gui-jupyter": [
-        "hyperspy_gui_ipywidgets @ git+https://github.com/ericpre/hyperspy_gui_ipywidgets.git@hyperspy2.0",
+        "hyperspy_gui_ipywidgets @ https://github.com/hyperspy/hyperspy_gui_ipywidgets/archive/hyperspy2.0.zip",
     ],
     "gui-traitsui": [
-        "hyperspy_gui_traitsui @ git+https://github.com/ericpre/hyperspy_gui_traitsui.git@hyperspy2.0",
+        "hyperspy_gui_traitsui @ https://github.com/hyperspy/hyperspy_gui_traitsui/archive/hyperspy2.0.zip",
     ],
     "doc": [
         "numpydoc",
@@ -39,13 +39,16 @@ extra_feature_requirements = {
         "sphinx-copybutton",
         "sphinx-design",
         "sphinx-favicon",
+        "sphinx-gallery",
     ],
     "tests": [
         "pytest     >= 5.0",
         "pytest-mpl",
         "pytest-cov >= 2.8.1",
+        "pytest-xdist",
     ],
     "dev": ["black", "pre-commit >=1.16"],
+    "all": ["gui-jupyter", "gui-traitsui"],
 }
 
 
@@ -56,7 +59,8 @@ setup(
     author=author,
     license=license,
     url="https://github.com/pyxem/pyxem",
-    long_description=open("README.rst").read(),
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     keywords=[
         "data analysis",
         "microscopy",
@@ -82,7 +86,7 @@ setup(
     extras_require=extra_feature_requirements,
     install_requires=[
         "dask[array]",
-        "hyperspy @ git+https://github.com/hyperspy/hyperspy@RELEASE_next_major",
+        "hyperspy @ https://github.com/hyperspy/hyperspy/archive/RELEASE_next_major.zip",
         "matplotlib",
         "numexpr",
         "numpy",
@@ -95,7 +99,7 @@ setup(
     ],
     python_requires="~=3.8",
     package_data={
-        "": ["LICENSE", "README.rst"],
+        "": ["LICENSE", "README.md"],
         "exspy": [
             "data/*hspy",
             "test/drawing/data/*hspy",

@@ -21,9 +21,9 @@ jobs:
           python --version
           pip --version
 
-      - name: Install pypa/build
+      - name: Install pypa/build pypa/twine
         run: |
-          pip install build
+          pip install build twine
 
       - name: Build a binary wheel and a source tarball
         run: |
@@ -32,6 +32,10 @@ jobs:
       - name: Display content dist folder
         run: |
           ls -l dist/
+      
+      - name: Run twin check
+        run: |
+          twine check dist/*
 
       - uses: actions/upload-artifact@v3
         with:

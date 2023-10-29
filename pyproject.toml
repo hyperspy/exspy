@@ -1,9 +1,0 @@
-[tool.black]
-force-exclude = '''
-  exspy/misc/eds/ffast_mac.py
-  | exspy/misc/elements.py
-'''
-
-[tool.pytest.ini_options]
-addopts = "-ra -n auto --dist loadfile"
-testpaths = ["hyperspy/tests", ]

@@ -1,0 +1,1044 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/hyperspy.ico" rel="icon" type="image/x-icon">
+    <title>Electron Energy Loss Spectroscopy &#8212; exSpy  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=ccdb6887"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/eels';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dielectric function tools" href="dielectric_function.html" />
+    <link rel="prev" title="Energy-Dispersive X-ray Spectrometry (EDS)" href="eds.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/hyperspy_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/hyperspy_logo.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">exSpy</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../auto_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../reference/index.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../changes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citing.html">
+                        Citing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-gitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../auto_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../reference/index.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../changes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citing.html">
+                        Citing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-gitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eds.html">Energy-Dispersive X-ray Spectrometry (EDS)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Electron Energy Loss Spectroscopy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dielectric_function.html">Dielectric function tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata_structure.html">exSpy Metadata Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Electron...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="electron-energy-loss-spectroscopy">
+<span id="eels-label"></span><h1>Electron Energy Loss Spectroscopy<a class="headerlink" href="#electron-energy-loss-spectroscopy" title="Link to this heading">#</a></h1>
+<section id="tools-for-eels-data-analysis">
+<span id="eels-tools-label"></span><h2>Tools for EELS data analysis<a class="headerlink" href="#tools-for-eels-data-analysis" title="Link to this heading">#</a></h2>
+<p>The functions described in this chapter are only available for the
+<a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a> class. To transform a
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a> (or subclass) into an
+<a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_signal_type</span><span class="p">(</span><span class="s2">&quot;EELS&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note these chapter discusses features that are available only for
+<a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a> class. However, this class inherits
+many useful feature from its parent class that are documented in previous
+chapters.</p>
+<section id="elemental-composition-of-the-sample">
+<span id="eels-elemental-composition-label"></span><h3>Elemental composition of the sample<a class="headerlink" href="#elemental-composition-of-the-sample" title="Link to this heading">#</a></h3>
+<p>It can be useful to define the elemental composition of the sample for
+archiving purposes or to use some feature (e.g. curve fitting) that requires
+this information.  The elemental composition of the sample can be declared
+using <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.add_elements" title="exspy.signals.EELSSpectrum.add_elements"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_elements()</span></code></a>. The
+information is stored in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a>
+attribute (see <a class="reference internal" href="metadata_structure.html#metadata-structure"><span class="std std-ref">exSpy Metadata Structure</span></a>). This information is saved to file
+when saving in the hspy format (HyperSpy’s HDF5 specification).</p>
+<p>An utility function <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code> can be
+helpful to identify possible elements in the sample.
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code> returns a list of edges
+arranged in the order closest to the specified energy within a window, both
+measured in eV. The size of the window can be controlled by the argument
+<cite>width</cite> (default as 10)— If the specified energy is 849 eV and the width is
+6 eV, it returns a list of edges with onset energy between 846 eV to 852 eV and
+they are arranged in the order closest to 849 eV.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hyperspy.misc.eels.tools</span> <span class="kn">import</span> <span class="n">get_edges_near_energy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_edges_near_energy</span><span class="p">(</span><span class="mi">532</span><span class="p">)</span>
+<span class="go">[&#39;O_K&#39;, &#39;Pd_M3&#39;, &#39;Sb_M5&#39;, &#39;Sb_M4&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_edges_near_energy</span><span class="p">(</span><span class="mi">849</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="go">[&#39;La_M4&#39;, &#39;Fe_L1&#39;]</span>
+</pre></div>
+</div>
+<p>The static method <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.print_edges_near_energy" title="exspy.signals.EELSSpectrum.print_edges_near_energy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_edges_near_energy()</span></code></a>
+in <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a> will print out a table containing
+more information about the edges.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">artificial_data</span><span class="o">.</span><span class="n">get_core_loss_eels_signal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">print_edges_near_energy</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="go">+-------+-------------------+-----------+-----------------------------+</span>
+<span class="go">|  edge | onset energy (eV) | relevance |         description         |</span>
+<span class="go">+-------+-------------------+-----------+-----------------------------+</span>
+<span class="go">|  N_K  |       401.0       |   Major   |         Abrupt onset        |</span>
+<span class="go">| Sc_L3 |       402.0       |   Major   | Sharp peak. Delayed maximum |</span>
+<span class="go">| Cd_M5 |       404.0       |   Major   |       Delayed maximum       |</span>
+<span class="go">| Sc_L2 |       407.0       |   Major   | Sharp peak. Delayed maximum |</span>
+<span class="go">| Mo_M2 |       410.0       |   Minor   |          Sharp peak         |</span>
+<span class="go">| Mo_M3 |       392.0       |   Minor   |          Sharp peak         |</span>
+<span class="go">| Cd_M4 |       411.0       |   Major   |       Delayed maximum       |</span>
+<span class="go">+-------+-------------------+-----------+-----------------------------+</span>
+</pre></div>
+</div>
+<p>The method <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.edges_at_energy" title="exspy.signals.EELSSpectrum.edges_at_energy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">edges_at_energy()</span></code></a> allows
+inspecting different sections of the signal for interactive edge
+identification (the default). A region can be selected by dragging the mouse
+across the signal and after clicking the <cite>Update</cite> button, edges with onset
+energies within the selected energy range will be displayed. By toggling the
+edge buttons, it will put or remove the corresponding edges on the signal. When
+the <cite>Complementary edge</cite> box is ticked, edges outside the selected range with
+the same element of edges within the selected energy range will be shown as well
+to aid identification of edges.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">artificial_data</span><span class="o">.</span><span class="n">get_core_loss_eels_signal</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">edges_at_energy</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/EELS_edges_at_energy.png"><img alt="../_images/EELS_edges_at_energy.png" src="../_images/EELS_edges_at_energy.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Labels of edges can be put or removed by toggling the edge buttons.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="thickness-estimation">
+<span id="eels-thickness-label"></span><h3>Thickness estimation<a class="headerlink" href="#thickness-estimation" title="Link to this heading">#</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.6: </span>Option to compute the absolute thickness, including the angular corrections
+and mean free path estimation.</p>
+</div>
+<p>The <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.estimate_thickness" title="exspy.signals.EELSSpectrum.estimate_thickness"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimate_thickness()</span></code></a> method can
+estimate the thickness from a low-loss EELS spectrum using the log-ratio
+method. If the beam energy, collection angle, convergence angle and sample
+density are known, the absolute thickness is computed using the method in
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/bibliography.html#iakoubovskii2008" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">[Iakoubovskii2008]</span></a>. This includes the estimation of
+the inelastic mean free path (iMFP). For more accurate results, it is possible
+to input the iMFP of the material if known.  If the density and/or the iMFP are
+not known, the output is the thickness relative to the (unknown) iMFP without
+any angular corrections.</p>
+</section>
+<section id="zero-loss-peak-centre-and-alignment">
+<h3>Zero-loss peak centre and alignment<a class="headerlink" href="#zero-loss-peak-centre-and-alignment" title="Link to this heading">#</a></h3>
+<p>The
+<a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.estimate_zero_loss_peak_centre" title="exspy.signals.EELSSpectrum.estimate_zero_loss_peak_centre"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimate_zero_loss_peak_centre()</span></code></a>
+can be used to estimate the position of the zero-loss peak (ZLP). The method assumes
+that the ZLP is the most intense feature in the spectra. For a more general
+approach see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.find_peaks1D_ohaver" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.find_peaks1D_ohaver()</span></code></a>.</p>
+<p>The <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.align_zero_loss_peak" title="exspy.signals.EELSSpectrum.align_zero_loss_peak"><code class="xref py py-meth docutils literal notranslate"><span class="pre">align_zero_loss_peak()</span></code></a> can
+align the ZLP with subpixel accuracy. It is more robust and easy to use for the task
+than <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.align1D" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.align1D()</span></code></a>. Note that it is
+possible to apply the same alignment to other spectra using the <code class="docutils literal notranslate"><span class="pre">also_align</span></code>
+argument. This can be useful e.g. to align core-loss spectra acquired
+quasi-simultaneously. If there are other features in the low loss signal
+which are more intense than the ZLP, the <code class="docutils literal notranslate"><span class="pre">signal_range</span></code> argument can narrow
+down the energy range for searching for the ZLP.</p>
+</section>
+<section id="deconvolutions">
+<h3>Deconvolutions<a class="headerlink" href="#deconvolutions" title="Link to this heading">#</a></h3>
+<p>Three deconvolution methods are currently available:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.fourier_log_deconvolution" title="exspy.signals.EELSSpectrum.fourier_log_deconvolution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fourier_log_deconvolution()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.fourier_ratio_deconvolution" title="exspy.signals.EELSSpectrum.fourier_ratio_deconvolution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fourier_ratio_deconvolution()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.richardson_lucy_deconvolution" title="exspy.signals.EELSSpectrum.richardson_lucy_deconvolution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">richardson_lucy_deconvolution()</span></code></a></p></li>
+</ul>
+</section>
+<section id="estimate-elastic-scattering-intensity">
+<h3>Estimate elastic scattering intensity<a class="headerlink" href="#estimate-elastic-scattering-intensity" title="Link to this heading">#</a></h3>
+<p>The
+<a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.estimate_elastic_scattering_intensity" title="exspy.signals.EELSSpectrum.estimate_elastic_scattering_intensity"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimate_elastic_scattering_intensity()</span></code></a>
+can be used to calculate the integral of the zero loss peak (elastic intensity)
+from EELS low-loss spectra containing the zero loss peak using the
+(rudimentary) threshold method. The threshold can be global or spectrum-wise.
+If no threshold is provided it is automatically calculated using
+<a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.estimate_elastic_scattering_threshold" title="exspy.signals.EELSSpectrum.estimate_elastic_scattering_threshold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimate_elastic_scattering_threshold()</span></code></a>
+with default values.</p>
+<p><a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.estimate_elastic_scattering_threshold" title="exspy.signals.EELSSpectrum.estimate_elastic_scattering_threshold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimate_elastic_scattering_threshold()</span></code></a>
+can be used to  calculate separation point between elastic and inelastic
+scattering on EELS low-loss spectra. This algorithm calculates the derivative
+of the signal and assigns the inflexion point to the first point below a
+certain tolerance.  This tolerance value can be set using the <code class="docutils literal notranslate"><span class="pre">tol</span></code> keyword.
+Currently, the method uses smoothing to reduce the impact of the noise in the
+measure. The number of points used for the smoothing window can be specified by
+the <code class="docutils literal notranslate"><span class="pre">`npoints</span></code> keyword.</p>
+</section>
+<section id="kramers-kronig-analysis">
+<span id="eels-kk"></span><h3>Kramers-Kronig Analysis<a class="headerlink" href="#kramers-kronig-analysis" title="Link to this heading">#</a></h3>
+<p>The single-scattering EEL spectrum is approximately related to the complex
+permittivity of the sample and can be estimated by Kramers-Kronig analysis.
+The <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.kramers_kronig_analysis" title="exspy.signals.EELSSpectrum.kramers_kronig_analysis"><code class="xref py py-meth docutils literal notranslate"><span class="pre">kramers_kronig_analysis()</span></code></a>
+method implements the Kramers-Kronig FFT method as in
+<a class="reference internal" href="bibliography.html#egerton2011"><span class="std std-ref">[Egerton2011]</span></a> to estimate the complex dielectric function
+from a low-loss EELS spectrum. In addition, it can estimate the thickness if
+the refractive index is known and approximately correct for surface
+plasmon excitations in layers.</p>
+</section>
+</section>
+<section id="eels-curve-fitting">
+<span id="eels-fitting"></span><h2>EELS curve fitting<a class="headerlink" href="#eels-curve-fitting" title="Link to this heading">#</a></h2>
+<p>HyperSpy makes it really easy to quantify EELS core-loss spectra by curve
+fitting as it is shown in the next example of quantification of a boron nitride
+EELS spectrum from the <a class="reference external" href="https://eelsdb.eu/">EELS Data Base</a> (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/io.html#example-data-label" title="(in HyperSpy v2.0.dev0)"><span>Loading example data and data from online databases</span></a>).</p>
+<p>Load the core-loss and low-loss spectra</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eelsdb</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hexagonal Boron Nitride&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                      <span class="n">spectrum_type</span><span class="o">=</span><span class="s2">&quot;coreloss&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ll</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eelsdb</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hexagonal Boron Nitride&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                       <span class="n">spectrum_type</span><span class="o">=</span><span class="s2">&quot;lowloss&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<section id="creating-model">
+<h3>Creating model<a class="headerlink" href="#creating-model" title="Link to this heading">#</a></h3>
+<p>Before creating a model, it is necessary to set some important experimental information,
+such as the beam energy and experimental angles:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_microscope_parameters</span><span class="p">(</span><span class="n">beam_energy</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+<span class="gp">... </span>                            <span class="n">convergence_angle</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+<span class="gp">... </span>                            <span class="n">collection_angle</span><span class="o">=</span><span class="mf">2.55</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">convergence_angle</span></code> and <code class="docutils literal notranslate"><span class="pre">collection_angle</span></code> are actually semi-angles and are
+given in mrad. <code class="docutils literal notranslate"><span class="pre">beam_energy</span></code> is in keV.</p>
+</div>
+<p>Define the chemical composition of the sample, that will be used in the model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_elements</span><span class="p">((</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>It is worth noting that in this case the experimental parameters and the list of
+elements are actually automatically imported from the EELS Data Base.
+However, with real life data, these must often be added by hand.</p>
+<p>In order to include the effect of plural scattering, the model is convolved with the
+low-loss spectrum in which case the low-loss spectrum needs to be provided to
+<a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.create_model" title="exspy.signals.EELSSpectrum.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_model()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">ll</span><span class="o">=</span><span class="n">ll</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>HyperSpy has created the model and configured it automatically:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span>
+<span class="go">   # |       Attribute Name |       Component Name |       Component Type</span>
+<span class="go">---- | -------------------- | -------------------- | --------------------</span>
+<span class="go">   0 |             PowerLaw |             PowerLaw |             PowerLaw</span>
+<span class="go">   1 |                  N_K |                  N_K |           EELSCLEdge</span>
+<span class="go">   2 |                  B_K |                  B_K |           EELSCLEdge</span>
+</pre></div>
+</div>
+<p>Conveniently, all the EELS core-loss components of the added elements are added
+automatically, named after its element symbol:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">N_K</span>
+<span class="go">&lt;N_K (EELSCLEdge component)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span>
+<span class="go">&lt;B_K (EELSCLEdge component)&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="generalised-oscillator-strengths">
+<h3>Generalised Oscillator Strengths<a class="headerlink" href="#generalised-oscillator-strengths" title="Link to this heading">#</a></h3>
+<p>Fitting EELS edges requires a model for the so-called <em>Generalised Oscillator
+Strengths</em> (GOS). In this example, both edges shown are K Edges, which can be fitted
+using an analytical model for the GOS. Fitting L edge gives more accurate
+results using tabulated GOS data, while for M, N and O edges the tabulated sets
+are strictly necessary. Therefore, tabulated data will be used by default.</p>
+<p>The model for the GOS can be specified with the <code class="docutils literal notranslate"><span class="pre">GOS</span></code> argument
+- see <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.create_model" title="exspy.signals.EELSSpectrum.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_model()</span></code></a> for more details.</p>
+<p>By default, a freely usable tabulated dataset, in <a class="reference external" href="https://gitlab.com/gguzzina/gosh">gosh</a>
+format, is downloaded from Zenodo:
+<a class="reference external" href="https://zenodo.org/record/7645765">doi:10.5281/zenodo.7645765</a>.</p>
+<p>Custom GOS saved in the <a class="reference external" href="https://gitlab.com/gguzzina/gosh">gosh</a> format can be used,
+the following example download a previous version (1.0) of the GOS file from Zenodo
+(<a class="reference external" href="https://zenodo.org/record/6599071">doi:10.5281/zenodo.6599071</a>) using
+<a class="reference external" href="https://www.fatiando.org/pooch">pooch</a>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pooch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">GOSH10</span> <span class="o">=</span> <span class="n">pooch</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;doi:10.5281/zenodo.6599071/Segger_Guzzinati_Kohl_1.0.0.gos&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">known_hash</span><span class="o">=</span><span class="s2">&quot;md5:d65d5c23142532fde0a80e160ab51574&quot;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">gos_file_path</span><span class="o">=</span><span class="n">GOSH10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="fitting-model">
+<h3>Fitting model<a class="headerlink" href="#fitting-model" title="Link to this heading">#</a></h3>
+<p>By default the fine structure features are disabled.
+We must enable them to accurately fit this spectrum:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">enable_fine_structure</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We use <a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.smart_fit" title="exspy.models.EELSModel.smart_fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">smart_fit()</span></code></a> instead of the standard
+fit method because <a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.smart_fit" title="exspy.models.EELSModel.smart_fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">smart_fit()</span></code></a> is
+optimized to fit EELS core-loss spectra</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">smart_fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This fit can also be applied over the entire signal to fit a whole spectrum
+image</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">multifit</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;smart&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.smart_fit" title="exspy.models.EELSModel.smart_fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">smart_fit()</span></code></a> and <code class="docutils literal notranslate"><span class="pre">m.multifit(kind='smart')</span></code>
+are methods specific to the EELS model. The fitting procedure acts in an iterative
+manner along the energy-loss-axis. First it fits only the background up to the first edge.
+It continues by deactivating all edges except the first one, then performs
+the fit. Then it only activates the the first two, fits, and repeats this
+until all edges are fitted simultaneously.</p>
+<p>Other, non-EELSCLEdge components, are never deactivated, and fitted on every
+iteration.</p>
+</div>
+<p>Print the result of the fit</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">quantify</span><span class="p">()</span>
+<span class="go">Absolute quantification:</span>
+<span class="go">Elem.       Intensity</span>
+<span class="go">B   0.045648</span>
+<span class="go">N   0.048061</span>
+</pre></div>
+</div>
+<p>Visualize the result</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/curve_fitting_BN.png"><img alt="../_images/curve_fitting_BN.png" src="../_images/curve_fitting_BN.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Curve fitting quantification of a boron nitride EELS core-loss spectrum
+from the <a class="reference external" href="https://eelsdb.eu">EELS Data Base</a>.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>There are several methods that are only available in
+<a class="reference internal" href="../reference/models.html#exspy.models.EELSModel" title="exspy.models.EELSModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSModel</span></code></a>:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.smart_fit" title="exspy.models.EELSModel.smart_fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">smart_fit()</span></code></a> is a fit method that is
+more robust than the standard routine when fitting EELS data.</p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.quantify" title="exspy.models.EELSModel.quantify"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quantify()</span></code></a> prints the intensity at
+the current locations of all the EELS ionisation edges in the model.</p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.remove_fine_structure_data" title="exspy.models.EELSModel.remove_fine_structure_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_fine_structure_data()</span></code></a> removes
+the fine structure spectral data range (as defined by the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_width</span></code>
+ionisation edge components. It is specially useful when fitting without
+convolving with a zero-loss peak.</p></li>
+</ul>
+<p>The following methods permit to easily enable/disable background and ionisation
+edge components:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.enable_edges" title="exspy.models.EELSModel.enable_edges"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_edges()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.enable_background" title="exspy.models.EELSModel.enable_background"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_background()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.disable_background" title="exspy.models.EELSModel.disable_background"><code class="xref py py-meth docutils literal notranslate"><span class="pre">disable_background()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.enable_fine_structure" title="exspy.models.EELSModel.enable_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_fine_structure()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.disable_fine_structure" title="exspy.models.EELSModel.disable_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">disable_fine_structure()</span></code></a></p></li>
+</ul>
+<p>The following methods permit to easily enable/disable several ionisation
+edge functionalities:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.set_all_edges_intensities_positive" title="exspy.models.EELSModel.set_all_edges_intensities_positive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_all_edges_intensities_positive()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.unset_all_edges_intensities_positive" title="exspy.models.EELSModel.unset_all_edges_intensities_positive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unset_all_edges_intensities_positive()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.enable_free_onset_energy" title="exspy.models.EELSModel.enable_free_onset_energy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_free_onset_energy()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.disable_free_onset_energy" title="exspy.models.EELSModel.disable_free_onset_energy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">disable_free_onset_energy()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.fix_edges" title="exspy.models.EELSModel.fix_edges"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fix_edges()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.free_edges" title="exspy.models.EELSModel.free_edges"><code class="xref py py-meth docutils literal notranslate"><span class="pre">free_edges()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.fix_fine_structure" title="exspy.models.EELSModel.fix_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fix_fine_structure()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.free_fine_structure" title="exspy.models.EELSModel.free_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">free_fine_structure()</span></code></a></p></li>
+</ul>
+</section>
+<section id="fine-structure-analysis">
+<h3>Fine structure analysis<a class="headerlink" href="#fine-structure-analysis" title="Link to this heading">#</a></h3>
+<p>The fine structure of an EELS ionization edge manifests as distinct features within
+the first few tens of eVs energy. It is due to variations in the electron’s energy
+loss probability caused by the interactions with the material’s electronic structure.
+It offers insights into the material’s electronic properties, bonding, and local environments.
+Therefore, we cannot model them from first-principles because i) the material is usually unknown
+ii) HyperSpy only supports Hydrogenic and Hartree-Slater EELS core-loss models. Instead, the
+<a class="reference internal" href="../reference/components.html#exspy.components.EELSCLEdge" title="exspy.components.EELSCLEdge"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSCLEdge</span></code></a> component includes features
+for EELS fine structure modelling and analysis using functions to mimic the fine structure
+features. The most basic consists in modelling
+the fine structure of ionization edges using a spline function. You can activate this feature
+by setting the <code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_active</span></code> attribute
+of a given <a class="reference internal" href="../reference/components.html#exspy.components.EELSCLEdge" title="exspy.components.EELSCLEdge"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSCLEdge</span></code></a> component to <code class="docutils literal notranslate"><span class="pre">True</span></code>. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">N_K</span><span class="o">.</span><span class="n">fine_structure_active</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>To enable the fine structure component for all or a selection of ionization edges, you can use the
+<a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.enable_fine_structure" title="exspy.models.EELSModel.enable_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_fine_structure()</span></code></a> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">enable_fine_structure</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The width of the fine structure (i.e., the region of the ionization edge that we
+will model using a spline instead of the atomic simulation) can be defined using the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_width</span></code> attribute. It
+defaults to 30 eV. Another important parameter is the
+<a class="reference internal" href="../reference/components.html#exspy.components.EELSCLEdge.fine_structure_smoothing" title="exspy.components.EELSCLEdge.fine_structure_smoothing"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_smoothing</span></code></a>. It takes
+a value between 0 and 1, 0.3 by default. Decreasing it makes the spline smoother, at the
+expense of detail. The optimal value should reproduce well the fine structure features
+but not the noise.</p>
+<p>The parameters controlling the shape of the spline function are stored in the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_coeff</span></code> attribute.
+Notice that the value of the <code class="xref py py-class docutils literal notranslate"><span class="pre">component.Parameter</span></code> is a tuple that
+contains a list of <code class="docutils literal notranslate"><span class="pre">float</span></code>. Its length depends on the value of
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_width</span></code> and
+<a class="reference internal" href="../reference/components.html#exspy.components.EELSCLEdge.fine_structure_smoothing" title="exspy.components.EELSCLEdge.fine_structure_smoothing"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_smoothing</span></code></a>, and it
+will be reset to 0 when any of those values change.</p>
+<p>If we zoom-in the fine structure region of the Boron-K ionization edge of the BN
+model above, we notice that the fit is actually not very good:</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/EELS_BN_B_zoomin.png"><img alt="../_images/EELS_BN_B_zoomin.png" src="../_images/EELS_BN_B_zoomin.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Boron-K EELS ionization edge fine structure model using default values</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Let’s try to improve the fine structure model of the Boron-K and Nitrogen-K ionization edges by:</p>
+<ul class="simple">
+<li><p>Adjusting the position of the B-K edge onset to match the experimental spectrum</p></li>
+<li><p>Adjusting the width of the fine structure</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">set_signal_range</span><span class="p">(</span><span class="mf">160.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span><span class="o">.</span><span class="n">onset_energy</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">194</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">N_K</span><span class="o">.</span><span class="n">onset_energy</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mf">402.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span><span class="o">.</span><span class="n">fine_structure_width</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">N_K</span><span class="o">.</span><span class="n">fine_structure_width</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span><span class="o">.</span><span class="n">fine_structure_smoothing</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">smart_fit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After executing the commands above, the model of the fine structure of both
+edges is much better, and the B/N ratio gets closer to one. Indeed, when
+performing EELS quantification using the low-loss region to account for
+multiple scattering, improving the model of the fine structure is essential
+to obtain an accurate parameter estimation.</p>
+<p>When fitting edges with fine structure enabled, it is often desirable that the
+fine structure region of nearby ionization edges does not overlap. HyperSpy
+provides a method,
+<a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.resolve_fine_structure" title="exspy.models.EELSModel.resolve_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resolve_fine_structure()</span></code></a>, to
+automatically adjust the fine structure to avoid overlap. This method is executed
+automatically when e.g. components are added or removed from the model, but
+sometimes is necessary to call it manually.</p>
+<p>Sometimes it is desirable to disable the automatic adjustment of the fine
+structure width. It is possible to suspend this feature by calling
+<a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.suspend_auto_fine_structure_width" title="exspy.models.EELSModel.suspend_auto_fine_structure_width"><code class="xref py py-meth docutils literal notranslate"><span class="pre">suspend_auto_fine_structure_width()</span></code></a>.
+To resume it use
+<a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.suspend_auto_fine_structure_width" title="exspy.models.EELSModel.suspend_auto_fine_structure_width"><code class="xref py py-meth docutils literal notranslate"><span class="pre">suspend_auto_fine_structure_width()</span></code></a></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0: </span>Fine structure analysis</p>
+</div>
+<section id="id1">
+<h4>Fine structure analysis<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Fine structure analysis consists on measuring different features of the fine structure
+(e.g., peak position, area, …). Often, these features can be related to the ionized atom environment.
+For this purpose, we need to replace the spline function, that we
+have used so far to fit the fine structure, with other functions that accurately
+model the features that we want to measure.</p>
+<p>As an example, lets model the first two peaks of the Boron-K edge fine structure using two
+Gaussian functions instead of the spline function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components1D</span><span class="o">.</span><span class="n">GaussianHF</span><span class="p">(</span><span class="n">centre</span><span class="o">=</span><span class="mf">194.7</span><span class="p">,</span> <span class="n">fwhm</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;B_K_l1&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components1D</span><span class="o">.</span><span class="n">GaussianHF</span><span class="p">(</span><span class="n">centre</span><span class="o">=</span><span class="mf">201.9</span><span class="p">,</span> <span class="n">fwhm</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;B_K_l2&quot;</span>
+</pre></div>
+</div>
+<p>Next, we need to let HyperSpy know that these two Gaussian functions are part
+of the fine structure of the Boron-K edge. Otherwise, the Gaussian functions
+would be added over the current spline fine structure, which is not what
+we want: we want to replace the spline function with the two Gaussian functions
+in the first 10 eV from the Boron-K ionization edge onset.
+For that, we simply add them to the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_components</span></code> <code class="docutils literal notranslate"><span class="pre">set</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span><span class="o">.</span><span class="n">fine_structure_components</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Note that the Gaussian components are added to the model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span>
+<span class="go"># |      Attribute Name |      Component Name |      Component Type</span>
+<span class="go">---- | ------------------- | ------------------- | -------------------</span>
+<span class="go">0 |            PowerLaw |            PowerLaw |            PowerLaw</span>
+<span class="go">1 |                 N_K |                 N_K |          EELSCLEdge</span>
+<span class="go">2 |                 B_K |                 B_K |          EELSCLEdge</span>
+<span class="go">3 |              B_K_l1 |              B_K_l1 |          GaussianHF</span>
+<span class="go">4 |              B_K_l2 |              B_K_l2 |          GaussianHF</span>
+</pre></div>
+</div>
+<p>We still need to use the spline function to model the fine structure
+region that we are not modelling using the Gaussian functions. Therefore, we
+make sure that <code class="xref py py-attr docutils literal notranslate"><span class="pre">fine_structure_spline_active</span></code>
+is <code class="docutils literal notranslate"><span class="pre">True</span></code> and we set its onset to around the minimum between the 2nd and 3rd (~205 eV) fine
+structure peaks:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span><span class="o">.</span><span class="n">fine_structure_spline_active</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span><span class="o">.</span><span class="n">fine_structure_spline_onset</span> <span class="o">=</span> <span class="mf">205.</span> <span class="o">-</span> <span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span><span class="o">.</span><span class="n">onset_energy</span><span class="o">.</span><span class="n">value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">smart_fit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_components</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/EELS_BN_B_zoomin_with_gaussians.png"><img alt="../_images/EELS_BN_B_zoomin_with_gaussians.png" src="../_images/EELS_BN_B_zoomin_with_gaussians.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">Boron-K EELS ionization edge fine structure model using two Gaussian functions
+for the first two white-lines, and a spline function for the rest of the
+fine structure.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="eds.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Energy-Dispersive X-ray Spectrometry (EDS)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dielectric_function.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dielectric function tools</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-for-eels-data-analysis">Tools for EELS data analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elemental-composition-of-the-sample">Elemental composition of the sample</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thickness-estimation">Thickness estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-loss-peak-centre-and-alignment">Zero-loss peak centre and alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deconvolutions">Deconvolutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-elastic-scattering-intensity">Estimate elastic scattering intensity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kramers-kronig-analysis">Kramers-Kronig Analysis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eels-curve-fitting">EELS curve fitting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-model">Creating model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalised-oscillator-strengths">Generalised Oscillator Strengths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-model">Fitting model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-structure-analysis">Fine structure analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Fine structure analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/eels.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, exSpy Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+
+
+.. _sphx_glr_auto_examples_model_fitting:
+
+Model fitting
+=============
+
+Below is a gallery of examples on model fitting.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Fit an affine function and plot the residual.">
+
+.. only:: html
+
+  .. image:: /auto_examples/model_fitting/images/thumb/sphx_glr_plot_residual_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_model_fitting_plot_residual.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plot Residual</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Performs curve fitting to an EELS spectrum, plots the result and saves it as png file.">
+
+.. only:: html
+
+  .. image:: /auto_examples/model_fitting/images/thumb/sphx_glr_EELS_curve_fitting_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_model_fitting_EELS_curve_fitting.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">EELS curve fitting</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Fit an arctan function.">
+
+.. only:: html
+
+  .. image:: /auto_examples/model_fitting/images/thumb/sphx_glr_simple_arctan_fit_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_auto_examples_model_fitting_simple_arctan_fit.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Simple arctan fit</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/model_fitting/plot_residual
+   /auto_examples/model_fitting/EELS_curve_fitting
+   /auto_examples/model_fitting/simple_arctan_fit
+

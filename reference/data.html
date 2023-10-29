@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/hyperspy.ico" rel="icon" type="image/x-icon">
+    <title>exspy.data &#8212; exSpy  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=ccdb6887"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="exspy.material" href="material.html" />
+    <link rel="prev" title="exspy.components" href="components.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/hyperspy_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/hyperspy_logo.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">exSpy</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../auto_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../changes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citing.html">
+                        Citing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-gitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../auto_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../changes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citing.html">
+                        Citing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-gitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="components.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.components</span></code></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="material.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.material</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.models</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="signals.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.signals</span></code></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Reference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><code...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="exspy-data">
+<h1><a class="reference internal" href="#module-exspy.data" title="exspy.data"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.data</span></code></a><a class="headerlink" href="#exspy-data" title="Link to this heading">#</a></h1>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.data.EDS_SEM_TM002" title="exspy.data.EDS_SEM_TM002"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EDS_SEM_TM002</span></code></a>()</p></td>
+<td><p>Load an EDS-SEM spectrum of a EDS-TM002 standard supplied by the Bundesanstalt für Materialforschung und -prüfung (BAM).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.data.EDS_TEM_FePt_nanoparticles" title="exspy.data.EDS_TEM_FePt_nanoparticles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EDS_TEM_FePt_nanoparticles</span></code></a>()</p></td>
+<td><p>Load an EDS-TEM spectrum of FePt bimetallic nanoparticles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.data.EELS_low_loss" title="exspy.data.EELS_low_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EELS_low_loss</span></code></a>([add_noise, random_state, ...])</p></td>
+<td><p>Get an artificial low loss electron energy loss spectrum.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.data.EELS_MnFe" title="exspy.data.EELS_MnFe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EELS_MnFe</span></code></a>([add_powerlaw, add_noise, ...])</p></td>
+<td><p>Get an artificial core loss electron energy loss spectrum.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.data.eelsdb" title="exspy.data.eelsdb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eelsdb</span></code></a>([spectrum_type, title, author, ...])</p></td>
+<td><p>Download spectra from the EELS Data Base.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function" id="module-exspy.data">
+<dt class="sig sig-object py" id="exspy.data.EDS_SEM_TM002">
+<span class="sig-prename descclassname"><span class="pre">exspy.data.</span></span><span class="sig-name descname"><span class="pre">EDS_SEM_TM002</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#exspy.data.EDS_SEM_TM002" title="Link to this definition">#</a></dt>
+<dd><p>Load an EDS-SEM spectrum of a EDS-TM002 standard supplied by the
+Bundesanstalt für Materialforschung und -prüfung (BAM).
+The sample consists of an approximately 6 µm thick layer containing
+the elements C, Al, Mn, Cu and Zr on a silicon substrate.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Sample: EDS-TM002 provided by BAM (www.webshop.bam.de)</p></li>
+<li><p>SEM Microscope: Nvision40 Carl Zeiss</p></li>
+<li><p>EDS Detector: X-max 80 from Oxford Instrument</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exspy.data.EDS_TEM_FePt_nanoparticles">
+<span class="sig-prename descclassname"><span class="pre">exspy.data.</span></span><span class="sig-name descname"><span class="pre">EDS_TEM_FePt_nanoparticles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#exspy.data.EDS_TEM_FePt_nanoparticles" title="Link to this definition">#</a></dt>
+<dd><p>Load an EDS-TEM spectrum of FePt bimetallic nanoparticles.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>TEM Microscope: Tecnai Osiris 200 kV D658 AnalyticalTwin</p></li>
+<li><p>EDS Detector: Super-X 4 detectors Brucker</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exspy.data.EELS_MnFe">
+<span class="sig-prename descclassname"><span class="pre">exspy.data.</span></span><span class="sig-name descname"><span class="pre">EELS_MnFe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_powerlaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">navigation_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.data.EELS_MnFe" title="Link to this definition">#</a></dt>
+<dd><p>Get an artificial core loss electron energy loss spectrum.</p>
+<p>Similar to a Mn-L32 edge from a perovskite oxide.</p>
+<p>Some random noise is also added to the spectrum, to simulate
+experimental noise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>add_powerlaw</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, adds a powerlaw background to the spectrum.
+Default is False.</p></li>
+<li><p><strong>add_noise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, add noise to the signal. See note to seed the noise to
+generate reproducible noise.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> or </em><em>RandomState instance</em><em>, </em><em>default None</em>) – Random seed used to generate the data.</p></li>
+<li><p><strong>navigation_shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a>) – The shape of the navigation space. Must be of length 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/EELSSpectrum.html#hyperspy.api.signals.EELSSpectrum" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">exspy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">EELS_Mn</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>With the powerlaw background</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">EELS_Mn</span><span class="p">(</span><span class="n">add_powerlaw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.data.EELS_low_loss" title="exspy.data.EELS_low_loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EELS_low_loss</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exspy.data.EELS_low_loss">
+<span class="sig-prename descclassname"><span class="pre">exspy.data.</span></span><span class="sig-name descname"><span class="pre">EELS_low_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">navigation_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.data.EELS_low_loss" title="Link to this definition">#</a></dt>
+<dd><p>Get an artificial low loss electron energy loss spectrum.</p>
+<p>The zero loss peak is offset by 4.1 eV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>add_noise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, add noise to the signal. See note to seed the noise to
+generate reproducible noise.</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> or </em><em>RandomState instance</em><em>, </em><em>default None</em>) – Random seed used to generate the data.</p></li>
+<li><p><strong>navigation_shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a>) – The shape of the navigation space.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/EELSSpectrum.html#hyperspy.api.signals.EELSSpectrum" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">low_loss</span><span class="p">(</span><span class="n">navigation_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.data.EELS_MnFe" title="exspy.data.EELS_MnFe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EELS_MnFe</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exspy.data.eelsdb">
+<span class="sig-prename descclassname"><span class="pre">exspy.data.</span></span><span class="sig-name descname"><span class="pre">eelsdb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectrum_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formula</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_energy_compare</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_energy_compare</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution_compare</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monochromated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ASC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_certificate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progressbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.data.eelsdb" title="Link to this definition">#</a></dt>
+<dd><p>Download spectra from the EELS Data Base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spectrum_type</strong> (<em>{'coreloss'</em><em>, </em><em>'lowloss'</em><em>, </em><em>'zeroloss'</em><em>, </em><em>'xrayabs'}</em><em>, </em><em>optional</em>) – </p></li>
+<li><p><strong>title</strong> (<em>string</em>) – Search spectra titles for a text string.</p></li>
+<li><p><strong>author</strong> (<em>string</em><em>, </em><em>optional</em>) – Search authors for a text string.</p></li>
+<li><p><strong>element</strong> (<em>string</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings</em><em>, </em><em>optional</em>) – Filter for the presence of one or more element. Each string must
+correspond with a valid element symbol.</p></li>
+<li><p><strong>formula</strong> (<em>string</em>) – Chemical formula of the sample.</p></li>
+<li><p><strong>edge</strong> (<em>{'K'</em><em>, </em><em>'L1'</em><em>, </em><em>'L2</em><em>,</em><em>3'</em><em>, </em><em>'M2</em><em>,</em><em>3'</em><em>, </em><em>'M4</em><em>,</em><em>5'</em><em>, </em><em>'N2</em><em>,</em><em>3'</em><em>, </em><em>'N4</em><em>,</em><em>5' 'O2</em><em>,</em><em>3'</em><em>, </em><em>'O4</em><em>,</em><em>5'}</em><em>, </em><em>optional</em>) – Filter for spectra with a specific class of edge.</p></li>
+<li><p><strong>min_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – Minimum and maximum energy in eV.</p></li>
+<li><p><strong>max_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – Minimum and maximum energy in eV.</p></li>
+<li><p><strong>resolution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – Energy resolution in eV.</p></li>
+<li><p><strong>resolution_compare</strong> (<em>{&quot;lt&quot;</em><em>, </em><em>&quot;eq&quot;</em><em>, </em><em>&quot;gt&quot;}</em><em>, </em><em>optional</em><em>, </em><em>default &quot;lt&quot;</em>) – “lt” to search for all spectra with resolution less than <cite>resolution</cite>.
+“eq” for equal, “gt” for greater than.</p></li>
+<li><p><strong>min_energy_compare</strong> (<em>{&quot;lt&quot;</em><em>, </em><em>&quot;eq&quot;</em><em>, </em><em>&quot;gt&quot;}</em><em>, </em><em>optional</em>) – “lt” to search for all spectra with min/max energy less than
+<cite>min_energy</cite>`max_energy`. “eq” for equal, “gt” for greater than.
+Deafault values are “gt”/”lt” for <cite>min_energy</cite>`max_energy`
+respectively.</p></li>
+<li><p><strong>max_energy_compare</strong> (<em>{&quot;lt&quot;</em><em>, </em><em>&quot;eq&quot;</em><em>, </em><em>&quot;gt&quot;}</em><em>, </em><em>optional</em>) – “lt” to search for all spectra with min/max energy less than
+<cite>min_energy</cite>`max_energy`. “eq” for equal, “gt” for greater than.
+Deafault values are “gt”/”lt” for <cite>min_energy</cite>`max_energy`
+respectively.</p></li>
+<li><p><strong>monochromated</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em> (</em><em>default</em><em>)</em>) – </p></li>
+<li><p><strong>max_n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>default -1</em>) – Maximum number of spectra to return. -1 to return all.</p></li>
+<li><p><strong>order</strong> (<em>string</em>) – Key to sort results by. Valid keys are:
+* “spectrumType”,
+* “spectrumMin”,
+* “spectrumMax”,
+* “stepSize”,
+* “spectrumFormula”,
+* “spectrumElement”,
+* “spectrumUpload”,
+* “source_purity”,
+* “spectrumEdges”,
+* “microscope”,
+* “guntype”,
+* “beamenergy”,
+* “resolution”,
+* “monochromated”,
+* “acquisition_mode”,
+* “convergence”,
+* “collection”,
+* “probesize”,
+* “beamcurrent”,
+* “integratetime”,
+* “readouts”,
+* “detector”,
+* “darkcurrent”,
+* “gainvariation”,
+* “calibration”,
+* “zeroloss_deconv”,
+* “thickness”,
+* “deconv_fourier_log”,
+* “deconv_fourier_ratio”,
+* “deconv_stephens_deconvolution”,
+* “deconv_richardson_lucy”,
+* “deconv_maximum_entropy”,
+* “deconv_other”,
+* “assoc_spectra”,
+* “ref_freetext”,
+* “ref_doi”,
+* “ref_url”,
+* “ref_authors”,
+* “ref_journal”,
+* “ref_volume”,
+* “ref_issue”,
+* “ref_page”,
+* “ref_year”,
+* “ref_title”,
+* “otherURLs”</p></li>
+<li><p><strong>order_direction</strong> (<em>{&quot;ASC&quot;</em><em>, </em><em>&quot;DESC&quot;}</em>) – Sorting <cite>order</cite> direction.</p></li>
+<li><p><strong>verify_certificate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, verify the eelsdb website certificate and raise an error
+if it is invalid. If False, continue querying the database if the certificate
+is invalid. (This is a potential security risk.)</p></li>
+<li><p><strong>show_progressbar</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, display a progress bar. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default from
+the preferences settings is used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>spectra</strong> – A list containing all the spectra matching the given criteria if
+any.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="components.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.components</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="material.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.material</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.data.EDS_SEM_TM002"><code class="docutils literal notranslate"><span class="pre">EDS_SEM_TM002()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.data.EDS_TEM_FePt_nanoparticles"><code class="docutils literal notranslate"><span class="pre">EDS_TEM_FePt_nanoparticles()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.data.EELS_MnFe"><code class="docutils literal notranslate"><span class="pre">EELS_MnFe()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.data.EELS_low_loss"><code class="docutils literal notranslate"><span class="pre">EELS_low_loss()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.data.eelsdb"><code class="docutils literal notranslate"><span class="pre">eelsdb()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/reference/data.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, exSpy Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

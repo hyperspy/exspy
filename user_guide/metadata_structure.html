@@ -1,0 +1,857 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/hyperspy.ico" rel="icon" type="image/x-icon">
+    <title>exSpy Metadata Structure &#8212; exSpy  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=ccdb6887"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/metadata_structure';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliography" href="bibliography.html" />
+    <link rel="prev" title="Dielectric function tools" href="dielectric_function.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/hyperspy_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/hyperspy_logo.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">exSpy</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../auto_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../reference/index.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../changes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citing.html">
+                        Citing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-gitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../auto_examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../reference/index.html">
+                        Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../changes.html">
+                        Release Notes
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citing.html">
+                        Citing
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-gitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eds.html">Energy-Dispersive X-ray Spectrometry (EDS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eels.html">Electron Energy Loss Spectroscopy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dielectric_function.html">Dielectric function tools</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">exSpy Metadata Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">exSpy...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="exspy-metadata-structure">
+<span id="metadata-structure"></span><h1>exSpy Metadata Structure<a class="headerlink" href="#exspy-metadata-structure" title="Link to this heading">#</a></h1>
+<p><strong>exSpy</strong> extends the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#metadata-structure" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy metadata structure</span></a>
+with conventions for metadata specific to its signal types. Refer to the
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#metadata-structure" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy metadata documentation</span></a>
+for general metadata fields.</p>
+<p>The metadata of any <strong>signal objects</strong> is stored in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute,
+which has a tree structure. By convention, the node labels are capitalized and
+the ones for leaves are not capitalized. When a leaf contains a quantity that
+is not dimensionless, the units can be given in an extra leaf with the same
+label followed by the <code class="docutils literal notranslate"><span class="pre">_units</span></code> suffix.</p>
+<p>Besides directly accessing the metadata tree structure, e.g.
+<code class="docutils literal notranslate"><span class="pre">s.metadata.Signal.signal_type</span></code>, the HyperSpy methods
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.set_item()</span></code>,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.has_item()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.get_item()</span></code>
+can be used to add to, search for and read from items in the metadata tree,
+respectively.</p>
+<p>The EELS of EDS specific metadata structure is represented in the following
+tree diagram. The default units are given in parentheses. Details about the
+leaves can be found in the following sections of this chapter. Note that not
+all types of leaves will apply to every type of measurement.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>metadata
+├── General
+│   └── # see HyperSpy
+├── Sample
+│   ├── # see HyperSpy
+│   ├── elements
+│   └── xray_lines
+├── Signal
+│   ├── signal_type
+│   └── # otherwise see HyperSpy
+└── Acquisition_instrument
+    ├── SEM
+    │   ├── Detector
+    │   │   ├── detector_type
+    │   │   └── EDS
+    │   │       ├── azimuth_angle (º)
+    │   │       ├── elevation_angle (º)
+    │   │       ├── energy_resolution_MnKa (eV)
+    │   │       ├── live_time (s)
+    │   │       └── real_time (s)
+    │   ├── beam_current (nA)
+    │   ├── beam_energy (keV)
+    │   ├── probe_area (nm²)
+    │   ├── convergence_angle (mrad)
+    │   ├── magnification
+    │   ├── microscope
+    │   ├── Stage
+    │   │   ├── rotation (º)
+    │   │   ├── tilt_alpha (º)
+    │   │   ├── tilt_beta (º)
+    │   │   ├── x (mm)
+    │   │   ├── y (mm)
+    │   │   └── z (mm)
+    │   └── working_distance (mm)
+    └── TEM
+        ├── Detector
+        │   ├── EDS
+        │   │   ├── azimuth_angle (º)
+        │   │   ├── elevation_angle (º)
+        │   │   ├── energy_resolution_MnKa (eV)
+        │   │   ├── live_time (s)
+        │   │   └── real_time (s)
+        │   └── EELS
+        │       ├── aperture (mm)
+        │       ├── collection_angle (mrad)
+        │       ├── dwell_time (s)
+        │       ├── exposure (s)
+        │       ├── frame_number
+        │       └── spectrometer
+        ├── acquisition_mode
+        ├── beam_current (nA)
+        ├── beam_energy (keV)
+        ├── probe_area (nm²)
+        ├── camera_length (mm)
+        ├── convergence_angle (mrad)
+        ├── magnification
+        ├── microscope
+        └── Stage
+            ├── rotation (º)
+            ├── tilt_alpha (º)
+            ├── tilt_beta (º)
+            ├── x (mm)
+            ├── y (mm)
+            └── z (mm)
+</pre></div>
+</div>
+<section id="general">
+<h2>General<a class="headerlink" href="#general" title="Link to this heading">#</a></h2>
+<p>See <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#general-metadata" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy-Metadata-General</span></a>.</p>
+</section>
+<section id="sample">
+<h2>Sample<a class="headerlink" href="#sample" title="Link to this heading">#</a></h2>
+<dl>
+<dt>elements</dt><dd><p>type: list</p>
+<p>A list of the symbols of the elements composing the sample, e.g. [‘B’, ‘N’]
+for a sample composed of Boron and Nitrogen.</p>
+</dd>
+<dt>xray_lines</dt><dd><p>type: list</p>
+<p>A list of the symbols of the X-ray lines to be used for processing,
+e.g. [‘Al_Ka’, ‘Ni_Lb’] for the K alpha line of Aluminum
+and the L beta line of Nickel.</p>
+</dd>
+</dl>
+<p>See also <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#sample-metadata" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy-Metadata-Sample</span></a>.</p>
+</section>
+<section id="signal">
+<h2>Signal<a class="headerlink" href="#signal" title="Link to this heading">#</a></h2>
+<dl>
+<dt>signal_type</dt><dd><p>type: string</p>
+<p>String that describes the type of signal. Currently, the only exSpy
+specific signal class is <code class="docutils literal notranslate"><span class="pre">EELS</span></code>, <code class="docutils literal notranslate"><span class="pre">EDS</span></code>, <code class="docutils literal notranslate"><span class="pre">EDS_SEM</span></code> or <code class="docutils literal notranslate"><span class="pre">EDS_TEM</span></code>.</p>
+</dd>
+</dl>
+<p>See also <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#signal-metadata" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy-Metadata-Sample</span></a>.</p>
+</section>
+<section id="acquisition-instrument">
+<span id="source-metadata"></span><h2>Acquisition_instrument<a class="headerlink" href="#acquisition-instrument" title="Link to this heading">#</a></h2>
+<section id="tem">
+<h3>TEM<a class="headerlink" href="#tem" title="Link to this heading">#</a></h3>
+<p>Contain information relevant to transmission electron microscope signals.</p>
+<dl>
+<dt>microscope</dt><dd><p>type: Str</p>
+<p>The microscope model, e.g. VG 501</p>
+</dd>
+<dt>acquisition_mode</dt><dd><p>type: Str</p>
+<p>Either ‘TEM’ or ‘STEM’</p>
+</dd>
+<dt>camera_length</dt><dd><p>type: Float</p>
+<p>The camera length in mm.</p>
+</dd>
+<dt>convergence_angle</dt><dd><p>type: Float</p>
+<p>The beam convergence semi-angle in mrad.</p>
+</dd>
+<dt>beam_energy</dt><dd><p>type: Float</p>
+<p>The energy of the electron beam in keV</p>
+</dd>
+<dt>beam_current</dt><dd><p>type: Float</p>
+<p>The beam current in nA.</p>
+</dd>
+<dt>probe_area</dt><dd><p>type: Float</p>
+<p>The illumination area of the electron beam in nm<sup>2</sup>.</p>
+</dd>
+<dt>dwell_time</dt><dd><p>type: Float</p>
+<p>The dwell time in seconds. This is relevant for STEM acquisition</p>
+</dd>
+<dt>exposure</dt><dd><p>type: Float</p>
+<p>The exposure time in seconds. This is relevant for TEM acquisition.</p>
+</dd>
+<dt>magnification</dt><dd><p>type: Float</p>
+<p>The magnification.</p>
+</dd>
+</dl>
+</section>
+<section id="sem">
+<h3>SEM<a class="headerlink" href="#sem" title="Link to this heading">#</a></h3>
+<p>Contain information relevant to scanning electron microscope signals.</p>
+<dl>
+<dt>microscope</dt><dd><p>type: Str</p>
+<p>The microscope model, e.g. VG 501</p>
+</dd>
+<dt>convergence_angle</dt><dd><p>type: Float</p>
+<p>The beam convergence semi-angle in mrad.</p>
+</dd>
+<dt>beam_energy</dt><dd><p>type: Float</p>
+<p>The energy of the electron beam in keV</p>
+</dd>
+<dt>beam_current</dt><dd><p>type: Float</p>
+<p>The beam current in nA.</p>
+</dd>
+<dt>probe_area</dt><dd><p>type: Float</p>
+<p>The illumination area of the electron beam in nm<sup>2</sup>.</p>
+</dd>
+<dt>magnification</dt><dd><p>type: Float</p>
+<p>The magnification.</p>
+</dd>
+<dt>working_distance</dt><dd><p>type: Float</p>
+<p>The working distance in mm.</p>
+</dd>
+</dl>
+</section>
+<section id="stage">
+<span id="stage-metadata"></span><h3>Stage<a class="headerlink" href="#stage" title="Link to this heading">#</a></h3>
+<dl>
+<dt>tilt_alpha</dt><dd><p>type: Float</p>
+<p>A tilt of the stage in degree.</p>
+</dd>
+<dt>tilt_beta</dt><dd><p>type: Float</p>
+<p>Another tilt of the stage in degree.</p>
+</dd>
+<dt>rotation</dt><dd><p>type: Float</p>
+<p>The rotation of the stage in degree.</p>
+</dd>
+<dt>x</dt><dd><p>type: Float</p>
+<p>The position of the stage in mm along the x axis.</p>
+</dd>
+<dt>y</dt><dd><p>type: Float</p>
+<p>The position of the stage in mm along the y axis.</p>
+</dd>
+<dt>z</dt><dd><p>type: Float</p>
+<p>The position of the stage in mm along the z axis.</p>
+</dd>
+</dl>
+</section>
+<section id="detector">
+<span id="detector-metadata"></span><h3>Detector<a class="headerlink" href="#detector" title="Link to this heading">#</a></h3>
+<p>All instruments can contain a “Detector” node with information about the
+detector used to acquire the signal. EDX and EELS detectors should follow the
+following structure:</p>
+<dl>
+<dt>detector_type</dt><dd><p>type: Str</p>
+<p>The type of the detector, e.g. SE for SEM</p>
+</dd>
+</dl>
+<section id="eels">
+<h4>EELS<a class="headerlink" href="#eels" title="Link to this heading">#</a></h4>
+<p>This node stores parameters relevant to electron energy loss spectroscopy
+signals.</p>
+<dl>
+<dt>aperture_size</dt><dd><p>type: Float</p>
+<p>The entrance aperture size of the spectrometer in mm.</p>
+</dd>
+<dt>collection_angle</dt><dd><p>type: Float</p>
+<p>The collection semi-angle in mrad.</p>
+</dd>
+<dt>dwell_time</dt><dd><p>type: Float</p>
+<p>The dwell time in seconds. This is relevant for STEM acquisition</p>
+</dd>
+<dt>exposure</dt><dd><p>type: Float</p>
+<p>The exposure time in seconds. This is relevant for TEM acquisition.</p>
+</dd>
+<dt>frame_number</dt><dd><p>type: int</p>
+<p>The number of frames/spectra integrated during the acquisition.</p>
+</dd>
+<dt>spectrometer</dt><dd><p>type: Str</p>
+<p>The spectrometer model, e.g. Gatan Enfinium ER (Model 977).</p>
+</dd>
+</dl>
+</section>
+<section id="eds">
+<h4>EDS<a class="headerlink" href="#eds" title="Link to this heading">#</a></h4>
+<p>This node stores parameters relevant to electron X-ray energy dispersive
+spectroscopy data.</p>
+<dl>
+<dt>azimuth_angle</dt><dd><p>type: Float</p>
+<p>The azimuth angle of the detector in degree. If the azimuth is zero,
+the detector is perpendicular to the tilt axis.</p>
+</dd>
+<dt>elevation_angle</dt><dd><p>type: Float</p>
+<p>The elevation angle of the detector in degree. The detector is
+perpendicular to the surface with an angle of 90.</p>
+</dd>
+<dt>energy_resolution_MnKa</dt><dd><p>type: Float</p>
+<p>The full width at half maximum (FWHM) of the manganese K alpha
+(Mn Ka) peak in eV. This value is used as a first approximation
+of the energy resolution of the detector.</p>
+</dd>
+<dt>real_time</dt><dd><p>type: Float</p>
+<p>The time spent to record the spectrum in second.</p>
+</dd>
+<dt>live_time</dt><dd><p>type: Float</p>
+<p>The time spent to record the spectrum in second, compensated for the
+dead time of the detector.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dielectric_function.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dielectric function tools</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample">Sample</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal">Signal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acquisition-instrument">Acquisition_instrument</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tem">TEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sem">SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stage">Stage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detector">Detector</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eels">EELS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eds">EDS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/metadata_structure.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, exSpy Developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -50,6 +50,9 @@ linkcheck_ignore = [
     # Remove when setup
     "https://github.com/hyperspy/exspy-demos",
     "https://www.anaconda.com/blog/understanding-conda-and-pip",  # Transcient?
+    # Remove once it is merged and the links are working
+    "https://exspy.readthedocs.io",
+    "https://github.com/hyperspy/exspy/blob/main/releasing_guide.md",
 ]
 
 intersphinx_mapping = {

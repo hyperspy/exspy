@@ -35,16 +35,21 @@ extensions = [
     # "numpydoc",
     "sphinx_design",
     "sphinx_favicon",
+    "sphinx_copybutton",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.githubpages",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
+    "sphinx_gallery.gen_gallery",
 ]
 
 linkcheck_ignore = [
     "https://doi.org/10.1021/acs.nanolett.5b00449",  # 403 Client Error: Forbidden for url
     "https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01549.x",  # 403 Client Error: Forbidden for url
+    # Remove when setup
+    "https://github.com/hyperspy/exspy-demos",
+    "https://www.anaconda.com/blog/understanding-conda-and-pip",  # Transcient?
 ]
 
 intersphinx_mapping = {
@@ -125,5 +130,17 @@ autodoc_default_options = {
 }
 toc_object_entries_show_parents = "hide"
 
-# def setup(app):
-#     app.add_css_file("custom-styles.css")
+# -- Sphinx-Gallery---------------
+
+# https://sphinx-gallery.github.io
+sphinx_gallery_conf = {
+    "examples_dirs": "../examples",  # path to your example scripts
+    "gallery_dirs": "auto_examples",  # path to where to save gallery generated output
+    "filename_pattern": ".py",  # pattern to define which will be executed
+    "ignore_pattern": "_sgskip.py",  # pattern to define which will not be executed
+}
+
+# -- Sphinx-copybutton -----------
+
+copybutton_prompt_text = r">>> |\.\.\. "
+copybutton_prompt_is_regexp = True

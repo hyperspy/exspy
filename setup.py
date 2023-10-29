@@ -39,6 +39,7 @@ extra_feature_requirements = {
         "sphinx-copybutton",
         "sphinx-design",
         "sphinx-favicon",
+        "sphinx-gallery",
     ],
     "tests": [
         "pytest     >= 5.0",

@@ -27,10 +27,10 @@ exec(open("exspy/release_info.py").read())  # grab version info
 
 extra_feature_requirements = {
     "gui-jupyter": [
-        "hyperspy_gui_ipywidgets @ git+https://github.com/ericpre/hyperspy_gui_ipywidgets.git@hyperspy2.0",
+        "hyperspy_gui_ipywidgets @ https://github.com/hyperspy/hyperspy_gui_ipywidgets/archive/hyperspy2.0.zip",
     ],
     "gui-traitsui": [
-        "hyperspy_gui_traitsui @ git+https://github.com/ericpre/hyperspy_gui_traitsui.git@hyperspy2.0",
+        "hyperspy_gui_traitsui @ https://github.com/hyperspy/hyperspy_gui_traitsui/archive/hyperspy2.0.zip",
     ],
     "doc": [
         "numpydoc",
@@ -82,7 +82,7 @@ setup(
     extras_require=extra_feature_requirements,
     install_requires=[
         "dask[array]",
-        "hyperspy @ git+https://github.com/hyperspy/hyperspy@RELEASE_next_major",
+        "hyperspy @ https://github.com/hyperspy/hyperspy/archive/RELEASE_next_major.zip",
         "matplotlib",
         "numexpr",
         "numpy",

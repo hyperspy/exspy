@@ -45,7 +45,7 @@ jobs:
 
       - name: Run test suite
         run: |
-          pytest --pyargs exspy
+          pytest --pyargs exspy -n 2
 
       - name: Upload coverage to Codecov
         if: ${{ always() }}

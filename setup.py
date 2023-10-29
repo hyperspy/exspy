@@ -45,6 +45,7 @@ extra_feature_requirements = {
         "pytest     >= 5.0",
         "pytest-mpl",
         "pytest-cov >= 2.8.1",
+        "pytest-xdist",
     ],
     "dev": ["black", "pre-commit >=1.16"],
 }

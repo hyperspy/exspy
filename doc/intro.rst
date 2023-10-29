@@ -1,12 +1,18 @@
+Welcome to exSpy's documentation!
+***********************************
+**exSpy** is a Python package extending the functionality for multi-dimensional
+data analysis provided by the `HyperSpy <https://hyperspy.org/>`_ library. It is
+aimed at helping with the analysis of X-rays Energy Dispersive Spectroscopy (EDS)
+and Electron Energy Loss Spectroscopy (EELS).
 
-What is exSpy
-=============
+Check out the :ref:`installation <install-label>` section for further information,
+including how to start using this project.
 
-exSpy is an open source Python library which provides tools to facilitate
-the visualization and processing of EELS EDS and other spectroscopic data.
+.. note::
 
-exSpy is built on top of HyperSpy, a Python library for multi-dimensional
-data analysis and extends it with tools for the analysis of spectroscopic data.
+   This is an open-source community project: everyone is welcome to contribute.
+   Please read our (see :ref:`contributing_label`) guidelines and get started!
+
 
 Learning resources
 ==================
@@ -98,7 +104,18 @@ HyperSpy in a scientific database e.g. `Google Scholar
     Articles published before 2012 may mention the HyperSpy project under
     its old name, `EELSLab`.
 
-Credits
+
+License
 =======
 
-.. include:: ../AUTHORS.txt
+**exSpy** is free software: you can redistribute it and/or modify
+it under the terms of the `GNU General Public License (GPL)
+<https://www.gnu.org/licenses/#GPL>`_ as published by
+the Free Software Foundation, either version 3 of the license, or
+(at your option) any later version.
+
+**exSpy** is distributed in the hope that it will be useful,
+but **without any warranty**; without even the implied warranty of
+**merchantability** or **fitness for a particular purpose**. See the
+`GNU General Public License <https://www.gnu.org/licenses/#GPL>`_
+for more details.

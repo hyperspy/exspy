@@ -73,11 +73,11 @@ Learning resources
     There are many ways you can help!
 
 Citing exSpy
-=================
+============
 
 If exSpy has been significant to a project that leads to an academic
 publication, please acknowledge that fact by citing it. The DOI in the
-badge below is the `Concept DOI <https://help.zenodo.org/#versioning>`_ of
+badge below is the `Concept DOI <https://help.zenodo.org/faq/#versioning>`_ of
 HyperSpy. It can be used to cite the project without referring to a specific
 version. If you are citing exSpy because you have used it to process data,
 please use the DOI of the specific version that you have employed. You can

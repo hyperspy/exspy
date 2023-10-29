@@ -42,6 +42,11 @@ extensions = [
     "sphinx.ext.napoleon",
 ]
 
+linkcheck_ignore = [
+    "https://doi.org/10.1021/acs.nanolett.5b00449",  # 403 Client Error: Forbidden for url
+    "https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01549.x",  # 403 Client Error: Forbidden for url
+]
+
 intersphinx_mapping = {
     "dask": ("https://docs.dask.org/en/latest", None),
     "hyperspy": ("https://hyperspy.org/hyperspy-doc/dev", None),

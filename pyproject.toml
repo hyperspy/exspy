@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=40.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [tool.black]
 force-exclude = '''
   exspy/misc/eds/ffast_mac.py

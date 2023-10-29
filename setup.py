@@ -48,6 +48,7 @@ extra_feature_requirements = {
         "pytest-xdist",
     ],
     "dev": ["black", "pre-commit >=1.16"],
+    "all": ["gui-jupyter", "gui-traitsui"],
 }
 
 

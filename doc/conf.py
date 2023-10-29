@@ -92,6 +92,7 @@ html_theme_options = {
         "text": "exSpy",
     },
     "header_links_before_dropdown": 6,
+    "navigation_with_keys": False,
 }
 
 # The name of an image file (relative to this directory) to place at the top

@@ -59,7 +59,8 @@ setup(
     author=author,
     license=license,
     url="https://github.com/pyxem/pyxem",
-    long_description=open("README.rst").read(),
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     keywords=[
         "data analysis",
         "microscopy",
@@ -98,7 +99,7 @@ setup(
     ],
     python_requires="~=3.8",
     package_data={
-        "": ["LICENSE", "README.rst"],
+        "": ["LICENSE", "README.md"],
         "exspy": [
             "data/*hspy",
             "test/drawing/data/*hspy",

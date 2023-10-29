@@ -19,11 +19,6 @@
 
 from setuptools import setup, find_packages
 
-exec(open("exspy/release_info.py").read())  # grab version info
-
-# Projects with optional features for building the documentation and running
-# tests. From setuptools:
-# https://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-extras-optional-features-with-their-own-dependencies
 
 extra_feature_requirements = {
     "gui-jupyter": [
@@ -52,12 +47,16 @@ extra_feature_requirements = {
 }
 
 
+version = {}
+with open("exspy/_version.py") as fp:
+    exec(fp.read(), version)
+
+
 setup(
-    name=name,
-    version=version,
-    description="multi-dimensional diffraction microscopy",
-    author=author,
-    license=license,
+    name="exspy",
+    version=version["__version__"],
+    description="EELS and EDS analysis with the HyperSpy framework",
+    license="LICENSE",
     url="https://github.com/pyxem/pyxem",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",

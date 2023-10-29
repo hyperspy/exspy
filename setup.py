@@ -47,8 +47,8 @@ extra_feature_requirements = {
         "pytest-cov >= 2.8.1",
         "pytest-xdist",
     ],
-    "dev": ["black", "pre-commit >=1.16"],
-    "all": ["gui-jupyter", "gui-traitsui"],
+    "dev": ["black"],
+    "all": ["exspy[gui-jupyter]", "exspy[gui-traitsui]"],
 }
 
 

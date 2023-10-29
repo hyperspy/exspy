@@ -3,3 +3,6 @@ doc/auto_examples/*
 build/*
 dist/*
 *egg-info*
+*.pyc
+.spyproject/*
+*__pycache__*

@@ -1,4 +1,8 @@
 name: Release
+# Reusable workflow are not supported with trusted publisher
+# https://github.com/pypa/gh-action-pypi-publish/issues/166
+# copy and paste
+# https://github.com/hyperspy/.github/blob/main/.github/workflows/release_pure_python.yml
 
 # This workflow builds the wheels "on tag".
 # If run from the hyperspy/hyperspy repository, the wheels will be uploaded to pypi ;
@@ -10,41 +14,30 @@ on:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  build_wheels:
-    name: Build wheels
-    runs-on: ubuntu-latest
-    env:
-      CIBW_TEST_COMMAND: "pytest --pyargs exspy"
-      CIBW_TEST_EXTRAS: "tests"
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v2.14.0
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: wheels
-          path: ./wheelhouse/*.whl
-          if-no-files-found: error
-
-  make_sdist:
-    name: Make SDist
+  build:
+    name: Build wheel and sdist
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    - name: Build SDist
-      run: pipx run build --sdist
+    - name: Run build
+      run: |
+        pipx run build
+
+    - name: Display built files
+      run: |
+        ls -shR
+      working-directory: dist
 
     - uses: actions/upload-artifact@v3
       with:
-        path: dist/*.tar.gz
+        path: dist/*
+        name: artifacts
 
   upload_to_pypi:
-    needs: [build_wheels, make_sdist]
+    needs: [build]
     runs-on: ubuntu-latest
+    name: Upload to pypi
     permissions:
       # IMPORTANT: this permission is mandatory for trusted publishing
       id-token: write
@@ -52,34 +45,29 @@ jobs:
     - name: Download dist
       uses: actions/download-artifact@v3
       with:
-        name: artifact
+        name: artifacts
         path: dist
 
-    - name: Download wheels
-      uses: actions/download-artifact@v3
-      with:
-        name: wheels
-        path: dist
-
-    - name: Display structure of downloaded files
-      run: ls -R
+    - name: Display downloaded files
+      run: |
+        ls -shR
       working-directory: dist
 
     - uses: pypa/gh-action-pypi-publish@release/v1
-      if: github.repository_owner == 'hyperspy'
+      if: ${{ startsWith(github.ref, 'refs/tags/') && github.repository_owner == 'hyperspy' }}
       # See https://docs.pypi.org/trusted-publishers/using-a-publisher/
 
-  create_release:
-    # TODO: once we are happy with the workflow
-    # setup zenodo to create a DOI automatically
+  create_github_release:
+    # If zenodo is setup to create a DOI automatically on a GitHub release,
+    # this step will trigger the mining of the DOI
     needs: upload_to_pypi
     permissions:
       contents: write
-    name: Create Release
+    name: Create GitHub Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Create Release
-        id: create_release
+        if: ${{ startsWith(github.ref, 'refs/tags/') && github.repository_owner == 'hyperspy' }}
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844

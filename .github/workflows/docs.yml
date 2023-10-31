@@ -1,0 +1,17 @@
+name: Documentation
+
+on: [push, pull_request]
+
+jobs:
+  Build:
+    # Use the "reusable workflow" from the hyperspy organisation
+    uses: hyperspy/.github/.github/workflows/doc.yml@main
+
+  Push:
+    needs: Build
+    if: ${{ github.event_name != 'pull_request' && github.repository_owner == 'hyperspy' }}
+    permissions:
+      # needs write permission to push the docs to gh-pages
+      contents: write
+    # Use the "reusable workflow" from the hyperspy organisation
+    uses: hyperspy/.github/.github/workflows/push_doc.yml@main

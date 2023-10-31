@@ -13,13 +13,15 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, windows, macos]
-        PYTHON_VERSION: ['3.9', '3.10']
+        PYTHON_VERSION: ['3.9', '3.11']
         LABEL: ['']
         include:
           - os: ubuntu
             PYTHON_VERSION: '3.8'
           - os: ubuntu
-            PYTHON_VERSION: '3.11'
+            PYTHON_VERSION: '3.10'
+          - os: ubuntu
+            PYTHON_VERSION: '3.12'
 
     steps:
       - uses: actions/checkout@v3
@@ -45,8 +47,10 @@ jobs:
 
       - name: Run test suite
         run: |
-          pytest --pyargs exspy
+          pytest --pyargs exspy -n 2 --cov=. --cov-report=xml
 
       - name: Upload coverage to Codecov
         if: ${{ always() }}
         uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

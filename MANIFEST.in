@@ -1,0 +1,2 @@
+prune exspy/tests/drawing/plot_model
+prune exspy/tests/drawing/plot_spectra_markers

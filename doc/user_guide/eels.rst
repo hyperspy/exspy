@@ -258,6 +258,8 @@ automatically, named after its element symbol:
     >>> m.components.B_K
     <B_K (EELSCLEdge component)>
 
+.. _eels.GOS:
+
 Generalised Oscillator Strengths
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Fitting EELS edges requires a model for the so-called *Generalised Oscillator
@@ -385,7 +387,7 @@ edge functionalities:
 * :py:meth:`~.models.EELSModel.fix_fine_structure`
 * :py:meth:`~.models.EELSModel.free_fine_structure`
 
-
+.. _eels.fine_structure:
 
 Fine structure analysis
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -475,9 +477,6 @@ structure width. It is possible to suspend this feature by calling
 :py:meth:`~.models.EELSModel.suspend_auto_fine_structure_width`.
 To resume it use
 :py:meth:`~.models.EELSModel.suspend_auto_fine_structure_width`
-
-.. versionadded:: 2.0
-   Fine structure analysis
 
 Fine structure analysis
 """""""""""""""""""""""

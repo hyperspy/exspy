@@ -312,7 +312,7 @@ class EDSSEMSpectrum(EDSSpectrum):
             auto_background=auto_background,
             auto_add_lines=auto_add_lines,
             *args,
-            **kwargs
+            **kwargs,
         )
         return model
 

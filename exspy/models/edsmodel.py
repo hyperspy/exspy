@@ -344,7 +344,7 @@ class EDSModel(Model1D):
         end_energy=None,
         windows_sigma=(4.0, 3.0),
         kind="single",
-        **kwargs
+        **kwargs,
     ):
         """
         Fit the background in the energy range containing no X-ray line.
@@ -849,7 +849,7 @@ class EDSModel(Model1D):
         plot_result=False,
         only_one=True,
         only_lines=("a",),
-        **kwargs
+        **kwargs,
     ):
         """
         Return the fitted intensity of the X-ray lines.

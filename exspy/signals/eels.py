@@ -326,8 +326,8 @@ class EELSSpectrum(Signal1D):
         also_align=[],
         print_stats=True,
         subpixel=True,
-        left=-3.0,
-        right=3.0,
+        start=-3.0,
+        end=3.0,
         mask=None,
         signal_range=None,
         show_progressbar=None,
@@ -358,11 +358,11 @@ class EELSSpectrum(Signal1D):
         subpixel : bool
             If True, perform the alignment with subpixel accuracy
             using cross-correlation.
-        left : float
-            When subpixel is True, left is the start of energy range used 
+        start : float
+            When subpixel is True, this variable is the start of energy range used 
             in cross-correlation in whichever unit the energy axis is in.
-        right : float
-            When subpixel is True, right is the end of energy range used 
+        end : float
+            When subpixel is True, this variable is the end of energy range used 
             in cross-correlation in whichever unit the energy axis is in.
         mask : Signal1D of bool data type or bool array.
             It must have signal_dimension = 0 and navigation_shape equal to
@@ -459,26 +459,26 @@ class EELSSpectrum(Signal1D):
 
         if subpixel is False:
             return
-        left, right = left, right
+         
         if calibrate is False:
-            left += mean_
-            right += mean_
+            float(start)  += mean_
+            float(end)  += mean_
 
-        left = (
-            left
-            if left > self.axes_manager[-1].axis[0]
+        start = (
+            start
+            if start > self.axes_manager[-1].axis[0]
             else self.axes_manager[-1].axis[0]
         )
-        right = (
-            right
-            if right < self.axes_manager[-1].axis[-1]
+        end   = (
+            end  
+            if end   < self.axes_manager[-1].axis[-1]
             else self.axes_manager[-1].axis[-1]
         )
 
         if self.axes_manager.navigation_size > 1:
             self.align1D(
-                left,
-                right,
+                start ,
+                end ,
                 also_align=also_align,
                 show_progressbar=show_progressbar,
                 mask=mask,

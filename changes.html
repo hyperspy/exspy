@@ -449,11 +449,18 @@ document.write(`
 <a class="reference external" href="https://holospy.readthedocs.io/en/latest/changes.html">https://holospy.readthedocs.io/en/latest/changes.html</a></p>
 <section id="dev0-unreleased">
 <h2>0.1.dev0 (UNRELEASED)<a class="headerlink" href="#dev0-unreleased" title="Link to this heading">#</a></h2>
-</section>
-<section id="initiation-2023-09-30">
-<h2>Initiation (2023-09-30)<a class="headerlink" href="#initiation-2023-09-30" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>exSpy was split out of the <a class="reference external" href="https://github.com/hyperspy/hyperspy">HyperSpy repository</a> on Oct. 30, 2023. The X-ray energy
+<li><p>Support for tabulated <a class="reference internal" href="user_guide/eels.html#eels-gos"><span class="std std-ref">Generalised Oscillator Strengths (GOS)</span></a> using the
+<a class="reference external" href="https://gitlab.com/gguzzina/gosh">GOSH</a> open file format. By default, a freely
+usable dataset is downloaded from <a class="reference external" href="https://zenodo.org/record/6599071">doi:10.5281/zenodo.7645765</a>
+(<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3082">HyperSpy #3082</a>)</p></li>
+<li><p>Add functionality to fit the <a class="reference internal" href="user_guide/eels.html#eels-fine-structure"><span class="std std-ref">EELS fine structure</span></a> using components, e.g. <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.model/components1D.html#hyperspy.api.model.components1D.Gaussian" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.model.components1D.Gaussian</span></code></a>. (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3206">HyperSpy #3206</a>)</p></li>
+</ul>
+</section>
+<section id="initiation-2023-10-28">
+<h2>Initiation (2023-10-28)<a class="headerlink" href="#initiation-2023-10-28" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>exSpy was split out of the <a class="reference external" href="https://github.com/hyperspy/hyperspy">HyperSpy repository</a> on Oct. 28, 2023. The X-ray energy
 dispersive spectroscopy (EDS) and energy electron loss spectroscopy (EELS)
 functionalities so far developed in HyperSpy were moved to the
 <a class="reference external" href="https://github.com/hyperspy/exspy">exSpy repository</a>.</p></li>
@@ -505,7 +512,7 @@ functionalities so far developed in HyperSpy were moved to the
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dev0-unreleased">0.1.dev0 (UNRELEASED)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initiation-2023-09-30">Initiation (2023-09-30)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initiation-2023-10-28">Initiation (2023-10-28)</a></li>
 </ul>
   </nav></div>
 

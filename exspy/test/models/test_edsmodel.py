@@ -291,7 +291,7 @@ class TestMaps:
         s.axes_manager.create_axes([{"size": mix.shape[0], "navigate": True}] * 2 + [a])
         s.add_elements(s2.metadata.Sample.elements)
 
-        for d, m in zip(s._iterate_signal(), mix.flatten()):
+        for d, m in zip(s._iterate_signal(iterpath="flyback"), mix.flatten()):
             d[:] = d * m + (1 - m) * s2.data
         self.mix = mix
         self.s = s

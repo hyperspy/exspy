@@ -97,7 +97,7 @@ class TestTwinnedComponents:
 
 class TestWarningSlowMultifit:
     def setup_method(self, method):
-        s = hs.datasets.two_gaussians().inav[0]
+        s = hs.data.two_gaussians().inav[0]
         s.set_signal_type("EELS")
         m = s.create_model(auto_background=False, auto_add_edges=False)
         g1 = Gaussian(centre=40)

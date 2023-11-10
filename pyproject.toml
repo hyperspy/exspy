@@ -11,6 +11,8 @@ keywords=[
     "data analysis",
     "microscopy",
     "electron microscopy",
+    "electron energy loss spectroscopy",
+    "X-ray energy-dispersive spectroscopy"
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -31,7 +33,7 @@ classifiers = [
 ]
 dependencies = [
   "dask[array]",
-  "hyperspy @ https://github.com/hyperspy/hyperspy/archive/RELEASE_next_major.zip",
+  "hyperspy>=2.0rc0",
   "matplotlib",
   "numexpr",
   "numpy",

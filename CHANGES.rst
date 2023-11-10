@@ -12,7 +12,7 @@ https://holospy.readthedocs.io/en/latest/changes.html
   usable dataset is downloaded from `doi:10.5281/zenodo.7645765 <https://zenodo.org/record/6599071>`_
   (`HyperSpy #3082 <https://github.com/hyperspy/hyperspy/issues/3082>`_)
 - Add functionality to fit the :ref:`EELS fine structure <eels.fine_structure>` using components, e.g. :py:class:`hyperspy.api.model.components1D.Gaussian`. (`HyperSpy #3206 <https://github.com/hyperspy/hyperspy/issues/3206>`_)
-
+- Use reusable workflow from the hyperspy organisation for the doc workflow (`#13 <https://github.com/hyperspy/exspy/pull/13>`_)
 
 Initiation (2023-10-28)
 =======================

@@ -464,9 +464,9 @@ document.write(`
                   
   <section id="exspy-metadata-structure">
 <span id="metadata-structure"></span><h1>exSpy Metadata Structure<a class="headerlink" href="#exspy-metadata-structure" title="Link to this heading">#</a></h1>
-<p><strong>exSpy</strong> extends the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#metadata-structure" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy metadata structure</span></a>
+<p><strong>exSpy</strong> extends the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#metadata-structure" title="(in HyperSpy v2.0rc0)"><span class="xref std std-ref">HyperSpy metadata structure</span></a>
 with conventions for metadata specific to its signal types. Refer to the
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#metadata-structure" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy metadata documentation</span></a>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#metadata-structure" title="(in HyperSpy v2.0rc0)"><span class="xref std std-ref">HyperSpy metadata documentation</span></a>
 for general metadata fields.</p>
 <p>The metadata of any <strong>signal objects</strong> is stored in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute,
 which has a tree structure. By convention, the node labels are capitalized and
@@ -475,9 +475,9 @@ is not dimensionless, the units can be given in an extra leaf with the same
 label followed by the <code class="docutils literal notranslate"><span class="pre">_units</span></code> suffix.</p>
 <p>Besides directly accessing the metadata tree structure, e.g.
 <code class="docutils literal notranslate"><span class="pre">s.metadata.Signal.signal_type</span></code>, the HyperSpy methods
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/utils/index.html#hyperspy.misc.utils.DictionaryTreeBrowser.set_item" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.set_item()</span></code></a>,
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/utils/index.html#hyperspy.misc.utils.DictionaryTreeBrowser.has_item" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.has_item()</span></code></a> and
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/utils/index.html#hyperspy.misc.utils.DictionaryTreeBrowser.get_item" title="(in HyperSpy v2.0.dev0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.get_item()</span></code></a>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/utils/index.html#hyperspy.misc.utils.DictionaryTreeBrowser.set_item" title="(in HyperSpy v2.0rc0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.set_item()</span></code></a>,
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/utils/index.html#hyperspy.misc.utils.DictionaryTreeBrowser.has_item" title="(in HyperSpy v2.0rc0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.has_item()</span></code></a> and
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/utils/index.html#hyperspy.misc.utils.DictionaryTreeBrowser.get_item" title="(in HyperSpy v2.0rc0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser.get_item()</span></code></a>
 can be used to add to, search for and read from items in the metadata tree,
 respectively.</p>
 <p>The EELS of EDS specific metadata structure is represented in the following
@@ -552,7 +552,7 @@ all types of leaves will apply to every type of measurement.</p>
 </div>
 <section id="general">
 <h2>General<a class="headerlink" href="#general" title="Link to this heading">#</a></h2>
-<p>See <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#general-metadata" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy-Metadata-General</span></a>.</p>
+<p>See <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#general-metadata" title="(in HyperSpy v2.0rc0)"><span class="xref std std-ref">HyperSpy-Metadata-General</span></a>.</p>
 </section>
 <section id="sample">
 <h2>Sample<a class="headerlink" href="#sample" title="Link to this heading">#</a></h2>
@@ -567,7 +567,7 @@ e.g. [‘Al_Ka’, ‘Ni_Lb’] for the K alpha line of Aluminum
 and the L beta line of Nickel.</p>
 </dd>
 </dl>
-<p>See also <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#sample-metadata" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy-Metadata-Sample</span></a>.</p>
+<p>See also <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#sample-metadata" title="(in HyperSpy v2.0rc0)"><span class="xref std std-ref">HyperSpy-Metadata-Sample</span></a>.</p>
 </section>
 <section id="signal">
 <h2>Signal<a class="headerlink" href="#signal" title="Link to this heading">#</a></h2>
@@ -577,7 +577,7 @@ and the L beta line of Nickel.</p>
 specific signal class is <code class="docutils literal notranslate"><span class="pre">EELS</span></code>, <code class="docutils literal notranslate"><span class="pre">EDS</span></code>, <code class="docutils literal notranslate"><span class="pre">EDS_SEM</span></code> or <code class="docutils literal notranslate"><span class="pre">EDS_TEM</span></code>.</p>
 </dd>
 </dl>
-<p>See also <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#signal-metadata" title="(in HyperSpy v2.0.dev0)"><span class="xref std std-ref">HyperSpy-Metadata-Sample</span></a>.</p>
+<p>See also <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/metadata.html#signal-metadata" title="(in HyperSpy v2.0rc0)"><span class="xref std std-ref">HyperSpy-Metadata-Sample</span></a>.</p>
 </section>
 <section id="acquisition-instrument">
 <span id="source-metadata"></span><h2>Acquisition_instrument<a class="headerlink" href="#acquisition-instrument" title="Link to this heading">#</a></h2>

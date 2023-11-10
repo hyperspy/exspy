@@ -460,9 +460,13 @@ class EELSSpectrum(Signal1D):
         if subpixel is False:
             return
          
+        #Enforce start and end as float
+        start = float(start)
+        end = float(end)
+
         if calibrate is False:
-            float(start)  += mean_
-            float(end)  += mean_
+            start  += mean_
+            end  += mean_
 
         start = (
             start

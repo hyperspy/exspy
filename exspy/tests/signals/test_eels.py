@@ -193,6 +193,20 @@ class TestAlignZLP:
         s.align_zero_loss_peak(crop=False, print_stats=False)
         assert original_size == s.axes_manager.signal_axes[0].size
 
+    def test_align_zero_loss_peak_start_end_float(self):
+        s = self.signal
+        s.align_zero_loss_peak(subpixel=True, start=-2., end= 2.)
+        #Check if start and end arguments work
+        assert s.data.mean() == 0
+        assert s.data.std() == 0
+
+    def test_align_zero_loss_peak_start_end_int(self):
+        s = self.signal
+        s.align_zero_loss_peak(subpixel=True, start=-2, end= 2)
+        #Check if start and end arguments work
+        assert s.data.mean() == 0
+        assert s.data.std() == 0
+
 
 @lazifyTestClass
 class TestSpikesRemovalToolZLP:

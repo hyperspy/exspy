@@ -1,6 +1,91 @@
 [build-system]
-requires = ["setuptools>=40.8.0", "wheel"]
+requires = ["setuptools>=64", "setuptools_scm>=8", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "exspy"
+description = "EELS and EDS analysis with the HyperSpy framework"
+requires-python = ">=3.8"
+readme = "README.md"
+keywords=[
+    "data analysis",
+    "microscopy",
+    "electron microscopy",
+    "electron energy loss spectroscopy",
+    "X-ray energy-dispersive spectroscopy"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Physics",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX",
+  "Operating System :: Unix",
+  "Operating System :: MacOS",
+]
+dependencies = [
+  "dask[array]",
+  "hyperspy>=2.0rc0",
+  "matplotlib",
+  "numexpr",
+  "numpy",
+  "pint",
+  "pooch",
+  "prettytable",
+  "requests",
+  "scipy",
+  "traits",
+]
+dynamic = ["version"]
+
+[project.entry-points."hyperspy.extensions"]
+exspy = "exspy"
+
+[project.license]
+file = "LICENSE"
+
+[project.optional-dependencies]
+"gui-jupyter" = [
+  "hyperspy_gui_ipywidgets @ https://github.com/hyperspy/hyperspy_gui_ipywidgets/archive/hyperspy2.0.zip",
+]
+"gui-traitsui" = [
+  "hyperspy_gui_traitsui @ https://github.com/hyperspy/hyperspy_gui_traitsui/archive/hyperspy2.0.zip",
+]
+"doc" = [
+  "numpydoc",
+  "pydata-sphinx-theme>=0.13",
+  "sphinx",
+  "sphinx-copybutton",
+  "sphinx-design",
+  "sphinx-favicon",
+  "sphinx-gallery",
+]
+"tests" = [
+  "pytest     >= 5.0",
+  "pytest-mpl",
+  "pytest-cov >= 2.8.1",
+  "pytest-xdist",
+  "setuptools-scm",
+]
+"dev" = ["black"]
+"all" = [
+  "exspy[gui-jupyter]",
+  "exspy[gui-traitsui]"
+]
+
+[project.urls]
+"Homepage" = "https://hyperspy.org/exspy"
+"Bug Reports" = "https://github.com/hyperspy/exspy/issues"
+"Source" = "https://github.com/hyperspy/exspy"
 
 [tool.black]
 force-exclude = '''
@@ -10,4 +95,18 @@ force-exclude = '''
 
 [tool.pytest.ini_options]
 addopts = "-ra -n auto --dist loadfile"
-testpaths = ["hyperspy/tests", ]
+testpaths = ["exspy/tests", ]
+
+[tool.setuptools.packages.find]
+include = ["exspy*"]
+# Excluding rsciio.tests.data folder is done in MANIFEST.in
+# because setuptools doesn't support it in pyproject.toml
+
+[tool.setuptools.package-data]
+"*" = [
+  "*hspy",
+  "*.yaml"
+  ]
+
+[tool.setuptools_scm]
+# Presence enables setuptools_scm, the version will be determine at build time from git

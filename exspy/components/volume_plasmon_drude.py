@@ -61,7 +61,7 @@ class VolumePlasmonDrude(hs.model.components1D.Expression):
         fwhm=1.5,
         module="numexpr",
         compute_gradients=False,
-        **kwargs
+        **kwargs,
     ):
         super().__init__(
             expression="where(x > 0, intensity * (pe2 * x * fwhm) \

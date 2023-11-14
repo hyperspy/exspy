@@ -72,7 +72,7 @@ class DoublePowerLaw(Expression):
         left_cutoff=0.0,
         module="numexpr",
         compute_gradients=False,
-        **kwargs
+        **kwargs,
     ):
         super().__init__(
             expression="where(x > left_cutoff, \

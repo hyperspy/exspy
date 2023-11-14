@@ -13,6 +13,12 @@ https://holospy.readthedocs.io/en/latest/changes.html
   (`HyperSpy #3082 <https://github.com/hyperspy/hyperspy/issues/3082>`_)
 - Add functionality to fit the :ref:`EELS fine structure <eels.fine_structure>` using components, e.g. :py:class:`hyperspy.api.model.components1D.Gaussian`. (`HyperSpy #3206 <https://github.com/hyperspy/hyperspy/issues/3206>`_)
 - Use reusable workflow from the hyperspy organisation for the doc workflow (`#13 <https://github.com/hyperspy/exspy/pull/13>`_)
+- Consolidate packaging metadata in ``pyproject.toml``. (`#4 <https://github.com/hyperspy/exspy/pull/4>`_, `#10 <https://github.com/hyperspy/exspy/pull/10>`_)
+- Use ``setuptools_scm`` to set holospy version at build time (`#10 <https://github.com/hyperspy/exspy/pull/10>`_)
+- Add package and test workflow (`#10 <https://github.com/hyperspy/exspy/pull/10>`_)
+- Add python 3.12 (`#10 <https://github.com/hyperspy/exspy/pull/10>`_)
+- Add release workflow (`#10 <https://github.com/hyperspy/exspy/pull/10>`_)
+
 
 Initiation (2023-10-28)
 =======================

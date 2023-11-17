@@ -7,6 +7,7 @@ https://holospy.readthedocs.io/en/latest/changes.html
 0.1.dev0 (UNRELEASED)
 =====================
 
+- Enable ``signal_range`` arguments when using ``subpixel=True`` in :py:meth:`~.signals.EELSSpectrum.align_zero_loss_peak` (`#7 <https://github.com/hyperspy/exspy/pull/7>`_)
 - Support for tabulated :ref:`Generalised Oscillator Strengths (GOS) <eels.GOS>` using the
   `GOSH <https://gitlab.com/gguzzina/gosh>`_ open file format. By default, a freely
   usable dataset is downloaded from `doi:10.5281/zenodo.7645765 <https://zenodo.org/record/6599071>`_

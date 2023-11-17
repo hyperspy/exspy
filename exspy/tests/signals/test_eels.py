@@ -195,17 +195,21 @@ class TestAlignZLP:
 
     def test_align_zero_loss_peak_start_end_float(self):
         s = self.signal
-        s.align_zero_loss_peak(subpixel=True, start=-2., end= 2.)
-        #Check if start and end arguments work
-        assert s.data.mean() == 0
-        assert s.data.std() == 0
+        s.axes_manager[-1].offset = -2
+        s.align_zero_loss_peak(subpixel=True, start=-2.0, end=2.0)
+        zlpc = s.estimate_zero_loss_peak_centre()
+        # Check if start and end arguments work
+        assert zlpc.data.mean() == 0
+        assert zlpc.data.std() == 0
 
     def test_align_zero_loss_peak_start_end_int(self):
         s = self.signal
-        s.align_zero_loss_peak(subpixel=True, start=-2, end= 2)
-        #Check if start and end arguments work
-        assert s.data.mean() == 0
-        assert s.data.std() == 0
+        s.axes_manager[-1].offset = -2
+        s.align_zero_loss_peak(subpixel=True, start=-2, end=2)
+        zlpc = s.estimate_zero_loss_peak_centre()
+        # Check if start and end arguments work
+        assert zlpc.data.mean() == 0
+        assert zlpc.data.std() == 0
 
 
 @lazifyTestClass

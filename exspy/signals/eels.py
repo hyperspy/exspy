@@ -337,7 +337,7 @@ class EELSSpectrum(Signal1D):
         """Align the zero-loss peak.
 
         This function first aligns the spectra using the result of
-        `estimate_zero_loss_peak_centre` which finds the maximum in the 
+        `estimate_zero_loss_peak_centre` which finds the maximum in the
         given energy range, then if subpixel is True,
         proceeds to align with subpixel accuracy using `align1D`. The offset
         is automatically correct if `calibrate` is True.
@@ -359,10 +359,10 @@ class EELSSpectrum(Signal1D):
             If True, perform the alignment with subpixel accuracy
             using cross-correlation.
         start : float
-            When subpixel is True, this variable is the start of energy range used 
+            When subpixel is True, this variable is the start of energy range used
             in cross-correlation in whichever unit the energy axis is in.
         end : float
-            When subpixel is True, this variable is the end of energy range used 
+            When subpixel is True, this variable is the end of energy range used
             in cross-correlation in whichever unit the energy axis is in.
         mask : Signal1D of bool data type or bool array.
             It must have signal_dimension = 0 and navigation_shape equal to
@@ -459,30 +459,30 @@ class EELSSpectrum(Signal1D):
 
         if subpixel is False:
             return
-         
-        #Enforce start and end as float
+
+        # Enforce start and end as float
         start = float(start)
         end = float(end)
 
         if calibrate is False:
-            start  += mean_
-            end  += mean_
+            start += mean_
+            end += mean_
 
         start = (
             start
             if start > self.axes_manager[-1].axis[0]
             else self.axes_manager[-1].axis[0]
         )
-        end   = (
-            end  
-            if end   < self.axes_manager[-1].axis[-1]
+        end = (
+            end
+            if end < self.axes_manager[-1].axis[-1]
             else self.axes_manager[-1].axis[-1]
         )
 
         if self.axes_manager.navigation_size > 1:
             self.align1D(
-                start ,
-                end ,
+                start,
+                end,
                 also_align=also_align,
                 show_progressbar=show_progressbar,
                 mask=mask,

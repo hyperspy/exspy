@@ -326,8 +326,6 @@ class EELSSpectrum(Signal1D):
         also_align=[],
         print_stats=True,
         subpixel=True,
-        start=-3.0,
-        end=3.0,
         mask=None,
         signal_range=None,
         show_progressbar=None,
@@ -358,12 +356,6 @@ class EELSSpectrum(Signal1D):
         subpixel : bool
             If True, perform the alignment with subpixel accuracy
             using cross-correlation.
-        start : float
-            When subpixel is True, this variable is the start of energy range used
-            in cross-correlation in whichever unit the energy axis is in.
-        end : float
-            When subpixel is True, this variable is the end of energy range used
-            in cross-correlation in whichever unit the energy axis is in.
         mask : Signal1D of bool data type or bool array.
             It must have signal_dimension = 0 and navigation_shape equal to
             the shape of the current signal. Where mask is True the shift is
@@ -460,9 +452,7 @@ class EELSSpectrum(Signal1D):
         if subpixel is False:
             return
 
-        # Enforce start and end as float
-        start = float(start)
-        end = float(end)
+        start, end = signal_range or (-3.0, 3.0)
 
         if calibrate is False:
             start += mean_

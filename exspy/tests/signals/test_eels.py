@@ -193,6 +193,18 @@ class TestAlignZLP:
         s.align_zero_loss_peak(crop=False, print_stats=False)
         assert original_size == s.axes_manager.signal_axes[0].size
 
+    @pytest.mark.parametrize("signal_range", ((-2.0, 2.0), (0, 40), "roi"))
+    def test_align_zero_loss_peak_start_end_float(self, signal_range):
+        s = self.signal
+        if signal_range == "roi":
+            signal_range = hs.roi.SpanROI(-3, 3)
+        s.axes_manager[-1].offset = -2
+        s.align_zero_loss_peak(subpixel=True, signal_range=signal_range)
+        zlpc = s.estimate_zero_loss_peak_centre()
+        # Check if start and end arguments work
+        assert zlpc.data.mean() == 0
+        assert zlpc.data.std() == 0
+
 
 @lazifyTestClass
 class TestSpikesRemovalToolZLP:

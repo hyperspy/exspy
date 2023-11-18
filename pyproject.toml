@@ -93,6 +93,14 @@ force-exclude = '''
   | exspy/misc/elements.py
 '''
 
+[tool.coverage.run]
+branch = true
+source = ["hyperspy"]
+omit = ["hyperspy/tests/*"]
+
+[tool.coverage.report]
+precision = 2
+
 [tool.pytest.ini_options]
 addopts = "-ra -n auto --dist loadfile"
 testpaths = ["exspy/tests", ]

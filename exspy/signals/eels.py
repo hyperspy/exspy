@@ -335,7 +335,8 @@ class EELSSpectrum(Signal1D):
         """Align the zero-loss peak.
 
         This function first aligns the spectra using the result of
-        `estimate_zero_loss_peak_centre` and afterward, if subpixel is True,
+        `estimate_zero_loss_peak_centre` which finds the maximum in the
+        given energy range, then if subpixel is True,
         proceeds to align with subpixel accuracy using `align1D`. The offset
         is automatically correct if `calibrate` is True.
 
@@ -450,26 +451,28 @@ class EELSSpectrum(Signal1D):
 
         if subpixel is False:
             return
-        left, right = -3.0, 3.0
-        if calibrate is False:
-            left += mean_
-            right += mean_
 
-        left = (
-            left
-            if left > self.axes_manager[-1].axis[0]
+        start, end = signal_range or (-3.0, 3.0)
+
+        if calibrate is False:
+            start += mean_
+            end += mean_
+
+        start = (
+            start
+            if start > self.axes_manager[-1].axis[0]
             else self.axes_manager[-1].axis[0]
         )
-        right = (
-            right
-            if right < self.axes_manager[-1].axis[-1]
+        end = (
+            end
+            if end < self.axes_manager[-1].axis[-1]
             else self.axes_manager[-1].axis[-1]
         )
 
         if self.axes_manager.navigation_size > 1:
             self.align1D(
-                left,
-                right,
+                start,
+                end,
                 also_align=also_align,
                 show_progressbar=show_progressbar,
                 mask=mask,

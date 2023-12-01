@@ -2,10 +2,12 @@ Changelog
 *********
 
 Changelog entries for the development version are available at
-https://holospy.readthedocs.io/en/latest/changes.html
+https://exspy.readthedocs.io/en/latest/changes.html
 
-0.1.dev0 (UNRELEASED)
-=====================
+
+.. towncrier-draft-entries:: |release| [UNRELEASED]
+
+.. towncrier release notes start
 
 - Enable ``signal_range`` arguments when using ``subpixel=True`` in :py:meth:`~.signals.EELSSpectrum.align_zero_loss_peak` (`#7 <https://github.com/hyperspy/exspy/pull/7>`_)
 - Support for tabulated :ref:`Generalised Oscillator Strengths (GOS) <eels.GOS>` using the

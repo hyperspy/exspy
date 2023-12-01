@@ -14,8 +14,15 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+import hyperspy.api as hs
+import logging
 import numpydoc
 from packaging.version import Version
+
+
+# Set logging level to `ERROR` to avoid exspy warning in documentation
+hs.set_log_level("ERROR")
+
 
 # -- Project information -----------------------------------------------------
 
@@ -42,6 +49,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
     "sphinx_gallery.gen_gallery",
+    "sphinxcontrib.towncrier",
 ]
 
 linkcheck_ignore = [
@@ -147,3 +155,10 @@ sphinx_gallery_conf = {
 
 copybutton_prompt_text = r">>> |\.\.\. "
 copybutton_prompt_is_regexp = True
+
+# -- Options for towncrier_draft extension -----------------------------------
+
+# Options: draft/sphinx-version/sphinx-release
+towncrier_draft_autoversion_mode = "draft"
+towncrier_draft_include_empty = False
+towncrier_draft_working_directory = ".."

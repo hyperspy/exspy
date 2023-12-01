@@ -4,8 +4,10 @@ To publish a new exSpy release do the following steps:
 
 ## Preparation
 
-- Create a new PR to the 'main' branch for the release process, e.g. `release_v0.1.1`
-- Make sure to have the code ready, including changelog
+- Create a new PR to the 'main' branch for the release process, e.g. `release_v0.1.1` with
+  the following changes:
+  - Update and check release notes 
+  - Update dev `fallback_version` in `pyproject.toml`
 - Let that PR collect comments for a day to ensure that other maintainers are comfortable
   with releasing
 - Set correct date and version number in `CHANGES.rst`

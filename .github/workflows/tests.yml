@@ -25,6 +25,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: get repository name
+        shell: bash
+        run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
+      - name: Fetch tags upstream
+        if: ${{ github.repository_owner != 'hyperspy' }}
+        # Needs to fetch the tags from upstream to get the
+        # correct version with setuptools_scm
+        run: |
+          git remote add upstream https://github.com/hyperspy/${{ env.REPOSITORY_NAME }}.git
+          git fetch upstream --tags
 
       - uses: actions/setup-python@v4
         name: Install Python
@@ -37,7 +51,6 @@ jobs:
           pip --version
 
       - name: Install
-        shell: bash
         run: |
           pip install -e .[tests]
 

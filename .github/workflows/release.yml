@@ -14,28 +14,13 @@ on:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  build:
-    name: Build wheel and sdist
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Run build
-      run: |
-        pipx run build
-
-    - name: Display built files
-      run: |
-        ls -shR
-      working-directory: dist
-
-    - uses: actions/upload-artifact@v3
-      with:
-        path: dist/*
-        name: artifacts
+  package_and_test:
+    name: Package and Test
+    # Use the "reusable workflow" from the hyperspy organisation
+    uses: hyperspy/.github/.github/workflows/package_and_test.yml@main
 
   upload_to_pypi:
-    needs: [build]
+    needs: [package_and_test]
     runs-on: ubuntu-latest
     name: Upload to pypi
     permissions:
@@ -44,9 +29,6 @@ jobs:
     steps:
     - name: Download dist
       uses: actions/download-artifact@v3
-      with:
-        name: artifacts
-        path: dist
 
     - name: Display downloaded files
       run: |

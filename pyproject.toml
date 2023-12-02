@@ -54,12 +54,8 @@ exspy = "exspy"
 file = "LICENSE"
 
 [project.optional-dependencies]
-"gui-jupyter" = [
-  "hyperspy_gui_ipywidgets @ https://github.com/hyperspy/hyperspy_gui_ipywidgets/archive/hyperspy2.0.zip",
-]
-"gui-traitsui" = [
-  "hyperspy_gui_traitsui @ https://github.com/hyperspy/hyperspy_gui_traitsui/archive/hyperspy2.0.zip",
-]
+"gui-jupyter" = ["hyperspy_gui_ipywidgets>=2.0"]
+"gui-traitsui" = ["hyperspy_gui_traitsui>=2.0"]
 "doc" = [
   "numpydoc",
   "pydata-sphinx-theme>=0.13",

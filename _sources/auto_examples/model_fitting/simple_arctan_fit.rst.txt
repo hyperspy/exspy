@@ -42,9 +42,9 @@ Fit an arctan function.
     Active: True
     Parameter Name |    Free |      Value |        Std |        Min |        Max | Linear
     ============== | ======= | ========== | ========== | ========== | ========== | ======
-                 A |    True | 0.99914977 | 0.00212004 |       None |       None |   True
-                 k |    True | 0.95883549 | 0.07856293 |       None |       None |  False
-                x0 |    True | -0.2038163 | 0.08135391 |       None |       None |  False
+                 A |    True | 1.00220217 | 0.00212701 |       None |       None |   True
+                 k |    True | 1.09957149 | 0.09786674 |       None |       None |  False
+                x0 |    True | -0.0289328 | 0.07487562 |       None |       None |  False
 
 
 
@@ -55,7 +55,7 @@ Fit an arctan function.
 
 |
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import numpy as np
@@ -91,7 +91,7 @@ Fit an arctan function.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.312 seconds)
+   **Total running time of the script:** (0 minutes 0.366 seconds)
 
 
 .. _sphx_glr_download_auto_examples_model_fitting_simple_arctan_fit.py:
@@ -100,16 +100,13 @@ Fit an arctan function.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: simple_arctan_fit.ipynb <simple_arctan_fit.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: simple_arctan_fit.py <simple_arctan_fit.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: simple_arctan_fit.ipynb <simple_arctan_fit.ipynb>`
 
 
 .. only:: html

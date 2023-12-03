@@ -23,8 +23,6 @@ To publish a new exSpy release do the following steps:
 
 ## Post-release action
 
-- Update version in other branches if necessary
-- Prepare `CHANGES.rst` for development by adding `UNRELEASED` headline
 - Merge the PR
 
 ## Follow-up

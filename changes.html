@@ -454,22 +454,28 @@ document.write(`
 <h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
 <p>Changelog entries for the development version are available at
 <a class="reference external" href="https://exspy.readthedocs.io/en/latest/changes.html">https://exspy.readthedocs.io/en/latest/changes.html</a></p>
-<section id="release-unreleased-2023-12-02">
-<h2> [UNRELEASED] (2023-12-02)<a class="headerlink" href="#release-unreleased-2023-12-02" title="Link to this heading">#</a></h2>
-<section id="maintenance">
-<h3>Maintenance<a class="headerlink" href="#maintenance" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h2>0.1 (2023-12-03)<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="new-features">
+<h3>New features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Use towncrier to manage release notes and improve setting dev version (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/14">#14</a>)</p></li>
-</ul>
-</section>
-</section>
-<ul class="simple">
-<li><p>Enable <code class="docutils literal notranslate"><span class="pre">signal_range</span></code> arguments when using <code class="docutils literal notranslate"><span class="pre">subpixel=True</span></code> in <a class="reference internal" href="reference/signals.html#exspy.signals.EELSSpectrum.align_zero_loss_peak" title="exspy.signals.EELSSpectrum.align_zero_loss_peak"><code class="xref py py-meth docutils literal notranslate"><span class="pre">align_zero_loss_peak()</span></code></a> (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/7">#7</a>)</p></li>
 <li><p>Support for tabulated <a class="reference internal" href="user_guide/eels.html#eels-gos"><span class="std std-ref">Generalised Oscillator Strengths (GOS)</span></a> using the
 <a class="reference external" href="https://gitlab.com/gguzzina/gosh">GOSH</a> open file format. By default, a freely
 usable dataset is downloaded from <a class="reference external" href="https://zenodo.org/record/6599071">doi:10.5281/zenodo.7645765</a>
 (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3082">HyperSpy #3082</a>)</p></li>
 <li><p>Add functionality to fit the <a class="reference internal" href="user_guide/eels.html#eels-fine-structure"><span class="std std-ref">EELS fine structure</span></a> using components, e.g. <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.model/components1D.html#hyperspy.api.model.components1D.Gaussian" title="(in HyperSpy v2.0rc0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.model.components1D.Gaussian</span></code></a>. (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3206">HyperSpy #3206</a>)</p></li>
+</ul>
+</section>
+<section id="enhancements">
+<h3>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Enable <code class="docutils literal notranslate"><span class="pre">signal_range</span></code> arguments when using <code class="docutils literal notranslate"><span class="pre">subpixel=True</span></code> in <a class="reference internal" href="reference/signals.html#exspy.signals.EELSSpectrum.align_zero_loss_peak" title="exspy.signals.EELSSpectrum.align_zero_loss_peak"><code class="xref py py-meth docutils literal notranslate"><span class="pre">align_zero_loss_peak()</span></code></a> (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/7">#7</a>)</p></li>
+</ul>
+</section>
+<section id="maintenance">
+<h3>Maintenance<a class="headerlink" href="#maintenance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use towncrier to manage release notes and improve setting dev version (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/14">#14</a>)</p></li>
 <li><p>Use reusable workflow from the hyperspy organisation for the doc workflow (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/13">#13</a>)</p></li>
 <li><p>Consolidate packaging metadata in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/4">#4</a>, <a class="reference external" href="https://github.com/hyperspy/exspy/pull/10">#10</a>)</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> to set holospy version at build time (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/10">#10</a>)</p></li>
@@ -477,6 +483,8 @@ usable dataset is downloaded from <a class="reference external" href="https://ze
 <li><p>Add python 3.12 (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/10">#10</a>)</p></li>
 <li><p>Add release workflow (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/10">#10</a>)</p></li>
 </ul>
+</section>
+</section>
 <section id="initiation-2023-10-28">
 <h2>Initiation (2023-10-28)<a class="headerlink" href="#initiation-2023-10-28" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -532,7 +540,9 @@ functionalities so far developed in HyperSpy were moved to the
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-unreleased-2023-12-02"> [UNRELEASED] (2023-12-02)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0.1 (2023-12-03)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancements">Enhancements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maintenance">Maintenance</a></li>
 </ul>
 </li>

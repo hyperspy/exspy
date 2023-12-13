@@ -8,8 +8,8 @@ description = "EELS and EDS analysis with the HyperSpy framework"
 requires-python = ">=3.8"
 readme = "README.md"
 keywords=[
-    "python"
-    "hyperspy"
+    "python",
+    "hyperspy",
     "data analysis",
     "microscopy",
     "electron microscopy",

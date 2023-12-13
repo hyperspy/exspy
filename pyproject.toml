@@ -8,11 +8,20 @@ description = "EELS and EDS analysis with the HyperSpy framework"
 requires-python = ">=3.8"
 readme = "README.md"
 keywords=[
+    "python"
+    "hyperspy"
     "data analysis",
     "microscopy",
     "electron microscopy",
     "electron energy loss spectroscopy",
-    "X-ray energy-dispersive spectroscopy"
+    "energy-dispersive X-ray spectroscopy",
+    "X-ray energy-dispersive spectroscopy",
+    "EELS",
+    "EDS",
+    "EDX",
+    "SEM",
+    "STEM",
+    "TEM",
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -22,15 +31,12 @@ classifiers = [
   "Topic :: Scientific/Engineering",
   "Topic :: Scientific/Engineering :: Physics",
   "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
-  "Operating System :: Microsoft :: Windows",
-  "Operating System :: POSIX",
-  "Operating System :: Unix",
-  "Operating System :: MacOS",
 ]
 dependencies = [
   "dask[array]",
@@ -122,45 +128,18 @@ include = ["exspy*"]
 # The version will be updated by the `prepare_release.py` script
 fallback_version = "0.2.dev0"
 
-
 [tool.towncrier]
-package_dir = "exspy"
-filename = "CHANGES.rst"
 directory = "upcoming_changes/"
-title_format = "{version} ({project_date})"
+filename = "CHANGES.rst"
 issue_format = "`#{issue} <https://github.com/hyperspy/exspy/issues/{issue}>`_"
-
-  [[tool.towncrier.type]]
-  directory = "new"
-  name = "New features"
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = "bugfix"
-  name = "Bug Fixes"
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = "doc"
-  name = "Improved Documentation"
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = "deprecation"
-  name = "Deprecations"
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = "enhancements"
-  name = "Enhancements"
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = "api"
-  name = "API changes"
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = "maintenance"
-  name = "Maintenance"
-  showcontent = true
+title_format = "{version} ({project_date})"
+package_dir = "exspy"
+type = [
+    { directory = "new", name = "New features", showcontent = true },
+    { directory = "enhancements", name = "Enhancements", showcontent = true },
+    { directory = "bugfix", name = "Bug Fixes", showcontent = true },
+    { directory = "api", name = "API changes", showcontent = true },
+    { directory = "deprecation", name = "Deprecations", showcontent = true },
+    { directory = "doc", name = "Improved Documentation", showcontent = true },
+    { directory = "maintenance", name = "Maintenance", showcontent = true },
+]

@@ -27,8 +27,8 @@ Learning resources
     :octicon:`rocket;2em;sd-text-info` Getting Started
     ^^^
 
-    New to HyperSpy or Python? The getting started guide provides an
-    introduction on basic usage of HyperSpy and how to install it.
+    New to exSpy or the HyperSpy ecosystem? The getting started guide provides an
+    introduction on basic usage of exSpy and how to install it.
 
   .. grid-item-card::
     :link: user_guide/index
@@ -37,7 +37,7 @@ Learning resources
     :octicon:`book;2em;sd-text-info` User Guide
     ^^^
 
-    The user guide provides in-depth information on key concepts of HyperSpy
+    The user guide provides in-depth information on key concepts of exSpy
     and how to use it along with background information and explanations.
 
   .. grid-item-card::
@@ -48,7 +48,7 @@ Learning resources
     ^^^
 
     Documentation of the metadata specification and of the Application Progamming Interface (API),
-    which describe how HyperSpy functions work and which parameters can be used.
+    which describe how exSpy functions work and which parameters can be used.
 
   .. grid-item-card::
     :link: auto_examples/index
@@ -57,7 +57,8 @@ Learning resources
     :octicon:`zap;2em;sd-text-info` Example
     ^^^
 
-    Short examples illustrating simple tasks.
+    Gallery of short examples illustrating simple tasks that
+    can be performed with exSpy and HyperSpy.
 
   .. grid-item-card::
     :link: https://github.com/hyperspy/exspy-demos
@@ -65,8 +66,8 @@ Learning resources
     :octicon:`workflow;2em;sd-text-info` Tutorials
     ^^^
 
-    Tutorials in form of Jupyter Notebooks to learn how to
-    process multi-dimensional data using HyperSpy.
+    Tutorials in form of Jupyter Notebooks to learn how to process
+    multi-dimensional electron/X-ray spectroscopy data using exSpy.
 
   .. grid-item-card::
     :link: contributing
@@ -75,8 +76,8 @@ Learning resources
     :octicon:`people;2em;sd-text-info` Contributing
     ^^^
 
-    HyperSpy is a community project maintained for and by its users.
-    There are many ways you can help!
+    exSpy and the whole HyperSpy ecosystem are a community project
+    maintained for and by its users. There are many ways you can help!
 
 Citing exSpy
 ============
@@ -84,20 +85,21 @@ Citing exSpy
 If exSpy has been significant to a project that leads to an academic
 publication, please acknowledge that fact by citing it. The DOI in the
 badge below is the `Concept DOI <https://help.zenodo.org/faq/#versioning>`_ of
-HyperSpy. It can be used to cite the project without referring to a specific
+exSpy. It can be used to cite the project without referring to a specific
 version. If you are citing exSpy because you have used it to process data,
 please use the DOI of the specific version that you have employed. You can
 find it by clicking on the DOI badge below.
 
-.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.592838.svg
-   :target: https://doi.org/10.5281/zenodo.592838
+.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.10252344.svg
+   :target: https://zenodo.org/doi/10.5281/zenodo.10252344
 
-HyperSpy's citation in the scientific literature
+Citation in the scientific literature
 ------------------------------------------------
 
-Given the increasing number of articles that cite HyperSpy we do not maintain a list of
-articles citing HyperSpy. For an up to date list search for
-HyperSpy in a scientific database e.g. `Google Scholar
+Given the increasing number of articles that cite HyperSpy and its extension
+packages, we do not maintain a list of
+articles citing exSpy or HyperSpy. For an up to date list search for
+exSpy/HyperSpy in a scientific database e.g. `Google Scholar
 <https://scholar.google.co.uk/scholar?q=hyperspy>`_.
 
 .. Warning::

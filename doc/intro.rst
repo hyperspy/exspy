@@ -1,6 +1,6 @@
-Welcome to exSpy's documentation!
+Welcome to eXSpy's documentation!
 ***********************************
-**exSpy** is a Python package extending the functionality for multi-dimensional
+**eXSpy** is a Python package extending the functionality for multi-dimensional
 data analysis provided by the `HyperSpy <https://hyperspy.org/>`_ library. It is
 aimed at helping with the analysis of X-rays Energy Dispersive Spectroscopy (EDS)
 and Electron Energy Loss Spectroscopy (EELS).
@@ -27,8 +27,8 @@ Learning resources
     :octicon:`rocket;2em;sd-text-info` Getting Started
     ^^^
 
-    New to exSpy or the HyperSpy ecosystem? The getting started guide provides an
-    introduction on basic usage of exSpy and how to install it.
+    New to eXSpy or the HyperSpy ecosystem? The getting started guide provides an
+    introduction on basic usage of eXSpy and how to install it.
 
   .. grid-item-card::
     :link: user_guide/index
@@ -37,7 +37,7 @@ Learning resources
     :octicon:`book;2em;sd-text-info` User Guide
     ^^^
 
-    The user guide provides in-depth information on key concepts of exSpy
+    The user guide provides in-depth information on key concepts of eXSpy
     and how to use it along with background information and explanations.
 
   .. grid-item-card::
@@ -48,7 +48,7 @@ Learning resources
     ^^^
 
     Documentation of the metadata specification and of the Application Progamming Interface (API),
-    which describe how exSpy functions work and which parameters can be used.
+    which describe how eXSpy functions work and which parameters can be used.
 
   .. grid-item-card::
     :link: auto_examples/index
@@ -58,7 +58,7 @@ Learning resources
     ^^^
 
     Gallery of short examples illustrating simple tasks that
-    can be performed with exSpy and HyperSpy.
+    can be performed with eXSpy and HyperSpy.
 
   .. grid-item-card::
     :link: https://github.com/hyperspy/exspy-demos
@@ -67,7 +67,7 @@ Learning resources
     ^^^
 
     Tutorials in form of Jupyter Notebooks to learn how to process
-    multi-dimensional electron/X-ray spectroscopy data using exSpy.
+    multi-dimensional electron/X-ray spectroscopy data using eXSpy.
 
   .. grid-item-card::
     :link: contributing
@@ -76,17 +76,17 @@ Learning resources
     :octicon:`people;2em;sd-text-info` Contributing
     ^^^
 
-    exSpy and the whole HyperSpy ecosystem are a community project
+    eXSpy and the whole HyperSpy ecosystem are a community project
     maintained for and by its users. There are many ways you can help!
 
-Citing exSpy
+Citing eXSpy
 ============
 
-If exSpy has been significant to a project that leads to an academic
+If eXSpy has been significant to a project that leads to an academic
 publication, please acknowledge that fact by citing it. The DOI in the
 badge below is the `Concept DOI <https://help.zenodo.org/faq/#versioning>`_ of
-exSpy. It can be used to cite the project without referring to a specific
-version. If you are citing exSpy because you have used it to process data,
+eXSpy. It can be used to cite the project without referring to a specific
+version. If you are citing eXSpy because you have used it to process data,
 please use the DOI of the specific version that you have employed. You can
 find it by clicking on the DOI badge below.
 
@@ -98,8 +98,8 @@ Citation in the scientific literature
 
 Given the increasing number of articles that cite HyperSpy and its extension
 packages, we do not maintain a list of
-articles citing exSpy or HyperSpy. For an up to date list search for
-exSpy/HyperSpy in a scientific database e.g. `Google Scholar
+articles citing eXSpy or HyperSpy. For an up to date list search for
+eXSpy/HyperSpy in a scientific database e.g. `Google Scholar
 <https://scholar.google.co.uk/scholar?q=hyperspy>`_.
 
 .. Warning::
@@ -110,13 +110,13 @@ exSpy/HyperSpy in a scientific database e.g. `Google Scholar
 License
 =======
 
-**exSpy** is free software: you can redistribute it and/or modify
+**eXSpy** is free software: you can redistribute it and/or modify
 it under the terms of the `GNU General Public License (GPL)
 <https://www.gnu.org/licenses/#GPL>`_ as published by
 the Free Software Foundation, either version 3 of the license, or
 (at your option) any later version.
 
-**exSpy** is distributed in the hope that it will be useful,
+**eXSpy** is distributed in the hope that it will be useful,
 but **without any warranty**; without even the implied warranty of
 **merchantability** or **fitness for a particular purpose**. See the
 `GNU General Public License <https://www.gnu.org/licenses/#GPL>`_

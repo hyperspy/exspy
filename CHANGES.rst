@@ -39,8 +39,8 @@ Maintenance
 Initiation (2023-10-28)
 =======================
 
-- exSpy was split out of the `HyperSpy repository
+- eXSpy was split out of the `HyperSpy repository
   <https://github.com/hyperspy/hyperspy>`_ on Oct. 28, 2023. The X-ray energy
   dispersive spectroscopy (EDS) and energy electron loss spectroscopy (EELS)
   functionalities so far developed in HyperSpy were moved to the
-  `exSpy repository <https://github.com/hyperspy/exspy>`_.
+  `eXSpy repository <https://github.com/hyperspy/exspy>`_.

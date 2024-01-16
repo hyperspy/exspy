@@ -1,10 +1,10 @@
-Citing exSpy
+Citing eXSpy
 ************
 
-**exSpy** is maintained by the exSpy community
-<https://github.com/hyperspy/exspy/contributors>`_.
+**eXSpy** is maintained by the eXSpy community
+<https://github.com/hyperspy/eXSpy/contributors>`_.
 
-If exSpy has been significant to a project that leads to an academic
+If eXSpy has been significant to a project that leads to an academic
 publication, please acknowledge that fact by citing it. The DOI in the
 badge below is the `Concept DOI <https://help.zenodo.org/faq/#versioning>`_ --
 it can be used to cite the project without referring to a specific

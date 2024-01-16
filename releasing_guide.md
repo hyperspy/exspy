@@ -1,6 +1,6 @@
-# Releasing a new exSpy version
+# Releasing a new eXSpy version
 
-To publish a new exSpy release do the following steps:
+To publish a new eXSpy release do the following steps:
 
 ## Preparation
 
@@ -14,10 +14,10 @@ To publish a new exSpy release do the following steps:
 
 ## Tag and Release
 
-- Create a tag e.g. `git tag -a v0.1.1 -m "exSpy version 0.1.1"`
+- Create a tag e.g. `git tag -a v0.1.1 -m "eXSpy version 0.1.1"`
 - Push tag to user fork for a test run `git push origin v0.1.1`. Will run the release
   workflow without uploading to PyPi
-- Push tag to exSpy repository to trigger release `git push upstream v0.1.1`
+- Push tag to eXSpy repository to trigger release `git push upstream v0.1.1`
   (this triggers the GitHub action to create the sdist and wheel and upload to
   PyPi automatically). :warning: this is a point of no return :warning:
 

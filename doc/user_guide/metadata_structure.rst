@@ -1,9 +1,9 @@
 .. _metadata_structure:
 
-exSpy Metadata Structure
+eXSpy Metadata Structure
 ************************
 
-**exSpy** extends the :external+hyperspy:ref:`HyperSpy metadata structure
+**eXSpy** extends the :external+hyperspy:ref:`HyperSpy metadata structure
 <metadata_structure>`
 with conventions for metadata specific to its signal types. Refer to the
 :external+hyperspy:ref:`HyperSpy metadata documentation <metadata_structure>`
@@ -125,7 +125,7 @@ Signal
 signal_type
     type: string
 
-    String that describes the type of signal. Currently, the only exSpy
+    String that describes the type of signal. Currently, the only eXSpy
     specific signal class is ``EELS``, ``EDS``, ``EDS_SEM`` or ``EDS_TEM``.
 
 See also :external+hyperspy:ref:`HyperSpy-Metadata-Sample <signal-metadata>`.

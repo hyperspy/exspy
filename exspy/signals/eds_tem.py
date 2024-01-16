@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2007-2023 The exSpy developers
+# Copyright 2007-2024 The exSpy developers
 #
 # This file is part of exSpy.
 #

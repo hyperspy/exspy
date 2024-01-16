@@ -113,10 +113,6 @@ html_theme_options = {
     "navigation_with_keys": False,
 }
 
-# The name of an image file (relative to this directory) to place at the top
-# of the sidebar.
-#html_logo = "_static/exspy-bannerlogo.png"
-
 # -- Options for sphinx_favicon extension -----------------------------------
 
 favicons = [

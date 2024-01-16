@@ -26,9 +26,9 @@ hs.set_log_level("ERROR")
 
 # -- Project information -----------------------------------------------------
 
-project = "exSpy"
+project = "eXSpy"
 copyright = "2023, exSpy Developers"
-author = "exSpy Developers"
+author = "eXSpy Developers"
 
 
 # -- General configuration ---------------------------------------------------
@@ -105,7 +105,9 @@ html_theme_options = {
         },
     ],
     "logo": {
-        "text": "exSpy",
+        "alt_text": "eXSpy",
+        "image_light": "_static/exspy-banner-light.svg",
+        "image_dark": "_static/exspy-banner-dark.svg",
     },
     "header_links_before_dropdown": 6,
     "navigation_with_keys": False,
@@ -113,12 +115,12 @@ html_theme_options = {
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = "_static/hyperspy_logo.png"
+#html_logo = "_static/exspy-bannerlogo.png"
 
 # -- Options for sphinx_favicon extension -----------------------------------
 
 favicons = [
-    "hyperspy.ico",
+    "exspy.ico",
 ]
 
 # Check links to API when building documentation

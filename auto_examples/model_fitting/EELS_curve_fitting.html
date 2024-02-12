@@ -18,15 +18,15 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -37,9 +37,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
@@ -61,10 +61,9 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -105,7 +104,7 @@
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
@@ -145,12 +144,6 @@
       
         <div class="navbar-item">
 <nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
@@ -283,10 +276,13 @@ document.write(`
   
 </div>
 
-    </nav>
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -299,12 +295,6 @@ document.write(`
         
           <div class="navbar-item">
 <nav class="navbar-nav">
-  <p class="sidebar-header-items__title"
-     role="heading"
-     aria-level="1"
-     aria-label="Site Navigation">
-    Site Navigation
-  </p>
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
@@ -471,7 +461,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -483,29 +473,30 @@ to download the full example code</p>
 <p>Performs curve fitting to an EELS spectrum, plots the result and saves it as
 png file.</p>
 <img src="../../_images/sphx_glr_EELS_curve_fitting_001.png" srcset="../../_images/sphx_glr_EELS_curve_fitting_001.png" alt="coreloss_spectrum Signal" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-  0%|                                      | 49.2k/42.3M [00:00&lt;02:51, 247kB/s]
-  0%|▏                                      | 196k/42.3M [00:00&lt;01:17, 541kB/s]
-  2%|▋                                     | 701k/42.3M [00:00&lt;00:21, 1.89MB/s]
-  3%|█▎                                   | 1.43M/42.3M [00:00&lt;00:11, 3.51MB/s]
-  6%|██▏                                  | 2.57M/42.3M [00:00&lt;00:06, 5.86MB/s]
- 11%|████                                 | 4.59M/42.3M [00:00&lt;00:03, 10.2MB/s]
- 17%|██████▏                              | 7.10M/42.3M [00:00&lt;00:02, 14.7MB/s]
- 22%|████████▏                            | 9.34M/42.3M [00:00&lt;00:01, 17.0MB/s]
- 27%|██████████                           | 11.5M/42.3M [00:01&lt;00:02, 15.3MB/s]
- 33%|████████████                         | 13.9M/42.3M [00:01&lt;00:01, 17.3MB/s]
- 38%|██████████████                       | 16.0M/42.3M [00:01&lt;00:01, 18.6MB/s]
- 44%|████████████████▏                    | 18.4M/42.3M [00:01&lt;00:01, 20.1MB/s]
- 49%|██████████████████▏                  | 20.8M/42.3M [00:01&lt;00:01, 21.1MB/s]
- 55%|████████████████████▎                | 23.2M/42.3M [00:01&lt;00:00, 21.8MB/s]
- 60%|██████████████████████▎              | 25.5M/42.3M [00:01&lt;00:00, 22.4MB/s]
- 66%|████████████████████████▍            | 27.9M/42.3M [00:01&lt;00:00, 22.6MB/s]
- 71%|██████████████████████████▍          | 30.1M/42.3M [00:02&lt;00:00, 18.8MB/s]
- 77%|████████████████████████████▍        | 32.5M/42.3M [00:02&lt;00:00, 20.0MB/s]
- 83%|██████████████████████████████▌      | 34.9M/42.3M [00:02&lt;00:00, 21.1MB/s]
- 89%|█████████████████████████████████    | 37.8M/42.3M [00:02&lt;00:00, 23.3MB/s]
- 95%|███████████████████████████████████▎ | 40.4M/42.3M [00:02&lt;00:00, 24.0MB/s]
+  0%|                                     | 11.3k/42.3M [00:00&lt;10:02, 70.2kB/s]
+  0%|                                      | 41.0k/42.3M [00:00&lt;05:07, 137kB/s]
+  0%|                                      | 86.0k/42.3M [00:00&lt;03:28, 202kB/s]
+  0%|                                       | 134k/42.3M [00:00&lt;02:55, 240kB/s]
+  1%|▎                                      | 273k/42.3M [00:00&lt;01:30, 465kB/s]
+  1%|▌                                      | 564k/42.3M [00:00&lt;00:45, 919kB/s]
+  3%|█                                    | 1.15M/42.3M [00:01&lt;00:22, 1.81MB/s]
+  6%|██                                   | 2.33M/42.3M [00:01&lt;00:11, 3.56MB/s]
+ 11%|████                                 | 4.70M/42.3M [00:01&lt;00:05, 7.04MB/s]
+ 18%|██████▊                              | 7.81M/42.3M [00:01&lt;00:03, 10.8MB/s]
+ 25%|█████████▏                           | 10.4M/42.3M [00:01&lt;00:02, 12.4MB/s]
+ 31%|███████████▎                         | 12.9M/42.3M [00:01&lt;00:02, 13.3MB/s]
+ 37%|█████████████▋                       | 15.6M/42.3M [00:02&lt;00:01, 14.3MB/s]
+ 43%|███████████████▉                     | 18.2M/42.3M [00:02&lt;00:01, 14.9MB/s]
+ 49%|██████████████████▎                  | 20.9M/42.3M [00:02&lt;00:01, 15.3MB/s]
+ 55%|████████████████████▌                | 23.5M/42.3M [00:02&lt;00:01, 15.6MB/s]
+ 62%|██████████████████████▉              | 26.2M/42.3M [00:02&lt;00:01, 15.9MB/s]
+ 68%|█████████████████████████▎           | 28.9M/42.3M [00:02&lt;00:00, 16.3MB/s]
+ 75%|███████████████████████████▋         | 31.6M/42.3M [00:03&lt;00:00, 16.4MB/s]
+ 81%|█████████████████████████████▉       | 34.3M/42.3M [00:03&lt;00:00, 16.4MB/s]
+ 87%|████████████████████████████████▎    | 37.0M/42.3M [00:03&lt;00:00, 16.5MB/s]
+ 94%|██████████████████████████████████▊  | 39.7M/42.3M [00:03&lt;00:00, 16.7MB/s]
   0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 282GB/s]
+100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 181GB/s]
 </pre></div>
 </div>
 <div class="line-block">
@@ -527,7 +518,7 @@ png file.</p>
 <a href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D.plot" title="hyperspy.models.model1d.Model1D.plot" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 8.446 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 10.731 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-model-fitting-eels-curve-fitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/037b5aa4752b41748abf69bba9d1cbe4/EELS_curve_fitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">EELS_curve_fitting.ipynb</span></code></a></p>
@@ -576,6 +567,7 @@ png file.</p>
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
@@ -598,8 +590,8 @@ png file.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -632,7 +624,7 @@ png file.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
 </p></div>
       
     </div>

@@ -42,9 +42,9 @@ Fit an arctan function.
     Active: True
     Parameter Name |    Free |      Value |        Std |        Min |        Max | Linear
     ============== | ======= | ========== | ========== | ========== | ========== | ======
-                 A |    True | 0.99864851 | 0.00209796 |       None |       None |   True
-                 k |    True | 0.90876020 | 0.07198786 |       None |       None |  False
-                x0 |    True | -0.0326211 | 0.08215558 |       None |       None |  False
+                 A |    True | 0.99822712 | 0.00209599 |       None |       None |   True
+                 k |    True | 1.06359314 | 0.09188985 |       None |       None |  False
+                x0 |    True | -0.0207152 | 0.07547770 |       None |       None |  False
 
 
 

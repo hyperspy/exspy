@@ -95,11 +95,7 @@ class VolumePlasmonDrude(hs.model.components1D.Expression):
             * intensity
             * (
                 (x**4 + (x * fwhm) ** 2 - plasmon_energy**4)
-                / (
-                    x**4
-                    + x**2 * (fwhm**2 - 2 * plasmon_energy**2)
-                    + plasmon_energy**4
-                )
+                / (x**4 + x**2 * (fwhm**2 - 2 * plasmon_energy**2) + plasmon_energy**4)
                 ** 2
             ),
             0,
@@ -117,16 +113,8 @@ class VolumePlasmonDrude(hs.model.components1D.Expression):
             * plasmon_energy
             * intensity
             * (
-                (
-                    x**4
-                    - x**2 * (2 * plasmon_energy**2 + fwhm**2)
-                    + plasmon_energy**4
-                )
-                / (
-                    x**4
-                    + x**2 * (fwhm**2 - 2 * plasmon_energy**2)
-                    + plasmon_energy**4
-                )
+                (x**4 - x**2 * (2 * plasmon_energy**2 + fwhm**2) + plasmon_energy**4)
+                / (x**4 + x**2 * (fwhm**2 - 2 * plasmon_energy**2) + plasmon_energy**4)
                 ** 2
             ),
             0,

@@ -79,13 +79,9 @@ class EDSSpectrum(Signal1D):
 
         if FWHM_MnKa == "auto":
             if self.metadata.Signal.signal_type == "EDS_SEM":
-                FWHM_MnKa = (
-                    self.metadata.Acquisition_instrument.SEM.Detector.EDS.energy_resolution_MnKa
-                )
+                FWHM_MnKa = self.metadata.Acquisition_instrument.SEM.Detector.EDS.energy_resolution_MnKa
             elif self.metadata.Signal.signal_type == "EDS_TEM":
-                FWHM_MnKa = (
-                    self.metadata.Acquisition_instrument.TEM.Detector.EDS.energy_resolution_MnKa
-                )
+                FWHM_MnKa = self.metadata.Acquisition_instrument.TEM.Detector.EDS.energy_resolution_MnKa
             else:
                 raise NotImplementedError(
                     "This method only works for EDS_TEM or EDS_SEM signals. "

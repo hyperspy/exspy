@@ -1233,9 +1233,7 @@ class EELSSpectrum(Signal1D):
             The collection semi-angle in mrad.
         {}
         {}
-        """.format(
-        TOOLKIT_DT, DISPLAY_DT
-    )
+        """.format(TOOLKIT_DT, DISPLAY_DT)
 
     def power_law_extrapolation(
         self, window_size=20, extrapolation_size=1024, add_noise=False, fix_neg_r=False

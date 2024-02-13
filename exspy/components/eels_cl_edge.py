@@ -140,9 +140,7 @@ class EELSCLEdge(Component):
     fine_structure_components : set, default ``set()``
         A set containing components to model the fine structure region
         of the EELS ionization edge.
-    """.format(
-        _GOSH_DOI
-    )
+    """.format(_GOSH_DOI)
 
     _fine_structure_smoothing = 0.3
     _fine_structure_coeff_free = True

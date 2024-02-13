@@ -105,9 +105,7 @@ def iMFP_TPP2M(electron_energy, density, M, N_v, E_g):
     D = 534 - 208 * U
     beta = -1 + 9.44 / math.sqrt(E_p**2 + E_g**2) + 0.69 * rho**0.1
     iMFP = (
-        alpha
-        * E
-        / (E_p**2 * (beta * math.log(gamma * alpha * E) - C / E + D / E**2))
+        alpha * E / (E_p**2 * (beta * math.log(gamma * alpha * E) - C / E + D / E**2))
     )
     return iMFP
 

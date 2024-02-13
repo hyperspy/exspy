@@ -75,7 +75,9 @@ class Vignetting(Component):
             x = np.array(x)
             v1 = A * np.cos((x - x0) / (2 * np.pi * period)) ** 4
             v2 = np.where(
-                x < left, 1.0 - (left - x) * la, np.where(x < right, 1.0, 1.0 - (x - right) * ra)
+                x < left,
+                1.0 - (left - x) * la,
+                np.where(x < right, 1.0, 1.0 - (x - right) * ra),
             )
             self.gaussian.sigma.value = sigma
             self.gaussian.origin.value = (x[-1] + x[0]) / 2

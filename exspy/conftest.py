@@ -17,6 +17,7 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import importlib
+
 try:
     # Set traits toolkit to work in a headless system
     # Capture error when toolkit is already previously set which typically
@@ -38,6 +39,7 @@ import hyperspy.api as hs
 
 # Use matplotlib fixture to clean up figure, setup backend, etc.
 from matplotlib.testing.conftest import mpl_test_settings  # noqa: F401
+
 
 @pytest.fixture(autouse=True)
 def add_np(doctest_namespace):

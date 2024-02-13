@@ -291,7 +291,6 @@ def test_spikes_diagnosis_constant_derivative():
         s._spikes_diagnosis(use_gui=True)
 
 
-
 @lazifyTestClass
 class TestPowerLawExtrapolation:
     def setup_method(self, method):

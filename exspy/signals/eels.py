@@ -24,7 +24,6 @@ import dask.array as da
 import traits.api as t
 from scipy import constants
 from prettytable import PrettyTable
-from matplotlib.collections import LineCollection
 
 import hyperspy.api as hs
 from hyperspy.signal import BaseSetMetadataItems, BaseSignal
@@ -1767,7 +1766,7 @@ class EELSSpectrum(Signal1D):
             extra_element_edge_family.extend(np.atleast_1d(plot_edges))
             try:
                 elements = self.metadata.Sample.elements
-            except:
+            except Exception:
                 elements = []
 
         element_edge_family = elements + extra_element_edge_family

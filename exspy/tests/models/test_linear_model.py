@@ -148,8 +148,8 @@ def test_expression_convolved(nav_dim, multiple_free_parameters):
         to_convolve = hs.stack([to_convolve] * 3)
 
     m = s.create_model(auto_add_edges=False, auto_background=False)
-    l = Lorentzian(centre=20, gamma=4)
-    m.append(l)
+    lor = Lorentzian(centre=20, gamma=4)
+    m.append(lor)
     assert not m.convolved
     m.low_loss = to_convolve
     assert m.convolved
@@ -157,14 +157,14 @@ def test_expression_convolved(nav_dim, multiple_free_parameters):
     with pytest.warns(UserWarning):
         m.multifit(optimizer="lstsq")
 
-    np.testing.assert_allclose(l_ref.A.value, l.A.value)
-    np.testing.assert_allclose(l_ref.centre.value, l.centre.value)
-    np.testing.assert_allclose(l_ref.gamma.value, l.gamma.value)
+    np.testing.assert_allclose(l_ref.A.value, lor.A.value)
+    np.testing.assert_allclose(l_ref.centre.value, lor.centre.value)
+    np.testing.assert_allclose(l_ref.gamma.value, lor.gamma.value)
     np.testing.assert_allclose(m.as_signal().data, s.data)
     if nav_dim in (1, 2):
-        np.testing.assert_allclose(l.A.map["values"].mean(), l_ref.A.value)
-        np.testing.assert_allclose(l.centre.map["values"].mean(), l_ref.centre.value)
-        np.testing.assert_allclose(l.gamma.map["values"].mean(), l_ref.gamma.value)
+        np.testing.assert_allclose(lor.A.map["values"].mean(), l_ref.A.value)
+        np.testing.assert_allclose(lor.centre.map["values"].mean(), l_ref.centre.value)
+        np.testing.assert_allclose(lor.gamma.map["values"].mean(), l_ref.gamma.value)
 
 
 @pytest.mark.parametrize("nav_dim", (0, 1, 2))

@@ -62,8 +62,8 @@ class Vignetting(Component):
         period = self.period.value
         la = self.left_slope.value
         ra = self.right_slope.value
-        l = self.left.value
-        r = self.right.value
+        left = self.left.value
+        right = self.right.value
         ex = self.extension_nch
         if self.side_vignetting is True:
             x = x.tolist()
@@ -75,7 +75,7 @@ class Vignetting(Component):
             x = np.array(x)
             v1 = A * np.cos((x - x0) / (2 * np.pi * period)) ** 4
             v2 = np.where(
-                x < l, 1.0 - (l - x) * la, np.where(x < r, 1.0, 1.0 - (x - r) * ra)
+                x < left, 1.0 - (left - x) * la, np.where(x < right, 1.0, 1.0 - (x - right) * ra)
             )
             self.gaussian.sigma.value = sigma
             self.gaussian.origin.value = (x[-1] + x[0]) / 2

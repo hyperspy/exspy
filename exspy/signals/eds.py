@@ -1040,17 +1040,12 @@ class EDSSpectrum(Signal1D):
         """
         if self._plot is None or not self._plot.is_active:
             raise RuntimeError("The signal needs to be plotted.")
-        norm = self._plot.signal_plot.ax_lines[0].norm
-        minimum_intensity = self.data[self.data > 0].min() if norm == "log" else 0
         line_names = []
         segments = np.empty((len(xray_lines), 2, 2))
         offsets = np.empty((len(xray_lines), 2))
         # might want to set the intensity based on the alpha line intensity
         for i, xray_line in enumerate(xray_lines):
             element, line = utils_eds._get_element_and_line(xray_line)
-            relative_factor = elements_db[element]["Atomic_properties"]["Xray_lines"][
-                line
-            ]["weight"]
             eng = self._get_line_energy(f"{element}_{line}")
             segments[i] = [[eng, 0], [eng, 1]]
             offsets[i] = [eng, 1]

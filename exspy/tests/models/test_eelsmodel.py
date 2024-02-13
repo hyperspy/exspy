@@ -98,12 +98,12 @@ class TestCreateEELSModel:
         from hyperspy.components1d import PowerLaw
 
         is_pl_instance = [isinstance(c, PowerLaw) for c in m]
-        assert not True in is_pl_instance
+        assert True not in is_pl_instance
 
     def test_auto_add_edges_false_names(self):
         m = self.s.create_model(auto_add_edges=False)
         cnames = [component.name for component in m]
-        assert not "B_K" in cnames or "C_K" in cnames
+        assert "B_K" not in cnames or "C_K" in cnames
 
     def test_convolved_ll_not_set(self):
         m = self.s.create_model(auto_add_edges=False)
@@ -258,7 +258,7 @@ class TestEELSModel:
         m = self.m
         s = hs.signals.Signal1D(np.ones(200))
         with pytest.raises(ValueError):
-            self.m.signal = s
+            m.signal = s
 
     def test_remove(self):
         m = self.m
@@ -586,12 +586,10 @@ class TestEELSFineStructure:
         assert not Fe.fine_structure_coeff.free
 
     def test_fine_structure_spline(self):
-        v2i = self.m.signal.axes_manager[0].value2index
         Fe = self.m.components.Fe_L3
         Fe.fine_structure_active = True
         Fe.fine_structure_spline_active = True
         Fe.fine_structure_width = 30
-        onset = Fe.onset_energy.value
         axis1 = np.linspace(
             Fe.onset_energy.value,
             Fe.onset_energy.value + Fe.fine_structure_width,

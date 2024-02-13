@@ -22,7 +22,6 @@ import itertools
 import numpy as np
 import pytest
 
-from hyperspy.exceptions import VisibleDeprecationWarning
 from hyperspy.signals import Signal1D
 
 from exspy.components import PESVoigt
@@ -61,8 +60,6 @@ def test_function_spinorbit():
     g.gamma.value = 0.2
     g.centre.value = 1
     g.spin_orbit_splitting = True
-    spin_orbit_branching_ratio = 0.4
-    spin_orbit_splitting_energy = 0.72
     np.testing.assert_allclose(g.function(0), 1.553312)
     np.testing.assert_allclose(g.function(1), 5.612734)
     assert g._position is g.centre

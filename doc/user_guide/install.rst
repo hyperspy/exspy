@@ -16,9 +16,9 @@ To install eXSpy, you have the following options (independent of the operating s
    (recommended if you do not use *python* for anything else).
 2. :ref:`conda` (recommended if you are also working with other *python* packages).
 3. :ref:`pip`.
-4. Installing the development version from `GitHub <https://github.com/hyperspy/eXSpy/>`_.
+4. Installing the development version from `GitHub <https://github.com/hyperspy/exspy/>`_.
    Refer to the appropriate section in the :external+hyperspy:ref:`HyperSpy user guide
-   <install-dev>` (replacing ``hyperspy`` by ``eXSpy``).
+   <install-dev>` (replacing ``hyperspy`` by ``exspy``).
 
 
 .. _conda:
@@ -43,7 +43,7 @@ environment, if you have one already). To create a new environment:
 
 .. code-block:: bash
 
-    (base) conda create -n eXSpy -y
+    (base) conda create -n exspy -y
 
 
 2. Installing the package in the new environment
@@ -53,8 +53,8 @@ Now activate the eXSpy environment and install the package from ``conda-forge``:
 
 .. code-block:: bash
 
-    (base) conda activate eXSpy
-    (eXSpy) conda install -c conda-forge eXSpy -y
+    (base) conda activate exspy
+    (exspy) conda install -c conda-forge exspy -y
 
 Required dependencies will be installed automatically.
 
@@ -76,9 +76,9 @@ entered into an anaconda prompt (from scratch):
 
 .. code-block:: bash
 
-    (base) conda activate eXSpy
-    (eXSpy) conda install -c conda-forge jupyterlab -y
-    (eXSpy) jupyter lab
+    (base) conda activate exspy
+    (exspy) conda install -c conda-forge jupyterlab -y
+    (exspy) jupyter lab
 
 
 .. _pip:
@@ -91,7 +91,7 @@ and install it using (requires ``pip``):
 
 .. code-block:: bash
 
-    pip install eXSpy
+    pip install exspy
 
 Required dependencies will be installed automatically.
 
@@ -103,15 +103,15 @@ Using **conda**:
 
 .. code-block:: bash
 
-    conda update eXSpy -c conda-forge
+    conda update exspy -c conda-forge
 
 Using **pip**:
 
 .. code-block:: bash
 
-    pip install eXSpy --upgrade
+    pip install exspy --upgrade
 
 .. Note::
 
     If you want to be notified about new releases, please *Watch (Releases only)* the `eXSpy repository
-    on GitHub <https://github.com/hyperspy/eXSpy/>`_ (requires a GitHub account).
+    on GitHub <https://github.com/hyperspy/exspy/>`_ (requires a GitHub account).

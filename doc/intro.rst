@@ -1,5 +1,5 @@
-Welcome to eXSpy's documentation!
-***********************************
+Welcome to the documentation of eXSpy!
+**************************************
 **eXSpy** is a Python package extending the functionality for multi-dimensional
 data analysis provided by the `HyperSpy <https://hyperspy.org/>`_ library. It is
 aimed at helping with the analysis of X-rays Energy Dispersive Spectroscopy (EDS)
@@ -99,7 +99,7 @@ Citation in the scientific literature
 Given the increasing number of articles that cite HyperSpy and its extension
 packages, we do not maintain a list of
 articles citing eXSpy or HyperSpy. For an up to date list search for
-eXSpy/HyperSpy in a scientific database e.g. `Google Scholar
+exspy/HyperSpy in a scientific database e.g. `Google Scholar
 <https://scholar.google.co.uk/scholar?q=hyperspy>`_.
 
 .. Warning::

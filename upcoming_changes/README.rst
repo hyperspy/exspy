@@ -1,7 +1,7 @@
 This directory contains "news fragments" which are short files that contain a small **ReST**-formatted
 text that will be added to the next ``CHANGELOG``.
 
-The ``CHANGELOG`` will be read by **users**, so this description should be aimed to hyperspy users
+The ``CHANGELOG`` will be read by **users**, so this description should be aimed to eXSpy users
 instead of describing internal changes which are only relevant to the developers.
 
 Each file should be named like ``<ISSUE>.<TYPE>.rst``, where

@@ -2,7 +2,7 @@ Citing eXSpy
 ************
 
 **eXSpy** is maintained by the eXSpy community
-<https://github.com/hyperspy/eXSpy/contributors>`_.
+<https://github.com/hyperspy/exspy/contributors>`_.
 
 If eXSpy has been significant to a project that leads to an academic
 publication, please acknowledge that fact by citing it. The DOI in the

@@ -7,8 +7,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../_static/hyperspy.ico" rel="icon" type="image/x-icon">
-    <title>Installation &#8212; exSpy  documentation</title>
+    <link href="../_static/exspy.ico" rel="icon" type="image/x-icon">
+    <title>Installation &#8212; eXSpy  documentation</title>
   
   
   
@@ -128,11 +128,9 @@
       
     
     
-    <img src="../_static/hyperspy_logo.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../_static/hyperspy_logo.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../_static/exspy-banner-light.svg" class="logo__image only-light" alt="eXSpy"/>
+    <script>document.write(`<img src="../_static/exspy-banner-dark.svg" class="logo__image only-dark" alt="eXSpy"/>`);</script>
   
-  
-    <p class="title logo__title">exSpy</p>
   
 </a></div>
     
@@ -401,7 +399,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="eds.html">Energy-Dispersive X-ray Spectrometry (EDS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eels.html">Electron Energy Loss Spectroscopy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dielectric_function.html">Dielectric function tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metadata_structure.html">exSpy Metadata Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metadata_structure.html">eXSpy Metadata Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
 </div>
@@ -462,30 +460,30 @@ document.write(`
                   
   <div class="admonition warning" id="install-label">
 <p class="admonition-title">Warning</p>
-<p>These installation instructions are pending the release of the first version of exSpy.
+<p>These installation instructions are pending the release of the first version of eXSpy.
 In the meantime, you will need to install the development version, see instructions
 below.</p>
 </div>
 <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
-<p>To install exSpy, you have the following options (independent of the operating system you use):</p>
+<p>To install eXSpy, you have the following options (independent of the operating system you use):</p>
 <ol class="arabic simple">
-<li><p>exSpy is included in the <a class="reference external" href="https://hyperspy.org/hyperspy-bundle/">HyperSpy Bundle</a>,
+<li><p>eXSpy is included in the <a class="reference external" href="https://hyperspy.org/hyperspy-bundle/">HyperSpy Bundle</a>,
 a standalone program that includes a python distribution and all relevant libraries
 (recommended if you do not use <em>python</em> for anything else).</p></li>
 <li><p><a class="reference internal" href="#conda"><span class="std std-ref">Installation using conda</span></a> (recommended if you are also working with other <em>python</em> packages).</p></li>
 <li><p><a class="reference internal" href="#pip"><span class="std std-ref">Installation using pip</span></a>.</p></li>
 <li><p>Installing the development version from <a class="reference external" href="https://github.com/hyperspy/exspy/">GitHub</a>.
-Refer to the appropriate section in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/install.html#install-dev" title="(in HyperSpy v2.1)"><span class="xref std std-ref">HyperSpy user guide</span></a> (replacing <code class="docutils literal notranslate"><span class="pre">hyperspy</span></code> by <code class="docutils literal notranslate"><span class="pre">exSpy</span></code>).</p></li>
+Refer to the appropriate section in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/install.html#install-dev" title="(in HyperSpy v2.1)"><span class="xref std std-ref">HyperSpy user guide</span></a> (replacing <code class="docutils literal notranslate"><span class="pre">hyperspy</span></code> by <code class="docutils literal notranslate"><span class="pre">exspy</span></code>).</p></li>
 </ol>
 <section id="installation-using-conda">
 <span id="conda"></span><h2>Installation using conda<a class="headerlink" href="#installation-using-conda" title="Link to this heading">#</a></h2>
-<p>Follow these 3 steps to install exSpy using <strong>conda</strong> and start using it.</p>
+<p>Follow these 3 steps to install eXSpy using <strong>conda</strong> and start using it.</p>
 <section id="creating-a-conda-environment">
 <h3>1. Creating a conda environment<a class="headerlink" href="#creating-a-conda-environment" title="Link to this heading">#</a></h3>
-<p>exSpy requires Python 3 and <code class="docutils literal notranslate"><span class="pre">conda</span></code> – we suggest using the Python 3 version
+<p>eXSpy requires Python 3 and <code class="docutils literal notranslate"><span class="pre">conda</span></code> – we suggest using the Python 3 version
 of <a class="reference external" href="https://conda-forge.org/miniforge/">Miniforge</a>.</p>
-<p>We recommend creating a new environment for the exSpy package (or installing
+<p>We recommend creating a new environment for the eXSpy package (or installing
 it in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/install.html#anaconda-install" title="(in HyperSpy v2.1)"><span class="xref std std-ref">HyperSpy</span></a>
 environment, if you have one already). To create a new environment:</p>
 <ol class="arabic simple">
@@ -498,7 +496,7 @@ environment, if you have one already). To create a new environment:</p>
 </section>
 <section id="installing-the-package-in-the-new-environment">
 <h3>2. Installing the package in the new environment<a class="headerlink" href="#installing-the-package-in-the-new-environment" title="Link to this heading">#</a></h3>
-<p>Now activate the exSpy environment and install the package from <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>:</p>
+<p>Now activate the eXSpy environment and install the package from <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>exspy
 <span class="o">(</span>exspy<span class="o">)</span><span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>exspy<span class="w"> </span>-y
 </pre></div>
@@ -513,9 +511,9 @@ environment, if you have one already). To create a new environment:</p>
 </section>
 <section id="getting-started">
 <h3>3. Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h3>
-<p>To get started using exSpy, especially if you are unfamiliar with Python, we
+<p>To get started using eXSpy, especially if you are unfamiliar with Python, we
 recommend using <a class="reference external" href="https://jupyter.org/">Jupyter notebooks</a>. Having installed
-exSpy as above, a Jupyter notebook can be installed and opened using the following commands
+eXSpy as above, a Jupyter notebook can be installed and opened using the following commands
 entered into an anaconda prompt (from scratch):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>exspy
 <span class="o">(</span>exspy<span class="o">)</span><span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>jupyterlab<span class="w"> </span>-y
@@ -526,7 +524,7 @@ entered into an anaconda prompt (from scratch):</p>
 </section>
 <section id="installation-using-pip">
 <span id="pip"></span><h2>Installation using pip<a class="headerlink" href="#installation-using-pip" title="Link to this heading">#</a></h2>
-<p>Alternatively, you can also find exSpy in the <a class="reference external" href="https://pypi.org">Python Package Index (PyPI)</a>
+<p>Alternatively, you can also find eXSpy in the <a class="reference external" href="https://pypi.org">Python Package Index (PyPI)</a>
 and install it using (requires <code class="docutils literal notranslate"><span class="pre">pip</span></code>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>exspy
 </pre></div>
@@ -545,7 +543,7 @@ and install it using (requires <code class="docutils literal notranslate"><span 
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you want to be notified about new releases, please <em>Watch (Releases only)</em> the <a class="reference external" href="https://github.com/hyperspy/exspy/">exSpy repository
+<p>If you want to be notified about new releases, please <em>Watch (Releases only)</em> the <a class="reference external" href="https://github.com/hyperspy/exspy/">eXSpy repository
 on GitHub</a> (requires a GitHub account).</p>
 </div>
 </section>
@@ -642,7 +640,7 @@ on GitHub</a> (requires a GitHub account).</p>
 
   <p class="copyright">
     
-      © Copyright 2023, exSpy Developers.
+      © Copyright 2023, eSpy Developers.
       <br/>
     
   </p>

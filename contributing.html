@@ -7,8 +7,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="_static/hyperspy.ico" rel="icon" type="image/x-icon">
-    <title>Contributing &#8212; exSpy  documentation</title>
+    <link href="_static/exspy.ico" rel="icon" type="image/x-icon">
+    <title>Contributing &#8212; eXSpy  documentation</title>
   
   
   
@@ -50,7 +50,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'contributing';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Citing exSpy" href="citing.html" />
+    <link rel="prev" title="Citing eXSpy" href="citing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -127,11 +127,9 @@
       
     
     
-    <img src="_static/hyperspy_logo.png" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="_static/hyperspy_logo.png" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="_static/exspy-banner-light.svg" class="logo__image only-light" alt="eXSpy"/>
+    <script>document.write(`<img src="_static/exspy-banner-dark.svg" class="logo__image only-dark" alt="eXSpy"/>`);</script>
   
-  
-    <p class="title logo__title">exSpy</p>
   
 </a></div>
     
@@ -450,7 +448,7 @@ document.write(`
                   
   <section id="contributing">
 <span id="contributing-label"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h1>
-<p>exSpy is meant to be a community maintained project. We welcome contributions
+<p>eXSpy is meant to be a community maintained project. We welcome contributions
 in the form of bug reports, documentation, code, feature requests, and more.
 In the following we refer to some resources to help you make useful contributions.</p>
 <section id="issues">
@@ -465,7 +463,7 @@ useful:</p>
 </section>
 <section id="pull-requests">
 <h2>Pull Requests<a class="headerlink" href="#pull-requests" title="Link to this heading">#</a></h2>
-<p>If you want to contribute to the exSpy source code, you can send us a
+<p>If you want to contribute to the eXSpy source code, you can send us a
 <a class="reference external" href="https://github.com/hyperspy/exspy/pulls">pull request</a>. Small bug fixes or
 corrections to the user guide are typically a good starting point. But don’t
 hesitate also for significant code contributions - if needed, we’ll help you
@@ -485,12 +483,12 @@ other member of the development team before being merged.</p>
 </section>
 <section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
-<p>The exSpy documentation consists of three elements:</p>
+<p>The eXSpy documentation consists of three elements:</p>
 <ul class="simple">
 <li><p>Docstrings following the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">numpy standard</a>
 that document the functionality of individual methods on <a class="reference external" href="https://github.com/hyperspy/exspy">GitHub</a>.</p></li>
 <li><p>The <a class="reference external" href="https://exspy.readthedocs.io">documentation</a> written using <a class="reference external" href="https://www.sphinx-doc.org">Sphinx</a> and hosted on <a class="reference external" href="https://exspy.readthedocs.io">Read the Docs</a>. The source is part of the <a class="reference external" href="https://github.com/hyperspy/exspy/tree/main/doc">GitHub repository</a>.</p></li>
-<li><p>Jupyter notebooks in the <a class="reference external" href="https://github.com/hyperspy/exspy-demos">exSpy demos repository</a> on GitHub that provide tutorials and example
+<li><p>Jupyter notebooks in the <a class="reference external" href="https://github.com/hyperspy/exspy-demos">eXSpy demos repository</a> on GitHub that provide tutorials and example
 workflows.</p></li>
 </ul>
 <p>Improving documentation is always welcome and a good way of starting out to learn the GitHub
@@ -498,7 +496,7 @@ functionality. You can contribute through pull requests to the respective reposi
 </section>
 <section id="code-style">
 <h2>Code style<a class="headerlink" href="#code-style" title="Link to this heading">#</a></h2>
-<p>exSpy follows <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">Style Guide for Python Code</a>
+<p>eXSpy follows <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">Style Guide for Python Code</a>
 with <a class="reference external" href="https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html">The Black Code style</a>.</p>
 <p>For <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">docstrings</a>, we follow the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">numpydoc</a> standard.</p>
 <p>Package imports should be structured into three blocks with blank lines between
@@ -511,15 +509,15 @@ them:</p>
 </section>
 <section id="writing-tests">
 <h2>Writing tests<a class="headerlink" href="#writing-tests" title="Link to this heading">#</a></h2>
-<p>All functionality in exSpy is tested via the <a class="reference external" href="https://docs.pytest.org">pytest</a>
+<p>All functionality in eXSpy is tested via the <a class="reference external" href="https://docs.pytest.org">pytest</a>
 framework. The tests reside in the <code class="docutils literal notranslate"><span class="pre">test</span></code> directory. Tests are short methods that call
-functions in exSpy and compare resulting output values with known answers.
+functions in eXSpy and compare resulting output values with known answers.
 Please refer to the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/dev_guide/testing.html">HyperSpy development guide</a> for further
 information on tests.</p>
 </section>
 <section id="releasing-a-new-version">
 <h2>Releasing a new version<a class="headerlink" href="#releasing-a-new-version" title="Link to this heading">#</a></h2>
-<p>exSpy versioning follows <a class="reference external" href="https://semver.org/spec/v2.0.0.html">semantic versioning</a>
+<p>eXSpy versioning follows <a class="reference external" href="https://semver.org/spec/v2.0.0.html">semantic versioning</a>
 and the version number is therefore a three-part number: MAJOR.MINOR.PATCH.
 Each number will change depending on the type of changes according to the following:</p>
 <ul class="simple">
@@ -548,7 +546,7 @@ Each number will change depending on the type of changes according to the follow
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Citing exSpy</p>
+        <p class="prev-next-title">Citing eXSpy</p>
       </div>
     </a>
 </div>
@@ -615,7 +613,7 @@ Each number will change depending on the type of changes according to the follow
 
   <p class="copyright">
     
-      © Copyright 2023, exSpy Developers.
+      © Copyright 2023, eSpy Developers.
       <br/>
     
   </p>

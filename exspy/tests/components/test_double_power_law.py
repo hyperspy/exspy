@@ -46,12 +46,10 @@ def test_function():
 
 class TestDoublePowerLaw:
     def setup_method(self, method):
-        pytest.importorskip("exspy")
         s = hs.signals.Signal1D(np.zeros(1024))
         s.axes_manager[0].offset = 100
         s.axes_manager[0].scale = 0.1
         m = s.create_model()
-        from exspy.components import DoublePowerLaw
 
         m.append(DoublePowerLaw())
         m[0].A.value = 1000

@@ -19,7 +19,7 @@ Minimum working example of code
 A clear and concise description of what you expected to happen.
 
 #### Python environement:
- - exSpy version: 0.x.x
+ - eXSpy version: 0.x.x
  - HyperSpy version: 1.x.x
  - Python version: 3.x
 

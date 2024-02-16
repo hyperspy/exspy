@@ -69,13 +69,13 @@ def _estimate_gain(
         s = Signal1D(variance2fit)
         s.axes_manager.signal_axes[0].axis = average2fit
         m = Model1D(s)
-        l = Line()
-        l.a.value = fit[1]
-        l.b.value = fit[0]
-        m.append(l)
+        line = Line()
+        line.a.value = fit[1]
+        line.b.value = fit[0]
+        m.append(line)
         m.fit(weights=True)
-        fit[0] = l.b.value
-        fit[1] = l.a.value
+        fit[0] = line.b.value
+        fit[1] = line.a.value
 
     if plot_results is True:
         plt.figure()

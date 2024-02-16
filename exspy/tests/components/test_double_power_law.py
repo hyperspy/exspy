@@ -50,8 +50,6 @@ class TestDoublePowerLaw:
         s.axes_manager[0].offset = 100
         s.axes_manager[0].scale = 0.1
         m = s.create_model()
-        exspy = pytest.importorskip("exspy")
-        from exspy.components import DoublePowerLaw
 
         m.append(DoublePowerLaw())
         m[0].A.value = 1000

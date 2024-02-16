@@ -15,7 +15,6 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import hyperspy.api as hs
-import logging
 import numpydoc
 from packaging.version import Version
 

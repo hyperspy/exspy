@@ -24,7 +24,6 @@ import dask.array as da
 import traits.api as t
 from scipy import constants
 from prettytable import PrettyTable
-from matplotlib.collections import LineCollection
 
 import hyperspy.api as hs
 from hyperspy.signal import BaseSetMetadataItems, BaseSignal
@@ -1234,9 +1233,7 @@ class EELSSpectrum(Signal1D):
             The collection semi-angle in mrad.
         {}
         {}
-        """.format(
-        TOOLKIT_DT, DISPLAY_DT
-    )
+        """.format(TOOLKIT_DT, DISPLAY_DT)
 
     def power_law_extrapolation(
         self, window_size=20, extrapolation_size=1024, add_noise=False, fix_neg_r=False
@@ -1767,7 +1764,7 @@ class EELSSpectrum(Signal1D):
             extra_element_edge_family.extend(np.atleast_1d(plot_edges))
             try:
                 elements = self.metadata.Sample.elements
-            except:
+            except Exception:
                 elements = []
 
         element_edge_family = elements + extra_element_edge_family

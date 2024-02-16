@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+import importlib
+
 try:
     # Set traits toolkit to work in a headless system
     # Capture error when toolkit is already previously set which typically
@@ -33,8 +35,10 @@ import matplotlib.pyplot as plt
 
 import pytest
 import numpy as np
-import matplotlib
 import hyperspy.api as hs
+
+# Use matplotlib fixture to clean up figure, setup backend, etc.
+from matplotlib.testing.conftest import mpl_test_settings  # noqa: F401
 
 
 @pytest.fixture(autouse=True)
@@ -56,12 +60,10 @@ def setup_module(mod, pdb_cmdopt):
         dask.set_options(get=dask.local.get_sync)
 
 
-from matplotlib.testing.conftest import mpl_test_settings
+pytest_mpl_spec = importlib.util.find_spec("pytest_mpl")
 
 
-try:
-    import pytest_mpl
-except ImportError:
+if pytest_mpl_spec is None:
     # Register dummy marker to allow running the test suite without pytest-mpl
     def pytest_configure(config):
         config.addinivalue_line(

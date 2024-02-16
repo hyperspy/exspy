@@ -465,8 +465,10 @@ def quantification_cliff_lorimer(
 
         if isinstance(mask, BaseSignal):
             mask = mask.data
+        if mask.dtype != bool:
+            mask = mask.astype(bool)
         for i in range(dim[0]):
-            intens[i][(mask == True)] = 0
+            intens[i][mask] = 0
 
     return intens
 

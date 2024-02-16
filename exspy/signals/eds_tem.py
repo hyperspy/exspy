@@ -212,9 +212,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         133.312296
         135.0
 
-        """.format(
-        DISPLAY_DT, TOOLKIT_DT
-    )
+        """.format(DISPLAY_DT, TOOLKIT_DT)
 
     def _are_microscope_parameters_missing(self):
         """Check if the EDS parameters necessary for quantification are

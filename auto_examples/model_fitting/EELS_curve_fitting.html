@@ -471,34 +471,27 @@ to download the full example code</p>
 <p>Performs curve fitting to an EELS spectrum, plots the result and saves it as
 png file.</p>
 <img src="../../_images/sphx_glr_EELS_curve_fitting_001.png" srcset="../../_images/sphx_glr_EELS_curve_fitting_001.png" alt="coreloss_spectrum Signal" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-  0%|                                     | 12.3k/42.3M [00:00&lt;08:10, 86.1kB/s]
-  0%|                                      | 35.8k/42.3M [00:00&lt;05:20, 132kB/s]
-  0%|                                       | 110k/42.3M [00:00&lt;02:17, 306kB/s]
-  1%|▏                                      | 216k/42.3M [00:00&lt;01:27, 478kB/s]
-  1%|▍                                      | 446k/42.3M [00:00&lt;00:47, 884kB/s]
-  2%|▊                                     | 937k/42.3M [00:00&lt;00:23, 1.74MB/s]
-  4%|█▋                                   | 1.89M/42.3M [00:01&lt;00:12, 3.33MB/s]
-  9%|███▎                                 | 3.80M/42.3M [00:01&lt;00:05, 6.50MB/s]
- 14%|█████▏                               | 5.92M/42.3M [00:01&lt;00:03, 9.09MB/s]
- 19%|██████▉                              | 7.95M/42.3M [00:01&lt;00:03, 10.6MB/s]
- 24%|████████▊                            | 10.0M/42.3M [00:01&lt;00:02, 11.8MB/s]
- 29%|██████████▌                          | 12.1M/42.3M [00:01&lt;00:02, 12.6MB/s]
- 34%|████████████▍                        | 14.2M/42.3M [00:01&lt;00:02, 13.1MB/s]
- 38%|██████████████▏                      | 16.3M/42.3M [00:02&lt;00:01, 13.6MB/s]
- 43%|████████████████                     | 18.3M/42.3M [00:02&lt;00:01, 13.8MB/s]
- 48%|█████████████████▉                   | 20.4M/42.3M [00:02&lt;00:01, 14.1MB/s]
- 53%|███████████████████▋                 | 22.5M/42.3M [00:02&lt;00:01, 14.1MB/s]
- 58%|█████████████████████▌               | 24.6M/42.3M [00:02&lt;00:01, 14.3MB/s]
- 63%|███████████████████████▎             | 26.7M/42.3M [00:02&lt;00:01, 14.3MB/s]
- 68%|█████████████████████████▏           | 28.8M/42.3M [00:02&lt;00:00, 14.4MB/s]
- 73%|██████████████████████████▉          | 30.8M/42.3M [00:03&lt;00:00, 14.4MB/s]
- 78%|████████████████████████████▊        | 32.9M/42.3M [00:03&lt;00:00, 14.4MB/s]
- 83%|██████████████████████████████▌      | 35.0M/42.3M [00:03&lt;00:00, 14.3MB/s]
- 88%|████████████████████████████████▍    | 37.0M/42.3M [00:03&lt;00:00, 14.3MB/s]
- 93%|██████████████████████████████████▏  | 39.1M/42.3M [00:03&lt;00:00, 14.4MB/s]
- 97%|████████████████████████████████████ | 41.2M/42.3M [00:03&lt;00:00, 14.4MB/s]
+  0%|                                      | 34.8k/42.3M [00:00&lt;03:44, 189kB/s]
+  0%|                                       | 118k/42.3M [00:00&lt;02:03, 341kB/s]
+  1%|▎                                      | 355k/42.3M [00:00&lt;00:54, 770kB/s]
+  3%|█                                    | 1.26M/42.3M [00:00&lt;00:14, 2.92MB/s]
+  6%|██▎                                  | 2.58M/42.3M [00:00&lt;00:06, 5.72MB/s]
+ 11%|███▉                                 | 4.51M/42.3M [00:00&lt;00:03, 9.51MB/s]
+ 17%|██████▍                              | 7.32M/42.3M [00:01&lt;00:02, 12.5MB/s]
+ 24%|████████▉                            | 10.2M/42.3M [00:01&lt;00:01, 16.7MB/s]
+ 30%|███████████▎                         | 12.9M/42.3M [00:01&lt;00:01, 19.3MB/s]
+ 37%|█████████████▊                       | 15.8M/42.3M [00:01&lt;00:01, 22.1MB/s]
+ 44%|████████████████▏                    | 18.5M/42.3M [00:01&lt;00:01, 19.9MB/s]
+ 51%|██████████████████▋                  | 21.4M/42.3M [00:01&lt;00:00, 22.2MB/s]
+ 57%|█████████████████████▏               | 24.2M/42.3M [00:01&lt;00:00, 23.6MB/s]
+ 64%|███████████████████████▋             | 27.1M/42.3M [00:01&lt;00:00, 25.2MB/s]
+ 71%|██████████████████████████▏          | 29.9M/42.3M [00:01&lt;00:00, 26.1MB/s]
+ 77%|████████████████████████████▌        | 32.6M/42.3M [00:02&lt;00:00, 22.3MB/s]
+ 84%|███████████████████████████████      | 35.5M/42.3M [00:02&lt;00:00, 24.1MB/s]
+ 91%|█████████████████████████████████▌   | 38.4M/42.3M [00:02&lt;00:00, 25.3MB/s]
+ 98%|████████████████████████████████████▏| 41.4M/42.3M [00:02&lt;00:00, 26.6MB/s]
   0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 238GB/s]
+100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 184GB/s]
 </pre></div>
 </div>
 <div class="line-block">
@@ -520,7 +513,7 @@ png file.</p>
 <a href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D.plot" title="hyperspy.models.model1d.Model1D.plot" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 10.015 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 9.214 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-model-fitting-eels-curve-fitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/037b5aa4752b41748abf69bba9d1cbe4/EELS_curve_fitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">EELS_curve_fitting.ipynb</span></code></a></p>

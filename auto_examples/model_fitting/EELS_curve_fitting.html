@@ -471,33 +471,34 @@ to download the full example code</p>
 <p>Performs curve fitting to an EELS spectrum, plots the result and saves it as
 png file.</p>
 <img src="../../_images/sphx_glr_EELS_curve_fitting_001.png" srcset="../../_images/sphx_glr_EELS_curve_fitting_001.png" alt="coreloss_spectrum Signal" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-  0%|                                      | 12.3k/42.3M [00:00&lt;06:26, 109kB/s]
-  0%|                                      | 44.0k/42.3M [00:00&lt;03:20, 211kB/s]
-  0%|                                      | 90.1k/42.3M [00:00&lt;02:20, 301kB/s]
-  0%|▏                                      | 203k/42.3M [00:00&lt;01:13, 575kB/s]
-  1%|▎                                     | 414k/42.3M [00:00&lt;00:40, 1.04MB/s]
-  2%|▊                                     | 855k/42.3M [00:00&lt;00:20, 2.01MB/s]
-  4%|█▌                                   | 1.76M/42.3M [00:00&lt;00:10, 3.96MB/s]
-  8%|███                                  | 3.54M/42.3M [00:00&lt;00:05, 7.71MB/s]
- 14%|█████                                | 5.78M/42.3M [00:01&lt;00:03, 11.5MB/s]
- 19%|██████▉                              | 7.86M/42.3M [00:01&lt;00:02, 13.6MB/s]
- 24%|████████▊                            | 10.1M/42.3M [00:01&lt;00:02, 15.4MB/s]
- 29%|██████████▋                          | 12.2M/42.3M [00:01&lt;00:01, 16.5MB/s]
- 34%|████████████▋                        | 14.4M/42.3M [00:01&lt;00:01, 17.4MB/s]
- 39%|██████████████▌                      | 16.6M/42.3M [00:01&lt;00:01, 17.9MB/s]
- 44%|████████████████▍                    | 18.8M/42.3M [00:01&lt;00:01, 18.4MB/s]
- 50%|██████████████████▎                  | 20.9M/42.3M [00:01&lt;00:01, 18.6MB/s]
- 55%|████████████████████▎                | 23.2M/42.3M [00:01&lt;00:01, 18.9MB/s]
- 60%|██████████████████████▏              | 25.3M/42.3M [00:02&lt;00:00, 19.0MB/s]
- 65%|████████████████████████             | 27.5M/42.3M [00:02&lt;00:00, 19.1MB/s]
- 70%|██████████████████████████           | 29.8M/42.3M [00:02&lt;00:00, 19.3MB/s]
- 76%|███████████████████████████▉         | 32.0M/42.3M [00:02&lt;00:00, 19.3MB/s]
- 81%|█████████████████████████████▉       | 34.2M/42.3M [00:02&lt;00:00, 19.4MB/s]
- 86%|███████████████████████████████▉     | 36.4M/42.3M [00:02&lt;00:00, 19.5MB/s]
- 91%|█████████████████████████████████▊   | 38.7M/42.3M [00:02&lt;00:00, 19.6MB/s]
- 97%|███████████████████████████████████▊ | 40.9M/42.3M [00:02&lt;00:00, 19.7MB/s]
+  0%|                                     | 12.3k/42.3M [00:00&lt;08:10, 86.1kB/s]
+  0%|                                      | 35.8k/42.3M [00:00&lt;05:20, 132kB/s]
+  0%|                                       | 110k/42.3M [00:00&lt;02:17, 306kB/s]
+  1%|▏                                      | 216k/42.3M [00:00&lt;01:27, 478kB/s]
+  1%|▍                                      | 446k/42.3M [00:00&lt;00:47, 884kB/s]
+  2%|▊                                     | 937k/42.3M [00:00&lt;00:23, 1.74MB/s]
+  4%|█▋                                   | 1.89M/42.3M [00:01&lt;00:12, 3.33MB/s]
+  9%|███▎                                 | 3.80M/42.3M [00:01&lt;00:05, 6.50MB/s]
+ 14%|█████▏                               | 5.92M/42.3M [00:01&lt;00:03, 9.09MB/s]
+ 19%|██████▉                              | 7.95M/42.3M [00:01&lt;00:03, 10.6MB/s]
+ 24%|████████▊                            | 10.0M/42.3M [00:01&lt;00:02, 11.8MB/s]
+ 29%|██████████▌                          | 12.1M/42.3M [00:01&lt;00:02, 12.6MB/s]
+ 34%|████████████▍                        | 14.2M/42.3M [00:01&lt;00:02, 13.1MB/s]
+ 38%|██████████████▏                      | 16.3M/42.3M [00:02&lt;00:01, 13.6MB/s]
+ 43%|████████████████                     | 18.3M/42.3M [00:02&lt;00:01, 13.8MB/s]
+ 48%|█████████████████▉                   | 20.4M/42.3M [00:02&lt;00:01, 14.1MB/s]
+ 53%|███████████████████▋                 | 22.5M/42.3M [00:02&lt;00:01, 14.1MB/s]
+ 58%|█████████████████████▌               | 24.6M/42.3M [00:02&lt;00:01, 14.3MB/s]
+ 63%|███████████████████████▎             | 26.7M/42.3M [00:02&lt;00:01, 14.3MB/s]
+ 68%|█████████████████████████▏           | 28.8M/42.3M [00:02&lt;00:00, 14.4MB/s]
+ 73%|██████████████████████████▉          | 30.8M/42.3M [00:03&lt;00:00, 14.4MB/s]
+ 78%|████████████████████████████▊        | 32.9M/42.3M [00:03&lt;00:00, 14.4MB/s]
+ 83%|██████████████████████████████▌      | 35.0M/42.3M [00:03&lt;00:00, 14.3MB/s]
+ 88%|████████████████████████████████▍    | 37.0M/42.3M [00:03&lt;00:00, 14.3MB/s]
+ 93%|██████████████████████████████████▏  | 39.1M/42.3M [00:03&lt;00:00, 14.4MB/s]
+ 97%|████████████████████████████████████ | 41.2M/42.3M [00:03&lt;00:00, 14.4MB/s]
   0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 278GB/s]
+100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 238GB/s]
 </pre></div>
 </div>
 <div class="line-block">
@@ -519,7 +520,7 @@ png file.</p>
 <a href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D.plot" title="hyperspy.models.model1d.Model1D.plot" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 9.033 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 10.015 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-model-fitting-eels-curve-fitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/037b5aa4752b41748abf69bba9d1cbe4/EELS_curve_fitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">EELS_curve_fitting.ipynb</span></code></a></p>

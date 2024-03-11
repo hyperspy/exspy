@@ -488,8 +488,8 @@ and can be downloaded using:</p>
 </div>
 <section id="loading-data">
 <h3>Loading data<a class="headerlink" href="#loading-data" title="Link to this heading">#</a></h3>
-<p>All data are loaded with the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.html#hyperspy.api.load" title="(in HyperSpy v2.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.load()</span></code></a> function, as described in
-detail in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/io.html#loading-files" title="(in HyperSpy v2.1)"><span class="xref std std-ref">loading files</span></a> of the HyperSpy
+<p>All data are loaded with the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.html#hyperspy.api.load" title="(in HyperSpy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.load()</span></code></a> function, as described in
+detail in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/io.html#loading-files" title="(in HyperSpy v2.0)"><span class="xref std std-ref">loading files</span></a> of the HyperSpy
 documentation. HyperSpy is able to import different formats, among them
 <code class="docutils literal notranslate"><span class="pre">msa</span></code> and <code class="docutils literal notranslate"><span class="pre">rpl</span></code> (the raw format of Oxford Instruments and Bruker).</p>
 <p>Here are three examples of files exported by Oxford Instruments software
@@ -500,7 +500,7 @@ documentation. HyperSpy is able to import different formats, among them
 </pre></div>
 </div>
 <p>For a spectrum image (The .rpl file is recorded as an image in this example,
-The method <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.as_signal1D" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.as_signal1D()</span></code></a> set it back to a one
+The method <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.as_signal1D" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.as_signal1D()</span></code></a> set it back to a one
 dimensional signal with the energy axis in first position):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">si</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;Ni_superalloy_010.rpl&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">as_signal1D</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">si</span>
@@ -518,7 +518,7 @@ dimensional signal with the energy axis in first position):</p>
 <section id="microscope-and-detector-parameters">
 <span id="eds-calibration-label"></span><h3>Microscope and detector parameters<a class="headerlink" href="#microscope-and-detector-parameters" title="Link to this heading">#</a></h3>
 <p>First, the signal type (“EDS_TEM” or “EDS_SEM”) needs to be set with the
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.set_signal_type" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.set_signal_type()</span></code></a> method. By assigning the
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.set_signal_type" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.set_signal_type()</span></code></a> method. By assigning the
 class of the object, specific EDS methods are made available.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;Ni_superalloy_1pix.msa&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_signal_type</span><span class="p">(</span><span class="s2">&quot;EDS_SEM&quot;</span><span class="p">)</span>
@@ -527,14 +527,14 @@ class of the object, specific EDS methods are made available.</p>
 </pre></div>
 </div>
 <p>You can also specify the signal type as an argument of
-the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.html#hyperspy.api.load" title="(in HyperSpy v2.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.load()</span></code></a> function:</p>
+the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.html#hyperspy.api.load" title="(in HyperSpy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.load()</span></code></a> function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;Ni_superalloy_1pix.msa&quot;</span><span class="p">,</span> <span class="n">signal_type</span><span class="o">=</span><span class="s2">&quot;EDS_SEM&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
 <span class="go">&lt;EDSSEMSpectrum, title: Signal1D, dimensions: (|1024)&gt;</span>
 </pre></div>
 </div>
 <p>HyperSpy will automatically load any existing  microscope parameters from the
-file, and store them in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.1)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a>
+file, and store them in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a>
 attribute (see <a class="reference internal" href="metadata_structure.html#metadata-structure"><span class="std std-ref">eXSpy Metadata Structure</span></a>). These parameters can be displayed
 as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;Ni_superalloy_1pix.msa&quot;</span><span class="p">,</span> <span class="n">signal_type</span><span class="o">=</span><span class="s2">&quot;EDS_SEM&quot;</span><span class="p">)</span>
@@ -575,7 +575,7 @@ as follows:</p>
 </figure>
 <p>Any microscope and detector parameters that are not found in the imported file
 will be set by default. These default values can be changed in the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">Preferences</span></code> class (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/basic_usage.html#configuring-hyperspy-label" title="(in HyperSpy v2.1)"><span class="xref std std-ref">preferences</span></a>).</p>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Preferences</span></code> class (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/basic_usage.html#configuring-hyperspy-label" title="(in HyperSpy v2.0)"><span class="xref std std-ref">preferences</span></a>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">EDS</span><span class="o">.</span><span class="n">eds_detector_elevation</span> <span class="o">=</span> <span class="mi">37</span>
 </pre></div>
 </div>
@@ -594,8 +594,8 @@ will be set by default. These default values can be changed in the
 <h3>Energy axis<a class="headerlink" href="#energy-axis" title="Link to this heading">#</a></h3>
 <p>The size, scale and units of the energy axis are automatically imported from
 the imported file, where they exist. These properties can also be set
-or adjusted manually with the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.axes.AxesManager</span></code></a>
-(see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/axes.html#setting-axis-properties" title="(in HyperSpy v2.1)"><span class="xref std std-ref">Axis properties</span></a> for more info):</p>
+or adjusted manually with the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.axes.AxesManager</span></code></a>
+(see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/axes.html#setting-axis-properties" title="(in HyperSpy v2.0)"><span class="xref std std-ref">Axis properties</span></a> for more info):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">si</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;Ni_superalloy_010.rpl&quot;</span><span class="p">,</span>
 <span class="gp">... </span>             <span class="n">signal_type</span><span class="o">=</span><span class="s2">&quot;EDS_TEM&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">as_signal1D</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">si</span><span class="o">.</span><span class="n">axes_manager</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;E&#39;</span>
@@ -636,7 +636,7 @@ method.</p>
 <section id="describing-the-sample">
 <span id="eds-sample-label"></span><h2>Describing the sample<a class="headerlink" href="#describing-the-sample" title="Link to this heading">#</a></h2>
 <p>The description of the sample is also stored in the
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.1)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a> attribute. It can be displayed using:</p>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a> attribute. It can be displayed using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">EDS_TEM_FePt_nanoparticles</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_lines</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">Sample</span><span class="o">.</span><span class="n">thickness</span> <span class="o">=</span> <span class="mi">100</span>
@@ -762,7 +762,7 @@ be limited by additional, optional arguments.</p>
 <span id="eds-plot-label"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h2>
 <p>You can visualize an EDS spectrum using the
 <a class="reference internal" href="../reference/signals.html#exspy.signals.EDSSpectrum.plot" title="exspy.signals.EDSSpectrum.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> method (see
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/visualisation.html#visualization-label" title="(in HyperSpy v2.1)"><span class="xref std std-ref">visualisation</span></a>). For example:</p>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/visualisation.html#visualization-label" title="(in HyperSpy v2.0)"><span class="xref std std-ref">visualisation</span></a>). For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">example_signals</span><span class="o">.</span><span class="n">EDS_SEM_Spectrum</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -774,7 +774,7 @@ be limited by additional, optional arguments.</p>
 </figcaption>
 </figure>
 <p>An example of multi-dimensional EDS data (e.g. 3D SEM-EDS) is given in
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/visualisation.html#visualization-3d-eds-label" title="(in HyperSpy v2.1)"><span class="xref std std-ref">visualisation multi-dimension</span></a>.</p>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/visualisation.html#visualization-3d-eds-label" title="(in HyperSpy v2.0)"><span class="xref std std-ref">visualisation multi-dimension</span></a>.</p>
 <section id="plotting-x-ray-lines">
 <span id="eds-plot-markers-label"></span><h3>Plotting X-ray lines<a class="headerlink" href="#plotting-x-ray-lines" title="Link to this heading">#</a></h3>
 <p>X-ray lines can be added as plot labels with
@@ -834,8 +834,8 @@ Mn Ka to the peak energy (<code class="docutils literal notranslate"><span class
 </figcaption>
 </figure>
 <p>The X-ray lines defined in <code class="docutils literal notranslate"><span class="pre">metadata.Sample.Xray_lines</span></code> are used by default.
-The EDS maps can be plotted using <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.plot/index.html#hyperspy.api.plot.plot_images" title="(in HyperSpy v2.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.plot.plot_images()</span></code></a>,
-see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/visualisation.html#plot-images" title="(in HyperSpy v2.1)"><span class="xref std std-ref">plotting several images</span></a>
+The EDS maps can be plotted using <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.plot/index.html#hyperspy.api.plot.plot_images" title="(in HyperSpy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.plot.plot_images()</span></code></a>,
+see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/visualisation.html#plot-images" title="(in HyperSpy v2.0)"><span class="xref std std-ref">plotting several images</span></a>
 for more information in setting plotting parameters.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;core_shell.hdf5&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">Sample</span>
@@ -1096,7 +1096,7 @@ then the illumination area becomes the pixel area of the spectrum image.
 This is a much more accurate approach for quantitative EDS and should be
 used where possible. The pixel width could either be added to the metadata
 by putting the pixel area in as the <code class="docutils literal notranslate"><span class="pre">probe_area</span></code> (above) or by calibrating
-the spectrum image (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/axes.html#setting-axis-properties" title="(in HyperSpy v2.1)"><span>Setting axis properties</span></a>).</p>
+the spectrum image (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/axes.html#setting-axis-properties" title="(in HyperSpy v2.0)"><span>Setting axis properties</span></a>).</p>
 <p>Either approach will provide an illumination area for the cross section
 quantification. If the pixel width is not set, the code will still run with the
 default value of 1 nm with a warning message to remind the user that this is

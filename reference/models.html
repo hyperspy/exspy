@@ -480,7 +480,7 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.models.EDSModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.models.</span></span><span class="sig-name descname"><span class="pre">EDSModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_add_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.models.EDSModel" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model1D</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model1D</span></code></a></p>
 <p>Build and fit a model of an EDS Signal1D.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -553,7 +553,7 @@ functions will be pickled and signals converted to dictionaries</p>
 component</p></li>
 <li><p>_whitelist: a dictionary with keys used as references for saved
 attributes, for more information, see
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/utils/index.html#hyperspy.misc.export_dictionary.export_to_dictionary" title="(in HyperSpy v2.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_to_dictionary()</span></code></a></p></li>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/utils/index.html#hyperspy.misc.export_dictionary.export_to_dictionary" title="(in HyperSpy v2.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_to_dictionary()</span></code></a></p></li>
 <li><p>any field from _whitelist.keys()</p></li>
 </ul>
 </p>
@@ -862,7 +862,7 @@ using the edsmodel.add_polynomial_background method.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.models.EELSModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.models.</span></span><span class="sig-name descname"><span class="pre">EELSModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal1D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_add_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GOS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gosh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.models.EELSModel" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model1D</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model1D</span></code></a></p>
 <p>Build an EELS model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -894,7 +894,7 @@ to use. If None, use the file from doi:10.5281/zenodo.7645765</p></li>
 <dd><p>Add component to Model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>thing</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>) – The component to add to the model.</p>
+<dd class="field-odd"><p><strong>thing</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>) – The component to add to the model.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1027,7 +1027,7 @@ Otherwise, it will be performed only on the listed components.</p>
 <dt class="sig sig-object py" id="exspy.models.EELSModel.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'std'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.models.EELSModel.fit" title="Link to this definition">#</a></dt>
 <dd><p>Fits the model to the experimental data.</p>
-<p>Read more in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/model/fitting_model.html#model-fitting" title="(in HyperSpy v2.1)"><span class="xref std std-ref">User Guide</span></a>.</p>
+<p>Read more in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/model/fitting_model.html#model-fitting" title="(in HyperSpy v2.0)"><span class="xref std std-ref">User Guide</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1049,7 +1049,7 @@ supports bounds on parameters.</p></li>
 distance regression (ODR) algorithm. It does not support
 bounds on parameters. See <code class="xref py py-mod docutils literal notranslate"><span class="pre">scipy.odr</span></code> for more details.</p></li>
 <li><p>All of the available methods for <code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code>
-can be used here. See the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/model/fitting_model.html#model-fitting" title="(in HyperSpy v2.1)"><span class="xref std std-ref">User Guide</span></a>
+can be used here. See the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/model/fitting_model.html#model-fitting" title="(in HyperSpy v2.0)"><span class="xref std std-ref">User Guide</span></a>
 documentation for more details.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;Differential</span> <span class="pre">Evolution&quot;</span></code> is a global optimization method.
 It does support bounds on parameters. See
@@ -1117,8 +1117,8 @@ optimizer of your choice in <code class="xref py py-mod docutils literal notrans
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.fit" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.multifit" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">multifit()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.fit" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.multifit" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">multifit()</span></code></a></p></li>
 <li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">smart_fit()</span></code></p></li>
 </ul>
 </div>
@@ -1345,7 +1345,7 @@ supports bounds on parameters.</p></li>
 distance regression (ODR) algorithm. It does not support
 bounds on parameters. See <code class="xref py py-mod docutils literal notranslate"><span class="pre">scipy.odr</span></code> for more details.</p></li>
 <li><p>All of the available methods for <code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.optimize.minimize()</span></code>
-can be used here. See the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/model/fitting_model.html#model-fitting" title="(in HyperSpy v2.1)"><span class="xref std std-ref">User Guide</span></a>
+can be used here. See the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/model/fitting_model.html#model-fitting" title="(in HyperSpy v2.0)"><span class="xref std std-ref">User Guide</span></a>
 documentation for more details.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;Differential</span> <span class="pre">Evolution&quot;</span></code> is a global optimization method.
 It does support bounds on parameters. See
@@ -1410,8 +1410,8 @@ optimizer of your choice in <code class="xref py py-mod docutils literal notrans
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.fit" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.multifit" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">multifit()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.fit" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.multifit" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">multifit()</span></code></a></p></li>
 <li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></p></li>
 </ul>
 </div>

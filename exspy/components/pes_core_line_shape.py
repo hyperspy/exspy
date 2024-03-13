@@ -32,7 +32,6 @@ def _calculate_shirley_background(values):
 
 
 class PESCoreLineShape(Component):
-
     """ """
 
     def __init__(self, A=1.0, FWHM=1.0, origin=0.0, ab=0.0, shirley=0.0):

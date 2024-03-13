@@ -16,6 +16,7 @@ DielectricFunction
     For dielectric function data with ``signal_dimension`` equal one. The signal
     is unbinned by default.
 """
+
 from .dielectric_function import DielectricFunction, LazyDielectricFunction
 from .eds import EDSSpectrum, LazyEDSSpectrum
 from .eds_sem import EDSSEMSpectrum, LazyEDSSEMSpectrum

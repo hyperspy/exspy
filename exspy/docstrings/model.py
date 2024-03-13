@@ -17,9 +17,8 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-"""Common docstring snippets for model.
+"""Common docstring snippets for model."""
 
-"""
 from exspy.misc.eels.gosh_gos import _GOSH_DOI
 
 GOS_PARAMETER = """GOS : 'hydrogenic', 'gosh', 'Hartree-Slater'.

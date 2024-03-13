@@ -1,4 +1,4 @@
-"""Models """
+"""Models"""
 
 from .edsmodel import EDSModel
 from .edssemmodel import EDSSEMModel

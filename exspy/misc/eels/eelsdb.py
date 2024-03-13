@@ -18,6 +18,7 @@
 
 
 """This module provides tools to interact with The EELS Database."""
+
 import requests
 import logging
 

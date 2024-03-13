@@ -29,7 +29,6 @@ from exspy.misc.eels.tools import eels_constant
 
 
 class DielectricFunction(ComplexSignal1D):
-
     """Signal class for dielectric functions."""
 
     _signal_type = "DielectricFunction"
@@ -172,7 +171,6 @@ class DielectricFunction(ComplexSignal1D):
 
 
 class LazyDielectricFunction(DielectricFunction, LazyComplexSignal1D):
-
     """Lazy signal class for dielectric functions."""
 
     __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "DielectricFunction")

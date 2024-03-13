@@ -1,4 +1,4 @@
-"""Components """
+"""Components"""
 
 from .eels_arctan import EELSArctan
 from .eels_cl_edge import EELSCLEdge

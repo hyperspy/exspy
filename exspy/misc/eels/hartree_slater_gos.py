@@ -68,7 +68,6 @@ conventions = {
 
 
 class HartreeSlaterGOS(TabulatedGOS):
-
     """Read Hartree-Slater Generalized Oscillator Strength parametrized
     from files.
 

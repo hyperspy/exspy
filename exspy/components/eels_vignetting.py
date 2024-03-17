@@ -23,7 +23,6 @@ from hyperspy._components.gaussian import Gaussian
 
 
 class Vignetting(Component):
-
     """
     Model the vignetting of the lens with a cos^4 law multiplied by lines on
     the edges

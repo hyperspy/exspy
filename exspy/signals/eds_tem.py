@@ -69,7 +69,6 @@ class EDSTEMParametersUI(BaseSetMetadataItems):
 
 
 class EDSTEMSpectrum(EDSSpectrum):
-
     """Signal class for EDS spectra measured in an TEM."""
 
     _signal_type = "EDS_TEM"
@@ -984,7 +983,6 @@ class EDSTEMSpectrum(EDSSpectrum):
 
 
 class LazyEDSTEMSpectrum(EDSTEMSpectrum, LazyEDSSpectrum):
-
     """Lazy signal class for EDS spectra measured in an TEM."""
 
     __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSTEMSpectrum")

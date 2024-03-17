@@ -97,7 +97,6 @@ def _get_scale(E1, E_ref1, fact):
 
 
 class EDSModel(Model1D):
-
     """Build and fit a model of an EDS Signal1D.
 
     Parameters

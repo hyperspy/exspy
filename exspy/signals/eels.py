@@ -75,7 +75,6 @@ class EELSTEMParametersUI(BaseSetMetadataItems):
 
 
 class EELSSpectrum(Signal1D):
-
     """Signal class for EELS spectra."""
 
     _signal_type = "EELS"
@@ -2026,7 +2025,6 @@ class EELSSpectrum(Signal1D):
 
 
 class LazyEELSSpectrum(EELSSpectrum, LazySignal1D):
-
     """Lazy signal class for EELS spectra."""
 
     __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EELSSpectrum")

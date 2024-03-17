@@ -64,7 +64,6 @@ R = constants.value("Rydberg constant times hc in eV")
 
 
 class HydrogenicGOS(BaseGOS):
-
     """Computes the K and L GOS using R. Egerton's  routines.
 
     Parameters

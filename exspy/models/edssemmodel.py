@@ -20,7 +20,6 @@ from exspy.models.edsmodel import EDSModel
 
 
 class EDSSEMModel(EDSModel):
-
     """Build and fit a model to EDS data acquired in the SEM.
 
     Parameters

@@ -1055,7 +1055,7 @@ class EELSSpectrum(Signal1D):
         axis = ll.axes_manager.signal_axes[0]
         if fwhm is None:
             fwhm = float(
-                ll.get_current_signal().estimate_peak_width()._get_current_data()
+                ll.get_current_signal().estimate_peak_width()._get_current_data()[0]
             )
             _logger.info("FWHM = %1.2f" % fwhm)
 

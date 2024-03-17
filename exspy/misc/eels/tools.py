@@ -60,7 +60,7 @@ def _estimate_gain(
         variance2fit = variance
         average2fit = average
 
-    fit = np.polyfit(average2fit, variance2fit, pol_order)
+    fit = np.polynomial.Polynomial.fit(average2fit, variance2fit, pol_order)
     if weighted is True:
         import hyperspy.api as hs
 
@@ -108,7 +108,7 @@ def estimate_variance_parameters(
 
     By comparing an SI with its denoised version (i.e. by PCA),
     this plots an estimation of the variance as a function of the number of counts
-    and fits a polynomy to the result.
+    and fits a polynomial to the result.
 
     Parameters
     ----------

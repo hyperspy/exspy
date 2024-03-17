@@ -24,15 +24,16 @@ import warnings
 from collections.abc import Iterable
 from matplotlib import pyplot as plt
 
+import hyperspy.api as hs
 from hyperspy import utils
 from hyperspy.signal import BaseSignal
 from hyperspy._signals.signal1d import Signal1D, LazySignal1D
 from exspy.misc.elements import elements as elements_db
 from exspy.misc.eds import utils as utils_eds
 from hyperspy.misc.utils import isiterable
-from hyperspy.utils.markers import Texts, VerticalLines, Lines
 from hyperspy.docstrings.plot import BASE_PLOT_DOCSTRING_PARAMETERS, PLOT1D_DOCSTRING
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
+
 
 _logger = logging.getLogger(__name__)
 
@@ -1012,14 +1013,14 @@ class EDSSpectrum(Signal1D):
             The position on the signal axis. Each row corresponds to a
             group.
         kwargs
-            keywords argument for :py:class:`~.api.plot.markers.VerticalLine`
+            keywords argument for :class:`hyperspy.api.plot.markers.VerticalLine`
         """
         colors = itertools.cycle(
             np.sort(plt.rcParams["axes.prop_cycle"].by_key()["color"])
         )
 
         for x, color in zip(position, colors):
-            line = VerticalLines(offsets=x, color=color, **kwargs)
+            line = hs.plot.markers.VerticalLines(offsets=x, color=color, **kwargs)
             self.add_marker(line, render_figure=False)
         if render_figure:
             self._render_figure(plot=["signal_plot"])
@@ -1050,12 +1051,12 @@ class EDSSpectrum(Signal1D):
                 % utils_eds._get_element_and_line(xray_line)
             )
 
-        line_markers = Lines(
+        line_markers = hs.plot.markers.Lines(
             segments=segments,
             transform="relative",
             color="black",
         )
-        text_markers = Texts(
+        text_markers = hs.plot.markers.Texts(
             offsets=offsets,
             texts=line_names,
             offset_transform="relative",
@@ -1137,7 +1138,7 @@ class EDSSpectrum(Signal1D):
             x2 = (bw[2] + bw[3]) / 2.0
             segments.append([[x1, y1[0]], [x2, y2[0]]])
         segments = np.array(segments)
-        lines = Lines(segments=segments, color="black")
+        lines = hs.plot.markers.Lines(segments=segments, color="black")
         self.add_marker(lines, render_figure=False)
         if render_figure:
             self._render_figure(plot=["signal_plot"])

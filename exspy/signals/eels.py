@@ -28,13 +28,10 @@ from prettytable import PrettyTable
 import hyperspy.api as hs
 from hyperspy.signal import BaseSetMetadataItems, BaseSignal
 from hyperspy._signals.signal1d import Signal1D, LazySignal1D
-import hyperspy.axes
-from hyperspy.components1d import PowerLaw
 from hyperspy.misc.utils import display, isiterable, underline
 from hyperspy.misc.math_tools import optimal_fft_size
 
 from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
-from hyperspy.utils.markers import Texts, Lines
 from hyperspy.docstrings.signal1d import (
     CROP_PARAMETER_DOC,
     SPIKES_DIAGNOSIS_DOCSTRING,
@@ -1069,9 +1066,7 @@ class EELSSpectrum(Signal1D):
             I0_shape.insert(axis.index_in_array, 1)
             I0 = I0.reshape(I0_shape)
 
-        from hyperspy.components1d import Gaussian
-
-        g = Gaussian()
+        g = hs.model.components1D.Gaussian()
         g.sigma.value = fwhm / 2.3548
         g.A.value = 1
         g.centre.value = 0
@@ -1287,7 +1282,7 @@ class EELSSpectrum(Signal1D):
             s.data = np.zeros(new_shape)
             s.data[..., : axis.size] = self.data
         s.get_dimensions_from_data()
-        pl = PowerLaw()
+        pl = hs.model.components1D.PowerLaw()
         pl._axes_manager = self.axes_manager
         A, r = pl.estimate_parameters(
             s,
@@ -1454,7 +1449,7 @@ class EELSSpectrum(Signal1D):
         axis = s.axes_manager.signal_axes[0]
         eaxis = axis.axis.copy()
 
-        if isinstance(zlp, hyperspy.signal.BaseSignal):
+        if isinstance(zlp, hs.signals.BaseSignal):
             if (
                 zlp.axes_manager.navigation_dimension
                 == self.axes_manager.navigation_dimension
@@ -1480,7 +1475,7 @@ class EELSSpectrum(Signal1D):
                              in the BaseSignal class or a Number."
             )
 
-        if isinstance(t, hyperspy.signal.BaseSignal):
+        if isinstance(t, hs.signals.BaseSignal):
             if (
                 t.axes_manager.navigation_dimension
                 == self.axes_manager.navigation_dimension
@@ -1711,13 +1706,13 @@ class EELSSpectrum(Signal1D):
         return offsets, segments
 
     def _initialise_markers(self):
-        self._edge_markers["lines"] = Lines(
+        self._edge_markers["lines"] = hs.plot.markers.Lines(
             segments=np.empty((0, 2, 2)),
             transform="relative",
             color="black",
             shift=np.array([0.0, 0.19]),
         )
-        self._edge_markers["texts"] = Texts(
+        self._edge_markers["texts"] = hs.plot.markers.Texts(
             offsets=np.empty((0, 2)),
             texts=np.empty((0,)),
             offset_transform="relative",
@@ -1975,7 +1970,7 @@ class EELSSpectrum(Signal1D):
             out.events.data_changed.trigger(obj=out)
         return m
 
-    rebin.__doc__ = hyperspy.signal.BaseSignal.rebin.__doc__
+    rebin.__doc__ = hs.signals.BaseSignal.rebin.__doc__
 
     def vacuum_mask(
         self, threshold=10.0, start_energy=None, closing=True, opening=False

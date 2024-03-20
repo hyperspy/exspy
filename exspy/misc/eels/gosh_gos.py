@@ -76,6 +76,7 @@ class GoshGOS(TabulatedGOS):
         "qaxis": None,
         "element": None,
         "subshell": None,
+        "subshell_factor": None,
     }
 
     def __init__(self, element_subshell, gos_file_path=None):

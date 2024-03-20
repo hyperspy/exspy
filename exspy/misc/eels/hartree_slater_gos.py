@@ -107,6 +107,7 @@ class HartreeSlaterGOS(TabulatedGOS):
         "qaxis": None,
         "element": None,
         "subshell": None,
+        "subshell_factor": None,
     }
 
     def read_elements(self):

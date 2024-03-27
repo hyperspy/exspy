@@ -19,8 +19,6 @@
 import numpy as np
 import pytest
 from hyperspy.decorators import lazifyTestClass
-from hyperspy._components.gaussian import Gaussian
-from hyperspy._components.lorentzian import Lorentzian
 import hyperspy.api as hs
 
 import exspy
@@ -100,8 +98,8 @@ class TestWarningSlowMultifit:
         s = hs.data.two_gaussians().inav[0]
         s.set_signal_type("EELS")
         m = s.create_model(auto_background=False, auto_add_edges=False)
-        g1 = Gaussian(centre=40)
-        g2 = Gaussian(centre=55)
+        g1 = hs.model.components1D.Gaussian(centre=40)
+        g2 = hs.model.components1D.Gaussian(centre=55)
         m.extend([g1, g2])
 
         # make dummy twinning
@@ -134,7 +132,7 @@ def test_expression_convolved(nav_dim, multiple_free_parameters):
     to_convolve.axes_manager[-1].offset = -to_convolve_component.centre.value
 
     # Create reference signal from model with convolution
-    l_ref = Lorentzian(A=100, centre=20, gamma=4)
+    l_ref = hs.model.components1D.Lorentzian(A=100, centre=20, gamma=4)
     m_ref = s_ref.create_model(auto_add_edges=False, auto_background=False)
     m_ref.append(l_ref)
     m_ref.low_loss = to_convolve
@@ -148,7 +146,7 @@ def test_expression_convolved(nav_dim, multiple_free_parameters):
         to_convolve = hs.stack([to_convolve] * 3)
 
     m = s.create_model(auto_add_edges=False, auto_background=False)
-    lor = Lorentzian(centre=20, gamma=4)
+    lor = hs.model.components1D.Lorentzian(centre=20, gamma=4)
     m.append(lor)
     assert not m.convolved
     m.low_loss = to_convolve
@@ -179,7 +177,7 @@ def test_expression_multiple_linear_parameter(nav_dim, convolve):
     p_ref = hs.model.components1D.Polynomial(order=2, a0=25, a1=-50, a2=2.5)
 
     # Create signal to convolve
-    to_convolve_component = Gaussian(A=100, sigma=5, centre=10)
+    to_convolve_component = hs.model.components1D.Gaussian(A=100, sigma=5, centre=10)
     to_convolve = hs.signals.Signal1D(to_convolve_component.function(np.arange(1000)))
     to_convolve.axes_manager[-1].offset = -to_convolve_component.centre.value
 
@@ -224,12 +222,12 @@ def test_multiple_linear_parameters_convolution(nav_dim):
     s_ref = EELSSpectrum(np.ones(1000))
 
     # Create signal to convolve
-    to_convolve_component = Gaussian(A=1000, sigma=50, centre=100)
+    to_convolve_component = hs.model.components1D.Gaussian(A=1000, sigma=50, centre=100)
     to_convolve = EELSSpectrum(to_convolve_component.function(np.arange(1000)))
     to_convolve.axes_manager[-1].offset = -to_convolve_component.centre.value
 
-    l_ref1 = Lorentzian(A=100, centre=200, gamma=10)
-    l_ref2 = Lorentzian(A=100, centre=600, gamma=20)
+    l_ref1 = hs.model.components1D.Lorentzian(A=100, centre=200, gamma=10)
+    l_ref2 = hs.model.components1D.Lorentzian(A=100, centre=600, gamma=20)
 
     m_ref = s_ref.create_model(auto_add_edges=False, auto_background=False)
     m_ref.extend([l_ref1, l_ref2])
@@ -244,8 +242,8 @@ def test_multiple_linear_parameters_convolution(nav_dim):
         to_convolve = hs.stack([to_convolve] * 3)
 
     m = s.create_model(auto_add_edges=False, auto_background=False)
-    l1 = Lorentzian(centre=200, gamma=10)
-    l2 = Lorentzian(centre=600, gamma=20)
+    l1 = hs.model.components1D.Lorentzian(centre=200, gamma=10)
+    l2 = hs.model.components1D.Lorentzian(centre=600, gamma=20)
     m.extend([l1, l2])
     assert not m.convolved
     m.low_loss = to_convolve

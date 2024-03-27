@@ -20,12 +20,13 @@
 import numpy as np
 import logging
 
-from hyperspy._components.expression import Expression
+import hyperspy.api as hs
+
 
 _logger = logging.getLogger(__name__)
 
 
-class SEE(Expression):
+class SEE(hs.model.components1D.Expression):
     r"""Secondary electron emission component for Photoemission Spectroscopy.
 
     .. math::

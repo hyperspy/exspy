@@ -12,4 +12,5 @@ version. If you are citing HoloSpy because you have used it to process data,
 please use the DOI of the specific version that you have employed. You can
 find it by clicking on the DOI badge below:
 
-To be updated after first release.
+.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.10252344.svg
+   :target: https://doi.org/10.5281/zenodo.10252344

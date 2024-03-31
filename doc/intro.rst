@@ -91,6 +91,8 @@ please use the DOI of the specific version that you have employed. You can
 find it by clicking on the DOI badge below.
 
 .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.10252344.svg
+   :class: sd-bg-transparent
+   :alt: doi: 10.5281/zenodo.10252344
    :target: https://zenodo.org/doi/10.5281/zenodo.10252344
 
 Citation in the scientific literature

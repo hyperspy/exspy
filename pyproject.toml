@@ -120,7 +120,8 @@ include = ["exspy*"]
 [tool.setuptools.package-data]
 "*" = [
   "*hspy",
-  "*.yaml"
+  "*.yaml",
+  "*.msa",
   ]
 
 [tool.setuptools_scm]

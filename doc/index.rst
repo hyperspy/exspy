@@ -6,7 +6,6 @@
    Examples <auto_examples/index>
    Reference <reference/index>
    Release Notes <changes>
-   Citing <citing>
    Contribute <contributing>
 
 .. include:: intro.rst

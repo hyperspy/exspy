@@ -622,10 +622,10 @@ class EELSSpectrum(Signal1D):
                     if binned:
                         return data.sum()
                     else:
-                        from scipy.integrate import simps
+                        from scipy.integrate import simpson
 
                         axis = ax.axis[:ind]
-                        return simps(y=data, x=axis)
+                        return simpson(y=data, x=axis)
 
             I0 = self.map(
                 estimating_function,

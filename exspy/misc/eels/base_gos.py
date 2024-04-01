@@ -144,7 +144,7 @@ class TabulatedGOS(BaseGOS):
             # Perform the integration in a log grid
             qaxis, gos = self.get_qaxis_and_gos(i, qmin, qmax)
             logsqa0qaxis = np.log((a0 * qaxis) ** 2)
-            qint[i] = integrate.simps(gos, logsqa0qaxis)
+            qint[i] = integrate.simpson(gos, x=logsqa0qaxis)
         E = self.energy_axis + energy_shift
         # Energy differential cross section in (barn/eV/atom)
         qint *= (4.0 * np.pi * a0**2.0 * R**2 / E / T * self.subshell_factor) * 1e28

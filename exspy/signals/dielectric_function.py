@@ -18,7 +18,7 @@
 
 import numpy as np
 from scipy import constants
-from scipy.integrate import simpson, cumtrapz
+from scipy.integrate import simpson, cumulative_trapezoid
 
 from hyperspy._signals.complex_signal1d import (
     ComplexSignal1D,
@@ -95,7 +95,7 @@ class DielectricFunction(ComplexSignal1D):
         else:
             neff1 = self._deepcopy_with_new_data(
                 k
-                * cumtrapz(
+                * cumulative_trapezoid(
                     (-1.0 / self.data).imag * axis.axis,
                     x=axis.axis,
                     axis=axis.index_in_array,
@@ -104,7 +104,7 @@ class DielectricFunction(ComplexSignal1D):
             )
             neff2 = self._deepcopy_with_new_data(
                 k
-                * cumtrapz(
+                * cumulative_trapezoid(
                     self.data.imag * axis.axis,
                     x=axis.axis,
                     axis=axis.index_in_array,

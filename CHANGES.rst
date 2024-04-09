@@ -9,6 +9,29 @@ https://exspy.readthedocs.io/en/latest/changes.html
 
 .. towncrier release notes start
 
+0.2 (2024-04-10)
+================
+
+Bug Fixes
+---------
+
+- Fix restoring Gosh and Hartree Slater GOS from stored models. (`#32 <https://github.com/hyperspy/exspy/issues/32>`_)
+
+
+Improved Documentation
+----------------------
+
+- Add eXSpy logo and adapt spelling to capital X (`#22 <https://github.com/hyperspy/exspy/issues/22>`_)
+- Fix DOI and add more badges to readme file. (`#38 <https://github.com/hyperspy/exspy/issues/38>`_)
+
+
+Maintenance
+-----------
+
+- Use `ruff <https://docs.astral.sh/ruff>`_ for linting and formatting the code. Remove redundant GitHub workflow in favour of pre-commit. (`#27 <https://github.com/hyperspy/exspy/issues/27>`_)
+- Fix deprecation scipy and numpy warnings. (`#33 <https://github.com/hyperspy/exspy/issues/33>`_)
+
+
 0.1 (2023-12-03)
 ================
 

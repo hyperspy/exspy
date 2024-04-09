@@ -1,1 +1,0 @@
-Use `ruff <https://docs.astral.sh/ruff>`_ for linting and formatting the code. Remove redundant GitHub workflow in favour of pre-commit.

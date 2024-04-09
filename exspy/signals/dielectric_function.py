@@ -18,7 +18,7 @@
 
 import numpy as np
 from scipy import constants
-from scipy.integrate import simps, cumtrapz
+from scipy.integrate import simpson, cumtrapz
 
 from hyperspy._signals.complex_signal1d import (
     ComplexSignal1D,
@@ -82,12 +82,12 @@ class DielectricFunction(ComplexSignal1D):
 
         axis = self.axes_manager.signal_axes[0]
         if cumulative is False:
-            dneff1 = k * simps(
+            dneff1 = k * simpson(
                 (-1.0 / self.data).imag * axis.axis,
                 x=axis.axis,
                 axis=axis.index_in_array,
             )
-            dneff2 = k * simps(
+            dneff2 = k * simpson(
                 self.data.imag * axis.axis, x=axis.axis, axis=axis.index_in_array
             )
             neff1 = self._get_navigation_signal(data=dneff1)

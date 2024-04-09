@@ -20,10 +20,10 @@
 import numpy as np
 
 from hyperspy.docstrings.parameters import FUNCTION_ND_DOCSTRING
-from hyperspy._components.expression import Expression
+import hyperspy.api as hs
 
 
-class DoublePowerLaw(Expression):
+class DoublePowerLaw(hs.model.components1D.Expression):
     r"""Double power law component for EELS spectra.
 
     .. math::

@@ -60,16 +60,14 @@ def _estimate_gain(
         variance2fit = variance
         average2fit = average
 
-    fit = np.polyfit(average2fit, variance2fit, pol_order)
+    fit = np.polynomial.Polynomial.fit(average2fit, variance2fit, pol_order)
     if weighted is True:
-        from hyperspy._signals.signal1D import Signal1D
-        from hyperspy.models.model1d import Model1D
-        from hyperspy.components1d import Line
+        import hyperspy.api as hs
 
-        s = Signal1D(variance2fit)
+        s = hs.signals.Signal1D(variance2fit)
         s.axes_manager.signal_axes[0].axis = average2fit
-        m = Model1D(s)
-        line = Line()
+        m = s.create_model()
+        line = hs.model.components1D.Polynomial()
         line.a.value = fit[1]
         line.b.value = fit[0]
         m.append(line)
@@ -109,29 +107,30 @@ def estimate_variance_parameters(
     """Find the scale and offset of the Poissonian noise
 
     By comparing an SI with its denoised version (i.e. by PCA),
-    this plots an
-    estimation of the variance as a function of the number of counts
-    and fits a
-    polynomy to the result.
+    this plots an estimation of the variance as a function of the number of counts
+    and fits a polynomial to the result.
 
     Parameters
     ----------
-    noisy_SI, clean_SI : signal1D.Signal1D instances
-    mask : numpy bool array
+    noisy_SI, clean_SI : hyperspy.api.signals.Signal1D
+    mask : numpy.ndarray
         To define the channels that will be used in the calculation.
     pol_order : int
-        The order of the polynomy.
+        The order of the polynomial.
     higher_than: float
         To restrict the fit to counts over the given value.
-    return_results : Bool
-    plot_results : Bool
+    return_results : bool
+        Whether to return the results or not.
+    plot_results : bool
+        Whether to plot the results or not.
     store_results: {True, False, "ask"}, default "ask"
         If True, it stores the result in the signal metadata
 
     Returns
     -------
-    Dictionary with the result of a linear fit to estimate the offset
-    and scale factor
+    dict
+        Dictionary with the result of a linear fit to estimate the offset
+        and scale factor
 
     """
     with noisy_signal.unfolded(), clean_signal.unfolded():

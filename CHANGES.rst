@@ -22,7 +22,7 @@ Improved Documentation
 ----------------------
 
 - Add eXSpy logo and adapt spelling to capital X (`#22 <https://github.com/hyperspy/exspy/issues/22>`_)
-- Fix DOI and add more badges to readme file. (`#38 <https://github.com/hyperspy/exspy/issues/38>`_)
+- Fix DOI and add more badges to readme file. (`#36 <https://github.com/hyperspy/exspy/issues/36>`_, `#38 <https://github.com/hyperspy/exspy/issues/38>`_)
 
 
 Maintenance

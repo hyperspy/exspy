@@ -1,1 +1,0 @@
-Fix DOI and add more badges to readme file.

@@ -1,1 +1,0 @@
-Fix restoring Gosh and Hartree Slater GOS from stored models.

@@ -42,7 +42,7 @@
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=ccdb6887"></script>
@@ -450,37 +450,36 @@ document.write(`
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-examples-model-fitting-eels-curve-fitting-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code</p>
+to download the full example code.</p>
 </div>
 <section class="sphx-glr-example-title" id="eels-curve-fitting">
 <span id="sphx-glr-auto-examples-model-fitting-eels-curve-fitting-py"></span><h1>EELS curve fitting<a class="headerlink" href="#eels-curve-fitting" title="Link to this heading">#</a></h1>
 <p>Performs curve fitting to an EELS spectrum, plots the result and saves it as
 png file.</p>
 <img src="../../_images/sphx_glr_EELS_curve_fitting_001.png" srcset="../../_images/sphx_glr_EELS_curve_fitting_001.png" alt="coreloss_spectrum Signal" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-  0%|                                      | 14.3k/42.3M [00:00&lt;05:35, 126kB/s]
-  0%|                                      | 41.0k/42.3M [00:00&lt;03:37, 194kB/s]
-  0%|                                       | 120k/42.3M [00:00&lt;01:38, 428kB/s]
-  1%|▎                                      | 271k/42.3M [00:00&lt;00:52, 794kB/s]
-  1%|▌                                     | 559k/42.3M [00:00&lt;00:29, 1.43MB/s]
-  3%|█                                    | 1.15M/42.3M [00:00&lt;00:15, 2.74MB/s]
-  5%|██                                   | 2.31M/42.3M [00:00&lt;00:07, 5.23MB/s]
- 11%|████                                 | 4.65M/42.3M [00:00&lt;00:03, 10.2MB/s]
- 18%|██████▋                              | 7.60M/42.3M [00:01&lt;00:02, 15.3MB/s]
- 24%|████████▋                            | 9.94M/42.3M [00:01&lt;00:01, 17.6MB/s]
- 28%|██████████▎                          | 11.7M/42.3M [00:01&lt;00:01, 17.6MB/s]
- 33%|████████████▎                        | 14.0M/42.3M [00:01&lt;00:01, 18.5MB/s]
- 40%|██████████████▋                      | 16.7M/42.3M [00:01&lt;00:01, 20.1MB/s]
- 46%|█████████████████                    | 19.5M/42.3M [00:01&lt;00:01, 21.5MB/s]
- 52%|███████████████████▎                 | 22.0M/42.3M [00:01&lt;00:00, 21.7MB/s]
- 58%|█████████████████████▍               | 24.5M/42.3M [00:01&lt;00:00, 21.8MB/s]
- 64%|███████████████████████▊             | 27.1M/42.3M [00:01&lt;00:00, 22.4MB/s]
- 70%|██████████████████████████           | 29.7M/42.3M [00:01&lt;00:00, 22.6MB/s]
- 76%|████████████████████████████▎        | 32.3M/42.3M [00:02&lt;00:00, 22.7MB/s]
- 83%|██████████████████████████████▌      | 34.9M/42.3M [00:02&lt;00:00, 23.0MB/s]
- 89%|████████████████████████████████▉    | 37.6M/42.3M [00:02&lt;00:00, 23.1MB/s]
- 96%|███████████████████████████████████▍ | 40.4M/42.3M [00:02&lt;00:00, 23.8MB/s]
+  0%|                                     | 14.3k/42.3M [00:00&lt;08:01, 87.7kB/s]
+  0%|                                      | 54.3k/42.3M [00:00&lt;03:54, 180kB/s]
+  0%|                                       | 134k/42.3M [00:00&lt;02:10, 323kB/s]
+  1%|▎                                      | 290k/42.3M [00:00&lt;01:13, 574kB/s]
+  1%|▌                                     | 606k/42.3M [00:00&lt;00:38, 1.07MB/s]
+  3%|█                                    | 1.24M/42.3M [00:00&lt;00:20, 2.05MB/s]
+  6%|██▏                                  | 2.52M/42.3M [00:01&lt;00:10, 3.95MB/s]
+ 12%|████▍                                | 5.09M/42.3M [00:01&lt;00:04, 7.74MB/s]
+ 18%|██████▊                              | 7.80M/42.3M [00:01&lt;00:03, 10.6MB/s]
+ 25%|█████████▎                           | 10.7M/42.3M [00:01&lt;00:02, 12.9MB/s]
+ 32%|███████████▋                         | 13.4M/42.3M [00:01&lt;00:02, 13.9MB/s]
+ 38%|██████████████                       | 16.0M/42.3M [00:01&lt;00:01, 14.6MB/s]
+ 44%|████████████████▎                    | 18.7M/42.3M [00:02&lt;00:01, 15.2MB/s]
+ 51%|██████████████████▊                  | 21.5M/42.3M [00:02&lt;00:01, 15.8MB/s]
+ 57%|█████████████████████▏               | 24.2M/42.3M [00:02&lt;00:01, 16.1MB/s]
+ 64%|███████████████████████▌             | 26.9M/42.3M [00:02&lt;00:00, 16.3MB/s]
+ 70%|█████████████████████████▉           | 29.7M/42.3M [00:02&lt;00:00, 16.5MB/s]
+ 77%|████████████████████████████▎        | 32.4M/42.3M [00:02&lt;00:00, 16.7MB/s]
+ 83%|██████████████████████████████▋      | 35.0M/42.3M [00:03&lt;00:00, 16.5MB/s]
+ 89%|█████████████████████████████████    | 37.7M/42.3M [00:03&lt;00:00, 16.6MB/s]
+ 96%|███████████████████████████████████▍ | 40.5M/42.3M [00:03&lt;00:00, 16.7MB/s]
   0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 278GB/s]
+100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 260GB/s]
 </pre></div>
 </div>
 <div class="line-block">
@@ -502,7 +501,7 @@ png file.</p>
 <a href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D.plot" title="hyperspy.models.model1d.Model1D.plot" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.511 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 9.313 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-model-fitting-eels-curve-fitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/037b5aa4752b41748abf69bba9d1cbe4/EELS_curve_fitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">EELS_curve_fitting.ipynb</span></code></a></p>
@@ -595,7 +594,7 @@ png file.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

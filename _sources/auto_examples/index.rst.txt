@@ -13,6 +13,9 @@ Below is a gallery of examples.
 
     <div class="sphx-glr-thumbnails">
 
+.. thumbnail-parent-div-open
+
+.. thumbnail-parent-div-close
 
 .. raw:: html
 
@@ -29,6 +32,7 @@ Below is a gallery of examples on model fitting.
 
     <div class="sphx-glr-thumbnails">
 
+.. thumbnail-parent-div-open
 
 .. raw:: html
 
@@ -80,6 +84,8 @@ Below is a gallery of examples on model fitting.
       <div class="sphx-glr-thumbnail-title">Simple arctan fit</div>
     </div>
 
+
+.. thumbnail-parent-div-close
 
 .. raw:: html
 

@@ -42,7 +42,7 @@
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=ccdb6887"></script>
@@ -471,13 +471,13 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>spectrum</strong> (<a class="reference internal" href="signals.html#exspy.signals.EDSSpectrum" title="exspy.signals.EDSSpectrum"><em>EDSSpectrum</em></a><em> (or </em><em>any EDSSpectrum subclass</em><em>) </em><em>instance.</em>) – </p></li>
+<li><p><strong>spectrum</strong> (<a class="reference internal" href="signals.html#exspy.signals.EDSSpectrum" title="exspy.signals.EDSSpectrum"><em>EDSSpectrum</em></a><em> (or </em><em>any EDSSpectrum subclass</em><em>) </em><em>instance.</em>)</p></li>
 <li><p><strong>auto_add_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, automatically add Gaussians for all X-rays generated
 in the energy range by an element, using the edsmodel.add_family_lines
 method.</p></li>
 <li><p><strong>auto_background</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, adds automatically a polynomial order 6 to the model,
 using the edsmodel.add_polynomial_background method.</p></li>
-<li><p><strong>creator.</strong> (<em>Any extra arguments are passed to the Model</em>) – </p></li>
+<li><p><strong>creator.</strong> (<em>Any extra arguments are passed to the Model</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -813,13 +813,13 @@ above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>spectrum</strong> (<a class="reference internal" href="signals.html#exspy.signals.EDSSEMSpectrum" title="exspy.signals.EDSSEMSpectrum"><em>EDSSEMSpectrum</em></a>) – </p></li>
+<li><p><strong>spectrum</strong> (<a class="reference internal" href="signals.html#exspy.signals.EDSSEMSpectrum" title="exspy.signals.EDSSEMSpectrum"><em>EDSSEMSpectrum</em></a>)</p></li>
 <li><p><strong>auto_add_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, automatically add Gaussians for all X-rays generated
 in the energy range by an element, using the edsmodel.add_family_lines
 method.</p></li>
 <li><p><strong>auto_background</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, adds automatically a polynomial order 6 to the model,
 using the edsmodel.add_polynomial_background method.</p></li>
-<li><p><strong>constructor.</strong> (<em>Any extra arguments are passed to the Model</em>) – </p></li>
+<li><p><strong>constructor.</strong> (<em>Any extra arguments are passed to the Model</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -833,13 +833,13 @@ using the edsmodel.add_polynomial_background method.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>spectrum</strong> (<a class="reference internal" href="signals.html#exspy.signals.EDSTEMSpectrum" title="exspy.signals.EDSTEMSpectrum"><em>EDSTEMSpectrum</em></a>) – </p></li>
+<li><p><strong>spectrum</strong> (<a class="reference internal" href="signals.html#exspy.signals.EDSTEMSpectrum" title="exspy.signals.EDSTEMSpectrum"><em>EDSTEMSpectrum</em></a>)</p></li>
 <li><p><strong>auto_add_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, automatically add Gaussians for all X-rays generated
 in the energy range by an element, using the edsmodel.add_family_lines
 method.</p></li>
 <li><p><strong>auto_background</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, adds automatically a polynomial order 6 to the model,
 using the edsmodel.add_polynomial_background method.</p></li>
-<li><p><strong>constructor.</strong> (<em>Any extra arguments are passed to the Model</em>) – </p></li>
+<li><p><strong>constructor.</strong> (<em>Any extra arguments are passed to the Model</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -853,7 +853,7 @@ using the edsmodel.add_polynomial_background method.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>spectrum</strong> (<em>a EELSSpectrum instance</em>) – </p></li>
+<li><p><strong>spectrum</strong> (<em>a EELSSpectrum instance</em>)</p></li>
 <li><p><strong>ll</strong> (<em>None</em><em> or </em><a class="reference internal" href="signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><em>EELSSpectrum</em></a>) – If an EELSSpectrum is provided, it will be assumed that it is
 a low-loss EELS spectrum, and it will be used to simulate the
 effect of multiple scattering by convolving it with the EELS
@@ -1422,8 +1422,8 @@ area method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>E1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – </p></li>
-<li><p><strong>E2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – </p></li>
+<li><p><strong>E1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
+<li><p><strong>E2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
 <li><p><strong>powerlaw</strong> (<em>PowerLaw component</em><em> or </em><em>None</em>) – If None, it will try to guess the right component from the
 background components of the model</p></li>
 </ul>
@@ -1592,7 +1592,7 @@ and <code class="docutils literal notranslate"><span class="pre">ext_bounded</sp
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
     <br/>
   </p>
 </div>

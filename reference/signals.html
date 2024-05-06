@@ -505,7 +505,7 @@ is unbinned by default.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.signals.DielectricFunction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.signals.</span></span><span class="sig-name descname"><span class="pre">DielectricFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.DielectricFunction" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/ComplexSignal1D.html#hyperspy.api.signals.ComplexSignal1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSignal1D</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/ComplexSignal1D.html#hyperspy.api.signals.ComplexSignal1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSignal1D</span></code></a></p>
 <p>Signal class for dielectric functions.</p>
 <p>Create a signal instance.</p>
 <dl class="field-list simple">
@@ -513,7 +513,7 @@ is unbinned by default.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -537,21 +537,21 @@ the dielectric function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>zlp</strong> (float or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a>) – If the ZLP is the same for all spectra, the intengral of the ZLP
+<li><p><strong>zlp</strong> (float or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a>) – If the ZLP is the same for all spectra, the intengral of the ZLP
 can be provided as a number. Otherwise, if the ZLP intensity is not
 the same for all spectra, it can be provided as i) a Signal
 of the same dimensions as the current signal containing the ZLP
 spectra for each location ii) a Signal of signal dimension 0
 and navigation_dimension equal to the current signal containing the
 integrated ZLP intensity.</p></li>
-<li><p><strong>t</strong> (None, float or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a>) – The sample thickness in nm. If the thickness is the same for all
+<li><p><strong>t</strong> (None, float or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a>) – The sample thickness in nm. If the thickness is the same for all
 spectra it can be given by a number. Otherwise, it can be provided
 as a Signal with signal dimension 0 and navigation_dimension equal
 to the current signal.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -581,7 +581,7 @@ and the navigation dimension is the same as the current
 signal.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D</span></code></a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -607,7 +607,7 @@ in the Electron Microscope”, Springer-Verlag, 2011.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -725,7 +725,7 @@ all listed toolkits are displayed or returned.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.signals.EDSSpectrum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.signals.</span></span><span class="sig-name descname"><span class="pre">EDSSpectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwards</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EDSSpectrum" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Signal1D</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Signal1D</span></code></a></p>
 <p>General signal class for EDS spectra.</p>
 <p>Create a signal instance.</p>
 <dl class="field-list simple">
@@ -733,7 +733,7 @@ all listed toolkits are displayed or returned.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -1075,7 +1075,7 @@ If ‘auto’ (or float), the width of the integration windows is 2.0
 ‘estimate_integration_windows’.
 Else provide an array for which each row corresponds to a X-ray
 line. Each row contains the left and right value of the window.</p></li>
-<li><p><strong>navigator</strong> (str, None, or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass).)</p></li>
+<li><p><strong>navigator</strong> (str, None, or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass).)</p></li>
 <li><p><strong>'auto'</strong> (<em>Allowed string values are</em>) – <ul>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>:</p>
 <ul>
@@ -1118,7 +1118,7 @@ be used instead.</p></li>
 </li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no navigator will be provided.</p></li>
 </ul>
-<p>Alternatively a <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)
+<p>Alternatively a <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)
 instance can be provided. The navigation or signal shape must
 match the navigation shape of the signal to plot or the
 <code class="docutils literal notranslate"><span class="pre">navigation_shape</span></code> + <code class="docutils literal notranslate"><span class="pre">signal_shape</span></code> must be equal to the
@@ -1168,7 +1168,7 @@ be used instead.</p></li>
 </li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no navigator will be provided.</p></li>
 </ul>
-<p>Alternatively a <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)
+<p>Alternatively a <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)
 instance can be provided. The navigation or signal shape must
 match the navigation shape of the signal to plot or the
 <code class="docutils literal notranslate"><span class="pre">navigation_shape</span></code> + <code class="docutils literal notranslate"><span class="pre">signal_shape</span></code> must be equal to the
@@ -1218,7 +1218,7 @@ be used instead.</p></li>
 </li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no navigator will be provided.</p></li>
 </ul>
-<p>Alternatively a <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)
+<p>Alternatively a <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)
 instance can be provided. The navigation or signal shape must
 match the navigation shape of the signal to plot or the
 <code class="docutils literal notranslate"><span class="pre">navigation_shape</span></code> + <code class="docutils literal notranslate"><span class="pre">signal_shape</span></code> must be equal to the
@@ -1226,7 +1226,7 @@ match the navigation shape of the signal to plot or the
 If the signal <code class="docutils literal notranslate"><span class="pre">dtype</span></code> is RGB or RGBA this parameter has no effect and
 the value is always set to <code class="docutils literal notranslate"><span class="pre">'slider'</span></code>.</p>
 </p></li>
-<li><p><strong>axes_manager</strong> (None or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>) – If None, the signal’s <code class="docutils literal notranslate"><span class="pre">axes_manager</span></code> attribute is used.</p></li>
+<li><p><strong>axes_manager</strong> (None or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>) – If None, the signal’s <code class="docutils literal notranslate"><span class="pre">axes_manager</span></code> attribute is used.</p></li>
 <li><p><strong>plot_markers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – Plot markers added using <cite>s.add_marker(marker, permanent=True)</cite>.
 Note, a large number of markers might lead to very slow plotting.</p></li>
 <li><p><strong>navigator_kwds</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Only for image navigator, additional keyword arguments for
@@ -1307,7 +1307,7 @@ before and after binning.</em></p></li>
 <li><p><strong>dtype</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v1.26)"><em>numpy.dtype</em></a><em>, </em><em>&quot;same&quot;}</em>) – Specify the dtype of the output. If None, the dtype will be
 determined by the behaviour of <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.sum()</span></code></a>, if <code class="docutils literal notranslate"><span class="pre">&quot;same&quot;</span></code>,
 the dtype will be kept the same. Default is None.</p></li>
-<li><p><strong>out</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass) or None) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new Signal is created with the result of the
+<li><p><strong>out</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass) or None) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new Signal is created with the result of the
 operation and returned (default). If a Signal is passed,
 it is used to receive the output of the operation, and nothing is
 returned.</p></li>
@@ -1317,7 +1317,7 @@ returned.</p></li>
 <dd class="field-even"><p>The resulting cropped signal.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><em>BaseSignal</em></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><em>BaseSignal</em></a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If trying to rebin over a non-uniform axis.</p>
@@ -1452,12 +1452,12 @@ above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.DataAxis" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataAxis</span></code></a> or tuple) – Either one on its own, or many axes in a tuple can be passed. In
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.DataAxis" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataAxis</span></code></a> or tuple) – Either one on its own, or many axes in a tuple can be passed. In
 both cases the axes can be passed directly, or specified using the
 index in <cite>axes_manager</cite> or the name of the axis. Any duplicates are
 removed. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the operation is performed over all navigation
 axes (default).</p></li>
-<li><p><strong>out</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass) or None) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new Signal is created with the result of the
+<li><p><strong>out</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass) or None) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new Signal is created with the result of the
 operation and returned (default). If a Signal is passed,
 it is used to receive the output of the operation, and nothing is
 returned.</p></li>
@@ -1472,7 +1472,7 @@ operation.</p></li>
 specified axes.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><em>BaseSignal</em></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><em>BaseSignal</em></a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -1508,7 +1508,7 @@ it raises a warning when working with an unbinned, non-uniform axis.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -1533,7 +1533,7 @@ using the Cliff Lorimer method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>weight_percent</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)) – Stack of compositions as determined from an initial k_factor
+<li><p><strong>weight_percent</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)) – Stack of compositions as determined from an initial k_factor
 quantification.</p></li>
 <li><p><strong>thickness</strong> (float or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>) – Either a float value for thickness in nm or an array equal to the
 size of the EDX map with thickness at each position of the sample.</p></li>
@@ -1578,7 +1578,7 @@ using <code class="xref py py-meth docutils literal notranslate"><span class="pr
 <span class="sig-name descname"><span class="pre">decomposition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">normalize_poissonian_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">navigation_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EDSTEMSpectrum.decomposition" title="Link to this definition">#</a></dt>
 <dd><p>Apply a decomposition to a dataset with a choice of algorithms.</p>
 <p>The results are stored in <code class="docutils literal notranslate"><span class="pre">self.learning_results</span></code>.</p>
-<p>Read more in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/mva/decomposition.html#mva-decomposition" title="(in HyperSpy v2.0)"><span class="xref std std-ref">User Guide</span></a>.</p>
+<p>Read more in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/mva/decomposition.html#mva-decomposition" title="(in HyperSpy v2.1)"><span class="xref std std-ref">User Guide</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1899,7 +1899,7 @@ pixel is considered as vacuum.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.signals.EELSSpectrum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.signals.</span></span><span class="sig-name descname"><span class="pre">EELSSpectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EELSSpectrum" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Signal1D</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Signal1D</span></code></a></p>
 <p>Signal class for EELS spectra.</p>
 <p>Create a signal instance.</p>
 <dl class="field-list simple">
@@ -1907,7 +1907,7 @@ pixel is considered as vacuum.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -2533,7 +2533,7 @@ before and after binning.</em></p></li>
 <li><p><strong>dtype</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v1.26)"><em>numpy.dtype</em></a><em>, </em><em>&quot;same&quot;}</em>) – Specify the dtype of the output. If None, the dtype will be
 determined by the behaviour of <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="(in NumPy v1.26)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.sum()</span></code></a>, if <code class="docutils literal notranslate"><span class="pre">&quot;same&quot;</span></code>,
 the dtype will be kept the same. Default is None.</p></li>
-<li><p><strong>out</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass) or None) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new Signal is created with the result of the
+<li><p><strong>out</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass) or None) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new Signal is created with the result of the
 operation and returned (default). If a Signal is passed,
 it is used to receive the output of the operation, and nothing is
 returned.</p></li>
@@ -2543,7 +2543,7 @@ returned.</p></li>
 <dd class="field-even"><p>The resulting cropped signal.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.0)"><em>BaseSignal</em></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><em>BaseSignal</em></a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If trying to rebin over a non-uniform axis.</p>
@@ -2667,7 +2667,7 @@ marked as True (masked).</p></li>
 provided value as width of the zero loss peak mask.
 Default is None.</p></li>
 <li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Keyword arguments pass to
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.get_histogram" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_histogram()</span></code></a></p></li>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.get_histogram" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_histogram()</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -2693,7 +2693,7 @@ as True (masked).</p></li>
 <li><p><strong>threshold</strong> (<code class="docutils literal notranslate"><span class="pre">'auto'</span></code> or int) – if <code class="docutils literal notranslate"><span class="pre">int</span></code> set the threshold value use for the detecting the spikes.
 If <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>, determine the threshold value as being the first zero
 value in the histogram obtained from the
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.spikes_diagnosis" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spikes_diagnosis()</span></code></a>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.spikes_diagnosis" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spikes_diagnosis()</span></code></a>
 method.</p></li>
 <li><p><strong>zero_loss_peak_mask_width</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – If None, the zero loss peak is not masked, otherwise, use the
 provided value as width of the zero loss peak mask.
@@ -2716,7 +2716,7 @@ all listed toolkits are displayed or returned.</p></li>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.spikes_diagnosis" title="(in HyperSpy v2.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spikes_diagnosis()</span></code></a></p>
+<p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.spikes_diagnosis" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spikes_diagnosis()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -2750,7 +2750,7 @@ calculate the mask.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.signals.LazyDielectricFunction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.signals.</span></span><span class="sig-name descname"><span class="pre">LazyDielectricFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.LazyDielectricFunction" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#exspy.signals.DielectricFunction" title="exspy.signals.dielectric_function.DielectricFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">DielectricFunction</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/signal/LazyComplexSignal1D.html#hyperspy._lazy_signals.LazyComplexSignal1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LazyComplexSignal1D</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#exspy.signals.DielectricFunction" title="exspy.signals.dielectric_function.DielectricFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">DielectricFunction</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/signal/LazyComplexSignal1D.html#hyperspy._lazy_signals.LazyComplexSignal1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LazyComplexSignal1D</span></code></a></p>
 <p>Lazy signal class for dielectric functions.
 The computation is delayed until explicitly requested.</p>
 <p>This class is not expected to be instantiated directly, instead use:</p>
@@ -2764,7 +2764,7 @@ The computation is delayed until explicitly requested.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -2799,7 +2799,7 @@ The computation is delayed until explicitly requested.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -2820,7 +2820,7 @@ nothing. Default is None.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.signals.LazyEDSSpectrum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.signals.</span></span><span class="sig-name descname"><span class="pre">LazyEDSSpectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwards</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.LazyEDSSpectrum" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#exspy.signals.EDSSpectrum" title="exspy.signals.eds.EDSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EDSSpectrum</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/signal/LazySignal1D.html#hyperspy._lazy_signals.LazySignal1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LazySignal1D</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#exspy.signals.EDSSpectrum" title="exspy.signals.eds.EDSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EDSSpectrum</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/signal/LazySignal1D.html#hyperspy._lazy_signals.LazySignal1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LazySignal1D</span></code></a></p>
 <p>Lazy general signal class for EDS spectra.
 The computation is delayed until explicitly requested.</p>
 <p>This class is not expected to be instantiated directly, instead use:</p>
@@ -2834,7 +2834,7 @@ The computation is delayed until explicitly requested.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -2869,7 +2869,7 @@ The computation is delayed until explicitly requested.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
@@ -2890,7 +2890,7 @@ nothing. Default is None.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.signals.LazyEELSSpectrum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.signals.</span></span><span class="sig-name descname"><span class="pre">LazyEELSSpectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.LazyEELSSpectrum" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.eels.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/signal/LazySignal1D.html#hyperspy._lazy_signals.LazySignal1D" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LazySignal1D</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.eels.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/signal/LazySignal1D.html#hyperspy._lazy_signals.LazySignal1D" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LazySignal1D</span></code></a></p>
 <p>Lazy signal class for EELS spectra.
 The computation is delayed until explicitly requested.</p>
 <p>This class is not expected to be instantiated directly, instead use:</p>
@@ -2904,7 +2904,7 @@ The computation is delayed until explicitly requested.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.26)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
-the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
+the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
 <li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
 <li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters

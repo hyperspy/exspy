@@ -75,7 +75,7 @@ class EELSCLEdge(Component):
 
     The preferred option is to use a database of cross sections in GOSH
     format. One such database can be freely downloaded from Zenodo at:
-    https://zenodo.org/record/6599071 while information on the GOSH format
+    https://doi.org/%s while information on the GOSH format
     are available at: https://gitlab.com/gguzzina/gosh .
 
     eXSpy also supports Peter Rez's Hartree Slater cross sections
@@ -83,8 +83,8 @@ class EELSCLEdge(Component):
     software. If Digital Micrograph is installed in the system eXSpy in the
     standard location eXSpy should find the path to the HS GOS folder.
     Otherwise, the location of the folder can be defined in eXSpy
-    preferences, which can be done through ~:func:`~.api.preferences.gui` or
-    the :attr:`~api.preferences.EELS.eels_gos_files_path` variable.
+    preferences, which can be done through :func:`hyperspy.api.preferences.gui` or
+    the :attr:`hyperspy.api.preferences.EELS.eels_gos_files_path` variable.
 
     Parameters
     ----------
@@ -96,8 +96,8 @@ class EELSCLEdge(Component):
         The GOS to use. Default is ``'gosh'``. If str, it must the path to gosh
         GOS file.
     gos_file_path : str, None
-        Only with GOS='gosh'. Specify the file path of the gosh file
-        to use. If None, use the file from doi:{}
+        Only with ``GOS='gosh'``. Specify the file path of the gosh file
+        to use. If None, use the file from  https://doi.org/%s
 
     Attributes
     ----------
@@ -140,7 +140,7 @@ class EELSCLEdge(Component):
     fine_structure_components : set, default ``set()``
         A set containing components to model the fine structure region
         of the EELS ionization edge.
-    """.format(_GOSH_DOI)
+    """
 
     _fine_structure_smoothing = 0.3
     _fine_structure_coeff_free = True
@@ -290,12 +290,6 @@ class EELSCLEdge(Component):
 
     @property
     def fine_structure_smoothing(self):
-        """Controls the level of the smoothing of the fine structure.
-
-        It must a real number between 0 and 1. The higher close to 0
-        the higher the smoothing.
-
-        """
         return self._fine_structure_smoothing
 
     @fine_structure_smoothing.setter
@@ -539,3 +533,6 @@ class EELSCLEdge(Component):
         ]
         dic["_whitelist"]["fine_structure_components"] = ""
         return dic
+
+
+EELSCLEdge.__doc__ %= (_GOSH_DOI, _GOSH_DOI)

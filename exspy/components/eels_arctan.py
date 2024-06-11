@@ -51,12 +51,12 @@ class EELSArctan(hs.model.components1D.Expression):
 
     """
 
-    def __init__(self, A=1.0, k=1.0, x0=1.0, module=["numpy", "scipy"], **kwargs):
+    def __init__(self, A=1.0, k=1.0, x0=1.0, module=["numpy"], **kwargs):
         # To be able to still read old file versions that contain this argument
         if "minimum_at_zero" in kwargs:
             del kwargs["minimum_at_zero"]
         super().__init__(
-            expression="A * (pi /2 + arctan(k * (x - x0)))",
+            expression="A * (pi /2 + atan(k * (x - x0)))",
             name="EELSArctan",
             A=A,
             k=k,

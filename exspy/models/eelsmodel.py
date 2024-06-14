@@ -335,7 +335,11 @@ class EELSModel(Model1D):
                 energy_scale=self.axis.scale,
             )
             component.energy_scale = self.axis.scale
-            component._set_fine_structure_coeff()
+            # Only set the fine structure if it is not already set
+            # This is useful when adding components fitted with
+            # a model to a different model
+            if component.fine_structure_coeff.map is None:
+                component._set_fine_structure_coeff()
         self._classify_components()
 
     append.__doc__ = Model1D.append.__doc__

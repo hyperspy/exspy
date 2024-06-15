@@ -54,12 +54,8 @@ extensions = [
 linkcheck_ignore = [
     "https://doi.org/10.1021/acs.nanolett.5b00449",  # 403 Client Error: Forbidden for url
     "https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01549.x",  # 403 Client Error: Forbidden for url
-    # Remove when setup
-    "https://github.com/hyperspy/exspy-demos",
-    "https://www.anaconda.com/blog/understanding-conda-and-pip",  # Transcient?
-    # Remove once it is merged and the links are working
-    "https://exspy.readthedocs.io",
-    "https://github.com/hyperspy/exspy/blob/main/releasing_guide.md",
+    "https://onlinelibrary.wiley.com/doi/10.1002/sia.5789",  # 403 Client Error: Forbidden for url
+    "https://onlinelibrary.wiley.com/doi/10.1002/jemt.20597",  # 403 Client Error: Forbidden for url
 ]
 
 intersphinx_mapping = {

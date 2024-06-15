@@ -46,7 +46,7 @@ from hyperspy.docstrings.signal import (
     LAZYSIGNAL_DOC,
 )
 
-from exspy.docstrings.model import EELSMODEL_PARAMETERS
+from exspy._docstrings.model import EELSMODEL_PARAMETERS
 from exspy._misc.elements import elements as elements_db
 from exspy._misc.eels.tools import get_edges_near_energy
 from exspy._misc.eels.electron_inelastic_mean_free_path import (

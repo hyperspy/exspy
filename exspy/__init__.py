@@ -23,6 +23,7 @@ from . import components
 from . import data
 from . import models
 from . import signals
+from . import utils
 from .misc import material
 from ._defaults_parser import preferences
 
@@ -60,6 +61,7 @@ __all__ = [
     "material",
     "models",
     "signals",
+    "utils",
 ]
 
 

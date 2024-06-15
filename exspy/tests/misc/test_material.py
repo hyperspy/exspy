@@ -20,7 +20,7 @@ import numpy as np
 import pytest
 
 import exspy as ex
-from exspy.misc.elements import elements_db
+from exspy._misc.elements import elements_db
 import hyperspy.api as hs
 
 

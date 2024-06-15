@@ -26,7 +26,7 @@ from hyperspy.decorators import lazifyTestClass
 
 import exspy
 from exspy._defaults_parser import preferences
-from exspy.misc.eds import utils as utils_eds
+from exspy._misc.eds import utils as utils_eds
 from exspy.signals import EDSTEMSpectrum
 
 

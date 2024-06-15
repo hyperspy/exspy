@@ -19,7 +19,7 @@
 
 """Common docstring snippets for model."""
 
-from exspy.misc.eels.gosh_gos import _GOSH_DOI
+from exspy._misc.eels.gosh_gos import _GOSH_DOI
 
 GOS_PARAMETER = """GOS : 'hydrogenic', 'gosh', 'Hartree-Slater'.
             The GOS to use. Default is ``'gosh'``.

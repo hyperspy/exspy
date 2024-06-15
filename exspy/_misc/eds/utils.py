@@ -21,7 +21,7 @@ import numpy as np
 import math
 from scipy import constants
 from hyperspy.misc.utils import stack
-from exspy.misc.elements import elements as elements_db
+from exspy._misc.elements import elements as elements_db
 from functools import reduce
 
 
@@ -587,7 +587,7 @@ def get_abs_corr_zeta(weight_percent, mass_thickness, take_off_angle):
     take_off_angle: float
         X-ray take-off angle in degrees.
     """
-    from exspy.misc import material
+    from exspy._misc import material
 
     toa_rad = np.radians(take_off_angle)
     csc_toa = 1.0 / np.sin(toa_rad)
@@ -664,7 +664,7 @@ def get_abs_corr_cross_section(
     take_off_angle: float
         X-ray take-off angle in degrees.
     """
-    from exspy.misc import material
+    from exspy._misc import material
 
     toa_rad = np.radians(take_off_angle)
     Av = constants.Avogadro

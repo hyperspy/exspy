@@ -18,7 +18,7 @@
 
 import numpy as np
 
-from exspy.misc.eds.utils import get_xray_lines_near_energy, take_off_angle
+from exspy._misc.eds.utils import get_xray_lines_near_energy, take_off_angle
 
 
 def test_xray_lines_near_energy():

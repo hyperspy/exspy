@@ -22,7 +22,7 @@ import logging
 import numpy as np
 from scipy import integrate, interpolate, constants
 
-from exspy.misc.eels.base_gos import BaseGOS
+from exspy._misc.eels.base_gos import BaseGOS
 
 _logger = logging.getLogger(__name__)
 

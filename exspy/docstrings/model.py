@@ -19,7 +19,7 @@
 
 """Common docstring snippets for model."""
 
-from exspy.misc.eels.gosh_gos import GOSH_SOURCES
+from exspy._misc.eels.gosh_gos import _GOSH_SOURCES
 
 GOS_PARAMETER = """GOS : 'hydrogenic', 'dft', 'dirac', 'Hartree-Slater'.
             The GOS to use. Default is ``'dft'``.
@@ -27,7 +27,7 @@ GOS_PARAMETER = """GOS : 'hydrogenic', 'dft', 'dirac', 'Hartree-Slater'.
         gos_file_path : str, None
             Only with GOS='dft' or 'dirac'. Specify the file path of the gosh file
             to use. If None, use the file from doi:{}""".format(
-    GOSH_SOURCES["dft"]["DOI"]
+    _GOSH_SOURCES["dft"]["DOI"]
 )
 
 EELSMODEL_PARAMETERS = """ll : None or EELSSpectrum

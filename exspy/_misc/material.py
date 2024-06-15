@@ -21,9 +21,9 @@ import numpy as np
 import numbers
 import copy
 
-from exspy.misc.elements import elements as elements_db
-from exspy.misc.eds.ffast_mac import ffast_mac_db as ffast_mac
-from exspy.misc.eds import utils as utils_eds
+from exspy._misc.elements import elements as elements_db
+from exspy._misc.eds.ffast_mac import ffast_mac_db as ffast_mac
+from exspy._misc.eds import utils as utils_eds
 from hyperspy.misc.utils import stack
 
 

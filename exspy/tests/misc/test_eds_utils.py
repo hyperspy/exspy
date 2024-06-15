@@ -18,7 +18,7 @@
 
 import pytest
 
-from exspy.misc.eds.utils import _get_element_and_line
+from exspy._misc.eds.utils import _get_element_and_line
 
 
 def test_get_element_and_line():

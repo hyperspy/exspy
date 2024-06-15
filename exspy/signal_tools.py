@@ -4,7 +4,7 @@ import traits.api as t
 from hyperspy.exceptions import SignalDimensionError
 from hyperspy.ui_registry import add_gui_method
 from hyperspy.signal_tools import SpanSelectorInSignal1D
-from exspy.misc.eels.tools import get_edges_near_energy, get_info_from_edges
+from exspy._misc.eels.tools import get_edges_near_energy, get_info_from_edges
 
 
 @add_gui_method(toolkey="exspy.EELSSpectrum.print_edges_table")

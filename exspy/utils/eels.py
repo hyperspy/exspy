@@ -17,13 +17,13 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-from exspy.misc.eels.effective_angle import effective_angle
-from exspy.misc.eels.electron_inelastic_mean_free_path import (
+from exspy._misc.eels.effective_angle import effective_angle
+from exspy._misc.eels.electron_inelastic_mean_free_path import (
     iMFP_angular_correction,
     iMFP_Iakoubovskii,
     iMFP_TPP2M,
 )
-from exspy.misc.eels.tools import (
+from exspy._misc.eels.tools import (
     get_edges_near_energy,
     get_info_from_edges,
 )

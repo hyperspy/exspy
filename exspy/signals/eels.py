@@ -53,7 +53,7 @@ from exspy._misc.eels.electron_inelastic_mean_free_path import (
     iMFP_Iakoubovskii,
     iMFP_angular_correction,
 )
-from exspy.signal_tools import EdgesRange
+from exspy._signal_tools import EdgesRange
 
 
 _logger = logging.getLogger(__name__)

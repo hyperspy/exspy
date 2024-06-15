@@ -701,9 +701,9 @@ def edx_cross_section_to_zeta(cross_sections, elements):
 
     Parameters
     ----------
-    cross_section: list of float
+    cross_section : list of float
         A list of cross sections in barns.
-    elements: list of str
+    elements : list of str
         A list of element chemical symbols in the same order as the
         cross sections e.g. ['Al','Zn']
 
@@ -730,9 +730,9 @@ def zeta_to_edx_cross_section(zfactors, elements):
 
     Parameters
     ----------
-    zfactors: list of float
+    zfactors : list of float
         A list of zeta-factors.
-    elements: list of str
+    elements : list of str
         A list of element chemical symbols in the same order as the
         cross sections e.g. ['Al','Zn']
 

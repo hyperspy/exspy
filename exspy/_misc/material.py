@@ -32,9 +32,9 @@ def _weight_to_atomic(weight_percent, elements):
 
     Parameters
     ----------
-    weight_percent: array of float
+    weight_percent : array of float
         The weight fractions (composition) of the sample.
-    elements: list of str
+    elements : list of str
         A list of element abbreviations, e.g. ['Al','Zn']
 
     Returns
@@ -42,8 +42,11 @@ def _weight_to_atomic(weight_percent, elements):
     atomic_percent : array of float
         Composition in atomic percent.
 
+    Examples
+    --------
     Calculate the atomic percent of modern bronze given its weight percent:
-    >>> hs.material.weight_to_atomic((88, 12), ("Cu", "Sn"))
+
+    >>> exspy.material.weight_to_atomic((88, 12), ("Cu", "Sn"))
     array([ 93.19698614,   6.80301386])
 
     """
@@ -71,23 +74,28 @@ def weight_to_atomic(weight_percent, elements="auto"):
 
     Parameters
     ----------
-    weight_percent: list of float or list of signals
+    weight_percent : list of float or list of signals
         The weight fractions (composition) of the sample.
-    elements: list of str
+    elements : list of str
         A list of element abbreviations, e.g. ['Al','Zn']. If elements is
         'auto', take the elements in en each signal metadata of th
         weight_percent list.
 
     Returns
     -------
-    atomic_percent : as weight_percent
+    atomic_percent : numpy.ndarray of float
         Composition in atomic percent.
 
     Examples
     --------
     Calculate the atomic percent of modern bronze given its weight percent:
-    >>> hs.material.weight_to_atomic((88, 12), ("Cu", "Sn"))
+
+    >>> exspy.material.weight_to_atomic((88, 12), ("Cu", "Sn"))
     array([ 93.19698614,   6.80301386])
+
+    See also
+    --------
+    exspy.material.atomic_to_weight
 
     """
     from hyperspy.signals import BaseSignal
@@ -111,20 +119,21 @@ def _atomic_to_weight(atomic_percent, elements):
 
     Parameters
     ----------
-    atomic_percent: array
+    atomic_percent : array
         The atomic fractions (composition) of the sample.
-    elements: list of str
+    elements : list of str
         A list of element abbreviations, e.g. ['Al','Zn']
 
     Returns
     -------
-    weight_percent : array of float
-        composition in weight percent.
+    weight_percent : numpy.ndarray of float
+        Composition in weight percent.
 
     Examples
     --------
     Calculate the weight percent of modern bronze given its atomic percent:
-    >>> hs.material.atomic_to_weight([93.2, 6.8], ("Cu", "Sn"))
+
+    >>> exspy.material.atomic_to_weight([93.2, 6.8], ("Cu", "Sn"))
     array([ 88.00501989,  11.99498011])
 
     """
@@ -152,23 +161,28 @@ def atomic_to_weight(atomic_percent, elements="auto"):
 
     Parameters
     ----------
-    atomic_percent: list of float or list of signals
+    atomic_percent : list of float or list of signals
         The atomic fractions (composition) of the sample.
-    elements: list of str
+    elements : list of str
         A list of element abbreviations, e.g. ['Al','Zn']. If elements is
         'auto', take the elements in en each signal metadata of the
         atomic_percent list.
 
     Returns
     -------
-    weight_percent : as atomic_percent
-        composition in weight percent.
+    weight_percent : numpy.ndarray of float
+        Composition in weight percent.
 
     Examples
     --------
     Calculate the weight percent of modern bronze given its atomic percent:
-    >>> hs.material.atomic_to_weight([93.2, 6.8], ("Cu", "Sn"))
+
+    >>> exspy.material.atomic_to_weight([93.2, 6.8], ("Cu", "Sn"))
     array([ 88.00501989,  11.99498011])
+
+    See also
+    --------
+    exspy.material.weight_to_atomic
 
     """
     from hyperspy.signals import BaseSignal
@@ -194,23 +208,26 @@ def _density_of_mixture(weight_percent, elements, mean="harmonic"):
 
     Parameters
     ----------
-    weight_percent: array
+    weight_percent : array
         A list of weight percent for the different elements. If the total
         is not equal to 100, each weight percent is divided by the sum
         of the list (normalization).
-    elements: list of str
+    elements : list of str
         A list of element symbols, e.g. ['Al', 'Zn']
-    mean: 'harmonic' or 'weighted'
-        The type of mean use to estimate the density
+    mean : ``'harmonic'`` or ``'weighted'``
+        The type of mean use to estimate the density.
+        Default is ``'harmonic'``.
 
     Returns
     -------
-    density: The density in g/cm3.
+    density : numpy.ndarray of float
+        The density in g/cm3.
 
     Examples
     --------
     Calculate the density of modern bronze given its weight percent:
-    >>> hs.material.density_of_mixture([88, 12],['Cu', 'Sn'])
+
+    >>> exspy.material.density_of_mixture([88, 12],['Cu', 'Sn'])
     8.6903187973131466
 
     """
@@ -255,25 +272,28 @@ def density_of_mixture(weight_percent, elements="auto", mean="harmonic"):
 
     Parameters
     ----------
-    weight_percent: list of float or list of signals
+    weight_percent : list of float or list of signals
         A list of weight percent for the different elements. If the total
         is not equal to 100, each weight percent is divided by the sum
         of the list (normalization).
-    elements: list of str
+    elements : list of str
         A list of element symbols, e.g. ['Al', 'Zn']. If elements is 'auto',
         take the elements in en each signal metadata of the weight_percent
         list.
-    mean: 'harmonic' or 'weighted'
-        The type of mean use to estimate the density
+    mean : ``'harmonic'`` or ``'weighted'``
+        The type of mean use to estimate the density.
+        Default is ``'harmonic'``.
 
     Returns
     -------
-    density: The density in g/cm3.
+    density : numpy.ndarray of float or hyperspy.api.signals.BaseSignal
+        The density in g/cm3.
 
     Examples
     --------
     Calculate the density of modern bronze given its weight percent:
-    >>> hs.material.density_of_mixture([88, 12],['Cu', 'Sn'])
+
+    >>> exspy.material.density_of_mixture([88, 12],['Cu', 'Sn'])
     8.6903187973131466
 
     """
@@ -306,17 +326,18 @@ def mass_absorption_coefficient(element, energies):
 
     Return
     ------
-    mass absorption coefficient(s) in cm^2/g
+    mass_absorption_coefficients : numpy.ndarray of float
+        Mass absorption coefficient(s) in cm^2/g
 
     Examples
     --------
-    >>> hs.material.mass_absorption_coefficient(
+    >>> exspy.material.mass_absorption_coefficient(
     >>>     element='Al', energies=['C_Ka','Al_Ka'])
     array([ 26330.38933818,    372.02616732])
 
     See also
     --------
-    :py:func:`~hs.material.mass_absorption_mixture`
+    exspy.material.mass_absorption_mixture
 
     Note
     ----
@@ -366,18 +387,18 @@ def _mass_absorption_mixture(weight_percent, elements, energies):
 
     Examples
     --------
-    >>> hs.material.mass_absorption_mixture(
+    >>> exspy.material.mass_absorption_mixture(
     >>>     elements=['Al','Zn'], weight_percent=[50,50], energies='Al_Ka')
     2587.4161643905127
 
     Return
     ------
-    float or array of float
-    mass absorption coefficient(s) in cm^2/g
+    mass_absorption_coefficient : numpy.ndarray of float
+        The mass absorption coefficient(s) in cm^2/g
 
     See also
     --------
-    :py:func:`~hs.material.mass_absorption`
+    exspy.material.mass_absorption
 
     Note
     ----
@@ -427,18 +448,18 @@ def mass_absorption_mixture(weight_percent, elements="auto", energies="auto"):
 
     Examples
     --------
-    >>> hs.material.mass_absorption_mixture(
+    >>> exspy.material.mass_absorption_mixture(
     >>>     elements=['Al','Zn'], weight_percent=[50,50], energies='Al_Ka')
     2587.41616439
 
     Return
     ------
-    float or array of float
-    mass absorption coefficient(s) in cm^2/g
+    mass_absorption_coefficient : numpy.ndarray of float or hyperspy.api.signals.BaseSignal
+        The Mass absorption coefficient(s) of the mixture in cm^2/g
 
     See also
     --------
-    :py:func:`~hs.material.mass_absorption_coefficient`
+    exspy.material.mass_absorption_coefficient
 
     Note
     ----

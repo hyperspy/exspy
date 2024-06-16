@@ -376,6 +376,10 @@ def get_edges_near_energy(energy, width=10, only_major=False, order="closest"):
     edges : list
         All edges that are within the given energy window, sorted by
         energy difference to the given energy.
+
+    See Also
+    --------
+    exspy.utils.eels.get_info_from_edges
     """
 
     if width < 0:
@@ -428,8 +432,12 @@ def get_info_from_edges(edges):
     Returns
     -------
     info : list
-        a list of dictionaries with information corresponding to the provided
+        A list of dictionaries with information corresponding to the provided
         edges.
+
+    See Also
+    --------
+    exspy.utils.eels.get_edges_near_energy
     """
 
     edges = np.atleast_1d(edges)

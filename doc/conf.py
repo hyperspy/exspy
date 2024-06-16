@@ -14,19 +14,14 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-import hyperspy.api as hs
 import numpydoc
 from packaging.version import Version
-
-
-# Set logging level to `ERROR` to avoid exspy warning in documentation
-hs.set_log_level("ERROR")
 
 
 # -- Project information -----------------------------------------------------
 
 project = "eXSpy"
-copyright = "2023, eSpy Developers"
+copyright = "2024, eXSpy Developers"
 author = "eXSpy Developers"
 
 
@@ -61,7 +56,7 @@ linkcheck_ignore = [
 
 intersphinx_mapping = {
     "dask": ("https://docs.dask.org/en/latest", None),
-    "hyperspy": ("https://hyperspy.org/hyperspy-doc/dev", None),
+    "hyperspy": ("https://hyperspy.org/hyperspy-doc/current", None),
     "kikuchipy": ("https://kikuchipy.org/en/latest/", None),
     "matplotlib": ("https://matplotlib.org/stable", None),
     "numpy": ("https://numpy.org/doc/stable", None),
@@ -156,3 +151,9 @@ copybutton_prompt_is_regexp = True
 towncrier_draft_autoversion_mode = "draft"
 towncrier_draft_include_empty = False
 towncrier_draft_working_directory = ".."
+
+doctest_global_setup = """
+import hyperspy.api as hs
+import exspy
+import numpy as np
+"""

@@ -97,12 +97,13 @@ def get_xray_lines_near_energy(energy, width=0.2, only_lines=None):
     width : float
         Window width in keV around energy in which to find nearby energies,
         i.e. a value of 0.2 keV (the default) means to search +/- 0.1 keV.
-    only_lines :
+    only_lines : str or None
         If not None, only the given lines will be added (eg. ('a','Kb')).
 
     Returns
     -------
-    List of xray-lines sorted by energy difference to given energy.
+    xray_lines : numpy.ndarray
+        List of xray-lines sorted by energy difference to the given energy.
     """
     only_lines = _parse_only_lines(only_lines)
     valid_lines = []
@@ -140,7 +141,8 @@ def get_FWHM_at_Energy(energy_resolution_MnKa, E):
 
     Returns
     -------
-    float : FWHM of the peak in keV
+    FWHM : float
+        FWHM of the peak in keV
 
     Notes
     -----
@@ -168,17 +170,22 @@ def xray_range(xray_line, beam_energy, density="auto"):
 
     Parameters
     ----------
-    xray_line: str
+    xray_line : str
         The X-ray line, e.g. 'Al_Ka'
-    beam_energy: float
+    beam_energy : float
         The energy of the beam in kV.
-    density: {float, 'auto'}
+    density : {float, 'auto'}
         The density of the material in g/cm3. If 'auto', the density
         of the pure element is used.
 
     Returns
     -------
-    X-ray range in micrometer.
+    xray_range : float
+        The X-ray range in micrometer.
+
+    See Also
+    --------
+    exspy.utils.eds.electron_range
 
     Examples
     --------
@@ -216,19 +223,24 @@ def electron_range(element, beam_energy, density="auto", tilt=0):
 
     Parameters
     ----------
-    element: str
+    element : str
         The element symbol, e.g. 'Al'.
-    beam_energy: float
+    beam_energy : float
         The energy of the beam in keV.
-    density: {float, 'auto'}
+    density : float or str (``'auto'``)
         The density of the material in g/cm3. If 'auto', the density of
         the pure element is used.
-    tilt: float.
+    tilt : float
         The tilt of the sample in degrees.
 
     Returns
     -------
-    Electron range in micrometers.
+    electron_range : float
+        Electron range in micrometers.
+
+    See Also
+    --------
+    exspy.utils.eds.xray_range
 
     Examples
     --------
@@ -269,22 +281,22 @@ def take_off_angle(tilt_stage, azimuth_angle, elevation_angle, beta_tilt=0.0):
 
     Parameters
     ----------
-    alpha_tilt: float
+    alpha_tilt : float
         The alpha-tilt of the stage in degrees. The sample is facing the detector
         when positively tilted.
-    azimuth_angle: float
+    azimuth_angle : float
         The azimuth of the detector in degrees. 0 is perpendicular to the alpha
         tilt axis.
-    elevation_angle: float
+    elevation_angle : float
         The elevation of the detector in degrees.
-    beta_tilt: float
+    beta_tilt : float
         The beta-tilt of the stage in degrees. The sample is facing positive 90
         in the azimuthal direction when positively tilted.
 
     Returns
     -------
-    take_off_angle: float.
-        In degrees.
+    take_off_angle : float
+        The take off angle in degrees.
 
     Examples
     --------
@@ -710,7 +722,11 @@ def edx_cross_section_to_zeta(cross_sections, elements):
     Returns
     -------
     zeta_factors : list of float
-        zeta_factors with units kg/m^2.
+        The zeta factors with units kg/m^2.
+
+    See Also
+    --------
+    exspy.utils.eds.zeta_to_edx_cross_section
 
     """
     if len(elements) != len(cross_sections):
@@ -739,7 +755,11 @@ def zeta_to_edx_cross_section(zfactors, elements):
     Returns
     -------
     cross_sections : list of float
-        cross_sections with units in barns.
+        The cross sections with units in barns.
+
+    See Also
+    --------
+    exspy.utils.eds.edx_cross_section_to_zeta
 
     """
     if len(elements) != len(zfactors):

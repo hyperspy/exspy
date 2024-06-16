@@ -708,7 +708,7 @@ def get_abs_corr_cross_section(
     return acf
 
 
-def edx_cross_section_to_zeta(cross_sections, elements):
+def cross_section_to_zeta(cross_sections, elements):
     """Convert a list of cross_sections in barns (b) to zeta-factors (kg/m^2).
 
     Parameters
@@ -726,7 +726,7 @@ def edx_cross_section_to_zeta(cross_sections, elements):
 
     See Also
     --------
-    exspy.utils.eds.zeta_to_edx_cross_section
+    exspy.utils.eds.zeta_to_cross_section
 
     """
     if len(elements) != len(cross_sections):
@@ -741,7 +741,7 @@ def edx_cross_section_to_zeta(cross_sections, elements):
     return zeta_factors
 
 
-def zeta_to_edx_cross_section(zfactors, elements):
+def zeta_to_cross_section(zfactors, elements):
     """Convert a list of zeta-factors (kg/m^2) to cross_sections in barns (b).
 
     Parameters
@@ -759,7 +759,7 @@ def zeta_to_edx_cross_section(zfactors, elements):
 
     See Also
     --------
-    exspy.utils.eds.edx_cross_section_to_zeta
+    exspy.utils.eds.cross_section_to_zeta
 
     """
     if len(elements) != len(zfactors):

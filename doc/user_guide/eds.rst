@@ -691,8 +691,8 @@ and :ref:`[Watanabe2006] <Watanabe2006>`. Cross sections should be
 provided in units of barns (b). Further details on the cross section method can
 be found in :ref:`[MacArthur2016] <MacArthur2016>`. Conversion between
 zeta-factors and cross sections is possible using
-:py:func:`~.utils.eds.edx_cross_section_to_zeta` or
-:py:func:`~.utils.eds.zeta_to_edx_cross_section`.
+:py:func:`~.utils.eds.cross_section_to_zeta` or
+:py:func:`~.utils.eds.zeta_to_cross_section`.
 
 Using the Cliff-Lorimer method as an example, quantification can be carried
 out as follows:

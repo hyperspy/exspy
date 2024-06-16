@@ -1,0 +1,1 @@
+Add back functionalities, which were unintentionally removed from public API when splitting from hyperspy in :mod:`exspy.utils.eds`, :mod:`exspy.utils.eels` and :mod:`exspy.material`.

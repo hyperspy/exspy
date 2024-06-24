@@ -80,9 +80,9 @@ class EELSCLEdge(Component):
 
     eXSpy also supports Peter Rez's Hartree Slater cross sections
     parametrised as distributed by Gatan in their Digital Micrograph (DM)
-    software. If Digital Micrograph is installed in the system eXSpy in the
-    standard location eXSpy should find the path to the HS GOS folder.
-    Otherwise, the location of the folder can be defined in eXSpy
+    software. If Digital Micrograph is installed in the system in the
+    standard location, eXSpy should find the path to the HS GOS folder.
+    Otherwise, the location of the folder can be defined in the eXSpy
     preferences, which can be done through :func:`hyperspy.api.preferences.gui` or
     the :attr:`hyperspy.api.preferences.EELS.eels_gos_files_path` variable.
 

@@ -13,19 +13,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -33,19 +33,19 @@
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=ccdb6887"></script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
@@ -58,27 +58,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -100,12 +96,17 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class="col-lg-3 navbar-header-items__start">
@@ -141,40 +142,40 @@
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="user_guide/index.html">
-                        User Guide
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="user_guide/index.html">
+    User Guide
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="auto_examples/index.html">
-                        Examples
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="reference/index.html">
-                        Reference
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="auto_examples/index.html">
+    Examples
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="changes.html">
-                        Release Notes
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="contributing.html">
-                        Contribute
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="reference/index.html">
+    Reference
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="changes.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="contributing.html">
+    Contribute
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -279,46 +280,49 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item">
+          
+          
+            <div class="navbar-item">
 <nav class="navbar-nav">
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="user_guide/index.html">
-                        User Guide
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="user_guide/index.html">
+    User Guide
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="auto_examples/index.html">
-                        Examples
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="reference/index.html">
-                        Reference
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="auto_examples/index.html">
+    Examples
+  </a>
+</li>
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="changes.html">
-                        Release Notes
-                      </a>
-                    </li>
-                
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="contributing.html">
-                        Contribute
-                      </a>
-                    </li>
-                
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="reference/index.html">
+    Reference
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="changes.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item pst-header-nav-item">
+  <a class="nav-link nav-internal" href="contributing.html">
+    Contribute
+  </a>
+</li>
+
   </ul>
 </nav></div>
+          
         
       </div>
     
@@ -379,13 +383,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article"></div>
+              <div class="bd-header-article d-print-none"></div>
               
               
               
@@ -403,9 +407,11 @@ document.write(`
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
  | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
@@ -533,14 +539,16 @@ document.write(`
 </li>
       <li><a href="reference/signals.html#exspy.signals.EELSSpectrum">EELSSpectrum (class in exspy.signals)</a>
 </li>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.effective_angle">effective_angle (exspy.components.EELSCLEdge attribute)</a>
+</li>
       <li><a href="reference/models.html#exspy.models.EELSModel.enable_background">enable_background() (exspy.models.EELSModel method)</a>
 </li>
       <li><a href="reference/models.html#exspy.models.EELSModel.enable_edges">enable_edges() (exspy.models.EELSModel method)</a>
 </li>
-      <li><a href="reference/models.html#exspy.models.EELSModel.enable_fine_structure">enable_fine_structure() (exspy.models.EELSModel method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/models.html#exspy.models.EELSModel.enable_fine_structure">enable_fine_structure() (exspy.models.EELSModel method)</a>
+</li>
       <li><a href="reference/models.html#exspy.models.EELSModel.enable_free_onset_energy">enable_free_onset_energy() (exspy.models.EELSModel method)</a>
 </li>
       <li><a href="reference/models.html#exspy.models.EDSModel.enable_xray_lines">enable_xray_lines() (exspy.models.EDSModel method)</a>
@@ -600,7 +608,19 @@ document.write(`
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/components.html#exspy.components.EELSCLEdge.fine_structure_smoothing">fine_structure_smoothing (exspy.components.EELSCLEdge property)</a>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.fine_structure_active">fine_structure_active (exspy.components.EELSCLEdge attribute)</a>
+</li>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.fine_structure_coeff">fine_structure_coeff (exspy.components.EELSCLEdge attribute)</a>
+</li>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.fine_structure_components">fine_structure_components (exspy.components.EELSCLEdge attribute)</a>
+</li>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.fine_structure_smoothing">fine_structure_smoothing (exspy.components.EELSCLEdge attribute)</a>
+</li>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.fine_structure_spline_active">fine_structure_spline_active (exspy.components.EELSCLEdge attribute)</a>
+</li>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.fine_structure_spline_onset">fine_structure_spline_onset (exspy.components.EELSCLEdge attribute)</a>
+</li>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.fine_structure_width">fine_structure_width (exspy.components.EELSCLEdge attribute)</a>
 </li>
       <li><a href="reference/models.html#exspy.models.EELSModel.fit">fit() (exspy.models.EELSModel method)</a>
 </li>
@@ -620,14 +640,14 @@ document.write(`
         <li><a href="reference/models.html#exspy.models.EELSModel.fix_fine_structure">(exspy.models.EELSModel method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/models.html#exspy.models.EDSModel.fix_sub_xray_lines_weight">fix_sub_xray_lines_weight() (exspy.models.EDSModel method)</a>
 </li>
       <li><a href="reference/models.html#exspy.models.EDSModel.fix_xray_lines_energy">fix_xray_lines_energy() (exspy.models.EDSModel method)</a>
 </li>
       <li><a href="reference/models.html#exspy.models.EDSModel.fix_xray_lines_width">fix_xray_lines_width() (exspy.models.EDSModel method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/signals.html#exspy.signals.EELSSpectrum.fourier_log_deconvolution">fourier_log_deconvolution() (exspy.signals.EELSSpectrum method)</a>
 </li>
       <li><a href="reference/signals.html#exspy.signals.EELSSpectrum.fourier_ratio_deconvolution">fourier_ratio_deconvolution() (exspy.signals.EELSSpectrum method)</a>
@@ -651,7 +671,11 @@ document.write(`
       <li><a href="reference/components.html#exspy.components.EELSCLEdge.function">function() (exspy.components.EELSCLEdge method)</a>
 </li>
       <li><a href="reference/components.html#exspy.components.DoublePowerLaw.function_nd">function_nd() (exspy.components.DoublePowerLaw method)</a>
+
+      <ul>
+        <li><a href="reference/components.html#exspy.components.PESCoreLineShape.function_nd">(exspy.components.PESCoreLineShape method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -687,6 +711,14 @@ document.write(`
       <li><a href="reference/signals.html#exspy.signals.EELSSpectrum.get_zero_loss_peak_mask">get_zero_loss_peak_mask() (exspy.signals.EELSSpectrum method)</a>
 </li>
       <li><a href="reference/components.html#exspy.components.EELSCLEdge.gui">gui() (exspy.components.EELSCLEdge method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.intensity">intensity (exspy.components.EELSCLEdge attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -744,9 +776,19 @@ document.write(`
   </ul></td>
 </tr></table>
 
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/components.html#exspy.components.EELSCLEdge.onset_energy">onset_energy (exspy.components.EELSCLEdge attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/components.html#exspy.components.PESCoreLineShape">PESCoreLineShape (class in exspy.components)</a>
+</li>
       <li><a href="reference/components.html#exspy.components.PESVoigt">PESVoigt (class in exspy.components)</a>
 </li>
       <li><a href="reference/signals.html#exspy.signals.EDSSpectrum.plot">plot() (exspy.signals.EDSSpectrum method)</a>
@@ -896,7 +938,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
 </div>
@@ -905,8 +947,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -919,8 +959,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -953,7 +993,7 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.3.
 </p></div>
       
     </div>

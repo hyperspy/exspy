@@ -39,6 +39,15 @@ def iMFP_Iakoubovskii(density, electron_energy):
     beam_energy : float
         Electron beam energy in keV
 
+    Returns
+    -------
+    inelastic_mean_free_path : float
+        The inelastic mean free path in nanometers.
+
+    See Also
+    --------
+    exspy.utils.eels.iMFP_TPP2M, exspy.utils.eels.angular_correction
+
     Notes
     -----
     For details see Equation 9 in reference [*]_.
@@ -47,11 +56,6 @@ def iMFP_Iakoubovskii(density, electron_energy):
        ‘Thickness Measurements with Electron Energy Loss Spectroscopy’.
        Microscopy Research and Technique 71, no. 8 (2008): 626–31.
        https://onlinelibrary.wiley.com/doi/10.1002/jemt.20597
-
-    Returns
-    -------
-    float
-        Inelastic mean free path in nanometers
     """
     theta_C = 20  # mrad
     inv_lambda = (
@@ -64,7 +68,7 @@ def iMFP_Iakoubovskii(density, electron_energy):
 
 
 def iMFP_TPP2M(electron_energy, density, M, N_v, E_g):
-    """Electron inelastic mean free path using TPP-2M
+    """Electron inelastic mean free path using TPP-2M.
 
     Parameters
     ----------
@@ -81,8 +85,12 @@ def iMFP_TPP2M(electron_energy, density, M, N_v, E_g):
 
     Returns
     -------
-    float
-        Inelastic mean free path in nanometers
+    inelastic_mean_free_path : float
+        The inelastic mean free path in nanometers.
+
+    See Also
+    --------
+    exspy.utils.eels.iMFP_Iakoubovskii, exspy.utils.eels.iMFP_angular_correction
 
     Notes
     -----
@@ -121,6 +129,15 @@ def iMFP_angular_correction(density, beam_energy, alpha, beta):
         Electron beam energy in keV
     alpha, beta : float
         Convergence and collection angles in mrad.
+
+    Returns
+    -------
+    correction : float
+        The correction factor on the mean free path due to the collection angle.
+
+    See Also
+    --------
+    exspy.utils.eels.iMFP_Iakoubovskii, exspy.utils.eels.iMFP_TPP2M
 
     Notes
     -----

@@ -27,7 +27,7 @@ from exspy.signals.eels import EELSSpectrum
 from exspy.components import EELSCLEdge
 from hyperspy.components1d import PowerLaw
 from hyperspy.docstrings.model import FIT_PARAMETERS_ARG
-from exspy.docstrings.model import EELSMODEL_PARAMETERS
+from exspy._docstrings.model import EELSMODEL_PARAMETERS
 from hyperspy.misc.utils import dummy_context_manager
 from hyperspy.models.model1d import Model1D
 

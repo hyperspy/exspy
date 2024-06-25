@@ -25,9 +25,9 @@ import pooch
 import pytest
 
 import hyperspy.api as hs
-from exspy.misc.elements import elements_db as elements
+from exspy._misc.elements import elements_db as elements
 from hyperspy.decorators import lazifyTestClass
-from exspy.misc.eels.gosh_gos import _GOSH_URL, _GOSH_KNOWN_HASH
+from exspy._misc.eels.gosh_gos import _GOSH_URL, _GOSH_KNOWN_HASH
 from exspy.signals import EELSSpectrum
 
 

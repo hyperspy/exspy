@@ -25,10 +25,10 @@ import numpy as np
 from scipy.interpolate import splev
 
 from hyperspy.component import Component
-from exspy.misc.eels.gosh_gos import GoshGOS, _GOSH_DOI
-from exspy.misc.eels.hartree_slater_gos import HartreeSlaterGOS
-from exspy.misc.eels.hydrogenic_gos import HydrogenicGOS
-from exspy.misc.eels.effective_angle import effective_angle
+from exspy._misc.eels.gosh_gos import GoshGOS, _GOSH_DOI
+from exspy._misc.eels.hartree_slater_gos import HartreeSlaterGOS
+from exspy._misc.eels.hydrogenic_gos import HydrogenicGOS
+from exspy._misc.eels.effective_angle import effective_angle
 from hyperspy.ui_registry import add_gui_method
 
 

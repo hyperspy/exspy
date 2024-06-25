@@ -16,13 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import pytest
+from ._misc.material import (
+    atomic_to_weight,
+    density_of_mixture,
+    mass_absorption_coefficient,
+    mass_absorption_mixture,
+    weight_to_atomic,
+)
+from ._misc.elements import elements_db as elements
 
-from exspy._misc.eds.utils import _get_element_and_line
+
+__all__ = [
+    "atomic_to_weight",
+    "density_of_mixture",
+    "elements",
+    "mass_absorption_coefficient",
+    "mass_absorption_mixture",
+    "weight_to_atomic",
+]
 
 
-def test_get_element_and_line():
-    assert _get_element_and_line("Mn_Ka") == ("Mn", "Ka")
-
-    with pytest.raises(ValueError):
-        _get_element_and_line("MnKa") == -1
+def __dir__():
+    return sorted(__all__)

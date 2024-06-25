@@ -36,7 +36,8 @@ def effective_angle(E0, E, alpha, beta):
 
     Returns
     -------
-    float : effective collection angle in mrad
+    effective_angle : float
+        The effective collection angle in mrad.
 
     Notes
     -----

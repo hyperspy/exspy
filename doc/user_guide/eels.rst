@@ -15,7 +15,7 @@ The functions described in this chapter are only available for the
 
 .. code-block:: python
 
-    >>> s.set_signal_type("EELS")
+    >>> s.set_signal_type("EELS") # doctest: +SKIP
 
 Note these chapter discusses features that are available only for
 :py:class:`~.signals.EELSSpectrum` class. However, this class inherits
@@ -47,10 +47,9 @@ they are arranged in the order closest to 849 eV.
 
 .. code-block:: python
 
-    >>> from hyperspy.misc.eels.tools import get_edges_near_energy
-    >>> get_edges_near_energy(532)
+    >>> exspy.utils.eels.get_edges_near_energy(532)
     ['O_K', 'Pd_M3', 'Sb_M5', 'Sb_M4']
-    >>> get_edges_near_energy(849, width=6)
+    >>> exspy.utils.eels.get_edges_near_energy(849, width=6)
     ['La_M4', 'Fe_L1']
 
 The static method :py:meth:`~.signals.EELSSpectrum.print_edges_near_energy`
@@ -59,7 +58,7 @@ more information about the edges.
 
 .. code-block:: python
 
-    >>> s = hs.datasets.artificial_data.get_core_loss_eels_signal()
+    >>> s = exspy.data.EELS_MnFe()
     >>> s.print_edges_near_energy(401, width=20)
     +-------+-------------------+-----------+-----------------------------+
     |  edge | onset energy (eV) | relevance |         description         |
@@ -85,7 +84,7 @@ to aid identification of edges.
 
 .. code-block:: python
 
-    >>> s = hs.datasets.artificial_data.get_core_loss_eels_signal()
+    >>> s = exspy.data.EELS_MnFe()
     >>> s.edges_at_energy()
 
 .. figure::  images/EELS_edges_at_energy.png

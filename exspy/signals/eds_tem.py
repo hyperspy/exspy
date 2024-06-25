@@ -36,9 +36,9 @@ from hyperspy.axes import DataAxis
 
 from .eds import EDSSpectrum, LazyEDSSpectrum
 from exspy._defaults_parser import preferences
-from exspy.misc import material
-from exspy.misc.eds import utils as utils_eds
-from exspy.misc.elements import elements as elements_db
+from exspy._misc import material
+from exspy._misc.eds import utils as utils_eds
+from exspy._misc.elements import elements as elements_db
 
 
 _logger = logging.getLogger(__name__)

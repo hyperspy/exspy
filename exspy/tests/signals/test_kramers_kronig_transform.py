@@ -24,7 +24,7 @@ import hyperspy.api as hs
 from hyperspy.components1d import Lorentzian
 
 from exspy.components import VolumePlasmonDrude
-from exspy.misc.eels.tools import eels_constant
+from exspy._misc.eels.tools import eels_constant
 from exspy.signals import EELSSpectrum
 
 

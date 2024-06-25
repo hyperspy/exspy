@@ -101,6 +101,8 @@ General
 
 See :external+hyperspy:ref:`HyperSpy-Metadata-General <general-metadata>`.
 
+.. _sample-metadata:
+
 Sample
 ======
 
@@ -314,6 +316,8 @@ spectrometer
     type: Str
 
     The spectrometer model, e.g. Gatan Enfinium ER (Model 977).
+
+.. _eds-detector-metadata:
 
 EDS
 ^^^

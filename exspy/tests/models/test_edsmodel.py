@@ -23,8 +23,8 @@ from hyperspy.decorators import lazifyTestClass
 from hyperspy.misc import utils
 
 import exspy
-from exspy.misc.eds import utils as utils_eds
-from exspy.misc.elements import elements as elements_db
+from exspy._misc.eds import utils as utils_eds
+from exspy._misc.elements import elements as elements_db
 
 
 # Create this outside the test class to

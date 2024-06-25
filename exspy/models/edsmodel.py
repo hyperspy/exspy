@@ -24,12 +24,12 @@ import math
 import logging
 
 from hyperspy.misc.utils import stash_active_state
-from exspy.misc.eds.utils import _get_element_and_line
+from exspy._misc.eds.utils import _get_element_and_line
 
 from hyperspy.models.model1d import Model1D
 from exspy.signals.eds import EDSSpectrum
-from exspy.misc.elements import elements as elements_db
-from exspy.misc.eds import utils as utils_eds
+from exspy._misc.elements import elements as elements_db
+from exspy._misc.eds import utils as utils_eds
 import hyperspy.components1d as create_component
 
 _logger = logging.getLogger(__name__)

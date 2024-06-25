@@ -26,7 +26,7 @@ import hyperspy.api as hs
 from hyperspy.misc.math_tools import check_random_state
 
 import exspy
-from exspy.misc.eels.eelsdb import eelsdb
+from exspy._misc.eels.eelsdb import eelsdb
 
 
 __all__ = [

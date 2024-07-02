@@ -248,8 +248,9 @@ def eelsdb(
     if show_progressbar is None:
         show_progressbar = preferences.General.show_progressbar
 
+    headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"}
     request = requests.get(
-        "https://api.eelsdb.eu/spectra", params=params, verify=verify_certificate
+        "https://api.eelsdb.eu/spectra", params=params, verify=verify_certificate, headers=headers
     )
     spectra = []
     jsons = request.json()
@@ -271,7 +272,7 @@ def eelsdb(
                 f"Permalink: {json_spectrum['permalink']}"
             )
             continue
-        msa_string = requests.get(download_link, verify=verify_certificate).text
+        msa_string = requests.get(download_link, verify=verify_certificate, headers=headers).text
         try:
             s = dict2signal(parse_msa_string(msa_string)[0])
             emsa = s.original_metadata

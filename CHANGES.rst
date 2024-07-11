@@ -9,6 +9,22 @@ https://exspy.readthedocs.io/en/latest/changes.html
 
 .. towncrier release notes start
 
+0.2.1 (2024-07-12)
+==================
+
+Bug Fixes
+---------
+
+- Fix gradients of the :class:`~.components.EELSArctan` component. (`#55 <https://github.com/hyperspy/exspy/issues/55>`_)
+- Fix blocked eelsdb queries (`#66 <https://github.com/hyperspy/exspy/issues/66>`_)
+
+
+Improved Documentation
+----------------------
+
+- Fix broken links in the documentation and missing docstring of the :class:`~.components.PESCoreLineShape` component in the API reference. (`#55 <https://github.com/hyperspy/exspy/issues/55>`_)
+
+
 0.2 (2024-04-10)
 ================
 

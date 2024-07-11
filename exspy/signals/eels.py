@@ -1849,7 +1849,7 @@ class EELSSpectrum(Signal1D):
             self._edge_markers["lines"].remove_items(ind)
         if self._edge_markers["texts"] is not None:
             self._edge_markers["texts"].remove_items(ind)
-        if self._edge_markers["names"] is not []:
+        if len(self._edge_markers["names"]) > 0:
             self._edge_markers["names"] = np.delete(self._edge_markers["names"], ind)
 
         if render_figure:

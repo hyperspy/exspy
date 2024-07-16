@@ -21,11 +21,11 @@
 
 from exspy.misc.eels.gosh_gos import _GOSH_DOI
 
-GOS_PARAMETER = """GOS : 'hydrogenic', 'gosh', 'Hartree-Slater'.
+GOS_PARAMETER = """GOS : 'hydrogenic', 'gosh', 'Dirac', 'Hartree-Slater'.
             The GOS to use. Default is ``'gosh'``.
 
         gos_file_path : str, None
-            Only with GOS='gosh'. Specify the file path of the gosh file
+            Only with GOS='gosh' or 'Dirac'. Specify the file path of the gosh file
             to use. If None, use the file from doi:{}""".format(_GOSH_DOI)
 
 EELSMODEL_PARAMETERS = """ll : None or EELSSpectrum

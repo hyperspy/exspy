@@ -1635,6 +1635,7 @@ class EELSSpectrum(Signal1D):
         Parameters
         ----------
         %s
+        GOS: Generalized Oscillator Strength, availiable option in ['hydrogenic', 'gosh', 'Dirac', 'Hartree-Slater'], default is 'gosh'
 
         Returns
         -------

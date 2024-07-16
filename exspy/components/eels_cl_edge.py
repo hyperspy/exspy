@@ -26,6 +26,7 @@ from scipy.interpolate import splev
 
 from hyperspy.component import Component
 from exspy.misc.eels.gosh_gos import GoshGOS, _GOSH_DOI
+from exspy.misc.eels.dirac_gos import DiracGOS
 from exspy.misc.eels.hartree_slater_gos import HartreeSlaterGOS
 from exspy.misc.eels.hydrogenic_gos import HydrogenicGOS
 from exspy.misc.eels.effective_angle import effective_angle
@@ -92,7 +93,7 @@ class EELSCLEdge(Component):
         Usually a string, for example, ``'Ti_L3'`` for the GOS of the titanium L3
         subshell. If a dictionary is passed, it is assumed that Hartree Slater
         GOS was exported using `GOS.as_dictionary`, and will be reconstructed.
-    GOS : ``'gosh'``, ``'hydrogenic'``, ``'Hartree-Slater'`` or str
+    GOS : ``'gosh'``,``'Dirac'``, ``'hydrogenic'``, ``'Hartree-Slater'`` or str
         The GOS to use. Default is ``'gosh'``. If str, it must the path to gosh
         GOS file.
     gos_file_path : str, None
@@ -169,13 +170,15 @@ class EELSCLEdge(Component):
 
         if GOS == "gosh":
             self.GOS = GoshGOS(element_subshell, gos_file_path=gos_file_path)
+        elif GOS == "Dirac":
+            self.GOS = DiracGOS(element_subshell,gos_file_path=gos_file_path)  
         elif GOS == "Hartree-Slater":  # pragma: no cover
             self.GOS = HartreeSlaterGOS(element_subshell)
         elif GOS == "hydrogenic":
             self.GOS = HydrogenicGOS(element_subshell)
         else:
             raise ValueError(
-                "GOS must be one of 'gosh', 'hydrogenic' or 'Hartree-Slater'."
+                "GOS must be one of 'gosh', 'Dirac','hydrogenic' or 'Hartree-Slater'."
             )
         self.onset_energy.value = self.GOS.onset_energy
         self.onset_energy.free = False
@@ -188,6 +191,8 @@ class EELSCLEdge(Component):
 
         self._whitelist["GOS"] = ("init", GOS)
         if GOS == "gosh":
+            self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))
+        elif GOS == "Dirac":
             self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))
         elif GOS == "Hartree-Slater":  # pragma: no cover
             self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))

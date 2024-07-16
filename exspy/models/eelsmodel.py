@@ -75,6 +75,7 @@ class EELSModel(Model1D):
 
         Parameters
         ----------
+        GOS : Generalized Oscillator Strength, availiable option in ['hydrogenic', 'gosh', 'Dirac', 'Hartree-Slater'], default is 'gosh'.
         spectrum : a EELSSpectrum instance
         %s
 

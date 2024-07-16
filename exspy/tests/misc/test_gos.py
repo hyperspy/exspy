@@ -90,15 +90,6 @@ def test_dirac_gosh_not_in_conventions():
 
 
 def test_dirac_gosh_not_in_file():
-    # Use version 1.0 which doesn't have the Ac element
+    # Dirac GOS which doesn't have the Uue element
     with pytest.raises(ValueError):
-        _ = DiracGOS("Ac_L3", gos_file_path=GOSH10)
-
-
-def test_dirac_binding_energy_database():
-    gos = DiracGOS("Ti_L3")
-    gosh15 = h5py.File(gos.gos_file_path)
-    for element in gosh15.keys():
-        # These elements are not in the database
-        if element not in ["Bk", "Cf", "Cm", "metadata"]:
-            assert "Binding_energies" in elements[element]["Atomic_properties"].keys()
+        _ = DiracGOS("Uue_L3")

@@ -274,7 +274,7 @@ The model for the GOS can be specified with the ``GOS`` argument
 By default, a freely usable tabulated dataset, in `gosh <https://gitlab.com/gguzzina/gosh>`__
 format, is downloaded from Zenodo:
 `doi:10.5281/zenodo.7645765 <https://zenodo.org/record/7645765>`_.
-As alternative, one can use the `Dirac GOS <https://arxiv.org/abs/2405.10151>`__ to include the relativistic effects, which is downloaded from Zenodo: `doi:10.5281/zenodo.12751756 <https://zenodo.org/record/12751756>`_ and also follows the `gosh` format.
+As an alternative, one can use the `Dirac GOS <https://arxiv.org/abs/2405.10151>`_ to include the relativistic effects. It can be downloaded from Zenodo: `doi:10.5281/zenodo.12751756 <https://zenodo.org/record/12751756>`_ and also follows the `gosh` format.
 
 Custom GOS saved in the `gosh <https://gitlab.com/gguzzina/gosh>`__ format can be used,
 the following example download a previous version (1.0) of the GOS file from Zenodo

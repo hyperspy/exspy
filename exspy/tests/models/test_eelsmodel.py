@@ -72,7 +72,7 @@ class TestCreateEELSModel:
         m.fit()
 
     def test_gos_gosh(self):
-        m = self.s.create_model(auto_add_edges=True, GOS="gosh")
+        m = self.s.create_model(auto_add_edges=True, GOS="dft")
         assert m["B_K"].GOS._name == "gosh"
         m.fit()
 

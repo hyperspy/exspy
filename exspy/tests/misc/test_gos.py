@@ -24,7 +24,6 @@ import pytest
 
 from exspy._defaults_parser import preferences
 from exspy.misc.eels.gosh_gos import GoshGOS
-from exspy.misc.eels.dirac_gos import DiracGOS
 from exspy.misc.eels.hartree_slater_gos import HartreeSlaterGOS
 from exspy.misc.eels import HydrogenicGOS
 from exspy.misc.elements import elements
@@ -83,7 +82,7 @@ def test_binding_energy_database():
             assert "Binding_energies" in elements[element]["Atomic_properties"].keys()
 
 def test_dirac_gosh_not_in_conventions():
-    gos = DiracGOS("Ti_L2")
+    gos = GoshGOS("Ti_L2", source="dirac")
     gos.subshell = "L234"
     with pytest.raises(ValueError):
         gos.read_gos_data()
@@ -92,4 +91,4 @@ def test_dirac_gosh_not_in_conventions():
 def test_dirac_gosh_not_in_file():
     # Dirac GOS which doesn't have the Uue element
     with pytest.raises(ValueError):
-        _ = DiracGOS("Uue_L3")
+        _ = GoshGOS("Uue_L3", source="dirac")

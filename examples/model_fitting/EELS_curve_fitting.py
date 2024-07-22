@@ -24,7 +24,7 @@ m.multifit(kind="smart")
 m.plot()
 
 # one can also use the Dirac GOS by specifying the GOS parameter
-m = s.create_model(low_loss=ll, GOS="Dirac")
+m = s.create_model(low_loss=ll, GOS="dirac")
 m.enable_fine_structure()
 m.multifit(kind="smart")
 m.plot()

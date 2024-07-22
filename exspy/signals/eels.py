@@ -1626,7 +1626,7 @@ class EELSSpectrum(Signal1D):
         low_loss=None,
         auto_background=True,
         auto_add_edges=True,
-        GOS="gosh",
+        GOS="dft",
         gos_file_path=None,
         dictionary=None,
     ):
@@ -1635,7 +1635,7 @@ class EELSSpectrum(Signal1D):
         Parameters
         ----------
         %s
-        GOS: Generalized Oscillator Strength, availiable option in ['hydrogenic', 'gosh', 'Dirac', 'Hartree-Slater'], default is 'gosh'
+        GOS: Generalized Oscillator Strength, availiable option in ['hydrogenic', 'dft', 'dirac', 'Hartree-Slater'], default is 'dft'
 
         Returns
         -------
@@ -1659,8 +1659,9 @@ class EELSSpectrum(Signal1D):
             low_loss=low_loss,
             auto_background=auto_background,
             auto_add_edges=auto_add_edges,
-            GOS=GOS,
+            GOS=GOS.lower(),
             dictionary=dictionary,
+            gos_file_path=gos_file_path,
         )
         return model
 

@@ -67,15 +67,16 @@ class EELSModel(Model1D):
         auto_background=True,
         auto_add_edges=True,
         low_loss=None,
-        GOS="gosh",
+        GOS="dft",
         dictionary=None,
+        gos_file_path=None,
     ):
         """
         Build an EELS model.
 
         Parameters
         ----------
-        GOS : Generalized Oscillator Strength, availiable option in ['hydrogenic', 'gosh', 'Dirac', 'Hartree-Slater'], default is 'gosh'.
+        GOS : Generalized Oscillator Strength, availiable option in ['hydrogenic', 'dft', 'dirac', 'Hartree-Slater'], default is 'dft'.
         spectrum : a EELSSpectrum instance
         %s
 
@@ -95,6 +96,7 @@ class EELSModel(Model1D):
         self.convolution_axis = None
         self.low_loss = low_loss
         self.GOS = GOS
+        self.gos_file_path = gos_file_path
         self.edges = []
         self._background_components = []
         self._whitelist.update(
@@ -411,7 +413,7 @@ class EELSModel(Model1D):
         if e_shells is None:
             e_shells = list(self.signal.subshells)
         e_shells.sort()
-        master_edge = EELSCLEdge(e_shells.pop(), self.GOS)
+        master_edge = EELSCLEdge(e_shells.pop(), self.GOS, gos_file_path=self.gos_file_path)
         # If self.GOS was None, the GOS is set by eels_cl_edge so
         # we reassing the value of self.GOS
         self.GOS = master_edge.GOS._name

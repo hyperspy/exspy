@@ -32,9 +32,21 @@ _logger = logging.getLogger(__name__)
 R = constants.value("Rydberg constant times hc in eV")
 a0 = constants.value("Bohr radius")
 
-_GOSH_DOI = "10.5281/zenodo.7645765"
-_GOSH_URL = f"doi:{_GOSH_DOI}/Segger_Guzzinati_Kohl_1.5.0.gosh"
-_GOSH_KNOWN_HASH = "md5:7fee8891c147a4f769668403b54c529b"
+DFT_GOSH = {
+    "DOI": "10.5281/zenodo.7645765",
+    "URL": "doi:10.5281/zenodo.7645765/Segger_Guzzinati_Kohl_1.5.0.gosh",
+    "KNOWN_HASH": "md5:7fee8891c147a4f769668403b54c529b"
+}
+DIRAC_GOSH = {
+    "DOI": "10.5281/zenodo.12752410",
+    "URL": "doi:10.5281/zenodo.12752410/Dirac_GOS.gosh",
+    "KNOWN_HASH": "md5:02fb22ab55e39e51eb03c08dbf699545"
+}
+GOSH_SOURCES = {
+    "dft": DFT_GOSH,
+    "dirac": DIRAC_GOSH
+}
+
 
 
 class GoshGOS(TabulatedGOS):
@@ -79,7 +91,7 @@ class GoshGOS(TabulatedGOS):
         "subshell_factor": None,
     }
 
-    def __init__(self, element_subshell, gos_file_path=None):
+    def __init__(self, element_subshell, gos_file_path=None, source="dft"):
         """
         Parameters
         ----------
@@ -87,12 +99,17 @@ class GoshGOS(TabulatedGOS):
             For example, 'Ti_L3' for the GOS of the titanium L3 subshell
         gos_file_path : str
             The path of the gosh file to use.
+        source : str
+            The source of the GOS data. Options are 'dft' or 'dirac'.
         """
 
         if gos_file_path is None:
+            source = source.lower()
+            assert source in GOSH_SOURCES.keys(), f"Invalid source: {source}"
+            self._name = source
             gos_file_path = pooch.retrieve(
-                url=_GOSH_URL,
-                known_hash=_GOSH_KNOWN_HASH,
+                url=GOSH_SOURCES[source]["URL"],
+                known_hash=GOSH_SOURCES[source]["KNOWN_HASH"],
                 progressbar=preferences.General.show_progressbar,
             )
         self.gos_file_path = gos_file_path

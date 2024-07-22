@@ -94,7 +94,7 @@ class EELSCLEdge(Component):
         GOS was exported using `GOS.as_dictionary`, and will be reconstructed.
     GOS : ``'dft'``,``'dirac'``, ``'hydrogenic'``, ``'Hartree-Slater'`` or str
         The GOS to use. Default is ``'dft'``. If str, it must the path to gosh GOS file.
-        The ``'dft'`` and ``'dirac'`` databases are in the ``'gosh'`` format. 
+        The ``'dft'`` and ``'dirac'`` databases are in the ``'gosh'`` format.
     gos_file_path : str, None
         Only with ``GOS='dft' or 'dirac'``. Specify the file path of the gosh file
         to use. If None, use the file from  https://doi.org/%s
@@ -168,9 +168,13 @@ class EELSCLEdge(Component):
         self.GOS = None
 
         if GOS == "dft":
-            self.GOS = GoshGOS(element_subshell, gos_file_path=gos_file_path, source="dft")
+            self.GOS = GoshGOS(
+                element_subshell, gos_file_path=gos_file_path, source="dft"
+            )
         elif GOS == "dirac":
-            self.GOS = GoshGOS(element_subshell,gos_file_path=gos_file_path, source="dirac")  
+            self.GOS = GoshGOS(
+                element_subshell, gos_file_path=gos_file_path, source="dirac"
+            )
         elif GOS == "Hartree-Slater":  # pragma: no cover
             self.GOS = HartreeSlaterGOS(element_subshell)
         elif GOS == "hydrogenic":
@@ -539,4 +543,4 @@ class EELSCLEdge(Component):
         return dic
 
 
-EELSCLEdge.__doc__ %= (DFT_GOSH['DOI'], DFT_GOSH['DOI'])
+EELSCLEdge.__doc__ %= (DFT_GOSH["DOI"], DFT_GOSH["DOI"])

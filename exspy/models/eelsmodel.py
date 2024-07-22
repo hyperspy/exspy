@@ -413,7 +413,9 @@ class EELSModel(Model1D):
         if e_shells is None:
             e_shells = list(self.signal.subshells)
         e_shells.sort()
-        master_edge = EELSCLEdge(e_shells.pop(), self.GOS, gos_file_path=self.gos_file_path)
+        master_edge = EELSCLEdge(
+            e_shells.pop(), self.GOS, gos_file_path=self.gos_file_path
+        )
         # If self.GOS was None, the GOS is set by eels_cl_edge so
         # we reassing the value of self.GOS
         self.GOS = master_edge.GOS._name.split("_")[0]

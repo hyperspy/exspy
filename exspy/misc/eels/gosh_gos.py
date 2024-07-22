@@ -35,18 +35,14 @@ a0 = constants.value("Bohr radius")
 DFT_GOSH = {
     "DOI": "10.5281/zenodo.7645765",
     "URL": "doi:10.5281/zenodo.7645765/Segger_Guzzinati_Kohl_1.5.0.gosh",
-    "KNOWN_HASH": "md5:7fee8891c147a4f769668403b54c529b"
+    "KNOWN_HASH": "md5:7fee8891c147a4f769668403b54c529b",
 }
 DIRAC_GOSH = {
     "DOI": "10.5281/zenodo.12752410",
     "URL": "doi:10.5281/zenodo.12752410/Dirac_GOS.gosh",
-    "KNOWN_HASH": "md5:02fb22ab55e39e51eb03c08dbf699545"
+    "KNOWN_HASH": "md5:02fb22ab55e39e51eb03c08dbf699545",
 }
-GOSH_SOURCES = {
-    "dft": DFT_GOSH,
-    "dirac": DIRAC_GOSH
-}
-
+GOSH_SOURCES = {"dft": DFT_GOSH, "dirac": DIRAC_GOSH}
 
 
 class GoshGOS(TabulatedGOS):

@@ -81,6 +81,7 @@ def test_binding_energy_database():
         if element not in ["Bk", "Cf", "Cm", "metadata"]:
             assert "Binding_energies" in elements[element]["Atomic_properties"].keys()
 
+
 def test_dirac_gosh_not_in_conventions():
     gos = GoshGOS("Ti_L2", source="dirac")
     gos.subshell = "L234"

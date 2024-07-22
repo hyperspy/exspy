@@ -27,7 +27,7 @@ import pytest
 import hyperspy.api as hs
 from exspy.misc.elements import elements_db as elements
 from hyperspy.decorators import lazifyTestClass
-from exspy.misc.eels.gosh_gos import DFT_GOSH,DIRAC_GOSH 
+from exspy.misc.eels.gosh_gos import DFT_GOSH
 from exspy.signals import EELSSpectrum
 
 

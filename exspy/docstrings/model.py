@@ -26,7 +26,9 @@ GOS_PARAMETER = """GOS : 'hydrogenic', 'dft', 'dirac', 'Hartree-Slater'.
 
         gos_file_path : str, None
             Only with GOS='dft' or 'dirac'. Specify the file path of the gosh file
-            to use. If None, use the file from doi:{}""".format(GOSH_SOURCES['dft']['DOI'])
+            to use. If None, use the file from doi:{}""".format(
+    GOSH_SOURCES["dft"]["DOI"]
+)
 
 EELSMODEL_PARAMETERS = """ll : None or EELSSpectrum
             If an EELSSpectrum is provided, it will be assumed that it is

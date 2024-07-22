@@ -81,7 +81,7 @@ class GoshGOS(TabulatedGOS):
 
     """
 
-    _name = "gosh"
+    _name = "dft_gosh"
     _whitelist = {
         "gos_array": None,
         "rel_energy_axis": None,
@@ -106,7 +106,7 @@ class GoshGOS(TabulatedGOS):
         if gos_file_path is None:
             source = source.lower()
             assert source in GOSH_SOURCES.keys(), f"Invalid source: {source}"
-            self._name = source
+            self._name = f"{source}_gosh"
             gos_file_path = pooch.retrieve(
                 url=GOSH_SOURCES[source]["URL"],
                 known_hash=GOSH_SOURCES[source]["KNOWN_HASH"],

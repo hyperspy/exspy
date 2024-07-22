@@ -27,7 +27,7 @@ import pytest
 import hyperspy.api as hs
 from exspy.misc.elements import elements_db as elements
 from hyperspy.decorators import lazifyTestClass
-from exspy.misc.eels.gosh_gos import _GOSH_URL, _GOSH_KNOWN_HASH
+from exspy.misc.eels.gosh_gos import DFT_GOSH,DIRAC_GOSH 
 from exspy.signals import EELSSpectrum
 
 
@@ -73,7 +73,7 @@ class TestCreateEELSModel:
 
     def test_gos_gosh(self):
         m = self.s.create_model(auto_add_edges=True, GOS="dft")
-        assert m["B_K"].GOS._name == "gosh"
+        assert m["B_K"].GOS._name == "dft_gosh"
         m.fit()
 
         with pytest.raises(ValueError):
@@ -81,8 +81,8 @@ class TestCreateEELSModel:
 
     def test_gos_file(self):
         gos_file_path = pooch.retrieve(
-            url=_GOSH_URL,
-            known_hash=_GOSH_KNOWN_HASH,
+            url=DFT_GOSH["URL"],
+            known_hash=DFT_GOSH["KNOWN_HASH"],
         )
         self.s.create_model(auto_add_edges=True, gos_file_path=gos_file_path)
 

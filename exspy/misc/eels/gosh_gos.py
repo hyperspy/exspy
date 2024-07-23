@@ -38,9 +38,9 @@ DFT_GOSH = {
     "KNOWN_HASH": "md5:7fee8891c147a4f769668403b54c529b",
 }
 DIRAC_GOSH = {
-    "DOI": "10.5281/zenodo.12752410",
-    "URL": "doi:10.5281/zenodo.12752410/Dirac_GOS.gosh",
-    "KNOWN_HASH": "md5:02fb22ab55e39e51eb03c08dbf699545",
+    "DOI": "10.5281/zenodo.12800856",
+    "URL": "doi:10.5281/zenodo.12800856/Dirac_GOS_compact.gosh",
+    "KNOWN_HASH": "md5:01a855d3750d2c063955248358dbee8d",
 }
 GOSH_SOURCES = {"dft": DFT_GOSH, "dirac": DIRAC_GOSH}
 

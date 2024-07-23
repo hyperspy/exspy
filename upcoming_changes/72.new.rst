@@ -1,4 +1,1 @@
-5678.new.rst
-============
-
 Support for [Dirac GOS](https://zenodo.org/records/12800856) in the gosh format for EELS quantification, which includes the relativistic effects (e.g. spin-orbit coupling) based on Dirac equation. 

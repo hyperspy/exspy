@@ -15,10 +15,7 @@ https://exspy.readthedocs.io/en/latest/changes.html
 New features
 ------------
 
-- 5678.new.rst
-  ============
-
-  Support for [Dirac GOS](https://zenodo.org/records/12800856) in the gosh format for EELS quantification, which includes the relativistic effects (e.g. spin-orbit coupling) based on Dirac equation. (`#72 <https://github.com/hyperspy/exspy/issues/72>`_)
+- Support for [Dirac GOS](https://zenodo.org/records/12800856) in the gosh format for EELS quantification, which includes the relativistic effects (e.g. spin-orbit coupling) based on Dirac equation. (`#72 <https://github.com/hyperspy/exspy/issues/72>`_)
 
 
 0.2.1 (2024-07-12)

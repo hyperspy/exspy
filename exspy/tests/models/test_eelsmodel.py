@@ -99,7 +99,9 @@ class TestCreateEELSModel:
             url=DIRAC_GOSH["URL"],
             known_hash=DIRAC_GOSH["KNOWN_HASH"],
         )
-        self.s.create_model(auto_add_edges=True, gos_file_path=gos_file_path, GOS="dirac")
+        self.s.create_model(
+            auto_add_edges=True, gos_file_path=gos_file_path, GOS="dirac"
+        )
 
     def test_auto_add_background_true(self):
         m = self.s.create_model(auto_background=True)

@@ -544,4 +544,8 @@ class EELSCLEdge(Component):
         return dic
 
 
-EELSCLEdge.__doc__ %= (GOSH_SOURCES['dft']["DOI"],GOSH_SOURCES['dirac']["DOI"], GOSH_SOURCES['dft']["DOI"])
+EELSCLEdge.__doc__ %= (
+    GOSH_SOURCES["dft"]["DOI"],
+    GOSH_SOURCES["dirac"]["DOI"],
+    GOSH_SOURCES["dft"]["DOI"],
+)

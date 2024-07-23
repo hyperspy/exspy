@@ -416,10 +416,6 @@ class EELSModel(Model1D):
         master_edge = EELSCLEdge(
             e_shells.pop(), self.GOS, gos_file_path=self.gos_file_path
         )
-        # If self.GOS was None, the GOS is set by eels_cl_edge so
-        # we reassing the value of self.GOS
-        if self.GOS is None:
-            self.GOS = master_edge.GOS._name.split("_")[0]
         self.append(master_edge)
         element = master_edge.element
         while len(e_shells) > 0:

@@ -49,3 +49,29 @@ def test_restore_EELS_model(tmp_path):
     s2 = hs.load(fname)
     m3 = s2.models.restore(model_name)
     np.testing.assert_allclose(m.as_signal(), m3.as_signal())
+
+
+def test_restore_EELS_model_dirac(tmp_path):
+    s = hs.load(TEST_DATA_DIR / "coreloss_spectrum.msa", signal_type="EELS")
+    ll = hs.load(TEST_DATA_DIR / "lowloss_spectrum.msa", signal_type="EELS")
+
+    s.add_elements(("Mn", "O"))
+    s.set_microscope_parameters(
+        beam_energy=300, convergence_angle=24.6, collection_angle=13.6
+    )
+
+    m = s.create_model(low_loss=ll, GOS="dirac")
+    m.enable_fine_structure()
+    m.multifit(kind="smart")
+
+    model_name = "fit1"
+    m.store(model_name)
+    fname = tmp_path / "test_save_eelsmodel.hspy"
+    s.save(tmp_path / fname)
+    m2 = s.models.restore(model_name)
+
+    np.testing.assert_allclose(m.as_signal(), m2.as_signal())
+
+    s2 = hs.load(fname)
+    m3 = s2.models.restore(model_name)
+    np.testing.assert_allclose(m.as_signal(), m3.as_signal())

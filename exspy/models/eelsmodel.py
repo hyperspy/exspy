@@ -435,7 +435,9 @@ class EELSModel(Model1D):
                 # Add the other subshells of the same element
                 # and couple their intensity and onset_energy to that of the
                 # master edge
-                edge = EELSCLEdge(e_shells.pop(), GOS=self.GOS)
+                edge = EELSCLEdge(
+                    e_shells.pop(), GOS=self.GOS, gos_file_path=self.gos_file_path
+                )
 
                 edge.intensity.twin = master_edge.intensity
                 edge.onset_energy.twin = master_edge.onset_energy

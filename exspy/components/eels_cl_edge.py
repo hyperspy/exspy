@@ -25,7 +25,7 @@ import numpy as np
 from scipy.interpolate import splev
 
 from hyperspy.component import Component
-from exspy.misc.eels.gosh_gos import GoshGOS, DFT_GOSH
+from exspy.misc.eels.gosh_gos import GoshGOS, GOSH_SOURCES
 from exspy.misc.eels.hartree_slater_gos import HartreeSlaterGOS
 from exspy.misc.eels.hydrogenic_gos import HydrogenicGOS
 from exspy.misc.eels.effective_angle import effective_angle
@@ -75,8 +75,9 @@ class EELSCLEdge(Component):
 
     The preferred option is to use a database of cross sections in GOSH
     format. One such database can be freely downloaded from Zenodo at:
-    https://doi.org/%s while information on the GOSH format
-    are available at: https://gitlab.com/gguzzina/gosh.
+    https://doi.org/%s while information on the GOSH format are available at: https://gitlab.com/gguzzina/gosh. Alternatively,
+    one can use the Dirac GOSH database to include relativistic effects,
+    available at: https://doi.org/%s.
 
     eXSpy also supports Peter Rez's Hartree Slater cross sections
     parametrised as distributed by Gatan in their Digital Micrograph (DM)
@@ -543,4 +544,4 @@ class EELSCLEdge(Component):
         return dic
 
 
-EELSCLEdge.__doc__ %= (DFT_GOSH["DOI"], DFT_GOSH["DOI"])
+EELSCLEdge.__doc__ %= (GOSH_SOURCES['dft']["DOI"],GOSH_SOURCES['dirac']["DOI"], GOSH_SOURCES['dft']["DOI"])

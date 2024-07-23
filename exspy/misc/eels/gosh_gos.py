@@ -77,7 +77,7 @@ class GoshGOS(TabulatedGOS):
 
     """
 
-    _name = "dft_gosh"
+    _name = "gosh"
     _whitelist = {
         "gos_array": None,
         "rel_energy_axis": None,

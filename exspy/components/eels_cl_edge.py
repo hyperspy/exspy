@@ -168,6 +168,14 @@ class EELSCLEdge(Component):
         self.fine_structure_coeff.ext_force_positive = False
         self.GOS = None
 
+        if GOS == "gosh":
+              warnings.warn(
+                "The value 'gosh' of the `GOS` parameter has been renamed to 'dft' in "
+                "eXSpy 0.3.0, use `GOS='dft'` instead. "
+                "Using `GOS='gosh'` will stop working in eXSpy 1.0.",
+                VisibleDeprecationWarning,
+            )
+            GOS = "dft"
         if GOS == "dft":
             self.GOS = GoshGOS(
                 element_subshell, gos_file_path=gos_file_path, source="dft"

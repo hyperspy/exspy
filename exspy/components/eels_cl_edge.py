@@ -19,6 +19,7 @@
 
 import functools
 import logging
+import warnings
 import math
 
 import numpy as np
@@ -30,7 +31,7 @@ from exspy.misc.eels.hartree_slater_gos import HartreeSlaterGOS
 from exspy.misc.eels.hydrogenic_gos import HydrogenicGOS
 from exspy.misc.eels.effective_angle import effective_angle
 from hyperspy.ui_registry import add_gui_method
-
+from hyperspy.exceptions import VisibleDeprecationWarning
 
 _logger = logging.getLogger(__name__)
 
@@ -169,7 +170,7 @@ class EELSCLEdge(Component):
         self.GOS = None
 
         if GOS == "gosh":
-              warnings.warn(
+            warnings.warn(
                 "The value 'gosh' of the `GOS` parameter has been renamed to 'dft' in "
                 "eXSpy 0.3.0, use `GOS='dft'` instead. "
                 "Using `GOS='gosh'` will stop working in eXSpy 1.0.",

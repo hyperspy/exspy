@@ -19,18 +19,19 @@
 
 import functools
 import logging
+import warnings
 import math
 
 import numpy as np
 from scipy.interpolate import splev
 
 from hyperspy.component import Component
-from exspy.misc.eels.gosh_gos import GoshGOS, _GOSH_DOI
+from exspy.misc.eels.gosh_gos import GoshGOS, GOSH_SOURCES
 from exspy.misc.eels.hartree_slater_gos import HartreeSlaterGOS
 from exspy.misc.eels.hydrogenic_gos import HydrogenicGOS
 from exspy.misc.eels.effective_angle import effective_angle
 from hyperspy.ui_registry import add_gui_method
-
+from hyperspy.exceptions import VisibleDeprecationWarning
 
 _logger = logging.getLogger(__name__)
 
@@ -75,8 +76,9 @@ class EELSCLEdge(Component):
 
     The preferred option is to use a database of cross sections in GOSH
     format. One such database can be freely downloaded from Zenodo at:
-    https://doi.org/%s while information on the GOSH format
-    are available at: https://gitlab.com/gguzzina/gosh .
+    https://doi.org/%s while information on the GOSH format are available at: https://gitlab.com/gguzzina/gosh. Alternatively,
+    one can use the Dirac GOSH database to include relativistic effects,
+    available at: https://doi.org/%s.
 
     eXSpy also supports Peter Rez's Hartree Slater cross sections
     parametrised as distributed by Gatan in their Digital Micrograph (DM)
@@ -92,11 +94,11 @@ class EELSCLEdge(Component):
         Usually a string, for example, ``'Ti_L3'`` for the GOS of the titanium L3
         subshell. If a dictionary is passed, it is assumed that Hartree Slater
         GOS was exported using `GOS.as_dictionary`, and will be reconstructed.
-    GOS : ``'gosh'``, ``'hydrogenic'``, ``'Hartree-Slater'`` or str
-        The GOS to use. Default is ``'gosh'``. If str, it must the path to gosh
-        GOS file.
+    GOS : ``'dft'``,``'dirac'``, ``'hydrogenic'``, ``'Hartree-Slater'`` or str
+        The GOS to use. Default is ``'dft'``. If str, it must the path to gosh GOS file.
+        The ``'dft'`` and ``'dirac'`` databases are in the ``'gosh'`` format.
     gos_file_path : str, None
-        Only with ``GOS='gosh'``. Specify the file path of the gosh file
+        Only with ``GOS='dft' or 'dirac'``. Specify the file path of the gosh file
         to use. If None, use the file from  https://doi.org/%s
 
     Attributes
@@ -146,7 +148,7 @@ class EELSCLEdge(Component):
     _fine_structure_coeff_free = True
     _fine_structure_spline_active = True
 
-    def __init__(self, element_subshell, GOS="gosh", gos_file_path=None):
+    def __init__(self, element_subshell, GOS="dft", gos_file_path=None):
         # Declare the parameters
         self.fine_structure_components = FSet(component=self)
         Component.__init__(
@@ -168,14 +170,28 @@ class EELSCLEdge(Component):
         self.GOS = None
 
         if GOS == "gosh":
-            self.GOS = GoshGOS(element_subshell, gos_file_path=gos_file_path)
+            warnings.warn(
+                "The value 'gosh' of the `GOS` parameter has been renamed to 'dft' in "
+                "eXSpy 0.3.0, use `GOS='dft'` instead. "
+                "Using `GOS='gosh'` will stop working in eXSpy 1.0.",
+                VisibleDeprecationWarning,
+            )
+            GOS = "dft"
+        if GOS == "dft":
+            self.GOS = GoshGOS(
+                element_subshell, gos_file_path=gos_file_path, source="dft"
+            )
+        elif GOS == "dirac":
+            self.GOS = GoshGOS(
+                element_subshell, gos_file_path=gos_file_path, source="dirac"
+            )
         elif GOS == "Hartree-Slater":  # pragma: no cover
             self.GOS = HartreeSlaterGOS(element_subshell)
         elif GOS == "hydrogenic":
             self.GOS = HydrogenicGOS(element_subshell)
         else:
             raise ValueError(
-                "GOS must be one of 'gosh', 'hydrogenic' or 'Hartree-Slater'."
+                "GOS must be one of 'dft', 'dirac','hydrogenic' or 'Hartree-Slater'."
             )
         self.onset_energy.value = self.GOS.onset_energy
         self.onset_energy.free = False
@@ -187,7 +203,9 @@ class EELSCLEdge(Component):
         self.intensity.bmax = None
 
         self._whitelist["GOS"] = ("init", GOS)
-        if GOS == "gosh":
+        if GOS == "dft":
+            self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))
+        elif GOS == "dirac":
             self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))
         elif GOS == "Hartree-Slater":  # pragma: no cover
             self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))
@@ -535,4 +553,8 @@ class EELSCLEdge(Component):
         return dic
 
 
-EELSCLEdge.__doc__ %= (_GOSH_DOI, _GOSH_DOI)
+EELSCLEdge.__doc__ %= (
+    GOSH_SOURCES["dft"]["DOI"],
+    GOSH_SOURCES["dirac"]["DOI"],
+    GOSH_SOURCES["dft"]["DOI"],
+)

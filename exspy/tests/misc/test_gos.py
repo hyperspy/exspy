@@ -80,3 +80,16 @@ def test_binding_energy_database():
         # These elements are not in the database
         if element not in ["Bk", "Cf", "Cm", "metadata"]:
             assert "Binding_energies" in elements[element]["Atomic_properties"].keys()
+
+
+def test_dirac_gosh_not_in_conventions():
+    gos = GoshGOS("Ti_L2", source="dirac")
+    gos.subshell = "L234"
+    with pytest.raises(ValueError):
+        gos.read_gos_data()
+
+
+def test_dirac_gosh_not_in_file():
+    # Dirac GOS which doesn't have the Uue element
+    with pytest.raises(ValueError):
+        _ = GoshGOS("Uue_L3", source="dirac")

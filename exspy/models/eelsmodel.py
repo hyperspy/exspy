@@ -67,14 +67,16 @@ class EELSModel(Model1D):
         auto_background=True,
         auto_add_edges=True,
         low_loss=None,
-        GOS="gosh",
+        GOS="dft",
         dictionary=None,
+        gos_file_path=None,
     ):
         """
         Build an EELS model.
 
         Parameters
         ----------
+        GOS : Generalized Oscillator Strength, availiable option in ['hydrogenic', 'dft', 'dirac', 'Hartree-Slater'], default is 'dft'.
         spectrum : a EELSSpectrum instance
         %s
 
@@ -94,6 +96,7 @@ class EELSModel(Model1D):
         self.convolution_axis = None
         self.low_loss = low_loss
         self.GOS = GOS
+        self.gos_file_path = gos_file_path
         self.edges = []
         self._background_components = []
         self._whitelist.update(
@@ -410,10 +413,9 @@ class EELSModel(Model1D):
         if e_shells is None:
             e_shells = list(self.signal.subshells)
         e_shells.sort()
-        master_edge = EELSCLEdge(e_shells.pop(), self.GOS)
-        # If self.GOS was None, the GOS is set by eels_cl_edge so
-        # we reassing the value of self.GOS
-        self.GOS = master_edge.GOS._name
+        master_edge = EELSCLEdge(
+            e_shells.pop(), self.GOS, gos_file_path=self.gos_file_path
+        )
         self.append(master_edge)
         element = master_edge.element
         while len(e_shells) > 0:
@@ -429,7 +431,9 @@ class EELSModel(Model1D):
                 # Add the other subshells of the same element
                 # and couple their intensity and onset_energy to that of the
                 # master edge
-                edge = EELSCLEdge(e_shells.pop(), GOS=self.GOS)
+                edge = EELSCLEdge(
+                    e_shells.pop(), GOS=self.GOS, gos_file_path=self.gos_file_path
+                )
 
                 edge.intensity.twin = master_edge.intensity
                 edge.onset_energy.twin = master_edge.onset_energy

@@ -29,6 +29,7 @@ from exspy.misc.elements import elements_db as elements
 from hyperspy.decorators import lazifyTestClass
 from exspy.misc.eels.gosh_gos import DFT_GOSH, DIRAC_GOSH
 from exspy.signals import EELSSpectrum
+from hyperspy.exceptions import VisibleDeprecationWarning
 
 
 # Dask does not always work nicely with np.errstate,

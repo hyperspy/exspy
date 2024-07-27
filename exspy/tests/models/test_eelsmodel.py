@@ -75,7 +75,7 @@ class TestCreateEELSModel:
     def test_gos_gosh(self):
         with pytest.warns(VisibleDeprecationWarning):
             m = self.s.create_model(auto_add_edges=True, GOS="gosh")
-        assert m["B_K"].GOS._name == "dft_gosh"
+        assert m["B_K"].GOS._name == "dft"
         m.fit()
 
         with pytest.raises(ValueError):
@@ -83,7 +83,7 @@ class TestCreateEELSModel:
 
     def test_gos_gosh_dft(self):
         m = self.s.create_model(auto_add_edges=True, GOS="dft")
-        assert m["B_K"].GOS._name == "dft_gosh"
+        assert m["B_K"].GOS._name == "dft"
         m.fit()
 
         with pytest.raises(ValueError):
@@ -91,7 +91,7 @@ class TestCreateEELSModel:
 
     def test_gos_gosh_dirac(self):
         m = self.s.create_model(auto_add_edges=True, GOS="dirac")
-        assert m["B_K"].GOS._name == "dirac_gosh"
+        assert m["B_K"].GOS._name == "dirac"
         m.fit()
 
         with pytest.raises(ValueError):

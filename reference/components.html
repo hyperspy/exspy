@@ -601,7 +601,7 @@ step.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.EELSCLEdge">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">EELSCLEdge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_subshell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GOS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gosh'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gos_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.EELSCLEdge" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">EELSCLEdge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_subshell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GOS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dft'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gos_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.EELSCLEdge" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 <p>EELS core loss ionisation edge from hydrogenic or tabulated
 GOS with splines for fine structure fitting.</p>
@@ -609,8 +609,9 @@ GOS with splines for fine structure fitting.</p>
 <p>Several possibilities are available for tabulated GOS.</p>
 <p>The preferred option is to use a database of cross sections in GOSH
 format. One such database can be freely downloaded from Zenodo at:
-<a class="reference external" href="https://doi.org/10.5281/zenodo.7645765">https://doi.org/10.5281/zenodo.7645765</a> while information on the GOSH format
-are available at: <a class="gitlab reference external" href="https://gitlab.com/gguzzina/gosh">gguzzina/gosh</a> .</p>
+<a class="reference external" href="https://doi.org/10.5281/zenodo.7645765">https://doi.org/10.5281/zenodo.7645765</a> while information on the GOSH format are available at: <a class="gitlab reference external" href="https://gitlab.com/gguzzina/gosh">gguzzina/gosh</a>. Alternatively,
+one can use the Dirac GOSH database to include relativistic effects,
+available at: <a class="reference external" href="https://doi.org/10.5281/zenodo.12800856">https://doi.org/10.5281/zenodo.12800856</a>.</p>
 <p>eXSpy also supports Peter Rez’s Hartree Slater cross sections
 parametrised as distributed by Gatan in their Digital Micrograph (DM)
 software. If Digital Micrograph is installed in the system in the
@@ -624,9 +625,9 @@ the <code class="xref py py-attr docutils literal notranslate"><span class="pre"
 <li><p><strong>element_subshell</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Usually a string, for example, <code class="docutils literal notranslate"><span class="pre">'Ti_L3'</span></code> for the GOS of the titanium L3
 subshell. If a dictionary is passed, it is assumed that Hartree Slater
 GOS was exported using <cite>GOS.as_dictionary</cite>, and will be reconstructed.</p></li>
-<li><p><strong>GOS</strong> (<code class="docutils literal notranslate"><span class="pre">'gosh'</span></code>, <code class="docutils literal notranslate"><span class="pre">'hydrogenic'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Hartree-Slater'</span></code> or str) – The GOS to use. Default is <code class="docutils literal notranslate"><span class="pre">'gosh'</span></code>. If str, it must the path to gosh
-GOS file.</p></li>
-<li><p><strong>gos_file_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>None</em>) – Only with <code class="docutils literal notranslate"><span class="pre">GOS='gosh'</span></code>. Specify the file path of the gosh file
+<li><p><strong>GOS</strong> (<code class="docutils literal notranslate"><span class="pre">'dft'</span></code>,``’dirac’<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">``'hydrogenic'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Hartree-Slater'</span></code> or str) – The GOS to use. Default is <code class="docutils literal notranslate"><span class="pre">'dft'</span></code>. If str, it must the path to gosh GOS file.
+The <code class="docutils literal notranslate"><span class="pre">'dft'</span></code> and <code class="docutils literal notranslate"><span class="pre">'dirac'</span></code> databases are in the <code class="docutils literal notranslate"><span class="pre">'gosh'</span></code> format.</p></li>
+<li><p><strong>gos_file_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>None</em>) – Only with <code class="docutils literal notranslate"><span class="pre">GOS='dft'</span> <span class="pre">or</span> <span class="pre">'dirac'</span></code>. Specify the file path of the gosh file
 to use. If None, use the file from  <a class="reference external" href="https://doi.org/10.5281/zenodo.7645765">https://doi.org/10.5281/zenodo.7645765</a></p></li>
 </ul>
 </dd>

@@ -668,7 +668,11 @@ are strictly necessary. Therefore, tabulated data will be used by default.</p>
 - see <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.create_model" title="exspy.signals.EELSSpectrum.create_model"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_model()</span></code></a> for more details.</p>
 <p>By default, a freely usable tabulated dataset, in <a class="reference external" href="https://gitlab.com/gguzzina/gosh">gosh</a>
 format, is downloaded from Zenodo:
-<a class="reference external" href="https://zenodo.org/record/7645765">doi:10.5281/zenodo.7645765</a>.</p>
+<a class="reference external" href="https://zenodo.org/record/7645765">doi:10.5281/zenodo.7645765</a>.
+As an alternative, one can use the <a class="reference external" href="https://arxiv.org/abs/2405.10151">Dirac GOS</a> to include the relativistic effects using the Dirac solution, which can be downloaded from Zenodo: <a class="reference external" href="https://zenodo.org/record/12800856">doi:10.5281/zenodo.12800856</a>. The Dirac GOS can be used as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">ll</span><span class="o">=</span><span class="n">ll</span><span class="p">,</span> <span class="n">GOS</span><span class="o">=</span><span class="s2">&quot;Dirac&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Custom GOS saved in the <a class="reference external" href="https://gitlab.com/gguzzina/gosh">gosh</a> format can be used,
 the following example download a previous version (1.0) of the GOS file from Zenodo
 (<a class="reference external" href="https://zenodo.org/record/6599071">doi:10.5281/zenodo.6599071</a>) using

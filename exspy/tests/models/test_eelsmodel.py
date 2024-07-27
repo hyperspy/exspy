@@ -72,7 +72,8 @@ class TestCreateEELSModel:
         m.fit()
 
     def test_gos_gosh(self):
-        m = self.s.create_model(auto_add_edges=True, GOS="gosh")
+        with pytest.warns(VisibleDeprecationWarning):
+            m = self.s.create_model(auto_add_edges=True, GOS="gosh")
         assert m["B_K"].GOS._name == "dft_gosh"
         m.fit()
 

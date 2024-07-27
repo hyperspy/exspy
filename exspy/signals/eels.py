@@ -1659,7 +1659,7 @@ class EELSSpectrum(Signal1D):
             low_loss=low_loss,
             auto_background=auto_background,
             auto_add_edges=auto_add_edges,
-            GOS=GOS.lower(),
+            GOS=GOS,
             dictionary=dictionary,
             gos_file_path=gos_file_path,
         )

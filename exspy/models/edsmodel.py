@@ -180,10 +180,6 @@ class EDSModel(Model1D):
                 "but an object of type %s was provided" % str(type(value))
             )
 
-    @property
-    def _active_xray_lines(self):
-        return [xray_line for xray_line in self.xray_lines if xray_line.active]
-
     def add_family_lines(self, xray_lines="from_elements"):
         """Create the Xray-lines instances and configure them appropiately
 
@@ -320,13 +316,15 @@ class EDSModel(Model1D):
 
     def enable_xray_lines(self):
         """Enable the X-ray lines components."""
-        for component in self.xray_lines:
-            component.active = True
+        for component in self:
+            if not component.isbackground:
+                component.active = True
 
     def disable_xray_lines(self):
         """Disable the X-ray lines components."""
-        for component in self._active_xray_lines:
-            component.active = False
+        for component in self:
+            if not component.isbackground:
+                component.active = False
 
     def _make_position_adjuster(self, component, fix_it, show_label):
         # Override to ensure formatting of labels of xray lines

@@ -92,6 +92,11 @@ class TestTwinnedComponents:
         np.testing.assert_allclose(nonlinear_fit.data, lstsq_fit.data)
         np.testing.assert_allclose(nonlinear_std, linear_std)
 
+    def test_fit_background(self):
+        m2 = self.m2
+        m2.fit_background(optimizer="lstsq")
+        np.testing.assert_allclose(m2[0].a0.value, 11045209.18)
+
 
 class TestWarningSlowMultifit:
     def setup_method(self, method):

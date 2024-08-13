@@ -914,12 +914,8 @@ class EDSModel(Model1D):
                 data_res = data_res[0]
             img = self.signal.isig[0:1].integrate1D(-1)
             img.data = data_res
-            img.metadata.General.title = "Intensity of %s at %.2f %s from %s" % (
-                xray_line,
-                line_energy,
-                self.signal.axes_manager.signal_axes[0].units,
-                self.signal.metadata.General.title,
-            )
+            units = self.signal.axes_manager.signal_axes[0].units
+            img.metadata.General.title = f"{xray_line} at {line_energy:.2f} {units}"
             img = img.transpose(signal_axes=[])
             if plot_result and img.axes_manager.signal_dimension == 0:
                 print(

@@ -375,25 +375,31 @@ class EDSModel(Model1D):
         if start_energy is None:
             start_energy = self.start_energy
 
+        signal_range_mask = np.copy(self._channel_switches)
+
         # disactivate line
-        self.free_background()
         with stash_active_state(self):
-            self.disable_xray_lines()
-            self.set_signal_range(start_energy, end_energy)
-            for component in self:
-                if component.isbackground is False:
-                    self.remove_signal_range(
-                        component.centre.value
-                        - windows_sigma[0] * component.sigma.value,
-                        component.centre.value
-                        + windows_sigma[1] * component.sigma.value,
-                    )
-            if kind == "single":
-                self.fit(**kwargs)
-            if kind == "multi":
-                self.multifit(**kwargs)
-            self.reset_signal_range()
-        self.fix_background()
+            with self.suspend_update():
+                self.free_background()
+                with stash_active_state(self):
+                    self.disable_xray_lines()
+                    self.set_signal_range(start_energy, end_energy)
+                    for component in self:
+                        if component.isbackground is False:
+                            self.remove_signal_range(
+                                component.centre.value
+                                - windows_sigma[0] * component.sigma.value,
+                                component.centre.value
+                                + windows_sigma[1] * component.sigma.value,
+                            )
+                    if kind == "single":
+                        self.fit(**kwargs)
+                    if kind == "multi":
+                        self.multifit(**kwargs)
+
+                    # Reset previous signal range
+                    self.set_signal_range_from_mask(signal_range_mask)
+                self.fix_background()
 
     def _twin_xray_lines_width(self, xray_lines):
         """

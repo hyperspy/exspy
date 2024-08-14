@@ -1,0 +1,5 @@
+:meth:`exspy.models.EDSModel.fit_background` fixes:
+
+- fix error when using linear fitting,
+- fix resetting signal range after fitting background,
+- suspend plot when fitting background.

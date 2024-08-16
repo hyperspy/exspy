@@ -60,7 +60,7 @@ dimensional signal with the energy axis in first position):
     >>> si
     <Signal1D, title: , dimensions: (256, 224|1024)>
 
-Finally, for a stack of spectrum images, using ``"*"`` as a wildcard character:
+Finally, for a stack of spectrum images, ``"*"`` can be used as a wildcard character:
 
 .. code-block:: python
 

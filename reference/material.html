@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -393,6 +393,8 @@ document.write(`
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.material</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.models</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="signals.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.signals</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.eds.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eds</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.eels.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eels</span></code></a></li>
 </ul>
 </div>
 </nav></div>
@@ -457,17 +459,20 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="#exspy.material.atomic_to_weight" title="exspy.material.atomic_to_weight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">atomic_to_weight</span></code></a>(atomic_percent[, elements])</p></td>
 <td><p>Convert atomic percent to weight percent.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#exspy.material.weight_to_atomic" title="exspy.material.weight_to_atomic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_to_atomic</span></code></a>(weight_percent[, elements])</p></td>
-<td><p>Convert weight percent (wt%) to atomic percent (at.%).</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.material.density_of_mixture" title="exspy.material.density_of_mixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_of_mixture</span></code></a>(weight_percent[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.material.density_of_mixture" title="exspy.material.density_of_mixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">density_of_mixture</span></code></a>(weight_percent[, ...])</p></td>
 <td><p>Calculate the density of a mixture of elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.material.elements" title="exspy.material.elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elements</span></code></a></p></td>
+<td><p>Database of element properties.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#exspy.material.mass_absorption_coefficient" title="exspy.material.mass_absorption_coefficient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_absorption_coefficient</span></code></a>(element, energies)</p></td>
 <td><p>Mass absorption coefficient (mu/rho) of a X-ray absorbed in a pure material.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#exspy.material.mass_absorption_mixture" title="exspy.material.mass_absorption_mixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass_absorption_mixture</span></code></a>(weight_percent[, ...])</p></td>
 <td><p>Calculate the mass absorption coefficient for X-ray absorbed in a mixture of elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.material.weight_to_atomic" title="exspy.material.weight_to_atomic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weight_to_atomic</span></code></a>(weight_percent[, elements])</p></td>
+<td><p>Convert weight percent (wt%) to atomic percent (at.%).</p></td>
 </tr>
 </tbody>
 </table>
@@ -486,16 +491,22 @@ atomic_percent list.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>weight_percent</strong> – composition in weight percent.</p>
+<dd class="field-even"><p><strong>weight_percent</strong> – Composition in weight percent.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>as atomic_percent</p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Calculate the weight percent of modern bronze given its atomic percent:
-&gt;&gt;&gt; hs.material.atomic_to_weight([93.2, 6.8], (“Cu”, “Sn”))
-array([ 88.00501989,  11.99498011])</p>
+<p>Calculate the weight percent of modern bronze given its atomic percent:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">atomic_to_weight</span><span class="p">([</span><span class="mf">93.2</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">],</span> <span class="p">(</span><span class="s2">&quot;Cu&quot;</span><span class="p">,</span> <span class="s2">&quot;Sn&quot;</span><span class="p">))</span>
+<span class="go">array([ 88.00501989,  11.99498011])</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.material.weight_to_atomic" title="exspy.material.weight_to_atomic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.material.weight_to_atomic</span></code></a></p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -514,20 +525,23 @@ of the list (normalization).</p></li>
 <li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – A list of element symbols, e.g. [‘Al’, ‘Zn’]. If elements is ‘auto’,
 take the elements in en each signal metadata of the weight_percent
 list.</p></li>
-<li><p><strong>mean</strong> (<em>'harmonic'</em><em> or </em><em>'weighted'</em>) – The type of mean use to estimate the density</p></li>
+<li><p><strong>mean</strong> (<code class="docutils literal notranslate"><span class="pre">'harmonic'</span></code> or <code class="docutils literal notranslate"><span class="pre">'weighted'</span></code>) – The type of mean use to estimate the density.
+Default is <code class="docutils literal notranslate"><span class="pre">'harmonic'</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>density</strong></p>
+<dd class="field-even"><p><strong>density</strong> – The density in g/cm3.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The density in g/cm3.</p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a> or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)">hyperspy.api.signals.BaseSignal</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Calculate the density of modern bronze given its weight percent:
-&gt;&gt;&gt; hs.material.density_of_mixture([88, 12],[‘Cu’, ‘Sn’])
-8.6903187973131466</p>
+<p>Calculate the density of modern bronze given its weight percent:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">density_of_mixture</span><span class="p">([</span><span class="mi">88</span><span class="p">,</span> <span class="mi">12</span><span class="p">],[</span><span class="s1">&#39;Cu&#39;</span><span class="p">,</span> <span class="s1">&#39;Sn&#39;</span><span class="p">])</span>
+<span class="go">8.6903187973131466</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -544,19 +558,22 @@ material.</p>
 e.g. ‘Al_Ka’.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>mass absorption coefficient(s) in cm^2/g</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mass_absorption_coefficients</strong> – Mass absorption coefficient(s) in cm^2/g</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hs</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">mass_absorption_coefficient</span><span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">mass_absorption_coefficient</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">element</span><span class="o">=</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C_Ka&#39;</span><span class="p">,</span><span class="s1">&#39;Al_Ka&#39;</span><span class="p">])</span>
 <span class="go">array([ 26330.38933818,    372.02616732])</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><code class="xref py py-func docutils literal notranslate"><span class="pre">mass_absorption_mixture()</span></code></p>
+<p><a class="reference internal" href="#exspy.material.mass_absorption_mixture" title="exspy.material.mass_absorption_mixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.material.mass_absorption_mixture</span></code></a></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -589,23 +606,22 @@ weight_percent list.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hs</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">mass_absorption_mixture</span><span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">mass_absorption_mixture</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Al&#39;</span><span class="p">,</span><span class="s1">&#39;Zn&#39;</span><span class="p">],</span> <span class="n">weight_percent</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span> <span class="n">energies</span><span class="o">=</span><span class="s1">&#39;Al_Ka&#39;</span><span class="p">)</span>
 <span class="go">2587.41616439</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>float or array of float</em></p></li>
-<li><p><em>mass absorption coefficient(s) in cm^2/g</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><strong>mass_absorption_coefficient</strong> – The Mass absorption coefficient(s) of the mixture in cm^2/g</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a> or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)">hyperspy.api.signals.BaseSignal</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><code class="xref py py-func docutils literal notranslate"><span class="pre">mass_absorption_coefficient()</span></code></p>
+<p><a class="reference internal" href="#exspy.material.mass_absorption_coefficient" title="exspy.material.mass_absorption_coefficient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.material.mass_absorption_coefficient</span></code></a></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -633,15 +649,66 @@ weight_percent list.</p></li>
 <dd class="field-even"><p><strong>atomic_percent</strong> – Composition in atomic percent.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>as weight_percent</p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Calculate the atomic percent of modern bronze given its weight percent:
-&gt;&gt;&gt; hs.material.weight_to_atomic((88, 12), (“Cu”, “Sn”))
-array([ 93.19698614,   6.80301386])</p>
+<p>Calculate the atomic percent of modern bronze given its weight percent:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">weight_to_atomic</span><span class="p">((</span><span class="mi">88</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Cu&quot;</span><span class="p">,</span> <span class="s2">&quot;Sn&quot;</span><span class="p">))</span>
+<span class="go">array([ 93.19698614,   6.80301386])</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.material.atomic_to_weight" title="exspy.material.atomic_to_weight"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.material.atomic_to_weight</span></code></a></p>
+</div>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="exspy.material.elements">
+<span class="sig-prename descclassname"><span class="pre">material.</span></span><span class="sig-name descname"><span class="pre">elements</span></span><a class="headerlink" href="#exspy.material.elements" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p>Database of element properties. The following properties are included:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── Atomic_properties
+│   ├── Binding_energies
+│   └── Xray_lines
+├── General_properties
+│   ├── Z
+│   ├── atomic_weight
+│   └── name
+└── Physical_properties
+    └── density_gcm3
+</pre></div>
+</div>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">Fe</span><span class="o">.</span><span class="n">General_properties</span>
+<span class="go">├── Z = 26</span>
+<span class="go">├── atomic_weight = 55.845</span>
+<span class="go">└── name = iron</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">Fe</span><span class="o">.</span><span class="n">Physical_properties</span>
+<span class="go">└── density (g/cm^3) = 7.874</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">Fe</span><span class="o">.</span><span class="n">Atomic_properties</span><span class="o">.</span><span class="n">Xray_lines</span>
+<span class="go">├── Ka</span>
+<span class="go">│   ├── energy (keV) = 6.404</span>
+<span class="go">│   └── weight = 1.0</span>
+<span class="go">├── Kb</span>
+<span class="go">│   ├── energy (keV) = 7.0568</span>
+<span class="go">│   └── weight = 0.1272</span>
+<span class="go">├── La</span>
+<span class="go">│   ├── energy (keV) = 0.705</span>
+<span class="go">│   └── weight = 1.0</span>
+<span class="go">├── Lb3</span>
+<span class="go">│   ├── energy (keV) = 0.792</span>
+<span class="go">│   └── weight = 0.02448</span>
+<span class="go">├── Ll</span>
+<span class="go">│   ├── energy (keV) = 0.615</span>
+<span class="go">│   └── weight = 0.3086</span>
+<span class="go">└── Ln</span>
+<span class="go">    ├── energy (keV) = 0.62799</span>
+<span class="go">    └── weight = 0.12525</span>
+</pre></div>
+</div>
 </section>
 
 
@@ -695,6 +762,7 @@ array([ 93.19698614,   6.80301386])</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.material.mass_absorption_coefficient"><code class="docutils literal notranslate"><span class="pre">mass_absorption_coefficient()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.material.mass_absorption_mixture"><code class="docutils literal notranslate"><span class="pre">mass_absorption_mixture()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.material.weight_to_atomic"><code class="docutils literal notranslate"><span class="pre">weight_to_atomic()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.material.elements"><code class="docutils literal notranslate"><span class="pre">elements</span></code></a></li>
 </ul>
   </nav></div>
 
@@ -732,7 +800,7 @@ array([ 93.19698614,   6.80301386])</p>
 
   <p class="copyright">
     
-      © Copyright 2023, eSpy Developers.
+      © Copyright 2024, eXSpy Developers.
       <br/>
     
   </p>
@@ -741,7 +809,7 @@ array([ 93.19698614,   6.80301386])</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>

@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -51,7 +51,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="exspy.signals" href="reference/signals.html" />
+    <link rel="prev" title="exspy.utils.eels" href="reference/utils.eels.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -443,41 +443,53 @@ document.write(`
 <h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
 <p>Changelog entries for the development version are available at
 <a class="reference external" href="https://exspy.readthedocs.io/en/latest/changes.html">https://exspy.readthedocs.io/en/latest/changes.html</a></p>
-<section id="release-unreleased-2024-07-27">
-<h2> [UNRELEASED] (2024-07-27)<a class="headerlink" href="#release-unreleased-2024-07-27" title="Link to this heading">#</a></h2>
+<section id="release-unreleased-2024-08-20">
+<h2> [UNRELEASED] (2024-08-20)<a class="headerlink" href="#release-unreleased-2024-08-20" title="Link to this heading">#</a></h2>
 <section id="new-features">
 <h3>New features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Support for <a class="reference external" href="https://zenodo.org/records/12800856">Dirac GOS</a> in the gosh format for EELS quantification, which includes the relativistic effects (e.g. spin-orbit coupling) based on Dirac equation. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/72">#72</a>)</p></li>
 </ul>
 </section>
-</section>
-<section id="id2">
-<h2>0.2.1 (2024-07-12)<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <section id="bug-fixes">
 <h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Fix gradients of the <a class="reference internal" href="reference/components.html#exspy.components.EELSArctan" title="exspy.components.EELSArctan"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSArctan</span></code></a> component. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/55">#55</a>)</p></li>
-<li><p>Fix blocked eelsdb queries (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/66">#66</a>)</p></li>
+<li><p>Add back functionalities, which were unintentionally removed from public API when splitting from hyperspy in <a class="reference internal" href="reference/utils.eds.html#module-exspy.utils.eds" title="exspy.utils.eds"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eds</span></code></a>, <a class="reference internal" href="reference/utils.eels.html#module-exspy.utils.eels" title="exspy.utils.eels"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eels</span></code></a> and <a class="reference internal" href="reference/material.html#module-exspy.material" title="exspy.material"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.material</span></code></a>. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/59">#59</a>)</p></li>
 </ul>
 </section>
 <section id="improved-documentation">
 <h3>Improved Documentation<a class="headerlink" href="#improved-documentation" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Fix examples in user guide, which needed to be updated after the split from hyperspy. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/59">#59</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>0.2.1 (2024-07-12)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>Bug Fixes<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Fix gradients of the <a class="reference internal" href="reference/components.html#exspy.components.EELSArctan" title="exspy.components.EELSArctan"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSArctan</span></code></a> component. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/55">#55</a>)</p></li>
+<li><p>Fix blocked eelsdb queries (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/66">#66</a>)</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Improved Documentation<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
 <li><p>Fix broken links in the documentation and missing docstring of the <a class="reference internal" href="reference/components.html#exspy.components.PESCoreLineShape" title="exspy.components.PESCoreLineShape"><code class="xref py py-class docutils literal notranslate"><span class="pre">PESCoreLineShape</span></code></a> component in the API reference. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/55">#55</a>)</p></li>
 </ul>
 </section>
 </section>
-<section id="id6">
-<h2>0.2 (2024-04-10)<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<section id="id7">
-<h3>Bug Fixes<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h2>0.2 (2024-04-10)<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h3>Bug Fixes<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fix restoring Gosh and Hartree Slater GOS from stored models. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/32">#32</a>)</p></li>
 </ul>
 </section>
-<section id="id9">
-<h3>Improved Documentation<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h3>Improved Documentation<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add eXSpy logo and adapt spelling to capital X (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/22">#22</a>)</p></li>
 <li><p>Fix DOI and add more badges to readme file. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/36">#36</a>, <a class="reference external" href="https://github.com/hyperspy/exspy/issues/38">#38</a>)</p></li>
@@ -491,16 +503,16 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="id15">
-<h2>0.1 (2023-12-03)<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
-<section id="id16">
-<h3>New features<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id19">
+<h2>0.1 (2023-12-03)<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
+<section id="id20">
+<h3>New features<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Support for tabulated <a class="reference internal" href="user_guide/eels.html#eels-gos"><span class="std std-ref">Generalised Oscillator Strengths (GOS)</span></a> using the
 <a class="reference external" href="https://gitlab.com/gguzzina/gosh">GOSH</a> open file format. By default, a freely
 usable dataset is downloaded from <a class="reference external" href="https://zenodo.org/record/6599071">doi:10.5281/zenodo.7645765</a>
 (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3082">HyperSpy #3082</a>)</p></li>
-<li><p>Add functionality to fit the <a class="reference internal" href="user_guide/eels.html#eels-fine-structure"><span class="std std-ref">EELS fine structure</span></a> using components, e.g. <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.model/components1D.html#hyperspy.api.model.components1D.Gaussian" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.model.components1D.Gaussian</span></code></a>. (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3206">HyperSpy #3206</a>)</p></li>
+<li><p>Add functionality to fit the <a class="reference internal" href="user_guide/eels.html#eels-fine-structure"><span class="std std-ref">EELS fine structure</span></a> using components, e.g. <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Gaussian" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.model.components1D.Gaussian</span></code></a>. (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3206">HyperSpy #3206</a>)</p></li>
 </ul>
 </section>
 <section id="enhancements">
@@ -509,8 +521,8 @@ usable dataset is downloaded from <a class="reference external" href="https://ze
 <li><p>Enable <code class="docutils literal notranslate"><span class="pre">signal_range</span></code> arguments when using <code class="docutils literal notranslate"><span class="pre">subpixel=True</span></code> in <a class="reference internal" href="reference/signals.html#exspy.signals.EELSSpectrum.align_zero_loss_peak" title="exspy.signals.EELSSpectrum.align_zero_loss_peak"><code class="xref py py-meth docutils literal notranslate"><span class="pre">align_zero_loss_peak()</span></code></a> (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/7">#7</a>)</p></li>
 </ul>
 </section>
-<section id="id18">
-<h3>Maintenance<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<section id="id22">
+<h3>Maintenance<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Use towncrier to manage release notes and improve setting dev version (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/14">#14</a>)</p></li>
 <li><p>Use reusable workflow from the hyperspy organisation for the doc workflow (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/13">#13</a>)</p></li>
@@ -544,12 +556,12 @@ functionalities so far developed in HyperSpy were moved to the
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="reference/signals.html"
+       href="reference/utils.eels.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.signals</span></code></p>
+        <p class="prev-next-title"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eels</span></code></p>
       </div>
     </a>
     <a class="right-next"
@@ -579,25 +591,27 @@ functionalities so far developed in HyperSpy were moved to the
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-unreleased-2024-07-27"> [UNRELEASED] (2024-07-27)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-unreleased-2024-08-20"> [UNRELEASED] (2024-08-20)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New features</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.2.1 (2024-07-12)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-fixes">Bug Fixes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improved-documentation">Improved Documentation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">0.2 (2024-04-10)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Bug Fixes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Improved Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">0.2.1 (2024-07-12)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Bug Fixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Improved Documentation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">0.2 (2024-04-10)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Bug Fixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Improved Documentation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maintenance">Maintenance</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">0.1 (2023-12-03)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">New features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">0.1 (2023-12-03)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">New features</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancements">Enhancements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Maintenance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Maintenance</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initiation-2023-10-28">Initiation (2023-10-28)</a></li>
@@ -638,7 +652,7 @@ functionalities so far developed in HyperSpy were moved to the
 
   <p class="copyright">
     
-      © Copyright 2023, eSpy Developers.
+      © Copyright 2024, eXSpy Developers.
       <br/>
     
   </p>
@@ -647,7 +661,7 @@ functionalities so far developed in HyperSpy were moved to the
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>

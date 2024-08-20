@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -456,9 +456,9 @@ document.write(`
 <span id="eels-tools-label"></span><h2>Tools for EELS data analysis<a class="headerlink" href="#tools-for-eels-data-analysis" title="Link to this heading">#</a></h2>
 <p>The functions described in this chapter are only available for the
 <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a> class. To transform a
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a> (or subclass) into an
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a> (or subclass) into an
 <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_signal_type</span><span class="p">(</span><span class="s2">&quot;EELS&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_signal_type</span><span class="p">(</span><span class="s2">&quot;EELS&quot;</span><span class="p">)</span> 
 </pre></div>
 </div>
 <p>Note these chapter discusses features that are available only for
@@ -471,7 +471,7 @@ chapters.</p>
 archiving purposes or to use some feature (e.g. curve fitting) that requires
 this information.  The elemental composition of the sample can be declared
 using <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.add_elements" title="exspy.signals.EELSSpectrum.add_elements"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_elements()</span></code></a>. The
-information is stored in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.1)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a>
+information is stored in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.1)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a>
 attribute (see <a class="reference internal" href="metadata_structure.html#metadata-structure"><span class="std std-ref">eXSpy Metadata Structure</span></a>). This information is saved to file
 when saving in the hspy format (HyperSpy’s HDF5 specification).</p>
 <p>An utility function <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code> can be
@@ -482,17 +482,16 @@ measured in eV. The size of the window can be controlled by the argument
 <cite>width</cite> (default as 10)— If the specified energy is 849 eV and the width is
 6 eV, it returns a list of edges with onset energy between 846 eV to 852 eV and
 they are arranged in the order closest to 849 eV.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hyperspy.misc.eels.tools</span> <span class="kn">import</span> <span class="n">get_edges_near_energy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">get_edges_near_energy</span><span class="p">(</span><span class="mi">532</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eels</span><span class="o">.</span><span class="n">get_edges_near_energy</span><span class="p">(</span><span class="mi">532</span><span class="p">)</span>
 <span class="go">[&#39;O_K&#39;, &#39;Pd_M3&#39;, &#39;Sb_M5&#39;, &#39;Sb_M4&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">get_edges_near_energy</span><span class="p">(</span><span class="mi">849</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eels</span><span class="o">.</span><span class="n">get_edges_near_energy</span><span class="p">(</span><span class="mi">849</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 <span class="go">[&#39;La_M4&#39;, &#39;Fe_L1&#39;]</span>
 </pre></div>
 </div>
 <p>The static method <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.print_edges_near_energy" title="exspy.signals.EELSSpectrum.print_edges_near_energy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_edges_near_energy()</span></code></a>
 in <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a> will print out a table containing
 more information about the edges.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">artificial_data</span><span class="o">.</span><span class="n">get_core_loss_eels_signal</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">EELS_MnFe</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">print_edges_near_energy</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="go">+-------+-------------------+-----------+-----------------------------+</span>
 <span class="go">|  edge | onset energy (eV) | relevance |         description         |</span>
@@ -516,7 +515,7 @@ edge buttons, it will put or remove the corresponding edges on the signal. When
 the <cite>Complementary edge</cite> box is ticked, edges outside the selected range with
 the same element of edges within the selected energy range will be shown as well
 to aid identification of edges.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">artificial_data</span><span class="o">.</span><span class="n">get_core_loss_eels_signal</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">EELS_MnFe</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">edges_at_energy</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -538,7 +537,7 @@ and mean free path estimation.</p>
 estimate the thickness from a low-loss EELS spectrum using the log-ratio
 method. If the beam energy, collection angle, convergence angle and sample
 density are known, the absolute thickness is computed using the method in
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/bibliography.html#iakoubovskii2008" title="(in HyperSpy v2.1)"><span class="xref std std-ref">[Iakoubovskii2008]</span></a>. This includes the estimation of
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/bibliography.html#iakoubovskii2008" title="(in HyperSpy v2.1)"><span class="xref std std-ref">[Iakoubovskii2008]</span></a>. This includes the estimation of
 the inelastic mean free path (iMFP). For more accurate results, it is possible
 to input the iMFP of the material if known.  If the density and/or the iMFP are
 not known, the output is the thickness relative to the (unknown) iMFP without
@@ -550,10 +549,10 @@ any angular corrections.</p>
 <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.estimate_zero_loss_peak_centre" title="exspy.signals.EELSSpectrum.estimate_zero_loss_peak_centre"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimate_zero_loss_peak_centre()</span></code></a>
 can be used to estimate the position of the zero-loss peak (ZLP). The method assumes
 that the ZLP is the most intense feature in the spectra. For a more general
-approach see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.find_peaks1D_ohaver" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.find_peaks1D_ohaver()</span></code></a>.</p>
+approach see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.find_peaks1D_ohaver" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.find_peaks1D_ohaver()</span></code></a>.</p>
 <p>The <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.align_zero_loss_peak" title="exspy.signals.EELSSpectrum.align_zero_loss_peak"><code class="xref py py-meth docutils literal notranslate"><span class="pre">align_zero_loss_peak()</span></code></a> can
 align the ZLP with subpixel accuracy. It is more robust and easy to use for the task
-than <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.align1D" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.align1D()</span></code></a>. Note that it is
+than <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.align1D" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.align1D()</span></code></a>. Note that it is
 possible to apply the same alignment to other spectra using the <code class="docutils literal notranslate"><span class="pre">also_align</span></code>
 argument. This can be useful e.g. to align core-loss spectra acquired
 quasi-simultaneously. If there are other features in the low loss signal
@@ -604,7 +603,7 @@ plasmon excitations in layers.</p>
 <span id="eels-fitting"></span><h2>EELS curve fitting<a class="headerlink" href="#eels-curve-fitting" title="Link to this heading">#</a></h2>
 <p>HyperSpy makes it really easy to quantify EELS core-loss spectra by curve
 fitting as it is shown in the next example of quantification of a boron nitride
-EELS spectrum from the <a class="reference external" href="https://eelsdb.eu/">EELS Data Base</a> (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/dev/user_guide/io.html#example-data-label" title="(in HyperSpy v2.1)"><span>Loading example data and data from online databases</span></a>).</p>
+EELS spectrum from the <a class="reference external" href="https://eelsdb.eu/">EELS Data Base</a> (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/io.html#example-data-label" title="(in HyperSpy v2.1)"><span>Loading example data and data from online databases</span></a>).</p>
 <p>Load the core-loss and low-loss spectra</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eelsdb</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hexagonal Boron Nitride&quot;</span><span class="p">,</span>
 <span class="gp">... </span>                      <span class="n">spectrum_type</span><span class="o">=</span><span class="s2">&quot;coreloss&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -1010,7 +1009,7 @@ fine structure.</span><a class="headerlink" href="#id5" title="Link to this imag
 
   <p class="copyright">
     
-      © Copyright 2023, eSpy Developers.
+      © Copyright 2024, eXSpy Developers.
       <br/>
     
   </p>
@@ -1019,7 +1018,7 @@ fine structure.</span><a class="headerlink" href="#id5" title="Link to this imag
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>

@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -394,6 +394,8 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="material.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.material</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.models</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="signals.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.signals</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.eds.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eds</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.eels.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eels</span></code></a></li>
 </ul>
 </div>
 </nav></div>
@@ -478,6 +480,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="material.html#exspy.material.mass_absorption_coefficient"><code class="docutils literal notranslate"><span class="pre">mass_absorption_coefficient()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="material.html#exspy.material.mass_absorption_mixture"><code class="docutils literal notranslate"><span class="pre">mass_absorption_mixture()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="material.html#exspy.material.weight_to_atomic"><code class="docutils literal notranslate"><span class="pre">weight_to_atomic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="material.html#exspy.material.elements"><code class="docutils literal notranslate"><span class="pre">elements</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.models</span></code></a><ul>
@@ -498,6 +501,24 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="signals.html#exspy.signals.LazyEDSSpectrum"><code class="docutils literal notranslate"><span class="pre">LazyEDSSpectrum</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="signals.html#exspy.signals.LazyEDSTEMSpectrum"><code class="docutils literal notranslate"><span class="pre">LazyEDSTEMSpectrum</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="signals.html#exspy.signals.LazyEELSSpectrum"><code class="docutils literal notranslate"><span class="pre">LazyEELSSpectrum</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.eds.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eds</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.eds.html#exspy.utils.eds.cross_section_to_zeta"><code class="docutils literal notranslate"><span class="pre">cross_section_to_zeta()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eds.html#exspy.utils.eds.electron_range"><code class="docutils literal notranslate"><span class="pre">electron_range()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eds.html#exspy.utils.eds.get_xray_lines_near_energy"><code class="docutils literal notranslate"><span class="pre">get_xray_lines_near_energy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eds.html#exspy.utils.eds.take_off_angle"><code class="docutils literal notranslate"><span class="pre">take_off_angle()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eds.html#exspy.utils.eds.xray_range"><code class="docutils literal notranslate"><span class="pre">xray_range()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eds.html#exspy.utils.eds.zeta_to_cross_section"><code class="docutils literal notranslate"><span class="pre">zeta_to_cross_section()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.eels.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eels</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.eels.html#exspy.utils.eels.effective_angle"><code class="docutils literal notranslate"><span class="pre">effective_angle()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eels.html#exspy.utils.eels.get_edges_near_energy"><code class="docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eels.html#exspy.utils.eels.get_info_from_edges"><code class="docutils literal notranslate"><span class="pre">get_info_from_edges()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eels.html#exspy.utils.eels.iMFP_Iakoubovskii"><code class="docutils literal notranslate"><span class="pre">iMFP_Iakoubovskii()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eels.html#exspy.utils.eels.iMFP_TPP2M"><code class="docutils literal notranslate"><span class="pre">iMFP_TPP2M()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.eels.html#exspy.utils.eels.iMFP_angular_correction"><code class="docutils literal notranslate"><span class="pre">iMFP_angular_correction()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -576,7 +597,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2023, eSpy Developers.
+      © Copyright 2024, eXSpy Developers.
       <br/>
     
   </p>
@@ -585,7 +606,7 @@ document.write(`
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>

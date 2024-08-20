@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -422,6 +422,8 @@ document.write(`
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -477,6 +479,8 @@ document.write(`
         <li><a href="reference/signals.html#exspy.signals.EELSSpectrum.create_model">(exspy.signals.EELSSpectrum method)</a>
 </li>
       </ul></li>
+      <li><a href="reference/utils.eds.html#exspy.utils.eds.cross_section_to_zeta">cross_section_to_zeta() (in module exspy.utils.eds)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -543,14 +547,20 @@ document.write(`
 </li>
       <li><a href="reference/components.html#exspy.components.EELSCLEdge.effective_angle">effective_angle (exspy.components.EELSCLEdge attribute)</a>
 </li>
+      <li><a href="reference/utils.eels.html#exspy.utils.eels.effective_angle">effective_angle() (in module exspy.utils.eels)</a>
+</li>
+      <li><a href="reference/utils.eds.html#exspy.utils.eds.electron_range">electron_range() (in module exspy.utils.eds)</a>
+</li>
+      <li><a href="reference/material.html#exspy.material.elements">elements (exspy.material attribute)</a>
+</li>
       <li><a href="reference/models.html#exspy.models.EELSModel.enable_background">enable_background() (exspy.models.EELSModel method)</a>
 </li>
       <li><a href="reference/models.html#exspy.models.EELSModel.enable_edges">enable_edges() (exspy.models.EELSModel method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/models.html#exspy.models.EELSModel.enable_fine_structure">enable_fine_structure() (exspy.models.EELSModel method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/models.html#exspy.models.EELSModel.enable_free_onset_energy">enable_free_onset_energy() (exspy.models.EELSModel method)</a>
 </li>
       <li><a href="reference/models.html#exspy.models.EDSModel.enable_xray_lines">enable_xray_lines() (exspy.models.EDSModel method)</a>
@@ -602,6 +612,20 @@ document.write(`
 
       <ul>
         <li><a href="reference/signals.html#module-exspy.signals">module</a>
+</li>
+      </ul></li>
+      <li>
+    exspy.utils.eds
+
+      <ul>
+        <li><a href="reference/utils.eds.html#module-exspy.utils.eds">module</a>
+</li>
+      </ul></li>
+      <li>
+    exspy.utils.eels
+
+      <ul>
+        <li><a href="reference/utils.eels.html#module-exspy.utils.eels">module</a>
 </li>
       </ul></li>
   </ul></td>
@@ -692,23 +716,29 @@ document.write(`
         <li><a href="reference/signals.html#exspy.signals.EDSTEMSpectrum.get_calibration_from">(exspy.signals.EDSTEMSpectrum method)</a>
 </li>
       </ul></li>
+      <li><a href="reference/utils.eels.html#exspy.utils.eels.get_edges_near_energy">get_edges_near_energy() (in module exspy.utils.eels)</a>
+</li>
       <li><a href="reference/signals.html#exspy.signals.DielectricFunction.get_electron_energy_loss_spectrum">get_electron_energy_loss_spectrum() (exspy.signals.DielectricFunction method)</a>
 </li>
       <li><a href="reference/components.html#exspy.components.EELSCLEdge.get_fine_structure_as_signal1D">get_fine_structure_as_signal1D() (exspy.components.EELSCLEdge method)</a>
 </li>
+      <li><a href="reference/utils.eels.html#exspy.utils.eels.get_info_from_edges">get_info_from_edges() (in module exspy.utils.eels)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/models.html#exspy.models.EDSModel.get_lines_intensity">get_lines_intensity() (exspy.models.EDSModel method)</a>
 
       <ul>
         <li><a href="reference/signals.html#exspy.signals.EDSSpectrum.get_lines_intensity">(exspy.signals.EDSSpectrum method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/signals.html#exspy.signals.DielectricFunction.get_number_of_effective_electrons">get_number_of_effective_electrons() (exspy.signals.DielectricFunction method)</a>
 </li>
       <li><a href="reference/signals.html#exspy.signals.EDSTEMSpectrum.get_probe_area">get_probe_area() (exspy.signals.EDSTEMSpectrum method)</a>
 </li>
       <li><a href="reference/signals.html#exspy.signals.EDSSpectrum.get_take_off_angle">get_take_off_angle() (exspy.signals.EDSSpectrum method)</a>
+</li>
+      <li><a href="reference/utils.eds.html#exspy.utils.eds.get_xray_lines_near_energy">get_xray_lines_near_energy() (in module exspy.utils.eds)</a>
 </li>
       <li><a href="reference/signals.html#exspy.signals.EELSSpectrum.get_zero_loss_peak_mask">get_zero_loss_peak_mask() (exspy.signals.EELSSpectrum method)</a>
 </li>
@@ -720,6 +750,14 @@ document.write(`
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/utils.eels.html#exspy.utils.eels.iMFP_angular_correction">iMFP_angular_correction() (in module exspy.utils.eels)</a>
+</li>
+      <li><a href="reference/utils.eels.html#exspy.utils.eels.iMFP_Iakoubovskii">iMFP_Iakoubovskii() (in module exspy.utils.eels)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/utils.eels.html#exspy.utils.eels.iMFP_TPP2M">iMFP_TPP2M() (in module exspy.utils.eels)</a>
+</li>
       <li><a href="reference/components.html#exspy.components.EELSCLEdge.intensity">intensity (exspy.components.EELSCLEdge attribute)</a>
 </li>
   </ul></td>
@@ -773,6 +811,10 @@ document.write(`
         <li><a href="reference/models.html#module-exspy.models">exspy.models</a>
 </li>
         <li><a href="reference/signals.html#module-exspy.signals">exspy.signals</a>
+</li>
+        <li><a href="reference/utils.eds.html#module-exspy.utils.eds">exspy.utils.eds</a>
+</li>
+        <li><a href="reference/utils.eels.html#module-exspy.utils.eels">exspy.utils.eels</a>
 </li>
       </ul></li>
   </ul></td>
@@ -893,6 +935,10 @@ document.write(`
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/utils.eds.html#exspy.utils.eds.take_off_angle">take_off_angle() (in module exspy.utils.eds)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/models.html#exspy.models.EELSModel.two_area_background_estimation">two_area_background_estimation() (exspy.models.EELSModel method)</a>
 </li>
   </ul></td>
@@ -928,6 +974,22 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/material.html#exspy.material.weight_to_atomic">weight_to_atomic() (in module exspy.material)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/utils.eds.html#exspy.utils.eds.xray_range">xray_range() (in module exspy.utils.eds)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/utils.eds.html#exspy.utils.eds.zeta_to_cross_section">zeta_to_cross_section() (in module exspy.utils.eds)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -973,7 +1035,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2023, eSpy Developers.
+      © Copyright 2024, eXSpy Developers.
       <br/>
     
   </p>
@@ -982,7 +1044,7 @@ document.write(`
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
     <br/>
   </p>
 </div>

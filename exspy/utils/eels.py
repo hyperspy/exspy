@@ -17,23 +17,25 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-from exspy.misc.eds.utils import (
-    edx_cross_section_to_zeta,
-    electron_range,
-    get_xray_lines_near_energy,
-    take_off_angle,
-    xray_range,
-    zeta_to_edx_cross_section,
+from exspy._misc.eels.effective_angle import effective_angle
+from exspy._misc.eels.electron_inelastic_mean_free_path import (
+    iMFP_angular_correction,
+    iMFP_Iakoubovskii,
+    iMFP_TPP2M,
+)
+from exspy._misc.eels.tools import (
+    get_edges_near_energy,
+    get_info_from_edges,
 )
 
 
 __all__ = [
-    "edx_cross_section_to_zeta",
-    "electron_range",
-    "get_xray_lines_near_energy",
-    "take_off_angle",
-    "xray_range",
-    "zeta_to_edx_cross_section",
+    "effective_angle",
+    "get_edges_near_energy",
+    "get_info_from_edges",
+    "iMFP_angular_correction",
+    "iMFP_Iakoubovskii",
+    "iMFP_TPP2M",
 ]
 
 

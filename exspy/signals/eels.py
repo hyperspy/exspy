@@ -46,14 +46,14 @@ from hyperspy.docstrings.signal import (
     LAZYSIGNAL_DOC,
 )
 
-from exspy.docstrings.model import EELSMODEL_PARAMETERS
-from exspy.misc.elements import elements as elements_db
-from exspy.misc.eels.tools import get_edges_near_energy
-from exspy.misc.eels.electron_inelastic_mean_free_path import (
+from exspy._docstrings.model import EELSMODEL_PARAMETERS
+from exspy._misc.elements import elements as elements_db
+from exspy._misc.eels.tools import get_edges_near_energy
+from exspy._misc.eels.electron_inelastic_mean_free_path import (
     iMFP_Iakoubovskii,
     iMFP_angular_correction,
 )
-from exspy.signal_tools import EdgesRange
+from exspy._signal_tools import EdgesRange
 
 
 _logger = logging.getLogger(__name__)

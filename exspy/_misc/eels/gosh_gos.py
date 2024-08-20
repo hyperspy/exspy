@@ -24,7 +24,7 @@ import pooch
 from scipy import constants
 
 from hyperspy.defaults_parser import preferences
-from exspy.misc.eels.base_gos import TabulatedGOS
+from exspy._misc.eels.base_gos import TabulatedGOS
 
 
 _logger = logging.getLogger(__name__)
@@ -32,17 +32,17 @@ _logger = logging.getLogger(__name__)
 R = constants.value("Rydberg constant times hc in eV")
 a0 = constants.value("Bohr radius")
 
-DFT_GOSH = {
+_DFT_GOSH = {
     "DOI": "10.5281/zenodo.7645765",
     "URL": "doi:10.5281/zenodo.7645765/Segger_Guzzinati_Kohl_1.5.0.gosh",
     "KNOWN_HASH": "md5:7fee8891c147a4f769668403b54c529b",
 }
-DIRAC_GOSH = {
+_DIRAC_GOSH = {
     "DOI": "10.5281/zenodo.12800856",
     "URL": "doi:10.5281/zenodo.12800856/Dirac_GOS_compact.gosh",
     "KNOWN_HASH": "md5:01a855d3750d2c063955248358dbee8d",
 }
-GOSH_SOURCES = {"dft": DFT_GOSH, "dirac": DIRAC_GOSH}
+_GOSH_SOURCES = {"dft": _DFT_GOSH, "dirac": _DIRAC_GOSH}
 
 
 class GoshGOS(TabulatedGOS):
@@ -101,11 +101,11 @@ class GoshGOS(TabulatedGOS):
 
         if gos_file_path is None:
             source = source.lower()
-            assert source in GOSH_SOURCES.keys(), f"Invalid source: {source}"
+            assert source in _GOSH_SOURCES.keys(), f"Invalid source: {source}"
             self._name = source
             gos_file_path = pooch.retrieve(
-                url=GOSH_SOURCES[source]["URL"],
-                known_hash=GOSH_SOURCES[source]["KNOWN_HASH"],
+                url=_GOSH_SOURCES[source]["URL"],
+                known_hash=_GOSH_SOURCES[source]["KNOWN_HASH"],
                 progressbar=preferences.General.show_progressbar,
             )
         self.gos_file_path = gos_file_path

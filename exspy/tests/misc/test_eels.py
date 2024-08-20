@@ -18,7 +18,7 @@
 
 import pytest
 
-from exspy.misc.eels.tools import get_edges_near_energy, get_info_from_edges
+from exspy._misc.eels.tools import get_edges_near_energy, get_info_from_edges
 
 
 def test_single_edge():

@@ -26,7 +26,7 @@ from hyperspy.decorators import lazifyTestClass
 
 import exspy
 from exspy._defaults_parser import preferences
-from exspy.misc.eds import utils as utils_eds
+from exspy._misc.eds import utils as utils_eds
 from exspy.signals import EDSTEMSpectrum
 
 
@@ -420,16 +420,14 @@ class Test_quantification:
         factors = [3, 5]
         method = "zeta"
         intensities = s.get_lines_intensity()
-        zfactors = utils_eds.edx_cross_section_to_zeta([3, 5], ["Al", "Zn"])
-        factors2 = utils_eds.zeta_to_edx_cross_section(zfactors, ["Al", "Zn"])
+        zfactors = utils_eds.cross_section_to_zeta([3, 5], ["Al", "Zn"])
+        factors2 = utils_eds.zeta_to_cross_section(zfactors, ["Al", "Zn"])
         np.testing.assert_allclose(factors, factors2, atol=1e-3)
 
         res = s.quantification(
             intensities,
             method,
-            factors=utils_eds.edx_cross_section_to_zeta(
-                [22.402, 21.7132], ["Al", "Zn"]
-            ),
+            factors=utils_eds.cross_section_to_zeta([22.402, 21.7132], ["Al", "Zn"]),
         )
         res2 = s.quantification(
             intensities, method="cross_section", factors=[22.402, 21.7132]
@@ -465,7 +463,7 @@ class Test_quantification:
         s = self.signal
         method = "cross_section"
         zfactors = [20, 50]
-        factors = utils_eds.zeta_to_edx_cross_section(zfactors, ["Al", "Zn"])
+        factors = utils_eds.zeta_to_cross_section(zfactors, ["Al", "Zn"])
         intensities = s.get_lines_intensity()
         res = s.quantification(intensities, method, factors, absorption_correction=True)
         res2 = s.quantification(
@@ -507,13 +505,13 @@ class Test_quantification:
     def test_edx_cross_section_to_zeta(self):
         cs = [3, 6]
         elements = ["Pt", "Ni"]
-        res = utils_eds.edx_cross_section_to_zeta(cs, elements)
+        res = utils_eds.cross_section_to_zeta(cs, elements)
         np.testing.assert_allclose(res, [1079.815272, 162.4378035], atol=1e-3)
 
     def test_zeta_to_edx_cross_section(self):
         factors = [1079.815272, 162.4378035]
         elements = ["Pt", "Ni"]
-        res = utils_eds.zeta_to_edx_cross_section(factors, elements)
+        res = utils_eds.zeta_to_cross_section(factors, elements)
         np.testing.assert_allclose(res, [3, 6], atol=1e-3)
 
     def test_quant_element_order(self):

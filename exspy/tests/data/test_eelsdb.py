@@ -22,7 +22,7 @@ import pytest
 import requests
 from requests.exceptions import SSLError
 
-from exspy.misc.eels.eelsdb import eelsdb
+from exspy._misc.eels.eelsdb import eelsdb
 
 
 def _eelsdb(**kwargs):

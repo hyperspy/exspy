@@ -20,7 +20,7 @@ from copy import deepcopy
 import numpy as np
 
 import exspy
-from exspy.signal_tools import EdgesRange
+from exspy._signal_tools import EdgesRange
 
 
 class Owner:

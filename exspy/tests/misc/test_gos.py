@@ -23,10 +23,10 @@ import pooch
 import pytest
 
 from exspy._defaults_parser import preferences
-from exspy.misc.eels.gosh_gos import GoshGOS
-from exspy.misc.eels.hartree_slater_gos import HartreeSlaterGOS
-from exspy.misc.eels import HydrogenicGOS
-from exspy.misc.elements import elements
+from exspy._misc.eels.gosh_gos import GoshGOS
+from exspy._misc.eels.hartree_slater_gos import HartreeSlaterGOS
+from exspy._misc.eels import HydrogenicGOS
+from exspy._misc.elements import elements
 
 
 GOSH10 = pooch.retrieve(

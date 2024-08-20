@@ -14,19 +14,14 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-import hyperspy.api as hs
 import numpydoc
 from packaging.version import Version
-
-
-# Set logging level to `ERROR` to avoid exspy warning in documentation
-hs.set_log_level("ERROR")
 
 
 # -- Project information -----------------------------------------------------
 
 project = "eXSpy"
-copyright = "2023, eSpy Developers"
+copyright = "2024, eXSpy Developers"
 author = "eXSpy Developers"
 
 
@@ -44,6 +39,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
+    "sphinx.ext.doctest",
     "sphinx.ext.githubpages",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
@@ -54,17 +50,13 @@ extensions = [
 linkcheck_ignore = [
     "https://doi.org/10.1021/acs.nanolett.5b00449",  # 403 Client Error: Forbidden for url
     "https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01549.x",  # 403 Client Error: Forbidden for url
-    # Remove when setup
-    "https://github.com/hyperspy/exspy-demos",
-    "https://www.anaconda.com/blog/understanding-conda-and-pip",  # Transcient?
-    # Remove once it is merged and the links are working
-    "https://exspy.readthedocs.io",
-    "https://github.com/hyperspy/exspy/blob/main/releasing_guide.md",
+    "https://onlinelibrary.wiley.com/doi/10.1002/sia.5789",  # 403 Client Error: Forbidden for url
+    "https://onlinelibrary.wiley.com/doi/10.1002/jemt.20597",  # 403 Client Error: Forbidden for url
 ]
 
 intersphinx_mapping = {
     "dask": ("https://docs.dask.org/en/latest", None),
-    "hyperspy": ("https://hyperspy.org/hyperspy-doc/dev", None),
+    "hyperspy": ("https://hyperspy.org/hyperspy-doc/current", None),
     "kikuchipy": ("https://kikuchipy.org/en/latest/", None),
     "matplotlib": ("https://matplotlib.org/stable", None),
     "numpy": ("https://numpy.org/doc/stable", None),
@@ -159,3 +151,9 @@ copybutton_prompt_is_regexp = True
 towncrier_draft_autoversion_mode = "draft"
 towncrier_draft_include_empty = False
 towncrier_draft_working_directory = ".."
+
+doctest_global_setup = """
+import hyperspy.api as hs
+import exspy
+import numpy as np
+"""

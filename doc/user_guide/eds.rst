@@ -38,7 +38,8 @@ Loading data
 All data are loaded with the :py:func:`hyperspy.api.load` function, as described in
 detail in the :external+hyperspy:ref:`loading files<loading_files>` of the HyperSpy
 documentation. HyperSpy is able to import different formats, among them
-``msa`` and ``rpl`` (the raw format of Oxford Instruments and Bruker).
+:external+rsciio:ref:`msa <msa-format>` and :external+rsciio:ref:`rpl <ripple-format>`
+(the raw format of Oxford Instruments and Bruker).
 
 Here are three examples of files exported by Oxford Instruments software
 (INCA). For a single spectrum:
@@ -59,7 +60,7 @@ dimensional signal with the energy axis in first position):
     >>> si
     <Signal1D, title: , dimensions: (256, 224|1024)>
 
-Finally, for a stack of spectrum images, using "*" as a wildcard character:
+Finally, for a stack of spectrum images, ``"*"`` can be used as a wildcard character:
 
 .. code-block:: python
 
@@ -138,7 +139,7 @@ or through the GUI:
 
 .. figure::  images/EDS_microscope_parameters_gui.png
    :align:   center
-   :width:   350
+   :width:   300
 
    EDS microscope parameters preferences window
 
@@ -159,7 +160,7 @@ or through the GUI:
 
 .. figure::  images/EDS_preferences_gui.png
    :align:   center
-   :width:   400
+   :width:   300
 
    EDS preferences window
 
@@ -231,19 +232,15 @@ The description of the sample is also stored in the
     ├── thickness = 100
     └── xray_lines = ['Fe_Ka', 'Pt_La']
 
-
-The following methods are either called "set" or "add".
-
-* "set" methods overwrite previously defined values
-* "add" methods add to the previously defined values
-
 Elements
 ^^^^^^^^
 
-The elements present in the sample can be defined using the
-:py:meth:`~.signals.EDSSpectrum.set_elements`  and
-:py:meth:`~.signals.EDSSpectrum.add_elements` methods.  Only element
-abbreviations are accepted:
+The elements present in the sample can be defined using two methods:
+
+- :py:meth:`~.signals.EDSSpectrum.set_elements` to overwrite previously defined elements
+- :py:meth:`~.signals.EDSSpectrum.add_elements` to add to the previously defined elements
+
+Only element abbreviations are accepted:
 
 .. code-block:: python
 
@@ -256,11 +253,13 @@ abbreviations are accepted:
 X-ray lines
 ^^^^^^^^^^^
 
-Similarly, the X-ray lines can be defined using the
-:py:meth:`~.signals.EDSSpectrum.set_lines` and
-:py:meth:`~.signals.EDSSpectrum.add_lines` methods. The corresponding
-elements will be added automatically.
-Several lines per element can be defined at once.
+Similarly, the X-ray lines can be defined using:
+
+- :py:meth:`~.signals.EDSSpectrum.set_lines` to overwrite previously defined values
+- :py:meth:`~.signals.EDSSpectrum.add_lines` to add to the previously defined elements
+
+The corresponding elements will be added automatically. Several lines per
+element can be defined at once.
 
 .. code-block:: python
 
@@ -278,7 +277,7 @@ overvoltage of 2 (< beam energy / 2)):
 
 .. code-block:: python
 
-    >>> s = hs.datasets.example_signals.EDS_SEM_Spectrum()
+    >>> s = exspy.data.EDS_SEM_TM002()
     >>> s.set_elements(['Al', 'Cu', 'Mn'])
     >>> s.set_microscope_parameters(beam_energy=30)
     >>> s.add_lines()
@@ -300,7 +299,7 @@ energy:
 
 .. code-block:: python
 
-    >>> s = hs.datasets.example_signals.EDS_SEM_Spectrum()
+    >>> s = exspy.data.EDS_SEM_TM002()
     >>> s.set_elements(['Mn'])
     >>> s.set_microscope_parameters(beam_energy=5)
     >>> s.add_lines(['Mn_Ka'])
@@ -310,18 +309,18 @@ energy:
 Elemental database
 ^^^^^^^^^^^^^^^^^^
 
-HyperSpy includes an elemental database, which contains the energy of the
+`eXSpy` includes an elemental database, which contains the energy of the
 X-ray lines.
 
 .. code-block:: python
 
-    >>> hs.material.elements.Fe.General_properties
+    >>> exspy.material.elements.Fe.General_properties
     ├── Z = 26
     ├── atomic_weight = 55.845
     └── name = iron
-    >>> hs.material.elements.Fe.Physical_properties
+    >>> exspy.material.elements.Fe.Physical_properties
     └── density (g/cm^3) = 7.874
-    >>> hs.material.elements.Fe.Atomic_properties.Xray_lines
+    >>> exspy.material.elements.Fe.Atomic_properties.Xray_lines
     ├── Ka
     │   ├── energy (keV) = 6.404
     │   └── weight = 1.0
@@ -345,14 +344,14 @@ Finding elements from energy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To find the nearest X-ray line for a given energy, use the utility function
-:py:func:`~.misc.eds.utils.get_xray_lines_near_energy` to search the elemental
+:py:func:`~.utils.eds.get_xray_lines_near_energy` to search the elemental
 database:
 
 .. code-block:: python
 
-    >>> s = hs.datasets.example_signals.EDS_SEM_Spectrum()
+    >>> s = exspy.data.EDS_SEM_TM002()
     >>> P = s.find_peaks1D_ohaver(maxpeakn=1)[0]
-    >>> hs.eds.get_xray_lines_near_energy(P['position'], only_lines=['a', 'b'])
+    >>> exspy.utils.eds.get_xray_lines_near_energy(P['position'], only_lines=['a', 'b'])
     ['C_Ka', 'Ca_La', 'B_Ka']
 
 The lines are returned in order of distance from the specified energy, and can
@@ -369,7 +368,7 @@ You can visualize an EDS spectrum using the
 
 .. code-block:: python
 
-    >>> s = hs.datasets.example_signals.EDS_SEM_Spectrum()
+    >>> s = exspy.data.EDS_SEM_TM002()
     >>> s.plot()
 
 .. figure::  images/EDS_plot_spectrum.png
@@ -389,13 +388,13 @@ Plotting X-ray lines
 
 X-ray lines can be added as plot labels with
 :py:meth:`~.signals.EDSSpectrum.plot`. The lines are either retrieved
-from ``metadata.Sample.Xray_lines``, or selected with the same method as
-:py:meth:`~.signals.EDSSpectrum.add_lines` using the elements in
-``metadata.Sample.elements``.
+from :ref:`metadata.Sample.Xray_lines <sample-metadata>`, or selected
+with the same method as :py:meth:`~.signals.EDSSpectrum.add_lines` using
+the elements defined in :ref:`metadata.Sample.elements <sample-metadata>`.
 
 .. code-block:: python
 
-    >>> s = hs.datasets.example_signals.EDS_SEM_Spectrum()
+    >>> s = exspy.data.EDS_SEM_TM002()
     >>> s.add_elements(['C','Mn','Cu','Al','Zr'])
     >>> s.plot(True)
 
@@ -409,7 +408,7 @@ You can also select a subset of lines to label:
 
 .. code-block:: python
 
-    >>> s = hs.datasets.example_signals.EDS_SEM_Spectrum()
+    >>> s = exspy.data.EDS_SEM_TM002()
     >>> s.add_elements(['C','Mn','Cu','Al','Zr'])
     >>> s.plot(True, only_lines=['Ka','b'])
 
@@ -451,9 +450,9 @@ Mn Ka to the peak energy (``energy_resolution_MnKa`` in the metadata):
    :align:   center
    :width:   500
 
-   Iron map as computed and displayed by ``get_lines_intensity``
+   Iron map as computed and displayed by :py:meth:`~.signals.EDSSpectrum.get_lines_intensity`
 
-The X-ray lines defined in ``metadata.Sample.Xray_lines`` are used by default.
+The X-ray lines defined in :ref:`metadata.Sample.Xray_lines <sample-metadata>` are used by default.
 The EDS maps can be plotted using :py:func:`hyperspy.api.plot.plot_images`,
 see :external+hyperspy:ref:`plotting several images<plot.images>`
 for more information in setting plotting parameters.
@@ -598,8 +597,8 @@ ranges containing no X-ray lines:
     >>> m.fit_background()
 
 The width of the X-ray lines is defined from the energy resolution (FWHM at
-Mn Ka) provided by ``energy_resolution_MnKa`` in ``metadata``. This parameter
-can be calibrated by fitting with
+Mn Ka) provided by :ref:`metadata.Acquisition_instrument.Detector.EDS.energy_resolution_MnKa <eds-detector-metadata>`.
+This parameter can be calibrated by fitting with
 :py:meth:`~.models.EDSModel.calibrate_energy_axis`:
 
 .. code-block:: python
@@ -692,8 +691,8 @@ and :ref:`[Watanabe2006] <Watanabe2006>`. Cross sections should be
 provided in units of barns (b). Further details on the cross section method can
 be found in :ref:`[MacArthur2016] <MacArthur2016>`. Conversion between
 zeta-factors and cross sections is possible using
-:py:func:`~.misc.eds.utils.edx_cross_section_to_zeta` or
-:py:func:`~.misc.eds.utils.zeta_to_edx_cross_section`.
+:py:func:`~.utils.eds.cross_section_to_zeta` or
+:py:func:`~.utils.eds.zeta_to_cross_section`.
 
 Using the Cliff-Lorimer method as an example, quantification can be carried
 out as follows:
@@ -722,14 +721,14 @@ transformed into weight percent either with the option
     Fe (Fe_Ka): Composition = 4.96 weight percent
     Pt (Pt_La): Composition = 95.04 weight percent
 
-or using :py:func:`~.misc.material.atomic_to_weight`:
+or using :py:func:`~.material.atomic_to_weight`:
 
 .. code-block:: python
 
     >>> # With atomic_percent from before
-    >>> weight_percent = hs.material.atomic_to_weight(atomic_percent)
+    >>> weight_percent = exspy.material.atomic_to_weight(atomic_percent)
 
-The reverse method is :py:func:`~.misc.material.weight_to_atomic`.
+The reverse method is :py:func:`~.material.weight_to_atomic`.
 
 The zeta-factor method needs both the ``beam_current`` (in nA) and the
 acquisition or dwell time (referred to as ``real_time`` in seconds) in order
@@ -834,17 +833,18 @@ Mass absorption coefficient database
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A mass absorption coefficient database :ref:`[Chantler2005] <Chantler2005>`
-is available:
+is available can be accessed using :py:meth:`exspy.material.mass_absorption_coefficient`
+and :py:meth:`exspy.material.mass_absorption_mixture`:
 
 .. code-block:: python
 
-    >>> hs.material.mass_absorption_coefficient(
+    >>> exspy.material.mass_absorption_coefficient(
     ...     element='Al', energies=['C_Ka','Al_Ka'])
     array([ 26330.38933818,    372.02616732])
 
 .. code-block:: python
 
-    >>> hs.material.mass_absorption_mixture(
+    >>> exspy.material.mass_absorption_mixture(
     ...     elements=['Al','Zn'], weight_percent=[50,50], energies='Al_Ka')
     2587.4161643905127
 
@@ -852,20 +852,20 @@ Electron and X-ray range
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 The electron and X-ray range in a bulk material can be estimated with
-:py:meth:`hs.eds.electron_range` and :py:meth:`hs.eds.xray_range`
+:py:meth:`exspy.utils.eds.electron_range` and :py:meth:`exspy.utils.eds.xray_range`
 
 To calculate the X-ray range of Cu Ka in pure Copper at 30 kV in micron:
 
 .. code-block:: python
 
-    >>> hs.eds.xray_range('Cu_Ka', 30.)
+    >>> exspy.utils.eds.xray_range('Cu_Ka', 30.)
     1.9361716759499248
 
 To calculate the X-ray range of Cu Ka in pure Carbon at 30kV in micron:
 
 .. code-block:: python
 
-    >>> hs.eds.xray_range('Cu_Ka', 30., hs.material.elements.C.
+    >>> exspy.utils.eds.xray_range('Cu_Ka', 30., exspy.material.elements.C.
     ...                   Physical_properties.density_gcm3)
     7.6418811280855454
 
@@ -873,5 +873,5 @@ To calculate the electron range in pure Copper at 30 kV in micron
 
 .. code-block:: python
 
-    >>> hs.eds.electron_range('Cu', 30.)
+    >>> exspy.utils.eds.electron_range('Cu', 30.)
     2.8766744984001607

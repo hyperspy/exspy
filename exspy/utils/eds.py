@@ -16,13 +16,26 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import pytest
 
-from exspy._misc.eds.utils import _get_element_and_line
+from exspy._misc.eds.utils import (
+    cross_section_to_zeta,
+    electron_range,
+    get_xray_lines_near_energy,
+    take_off_angle,
+    xray_range,
+    zeta_to_cross_section,
+)
 
 
-def test_get_element_and_line():
-    assert _get_element_and_line("Mn_Ka") == ("Mn", "Ka")
+__all__ = [
+    "cross_section_to_zeta",
+    "electron_range",
+    "get_xray_lines_near_energy",
+    "take_off_angle",
+    "xray_range",
+    "zeta_to_cross_section",
+]
 
-    with pytest.raises(ValueError):
-        _get_element_and_line("MnKa") == -1
+
+def __dir__():
+    return sorted(__all__)

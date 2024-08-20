@@ -25,11 +25,12 @@ import pooch
 import pytest
 
 import hyperspy.api as hs
-from exspy.misc.elements import elements_db as elements
 from hyperspy.decorators import lazifyTestClass
-from exspy.misc.eels.gosh_gos import DFT_GOSH, DIRAC_GOSH
-from exspy.signals import EELSSpectrum
 from hyperspy.exceptions import VisibleDeprecationWarning
+
+from exspy._misc.eels.gosh_gos import _DFT_GOSH, _DIRAC_GOSH
+from exspy._misc.elements import elements_db as elements
+from exspy.signals import EELSSpectrum
 
 
 # Dask does not always work nicely with np.errstate,
@@ -99,15 +100,15 @@ class TestCreateEELSModel:
 
     def test_gos_file(self):
         gos_file_path = pooch.retrieve(
-            url=DFT_GOSH["URL"],
-            known_hash=DFT_GOSH["KNOWN_HASH"],
+            url=_DFT_GOSH["URL"],
+            known_hash=_DFT_GOSH["KNOWN_HASH"],
         )
         self.s.create_model(auto_add_edges=True, gos_file_path=gos_file_path)
 
     def test_gos_file_dirac(self):
         gos_file_path = pooch.retrieve(
-            url=DIRAC_GOSH["URL"],
-            known_hash=DIRAC_GOSH["KNOWN_HASH"],
+            url=_DIRAC_GOSH["URL"],
+            known_hash=_DIRAC_GOSH["KNOWN_HASH"],
         )
         self.s.create_model(
             auto_add_edges=True, gos_file_path=gos_file_path, GOS="dirac"

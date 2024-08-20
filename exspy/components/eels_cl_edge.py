@@ -26,10 +26,10 @@ import numpy as np
 from scipy.interpolate import splev
 
 from hyperspy.component import Component
-from exspy.misc.eels.gosh_gos import GoshGOS, GOSH_SOURCES
-from exspy.misc.eels.hartree_slater_gos import HartreeSlaterGOS
-from exspy.misc.eels.hydrogenic_gos import HydrogenicGOS
-from exspy.misc.eels.effective_angle import effective_angle
+from exspy._misc.eels.gosh_gos import GoshGOS, _GOSH_SOURCES
+from exspy._misc.eels.hartree_slater_gos import HartreeSlaterGOS
+from exspy._misc.eels.hydrogenic_gos import HydrogenicGOS
+from exspy._misc.eels.effective_angle import effective_angle
 from hyperspy.ui_registry import add_gui_method
 from hyperspy.exceptions import VisibleDeprecationWarning
 
@@ -554,7 +554,7 @@ class EELSCLEdge(Component):
 
 
 EELSCLEdge.__doc__ %= (
-    GOSH_SOURCES["dft"]["DOI"],
-    GOSH_SOURCES["dirac"]["DOI"],
-    GOSH_SOURCES["dft"]["DOI"],
+    _GOSH_SOURCES["dft"]["DOI"],
+    _GOSH_SOURCES["dirac"]["DOI"],
+    _GOSH_SOURCES["dft"]["DOI"],
 )

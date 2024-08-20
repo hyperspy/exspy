@@ -71,7 +71,8 @@ file = "LICENSE"
   "sphinx-favicon",
   "sphinx-gallery",
   "sphinxcontrib-towncrier",
-  "towncrier",
+  # unpin when sphinxcontrib-towncrier support more recent version to towncrier
+  "towncrier<24",
 ]
 "tests" = [
   "pytest     >= 5.0",

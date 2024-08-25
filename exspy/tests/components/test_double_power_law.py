@@ -31,8 +31,10 @@ def test_function():
     g.origin.value = 1
     g.shift.value = 2
     g.ratio.value = 2
-    assert np.isinf(g.function(1))
-    assert np.isinf(g.function(3))
+    if g._module == "numexpr":
+        # numpy raises a ZeroDivisionError
+        assert np.isinf(g.function(1))
+        assert np.isinf(g.function(3))
     assert g.function(-1) == 0
     assert g.function(0) == 0
     assert g.function(2) == 9

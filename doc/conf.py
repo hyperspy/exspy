@@ -100,6 +100,12 @@ html_theme_options = {
         "image_light": "_static/exspy-banner-light.svg",
         "image_dark": "_static/exspy-banner-dark.svg",
     },
+    "external_links": [
+        {
+            "url": "https://github.com/hyperspy/exspy-demos",
+            "name": "Tutorial",
+        },
+    ],
     "header_links_before_dropdown": 6,
     "navigation_with_keys": False,
 }

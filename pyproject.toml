@@ -42,7 +42,6 @@ dependencies = [
   "dask[array]",
   "hyperspy>=2.0rc0",
   "matplotlib",
-  "numexpr",
   "numpy",
   "pint",
   "pooch",
@@ -74,6 +73,7 @@ file = "LICENSE"
   # unpin when sphinxcontrib-towncrier support more recent version to towncrier
   "towncrier<24",
 ]
+"speed" = ["numexpr"]
 "tests" = [
   "pytest     >= 5.0",
   "pytest-mpl",
@@ -81,10 +81,11 @@ file = "LICENSE"
   "pytest-xdist",
   "setuptools-scm",
 ]
-"dev" = ["black"]
+"dev" = ["ruff"]
 "all" = [
   "exspy[gui-jupyter]",
-  "exspy[gui-traitsui]"
+  "exspy[gui-traitsui]",
+  "exspy[speed]"
 ]
 
 [project.urls]

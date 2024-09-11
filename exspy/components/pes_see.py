@@ -22,6 +22,8 @@ import logging
 
 import hyperspy.api as hs
 
+from exspy._utils import parse_component_module
+
 
 _logger = logging.getLogger(__name__)
 
@@ -77,7 +79,7 @@ class SEE(hs.model.components1D.Expression):
             Phi=Phi,
             B=B,
             position="Phi",
-            module=module,
+            module=parse_component_module(module),
             autodoc=False,
             compute_gradients=compute_gradients,
             linear_parameter_list=["A"],

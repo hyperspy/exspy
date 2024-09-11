@@ -22,6 +22,8 @@ import numpy as np
 from hyperspy.docstrings.parameters import FUNCTION_ND_DOCSTRING
 import hyperspy.api as hs
 
+from exspy._utils import parse_component_module
+
 
 class DoublePowerLaw(hs.model.components1D.Expression):
     r"""Double power law component for EELS spectra.
@@ -87,7 +89,7 @@ class DoublePowerLaw(hs.model.components1D.Expression):
             left_cutoff=left_cutoff,
             position="origin",
             autodoc=False,
-            module=module,
+            module=parse_component_module(module),
             compute_gradients=compute_gradients,
             linear_parameter_list=["A"],
             check_parameter_linearity=False,

@@ -20,6 +20,8 @@ import numpy as np
 
 import hyperspy.api as hs
 
+from exspy._utils import parse_component_module
+
 
 class VolumePlasmonDrude(hs.model.components1D.Expression):
     r"""
@@ -72,7 +74,7 @@ class VolumePlasmonDrude(hs.model.components1D.Expression):
             plasmon_energy=plasmon_energy,
             fwhm=fwhm,
             position="plasmon_energy",
-            module=module,
+            module=parse_component_module(module),
             autodoc=False,
             compute_gradients=compute_gradients,
             linear_parameter_list=["intensity"],

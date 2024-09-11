@@ -1,0 +1,1 @@
+Make ``numexpr`` an optional dependency to allow installation in pyodide.

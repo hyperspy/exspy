@@ -394,16 +394,17 @@ edge functionalities:
 
 .. _eels.fine_structure:
 
-Fine structure analysis
-^^^^^^^^^^^^^^^^^^^^^^^
+Fine structure analysis using a spline function
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The fine structure of an EELS ionization edge manifests as distinct features within
 the first few tens of eVs energy. It is due to variations in the electron's energy
 loss probability caused by the interactions with the material's electronic structure.
 It offers insights into the material's electronic properties, bonding, and local environments.
 Therefore, we cannot model them from first-principles because i) the material is usually unknown
-ii) HyperSpy only supports Hydrogenic and Hartree-Slater EELS core-loss models. Instead, the
-:py:class:`~.components.EELSCLEdge` component includes features
+ii) HyperSpy supports Hydrogenic, Hartree-Slater EELS, DFT and Dirac core-loss models, which don't
+include modeling of the fine structure - see :ref:`eels.GOS` and :class:`~.components.EELSCLEdge`
+for more information. Instead, the :py:class:`~.components.EELSCLEdge` component includes features
 for EELS fine structure modelling and analysis using functions to mimic the fine structure
 features. The most basic consists in modelling
 the fine structure of ionization edges using a spline function. You can activate this feature
@@ -483,8 +484,8 @@ structure width. It is possible to suspend this feature by calling
 To resume it use
 :py:meth:`~.models.EELSModel.suspend_auto_fine_structure_width`
 
-Fine structure analysis
-"""""""""""""""""""""""
+Fine structure analysis using Gaussian functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Fine structure analysis consists on measuring different features of the fine structure
 (e.g., peak position, area, ...). Often, these features can be related to the ionized atom environment.

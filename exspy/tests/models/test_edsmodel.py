@@ -110,6 +110,18 @@ class TestlineFit:
         self.s.set_signal_type("EDS_TEM")
         self._check_model_store()
 
+    def test_disable_xray_lines(self):
+        m = s.create_model()
+        for c in m:
+            assert c.active
+        m.disable_xray_lines()
+        assert m[0].active
+        for c in m[1:]:
+            assert not c.active
+        m.enable_xray_lines()
+        for c in m:
+            assert c.active
+
     def test_calibrate_energy_resolution(self):
         s = self.s
         m = s.create_model()

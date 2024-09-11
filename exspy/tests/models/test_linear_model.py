@@ -92,6 +92,22 @@ class TestTwinnedComponents:
         np.testing.assert_allclose(nonlinear_fit.data, lstsq_fit.data)
         np.testing.assert_allclose(nonlinear_std, linear_std)
 
+    def test_fit_background(self):
+        m2 = self.m2
+        m2.fit_background(optimizer="lstsq")
+        np.testing.assert_allclose(m2[0].a0.value, 11045209.18)
+
+    def test_fit_background_reset_signal_range(self):
+        m2 = self.m2
+        m2.remove_signal_range(7.0, 8.0)
+        np.testing.assert_allclose(m2._channel_switches[:200], True)
+        np.testing.assert_allclose(m2._channel_switches[301:], True)
+        np.testing.assert_allclose(m2._channel_switches[200:301], False)
+        m2.fit_background(optimizer="lstsq")
+        np.testing.assert_allclose(m2._channel_switches[:200], True)
+        np.testing.assert_allclose(m2._channel_switches[301:], True)
+        np.testing.assert_allclose(m2._channel_switches[200:301], False)
+
 
 class TestWarningSlowMultifit:
     def setup_method(self, method):

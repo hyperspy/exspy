@@ -180,10 +180,6 @@ class EDSModel(Model1D):
                 "but an object of type %s was provided" % str(type(value))
             )
 
-    @property
-    def _active_xray_lines(self):
-        return [xray_line for xray_line in self.xray_lines if xray_line.active]
-
     def add_family_lines(self, xray_lines="from_elements"):
         """Create the Xray-lines instances and configure them appropiately
 
@@ -320,13 +316,15 @@ class EDSModel(Model1D):
 
     def enable_xray_lines(self):
         """Enable the X-ray lines components."""
-        for component in self.xray_lines:
-            component.active = True
+        for component in self:
+            if not component.isbackground:
+                component.active = True
 
     def disable_xray_lines(self):
         """Disable the X-ray lines components."""
-        for component in self._active_xray_lines:
-            component.active = False
+        for component in self:
+            if not component.isbackground:
+                component.active = False
 
     def _make_position_adjuster(self, component, fix_it, show_label):
         # Override to ensure formatting of labels of xray lines
@@ -377,25 +375,31 @@ class EDSModel(Model1D):
         if start_energy is None:
             start_energy = self.start_energy
 
+        signal_range_mask = np.copy(self._channel_switches)
+
         # disactivate line
-        self.free_background()
         with stash_active_state(self):
-            self.disable_xray_lines()
-            self.set_signal_range(start_energy, end_energy)
-            for component in self:
-                if component.isbackground is False:
-                    self.remove_signal_range(
-                        component.centre.value
-                        - windows_sigma[0] * component.sigma.value,
-                        component.centre.value
-                        + windows_sigma[1] * component.sigma.value,
-                    )
-            if kind == "single":
-                self.fit(**kwargs)
-            if kind == "multi":
-                self.multifit(**kwargs)
-            self.reset_signal_range()
-        self.fix_background()
+            with self.suspend_update():
+                self.free_background()
+                with stash_active_state(self):
+                    self.disable_xray_lines()
+                    self.set_signal_range(start_energy, end_energy)
+                    for component in self:
+                        if component.isbackground is False:
+                            self.remove_signal_range(
+                                component.centre.value
+                                - windows_sigma[0] * component.sigma.value,
+                                component.centre.value
+                                + windows_sigma[1] * component.sigma.value,
+                            )
+                    if kind == "single":
+                        self.fit(**kwargs)
+                    if kind == "multi":
+                        self.multifit(**kwargs)
+
+                    # Reset previous signal range
+                    self.set_signal_range_from_mask(signal_range_mask)
+                self.fix_background()
 
     def _twin_xray_lines_width(self, xray_lines):
         """
@@ -910,12 +914,8 @@ class EDSModel(Model1D):
                 data_res = data_res[0]
             img = self.signal.isig[0:1].integrate1D(-1)
             img.data = data_res
-            img.metadata.General.title = "Intensity of %s at %.2f %s from %s" % (
-                xray_line,
-                line_energy,
-                self.signal.axes_manager.signal_axes[0].units,
-                self.signal.metadata.General.title,
-            )
+            units = self.signal.axes_manager.signal_axes[0].units
+            img.metadata.General.title = f"{xray_line} at {line_energy:.2f} {units}"
             img = img.transpose(signal_axes=[])
             if plot_result and img.axes_manager.signal_dimension == 0:
                 print(

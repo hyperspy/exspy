@@ -95,7 +95,35 @@ and install it using (requires ``pip``):
 
 Required dependencies will be installed automatically.
 
+Optional dependencies
+---------------------
 
+Optional dependencies can be installed using the
+`extras <https://packaging.python.org/en/latest/specifications/dependency-specifiers/#extras>`_.
+To install all optional dependencies:
+
+.. code-block:: bash
+
+    pip install exspy[all]
+
+The list of *extras*:
+
++------------------+-----------------------------+------------------------------------------------------------+
+| Extra            | Dependencies                | Usage                                                      |
++==================+=============================+============================================================+
+| ``speed``        | ``numexpr``                 | To speed up fitting with components supporting ``numexpr`` |
++------------------+-----------------------------+------------------------------------------------------------+
+| ``gui-jupyter``  | ``hyperspy_gui_ipywidgets`` | To use the ``ipywidgets`` user interface                   |
++------------------+-----------------------------+------------------------------------------------------------+
+| ``gui-traitsui`` | ``hyperspy_gui_traitsui``   | To use the ``qt`` user interface                           |
++------------------+-----------------------------+------------------------------------------------------------+
+
+And for development, the following *extras* are available (see ``pyproject.toml`` for more information):
+
+- tests
+- doc
+- dev
+ 
 Updating the package
 ====================
 

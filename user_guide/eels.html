@@ -533,11 +533,11 @@ to aid identification of edges.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">edges_at_energy</span><span class="p">()</span>
 </pre></div>
 </div>
-<figure class="align-center" id="id2">
+<figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../_images/EELS_edges_at_energy.png"><img alt="../_images/EELS_edges_at_energy.png" src="../_images/EELS_edges_at_energy.png" style="width: 500px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Labels of edges can be put or removed by toggling the edge buttons.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-text">Labels of edges can be put or removed by toggling the edge buttons.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -740,12 +740,12 @@ iteration.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="../_images/curve_fitting_BN.png"><img alt="../_images/curve_fitting_BN.png" src="../_images/curve_fitting_BN.png" style="width: 500px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Curve fitting quantification of a boron nitride EELS core-loss spectrum
-from the <a class="reference external" href="https://eelsdb.eu">EELS Data Base</a>.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+from the <a class="reference external" href="https://eelsdb.eu">EELS Data Base</a>.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>There are several methods that are only available in
@@ -783,15 +783,16 @@ edge functionalities:</p>
 <li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.free_fine_structure" title="exspy.models.EELSModel.free_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">free_fine_structure()</span></code></a></p></li>
 </ul>
 </section>
-<section id="fine-structure-analysis">
-<span id="eels-fine-structure"></span><h3>Fine structure analysis<a class="headerlink" href="#fine-structure-analysis" title="Link to this heading">#</a></h3>
+<section id="fine-structure-analysis-using-a-spline-function">
+<span id="eels-fine-structure"></span><h3>Fine structure analysis using a spline function<a class="headerlink" href="#fine-structure-analysis-using-a-spline-function" title="Link to this heading">#</a></h3>
 <p>The fine structure of an EELS ionization edge manifests as distinct features within
 the first few tens of eVs energy. It is due to variations in the electron’s energy
 loss probability caused by the interactions with the material’s electronic structure.
 It offers insights into the material’s electronic properties, bonding, and local environments.
 Therefore, we cannot model them from first-principles because i) the material is usually unknown
-ii) HyperSpy only supports Hydrogenic and Hartree-Slater EELS core-loss models. Instead, the
-<a class="reference internal" href="../reference/components.html#exspy.components.EELSCLEdge" title="exspy.components.EELSCLEdge"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSCLEdge</span></code></a> component includes features
+ii) HyperSpy supports Hydrogenic, Hartree-Slater EELS, DFT and Dirac core-loss models, which don’t
+include modeling of the fine structure - see <a class="reference internal" href="#eels-gos"><span class="std std-ref">Generalised Oscillator Strengths</span></a> and <a class="reference internal" href="../reference/components.html#exspy.components.EELSCLEdge" title="exspy.components.EELSCLEdge"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSCLEdge</span></code></a>
+for more information. Instead, the <a class="reference internal" href="../reference/components.html#exspy.components.EELSCLEdge" title="exspy.components.EELSCLEdge"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSCLEdge</span></code></a> component includes features
 for EELS fine structure modelling and analysis using functions to mimic the fine structure
 features. The most basic consists in modelling
 the fine structure of ionization edges using a spline function. You can activate this feature
@@ -822,11 +823,11 @@ contains a list of <code class="docutils literal notranslate"><span class="pre">
 will be reset to 0 when any of those values change.</p>
 <p>If we zoom-in the fine structure region of the Boron-K ionization edge of the BN
 model above, we notice that the fit is actually not very good:</p>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="../_images/EELS_BN_B_zoomin.png"><img alt="../_images/EELS_BN_B_zoomin.png" src="../_images/EELS_BN_B_zoomin.png" style="width: 500px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Boron-K EELS ionization edge fine structure model using default values</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-text">Boron-K EELS ionization edge fine structure model using default values</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Let’s try to improve the fine structure model of the Boron-K and Nitrogen-K ionization edges by:</p>
@@ -860,8 +861,9 @@ structure width. It is possible to suspend this feature by calling
 <a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.suspend_auto_fine_structure_width" title="exspy.models.EELSModel.suspend_auto_fine_structure_width"><code class="xref py py-meth docutils literal notranslate"><span class="pre">suspend_auto_fine_structure_width()</span></code></a>.
 To resume it use
 <a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.suspend_auto_fine_structure_width" title="exspy.models.EELSModel.suspend_auto_fine_structure_width"><code class="xref py py-meth docutils literal notranslate"><span class="pre">suspend_auto_fine_structure_width()</span></code></a></p>
-<section id="id1">
-<h4>Fine structure analysis<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+</section>
+<section id="fine-structure-analysis-using-gaussian-functions">
+<h3>Fine structure analysis using Gaussian functions<a class="headerlink" href="#fine-structure-analysis-using-gaussian-functions" title="Link to this heading">#</a></h3>
 <p>Fine structure analysis consists on measuring different features of the fine structure
 (e.g., peak position, area, …). Often, these features can be related to the ionized atom environment.
 For this purpose, we need to replace the spline function, that we
@@ -907,16 +909,15 @@ structure peaks:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_components</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="../_images/EELS_BN_B_zoomin_with_gaussians.png"><img alt="../_images/EELS_BN_B_zoomin_with_gaussians.png" src="../_images/EELS_BN_B_zoomin_with_gaussians.png" style="width: 500px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Boron-K EELS ionization edge fine structure model using two Gaussian functions
 for the first two white-lines, and a spline function for the rest of the
-fine structure.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+fine structure.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
 </section>
 </section>
 </section>
@@ -980,10 +981,8 @@ fine structure.</span><a class="headerlink" href="#id5" title="Link to this imag
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-model">Creating model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalised-oscillator-strengths">Generalised Oscillator Strengths</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-model">Fitting model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-structure-analysis">Fine structure analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Fine structure analysis</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-structure-analysis-using-a-spline-function">Fine structure analysis using a spline function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-structure-analysis-using-gaussian-functions">Fine structure analysis using Gaussian functions</a></li>
 </ul>
 </li>
 </ul>

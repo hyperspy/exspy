@@ -1122,18 +1122,14 @@ class EDSSpectrum(Signal1D):
         estimate_background_windows, get_lines_intensity
         """
         self._add_vertical_lines_groups(windows_position)
-        ax = self.axes_manager.signal_axes[0]
         segments = []
         for bw in windows_position:
-            # TODO: test to prevent slicing bug. To be removed when fixed
-            if ax.value2index(bw[0]) == ax.value2index(bw[1]):
-                y1 = self.isig[bw[0]].data
-            else:
-                y1 = self.isig[bw[0] : bw[1]].mean(-1).data
-            if ax.value2index(bw[2]) == ax.value2index(bw[3]):
-                y2 = self.isig[bw[2]].data
-            else:
-                y2 = self.isig[bw[2] : bw[3]].mean(-1).data
+            if any(v < self.axes_manager[-1].low_value for v in bw) or any(
+                v > self.axes_manager[-1].high_value for v in bw
+            ):
+                raise ValueError("Background windows is outside of the signal range.")
+            y1 = self.isig[bw[0] : bw[1]].mean(-1).data
+            y2 = self.isig[bw[2] : bw[3]].mean(-1).data
             x1 = (bw[0] + bw[1]) / 2.0
             x2 = (bw[2] + bw[3]) / 2.0
             segments.append([[x1, y1[0]], [x2, y2[0]]])

@@ -600,6 +600,12 @@ class Test_simple_model:
             rtol=0.03,
         )
 
+    def test_outside_range_background_windows(self):
+        s = self.signal
+        bw = s.estimate_background_windows()
+        with pytest.raises(ValueError):
+            s.isig[2.0:].plot(True, background_windows=bw)
+
 
 def test_with_signals_examples():
     sig = exspy.data.EDS_TEM_FePt_nanoparticles()

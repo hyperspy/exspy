@@ -1,0 +1,4 @@
+Plot background and integration windows fixes and improvements:
+
+- fix plotting windows with navigation dimension >=2,
+- raise improved error message when windows are out of the range of the signal,

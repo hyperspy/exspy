@@ -4999,9 +4999,9 @@ The following properties are included:
 The X-ray lines energies are taken from Chantler et al. [1]_.
 
 The line weight, more precisely the approximate line weight for K, L, M
-shells are taken from Electron Probe Quantification (EPQ) library [2]_.
+shells are taken from the Electron Probe Quantification (EPQ) library [2]_.
 
-The field ``threshold`` and ``edge`` are taken from Gatan EELS atlas
+The field ``threshold`` and ``edge`` are taken from the Gatan EELS atlas
 https://eels.info/atlas, as retrieved in June 2020.
 
 Examples

@@ -17,12 +17,9 @@ Bibliography
 .. _Chantler2005:
 
 :ref:`[Chantler2005] <Chantler2005>`
-   C. Chantler, K. Olsen, R. Dragoset,
-   J. Chang, A. Kishore, S. Kotochigova, and D. Zucker, "Detailed Tabulation
-   of Atomic Form Factors, Photoelectric Absorption and Scattering Cross
-   Section, and Mass Attenuation Coefficients for Z = 1-92 from E = 1-10 eV
-   to E = 0.4-1.0 MeV" *NIST Standard Reference Data*
-   [`<https://physics.nist.gov/ffast>`_].
+   Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
+   S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
+   Scattering Tables (version 2.1). https://dx.doi.org/10.18434/T4HS32.
 
 .. _Egerton2011:
 

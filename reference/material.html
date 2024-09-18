@@ -563,7 +563,7 @@ Default is <code class="docutils literal notranslate"><span class="pre">'harmoni
 <span class="sig-prename descclassname"><span class="pre">exspy.material.</span></span><span class="sig-name descname"><span class="pre">mass_absorption_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energies</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.material.mass_absorption_coefficient" title="Link to this definition">#</a></dt>
 <dd><p>Mass absorption coefficient (mu/rho) of a X-ray absorbed in a pure
 material.</p>
-<p>The mass absorption is retrieved from the database of Chantler2005</p>
+<p>The mass absorption is retrieved from the database of Chantler et al. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>*<span class="fn-bracket">]</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -589,13 +589,15 @@ e.g. ‘Al_Ka’.</p></li>
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="#exspy.material.mass_absorption_mixture" title="exspy.material.mass_absorption_mixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.material.mass_absorption_mixture</span></code></a></p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>See <a class="reference external" href="https://dx.doi.org/10.18434/T4HS32">https://dx.doi.org/10.18434/T4HS32</a>
-Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
+<p class="rubric">References</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">*</a><span class="fn-bracket">]</span></span>
+<p>Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
 S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
-Scattering Tables (version 2.1).</p>
-</div>
+Scattering Tables (version 2.1). <a class="reference external" href="https://dx.doi.org/10.18434/T4HS32">https://dx.doi.org/10.18434/T4HS32</a></p>
+</aside>
+</aside>
 </dd></dl>
 
 <dl class="py function">
@@ -604,7 +606,7 @@ Scattering Tables (version 2.1).</p>
 <dd><p>Calculate the mass absorption coefficient for X-ray absorbed in a
 mixture of elements.</p>
 <p>The mass absorption coefficient is calculated as a weighted mean of the
-weight percent and is retrieved from the database of Chantler2005.</p>
+weight percent and is retrieved from the database of Chantler et al. <a class="footnote-reference brackets" href="#id4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>†<span class="fn-bracket">]</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -637,13 +639,15 @@ weight_percent list.</p></li>
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="#exspy.material.mass_absorption_coefficient" title="exspy.material.mass_absorption_coefficient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.material.mass_absorption_coefficient</span></code></a></p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>See <a class="reference external" href="https://dx.doi.org/10.18434/T4HS32">https://dx.doi.org/10.18434/T4HS32</a>
-Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
+<p class="rubric">References</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">†</a><span class="fn-bracket">]</span></span>
+<p>Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
 S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
-Scattering Tables (version 2.1).</p>
-</div>
+Scattering Tables (version 2.1). <a class="reference external" href="https://dx.doi.org/10.18434/T4HS32">https://dx.doi.org/10.18434/T4HS32</a></p>
+</aside>
+</aside>
 </dd></dl>
 
 <dl class="py function">
@@ -683,7 +687,8 @@ weight_percent list.</p></li>
 <span class="sig-prename descclassname"><span class="pre">material.</span></span><span class="sig-name descname"><span class="pre">elements</span></span><a class="headerlink" href="#exspy.material.elements" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
-<p>Database of element properties. The following properties are included:</p>
+<p>Database of element properties.</p>
+<p>The following properties are included:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── Atomic_properties
 │   ├── Binding_energies
 │   └── Xray_lines
@@ -695,8 +700,13 @@ weight_percent list.</p></li>
     └── density_gcm3
 </pre></div>
 </div>
-<p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">Fe</span><span class="o">.</span><span class="n">General_properties</span>
+<p>The X-ray lines energies are taken from Chantler et al. <a class="footnote-reference brackets" href="#id7" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<p>The line weight, more precisely the approximate line weight for K, L, M
+shells are taken from the Electron Probe Quantification (EPQ) library <a class="footnote-reference brackets" href="#id8" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p>The field <code class="docutils literal notranslate"><span class="pre">threshold</span></code> and <code class="docutils literal notranslate"><span class="pre">edge</span></code> are taken from the Gatan EELS atlas
+<a class="reference external" href="https://eels.info/atlas">https://eels.info/atlas</a>, as retrieved in June 2020.</p>
+<p>Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">material</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">Fe</span><span class="o">.</span><span class="n">General_properties</span>
 <span class="go">├── Z = 26</span>
 <span class="go">├── atomic_weight = 55.845</span>
 <span class="go">└── name = iron</span>
@@ -723,6 +733,22 @@ weight_percent list.</p></li>
 <span class="go">    └── weight = 0.12525</span>
 </pre></div>
 </div>
+<p>References</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">1</a><span class="fn-bracket">]</span></span>
+<p>Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R.,
+Kotochigova, S.A., and Zucker, D.S. (2005), X-Ray Form Factor,
+Attenuation and Scattering Tables (version 2.1).
+<a class="reference external" href="https://dx.doi.org/10.18434/T4HS32">https://dx.doi.org/10.18434/T4HS32</a></p>
+</aside>
+<aside class="footnote brackets" id="id8" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">2</a><span class="fn-bracket">]</span></span>
+<p>Ritchie, N. EPQ is the Electron Probe Quantification library
+- the basis for DTSA-II.
+<a class="github reference external" href="https://github.com/usnistgov/EPQ">usnistgov/EPQ</a></p>
+</aside>
+</aside>
 </section>
 
 

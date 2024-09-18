@@ -4996,6 +4996,14 @@ The following properties are included:
     └── Physical_properties
         └── density_gcm3
 
+The X-ray lines energies are taken from Chantler et al. [1]_.
+
+The line weight, more precisely the approximate line weight for K, L, M
+shells are taken from Electron Probe Quantification (EPQ) library [2]_.
+
+The field ``threshold`` and ``edge`` are taken from Gatan EELS atlas
+https://eels.info/atlas, as retrieved in June 2020.
+
 Examples
 --------
 >>> exspy.material.elements.Fe.General_properties
@@ -5023,6 +5031,18 @@ Examples
 └── Ln
     ├── energy (keV) = 0.62799
     └── weight = 0.12525
+
+    
+References
+----------
+.. [1] Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R.,
+   Kotochigova, S.A., and Zucker, D.S. (2005), X-Ray Form Factor,
+   Attenuation and Scattering Tables (version 2.1).
+   https://dx.doi.org/10.18434/T4HS32
+
+.. [2] Ritchie, N. EPQ is the Electron Probe Quantification library
+   - the basis for DTSA-II.
+   https://github.com/usnistgov/EPQ
 """
 
 # read dictionary of atomic numbers from eXSpy, and add the elements that

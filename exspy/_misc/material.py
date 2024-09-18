@@ -314,7 +314,7 @@ def mass_absorption_coefficient(element, energies):
     Mass absorption coefficient (mu/rho) of a X-ray absorbed in a pure
     material.
 
-    The mass absorption is retrieved from the database of Chantler2005
+    The mass absorption is retrieved from the database of Chantler et al. [*]_.
 
     Parameters
     ----------
@@ -339,12 +339,11 @@ def mass_absorption_coefficient(element, energies):
     --------
     exspy.material.mass_absorption_mixture
 
-    Note
-    ----
-    See https://dx.doi.org/10.18434/T4HS32
-    Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
-    S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
-    Scattering Tables (version 2.1).
+    References
+    ----------
+    .. [*] Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
+       S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
+       Scattering Tables (version 2.1). https://dx.doi.org/10.18434/T4HS32
     """
     energies_db = np.array(ffast_mac[element].energies_keV)
     macs = np.array(ffast_mac[element].mass_absorption_coefficient_cm2g)
@@ -372,7 +371,7 @@ def _mass_absorption_mixture(weight_percent, elements, energies):
     mixture of elements.
 
     The mass absorption coefficient is calculated as a weighted mean of the
-    weight percent and is retrieved from the database of Chantler2005.
+    weight percent and is retrieved from the database of Chantler et al. [*]_.
 
     Parameters
     ----------
@@ -400,12 +399,11 @@ def _mass_absorption_mixture(weight_percent, elements, energies):
     --------
     exspy.material.mass_absorption
 
-    Note
-    ----
-    See https://dx.doi.org/10.18434/T4HS32
-    Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
-    S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
-    Scattering Tables (version 2.1).
+    References
+    ----------
+    .. [*] Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
+       S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
+       Scattering Tables (version 2.1). https://dx.doi.org/10.18434/T4HS32
     """
     if len(elements) != len(weight_percent):
         raise ValueError("Elements and weight_fraction should have the same length")
@@ -430,7 +428,7 @@ def mass_absorption_mixture(weight_percent, elements="auto", energies="auto"):
     mixture of elements.
 
     The mass absorption coefficient is calculated as a weighted mean of the
-    weight percent and is retrieved from the database of Chantler2005.
+    weight percent and is retrieved from the database of Chantler et al. [*]_.
 
     Parameters
     ----------
@@ -461,13 +459,11 @@ def mass_absorption_mixture(weight_percent, elements="auto", energies="auto"):
     --------
     exspy.material.mass_absorption_coefficient
 
-    Note
-    ----
-    See https://dx.doi.org/10.18434/T4HS32
-    Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
-    S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
-    Scattering Tables (version 2.1).
-
+    References
+    ----------
+    .. [*] Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova,
+       S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
+       Scattering Tables (version 2.1). https://dx.doi.org/10.18434/T4HS32
     """
     from hyperspy.signals import BaseSignal
 

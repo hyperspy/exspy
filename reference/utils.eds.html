@@ -498,8 +498,8 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cross_section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – A list of cross sections in barns.</p></li>
-<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – A list of element chemical symbols in the same order as the
+<li><p><strong>cross_section</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – A list of cross sections in barns.</p></li>
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – A list of element chemical symbols in the same order as the
 cross sections e.g. [‘Al’,’Zn’]</p></li>
 </ul>
 </dd>
@@ -507,7 +507,7 @@ cross sections e.g. [‘Al’,’Zn’]</p></li>
 <dd class="field-even"><p><strong>zeta_factors</strong> – The zeta factors with units kg/m^2.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -524,18 +524,18 @@ the Kanaya-Okayama parameterziation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The element symbol, e.g. ‘Al’.</p></li>
-<li><p><strong>beam_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The energy of the beam in keV.</p></li>
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The element symbol, e.g. ‘Al’.</p></li>
+<li><p><strong>beam_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The energy of the beam in keV.</p></li>
 <li><p><strong>density</strong> (float or str (<code class="docutils literal notranslate"><span class="pre">'auto'</span></code>)) – The density of the material in g/cm3. If ‘auto’, the density of
 the pure element is used.</p></li>
-<li><p><strong>tilt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The tilt of the sample in degrees.</p></li>
+<li><p><strong>tilt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The tilt of the sample in degrees.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>electron_range</strong> – Electron range in micrometers.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -563,10 +563,10 @@ the passed energy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Energy to search near in keV</p></li>
-<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Window width in keV around energy in which to find nearby energies,
+<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Energy to search near in keV</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Window width in keV around energy in which to find nearby energies,
 i.e. a value of 0.2 keV (the default) means to search +/- 0.1 keV.</p></li>
-<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><em>None</em>) – If not None, only the given lines will be added (eg. (‘a’,’Kb’)).</p></li>
+<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><em>None</em>) – If not None, only the given lines will be added (eg. (‘a’,’Kb’)).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -587,12 +587,12 @@ the detector.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>alpha_tilt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The alpha-tilt of the stage in degrees. The sample is facing the detector
+<li><p><strong>alpha_tilt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The alpha-tilt of the stage in degrees. The sample is facing the detector
 when positively tilted.</p></li>
-<li><p><strong>azimuth_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The azimuth of the detector in degrees. 0 is perpendicular to the alpha
+<li><p><strong>azimuth_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The azimuth of the detector in degrees. 0 is perpendicular to the alpha
 tilt axis.</p></li>
-<li><p><strong>elevation_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The elevation of the detector in degrees.</p></li>
-<li><p><strong>beta_tilt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The beta-tilt of the stage in degrees. The sample is facing positive 90
+<li><p><strong>elevation_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The elevation of the detector in degrees.</p></li>
+<li><p><strong>beta_tilt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The beta-tilt of the stage in degrees. The sample is facing positive 90
 in the azimuthal direction when positively tilted.</p></li>
 </ul>
 </dd>
@@ -600,7 +600,7 @@ in the azimuthal direction when positively tilted.</p></li>
 <dd class="field-even"><p><strong>take_off_angle</strong> – The take off angle in degrees.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -619,8 +619,8 @@ Anderson-Hasler parameterization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>xray_line</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The X-ray line, e.g. ‘Al_Ka’</p></li>
-<li><p><strong>beam_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The energy of the beam in kV.</p></li>
+<li><p><strong>xray_line</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The X-ray line, e.g. ‘Al_Ka’</p></li>
+<li><p><strong>beam_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The energy of the beam in kV.</p></li>
 <li><p><strong>density</strong> (<em>{float</em><em>, </em><em>'auto'}</em>) – The density of the material in g/cm3. If ‘auto’, the density
 of the pure element is used.</p></li>
 </ul>
@@ -629,7 +629,7 @@ of the pure element is used.</p></li>
 <dd class="field-even"><p><strong>xray_range</strong> – The X-ray range in micrometer.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -662,8 +662,8 @@ third edition p 286</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>zfactors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – A list of zeta-factors.</p></li>
-<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – A list of element chemical symbols in the same order as the
+<li><p><strong>zfactors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – A list of zeta-factors.</p></li>
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – A list of element chemical symbols in the same order as the
 cross sections e.g. [‘Al’,’Zn’]</p></li>
 </ul>
 </dd>
@@ -671,7 +671,7 @@ cross sections e.g. [‘Al’,’Zn’]</p></li>
 <dd class="field-even"><p><strong>cross_sections</strong> – The cross sections with units in barns.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">

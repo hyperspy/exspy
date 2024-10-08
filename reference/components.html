@@ -534,11 +534,11 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Height parameter.</p></li>
-<li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Power law coefficient.</p></li>
-<li><p><strong>origin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Location parameter.</p></li>
-<li><p><strong>shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Offset of second power law.</p></li>
-<li><p><strong>ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Height ratio of the two power law components.</p></li>
+<li><p><strong>A</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Height parameter.</p></li>
+<li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Power law coefficient.</p></li>
+<li><p><strong>origin</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Location parameter.</p></li>
+<li><p><strong>shift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Offset of second power law.</p></li>
+<li><p><strong>ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Height ratio of the two power law components.</p></li>
 <li><p><strong>**kwargs</strong> – Extra keyword arguments are passed to the
 <code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code> component.</p></li>
 </ul>
@@ -550,7 +550,7 @@ document.write(`
 <dd><p>For x &lt;= left_cutoff, the function returns 0. Default value is 0.0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -558,8 +558,8 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameter names.</p></li>
-<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
+<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – The list of parameter names.</p></li>
+<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -603,13 +603,13 @@ obtain the fitted component without iterating over the navigation axes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Amplitude parameter. <span class="math notranslate nohighlight">\(\lim_{x\to -\infty}f(x)=0\)</span> and
+<li><p><strong>A</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Amplitude parameter. <span class="math notranslate nohighlight">\(\lim_{x\to -\infty}f(x)=0\)</span> and
 <span class="math notranslate nohighlight">\(\lim_{x\to\infty}f(x)=2A\)</span></p></li>
-<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Slope (steepness of the step). The larger <span class="math notranslate nohighlight">\(k\)</span>, the sharper the
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Slope (steepness of the step). The larger <span class="math notranslate nohighlight">\(k\)</span>, the sharper the
 step.</p></li>
-<li><p><strong>x0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Center parameter (<span class="math notranslate nohighlight">\(f(x_0)=A\)</span>).</p></li>
-<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameter names.</p></li>
-<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
+<li><p><strong>x0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Center parameter (<span class="math notranslate nohighlight">\(f(x_0)=A\)</span>).</p></li>
+<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – The list of parameter names.</p></li>
+<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -638,12 +638,12 @@ the <code class="xref py py-attr docutils literal notranslate"><span class="pre"
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element_subshell</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Usually a string, for example, <code class="docutils literal notranslate"><span class="pre">'Ti_L3'</span></code> for the GOS of the titanium L3
+<li><p><strong>element_subshell</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – Usually a string, for example, <code class="docutils literal notranslate"><span class="pre">'Ti_L3'</span></code> for the GOS of the titanium L3
 subshell. If a dictionary is passed, it is assumed that Hartree Slater
 GOS was exported using <cite>GOS.as_dictionary</cite>, and will be reconstructed.</p></li>
 <li><p><strong>GOS</strong> (<code class="docutils literal notranslate"><span class="pre">'dft'</span></code>,``’dirac’<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">``'hydrogenic'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Hartree-Slater'</span></code> or str) – The GOS to use. Default is <code class="docutils literal notranslate"><span class="pre">'dft'</span></code>. If str, it must the path to gosh GOS file.
 The <code class="docutils literal notranslate"><span class="pre">'dft'</span></code> and <code class="docutils literal notranslate"><span class="pre">'dirac'</span></code> databases are in the <code class="docutils literal notranslate"><span class="pre">'gosh'</span></code> format.</p></li>
-<li><p><strong>gos_file_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>None</em>) – Only with <code class="docutils literal notranslate"><span class="pre">GOS='dft'</span> <span class="pre">or</span> <span class="pre">'dirac'</span></code>. Specify the file path of the gosh file
+<li><p><strong>gos_file_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>None</em>) – Only with <code class="docutils literal notranslate"><span class="pre">GOS='dft'</span> <span class="pre">or</span> <span class="pre">'dirac'</span></code>. Specify the file path of the gosh file
 to use. If None, use the file from  <a class="reference external" href="https://doi.org/10.5281/zenodo.7645765">https://doi.org/10.5281/zenodo.7645765</a></p></li>
 </ul>
 </dd>
@@ -696,7 +696,7 @@ EELS core-loss edge, but by a spline (if <code class="docutils literal notransla
 is <code class="docutils literal notranslate"><span class="pre">True</span></code>) and/or any component in <code class="docutils literal notranslate"><span class="pre">fine_structure_components</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)">bool</a>, default False</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a>, default False</p>
 </dd>
 </dl>
 </dd></dl>
@@ -709,7 +709,7 @@ is <code class="docutils literal notranslate"><span class="pre">True</span></cod
 are modelled with a spline.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)">bool</a>, default True</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a>, default True</p>
 </dd>
 </dl>
 </dd></dl>
@@ -746,7 +746,7 @@ Decreasing the value increases the level of smoothing.</p>
 modelled by the spline function starts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a>, default 0.</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default 0.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -760,7 +760,7 @@ in <code class="docutils literal notranslate"><span class="pre">fine_structure_c
 edges simulation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a>, default 30.</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default 30.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -780,8 +780,8 @@ of the EELS ionization edge.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameter names.</p></li>
-<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
+<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – The list of parameter names.</p></li>
+<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -793,7 +793,7 @@ and conventions, see
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">export_to_dictionary()</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fullcopy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>optional False</em>) – Copies of objects are stored, not references. If any found,
+<dd class="field-odd"><p><strong>fullcopy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>optional False</em>) – Copies of objects are stored, not references. If any found,
 functions will be pickled and signals converted to dictionaries</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -808,7 +808,7 @@ attributes, for more information, see <a class="reference external" href="https:
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -861,10 +861,10 @@ the model was convolved with a low-loss spectrum</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, display the user interface widgets. If False, return the
+<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, display the user interface widgets. If False, return the
 widgets container in a dictionary, usually for customisation or
 testing.</p></li>
-<li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
+<li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
 If string, only the widgets of the selected toolkit are displayed
 if available. If an interable of toolkit strings, the widgets of
 all listed toolkits are displayed or returned.</p></li>
@@ -880,10 +880,10 @@ all listed toolkits are displayed or returned.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>E0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Electron beam energy in keV.</p></li>
-<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Convergence semi-angle in mrad.</p></li>
-<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Collection semi-angle in mrad.</p></li>
-<li><p><strong>energy_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The energy step in eV.</p></li>
+<li><p><strong>E0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Electron beam energy in keV.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Convergence semi-angle in mrad.</p></li>
+<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Collection semi-angle in mrad.</p></li>
+<li><p><strong>energy_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The energy step in eV.</p></li>
 </ul>
 </dd>
 </dl>
@@ -900,8 +900,8 @@ spectroscopy analysis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameter names.</p></li>
-<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
+<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – The list of parameter names.</p></li>
+<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -940,8 +940,8 @@ Lorentzian function. This component uses an approximate formula by David
 <li><p><strong>non_isochromaticity</strong> (<em>Parameter</em>)</p></li>
 <li><p><strong>transmission_function</strong> (<em>Parameter</em>)</p></li>
 <li><p><strong>spin_orbit_splitting</strong> (<em>Bool</em>)</p></li>
-<li><p><strong>spin_orbit_branching_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
-<li><p><strong>spin_orbit_splitting_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
+<li><p><strong>spin_orbit_branching_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
+<li><p><strong>spin_orbit_splitting_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -952,8 +952,8 @@ doi:10.1107/S0021889886089999</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameter names.</p></li>
-<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
+<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – The list of parameter names.</p></li>
+<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -966,11 +966,11 @@ Gaussian.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>signal</strong> (<em>Signal1D instance</em>)</p></li>
-<li><p><strong>x1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Defines the left limit of the spectral range to use for the
+<li><p><strong>x1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Defines the left limit of the spectral range to use for the
 estimation.</p></li>
-<li><p><strong>x2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Defines the right limit of the spectral range to use for the
+<li><p><strong>x2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Defines the right limit of the spectral range to use for the
 estimation.</p></li>
-<li><p><strong>only_current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If False estimates the parameters for the full dataset.</p></li>
+<li><p><strong>only_current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If False estimates the parameters for the full dataset.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -978,7 +978,7 @@ estimation.</p></li>
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_background()</span></code> function.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -1032,13 +1032,13 @@ f(x) =
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Height parameter</p></li>
-<li><p><strong>Phi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Position parameter</p></li>
-<li><p><strong>B</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Tail or asymmetry parameter</p></li>
+<li><p><strong>A</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Height parameter</p></li>
+<li><p><strong>Phi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Position parameter</p></li>
+<li><p><strong>B</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Tail or asymmetry parameter</p></li>
 <li><p><strong>**kwargs</strong> – Extra keyword arguments are passed to the
 <code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code> component.</p></li>
-<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameter names.</p></li>
-<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
+<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – The list of parameter names.</p></li>
+<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1053,8 +1053,8 @@ the edges</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameter names.</p></li>
-<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
+<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – The list of parameter names.</p></li>
+<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1090,9 +1090,9 @@ function is defined as:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>intensity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
-<li><p><strong>plasmon_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
-<li><p><strong>fwhm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
+<li><p><strong>intensity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
+<li><p><strong>plasmon_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
+<li><p><strong>fwhm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
 <li><p><strong>**kwargs</strong> – Extra keyword arguments are passed to the
 <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy._components.expression.Expression</span></code></a> component.</p></li>
 </ul>
@@ -1105,8 +1105,8 @@ for details, including original equations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameter names.</p></li>
-<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
+<li><p><strong>parameter_name_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a>) – The list of parameter names.</p></li>
+<li><p><strong>linear_parameter_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>, </em><em>optional</em>) – The list of linear parameter. The default is None.</p></li>
 </ul>
 </dd>
 </dl>

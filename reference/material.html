@@ -498,8 +498,8 @@ document.write(`
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>atomic_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>signals</em>) – The atomic fractions (composition) of the sample.</p></li>
-<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – A list of element abbreviations, e.g. [‘Al’,’Zn’]. If elements is
+<li><p><strong>atomic_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>signals</em>) – The atomic fractions (composition) of the sample.</p></li>
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – A list of element abbreviations, e.g. [‘Al’,’Zn’]. If elements is
 ‘auto’, take the elements in en each signal metadata of the
 atomic_percent list.</p></li>
 </ul>
@@ -508,7 +508,7 @@ atomic_percent list.</p></li>
 <dd class="field-even"><p><strong>weight_percent</strong> – Composition in weight percent.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -533,10 +533,10 @@ components.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>weight_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>signals</em>) – A list of weight percent for the different elements. If the total
+<li><p><strong>weight_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>signals</em>) – A list of weight percent for the different elements. If the total
 is not equal to 100, each weight percent is divided by the sum
 of the list (normalization).</p></li>
-<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – A list of element symbols, e.g. [‘Al’, ‘Zn’]. If elements is ‘auto’,
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – A list of element symbols, e.g. [‘Al’, ‘Zn’]. If elements is ‘auto’,
 take the elements in en each signal metadata of the weight_percent
 list.</p></li>
 <li><p><strong>mean</strong> (<code class="docutils literal notranslate"><span class="pre">'harmonic'</span></code> or <code class="docutils literal notranslate"><span class="pre">'weighted'</span></code>) – The type of mean use to estimate the density.
@@ -547,7 +547,7 @@ Default is <code class="docutils literal notranslate"><span class="pre">'harmoni
 <dd class="field-even"><p><strong>density</strong> – The density in g/cm3.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a> or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)">hyperspy.api.signals.BaseSignal</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a> or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)">hyperspy.api.signals.BaseSignal</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -567,8 +567,8 @@ material.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The element symbol of the absorber, e.g. ‘Al’.</p></li>
-<li><p><strong>energies</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The energy or energies of the X-ray in keV, or the name of the X-rays,
+<li><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The element symbol of the absorber, e.g. ‘Al’.</p></li>
+<li><p><strong>energies</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The energy or energies of the X-ray in keV, or the name of the X-rays,
 e.g. ‘Al_Ka’.</p></li>
 </ul>
 </dd>
@@ -576,7 +576,7 @@ e.g. ‘Al_Ka’.</p></li>
 <dd class="field-even"><p><strong>mass_absorption_coefficients</strong> – Mass absorption coefficient(s) in cm^2/g</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -610,12 +610,12 @@ weight percent and is retrieved from the database of Chantler et al. <a class="f
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>weight_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>signals</em>) – The composition of the absorber(s) in weight percent. The first
+<li><p><strong>weight_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>signals</em>) – The composition of the absorber(s) in weight percent. The first
 dimension of the matrix corresponds to the elements.</p></li>
-<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><em>'auto'</em>) – The list of element symbol of the absorber, e.g. [‘Al’,’Zn’]. If
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><em>'auto'</em>) – The list of element symbol of the absorber, e.g. [‘Al’,’Zn’]. If
 elements is ‘auto’, take the elements in each signal metadata of the
 weight_percent list.</p></li>
-<li><p><strong>energies</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><em>'auto'</em>) – The energy or energies of the X-ray in keV, or the name of the X-rays,
+<li><p><strong>energies</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><em>'auto'</em>) – The energy or energies of the X-ray in keV, or the name of the X-rays,
 e.g. ‘Al_Ka’. If ‘auto’, take the lines in each signal metadata of the
 weight_percent list.</p></li>
 </ul>
@@ -632,7 +632,7 @@ weight_percent list.</p></li>
 <dd class="field-odd"><p><strong>mass_absorption_coefficient</strong> – The Mass absorption coefficient(s) of the mixture in cm^2/g</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a> or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)">hyperspy.api.signals.BaseSignal</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a> or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)">hyperspy.api.signals.BaseSignal</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -657,8 +657,8 @@ Scattering Tables (version 2.1). <a class="reference external" href="https://dx.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>weight_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>signals</em>) – The weight fractions (composition) of the sample.</p></li>
-<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – A list of element abbreviations, e.g. [‘Al’,’Zn’]. If elements is
+<li><p><strong>weight_percent</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>signals</em>) – The weight fractions (composition) of the sample.</p></li>
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – A list of element abbreviations, e.g. [‘Al’,’Zn’]. If elements is
 ‘auto’, take the elements in en each signal metadata of th
 weight_percent list.</p></li>
 </ul>
@@ -667,7 +667,7 @@ weight_percent list.</p></li>
 <dd class="field-even"><p><strong>atomic_percent</strong> – Composition in atomic percent.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)">numpy.ndarray</a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

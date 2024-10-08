@@ -539,15 +539,15 @@ is unbinned by default.</p>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -595,7 +595,7 @@ number (see <a class="footnote-reference brackets" href="#id2" id="id1" role="do
 <p>This method computes and return both.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>nat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Number of atoms (or molecules) per unit volume of the sample.</p>
+<dd class="field-odd"><p><strong>nat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Number of atoms (or molecules) per unit volume of the sample.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>neff1, neff2</strong> – Signal1D instances containing neff1 and neff2. The signal and
@@ -633,15 +633,15 @@ in the Electron Microscope”, Springer-Verlag, 2011.</p>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -683,13 +683,13 @@ software</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ref</strong> (<em>signal</em>) – The reference contains the calibration in its
 metadata</p></li>
-<li><p><strong>nb_pix</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The live time (real time corrected from the “dead time”)
+<li><p><strong>nb_pix</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The live time (real time corrected from the “dead time”)
 is divided by the number of pixel (spectrums), giving an
 average live time.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -713,16 +713,16 @@ the values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>beam_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The energy of the electron beam in keV</p></li>
-<li><p><strong>live_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In second</p></li>
-<li><p><strong>tilt_stage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In degree</p></li>
-<li><p><strong>azimuth_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In degree</p></li>
-<li><p><strong>elevation_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In degree</p></li>
-<li><p><strong>energy_resolution_MnKa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In eV</p></li>
-<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, display the user interface widgets. If False, return the
+<li><p><strong>beam_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The energy of the electron beam in keV</p></li>
+<li><p><strong>live_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In second</p></li>
+<li><p><strong>tilt_stage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In degree</p></li>
+<li><p><strong>azimuth_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In degree</p></li>
+<li><p><strong>elevation_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In degree</p></li>
+<li><p><strong>energy_resolution_MnKa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In eV</p></li>
+<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, display the user interface widgets. If False, return the
 widgets container in a dictionary, usually for customisation or
 testing.</p></li>
-<li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
+<li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
 If string, only the widgets of the selected toolkit are displayed
 if available. If an interable of toolkit strings, the widgets of
 all listed toolkits are displayed or returned.</p></li>
@@ -759,15 +759,15 @@ all listed toolkits are displayed or returned.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -780,7 +780,7 @@ nothing. Default is None.</p></li>
 <p>The list of elements is stored in <cite>metadata.Sample.elements</cite></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings</em>) – The symbol of the elements.</p>
+<dd class="field-odd"><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>strings</em>) – The symbol of the elements.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -811,18 +811,18 @@ The list of X-ray lines is stored in
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings</em>) – A list of valid element X-ray lines to add e.g. Fe_Kb.
+<li><p><strong>lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>strings</em>) – A list of valid element X-ray lines to add e.g. Fe_Kb.
 Additionally, if <cite>metadata.Sample.elements</cite> is
 defined, add the lines of those elements that where not
 given in this list. If the list is empty (default), and
 <cite>metadata.Sample.elements</cite> is
 defined, add the lines of all those elements.</p></li>
-<li><p><strong>only_one</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If False, add all the lines of each element in
+<li><p><strong>only_one</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If False, add all the lines of each element in
 <cite>metadata.Sample.elements</cite> that has not line
 defined in lines. If True (default),
 only add the line at the highest energy
 above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
-<li><p><strong>only_lines</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings}</em>) – If not None, only the given lines will be added.</p></li>
+<li><p><strong>only_lines</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>strings}</em>) – If not None, only the given lines will be added.</p></li>
 </ul>
 </dd>
 </dl>
@@ -862,7 +862,7 @@ above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
 lines</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>xray_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>string</em>) – A valid list of X-ray lines</p>
+<dd class="field-odd"><p><strong>xray_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>string</em>) – A valid list of X-ray lines</p>
 </dd>
 </dl>
 </dd></dl>
@@ -875,12 +875,12 @@ background.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>two floats</em>) – The position of the two windows around the X-ray line is given by
+<li><p><strong>line_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>two floats</em>) – The position of the two windows around the X-ray line is given by
 the <cite>line_width</cite> (left and right) times the calculated FWHM of the
 line.</p></li>
-<li><p><strong>windows_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The width of the windows is is the <cite>windows_width</cite> times the
+<li><p><strong>windows_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The width of the windows is is the <cite>windows_width</cite> times the
 calculated FWHM of the line.</p></li>
-<li><p><strong>xray_lines</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>string</em>) – If None, use <cite>metadata.Sample.elements.xray_lines</cite>. Else,
+<li><p><strong>xray_lines</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>string</em>) – If None, use <cite>metadata.Sample.elements.xray_lines</cite>. Else,
 provide an iterable containing a list of valid X-ray lines
 symbols.</p></li>
 </ul>
@@ -892,7 +892,7 @@ limits of the left window and the two last values correspond to
 the limits of the right window.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>2D array of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p>2D array of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -918,9 +918,9 @@ the limits of the right window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>windows_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The width of the integration windows is the ‘windows_width’ times
+<li><p><strong>windows_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The width of the integration windows is the ‘windows_width’ times
 the calculated FWHM of the line.</p></li>
-<li><p><strong>xray_lines</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>string</em>) – If None, use ‘metadata.Sample.elements.xray_lines’. Else,
+<li><p><strong>xray_lines</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>string</em>) – If None, use ‘metadata.Sample.elements.xray_lines’. Else,
 provide an iterable containing a list of valid X-ray lines
 symbols.</p></li>
 </ul>
@@ -931,7 +931,7 @@ X-ray line. Each row contains the left and right value of the
 window.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>2D array of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-odd"><p>2D array of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -979,18 +979,18 @@ their use is ambiguous and specifically not allowed.</p></li>
 ‘integration_windows_width’ times the calculated FWHM of the line.
 Else provide an array for which each row corresponds to a X-ray
 line. Each row contains the left and right value of the window.</p></li>
-<li><p><strong>background_windows</strong> (<em>None</em><em> or </em><em>2D array</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – If None, no background subtraction. Else, the backgrounds average
+<li><p><strong>background_windows</strong> (<em>None</em><em> or </em><em>2D array</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – If None, no background subtraction. Else, the backgrounds average
 in the windows are subtracted from the return intensities.
 ‘background_windows’ provides the position of the windows in
 energy. Each line corresponds to a X-ray line. In a line, the two
 first values correspond to the limits of the left window and the
 two last values correspond to the limits of the right window.</p></li>
-<li><p><strong>plot_result</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, plot the calculated line intensities. If the current
+<li><p><strong>plot_result</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, plot the calculated line intensities. If the current
 object is a single spectrum it prints the result instead.</p></li>
-<li><p><strong>only_one</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If False, use all the lines of each element in the data spectral
+<li><p><strong>only_one</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If False, use all the lines of each element in the data spectral
 range. If True use only the line at the highest energy
 above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
-<li><p><strong>only_lines</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings}</em>) – If not None, use only the given lines.</p></li>
+<li><p><strong>only_lines</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>strings}</em>) – If not None, use only the given lines.</p></li>
 <li><p><strong>kwargs</strong> – The extra keyword arguments for plotting. See
 <cite>utils.plot.plot_signals</cite></p></li>
 </ul>
@@ -999,7 +999,7 @@ above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
 <dd class="field-even"><p><strong>intensities</strong> – A list containing the intensities as BaseSignal subclasses.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1044,7 +1044,7 @@ the detector. Parameters are read in ‘SEM.Stage.tilt_alpha’,
 <dd class="field-odd"><p><strong>take_off_angle</strong> – in Degree</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1074,7 +1074,7 @@ links the left and right window with the average value in each window.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>xray_lines</strong> (<em>{False</em><em>, </em><em>True</em><em>, </em><em>'from_elements'</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>string}</em>) – If not False, indicate the position and the name of the X-ray
+<li><p><strong>xray_lines</strong> (<em>{False</em><em>, </em><em>True</em><em>, </em><em>'from_elements'</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>string}</em>) – If not False, indicate the position and the name of the X-ray
 lines.
 If True, if <cite>metadata.Sample.elements.xray_lines</cite> contains a
 list of lines use those. If <cite>metadata.Sample.elements.xray_lines</cite>
@@ -1083,16 +1083,16 @@ is undefined or empty or if xray_lines equals ‘from_elements’ and
 <cite>add_line</cite> to select a subset of lines for the operation.
 Alternatively, provide an iterable containing a list of valid X-ray
 lines symbols.</p></li>
-<li><p><strong>only_lines</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings</em>) – If not None, use only the given lines (eg. (‘a’,’Kb’)).
+<li><p><strong>only_lines</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>strings</em>) – If not None, use only the given lines (eg. (‘a’,’Kb’)).
 If None, use all lines.</p></li>
-<li><p><strong>only_one</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If False, use all the lines of each element in the data spectral
+<li><p><strong>only_one</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If False, use all the lines of each element in the data spectral
 range. If True use only the line at the highest energy
 above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
-<li><p><strong>background_windows</strong> (<em>None</em><em> or </em><em>2D array</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – If not None, add markers at the position of the windows in energy.
+<li><p><strong>background_windows</strong> (<em>None</em><em> or </em><em>2D array</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – If not None, add markers at the position of the windows in energy.
 Each line corresponds to a X-ray lines. In a line, the two first
 value corresponds to the limit of the left window and the two
 last values corresponds to the limit of the right window.</p></li>
-<li><p><strong>integration_windows</strong> (<em>None</em><em> or </em><em>'auto'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>2D array</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – If not None, add markers at the position of the integration
+<li><p><strong>integration_windows</strong> (<em>None</em><em> or </em><em>'auto'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>2D array</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – If not None, add markers at the position of the integration
 windows.
 If ‘auto’ (or float), the width of the integration windows is 2.0
 (or float) times the calculated FWHM of the line. see
@@ -1251,15 +1251,15 @@ If the signal <code class="docutils literal notranslate"><span class="pre">dtype
 the value is always set to <code class="docutils literal notranslate"><span class="pre">'slider'</span></code>.</p>
 </p></li>
 <li><p><strong>axes_manager</strong> (None or <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>) – If None, the signal’s <code class="docutils literal notranslate"><span class="pre">axes_manager</span></code> attribute is used.</p></li>
-<li><p><strong>plot_markers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – Plot markers added using <cite>s.add_marker(marker, permanent=True)</cite>.
+<li><p><strong>plot_markers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – Plot markers added using <cite>s.add_marker(marker, permanent=True)</cite>.
 Note, a large number of markers might lead to very slow plotting.</p></li>
-<li><p><strong>navigator_kwds</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Only for image navigator, additional keyword arguments for
+<li><p><strong>navigator_kwds</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – Only for image navigator, additional keyword arguments for
 <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html#matplotlib.pyplot.imshow" title="(in Matplotlib v3.9.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.imshow()</span></code></a>.</p></li>
 <li><p><strong>norm</strong> (str, default <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>) – The function used to normalize the data prior to plotting.
 Allowable strings are: <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>, <code class="docutils literal notranslate"><span class="pre">'log'</span></code>.
 If <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, intensity is plotted on a linear scale except when
 <code class="docutils literal notranslate"><span class="pre">power_spectrum=True</span></code> (only for complex signals).</p></li>
-<li><p><strong>autoscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The string must contain any combination of the <code class="docutils literal notranslate"><span class="pre">'x'</span></code> and <code class="docutils literal notranslate"><span class="pre">'v'</span></code>
+<li><p><strong>autoscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The string must contain any combination of the <code class="docutils literal notranslate"><span class="pre">'x'</span></code> and <code class="docutils literal notranslate"><span class="pre">'v'</span></code>
 characters. If <code class="docutils literal notranslate"><span class="pre">'x'</span></code> or <code class="docutils literal notranslate"><span class="pre">'v'</span></code> (for values) are in the string, the
 corresponding horizontal or vertical axis limits are set to their
 maxima and the axis limits will reset when the data or the
@@ -1307,16 +1307,16 @@ means no binning and scale less than one results in up-sampling.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>new_shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> (of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>) or </em><em>None</em>) – For each dimension specify the new_shape. This will internally be
+<li><p><strong>new_shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> (of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>) or </em><em>None</em>) – For each dimension specify the new_shape. This will internally be
 converted into a <code class="docutils literal notranslate"><span class="pre">scale</span></code> parameter.</p></li>
-<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> (of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>) or </em><em>None</em>) – For each dimension, specify the new:old pixel ratio, e.g. a ratio
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> (of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>) or </em><em>None</em>) – For each dimension, specify the new:old pixel ratio, e.g. a ratio
 of 1 is no binning and a ratio of 2 means that each pixel in the new
 spectrum is twice the size of the pixels in the old spectrum.
 The length of the list should match the dimension of the
 Signal’s underlying data array.
 <em>Note : Only one of ``scale`` or ``new_shape`` should be specified,
 otherwise the function will not run</em></p></li>
-<li><p><strong>crop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Whether or not to crop the resulting rebinned data (default is
+<li><p><strong>crop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether or not to crop the resulting rebinned data (default is
 <code class="docutils literal notranslate"><span class="pre">True</span></code>). When binning by a non-integer number of
 pixels it is likely that the final row in each dimension will
 contain fewer than the full quota to fill one pixel. For example,
@@ -1344,7 +1344,7 @@ returned.</p></li>
 <dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><em>BaseSignal</em></a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If trying to rebin over a non-uniform axis.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If trying to rebin over a non-uniform axis.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1401,8 +1401,8 @@ selected X-ray lines</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>xray_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>string</em>) – A valid list of X-ray lines to remove</p></li>
-<li><p><strong>render_figure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, render the figure after removing the markers</p></li>
+<li><p><strong>xray_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>string</em>) – A valid list of X-ray lines to remove</p></li>
+<li><p><strong>render_figure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, render the figure after removing the markers</p></li>
 </ul>
 </dd>
 </dl>
@@ -1414,7 +1414,7 @@ selected X-ray lines</p>
 <dd><p>Erase all elements and set them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings</em>) – A list of chemical element symbols.</p>
+<dd class="field-odd"><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>strings</em>) – A list of chemical element symbols.</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -1440,16 +1440,16 @@ selected X-ray lines</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings</em>) – A list of valid element X-ray lines to add e.g. Fe_Kb.
+<li><p><strong>lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>strings</em>) – A list of valid element X-ray lines to add e.g. Fe_Kb.
 Additionally, if <cite>metadata.Sample.elements</cite> is
 defined, add the lines of those elements that where not
 given in this list.</p></li>
-<li><p><strong>only_one</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If False, add all the lines of each element in
+<li><p><strong>only_one</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If False, add all the lines of each element in
 <cite>metadata.Sample.elements</cite> that has not line
 defined in lines. If True (default),
 only add the line at the highest energy
 above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
-<li><p><strong>only_lines</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>strings}</em>) – If not None, only the given lines will be added.</p></li>
+<li><p><strong>only_lines</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>strings}</em>) – If not None, only the given lines will be added.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1476,7 +1476,7 @@ above an overvoltage of 2 (&lt; beam energy / 2).</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.DataAxis" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataAxis</span></code></a> or tuple) – Either one on its own, or many axes in a tuple can be passed. In
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.DataAxis" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataAxis</span></code></a> or tuple) – Either one on its own, or many axes in a tuple can be passed. In
 both cases the axes can be passed directly, or specified using the
 index in <cite>axes_manager</cite> or the name of the axis. Any duplicates are
 removed. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the operation is performed over all navigation
@@ -1485,7 +1485,7 @@ axes (default).</p></li>
 operation and returned (default). If a Signal is passed,
 it is used to receive the output of the operation, and nothing is
 returned.</p></li>
-<li><p><strong>rechunk</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Only has effect when operating on lazy signal. Default <code class="docutils literal notranslate"><span class="pre">False</span></code>,
+<li><p><strong>rechunk</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Only has effect when operating on lazy signal. Default <code class="docutils literal notranslate"><span class="pre">False</span></code>,
 which means the chunking structure will be retained. If <code class="docutils literal notranslate"><span class="pre">True</span></code>,
 the data may be automatically rechunked before performing this
 operation.</p></li>
@@ -1506,7 +1506,7 @@ instead. To avoid erroneous misuse of the <cite>sum</cite> function as integral,
 it raises a warning when working with an unbinned, non-uniform axis.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference external" href="https://docs.python.org/3/library/functions.html#max" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#min" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">indexmax</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">indexmin</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">valuemax</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">valuemin</span></code></p>
+<p><a class="reference external" href="https://docs.python.org/3/library/functions.html#max" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#min" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">indexmax</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">indexmin</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">valuemax</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">valuemin</span></code></p>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1534,15 +1534,15 @@ it raises a warning when working with an unbinned, non-uniform axis.</p>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -1579,9 +1579,9 @@ size of the EDX map with thickness at each position of the sample.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>auto_background</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, adds automatically a polynomial order 6 to the model,
+<li><p><strong>auto_background</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, adds automatically a polynomial order 6 to the model,
 using the edsmodel.add_polynomial_background method.</p></li>
-<li><p><strong>auto_add_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, automatically add Gaussians for all X-rays generated in
+<li><p><strong>auto_add_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, automatically add Gaussians for all X-rays generated in
 the energy range by an element using the edsmodel.add_family_lines
 method.</p></li>
 <li><p><strong>dictionary</strong> (<em>{None</em><em>, </em><em>dict}</em><em>, </em><em>optional</em>) – A dictionary to be used to recreate a model. Usually generated
@@ -1606,17 +1606,17 @@ using <code class="xref py py-meth docutils literal notranslate"><span class="pr
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>normalize_poissonian_noise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, scale the signal to normalize Poissonian noise using
+<li><p><strong>normalize_poissonian_noise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, scale the signal to normalize Poissonian noise using
 the approach described in <a class="footnote-reference brackets" href="#id4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>†<span class="fn-bracket">]</span></a>.</p></li>
-<li><p><strong>navigation_mask</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>boolean numpy array</em><em>, </em><em>default 1.0</em>) – The navigation locations marked as True are not used in the
+<li><p><strong>navigation_mask</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>boolean numpy array</em><em>, </em><em>default 1.0</em>) – The navigation locations marked as True are not used in the
 decomposition. If float is given the vacuum_mask method is used to
 generate a mask with the float value as threshold.</p></li>
-<li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – If true, applied a morphologic closing to the mask obtained by
+<li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If true, applied a morphologic closing to the mask obtained by
 vacuum_mask.</p></li>
 <li><p><strong>algorithm</strong> (<em>{&quot;SVD&quot;</em><em>, </em><em>&quot;MLPCA&quot;</em><em>, </em><em>&quot;sklearn_pca&quot;</em><em>, </em><em>&quot;NMF&quot;</em><em>, </em><em>&quot;sparse_pca&quot;</em><em>, </em><em>&quot;mini_batch_sparse_pca&quot;</em><em>, </em><em>&quot;RPCA&quot;</em><em>, </em><em>&quot;ORPCA&quot;</em><em>, </em><em>&quot;ORNMF&quot;</em><em>, </em><em>custom object}</em><em>, </em><em>default &quot;SVD&quot;</em>) – The decomposition algorithm to use. If algorithm is an object,
 it must implement a <code class="docutils literal notranslate"><span class="pre">fit_transform()</span></code> method or <code class="docutils literal notranslate"><span class="pre">fit()</span></code> and
 <code class="docutils literal notranslate"><span class="pre">transform()</span></code> methods, in the same manner as a scikit-learn estimator.</p></li>
-<li><p><strong>output_dimension</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of components to keep/calculate.
+<li><p><strong>output_dimension</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of components to keep/calculate.
 Default is None, i.e. <code class="docutils literal notranslate"><span class="pre">min(data.shape)</span></code>.</p></li>
 <li><p><strong>centre</strong> (<em>{None</em><em>, </em><em>&quot;navigation&quot;</em><em>, </em><em>&quot;signal&quot;}</em><em>, </em><em>default None</em>) – <ul>
 <li><p>If None, the data is not centered prior to decomposition.</p></li>
@@ -1626,7 +1626,7 @@ Only used by the “SVD” algorithm.</p></li>
 Only used by the “SVD” algorithm.</p></li>
 </ul>
 </p></li>
-<li><p><strong>auto_transpose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, automatically transposes the data to boost performance.
+<li><p><strong>auto_transpose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, automatically transposes the data to boost performance.
 Only used by the “SVD” algorithm.</p></li>
 <li><p><strong>signal_mask</strong> (<em>boolean numpy array</em>) – The signal locations marked as True are not used in the
 decomposition.</p></li>
@@ -1643,12 +1643,12 @@ the “MLPCA” algorithm.</p></li>
 </p></li>
 <li><p><strong>reproject</strong> (<em>{None</em><em>, </em><em>&quot;signal&quot;</em><em>, </em><em>&quot;navigation&quot;</em><em>, </em><em>&quot;both&quot;}</em><em>, </em><em>default None</em>) – If not None, the results of the decomposition will be projected in
 the selected masked area.</p></li>
-<li><p><strong>return_info</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default False</em>) – The result of the decomposition is stored internally. However,
+<li><p><strong>return_info</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default False</em>) – The result of the decomposition is stored internally. However,
 some algorithms generate some extra information that is not
 stored. If True, return any extra information if available.
 In the case of sklearn.decomposition objects, this includes the
 sklearn Estimator object.</p></li>
-<li><p><strong>print_info</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, print information about the decomposition being performed.
+<li><p><strong>print_info</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – If True, print information about the decomposition being performed.
 In the case of sklearn.decomposition objects, this includes the
 values of all arguments of the chosen sklearn algorithm.</p></li>
 <li><p><strong>svd_solver</strong> (<em>{&quot;auto&quot;</em><em>, </em><em>&quot;full&quot;</em><em>, </em><em>&quot;arpack&quot;</em><em>, </em><em>&quot;randomized&quot;}</em><em>, </em><em>default &quot;auto&quot;</em>) – <dl class="simple">
@@ -1671,7 +1671,7 @@ to estimate a limited number of components</p>
 </dd>
 </dl>
 </p></li>
-<li><p><strong>copy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default True</em>) – <ul>
+<li><p><strong>copy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default True</em>) – <ul>
 <li><p>If True, stores a copy of the data before any pre-treatments
 such as normalization in <code class="docutils literal notranslate"><span class="pre">s._data_before_treatments</span></code>. The original
 data can then be restored by calling <code class="docutils literal notranslate"><span class="pre">s.undo_treatments()</span></code>.</p></li>
@@ -1716,13 +1716,13 @@ software</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ref</strong> (<em>signal</em>) – The reference contains the calibration in its
 metadata</p></li>
-<li><p><strong>nb_pix</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The live time (real time corrected from the “dead time”)
+<li><p><strong>nb_pix</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The live time (real time corrected from the “dead time”)
 is divided by the number of pixel (spectrums), giving an
 average live time.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1775,16 +1775,16 @@ the final composition by a defined percentage critera (0.5% by default).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>intensities</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>signal</em>) – the intensitiy for each X-ray lines.</p></li>
+<li><p><strong>intensities</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>signal</em>) – the intensitiy for each X-ray lines.</p></li>
 <li><p><strong>method</strong> (<em>{'CL'</em><em>, </em><em>'zeta'</em><em>, </em><em>'cross_section'}</em>) – Set the quantification method: Cliff-Lorimer, zeta-factor, or
 ionization cross sections.</p></li>
-<li><p><strong>factors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The list of kfactors, zeta-factors or cross sections in same order
+<li><p><strong>factors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The list of kfactors, zeta-factors or cross sections in same order
 as intensities. Note that intensities provided by Hyperspy are
 sorted by the alphabetical order of the X-ray lines.
 eg. factors =[0.982, 1.32, 1.60] for [‘Al_Ka’, ‘Cr_Ka’, ‘Ni_Ka’].</p></li>
 <li><p><strong>composition_units</strong> (<em>{'atomic'</em><em>, </em><em>'weight'}</em>) – The quantification returns the composition in ‘atomic’ percent by
 default, but can also return weight percent if specified.</p></li>
-<li><p><strong>absorption_correction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Specify whether or not an absorption correction should be applied.
+<li><p><strong>absorption_correction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Specify whether or not an absorption correction should be applied.
 ‘False’ by default so absorption will not be applied unless
 specfied.</p></li>
 <li><p><strong>take_off_angle</strong> (<em>{'auto'}</em>) – The angle between the sample surface and the vector along which
@@ -1795,20 +1795,20 @@ NB: Must be specified for ‘CL’ method. For ‘zeta’ or ‘cross_section’
 methods, first quantification step provides a mass_thickness
 internally during quantification.</p></li>
 <li><p><strong>convergence_criterion</strong> (<em>The convergence criterium defined as the percentage</em>) – difference between 2 successive iterations. 0.5% by default.</p></li>
-<li><p><strong>navigation_mask</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>signal</em>) – The navigation locations marked as True are not used in the
+<li><p><strong>navigation_mask</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>signal</em>) – The navigation locations marked as True are not used in the
 quantification. If float is given the vacuum_mask method is used to
 generate a mask with the float value as threhsold.
 Else provides a signal with the navigation shape. Only for the
 ‘Cliff-Lorimer’ method.</p></li>
-<li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If true, applied a morphologic closing to the mask obtained by
+<li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If true, applied a morphologic closing to the mask obtained by
 vacuum_mask.</p></li>
-<li><p><strong>plot_result</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, plot the calculated composition. If the current
+<li><p><strong>plot_result</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, plot the calculated composition. If the current
 object is a single spectrum it prints the result instead.</p></li>
 <li><p><strong>{'auto'}</strong> (<em>probe_area =</em>) – This allows the user to specify the probe_area for interaction with
 the sample needed specifically for the cross_section method of
 quantification. When left as ‘auto’ the pixel area is used,
 calculated from the navigation axes information.</p></li>
-<li><p><strong>max_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – An upper limit to the number of calculations for absorption correction.</p></li>
+<li><p><strong>max_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – An upper limit to the number of calculations for absorption correction.</p></li>
 <li><p><strong>kwargs</strong> – The extra keyword arguments are passed to plot.</p></li>
 </ul>
 </dd>
@@ -1853,19 +1853,19 @@ the values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>beam_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The energy of the electron beam in keV</p></li>
-<li><p><strong>live_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In seconds</p></li>
-<li><p><strong>tilt_stage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In degree</p></li>
-<li><p><strong>azimuth_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In degree</p></li>
-<li><p><strong>elevation_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In degree</p></li>
-<li><p><strong>energy_resolution_MnKa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In eV</p></li>
-<li><p><strong>beam_current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In nA</p></li>
-<li><p><strong>probe_area</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In nm²</p></li>
-<li><p><strong>real_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – In seconds</p></li>
-<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, display the user interface widgets. If False, return the
+<li><p><strong>beam_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The energy of the electron beam in keV</p></li>
+<li><p><strong>live_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In seconds</p></li>
+<li><p><strong>tilt_stage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In degree</p></li>
+<li><p><strong>azimuth_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In degree</p></li>
+<li><p><strong>elevation_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In degree</p></li>
+<li><p><strong>energy_resolution_MnKa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In eV</p></li>
+<li><p><strong>beam_current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In nA</p></li>
+<li><p><strong>probe_area</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In nm²</p></li>
+<li><p><strong>real_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – In seconds</p></li>
+<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, display the user interface widgets. If False, return the
 widgets container in a dictionary, usually for customisation or
 testing.</p></li>
-<li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
+<li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
 If string, only the widgets of the selected toolkit are displayed
 if available. If an interable of toolkit strings, the widgets of
 all listed toolkits are displayed or returned.</p></li>
@@ -1892,10 +1892,10 @@ all listed toolkits are displayed or returned.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – For a given pixel, maximum value in the energy axis below which the
+<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – For a given pixel, maximum value in the energy axis below which the
 pixel is considered as vacuum.</p></li>
-<li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If true, applied a morphologic closing to the mask</p></li>
-<li><p><strong>opnening</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If true, applied a morphologic opening to the mask</p></li>
+<li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If true, applied a morphologic closing to the mask</p></li>
+<li><p><strong>opnening</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If true, applied a morphologic opening to the mask</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1933,15 +1933,15 @@ pixel is considered as vacuum.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -1956,10 +1956,10 @@ energy range will be added automatically.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em> of </em><em>strings</em>) – The symbol of the elements. Note this input must always be
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> of </em><em>strings</em>) – The symbol of the elements. Note this input must always be
 in the form of a tuple. Meaning: add_elements((‘C’,)) will
 work, while add_elements((‘C’)) will NOT work.</p></li>
-<li><p><strong>include_pre_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, the ionization edges with an onset below the lower
+<li><p><strong>include_pre_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, the ionization edges with an onset below the lower
 energy limit of the SI will be included</p></li>
 </ul>
 </dd>
@@ -1971,7 +1971,7 @@ energy limit of the SI will be included</p></li>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – </p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – </p>
 </dd>
 </dl>
 </dd></dl>
@@ -1988,32 +1988,32 @@ is automatically correct if <cite>calibrate</cite> is True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>calibrate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, set the offset of the spectral axis so that the
+<li><p><strong>calibrate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, set the offset of the spectral axis so that the
 zero-loss peak is at position zero.</p></li>
-<li><p><strong>also_align</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>signals</em>) – A list containing other spectra of identical dimensions to
+<li><p><strong>also_align</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>signals</em>) – A list containing other spectra of identical dimensions to
 align using the shifts applied to the current spectrum.
 If <cite>calibrate</cite> is True, the calibration is also applied to
 the spectra in the list.</p></li>
-<li><p><strong>print_stats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, print summary statistics of the ZLP maximum before
+<li><p><strong>print_stats</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, print summary statistics of the ZLP maximum before
 the alignment.</p></li>
-<li><p><strong>subpixel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, perform the alignment with subpixel accuracy
+<li><p><strong>subpixel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, perform the alignment with subpixel accuracy
 using cross-correlation.</p></li>
 <li><p><strong>mask</strong> (<em>Signal1D</em><em> of </em><em>bool data type</em><em> or </em><em>bool array.</em>) – It must have signal_dimension = 0 and navigation_shape equal to
 the shape of the current signal. Where mask is True the shift is
 not computed and set to nan.</p></li>
-<li><p><strong>signal_range</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em> of </em><em>integers</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em> of </em><em>floats. Optional</em>) – Will only search for the ZLP within the signal_range. If given
+<li><p><strong>signal_range</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> of </em><em>integers</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> of </em><em>floats. Optional</em>) – Will only search for the ZLP within the signal_range. If given
 in integers, the range will be in index values. If given floats,
 the range will be in spectrum values. Useful if there are features
 in the spectrum which are more intense than the ZLP.
 Default is searching in the whole signal. Note that ROIs can be used
 in place of a tuple.</p></li>
-<li><p><strong>show_progressbar</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, display a progress bar. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default from
+<li><p><strong>show_progressbar</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, display a progress bar. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default from
 the preferences settings is used.</p></li>
-<li><p><strong>crop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True automatically crop the signal axis at both ends if needed.</p></li>
+<li><p><strong>crop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True automatically crop the signal axis at both ends if needed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2051,18 +2051,18 @@ more information read its docstring.</p>
 a low-loss EELS spectrum, and it will be used to simulate the
 effect of multiple scattering by convolving it with the EELS
 spectrum.</p></li>
-<li><p><strong>auto_background</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, and if spectrum is an EELS instance adds automatically
+<li><p><strong>auto_background</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, and if spectrum is an EELS instance adds automatically
 a powerlaw to the model and estimate the parameters by the
 two-area method.</p></li>
-<li><p><strong>auto_add_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, and if spectrum is an EELS instance, it will automatically
+<li><p><strong>auto_add_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, and if spectrum is an EELS instance, it will automatically
 add the ionization edges as defined in the
 <code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code> instance. Adding a new element to
 the spectrum using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">add_elements()</span></code>
 method automatically add the corresponding ionisation edges to the model.</p></li>
 <li><p><strong>GOS</strong> (<em>Generalized Oscillator Strength</em><em>, </em><em>availiable option in</em><em> [</em><em>'hydrogenic'</em><em>, </em><em>'dft'</em><em>, </em><em>'dirac'</em><em>, </em><em>'Hartree-Slater'</em><em>]</em><em>, </em><em>default is 'dft'</em>) – The GOS to use. Default is <code class="docutils literal notranslate"><span class="pre">'dft'</span></code>.</p></li>
-<li><p><strong>gos_file_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>None</em>) – Only with GOS=’dft’ or ‘dirac’. Specify the file path of the gosh file
+<li><p><strong>gos_file_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>None</em>) – Only with GOS=’dft’ or ‘dirac’. Specify the file path of the gosh file
 to use. If None, use the file from doi:10.5281/zenodo.7645765</p></li>
-<li><p><strong>dictionary</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – A dictionary to be used to recreate a model. Usually generated using
+<li><p><strong>dictionary</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – A dictionary to be used to recreate a model. Usually generated using
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">as_dictionary()</span></code></p></li>
 <li><p><strong>GOS</strong></p></li>
 </ul>
@@ -2074,7 +2074,7 @@ to use. If None, use the file from doi:10.5281/zenodo.7645765</p></li>
 <dd class="field-odd"><p><a class="reference internal" href="models.html#exspy.models.EELSModel" title="exspy.models.eelsmodel.EELSModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSModel</span></code></a> instance.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2087,15 +2087,15 @@ spectrum or within a provided energy window</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>energy</strong> (<em>'interactive'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – If it is ‘interactive’, a table with edges are shown and it depends
+<li><p><strong>energy</strong> (<em>'interactive'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – If it is ‘interactive’, a table with edges are shown and it depends
 on the energy range selected in the spectrum. If it is a float, a
 table with edges are shown and it depends on the energy window
 defined by energy +/- (width/2). The default is ‘interactive’.</p></li>
-<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Width of window, in eV, around energy in which to find nearby
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Width of window, in eV, around energy in which to find nearby
 energies, i.e. a value of 10 eV (the default) means to
 search +/- 5 eV. The default is 10.</p></li>
-<li><p><strong>only_major</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Whether to show only the major edges. The default is False.</p></li>
-<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Sort the edges, if ‘closest’, return in the order of energy
+<li><p><strong>only_major</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether to show only the major edges. The default is False.</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Sort the edges, if ‘closest’, return in the order of energy
 difference, if ‘ascending’, return in ascending order, similarly
 for ‘descending’. The default is ‘closest’.</p></li>
 </ul>
@@ -2118,13 +2118,13 @@ truncation of a EELS low-loss spectrum.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>threshold</strong> (<em>{Signal1D</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>int}</em>) – Truncation energy to estimate the intensity of the elastic
+<li><p><strong>threshold</strong> (<em>{Signal1D</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>int}</em>) – Truncation energy to estimate the intensity of the elastic
 scattering. The threshold can be provided as a signal of the same
 dimension as the input spectrum navigation space containing the
 threshold value in the energy units. Alternatively a constant
 threshold can be specified in energy/index units by passing
 float/int.</p></li>
-<li><p><strong>show_progressbar</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, display a progress bar. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default from
+<li><p><strong>show_progressbar</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, display a progress bar. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default from
 the preferences settings is used.</p></li>
 </ul>
 </dd>
@@ -2166,11 +2166,11 @@ spectral range the window value is returned instead.</p></li>
 automatically calculated as the minimum value that guarantees
 finding an inflexion point in all the spectra in given energy
 range.</p></li>
-<li><p><strong>window_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – If non zero performs order three Savitzky-Golay smoothing
+<li><p><strong>window_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – If non zero performs order three Savitzky-Golay smoothing
 to the data to avoid falling in local minima caused by
 the noise. It must be an odd integer.</p></li>
-<li><p><strong>polynomial_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Savitzky-Golay filter polynomial order.</p></li>
-<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Position from the zero-loss peak centre from where to start
+<li><p><strong>polynomial_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Savitzky-Golay filter polynomial order.</p></li>
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Position from the zero-loss peak centre from where to start
 looking for the inflexion point.</p></li>
 </ul>
 </dd>
@@ -2215,10 +2215,10 @@ the same dimension as the input spectrum navigation space
 containing the threshold value in the energy units.</p></li>
 <li><p><strong>zlp</strong> (<em>BaseSignal</em><em>, </em><em>optional</em>) – If not None the zero-loss peak intensity is calculated from the ZLP
 spectrum supplied by integration.</p></li>
-<li><p><strong>mean_free_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – The mean free path of the material in nanometers.
+<li><p><strong>mean_free_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – The mean free path of the material in nanometers.
 If not provided, the thickness
 is given relative to the mean free path.</p></li>
-<li><p><strong>density</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – The density of the material in g/cm**3. This is used to estimate the mean
+<li><p><strong>density</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – The density of the material in g/cm**3. This is used to estimate the mean
 free path when the mean free path is not known and to perform the
 angular corrections.</p></li>
 </ul>
@@ -2276,8 +2276,8 @@ Alternatively use <cite>estimate_shift1D</cite>.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>zlp</strong> (<a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><em>EELSSpectrum</em></a>) – The corresponding zero-loss peak.</p></li>
-<li><p><strong>add_zlp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, adds the ZLP to the deconvolved spectrum</p></li>
-<li><p><strong>crop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True crop the spectrum to leave out the channels that
+<li><p><strong>add_zlp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, adds the ZLP to the deconvolved spectrum</p></li>
+<li><p><strong>crop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True crop the spectrum to leave out the channels that
 have been modified to decay smoothly to zero at the sides
 of the spectrum.</p></li>
 </ul>
@@ -2286,7 +2286,7 @@ of the spectrum.</p></li>
 <dd class="field-even"><p>An EELSSpectrum containing the current data deconvolved.</p>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -2304,7 +2304,7 @@ amplification the result is convolved with a Gaussian function.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll</strong> (<a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><em>EELSSpectrum</em></a>) – The corresponding low-loss (ll) EELSSpectrum.</p></li>
-<li><p><strong>fwhm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><em>None</em>) – Full-width half-maximum of the Gaussian function by which
+<li><p><strong>fwhm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>None</em>) – Full-width half-maximum of the Gaussian function by which
 the result of the deconvolution is convolved. It can be
 used to select the final SNR and spectral resolution. If
 None, the FWHM of the zero-loss peak of the low-loss is
@@ -2312,12 +2312,12 @@ estimated and used.</p></li>
 <li><p><strong>threshold</strong> (<em>{None</em><em>, </em><em>float}</em>) – Truncation energy to estimate the intensity of the
 elastic scattering. If None the threshold is taken as the
 first minimum after the ZLP centre.</p></li>
-<li><p><strong>extrapolate_lowloss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True the signals are extrapolated using a power law,</p></li>
-<li><p><strong>extrapolate_coreloss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True the signals are extrapolated using a power law,</p></li>
+<li><p><strong>extrapolate_lowloss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True the signals are extrapolated using a power law,</p></li>
+<li><p><strong>extrapolate_coreloss</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True the signals are extrapolated using a power law,</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -2332,7 +2332,7 @@ Spectroscopy in the Electron Microscope. Springer-Verlag, 2011.</p>
 elements present in self.elements</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>include_pre_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, the ionization edges with an onset below the lower
+<dd class="field-odd"><p><strong>include_pre_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, the ionization edges with an onset below the lower
 energy limit of the SI will be included</p>
 </dd>
 </dl>
@@ -2347,8 +2347,8 @@ locations not marked as True (masked).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>zero_loss_peak_mask_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Width of the zero loss peak mask.</p></li>
-<li><p><strong>signal_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Restricts the operation to the signal locations not marked
+<li><p><strong>zero_loss_peak_mask_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Width of the zero loss peak mask.</p></li>
+<li><p><strong>signal_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Restricts the operation to the signal locations not marked
 as True (masked).</p></li>
 </ul>
 </dd>
@@ -2386,7 +2386,7 @@ of the same dimensions as the current signal containing the ZLP
 spectra for each location ii) a BaseSignal of signal dimension 0
 and navigation_dimension equal to the current signal containing the
 integrated ZLP intensity.</p></li>
-<li><p><strong>iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of the iterations for the internal loop to remove the
+<li><p><strong>iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of the iterations for the internal loop to remove the
 surface plasmon contribution. If 1 the surface plasmon contribution
 is not estimated and subtracted (the default is 1).</p></li>
 <li><p><strong>n</strong> (<em>{None</em><em>, </em><em>float}</em>) – The medium refractive index. Used for normalization of the
@@ -2398,10 +2398,10 @@ to obtain the energy loss function. It is only required when
 given by a number. Otherwise, it can be provided as a BaseSignal
 with signal dimension 0 and navigation_dimension equal to the
 current signal.</p></li>
-<li><p><strong>delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – A small number (0.1-0.5 eV) added to the energy axis in
+<li><p><strong>delta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – A small number (0.1-0.5 eV) added to the energy axis in
 specific steps of the calculation the surface loss correction to
 improve stability.</p></li>
-<li><p><strong>full_output</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, return a dictionary that contains the estimated
+<li><p><strong>full_output</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, return a dictionary that contains the estimated
 thickness if <cite>t</cite> is None and the estimated surface plasmon
 excitation and the spectrum corrected from surface plasmon
 excitations if <cite>iterations</cite> &gt; 1.</p></li>
@@ -2430,10 +2430,10 @@ excitation (only if <code class="docutils literal notranslate"><span class="pre"
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If both <cite>n</cite> and <cite>t</cite> are undefined (None).</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.12)"><strong>AttributeError</strong></a> – If the beam_energy or the collection semi-angle are not defined in
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If both <cite>n</cite> and <cite>t</cite> are undefined (None).</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.13)"><strong>AttributeError</strong></a> – If the beam_energy or the collection semi-angle are not defined in
     metadata.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p></li>
 </ul>
 </dd>
 </dl>
@@ -2460,12 +2460,12 @@ EELS edges can be added.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>plot_edges</strong> (<em>{False</em><em>, </em><em>True</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> of </em><em>string</em><em> or </em><em>string}</em>) – If True, draws on s.metadata.Sample.elements for edges.
+<li><p><strong>plot_edges</strong> (<em>{False</em><em>, </em><em>True</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>string</em><em> or </em><em>string}</em>) – If True, draws on s.metadata.Sample.elements for edges.
 Alternatively, provide a string of a single edge, or an iterable
 containing a list of valid elements, EELS families or edges. For
 example, an element should be ‘Zr’, an element edge family should
 be ‘Zr_L’ or an EELS edge ‘Zr_L3’.</p></li>
-<li><p><strong>only_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em> of </em><em>string</em>) – Either ‘Major’ or ‘Minor’. Defaults to both.</p></li>
+<li><p><strong>only_edges</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> of </em><em>string</em>) – Either ‘Major’ or ‘Minor’. Defaults to both.</p></li>
 <li><p><strong>kwargs</strong> – The extra keyword arguments for plot()</p></li>
 </ul>
 </dd>
@@ -2479,12 +2479,12 @@ be ‘Zr_L’ or an EELS edge ‘Zr_L3’.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>window_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The number of channels from the right side of the
+<li><p><strong>window_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The number of channels from the right side of the
 spectrum that are used to estimate the power law
 parameters.</p></li>
-<li><p><strong>extrapolation_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Size of the extrapolation in number of channels</p></li>
-<li><p><strong>add_noise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, add poissonian noise to the extrapolated spectrum.</p></li>
-<li><p><strong>fix_neg_r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, the negative values for the “components.PowerLaw”
+<li><p><strong>extrapolation_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Size of the extrapolation in number of channels</p></li>
+<li><p><strong>add_noise</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, add poissonian noise to the extrapolated spectrum.</p></li>
+<li><p><strong>fix_neg_r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, the negative values for the “components.PowerLaw”
 parameter r will be flagged and the extrapolation will be
 done with a constant zero-value.</p></li>
 </ul>
@@ -2503,12 +2503,12 @@ the given energy window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Energy to search, in eV</p></li>
-<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Width of window, in eV, around energy in which to find nearby
+<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Energy to search, in eV</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Width of window, in eV, around energy in which to find nearby
 energies, i.e. a value of 10 eV (the default) means to
 search +/- 5 eV. The default is 10.</p></li>
-<li><p><strong>only_major</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Whether to show only the major edges. The default is False.</p></li>
-<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Sort the edges, if ‘closest’, return in the order of energy
+<li><p><strong>only_major</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether to show only the major edges. The default is False.</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Sort the edges, if ‘closest’, return in the order of energy
 difference, if ‘ascending’, return in ascending order, similarly
 for ‘descending’. The default is ‘closest’.</p></li>
 <li><p><strong>edges</strong> (<em>iterable</em>) – A sequence of edges, if provided, it overrides energy, width,
@@ -2534,16 +2534,16 @@ means no binning and scale less than one results in up-sampling.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>new_shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> (of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>) or </em><em>None</em>) – For each dimension specify the new_shape. This will internally be
+<li><p><strong>new_shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> (of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>) or </em><em>None</em>) – For each dimension specify the new_shape. This will internally be
 converted into a <code class="docutils literal notranslate"><span class="pre">scale</span></code> parameter.</p></li>
-<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em> (of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>) or </em><em>None</em>) – For each dimension, specify the new:old pixel ratio, e.g. a ratio
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> (of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>) or </em><em>None</em>) – For each dimension, specify the new:old pixel ratio, e.g. a ratio
 of 1 is no binning and a ratio of 2 means that each pixel in the new
 spectrum is twice the size of the pixels in the old spectrum.
 The length of the list should match the dimension of the
 Signal’s underlying data array.
 <em>Note : Only one of ``scale`` or ``new_shape`` should be specified,
 otherwise the function will not run</em></p></li>
-<li><p><strong>crop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Whether or not to crop the resulting rebinned data (default is
+<li><p><strong>crop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Whether or not to crop the resulting rebinned data (default is
 <code class="docutils literal notranslate"><span class="pre">True</span></code>). When binning by a non-integer number of
 pixels it is likely that the final row in each dimension will
 contain fewer than the full quota to fill one pixel. For example,
@@ -2571,7 +2571,7 @@ returned.</p></li>
 <dd class="field-odd"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.1)"><em>BaseSignal</em></a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If trying to rebin over a non-uniform axis.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If trying to rebin over a non-uniform axis.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2631,16 +2631,16 @@ the spectrum by the given kernel.</p>
 <li><p><strong>psf</strong> (<a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><em>EELSSpectrum</em></a>) – It must have the same signal dimension as the current
 spectrum and a spatial dimension of 0 or the same as the
 current spectrum.</p></li>
-<li><p><strong>iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of iterations of the deconvolution. Note that
+<li><p><strong>iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of iterations of the deconvolution. Note that
 increasing the value will increase the noise amplification.</p></li>
-<li><p><strong>show_progressbar</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, display a progress bar. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default from
+<li><p><strong>show_progressbar</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, display a progress bar. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the default from
 the preferences settings is used.</p></li>
-<li><p><strong>num_workers</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Number of worker used by dask. If None, default
+<li><p><strong>num_workers</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of worker used by dask. If None, default
 to dask default value.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><strong>NotImplementedError</strong></a> – If the signal axis is a non-uniform axis.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -2688,10 +2688,10 @@ spikes removal.</p>
 as True (masked)</p></li>
 <li><p><strong>navigation_mask</strong> (<em>boolean array</em>) – Restricts the operation to the navigation locations not
 marked as True (masked).</p></li>
-<li><p><strong>zero_loss_peak_mask_width</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – If None, the zero loss peak is not masked, otherwise, use the
+<li><p><strong>zero_loss_peak_mask_width</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – If None, the zero loss peak is not masked, otherwise, use the
 provided value as width of the zero loss peak mask.
 Default is None.</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Keyword arguments pass to
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – Keyword arguments pass to
 <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.get_histogram" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_histogram()</span></code></a></p></li>
 </ul>
 </dd>
@@ -2711,31 +2711,31 @@ If non-interactive, it removes all spikes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>signal_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Restricts the operation to the signal locations not marked
+<li><p><strong>signal_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Restricts the operation to the signal locations not marked
 as True (masked).</p></li>
-<li><p><strong>navigation_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Restricts the operation to the navigation locations not marked
+<li><p><strong>navigation_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Restricts the operation to the navigation locations not marked
 as True (masked).</p></li>
 <li><p><strong>threshold</strong> (<code class="docutils literal notranslate"><span class="pre">'auto'</span></code> or int) – if <code class="docutils literal notranslate"><span class="pre">int</span></code> set the threshold value use for the detecting the spikes.
 If <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>, determine the threshold value as being the first zero
 value in the histogram obtained from the
 <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.spikes_diagnosis" title="(in HyperSpy v2.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">spikes_diagnosis()</span></code></a>
 method.</p></li>
-<li><p><strong>zero_loss_peak_mask_width</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – If None, the zero loss peak is not masked, otherwise, use the
+<li><p><strong>zero_loss_peak_mask_width</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – If None, the zero loss peak is not masked, otherwise, use the
 provided value as width of the zero loss peak mask.
 Default is None.</p></li>
-<li><p><strong>interactive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, remove the spikes using the graphical user interface.
+<li><p><strong>interactive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, remove the spikes using the graphical user interface.
 If False, remove all the spikes automatically, which can
 introduce artefacts if used with signal containing peak-like
 features. However, this can be mitigated by using the
 <code class="docutils literal notranslate"><span class="pre">signal_mask</span></code> argument to mask the signal of interest.</p></li>
-<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, display the user interface widgets. If False, return the
+<li><p><strong>display</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, display the user interface widgets. If False, return the
 widgets container in a dictionary, usually for customisation or
 testing.</p></li>
-<li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
+<li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
 If string, only the widgets of the selected toolkit are displayed
 if available. If an interable of toolkit strings, the widgets of
 all listed toolkits are displayed or returned.</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Keyword arguments pass to <code class="docutils literal notranslate"><span class="pre">SpikesRemoval</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – Keyword arguments pass to <code class="docutils literal notranslate"><span class="pre">SpikesRemoval</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -2752,13 +2752,13 @@ all listed toolkits are displayed or returned.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – For a given navigation coordinate, mean value in the energy axis
+<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – For a given navigation coordinate, mean value in the energy axis
 below which the pixel is considered as vacuum.</p></li>
-<li><p><strong>start_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>None</em>) – Minimum energy included in the calculation of the mean intensity.
+<li><p><strong>start_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>None</em>) – Minimum energy included in the calculation of the mean intensity.
 If None, consider only the last quarter of the spectrum to
 calculate the mask.</p></li>
-<li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, a morphological closing is applied to the mask.</p></li>
-<li><p><strong>opening</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – If True, a morphological opening is applied to the mask.</p></li>
+<li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, a morphological closing is applied to the mask.</p></li>
+<li><p><strong>opening</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, a morphological opening is applied to the mask.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -2791,15 +2791,15 @@ The computation is delayed until explicitly requested.</p>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -2826,15 +2826,15 @@ The computation is delayed until explicitly requested.</p>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -2861,15 +2861,15 @@ The computation is delayed until explicitly requested.</p>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -2896,15 +2896,15 @@ The computation is delayed until explicitly requested.</p>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>
@@ -2931,15 +2931,15 @@ The computation is delayed until explicitly requested.</p>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary whose items are stored as attributes.</p></li>
+<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute.
 Some parameters might be mandatory in some cases.</p></li>
-<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
+<li><p><strong>original_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary containing a set of parameters
 that will to stores in the <code class="docutils literal notranslate"><span class="pre">original_metadata</span></code> attribute. It
 typically contains all the parameters that has been
 imported from the original data file.</p></li>
-<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
+<li><p><strong>ragged</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Define whether the signal is ragged or not. Overwrite the
 <code class="docutils literal notranslate"><span class="pre">ragged</span></code> value in the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary. If None, it does
 nothing. Default is None.</p></li>
 </ul>

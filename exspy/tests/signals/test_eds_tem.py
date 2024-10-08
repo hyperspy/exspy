@@ -21,6 +21,7 @@ import warnings
 import numpy as np
 import pytest
 
+import hyperspy.api as hs
 from hyperspy.components1d import Gaussian
 from hyperspy.decorators import lazifyTestClass
 
@@ -599,6 +600,29 @@ class Test_simple_model:
             [5e4, 5e4],
             rtol=0.03,
         )
+
+    def test_outside_range_background_windows(self):
+        s = self.signal
+        bw = s.estimate_background_windows()
+        with pytest.raises(ValueError):
+            s.isig[2.0:].plot(True, background_windows=bw)
+
+
+def test_plot_windows():
+    s = exspy.data.EDS_TEM_FePt_nanoparticles()
+
+    rng = np.random.default_rng()
+
+    [s * v * 10 for v in rng.random((10))]
+
+    s = hs.stack([s * v * 10 for v in rng.random((10))])
+    s = hs.stack([s * v * 10 for v in rng.random((5))])
+
+    bw = s.estimate_background_windows(line_width=[5.0, 2.0])
+    iw = s.estimate_integration_windows(windows_width=3)
+
+    s.plot(True, background_windows=bw, integration_windows=iw)
+    s.axes_manager.indices = (1, 2)
 
 
 def test_with_signals_examples():

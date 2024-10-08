@@ -987,7 +987,7 @@ class EDSSpectrum(Signal1D):
             self.add_xray_lines_markers(xray_lines, render_figure=False)
             if background_windows is not None:
                 self._add_background_windows_markers(
-                    background_windows, render_figure=False
+                    background_windows, linestyles="--", render_figure=False
                 )
             if integration_windows is not None:
                 if integration_windows == "auto":
@@ -997,7 +997,7 @@ class EDSSpectrum(Signal1D):
                         windows_width=integration_windows, xray_lines=xray_lines
                     )
                 self._add_vertical_lines_groups(
-                    integration_windows, linestyle="--", render_figure=False
+                    integration_windows, render_figure=False
                 )
         # Render figure only at the end
         if render_figure:
@@ -1012,16 +1012,22 @@ class EDSSpectrum(Signal1D):
         position: 2D array of float
             The position on the signal axis. Each row corresponds to a
             group.
-        kwargs
+        **kwargs : dict
             keywords argument for :class:`hyperspy.api.plot.markers.VerticalLine`
         """
-        colors = itertools.cycle(
+        position = np.array(position)
+        length = position.shape[1]
+        colors_cycle = itertools.cycle(
             np.sort(plt.rcParams["axes.prop_cycle"].by_key()["color"])
         )
+        colors = np.array(
+            [[c] * length for c, w in zip(colors_cycle, position)]
+        ).flatten()
 
-        for x, color in zip(position, colors):
-            line = hs.plot.markers.VerticalLines(offsets=x, color=color, **kwargs)
-            self.add_marker(line, render_figure=False)
+        line = hs.plot.markers.VerticalLines(
+            offsets=position.flatten(), color=colors, **kwargs
+        )
+        self.add_marker(line, render_figure=False)
         if render_figure:
             self._render_figure(plot=["signal_plot"])
 
@@ -1102,7 +1108,9 @@ class EDSSpectrum(Signal1D):
         if render_figure:
             self._render_figure(plot=["signal_plot"])
 
-    def _add_background_windows_markers(self, windows_position, render_figure=True):
+    def _add_background_windows_markers(
+        self, windows_position, render_figure=True, **kwargs
+    ):
         """
         Plot the background windows associated with each X-ray lines.
 
@@ -1121,25 +1129,50 @@ class EDSSpectrum(Signal1D):
         --------
         estimate_background_windows, get_lines_intensity
         """
-        self._add_vertical_lines_groups(windows_position)
-        ax = self.axes_manager.signal_axes[0]
-        segments = []
-        for bw in windows_position:
-            # TODO: test to prevent slicing bug. To be removed when fixed
-            if ax.value2index(bw[0]) == ax.value2index(bw[1]):
-                y1 = self.isig[bw[0]].data
-            else:
-                y1 = self.isig[bw[0] : bw[1]].mean(-1).data
-            if ax.value2index(bw[2]) == ax.value2index(bw[3]):
-                y2 = self.isig[bw[2]].data
-            else:
-                y2 = self.isig[bw[2] : bw[3]].mean(-1).data
-            x1 = (bw[0] + bw[1]) / 2.0
-            x2 = (bw[2] + bw[3]) / 2.0
-            segments.append([[x1, y1[0]], [x2, y2[0]]])
-        segments = np.array(segments)
-        lines = hs.plot.markers.Lines(segments=segments, color="black")
+        self._add_vertical_lines_groups(windows_position, **kwargs)
+
+        # Calculate the start and end of segments for each window
+        # nav_dim + (number of x-ray lines, vertices positions)
+        # vertices positions are (x0, y0), (x1, x2)
+        segments_ = np.zeros(
+            self.axes_manager.navigation_shape + (len(windows_position), 2, 2)
+        )
+
+        for i, bw in enumerate(windows_position):
+            # Check that all background windows are within the energy range
+            if any(v < self.axes_manager[-1].low_value for v in bw) or any(
+                v > self.axes_manager[-1].high_value for v in bw
+            ):
+                raise ValueError("Background windows is outside of the signal range.")
+
+            # calculate the position of the segments
+            y0 = self.isig[bw[0] : bw[1]].mean(-1).data
+            y1 = self.isig[bw[2] : bw[3]].mean(-1).data
+            x0 = (bw[0] + bw[1]) / 2.0
+            x1 = (bw[2] + bw[3]) / 2.0
+
+            segments_[..., i, 0, 0] = x0
+            segments_[..., i, 0, 1] = y0.T
+            segments_[..., i, 1, 0] = x1
+            segments_[..., i, 1, 1] = y1.T
+
+        # convert to ragged array to comply with requirement for
+        # navigation position dependent markers
+        # 2000 x 2000 navigation shape takes ~2s
+        # 1000 x 1000 navigation shape takes ~0.5s
+        # 500 x 500 navigation shape takes ~0.01s
+        segments = np.empty(self.axes_manager.navigation_shape, dtype=object)
+        for i in np.ndindex(self.axes_manager.navigation_shape):
+            segments[i] = segments_[i]
+
+        colors_cycle = itertools.cycle(
+            np.sort(plt.rcParams["axes.prop_cycle"].by_key()["color"])
+        )
+        colors = np.array([c for c, w in zip(colors_cycle, windows_position)]).flatten()
+
+        lines = hs.plot.markers.Lines(segments=segments, color=colors, **kwargs)
         self.add_marker(lines, render_figure=False)
+
         if render_figure:
             self._render_figure(plot=["signal_plot"])
 

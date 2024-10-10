@@ -1,1 +1,0 @@
-Mention source of :attr:`~exspy.material.elements` database in docstring

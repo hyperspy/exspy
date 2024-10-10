@@ -9,6 +9,43 @@ https://exspy.readthedocs.io/en/latest/changes.html
 
 .. towncrier release notes start
 
+0.3 (2024-10-11)
+================
+
+New features
+------------
+
+- Support for `Dirac GOS <https://zenodo.org/records/12800856>`_ in the gosh format for EELS quantification, which includes the relativistic effects (e.g. spin-orbit coupling) based on Dirac equation. (`#72 <https://github.com/hyperspy/exspy/issues/72>`_)
+
+
+Enhancements
+------------
+
+- Make ``numexpr`` an optional dependency to allow installation in pyodide. (`#80 <https://github.com/hyperspy/exspy/issues/80>`_)
+- Mention source of :attr:`~exspy.material.elements` database in docstring (`#87 <https://github.com/hyperspy/exspy/issues/87>`_)
+
+
+Bug Fixes
+---------
+
+- Add back functionalities, which were unintentionally removed from public API when splitting from hyperspy in :mod:`exspy.utils.eds`, :mod:`exspy.utils.eels` and :mod:`exspy.material`. (`#59 <https://github.com/hyperspy/exspy/issues/59>`_)
+- :meth:`exspy.models.EDSModel.fit_background` fixes:
+
+  - fix error when using linear fitting,
+  - fix resetting signal range after fitting background,
+  - suspend plot when fitting background. (`#76 <https://github.com/hyperspy/exspy/issues/76>`_)
+- Plot background and integration windows fixes and improvements:
+
+  - fix plotting windows with navigation dimension >=2,
+  - raise improved error message when windows are out of the range of the signal, (`#86 <https://github.com/hyperspy/exspy/issues/86>`_)
+
+
+Improved Documentation
+----------------------
+
+- Fix examples in user guide, which needed to be updated after the split from hyperspy. (`#59 <https://github.com/hyperspy/exspy/issues/59>`_)
+
+
 0.2.1 (2024-07-12)
 ==================
 

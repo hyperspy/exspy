@@ -1,0 +1,1 @@
+Fix preferences import when using Hartree-Slater GOS and re-introduce undocumented import used by ``atomap``.

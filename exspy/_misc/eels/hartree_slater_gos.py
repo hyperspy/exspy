@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 from scipy import constants
 
-from hyperspy.defaults_parser import preferences
+from exspy._defaults_parser import preferences
 from exspy._misc.eels.base_gos import TabulatedGOS
 
 

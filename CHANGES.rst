@@ -9,6 +9,15 @@ https://exspy.readthedocs.io/en/latest/changes.html
 
 .. towncrier release notes start
 
+0.3.1 (2024-10-16)
+==================
+
+Bug Fixes
+---------
+
+- Fix preferences import when using Hartree-Slater GOS and re-introduce undocumented import used by ``atomap``. (`#90 <https://github.com/hyperspy/exspy/issues/90>`_)
+
+
 0.3 (2024-10-11)
 ================
 

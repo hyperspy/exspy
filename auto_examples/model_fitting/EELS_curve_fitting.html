@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -54,6 +57,7 @@
     <link rel="prev" title="Plot Residual" href="plot_residual.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -69,19 +73,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -89,7 +82,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -97,8 +89,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -132,7 +124,7 @@
     
     
     <img src="../../_static/exspy-banner-light.svg" class="logo__image only-light" alt="eXSpy"/>
-    <script>document.write(`<img src="../../_static/exspy-banner-dark.svg" class="logo__image only-dark" alt="eXSpy"/>`);</script>
+    <img src="../../_static/exspy-banner-dark.svg" class="logo__image only-dark pst-js-only" alt="eXSpy"/>
   
   
 </a></div>
@@ -199,29 +191,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -258,15 +242,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -285,7 +265,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -353,15 +334,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -434,8 +411,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -450,7 +425,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Model fitting</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">EELS curve fitting</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">EELS curve fitting</span></li>
   </ul>
 </nav>
 </div>
@@ -477,66 +452,65 @@ to download the full example code.</p>
 <p>Performs curve fitting to an EELS spectrum, plots the result and saves it as
 png file.</p>
 <img src="../../_images/sphx_glr_EELS_curve_fitting_001.png" srcset="../../_images/sphx_glr_EELS_curve_fitting_001.png" alt="coreloss_spectrum Signal" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-  0%|                                      | 18.4k/42.3M [00:00&lt;04:21, 162kB/s]
-  0%|                                      | 52.2k/42.3M [00:00&lt;02:53, 243kB/s]
-  0%|                                       | 125k/42.3M [00:00&lt;01:38, 427kB/s]
-  1%|▎                                      | 296k/42.3M [00:00&lt;00:48, 860kB/s]
-  1%|▌                                     | 608k/42.3M [00:00&lt;00:26, 1.55MB/s]
-  3%|█                                    | 1.25M/42.3M [00:00&lt;00:13, 2.96MB/s]
-  6%|██▏                                  | 2.52M/42.3M [00:00&lt;00:06, 5.69MB/s]
- 11%|████▏                                | 4.83M/42.3M [00:00&lt;00:03, 10.4MB/s]
- 16%|█████▉                               | 6.82M/42.3M [00:01&lt;00:02, 12.7MB/s]
- 21%|███████▊                             | 9.00M/42.3M [00:01&lt;00:02, 14.8MB/s]
- 26%|█████████▋                           | 11.1M/42.3M [00:01&lt;00:01, 15.9MB/s]
- 31%|███████████▌                         | 13.2M/42.3M [00:01&lt;00:01, 16.9MB/s]
- 36%|█████████████▍                       | 15.3M/42.3M [00:01&lt;00:01, 17.4MB/s]
- 41%|███████████████▎                     | 17.5M/42.3M [00:01&lt;00:01, 18.0MB/s]
- 46%|█████████████████▏                   | 19.6M/42.3M [00:01&lt;00:01, 18.3MB/s]
- 53%|███████████████████▌                 | 22.4M/42.3M [00:01&lt;00:00, 20.2MB/s]
- 59%|█████████████████████▊               | 24.9M/42.3M [00:01&lt;00:00, 20.9MB/s]
- 64%|███████████████████████▊             | 27.2M/42.3M [00:02&lt;00:00, 21.0MB/s]
- 71%|██████████████████████████           | 29.8M/42.3M [00:02&lt;00:00, 21.6MB/s]
- 77%|████████████████████████████▍        | 32.4M/42.3M [00:02&lt;00:00, 22.1MB/s]
- 83%|██████████████████████████████▌      | 34.9M/42.3M [00:02&lt;00:00, 22.1MB/s]
- 89%|████████████████████████████████▊    | 37.5M/42.3M [00:02&lt;00:00, 22.3MB/s]
- 95%|███████████████████████████████████  | 40.1M/42.3M [00:02&lt;00:00, 22.6MB/s]
+  0%|                                     | 12.3k/42.3M [00:00&lt;07:17, 96.7kB/s]
+  0%|                                      | 44.0k/42.3M [00:00&lt;03:31, 200kB/s]
+  0%|                                      | 86.0k/42.3M [00:00&lt;02:32, 276kB/s]
+  0%|▏                                      | 211k/42.3M [00:00&lt;01:10, 598kB/s]
+  1%|▍                                     | 447k/42.3M [00:00&lt;00:36, 1.13MB/s]
+  2%|▊                                     | 922k/42.3M [00:00&lt;00:19, 2.17MB/s]
+  4%|█▋                                   | 1.89M/42.3M [00:00&lt;00:09, 4.24MB/s]
+  9%|███▎                                 | 3.80M/42.3M [00:00&lt;00:04, 8.27MB/s]
+ 16%|█████▉                               | 6.82M/42.3M [00:01&lt;00:02, 14.0MB/s]
+ 22%|████████▎                            | 9.51M/42.3M [00:01&lt;00:01, 17.0MB/s]
+ 28%|██████████▎                          | 11.8M/42.3M [00:01&lt;00:01, 18.2MB/s]
+ 34%|████████████▋                        | 14.5M/42.3M [00:01&lt;00:01, 19.8MB/s]
+ 41%|███████████████▏                     | 17.3M/42.3M [00:01&lt;00:01, 21.3MB/s]
+ 47%|█████████████████▍                   | 20.0M/42.3M [00:01&lt;00:01, 22.0MB/s]
+ 53%|███████████████████▊                 | 22.6M/42.3M [00:01&lt;00:00, 22.4MB/s]
+ 60%|██████████████████████▏              | 25.4M/42.3M [00:01&lt;00:00, 23.1MB/s]
+ 67%|████████████████████████▌            | 28.1M/42.3M [00:01&lt;00:00, 23.4MB/s]
+ 73%|██████████████████████████▉          | 30.8M/42.3M [00:02&lt;00:00, 23.5MB/s]
+ 80%|█████████████████████████████▍       | 33.6M/42.3M [00:02&lt;00:00, 24.0MB/s]
+ 86%|███████████████████████████████▉     | 36.5M/42.3M [00:02&lt;00:00, 24.1MB/s]
+ 93%|██████████████████████████████████▎  | 39.2M/42.3M [00:02&lt;00:00, 24.2MB/s]
+ 99%|████████████████████████████████████▋| 41.9M/42.3M [00:02&lt;00:00, 24.2MB/s]
   0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 180GB/s]
+100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 252GB/s]
 
   0%|                                              | 0.00/66.1M [00:00&lt;?, ?B/s]
-  0%|                                      | 14.3k/66.1M [00:00&lt;08:44, 126kB/s]
-  0%|                                      | 44.0k/66.1M [00:00&lt;04:59, 221kB/s]
-  0%|                                       | 114k/66.1M [00:00&lt;02:41, 408kB/s]
-  0%|▏                                      | 253k/66.1M [00:00&lt;01:28, 742kB/s]
-  1%|▎                                     | 525k/66.1M [00:00&lt;00:48, 1.35MB/s]
-  2%|▌                                    | 1.06M/66.1M [00:00&lt;00:25, 2.53MB/s]
-  3%|█▏                                   | 2.16M/66.1M [00:00&lt;00:13, 4.90MB/s]
-  7%|██▍                                  | 4.35M/66.1M [00:00&lt;00:06, 9.55MB/s]
- 10%|███▌                                 | 6.40M/66.1M [00:01&lt;00:04, 12.2MB/s]
- 13%|████▊                                | 8.67M/66.1M [00:01&lt;00:03, 14.7MB/s]
- 17%|██████▏                              | 11.1M/66.1M [00:01&lt;00:03, 16.8MB/s]
- 20%|███████▌                             | 13.5M/66.1M [00:01&lt;00:02, 18.1MB/s]
- 24%|█████████                            | 16.1M/66.1M [00:01&lt;00:02, 19.6MB/s]
- 28%|██████████▍                          | 18.6M/66.1M [00:01&lt;00:02, 20.3MB/s]
- 32%|███████████▊                         | 21.1M/66.1M [00:01&lt;00:02, 21.0MB/s]
- 36%|█████████████▏                       | 23.6M/66.1M [00:01&lt;00:01, 21.3MB/s]
- 40%|██████████████▋                      | 26.1M/66.1M [00:01&lt;00:01, 21.7MB/s]
- 43%|████████████████                     | 28.6M/66.1M [00:02&lt;00:01, 21.8MB/s]
- 47%|█████████████████▍                   | 31.2M/66.1M [00:02&lt;00:01, 22.1MB/s]
- 51%|██████████████████▊                  | 33.7M/66.1M [00:02&lt;00:01, 22.1MB/s]
- 55%|████████████████████▎                | 36.2M/66.1M [00:02&lt;00:01, 22.3MB/s]
- 59%|█████████████████████▋               | 38.8M/66.1M [00:02&lt;00:01, 22.3MB/s]
- 63%|███████████████████████▍             | 41.9M/66.1M [00:02&lt;00:01, 24.0MB/s]
- 68%|████████████████████████▉            | 44.6M/66.1M [00:02&lt;00:00, 24.1MB/s]
- 72%|██████████████████████████▍          | 47.3M/66.1M [00:02&lt;00:00, 24.0MB/s]
- 76%|████████████████████████████▏        | 50.3M/66.1M [00:02&lt;00:00, 24.6MB/s]
- 80%|█████████████████████████████▋       | 53.1M/66.1M [00:03&lt;00:00, 24.9MB/s]
- 85%|███████████████████████████████▎     | 56.0M/66.1M [00:03&lt;00:00, 23.9MB/s]
- 89%|████████████████████████████████▉    | 58.8M/66.1M [00:03&lt;00:00, 24.2MB/s]
- 93%|██████████████████████████████████▎  | 61.2M/66.1M [00:03&lt;00:00, 23.3MB/s]
- 96%|███████████████████████████████████▋ | 63.7M/66.1M [00:03&lt;00:00, 23.2MB/s]
+  0%|                                     | 12.3k/66.1M [00:00&lt;11:11, 98.4kB/s]
+  0%|                                      | 56.3k/66.1M [00:00&lt;04:10, 264kB/s]
+  0%|                                       | 135k/66.1M [00:00&lt;02:23, 460kB/s]
+  0%|▏                                      | 296k/66.1M [00:00&lt;01:18, 839kB/s]
+  1%|▎                                     | 610k/66.1M [00:00&lt;00:42, 1.54MB/s]
+  2%|▋                                    | 1.25M/66.1M [00:00&lt;00:22, 2.94MB/s]
+  4%|█▍                                   | 2.52M/66.1M [00:00&lt;00:11, 5.69MB/s]
+  8%|██▊                                  | 5.07M/66.1M [00:00&lt;00:05, 11.1MB/s]
+ 12%|████▍                                | 7.89M/66.1M [00:01&lt;00:03, 15.5MB/s]
+ 16%|█████▊                               | 10.3M/66.1M [00:01&lt;00:03, 17.4MB/s]
+ 19%|███████▏                             | 12.9M/66.1M [00:01&lt;00:02, 19.0MB/s]
+ 24%|████████▋                            | 15.5M/66.1M [00:01&lt;00:02, 20.5MB/s]
+ 27%|██████████                           | 18.0M/66.1M [00:01&lt;00:02, 20.8MB/s]
+ 31%|███████████▍                         | 20.5M/66.1M [00:01&lt;00:02, 21.4MB/s]
+ 35%|████████████▉                        | 23.1M/66.1M [00:01&lt;00:01, 22.0MB/s]
+ 39%|██████████████▍                      | 25.7M/66.1M [00:01&lt;00:01, 22.3MB/s]
+ 43%|███████████████▊                     | 28.2M/66.1M [00:01&lt;00:01, 22.4MB/s]
+ 47%|█████████████████▎                   | 30.8M/66.1M [00:02&lt;00:01, 22.6MB/s]
+ 51%|██████████████████▋                  | 33.4M/66.1M [00:02&lt;00:01, 22.8MB/s]
+ 54%|████████████████████▏                | 36.0M/66.1M [00:02&lt;00:01, 22.8MB/s]
+ 58%|█████████████████████▌               | 38.6M/66.1M [00:02&lt;00:01, 22.8MB/s]
+ 62%|███████████████████████              | 41.1M/66.1M [00:02&lt;00:01, 22.9MB/s]
+ 66%|████████████████████████▍            | 43.7M/66.1M [00:02&lt;00:00, 23.0MB/s]
+ 70%|█████████████████████████▉           | 46.4M/66.1M [00:02&lt;00:00, 23.1MB/s]
+ 74%|███████████████████████████▍         | 49.0M/66.1M [00:02&lt;00:00, 23.2MB/s]
+ 78%|████████████████████████████▉        | 51.6M/66.1M [00:02&lt;00:00, 23.2MB/s]
+ 82%|██████████████████████████████▎      | 54.3M/66.1M [00:03&lt;00:00, 23.4MB/s]
+ 86%|███████████████████████████████▊     | 56.9M/66.1M [00:03&lt;00:00, 23.3MB/s]
+ 90%|█████████████████████████████████▎   | 59.5M/66.1M [00:03&lt;00:00, 23.5MB/s]
+ 94%|██████████████████████████████████▊  | 62.1M/66.1M [00:03&lt;00:00, 23.4MB/s]
+ 98%|████████████████████████████████████▎| 64.8M/66.1M [00:03&lt;00:00, 23.5MB/s]
   0%|                                              | 0.00/66.1M [00:00&lt;?, ?B/s]
-100%|██████████████████████████████████████| 66.1M/66.1M [00:00&lt;00:00, 441GB/s]
+100%|██████████████████████████████████████| 66.1M/66.1M [00:00&lt;00:00, 286GB/s]
 </pre></div>
 </div>
 <div class="line-block">
@@ -564,7 +538,7 @@ png file.</p>
 <a href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D.plot" title="hyperspy.models.model1d.Model1D.plot" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 17.175 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 17.367 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-model-fitting-eels-curve-fitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/037b5aa4752b41748abf69bba9d1cbe4/EELS_curve_fitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">EELS_curve_fitting.ipynb</span></code></a></p>
@@ -614,7 +588,8 @@ png file.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -639,8 +614,8 @@ png file.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -673,7 +648,7 @@ png file.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
 </p></div>
       
     </div>

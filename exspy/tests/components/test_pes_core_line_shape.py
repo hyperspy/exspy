@@ -24,37 +24,13 @@ import hyperspy.api as hs
 from exspy.components import PESCoreLineShape
 
 
-def test_PESCoreLineShape():
+@pytest.mark.parametrize("shirley", (False, True))
+def test_PESCoreLineShape(shirley):
     core_line = PESCoreLineShape(A=10, FWHM=1.5, origin=0.5)
-    x = np.linspace(-5, 15, 10)
-    np.testing.assert_allclose(
-        core_line.function(x),
-        np.array(
-            [
-                8.97054744e-04,
-                0.365234208,
-                7.09463858,
-                6.57499512,
-                0.290714653,
-                6.13260141e-04,
-                6.17204216e-08,
-                2.96359844e-13,
-                6.78916184e-20,
-                7.42026292e-28,
-            ]
-        ),
-    )
-    assert core_line._position is core_line.origin
-
-
-def test_PESCoreLineShape_shirley():
-    core_line = PESCoreLineShape(A=10, FWHM=1.5, origin=0.5)
-    core_line.Shirley = True
-    core_line.shirley.value = 0.01
-    x = np.linspace(-5, 15, 10)
-    np.testing.assert_allclose(
-        core_line.function(x),
-        np.array(
+    if shirley:
+        core_line.Shirley = True
+        core_line.shirley.value = 0.01
+        ref_array = np.array(
             [
                 0.144159014,
                 0.504843825,
@@ -67,8 +43,31 @@ def test_PESCoreLineShape_shirley():
                 6.78916184e-20,
                 7.42026292e-28,
             ]
-        ),
-    )
+        )
+    else:
+        ref_array = np.array(
+            [
+                8.97054744e-04,
+                0.365234208,
+                7.09463858,
+                6.57499512,
+                0.290714653,
+                6.13260141e-04,
+                6.17204216e-08,
+                2.96359844e-13,
+                6.78916184e-20,
+                7.42026292e-28,
+            ]
+        )
+    x = np.linspace(-5, 15, 10)
+    s = hs.signals.Signal1D(np.arange(len(x)))
+    np.testing.assert_allclose(core_line.function(x), ref_array)
+    assert core_line._position is core_line.origin
+
+    core_line._axes_manager = s.axes_manager
+    core_line._create_arrays()
+    for parameter_ in core_line.parameters:
+        parameter_.assign_current_value_to_all()
     np.testing.assert_allclose(core_line.function(x), core_line.function_nd(x))
 
 
@@ -113,10 +112,8 @@ def test_PESCoreLineShape_function_nd(Shirley):
     # Manually set to test function_nd
     core_line._axes_manager = s.axes_manager
     core_line._create_arrays()
-    core_line.A.map["values"] = [A] * 2
-    core_line.FWHM.map["values"] = [FWHM] * 2
-    core_line.origin.map["values"] = [origin] * 2
-    core_line.shirley.map["values"] = [core_line.shirley.value] * 2
+    for parameter_ in core_line.parameters:
+        parameter_.assign_current_value_to_all()
 
     values = core_line.function_nd(x)
     assert values.shape == (2, len(x))

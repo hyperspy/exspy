@@ -126,6 +126,8 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10,)):
     zero_loss = hs.model.components1D.Gaussian(A=500, centre=0, sigma=0.8)
     plasmon = hs.model.components1D.Gaussian(A=100, centre=15, sigma=20)
 
+    data = np.broadcast_to(zero_loss.function(x), navigation_shape[::-1] + x.shape)
+
     if navigation_shape:
         s = hs.signals.Signal1D(np.ones(navigation_shape[::-1] + x.shape))
         plasmon._axes_manager = s.axes_manager
@@ -143,8 +145,9 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10,)):
         )
         plasmon.sigma.map["is_set"][:] = True
 
-    data = np.broadcast_to(zero_loss.function(x), navigation_shape[::-1] + x.shape)
-    data = data + plasmon.function_nd(x)
+        data = data + plasmon.function_nd(x)
+    else:
+        data = data + plasmon.function(x)
 
     if add_noise:
         data = data + random_state.uniform(size=len(x))

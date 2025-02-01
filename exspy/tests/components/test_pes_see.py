@@ -27,6 +27,7 @@ from exspy.components import SEE
 def test_see():
     see = SEE(A=10, Phi=1.5, B=0.5)
     x = np.linspace(-5, 15, 10)
+    s = hs.signals.Signal1D(np.arange(len(x)))
     np.testing.assert_allclose(
         see.function(x),
         np.array(
@@ -44,6 +45,10 @@ def test_see():
             ]
         ),
     )
+    see._axes_manager = s.axes_manager
+    see._create_arrays()
+    for parameter_ in see.parameters:
+        parameter_.assign_current_value_to_all()
     np.testing.assert_allclose(see.function(x), see.function_nd(x))
 
     _ = SEE(A=10, Phi=1.5, B=0.5, sigma=0)

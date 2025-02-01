@@ -57,6 +57,7 @@ class TestDoublePowerLaw:
         m[0].A.value = 1000
         m[0].r.value = 4
         m[0].ratio.value = 200
+        m.assign_current_values_to_all()
         self.m = m
 
     @pytest.mark.parametrize(("binned"), (True, False))

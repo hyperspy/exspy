@@ -73,7 +73,10 @@ file = "LICENSE"
   # unpin when sphinxcontrib-towncrier support more recent version to towncrier
   "towncrier<24",
 ]
-"speed" = ["numexpr"]
+speed = [
+    "numba>=0.53",
+    "numexpr>=2.8",
+]
 "tests" = [
   "pytest     >= 5.0",
   "pytest-mpl",

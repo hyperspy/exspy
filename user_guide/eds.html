@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,10 +27,10 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -391,9 +391,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -458,8 +463,8 @@ spectrum (SEM or TEM).</p>
 <a class="reference internal" href="bibliography.html#burdet2013"><span class="std std-ref">[Burdet2013]</span></a>,
 and can be downloaded using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#Download the data (130MB)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlretrieve</span><span class="p">,</span> <span class="n">urlopen</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">urllib.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlretrieve</span><span class="p">,</span> <span class="n">urlopen</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">zipfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">ZipFile</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://www.dropbox.com/s/s7cx92mfh2zvt3x/&quot;</span>
 <span class="gp">... </span>                    <span class="s2">&quot;HyperSpy_demos_EDX_SEM_files.zip?raw=1&quot;</span><span class="p">,</span>
 <span class="gp">... </span>                    <span class="s2">&quot;./HyperSpy_demos_EDX_SEM_files.zip&quot;</span><span class="p">)</span>
@@ -472,7 +477,7 @@ and can be downloaded using:</p>
 <p>All data are loaded with the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.html#hyperspy.api.load" title="(in HyperSpy v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.load()</span></code></a> function, as described in
 detail in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/io.html#loading-files" title="(in HyperSpy v2.2)"><span class="xref std std-ref">loading files</span></a> of the HyperSpy
 documentation. HyperSpy is able to import different formats, among them
-<a class="reference external" href="https://hyperspy.org/rosettasciio/user_guide/supported_formats/msa.html#msa-format" title="(in RosettaSciIO)"><span class="xref std std-ref">msa</span></a> and <a class="reference external" href="https://hyperspy.org/rosettasciio/user_guide/supported_formats/ripple.html#ripple-format" title="(in RosettaSciIO)"><span class="xref std std-ref">rpl</span></a>
+<a class="reference external" href="https://hyperspy.org/rosettasciio/supported_formats/msa.html#msa-format" title="(in RosettaSciIO)"><span class="xref std std-ref">msa</span></a> and <a class="reference external" href="https://hyperspy.org/rosettasciio/supported_formats/ripple.html#ripple-format" title="(in RosettaSciIO)"><span class="xref std std-ref">rpl</span></a>
 (the raw format of Oxford Instruments and Bruker).</p>
 <p>Here are three examples of files exported by Oxford Instruments software
 (INCA). For a single spectrum:</p>
@@ -799,8 +804,8 @@ the elements defined in <a class="reference internal" href="metadata_structure.h
 <p>The sample and data used in this section are described in
 <a class="reference internal" href="bibliography.html#rossouw2015"><span class="std std-ref">[Rossouw2015]</span></a>, and can be downloaded using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#Download the data (1MB)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlretrieve</span><span class="p">,</span> <span class="n">urlopen</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">urllib.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlretrieve</span><span class="p">,</span> <span class="n">urlopen</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">zipfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">ZipFile</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://www.dropbox.com/s/ecdlgwxjq04m5mx/&quot;</span>
 <span class="gp">... </span>                    <span class="s2">&quot;HyperSpy_demos_EDS_TEM_files.zip?raw=1&quot;</span><span class="p">,</span>
 <span class="gp">... </span>                    <span class="s2">&quot;./HyperSpy_demos_EDX_TEM_files.zip&quot;</span><span class="p">)</span>
@@ -1262,13 +1267,13 @@ and <a class="reference internal" href="../reference/material.html#exspy.materia
   </nav></div>
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/user_guide/eds.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/user_guide/eds.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -1283,8 +1288,8 @@ and <a class="reference internal" href="../reference/material.html#exspy.materia
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1317,7 +1322,8 @@ and <a class="reference internal" href="../reference/material.html#exspy.materia
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,10 +27,10 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -39,10 +39,10 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -391,9 +391,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -452,70 +457,60 @@ to download the full example code.</p>
 <p>Performs curve fitting to an EELS spectrum, plots the result and saves it as
 png file.</p>
 <img src="../../_images/sphx_glr_EELS_curve_fitting_001.png" srcset="../../_images/sphx_glr_EELS_curve_fitting_001.png" alt="coreloss_spectrum Signal" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-  0%|                                      | 16.4k/42.3M [00:00&lt;07:00, 101kB/s]
-  0%|                                      | 49.2k/42.3M [00:00&lt;03:24, 207kB/s]
-  0%|                                       | 109k/42.3M [00:00&lt;02:26, 288kB/s]
-  1%|▏                                      | 241k/42.3M [00:00&lt;01:22, 510kB/s]
-  1%|▍                                      | 515k/42.3M [00:00&lt;00:43, 953kB/s]
-  3%|▉                                    | 1.07M/42.3M [00:00&lt;00:22, 1.81MB/s]
-  5%|█▉                                   | 2.17M/42.3M [00:01&lt;00:11, 3.45MB/s]
- 10%|███▊                                 | 4.36M/42.3M [00:01&lt;00:05, 6.66MB/s]
- 15%|█████▌                               | 6.39M/42.3M [00:01&lt;00:04, 8.48MB/s]
- 20%|███████▌                             | 8.63M/42.3M [00:01&lt;00:03, 10.1MB/s]
- 27%|█████████▉                           | 11.4M/42.3M [00:01&lt;00:02, 12.1MB/s]
- 33%|████████████▏                        | 13.9M/42.3M [00:01&lt;00:02, 13.0MB/s]
- 38%|██████████████▏                      | 16.2M/42.3M [00:02&lt;00:01, 13.5MB/s]
- 44%|████████████████▍                    | 18.8M/42.3M [00:02&lt;00:01, 14.1MB/s]
- 50%|██████████████████▋                  | 21.3M/42.3M [00:02&lt;00:01, 14.5MB/s]
- 56%|████████████████████▊                | 23.8M/42.3M [00:02&lt;00:01, 14.8MB/s]
- 63%|███████████████████████▏             | 26.5M/42.3M [00:02&lt;00:01, 15.3MB/s]
- 69%|█████████████████████████▌           | 29.2M/42.3M [00:02&lt;00:00, 15.6MB/s]
- 75%|███████████████████████████▉         | 31.9M/42.3M [00:03&lt;00:00, 15.8MB/s]
- 81%|██████████████████████████████       | 34.4M/42.3M [00:03&lt;00:00, 15.8MB/s]
- 88%|████████████████████████████████▍    | 37.1M/42.3M [00:03&lt;00:00, 15.9MB/s]
- 94%|██████████████████████████████████▊  | 39.7M/42.3M [00:03&lt;00:00, 16.0MB/s]
+  0%|                                      | 15.4k/42.3M [00:00&lt;05:30, 128kB/s]
+  0%|                                       | 114k/42.3M [00:00&lt;01:16, 549kB/s]
+  1%|▎                                      | 287k/42.3M [00:00&lt;00:52, 801kB/s]
+  2%|▉                                     | 983k/42.3M [00:00&lt;00:15, 2.74MB/s]
+  5%|█▊                                   | 2.03M/42.3M [00:00&lt;00:07, 5.15MB/s]
+  9%|███▏                                 | 3.67M/42.3M [00:00&lt;00:04, 8.58MB/s]
+ 15%|█████▋                               | 6.46M/42.3M [00:00&lt;00:02, 14.5MB/s]
+ 25%|█████████▏                           | 10.4M/42.3M [00:00&lt;00:01, 22.2MB/s]
+ 32%|███████████▋                         | 13.4M/42.3M [00:01&lt;00:01, 24.5MB/s]
+ 40%|██████████████▊                      | 16.9M/42.3M [00:01&lt;00:00, 27.7MB/s]
+ 47%|█████████████████▌                   | 20.0M/42.3M [00:01&lt;00:00, 28.7MB/s]
+ 56%|████████████████████▋                | 23.6M/42.3M [00:01&lt;00:00, 30.7MB/s]
+ 65%|███████████████████████▉             | 27.3M/42.3M [00:01&lt;00:00, 32.6MB/s]
+ 73%|██████████████████████████▉          | 30.7M/42.3M [00:01&lt;00:00, 33.2MB/s]
+ 81%|██████████████████████████████▏      | 34.4M/42.3M [00:01&lt;00:00, 34.3MB/s]
+ 90%|█████████████████████████████████▏   | 37.9M/42.3M [00:01&lt;00:00, 34.3MB/s]
+ 98%|████████████████████████████████████▏| 41.3M/42.3M [00:01&lt;00:00, 33.8MB/s]
   0%|                                              | 0.00/42.3M [00:00&lt;?, ?B/s]
-100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 220GB/s]
+100%|██████████████████████████████████████| 42.3M/42.3M [00:00&lt;00:00, 281GB/s]
 
   0%|                                              | 0.00/66.1M [00:00&lt;?, ?B/s]
-  0%|                                      | 18.4k/66.1M [00:00&lt;09:50, 112kB/s]
-  0%|                                      | 55.3k/66.1M [00:00&lt;06:11, 178kB/s]
-  0%|                                       | 123k/66.1M [00:00&lt;03:51, 285kB/s]
-  0%|▏                                      | 296k/66.1M [00:00&lt;01:51, 588kB/s]
-  1%|▎                                     | 612k/66.1M [00:00&lt;01:01, 1.07MB/s]
-  2%|▋                                    | 1.25M/66.1M [00:00&lt;00:32, 2.02MB/s]
-  4%|█▍                                   | 2.53M/66.1M [00:01&lt;00:16, 3.90MB/s]
-  8%|██▊                                  | 4.98M/66.1M [00:01&lt;00:07, 8.47MB/s]
- 10%|███▊                                 | 6.78M/66.1M [00:01&lt;00:06, 9.48MB/s]
- 14%|█████▏                               | 9.31M/66.1M [00:01&lt;00:04, 11.5MB/s]
- 18%|██████▋                              | 12.0M/66.1M [00:01&lt;00:04, 13.1MB/s]
- 22%|████████▏                            | 14.6M/66.1M [00:01&lt;00:03, 13.8MB/s]
- 26%|█████████▌                           | 17.1M/66.1M [00:02&lt;00:03, 14.4MB/s]
- 30%|███████████                          | 19.8M/66.1M [00:02&lt;00:03, 15.0MB/s]
- 34%|████████████▋                        | 22.6M/66.1M [00:02&lt;00:02, 15.4MB/s]
- 38%|██████████████▏                      | 25.3M/66.1M [00:02&lt;00:02, 15.7MB/s]
- 42%|███████████████▋                     | 27.9M/66.1M [00:02&lt;00:02, 15.9MB/s]
- 46%|█████████████████                    | 30.5M/66.1M [00:02&lt;00:02, 15.8MB/s]
- 50%|██████████████████▌                  | 33.2M/66.1M [00:03&lt;00:02, 16.0MB/s]
- 54%|████████████████████▏                | 36.0M/66.1M [00:03&lt;00:01, 16.2MB/s]
- 59%|█████████████████████▋               | 38.7M/66.1M [00:03&lt;00:01, 16.3MB/s]
- 63%|███████████████████████▏             | 41.4M/66.1M [00:03&lt;00:01, 16.5MB/s]
- 67%|████████████████████████▊            | 44.3M/66.1M [00:03&lt;00:01, 16.7MB/s]
- 72%|██████████████████████████▍          | 47.3M/66.1M [00:03&lt;00:01, 17.1MB/s]
- 76%|████████████████████████████         | 50.0M/66.1M [00:04&lt;00:00, 17.1MB/s]
- 80%|█████████████████████████████▌       | 52.8M/66.1M [00:04&lt;00:00, 17.0MB/s]
- 84%|███████████████████████████████      | 55.6M/66.1M [00:04&lt;00:00, 16.9MB/s]
- 88%|████████████████████████████████▋    | 58.3M/66.1M [00:04&lt;00:00, 16.8MB/s]
- 92%|██████████████████████████████████▏  | 61.1M/66.1M [00:04&lt;00:00, 16.9MB/s]
- 97%|███████████████████████████████████▊ | 64.0M/66.1M [00:04&lt;00:00, 17.2MB/s]
+  0%|                                      | 18.4k/66.1M [00:00&lt;07:37, 145kB/s]
+  0%|                                       | 112k/66.1M [00:00&lt;02:01, 544kB/s]
+  0%|▏                                      | 295k/66.1M [00:00&lt;01:21, 807kB/s]
+  1%|▌                                     | 919k/66.1M [00:00&lt;00:26, 2.49MB/s]
+  3%|█                                    | 1.90M/66.1M [00:00&lt;00:13, 4.73MB/s]
+  5%|█▉                                   | 3.39M/66.1M [00:00&lt;00:08, 7.81MB/s]
+ 10%|███▌                                 | 6.29M/66.1M [00:00&lt;00:04, 14.2MB/s]
+ 14%|█████▎                               | 9.43M/66.1M [00:00&lt;00:02, 19.4MB/s]
+ 19%|██████▉                              | 12.4M/66.1M [00:01&lt;00:02, 22.6MB/s]
+ 23%|████████▋                            | 15.5M/66.1M [00:01&lt;00:02, 25.0MB/s]
+ 28%|██████████▎                          | 18.4M/66.1M [00:01&lt;00:01, 26.3MB/s]
+ 33%|████████████▏                        | 21.7M/66.1M [00:01&lt;00:01, 28.3MB/s]
+ 38%|█████████████▉                       | 24.9M/66.1M [00:01&lt;00:01, 25.1MB/s]
+ 42%|███████████████▋                     | 28.0M/66.1M [00:01&lt;00:01, 26.6MB/s]
+ 47%|█████████████████▌                   | 31.3M/66.1M [00:01&lt;00:01, 28.4MB/s]
+ 52%|███████████████████▎                 | 34.6M/66.1M [00:01&lt;00:01, 29.7MB/s]
+ 57%|█████████████████████▏               | 37.9M/66.1M [00:01&lt;00:00, 30.6MB/s]
+ 62%|██████████████████████▉              | 41.0M/66.1M [00:01&lt;00:00, 30.6MB/s]
+ 67%|████████████████████████▊            | 44.3M/66.1M [00:02&lt;00:00, 31.5MB/s]
+ 72%|██████████████████████████▌          | 47.5M/66.1M [00:02&lt;00:00, 31.5MB/s]
+ 77%|████████████████████████████▍        | 50.8M/66.1M [00:02&lt;00:00, 32.0MB/s]
+ 82%|██████████████████████████████▏      | 54.0M/66.1M [00:02&lt;00:00, 26.8MB/s]
+ 86%|███████████████████████████████▉     | 57.1M/66.1M [00:02&lt;00:00, 27.8MB/s]
+ 91%|█████████████████████████████████▊   | 60.3M/66.1M [00:02&lt;00:00, 29.1MB/s]
+ 96%|███████████████████████████████████▍ | 63.3M/66.1M [00:02&lt;00:00, 28.7MB/s]
   0%|                                              | 0.00/66.1M [00:00&lt;?, ?B/s]
-100%|██████████████████████████████████████| 66.1M/66.1M [00:00&lt;00:00, 372GB/s]
+100%|██████████████████████████████████████| 66.1M/66.1M [00:00&lt;00:00, 302GB/s]
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hyperspy.api</span> <span class="k">as</span> <span class="nn">hs</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">hyperspy.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hs</span>
 
 <span class="n">s</span> <span class="o">=</span> <a href="https://hyperspy.org/hyperspy-doc/current/reference/api.html#hyperspy.api.load" title="hyperspy.api.load" class="sphx-glr-backref-module-hyperspy-api sphx-glr-backref-type-py-function"><span class="n">hs</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="s2">&quot;coreloss_spectrum.msa&quot;</span><span class="p">,</span> <span class="n">signal_type</span><span class="o">=</span><span class="s2">&quot;EELS&quot;</span><span class="p">)</span>
 <span class="n">ll</span> <span class="o">=</span> <a href="https://hyperspy.org/hyperspy-doc/current/reference/api.html#hyperspy.api.load" title="hyperspy.api.load" class="sphx-glr-backref-module-hyperspy-api sphx-glr-backref-type-py-function"><span class="n">hs</span><span class="o">.</span><span class="n">load</span></a><span class="p">(</span><span class="s2">&quot;lowloss_spectrum.msa&quot;</span><span class="p">,</span> <span class="n">signal_type</span><span class="o">=</span><span class="s2">&quot;EELS&quot;</span><span class="p">)</span>
@@ -537,7 +532,7 @@ png file.</p>
 <a href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D.plot" title="hyperspy.models.model1d.Model1D.plot" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">plot</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 21.185 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 14.072 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-model-fitting-eels-curve-fitting-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/037b5aa4752b41748abf69bba9d1cbe4/EELS_curve_fitting.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">EELS_curve_fitting.ipynb</span></code></a></p>
@@ -592,13 +587,13 @@ png file.</p>
 
 
   <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/auto_examples/model_fitting/EELS_curve_fitting.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/auto_examples/model_fitting/EELS_curve_fitting.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
 
 </div></div>
               
@@ -613,8 +608,8 @@ png file.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -647,7 +642,8 @@ png file.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

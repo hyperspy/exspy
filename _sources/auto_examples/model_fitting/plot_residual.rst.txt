@@ -110,15 +110,15 @@ Fit for all navigation positions:
 
  .. code-block:: none
 
-    Exception ignored in: <function tqdm.__del__ at 0x7fd3db348b80>
+    Exception ignored in: <function tqdm.__del__ at 0x7f8d5ab9f2e0>
     Traceback (most recent call last):
-      File "/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/tqdm/std.py", line 1148, in __del__
+      File "/opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/tqdm/std.py", line 1148, in __del__
         self.close()
-      File "/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/tqdm/notebook.py", line 279, in close
+      File "/opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/tqdm/notebook.py", line 279, in close
         self.disp(bar_style='danger', check_delay=False)
         ^^^^^^^^^
     AttributeError: 'tqdm_notebook' object has no attribute 'disp'
-      0%|          | 0/10 [00:00<?, ?it/s]    100%|██████████| 10/10 [00:00<00:00, 1456.61it/s]
+      0%|          | 0/10 [00:00<?, ?it/s]    100%|██████████| 10/10 [00:00<00:00, 1470.50it/s]
 
 
 
@@ -164,7 +164,7 @@ sphinx_gallery_thumbnail_number = 2
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.489 seconds)
+   **Total running time of the script:** (0 minutes 0.451 seconds)
 
 
 .. _sphx_glr_download_auto_examples_model_fitting_plot_residual.py:

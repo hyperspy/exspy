@@ -40,10 +40,11 @@ class TestLinearEELSFitting:
     def test_convolved_and_std_error(self):
         m = self.m_convolved
         m.fit(optimizer="lstsq")
-        linear = m.as_signal()
+        # TODO: implement `function_nd`
+        linear = m.as_signal(out_of_range_to_nan=False)
         std_linear = m.p_std
         m.fit(optimizer="lm")
-        lm = m.as_signal()
+        lm = m.as_signal(out_of_range_to_nan=False)
         std_lm = m.p_std
         diff = linear - lm
         np.testing.assert_allclose(diff.data.sum(), 0.0, atol=5e-6)
@@ -52,9 +53,9 @@ class TestLinearEELSFitting:
     def test_nonconvolved(self):
         m = self.m
         m.fit(optimizer="lstsq")
-        linear = m.as_signal()
+        linear = m.as_signal(out_of_range_to_nan=False)
         m.fit(optimizer="lm")
-        lm = m.as_signal()
+        lm = m.as_signal(out_of_range_to_nan=False)
         diff = linear - lm
         np.testing.assert_allclose(diff.data.sum(), 0.0, atol=5e-6)
 
@@ -152,6 +153,8 @@ def test_expression_convolved(nav_dim, multiple_free_parameters):
     m_ref = s_ref.create_model(auto_add_edges=False, auto_background=False)
     m_ref.append(l_ref)
     m_ref.low_loss = to_convolve
+    # to use `as_signal`
+    m_ref.assign_current_values_to_all()
     s = m_ref.as_signal()
 
     if nav_dim >= 1:
@@ -201,6 +204,8 @@ def test_expression_multiple_linear_parameter(nav_dim, convolve):
     m_ref.extend([p_ref])
     if convolve:
         m_ref.low_loss = to_convolve
+    # to use `as_signal`
+    m_ref.assign_current_values_to_all()
     s = m_ref.as_signal()
 
     if nav_dim >= 1:
@@ -248,6 +253,7 @@ def test_multiple_linear_parameters_convolution(nav_dim):
     m_ref = s_ref.create_model(auto_add_edges=False, auto_background=False)
     m_ref.extend([l_ref1, l_ref2])
     m_ref.low_loss = to_convolve
+    m_ref.assign_current_values_to_all()
     s = m_ref.as_signal()
 
     if nav_dim >= 1:

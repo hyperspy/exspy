@@ -17,9 +17,11 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import contextlib
+from packaging.version import Version
 import io
 from unittest import mock
 
+import dask
 import numpy as np
 import pooch
 import pytest
@@ -511,6 +513,8 @@ class TestFitBackground2D:
 
     def test_only_current_false(self):
         self.m.fit_background(only_current=False)
+        if self.s._lazy and Version(dask.__version__) < Version("2024.12.0"):
+            pytest.skip("dask version must be >= 2024.12.0.")
         residual = self.s - self.m.as_signal()
         assert pytest.approx(residual.data) == 0
 

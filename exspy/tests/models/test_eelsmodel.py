@@ -679,7 +679,7 @@ class TestModelJacobians:
         m._low_loss._get_current_data = mock.MagicMock()
         m.low_loss._get_current_data.return_value = self.low_loss
         self.model = m
-        m.convolution_axis = np.zeros(2)
+        m._convolution_axis = np.zeros(2)
 
     def test_jacobian_convolved(self):
         m = self.model
@@ -730,10 +730,10 @@ class TestModelSettingPZero:
         ]
 
         # calculation
-        m.set_convolution_axis()
+        m._set_convolution_axis()
 
         # tests
-        np.testing.assert_array_equal(m.convolution_axis, np.arange(7, 23))
+        np.testing.assert_array_equal(m._convolution_axis, np.arange(7, 23))
         np.testing.assert_equal(ll_axis.value2index.call_args[0][0], 0)
 
 

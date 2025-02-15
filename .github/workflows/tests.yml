@@ -63,6 +63,11 @@ jobs:
         run: |
           pip install -e '.${{ matrix.PIP_SELECTOR }}'
 
+      - name: Install HyperSpy dev
+        run: |
+          # Remove after HyperSpy release include https://github.com/hyperspy/hyperspy/pull/3494
+          pip install git+https://github.com/ericpre/hyperspy@fix_as_signal
+
       - name: Pip list
         run: |
           pip list

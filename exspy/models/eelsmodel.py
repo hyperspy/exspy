@@ -93,7 +93,7 @@ class EELSModel(Model1D):
         self._suspend_auto_fine_structure_width = False
         self._low_loss = None
         self._convolved = False
-        self.convolution_axis = None
+        self._convolution_axis = None
         self.low_loss = low_loss
         self.GOS = GOS
         self.gos_file_path = gos_file_path
@@ -125,6 +125,16 @@ class EELSModel(Model1D):
 
     __init__.__doc__ %= EELSMODEL_PARAMETERS
 
+    @property
+    def convolution_axis(self):
+        _logger.warning("The `convolution_axis` attribute has been privatized.")
+        return self._convolution_axis
+
+    @convolution_axis.setter
+    def convolution_axis(self, value):
+        _logger.warning("The `convolution_axis` attribute has been privatized.")
+        self._convolution_axis = value
+
     def _compute_constant_term(self, component):
         """Gets the value of any (non-free) constant term, with convolution"""
         if self.convolved and component.convolved:
@@ -141,36 +151,12 @@ class EELSModel(Model1D):
         single constant
         """
 
-        sig = component_values * np.ones(self.convolution_axis.shape)
+        sig = component_values * np.ones(self._convolution_axis.shape)
 
         ll = self.low_loss._get_current_data(self.axes_manager)
         convolved = np.convolve(sig, ll, mode="valid")
 
         return convolved
-
-    def _get_model_data(self, *args, **kwargs):
-        if self.convolved is False:
-            return super()._get_model_data(*args, **kwargs)
-        else:  # convolved
-            component_list = kwargs.get("component_list")
-            ignore_channel_switches = kwargs.get("ignore_channel_switches", False)
-            slice_ = slice(None) if ignore_channel_switches else self._channel_switches
-            if self.convolution_axis is None:
-                raise RuntimeError("`low_loss` is not set.")
-            sum_convolved = np.zeros(len(self.convolution_axis))
-            sum_ = np.zeros(len(self.axis.axis))
-            for component in component_list:
-                if component.convolved:
-                    sum_convolved += component.function(self.convolution_axis)
-                else:
-                    sum_ += component.function(self.axis.axis)
-            to_return = sum_ + np.convolve(
-                self.low_loss._get_current_data(self.axes_manager),
-                sum_convolved,
-                mode="valid",
-            )
-            to_return = to_return[slice_]
-            return to_return
 
     def _jacobian(self, param, y, weights=None):
         if not self.convolved:
@@ -190,7 +176,7 @@ class EELSModel(Model1D):
                 if component.convolved:
                     for parameter in component.free_parameters:
                         par_grad = np.convolve(
-                            parameter.grad(self.convolution_axis),
+                            parameter.grad(self._convolution_axis),
                             self.low_loss._get_current_data(self.axes_manager),
                             mode="valid",
                         )
@@ -200,7 +186,7 @@ class EELSModel(Model1D):
                                 np.add(
                                     par_grad,
                                     np.convolve(
-                                        par.grad(self.convolution_axis),
+                                        par.grad(self._convolution_axis),
                                         self.low_loss._get_current_data(
                                             self.axes_manager
                                         ),
@@ -287,16 +273,20 @@ class EELSModel(Model1D):
                     "Convolution is not supported with non-uniform signal axes."
                 )
             self._low_loss = value
-            self.set_convolution_axis()
+            self._set_convolution_axis()
             self.convolved = True
         else:
             self._low_loss = value
-            self.convolution_axis = None
+            self._convolution_axis = None
             self.convolved = False
 
     # Extend the list methods to call the _touch when the model is modified
 
     def set_convolution_axis(self):
+        _logger.warning("The `set_convolution_axis` method has been privatized.")
+        self._set_convolution_axis()
+
+    def _set_convolution_axis(self):
         """
         Creates an axis to use to generate the data of the model in the precise
         scale to obtain the correct axis and origin after convolution.
@@ -305,9 +295,14 @@ class EELSModel(Model1D):
         dimension = self.axis.size + ll_axis.size - 1
         step = self.axis.scale
         knot_position = ll_axis.size - ll_axis.value2index(0) - 1
-        self.convolution_axis = generate_uniform_axis(
+        self._convolution_axis = generate_uniform_axis(
             self.axis.offset, step, dimension, knot_position
         )
+
+    @property
+    def _signal_to_convolve(self):
+        # Used in hyperspy
+        return self._low_loss
 
     def append(self, component):
         """Append component to EELS model.

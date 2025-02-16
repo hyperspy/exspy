@@ -17,6 +17,7 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import contextlib
+import logging
 from packaging.version import Version
 import io
 from unittest import mock
@@ -716,7 +717,7 @@ class TestModelSettingPZero:
         m = s.create_model(auto_add_edges=False, auto_background=False)
         self.model = m
 
-    def test_calculating_convolution_axis(self):
+    def test_calculating_convolution_axis(self, caplog):
         m = self.model
         # setup
         m.axis.offset = 10
@@ -735,6 +736,18 @@ class TestModelSettingPZero:
         # tests
         np.testing.assert_array_equal(m._convolution_axis, np.arange(7, 23))
         np.testing.assert_equal(ll_axis.value2index.call_args[0][0], 0)
+
+        with caplog.at_level(logging.WARNING):
+            # deprecation warning
+            m.set_convolution_axis()
+
+        with caplog.at_level(logging.WARNING):
+            # deprecation warning
+            convolution_axis = m.convolution_axis.copy()
+
+        with caplog.at_level(logging.WARNING):
+            # deprecation warning
+            m.convolution_axis = convolution_axis
 
 
 @lazifyTestClass

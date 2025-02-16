@@ -74,7 +74,7 @@ class PESCoreLineShape(Component):
         self._Shirley = value
         self.shirley.free = value
 
-    def _function(self, x, A, origin, FWHM, ab, shirley):
+    def _function(self, x, A, FWHM, origin, ab, shirley):
         """
         Given an one dimensional array x containing the energies at which
         you want to evaluate the background model, returns the background
@@ -90,22 +90,20 @@ class PESCoreLineShape(Component):
         return self._function(
             x,
             self.A.value,
-            self.origin.value,
             self.FWHM.value,
+            self.origin.value,
             self.ab.value,
             self.shirley.value,
         )
 
-    def function_nd(self, axis):
+    def function_nd(self, axis, parameters_values=None):
         """%s"""
+        if parameters_values is None:
+            parameters_values = [p.map["values"] for p in self.parameters]
         if self._is_navigation_multidimensional:
-            x = axis[np.newaxis, :]
-            A = self.A.map["values"][..., np.newaxis]
-            origin = self.origin.map["values"][..., np.newaxis]
-            FWHM = self.FWHM.map["values"][..., np.newaxis]
-            ab = self.ab.map["values"][..., np.newaxis]
-            shirley = self.shirley.map["values"][..., np.newaxis]
-            return self._function(x, A, origin, FWHM, ab, shirley)
+            return self._function(
+                axis[np.newaxis, :], *[p[..., np.newaxis] for p in parameters_values]
+            )
         else:
             return self.function(axis)
 

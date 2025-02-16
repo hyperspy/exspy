@@ -371,7 +371,6 @@ def xray_lines_model(
     >>> s.plot()
     """
     from exspy.signals.eds_tem import EDSTEMSpectrum
-    from hyperspy import components1d
 
     if energy_axis is None:
         energy_axis = {
@@ -390,30 +389,24 @@ def xray_lines_model(
     live_time = 1.0
     if weight_percents is None:
         weight_percents = [100.0 / len(elements)] * len(elements)
-    m = s.create_model()
+    m = s.create_model(auto_background=False)
+    weight_percent_dict = {
+        element_: weight_ for element_, weight_ in zip(elements, weight_percents)
+    }
     if len(elements) == len(weight_percents):
-        for element, weight_percent in zip(elements, weight_percents):
-            for line, properties in elements_db[element]["Atomic_properties"][
-                "Xray_lines"
-            ].items():
-                line_energy = properties["energy (keV)"]
-                ratio_line = properties["weight"]
-                if s._get_xray_lines_in_spectral_range([element + "_" + line])[1] == []:
-                    g = components1d.Gaussian()
-                    g.centre.value = line_energy
-                    g.sigma.value = (
-                        get_FWHM_at_Energy(energy_resolution_MnKa, line_energy)
-                        / sigma2fwhm
-                    )
-                    g.A.value = (
-                        live_time * counts_rate * weight_percent / 100 * ratio_line
-                    )
-                    m.append(g)
+        for component in m.xray_lines:
+            element = component.name.split("_")[0]
+            component.A.value = (
+                live_time * counts_rate * weight_percent_dict[element] / 100
+            )
     else:
         raise ValueError(
             "The number of elements specified is not the same "
             "as the number of weight_percents"
         )
+
+    # make sure all values are set
+    m.assign_current_values_to_all()
 
     s.data = m.as_signal().data
     return s

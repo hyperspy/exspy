@@ -99,32 +99,29 @@ def test_plot_gaussian_EELSSpectrum(convolved, plot_component, binned):
 
     m.extend([Gaussian(), Gaussian(), Gaussian()])
 
-    def set_gaussian(gaussian, centre, sigma):
+    for gaussian, centre, sigma in zip(m, centre_value_gaussian, sigma_value_gaussian):
         gaussian.centre.value = centre
         gaussian.centre.free = False
         gaussian.sigma.value = sigma
         gaussian.sigma.free = False
 
-    for gaussian, centre, sigma in zip(m, centre_value_gaussian, sigma_value_gaussian):
-        set_gaussian(gaussian, centre, sigma)
-
     m.fit()
     m.plot(plot_components=plot_component)
 
-    def A_value(s, component, binned):
+    def A_value(component, binned):
         if binned:
             return component.A.value * scale
         else:
             return component.A.value
 
     if convolved:
-        np.testing.assert_almost_equal(A_value(s, m[0], binned), 0.014034, decimal=5)
-        np.testing.assert_almost_equal(A_value(s, m[1], binned), 0.008420, decimal=5)
-        np.testing.assert_almost_equal(A_value(s, m[2], binned), 0.028068, decimal=5)
+        np.testing.assert_almost_equal(A_value(m[0], binned), 0.014034, decimal=5)
+        np.testing.assert_almost_equal(A_value(m[1], binned), 0.008420, decimal=5)
+        np.testing.assert_almost_equal(A_value(m[2], binned), 0.028068, decimal=5)
     else:
-        np.testing.assert_almost_equal(A_value(s, m[0], binned), 100.0, decimal=5)
-        np.testing.assert_almost_equal(A_value(s, m[1], binned), 60.0, decimal=5)
-        np.testing.assert_almost_equal(A_value(s, m[2], binned), 200.0, decimal=5)
+        np.testing.assert_almost_equal(A_value(m[0], binned), 100.0, decimal=5)
+        np.testing.assert_almost_equal(A_value(m[1], binned), 60.0, decimal=5)
+        np.testing.assert_almost_equal(A_value(m[2], binned), 200.0, decimal=5)
 
     return m._plot.signal_plot.figure
 

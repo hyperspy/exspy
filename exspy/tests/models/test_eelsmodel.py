@@ -17,9 +17,12 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import contextlib
+import logging
+from packaging.version import Version
 import io
 from unittest import mock
 
+import dask
 import numpy as np
 import pooch
 import pytest
@@ -511,6 +514,8 @@ class TestFitBackground2D:
 
     def test_only_current_false(self):
         self.m.fit_background(only_current=False)
+        if self.s._lazy and Version(dask.__version__) < Version("2024.12.0"):
+            pytest.skip("dask version must be >= 2024.12.0.")
         residual = self.s - self.m.as_signal()
         assert pytest.approx(residual.data) == 0
 
@@ -675,7 +680,7 @@ class TestModelJacobians:
         m._low_loss._get_current_data = mock.MagicMock()
         m.low_loss._get_current_data.return_value = self.low_loss
         self.model = m
-        m.convolution_axis = np.zeros(2)
+        m._convolution_axis = np.zeros(2)
 
     def test_jacobian_convolved(self):
         m = self.model
@@ -712,7 +717,7 @@ class TestModelSettingPZero:
         m = s.create_model(auto_add_edges=False, auto_background=False)
         self.model = m
 
-    def test_calculating_convolution_axis(self):
+    def test_calculating_convolution_axis(self, caplog):
         m = self.model
         # setup
         m.axis.offset = 10
@@ -726,11 +731,23 @@ class TestModelSettingPZero:
         ]
 
         # calculation
-        m.set_convolution_axis()
+        m._set_convolution_axis()
 
         # tests
-        np.testing.assert_array_equal(m.convolution_axis, np.arange(7, 23))
+        np.testing.assert_array_equal(m._convolution_axis, np.arange(7, 23))
         np.testing.assert_equal(ll_axis.value2index.call_args[0][0], 0)
+
+        with caplog.at_level(logging.WARNING):
+            # deprecation warning
+            m.set_convolution_axis()
+
+        with caplog.at_level(logging.WARNING):
+            # deprecation warning
+            convolution_axis = m.convolution_axis.copy()
+
+        with caplog.at_level(logging.WARNING):
+            # deprecation warning
+            m.convolution_axis = convolution_axis
 
 
 @lazifyTestClass

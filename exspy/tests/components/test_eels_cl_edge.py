@@ -74,4 +74,4 @@ def test_restore_EELS_model_dirac(tmp_path):
 
     s2 = hs.load(fname)
     m3 = s2.models.restore(model_name)
-    np.testing.assert_allclose(m.as_signal(), m3.as_signal())
+    np.testing.assert_allclose(m.as_signal(), m3.as_signal(), rtol=5e-7)

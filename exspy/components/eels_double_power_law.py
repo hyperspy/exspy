@@ -19,7 +19,6 @@
 
 import numpy as np
 
-from hyperspy.docstrings.parameters import FUNCTION_ND_DOCSTRING
 import hyperspy.api as hs
 
 from exspy._utils import parse_component_module
@@ -104,12 +103,6 @@ class DoublePowerLaw(hs.model.components1D.Expression):
 
         self.isbackground = True
         self.convolved = True
-
-    def function_nd(self, axis):
-        """%s"""
-        return super().function_nd(axis)
-
-    function_nd.__doc__ %= FUNCTION_ND_DOCSTRING
 
     # Define gradients
     def grad_A(self, x):

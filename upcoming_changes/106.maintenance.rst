@@ -1,0 +1,1 @@
+Update for changes in :meth:`hyperspy.model.BaseModel.as_signal`.

@@ -26,7 +26,6 @@ from hyperspy.docstrings.model import FIT_PARAMETERS_ARG
 from hyperspy.misc.utils import dummy_context_manager
 from hyperspy.misc.axis_tools import calculate_convolution1D_axis
 from hyperspy.models.model1d import Model1D
-import numpy as np
 
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
 from exspy.components import EELSCLEdge
@@ -110,90 +109,6 @@ class EELSModel(Model1D):
     def convolution_axis(self, value):
         _logger.warning("The `convolution_axis` attribute has been privatized.")
         self._convolution_axis = value
-
-    def _compute_constant_term(self, component):
-        """Gets the value of any (non-free) constant term, with convolution"""
-        if self.convolved and component.convolved:
-            data = self._convolve_component_values(component._constant_term)
-            return data.T[np.where(self._channel_switches)[::-1]].T
-        else:
-            return super()._compute_constant_term(component)
-
-    def _convolve_component_values(self, component_values):
-        """
-        Convolve component with model convolution axis.
-
-        Multiply by np.ones in order to handle case where component_values is a
-        single constant
-        """
-
-        sig = component_values * np.ones(self._convolution_axis.shape)
-
-        ll = self.low_loss._get_current_data(self.axes_manager)
-        convolved = np.convolve(sig, ll, mode="valid")
-
-        return convolved
-
-    def _jacobian(self, param, y, weights=None):
-        if not self.convolved:
-            return super()._jacobian(param, y, weights)
-
-        if weights is None:
-            weights = 1.0
-
-        counter = 0
-        grad = np.zeros(len(self.axis.axis))
-        for component in self:  # Cut the parameters list
-            if component.active:
-                component.fetch_values_from_array(
-                    param[counter : counter + component._nfree_param], onlyfree=True
-                )
-
-                if component.convolved:
-                    for parameter in component.free_parameters:
-                        par_grad = np.convolve(
-                            parameter.grad(self._convolution_axis),
-                            self.low_loss._get_current_data(self.axes_manager),
-                            mode="valid",
-                        )
-
-                        if parameter._twins:
-                            for par in parameter._twins:
-                                np.add(
-                                    par_grad,
-                                    np.convolve(
-                                        par.grad(self._convolution_axis),
-                                        self.low_loss._get_current_data(
-                                            self.axes_manager
-                                        ),
-                                        mode="valid",
-                                    ),
-                                    par_grad,
-                                )
-
-                        grad = np.vstack((grad, par_grad))
-
-                else:
-                    for parameter in component.free_parameters:
-                        par_grad = parameter.grad(self.axis.axis)
-
-                        if parameter._twins:
-                            for par in parameter._twins:
-                                np.add(par_grad, par.grad(self.axis.axis), par_grad)
-
-                        grad = np.vstack((grad, par_grad))
-
-                counter += component._nfree_param
-
-        to_return = grad[1:, self._channel_switches] * weights
-
-        if self.axis.is_binned:
-            if self.axis.is_uniform:
-                to_return *= self.axis.scale
-            else:
-                to_return *= np.gradient(self.axis.axis)
-
-        return to_return
 
     @property
     def signal(self):

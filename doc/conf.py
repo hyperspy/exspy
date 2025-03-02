@@ -52,7 +52,7 @@ linkcheck_ignore = [
     "https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01549.x",  # 403 Client Error: Forbidden for url
     "https://onlinelibrary.wiley.com/doi/10.1002/sia.5789",  # 403 Client Error: Forbidden for url
     "https://onlinelibrary.wiley.com/doi/10.1002/jemt.20597",  # 403 Client Error: Forbidden for url
-    "https://doi.org/10.1017/S1431927615015494", # 403 Client Error: Forbidden for url
+    "https://doi.org/10.1017/S1431927615015494",  # 403 Client Error: Forbidden for url
 ]
 
 intersphinx_mapping = {

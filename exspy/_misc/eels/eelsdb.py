@@ -155,8 +155,7 @@ def eelsdb(
         "xrayabs",
     }:
         raise ValueError(
-            "spectrum_type must be one of 'coreloss', 'lowloss', "
-            "'zeroloss', 'xrayabs'."
+            "spectrum_type must be one of 'coreloss', 'lowloss', 'zeroloss', 'xrayabs'."
         )
     valid_edges = ["K", "L1", "L2,3", "M2,3", "M4,5", "N2,3", "N4,5", "O2,3", "O4,5"]
     valid_order_keys = [

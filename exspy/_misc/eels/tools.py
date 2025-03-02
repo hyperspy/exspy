@@ -201,7 +201,7 @@ def estimate_variance_parameters(
                 results0["fit"][1],
             )
             noisy_signal.metadata.set_item(
-                "Signal.Noise_properties.Variance_linear_model." "correlation_factor", c
+                "Signal.Noise_properties.Variance_linear_model.correlation_factor", c
             )
             noisy_signal.metadata.set_item(
                 "Signal.Noise_properties.Variance_linear_model."
@@ -385,7 +385,7 @@ def get_edges_near_energy(energy, width=10, only_major=False, order="closest"):
     if width < 0:
         raise ValueError("Provided width needs to be >= 0.")
     if order not in ("closest", "ascending", "descending"):
-        raise ValueError("order needs to be 'closest', 'ascending' or " "'descending'")
+        raise ValueError("order needs to be 'closest', 'ascending' or 'descending'")
 
     Emin, Emax = energy - width / 2, energy + width / 2
 

@@ -211,8 +211,7 @@ class EELSModel(Model1D):
             # Test that signal axis is uniform
             if not self.axes_manager[-1].is_uniform:
                 raise NotImplementedError(
-                    "This operation is not yet implemented "
-                    "for non-uniform energy axes"
+                    "This operation is not yet implemented for non-uniform energy axes"
                 )
             tem = self.signal.metadata.Acquisition_instrument.TEM
             component.set_microscope_parameters(

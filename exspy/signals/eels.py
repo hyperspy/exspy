@@ -807,7 +807,7 @@ class EELSSpectrum(Signal1D):
         total_intensity = self.integrate1D(axis.index_in_array).data
         if threshold is None and zlp is None:
             raise ValueError(
-                "Please provide one of the following keywords: " "`threshold`, `zlp`"
+                "Please provide one of the following keywords: `threshold`, `zlp`"
             )
         if zlp is not None:
             I0 = zlp.integrate1D(axis.index_in_array).data
@@ -1490,7 +1490,7 @@ class EELSSpectrum(Signal1D):
                 )
         elif isinstance(t, np.ndarray) and t.shape and t.shape != (1,):
             raise ValueError(
-                "thickness must be a HyperSpy signal or a number," " not a NumPy array."
+                "thickness must be a HyperSpy signal or a number, not a NumPy array."
             )
 
         # Slicer to get the signal data from 0 to axis.size
@@ -1777,7 +1777,7 @@ class EELSSpectrum(Signal1D):
         names_and_energies = {}
         shells = ["K", "L", "M", "N", "O"]
 
-        errmsg = "Edge family '{}' is not supported. Supported edge family " "is {}."
+        errmsg = "Edge family '{}' is not supported. Supported edge family is {}."
         for member in element_edge_family:
             try:
                 element, ss = member.split("_")
@@ -2001,8 +2001,7 @@ class EELSSpectrum(Signal1D):
         """
         if self.axes_manager.navigation_dimension == 0:
             raise RuntimeError(
-                "Navigation dimenstion must be higher than 0 "
-                "to estimate a vacuum mask."
+                "Navigation dimenstion must be higher than 0 to estimate a vacuum mask."
             )
         signal_axis = self.axes_manager.signal_axes[0]
         if start_energy is None:

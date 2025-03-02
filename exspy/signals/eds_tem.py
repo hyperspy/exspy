@@ -626,8 +626,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         """
         if self.axes_manager.navigation_dimension == 0:
             raise RuntimeError(
-                "Navigation dimenstion must be higher than 0 "
-                "to estimate a vacuum mask."
+                "Navigation dimenstion must be higher than 0 to estimate a vacuum mask."
             )
         from scipy.ndimage import binary_dilation, binary_erosion
 
@@ -847,7 +846,7 @@ class EDSTEMSpectrum(EDSSpectrum):
                 scales.append(axis.convert_to_units("nm", inplace=False)[0])
             except pint.DimensionalityError:
                 raise ValueError(
-                    f"The unit of the axis {axis} has not the " "dimension of length."
+                    f"The unit of the axis {axis} has not the dimension of length."
                 )
 
         if len(scales) == 1:

@@ -203,7 +203,7 @@ class EDSModel(Model1D):
         # Test that signal axis is uniform
         if not self.axes_manager[-1].is_uniform:
             raise NotImplementedError(
-                "This function is not yet implemented " "for non-uniform axes."
+                "This function is not yet implemented for non-uniform axes."
             )
 
         only_one = False
@@ -526,7 +526,7 @@ class EDSModel(Model1D):
         # Test that signal axis is uniform
         if not self.axes_manager[-1].is_uniform:
             raise NotImplementedError(
-                "This function is not yet implemented " "for non-uniform axes."
+                "This function is not yet implemented for non-uniform axes."
             )
 
         if xray_lines == "all_alpha":
@@ -592,7 +592,7 @@ class EDSModel(Model1D):
         # Test that signal axis is uniform
         if not self.axes_manager[-1].is_uniform:
             raise NotImplementedError(
-                "This function is not yet implemented " "for non-uniform axes."
+                "This function is not yet implemented for non-uniform axes."
             )
 
         if xray_lines == "all_alpha":
@@ -706,8 +706,7 @@ class EDSModel(Model1D):
                         component_sub.A.twin = component.A
                     else:
                         warnings.warn(
-                            "The X-ray line expected to be in the "
-                            "model was not found"
+                            "The X-ray line expected to be in the model was not found"
                         )
 
         for component in self.xray_lines:

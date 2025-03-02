@@ -68,9 +68,7 @@ class SEE(hs.model.components1D.Expression):
         self, A=1.0, Phi=1.0, B=0.0, module="numexpr", compute_gradients=False, **kwargs
     ):
         if kwargs.pop("sigma", False):
-            _logger.warning(
-                "The `sigma` parameter was broken and it has been " "removed."
-            )
+            _logger.warning("The `sigma` parameter was broken and it has been removed.")
 
         super().__init__(
             expression="where(x > Phi, A * (x - Phi) / (x - Phi + B) ** 4, 0)",

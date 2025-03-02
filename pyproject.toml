@@ -74,7 +74,9 @@ file = "LICENSE"
   # unpin when sphinxcontrib-towncrier support more recent version to towncrier
   "towncrier<24",
 ]
-"speed" = ["numexpr"]
+speed = [
+    "hyperspy[speed]",
+]
 "tests" = [
   "pytest     >= 5.0",
   "pytest-mpl",

@@ -27,14 +27,14 @@ TEST_DATA_DIR = Path(__file__).parent
 
 def test_restore_EELS_model(tmp_path):
     s = hs.load(TEST_DATA_DIR / "coreloss_spectrum.msa", signal_type="EELS")
-    ll = hs.load(TEST_DATA_DIR / "lowloss_spectrum.msa", signal_type="EELS")
+    low_loss = hs.load(TEST_DATA_DIR / "lowloss_spectrum.msa", signal_type="EELS")
 
     s.add_elements(("Mn", "O"))
     s.set_microscope_parameters(
         beam_energy=300, convergence_angle=24.6, collection_angle=13.6
     )
 
-    m = s.create_model(low_loss=ll)
+    m = s.create_model(low_loss=low_loss)
     m.enable_fine_structure()
     m.multifit(kind="smart")
 
@@ -53,14 +53,14 @@ def test_restore_EELS_model(tmp_path):
 
 def test_restore_EELS_model_dirac(tmp_path):
     s = hs.load(TEST_DATA_DIR / "coreloss_spectrum.msa", signal_type="EELS")
-    ll = hs.load(TEST_DATA_DIR / "lowloss_spectrum.msa", signal_type="EELS")
+    low_loss = hs.load(TEST_DATA_DIR / "lowloss_spectrum.msa", signal_type="EELS")
 
     s.add_elements(("Mn", "O"))
     s.set_microscope_parameters(
         beam_energy=300, convergence_angle=24.6, collection_angle=13.6
     )
 
-    m = s.create_model(low_loss=ll, GOS="dirac")
+    m = s.create_model(low_loss=low_loss, GOS="dirac")
     m.enable_fine_structure()
     m.multifit(kind="smart")
 

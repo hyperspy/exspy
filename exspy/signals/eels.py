@@ -978,7 +978,7 @@ class EELSSpectrum(Signal1D):
 
     def fourier_ratio_deconvolution(
         self,
-        ll,
+        low_loss,
         fwhm=None,
         threshold=None,
         extrapolate_lowloss=True,
@@ -991,8 +991,8 @@ class EELSSpectrum(Signal1D):
 
         Parameters
         ----------
-        ll: EELSSpectrum
-            The corresponding low-loss (ll) EELSSpectrum.
+        low_loss : EELSSpectrum
+            The corresponding low-loss EELSSpectrum.
         fwhm : float or None
             Full-width half-maximum of the Gaussian function by which
             the result of the deconvolution is convolved. It can be
@@ -1022,7 +1022,7 @@ class EELSSpectrum(Signal1D):
             raise NotImplementedError(
                 "This operation is not yet implemented for non-uniform energy axes."
             )
-        if not ll.axes_manager.signal_axes[0].is_uniform:
+        if not low_loss.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
                 "The low-loss energy axis is non-uniform. "
                 "This operation is not yet implemented for non-uniform energy axes"
@@ -1030,7 +1030,7 @@ class EELSSpectrum(Signal1D):
         orig_cl_size = self.axes_manager.signal_axes[0].size
 
         if threshold is None:
-            threshold = ll.estimate_elastic_scattering_threshold()
+            threshold = low_loss.estimate_elastic_scattering_threshold()
 
         if extrapolate_coreloss is True:
             cl = self.power_law_extrapolation(window_size=20, extrapolation_size=100)
@@ -1038,30 +1038,34 @@ class EELSSpectrum(Signal1D):
             cl = self.deepcopy()
 
         if extrapolate_lowloss is True:
-            ll = ll.power_law_extrapolation(window_size=100, extrapolation_size=100)
+            low_loss = low_loss.power_law_extrapolation(
+                window_size=100, extrapolation_size=100
+            )
         else:
-            ll = ll.deepcopy()
+            low_loss = low_loss.deepcopy()
 
-        ll.hanning_taper()
+        low_loss.hanning_taper()
         cl.hanning_taper()
 
-        ll_size = ll.axes_manager.signal_axes[0].size
+        ll_size = low_loss.axes_manager.signal_axes[0].size
         cl_size = self.axes_manager.signal_axes[0].size
         # Conservative new size to solve the wrap-around problem
         size = ll_size + cl_size - 1
         # Calculate the optimal FFT size
         size = optimal_fft_size(size)
 
-        axis = ll.axes_manager.signal_axes[0]
+        axis = low_loss.axes_manager.signal_axes[0]
         if fwhm is None:
             fwhm = float(
-                ll.get_current_signal().estimate_peak_width()._get_current_data()[0]
+                low_loss.get_current_signal()
+                .estimate_peak_width()
+                ._get_current_data()[0]
             )
             _logger.info("FWHM = %1.2f" % fwhm)
 
-        I0 = ll.estimate_elastic_scattering_intensity(threshold=threshold)
+        I0 = low_loss.estimate_elastic_scattering_intensity(threshold=threshold)
         I0 = I0.data
-        if ll.axes_manager.navigation_size > 0:
+        if low_loss.axes_manager.navigation_size > 0:
             I0_shape = list(I0.shape)
             I0_shape.insert(axis.index_in_array, 1)
             I0 = I0.reshape(I0_shape)
@@ -1075,7 +1079,7 @@ class EELSSpectrum(Signal1D):
         )
         z = np.fft.rfft(zl)
         jk = np.fft.rfft(cl.data, n=size, axis=axis.index_in_array)
-        jl = np.fft.rfft(ll.data, n=size, axis=axis.index_in_array)
+        jl = np.fft.rfft(low_loss.data, n=size, axis=axis.index_in_array)
         zshape = [
             1,
         ] * len(cl.data.shape)
@@ -1652,7 +1656,7 @@ class EELSSpectrum(Signal1D):
             raise NotImplementedError(
                 "Multiple scattering is not implemented for spectra with a "
                 "non-uniform energy axis. To create a model that does not "
-                "account for multiple-scattering do not set the `ll` keyword."
+                "account for multiple-scattering do not set the `low_loss` keyword."
             )
         model = EELSModel(
             self,

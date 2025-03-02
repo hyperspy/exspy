@@ -13,18 +13,18 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, windows, macos]
-        PYTHON_VERSION: ['3.9', '3.11']
+        PYTHON_VERSION: ['3.10', '3.12']
         LABEL: ['']
         PIP_SELECTOR: ['[tests, speed]']
         include:
           - os: ubuntu
-            PYTHON_VERSION: '3.8'
+            PYTHON_VERSION: '3.9'
             PIP_SELECTOR: '[tests, speed]'
           - os: ubuntu
-            PYTHON_VERSION: '3.10'
+            PYTHON_VERSION: '3.11'
             PIP_SELECTOR: '[tests, speed]'
           - os: ubuntu
-            PYTHON_VERSION: '3.12'
+            PYTHON_VERSION: '3.13'
             PIP_SELECTOR: '[tests, speed]'
           # test with hyperspy dev branch
           - os: ubuntu

@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:14.033** total execution time for 3 files **from all galleries**:
+**00:15.708** total execution time for 3 files **from all galleries**:
 
 .. container::
 
@@ -33,10 +33,10 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_model_fitting_EELS_curve_fitting.py` (``../examples/model_fitting/EELS_curve_fitting.py``)
-     - 00:13.230
+     - 00:14.881
      - 0.0
    * - :ref:`sphx_glr_auto_examples_model_fitting_plot_residual.py` (``../examples/model_fitting/plot_residual.py``)
-     - 00:00.460
+     - 00:00.484
      - 0.0
    * - :ref:`sphx_glr_auto_examples_model_fitting_simple_arctan_fit.py` (``../examples/model_fitting/simple_arctan_fit.py``)
      - 00:00.343

@@ -26,6 +26,11 @@ jobs:
           - os: ubuntu
             PYTHON_VERSION: '3.12'
             PIP_SELECTOR: '[tests, speed]'
+          # test with hyperspy dev branch
+          - os: ubuntu
+            PYTHON_VERSION: '3.12'
+            PIP_SELECTOR: '[tests]'
+            LABEL: '-dev'
           # test minimum requirement
           - os: ubuntu
             PYTHON_VERSION: '3.9'
@@ -62,6 +67,13 @@ jobs:
       - name: Install
         run: |
           pip install -e '.${{ matrix.PIP_SELECTOR }}'
+
+      - name: Install (HyperSpy dev)
+        # Test against the hyperspy `RELEASE_next_minor` branch
+        if: contains( matrix.LABEL, 'dev')
+        shell: bash
+        run: |
+          pip install https://github.com/hyperspy/hyperspy/archive/RELEASE_next_minor.zip
 
       - name: Pip list
         run: |

@@ -426,8 +426,7 @@ class EDSSpectrum(Signal1D):
                 element, subshell = line.split("_")
             except ValueError:
                 raise ValueError(
-                    "Invalid line symbol. "
-                    "Please provide a valid line symbol e.g. Fe_Ka"
+                    "Invalid line symbol. Please provide a valid line symbol e.g. Fe_Ka"
                 )
             if element in elements_db:
                 elements.add(element)

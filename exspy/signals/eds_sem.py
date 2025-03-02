@@ -165,7 +165,7 @@ class EDSSEMSpectrum(EDSSpectrum):
             )
         if "Acquisition_instrument.SEM.Detector.EDS.energy_resolution_MnKa" not in mp:
             mp.set_item(
-                "Acquisition_instrument.SEM.Detector.EDS." "energy_resolution_MnKa",
+                "Acquisition_instrument.SEM.Detector.EDS.energy_resolution_MnKa",
                 preferences.EDS.eds_mn_ka,
             )
         if "Acquisition_instrument.SEM.Detector.EDS.azimuth_angle" not in mp:
@@ -216,7 +216,7 @@ class EDSSEMSpectrum(EDSSpectrum):
             )
         if energy_resolution_MnKa is not None:
             md.set_item(
-                "Acquisition_instrument.SEM.Detector.EDS." "energy_resolution_MnKa",
+                "Acquisition_instrument.SEM.Detector.EDS.energy_resolution_MnKa",
                 energy_resolution_MnKa,
             )
 

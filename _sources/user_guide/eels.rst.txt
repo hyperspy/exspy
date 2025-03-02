@@ -194,8 +194,8 @@ Load the core-loss and low-loss spectra
 
     >>> s = exspy.data.eelsdb(title="Hexagonal Boron Nitride",
     ...                       spectrum_type="coreloss")[0]
-    >>> ll = exspy.data.eelsdb(title="Hexagonal Boron Nitride",
-    ...                        spectrum_type="lowloss")[0]
+    >>> low_loss = exspy.data.eelsdb(title="Hexagonal Boron Nitride",
+    ...                              spectrum_type="lowloss")[0]
 
 
 Creating model
@@ -233,7 +233,7 @@ low-loss spectrum in which case the low-loss spectrum needs to be provided to
 
 .. code-block:: python
 
-    >>> m = s.create_model(ll=ll)
+    >>> m = s.create_model(low_loss=low_loss)
 
 
 HyperSpy has created the model and configured it automatically:
@@ -277,7 +277,7 @@ As an alternative, one can use the `Dirac GOS <https://arxiv.org/abs/2405.10151>
 
 .. code-block:: python
 
-    >>> m = s.create_model(ll=ll, GOS="Dirac")
+    >>> m = s.create_model(low_loss=low_loss, GOS="Dirac")
 
 
 Custom GOS saved in the `gosh <https://gitlab.com/gguzzina/gosh>`__ format can be used,

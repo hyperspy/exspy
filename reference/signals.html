@@ -2035,7 +2035,7 @@ more information read its docstring.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ll</strong> (<em>None</em><em> or </em><a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><em>EELSSpectrum</em></a>) – If an EELSSpectrum is provided, it will be assumed that it is
+<li><p><strong>low_loss</strong> (<em>None</em><em> or </em><a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><em>EELSSpectrum</em></a>) – If an EELSSpectrum is provided, it will be assumed that it is
 a low-loss EELS spectrum, and it will be used to simulate the
 effect of multiple scattering by convolving it with the EELS
 spectrum.</p></li>
@@ -2284,14 +2284,14 @@ Spectroscopy in the Electron Microscope. Springer-Verlag, 2011.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="exspy.signals.EELSSpectrum.fourier_ratio_deconvolution">
-<span class="sig-name descname"><span class="pre">fourier_ratio_deconvolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapolate_lowloss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapolate_coreloss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EELSSpectrum.fourier_ratio_deconvolution" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fourier_ratio_deconvolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapolate_lowloss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrapolate_coreloss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EELSSpectrum.fourier_ratio_deconvolution" title="Link to this definition">#</a></dt>
 <dd><p>Performs Fourier-ratio deconvolution.</p>
 <p>The core-loss should have the background removed. To reduce the noise
 amplification the result is convolved with a Gaussian function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ll</strong> (<a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><em>EELSSpectrum</em></a>) – The corresponding low-loss (ll) EELSSpectrum.</p></li>
+<li><p><strong>low_loss</strong> (<a class="reference internal" href="#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><em>EELSSpectrum</em></a>) – The corresponding low-loss EELSSpectrum.</p></li>
 <li><p><strong>fwhm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>None</em>) – Full-width half-maximum of the Gaussian function by which
 the result of the deconvolution is convolved. It can be
 used to select the final SNR and spectral resolution. If

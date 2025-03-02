@@ -482,7 +482,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.DoublePowerLaw">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">DoublePowerLaw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'numexpr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_gradients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.DoublePowerLaw" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a></p>
 <p>Double power law component for EELS spectra.</p>
 <div class="math notranslate nohighlight">
 \[f(x) = A \cdot [s_r \cdot (x - x_0 - x_s)^{-r} + (x - x_0)^{-r}]\]</div>
@@ -543,20 +543,12 @@
 </ul>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="exspy.components.DoublePowerLaw.function_nd">
-<span class="sig-name descname"><span class="pre">function_nd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.DoublePowerLaw.function_nd" title="Link to this definition">#</a></dt>
-<dd><p>Returns a numpy array containing the value of the component for all
-indices. If enough memory is available, this is useful to quickly to
-obtain the fitted component without iterating over the navigation axes.</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.EELSArctan">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">EELSArctan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['numpy']</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.EELSArctan" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a></p>
 <p>Arctan function component for EELS (with minimum at zero).</p>
 <div class="math notranslate nohighlight">
 \[f(x) = A \cdot \left( \frac{\pi}{2} +
@@ -598,7 +590,7 @@ step.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.EELSCLEdge">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">EELSCLEdge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_subshell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GOS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dft'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gos_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.EELSCLEdge" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 <p>EELS core loss ionisation edge from hydrogenic or tabulated
 GOS with splines for fine structure fitting.</p>
 <p>Hydrogenic GOS are limited to K and L shells.</p>
@@ -782,7 +774,7 @@ functions will be pickled and signals converted to dictionaries</p>
 <li><p>parameters: a list of dictionaries of the parameters, one per
 component.</p></li>
 <li><p>_whitelist: a dictionary with keys used as references saved
-attributes, for more information, see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/utils/index.html#hyperspy.misc.export_dictionary.export_to_dictionary" title="(in HyperSpy v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_to_dictionary()</span></code></a>.</p></li>
+attributes, for more information, see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/utils/index.html#hyperspy.misc.export_dictionary.export_to_dictionary" title="(in HyperSpy v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">export_to_dictionary()</span></code></a>.</p></li>
 <li><p>any field from _whitelist.keys().</p></li>
 </ul>
 </p>
@@ -846,7 +838,7 @@ widgets container in a dictionary, usually for customisation or
 testing.</p></li>
 <li><p><strong>toolkit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>iterable</em><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em> or </em><em>None</em>) – If None (default), all available widgets are displayed or returned.
 If string, only the widgets of the selected toolkit are displayed
-if available. If an interable of toolkit strings, the widgets of
+if available. If an iterable of toolkit strings, the widgets of
 all listed toolkits are displayed or returned.</p></li>
 </ul>
 </dd>
@@ -874,7 +866,7 @@ all listed toolkits are displayed or returned.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.PESCoreLineShape">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">PESCoreLineShape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FWHM</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shirley</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.PESCoreLineShape" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 <p>Gaussian component with a Shirley background for photoemission
 spectroscopy analysis.</p>
 <dl class="field-list simple">
@@ -887,10 +879,13 @@ spectroscopy analysis.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="exspy.components.PESCoreLineShape.function_nd">
-<span class="sig-name descname"><span class="pre">function_nd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.PESCoreLineShape.function_nd" title="Link to this definition">#</a></dt>
-<dd><p>Returns a numpy array containing the value of the component for all
-indices. If enough memory is available, this is useful to quickly to
-obtain the fitted component without iterating over the navigation axes.</p>
+<span class="sig-name descname"><span class="pre">function_nd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.PESCoreLineShape.function_nd" title="Link to this definition">#</a></dt>
+<dd><p>parameters_values : list, None, optional
+List of parameters values used to calculate the component.
+The order of the parameter in the list is defined in the
+<code class="docutils literal notranslate"><span class="pre">parameters</span></code> attributes of the components
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the parameters values for all navigation positions
+are considered. The default is None.</p>
 </dd></dl>
 
 </dd></dl>
@@ -898,7 +893,7 @@ obtain the fitted component without iterating over the navigation axes.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.PESVoigt">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">PESVoigt</span></span><a class="headerlink" href="#exspy.components.PESVoigt" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 <p>Voigt component for photoemission spectroscopy data analysis.</p>
 <p>Voigt profile component with support for shirley background,
 non_isochromaticity, transmission_function corrections and spin orbit
@@ -981,7 +976,7 @@ estimation.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.SEE">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">SEE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Phi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'numexpr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_gradients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.SEE" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a></p>
 <p>Secondary electron emission component for Photoemission Spectroscopy.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1027,7 +1022,7 @@ f(x) =
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.Vignetting">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">Vignetting</span></span><a class="headerlink" href="#exspy.components.Vignetting" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/component.html#hyperspy.component.Component" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 <p>Model the vignetting of the lens with a cos^4 law multiplied by lines on
 the edges</p>
 <dl class="field-list simple">
@@ -1043,7 +1038,7 @@ the edges</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="exspy.components.VolumePlasmonDrude">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">exspy.components.</span></span><span class="sig-name descname"><span class="pre">VolumePlasmonDrude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plasmon_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'numexpr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_gradients</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.components.VolumePlasmonDrude" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a></p>
 <p>Drude volume plasmon energy loss function component, the energy loss
 function is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -1074,7 +1069,7 @@ function is defined as:</p>
 <li><p><strong>plasmon_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
 <li><p><strong>fwhm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>)</p></li>
 <li><p><strong>**kwargs</strong> – Extra keyword arguments are passed to the
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy._components.expression.Expression</span></code></a> component.</p></li>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy._components.expression.Expression</span></code></a> component.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1143,7 +1138,6 @@ for details, including original equations.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.components.DoublePowerLaw"><code class="docutils literal notranslate"><span class="pre">DoublePowerLaw</span></code></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.components.DoublePowerLaw.left_cutoff"><code class="docutils literal notranslate"><span class="pre">left_cutoff</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.components.DoublePowerLaw.function_nd"><code class="docutils literal notranslate"><span class="pre">function_nd()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.components.EELSArctan"><code class="docutils literal notranslate"><span class="pre">EELSArctan</span></code></a></li>

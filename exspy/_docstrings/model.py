@@ -30,7 +30,7 @@ GOS_PARAMETER = """GOS : 'hydrogenic', 'dft', 'dirac', 'Hartree-Slater'.
     _GOSH_SOURCES["dft"]["DOI"]
 )
 
-EELSMODEL_PARAMETERS = """ll : None or EELSSpectrum
+EELSMODEL_PARAMETERS = """low_loss : None or EELSSpectrum
             If an EELSSpectrum is provided, it will be assumed that it is
             a low-loss EELS spectrum, and it will be used to simulate the
             effect of multiple scattering by convolving it with the EELS

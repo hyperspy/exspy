@@ -20,44 +20,20 @@ import copy
 import logging
 import warnings
 
-import numpy as np
-
 from hyperspy import components1d
-from exspy.signals.eels import EELSSpectrum
-from exspy.components import EELSCLEdge
 from hyperspy.components1d import PowerLaw
 from hyperspy.docstrings.model import FIT_PARAMETERS_ARG
-from exspy._docstrings.model import EELSMODEL_PARAMETERS
 from hyperspy.misc.utils import dummy_context_manager
+from hyperspy.misc.axis_tools import calculate_convolution1D_axis
 from hyperspy.models.model1d import Model1D
+import numpy as np
+
+from exspy._docstrings.model import EELSMODEL_PARAMETERS
+from exspy.components import EELSCLEdge
+from exspy.signals.eels import EELSSpectrum
 
 
 _logger = logging.getLogger(__name__)
-
-
-def generate_uniform_axis(offset, scale, size, offset_index=0):
-    """Creates a uniform axis vector given the offset, scale and number of
-    channels.
-
-    Alternatively, the offset_index of the offset channel can be specified.
-
-    Parameters
-    ----------
-    offset : float
-    scale : float
-    size : number of channels
-    offset_index : int
-        offset_index number of the offset
-
-    Returns
-    -------
-    Numpy array
-
-    """
-
-    return np.linspace(
-        offset - offset_index * scale, offset + scale * (size - 1 - offset_index), size
-    )
 
 
 class EELSModel(Model1D):
@@ -288,15 +264,13 @@ class EELSModel(Model1D):
 
     def _set_convolution_axis(self):
         """
-        Creates an axis to use to generate the data of the model in the precise
-        scale to obtain the correct axis and origin after convolution.
+        Creates an axis to use when calculating the values of convolved
+        components. The scale and offset are calculated so that there is
+        suitable padding before taking the convolution - see hyperspy
+        documentation on convolution implementation.
         """
-        ll_axis = self.low_loss.axes_manager.signal_axes[0]
-        dimension = self.axis.size + ll_axis.size - 1
-        step = self.axis.scale
-        knot_position = ll_axis.size - ll_axis.value2index(0) - 1
-        self._convolution_axis = generate_uniform_axis(
-            self.axis.offset, step, dimension, knot_position
+        self._convolution_axis = calculate_convolution1D_axis(
+            self.axes_manager.signal_axes[0], self._low_loss.axes_manager.signal_axes[0]
         )
 
     @property

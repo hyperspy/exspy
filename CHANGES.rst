@@ -9,6 +9,17 @@ https://exspy.readthedocs.io/en/latest/changes.html
 
 .. towncrier release notes start
 
+0.3.2 (2025-03-02)
+==================
+
+Maintenance
+-----------
+
+- Update for changes in :meth:`hyperspy.model.BaseModel.as_signal`. Implementation of convolution support in model fitting moved to ``hyperspy`` in `hyperspy/hyperspy#3494 <https://github.com/hyperspy/hyperspy/pull/3494>`_. (`#106 <https://github.com/hyperspy/exspy/issues/106>`_)
+- Drop support python 3.8 and add explicit support for python 3.13. (`#108 <https://github.com/hyperspy/exspy/issues/108>`_)
+- Fix API changes in user guide and rename ``ll`` to ``low_loss`` consistently. (`#109 <https://github.com/hyperspy/exspy/issues/109>`_)
+
+
 0.3.1 (2024-10-16)
 ==================
 

@@ -1,1 +1,0 @@
-Update for changes in :meth:`hyperspy.model.BaseModel.as_signal`. Implementation of convolution support in model fitting moved to ``hyperspy`` in `hyperspy/hyperspy#3494 <https://github.com/hyperspy/hyperspy/pull/3494>`_.

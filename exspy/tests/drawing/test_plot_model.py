@@ -130,7 +130,6 @@ def test_plot_gaussian_EELSSpectrum(convolved, plot_component, binned):
 @pytest.mark.mpl_image_compare(baseline_dir=baseline_dir, tolerance=default_tol)
 def test_fit_EELS_convolved(convolved):
     # Keep this test here to avoid having to add image comparison in exspy
-    pytest.importorskip("exspy", reason="exspy not installed.")
     dname = my_path.joinpath("data")
     with pytest.warns(VisibleDeprecationWarning):
         cl = hs.load(dname.joinpath("Cr_L_cl.hspy"))

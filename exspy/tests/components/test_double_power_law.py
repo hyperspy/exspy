@@ -52,7 +52,6 @@ class TestDoublePowerLaw:
         s.axes_manager[0].offset = 100
         s.axes_manager[0].scale = 0.1
         m = s.create_model()
-
         m.append(DoublePowerLaw())
         m[0].A.value = 1000
         m[0].r.value = 4
@@ -65,8 +64,7 @@ class TestDoublePowerLaw:
         self.m.signal.axes_manager[-1].is_binned = binned
         s = self.m.as_signal()
         assert s.axes_manager[-1].is_binned == binned
-        exspy = pytest.importorskip("exspy")
-        g = exspy.components.DoublePowerLaw()
+        g = DoublePowerLaw()
         # Fix the ratio parameter to test the fit
         g.ratio.free = False
         g.shift.free = False

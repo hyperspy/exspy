@@ -92,7 +92,6 @@ class Test2d:
         self.s = hs.signals.BaseSignal(np.random.random((2, 3)))  # (|3, 2)
 
     def test_s2EELS2im2s(self):
-        pytest.importorskip("exspy")
         s = self.s.as_signal1D(0)
         s.set_signal_type("EELS")
         im = s.as_signal2D((1, 0))
@@ -100,11 +99,7 @@ class Test2d:
         s = im.as_signal1D(0)
         assert s.metadata.Signal.signal_type == "EELS"
         if s._lazy:
-            from exspy.signals import LazyEELSSpectrum
-
-            _class = LazyEELSSpectrum
+            _class = exspy.signals.LazyEELSSpectrum
         else:
-            from exspy.signals import EELSSpectrum
-
-            _class = EELSSpectrum
+            _class = exspy.signals.EELSSpectrum
         assert isinstance(s, _class)

@@ -794,7 +794,7 @@ class EELSSpectrum(Signal1D):
         Returns
         -------
         s : BaseSignal
-            If mean_free_path or density are provided, thickness in nanometres.
+            If `mean_free_path` or `density` are provided, thickness in nanometres.
             Otherwise, thickness relative to the MFP. It returns a Signal1D,
             Signal2D or a BaseSignal, depending on the current navigation
             dimensions.

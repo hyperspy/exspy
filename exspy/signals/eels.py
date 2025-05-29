@@ -783,7 +783,7 @@ class EELSSpectrum(Signal1D):
             If not None the zero-loss peak intensity is calculated from the ZLP
             spectrum supplied by integration.
         mean_free_path : float, optional
-            The mean free path of the material in nanometers.
+            The mean free path of the material in nanometres.
             If not provided, the thickness
             is given relative to the mean free path.
         density : float, optional
@@ -794,7 +794,8 @@ class EELSSpectrum(Signal1D):
         Returns
         -------
         s : BaseSignal
-            The thickness relative to the MFP. It returns a Signal1D,
+            If `mean_free_path` or `density` are provided, thickness in nanometres.
+            Otherwise, thickness relative to the MFP. It returns a Signal1D,
             Signal2D or a BaseSignal, depending on the current navigation
             dimensions.
 

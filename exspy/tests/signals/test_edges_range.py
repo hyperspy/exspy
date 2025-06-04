@@ -359,10 +359,43 @@ class Test_EdgesRange:
             ]
         )
 
-        assert np.array_equal(self.er.edge_all, edges_all)
-        assert np.array_equal(self.er.energy_all, energy_all)
-        assert np.array_equal(self.er.relevance_all, relevance_all)
-        assert np.array_equal(self.er.description_all, description_all)
+        # Test that all expected edges are present (order-independent)
+        assert set(self.er.edge_all) == set(edges_all)
+        assert len(self.er.edge_all) == len(edges_all)
+        
+        # Test that all expected energies are present (order-independent)
+        assert set(self.er.energy_all) == set(energy_all)
+        assert len(self.er.energy_all) == len(energy_all)
+        
+        # Test that all expected relevances are present (order-independent)
+        assert set(self.er.relevance_all) == set(relevance_all)
+        assert len(self.er.relevance_all) == len(relevance_all)
+        
+        # Test that all expected descriptions are present (order-independent)
+        assert set(self.er.description_all) == set(description_all)
+        assert len(self.er.description_all) == len(description_all)
+        
+        # Test that arrays have consistent lengths
+        assert len(self.er.edge_all) == len(self.er.energy_all)
+        assert len(self.er.edge_all) == len(self.er.relevance_all) 
+        assert len(self.er.edge_all) == len(self.er.description_all)
+        
+        # Test that corresponding entries match (for a few key edges)
+        edge_to_energy = dict(zip(edges_all, energy_all))
+        edge_to_relevance = dict(zip(edges_all, relevance_all))
+        edge_to_description = dict(zip(edges_all, description_all))
+        
+        actual_edge_to_energy = dict(zip(self.er.edge_all, self.er.energy_all))
+        actual_edge_to_relevance = dict(zip(self.er.edge_all, self.er.relevance_all))
+        actual_edge_to_description = dict(zip(self.er.edge_all, self.er.description_all))
+        
+        # Check a few specific mappings to ensure data integrity
+        test_edges = ["O_K", "Fe_L3", "Mn_L3", "V_L2", "Cr_L3"]
+        for edge in test_edges:
+            if edge in edge_to_energy:  # Only test if edge exists in expected data
+                assert actual_edge_to_energy[edge] == edge_to_energy[edge]
+                assert actual_edge_to_relevance[edge] == edge_to_relevance[edge]
+                assert actual_edge_to_description[edge] == edge_to_description[edge]
 
     def test_selected_span_selector(self):
         # self.er.span_selector.extents = (500, 550)

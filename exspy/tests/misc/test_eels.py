@@ -50,13 +50,13 @@ def test_multiple_edges():
     assert len(edges) == 16
     # Test that all expected edges are present (order-independent)
     assert set(edges) == set(expected_edges)
-    
+
     # Verify ordering is by distance from energy (closest first) for unique energies
     # Get info to check energies
     info = get_info_from_edges(edges)
     energies = [d["onset_energy (eV)"] for d in info]
     distances = [abs(e - 640) for e in energies]
-    
+
     # Check that distances are generally non-decreasing (allowing for ties)
     for i in range(len(distances) - 1):
         # Allow small tolerance for floating point comparisons
@@ -86,11 +86,11 @@ def test_multiple_edges_ascending():
     assert len(edges) == 16
     # Test that all expected edges are present (order-independent)
     assert set(edges) == set(expected_edges)
-    
+
     # Verify ordering is by onset energy in ascending order
     info = get_info_from_edges(edges)
     energies = [d["onset_energy (eV)"] for d in info]
-    
+
     # Check that energies are in ascending order (allowing for ties)
     for i in range(len(energies) - 1):
         assert energies[i] <= energies[i + 1]
@@ -119,11 +119,11 @@ def test_multiple_edges_descending():
     assert len(edges) == 16
     # Test that all expected edges are present (order-independent)
     assert set(edges) == set(expected_edges)
-    
+
     # Verify ordering is by onset energy in descending order
     info = get_info_from_edges(edges)
     energies = [d["onset_energy (eV)"] for d in info]
-    
+
     # Check that energies are in descending order (allowing for ties)
     for i in range(len(energies) - 1):
         assert energies[i] >= energies[i + 1]

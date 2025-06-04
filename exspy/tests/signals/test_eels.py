@@ -431,58 +431,60 @@ class TestPrintEdgesNearEnergy:
         s = self.signal
         s.print_edges_near_energy(532)
         captured = capsys.readouterr()
-        
+
         # Parse the captured output to extract edge information
-        lines = captured.out.strip().split('\n')
+        lines = captured.out.strip().split("\n")
         # Skip the header lines (first 3 lines) and footer line (last line)
         data_lines = lines[3:-1]
-        
+
         captured_edges = []
         captured_data = {}
         for line in data_lines:
             # Parse table row: | edge | energy | relevance | description |
-            parts = [part.strip() for part in line.split('|')[1:-1]]  # Remove empty first/last parts
+            parts = [
+                part.strip() for part in line.split("|")[1:-1]
+            ]  # Remove empty first/last parts
             edge = parts[0]
             energy = float(parts[1])
             relevance = parts[2]
             description = parts[3]
             captured_edges.append(edge)
             captured_data[edge] = {
-                'energy': energy,
-                'relevance': relevance,
-                'description': description
+                "energy": energy,
+                "relevance": relevance,
+                "description": description,
             }
-        
+
         # Test that all expected edges are present
         expected_edges = {"O_K", "Pd_M3", "At_N5", "Sb_M5", "Sb_M4"}
         assert set(captured_edges) == expected_edges
         assert len(captured_edges) == 5
-        
+
         # Test specific edge properties
         assert captured_data["O_K"]["energy"] == 532.0
         assert captured_data["O_K"]["relevance"] == "Major"
         assert captured_data["O_K"]["description"] == "Abrupt onset"
-        
+
         assert captured_data["Pd_M3"]["energy"] == 531.0
         assert captured_data["Pd_M3"]["relevance"] == "Minor"
         assert captured_data["Pd_M3"]["description"] == ""
-        
+
         assert captured_data["At_N5"]["energy"] == 533.0
         assert captured_data["At_N5"]["relevance"] == "Minor"
         assert captured_data["At_N5"]["description"] == ""
-        
+
         assert captured_data["Sb_M5"]["energy"] == 528.0
         assert captured_data["Sb_M5"]["relevance"] == "Major"
         assert captured_data["Sb_M5"]["description"] == "Delayed maximum"
-        
+
         assert captured_data["Sb_M4"]["energy"] == 537.0
         assert captured_data["Sb_M4"]["relevance"] == "Major"
         assert captured_data["Sb_M4"]["description"] == "Delayed maximum"
-        
+
         # Verify ordering is by distance from 532 eV (closest first)
         # O_K (532.0) should be first (distance = 0)
         assert captured_edges[0] == "O_K"
-        
+
         # Pd_M3 (531.0) and At_N5 (533.0) both have distance = 1.0
         # Their relative order is not deterministic, so just check they're next
         assert captured_edges[1] in ["Pd_M3", "At_N5"]

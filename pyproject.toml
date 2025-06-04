@@ -126,7 +126,7 @@ include = ["exspy*"]
   "*hspy",
   "*.yaml",
   "*.msa",
-  "data/elements/*.json",
+  "exspy/_misc/*.json",
   ]
 
 [tool.setuptools_scm]

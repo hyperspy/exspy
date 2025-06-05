@@ -39,7 +39,7 @@ class TestXrayDBIntegration:
         """Test that parameter validation works correctly."""
         # Valid parameters should pass
         validate_xray_line_source("xraydb")
-        validate_xray_line_source("internal")
+        validate_xray_line_source("Chantler2005")
 
         # Invalid parameters should raise ValueError
         with pytest.raises(ValueError):
@@ -51,27 +51,27 @@ class TestXrayDBIntegration:
 
         for xray_line in test_lines:
             # Both sources should return valid energies
-            internal_energy = get_xray_line_energy_with_fallback(
-                xray_line, source="internal"
+            chantler_energy = get_xray_line_energy_with_fallback(
+                xray_line, source="Chantler2005"
             )
             xraydb_energy = get_xray_line_energy_with_fallback(
                 xray_line, source="xraydb"
             )
 
-            assert internal_energy > 0, (
-                f"Internal energy for {xray_line} should be positive"
+            assert chantler_energy > 0, (
+                f"Chantler2005 energy for {xray_line} should be positive"
             )
             assert xraydb_energy > 0, (
                 f"XrayDB energy for {xray_line} should be positive"
             )
 
             # Energies should be close but may differ slightly
-            diff_ev = abs(xraydb_energy - internal_energy) * 1000
+            diff_ev = abs(xraydb_energy - chantler_energy) * 1000
             assert diff_ev < 10, (
                 f"Energy difference for {xray_line} too large: {diff_ev} eV"
             )
 
-    @pytest.mark.parametrize("source", ["internal", "xraydb"])
+    @pytest.mark.parametrize("source", ["Chantler2005", "xraydb"])
     def test_model_creation_with_sources(self, source):
         """Test model creation with different X-ray line sources."""
         s_sem = exspy.data.EDS_SEM_TM002()
@@ -84,7 +84,7 @@ class TestXrayDBIntegration:
         assert len(m_sem) > 0, "SEM model should have background component"
         assert len(m_tem) > 0, "TEM model should have background component"
 
-    @pytest.mark.parametrize("source", ["internal", "xraydb"])
+    @pytest.mark.parametrize("source", ["Chantler2005", "xraydb"])
     def test_family_lines_addition(self, source):
         """Test adding family lines with different sources."""
         s = exspy.data.EDS_SEM_TM002()
@@ -108,7 +108,7 @@ class TestXrayDBIntegration:
             f"Cu_Ka energy should be ~8.05 keV, got {cu_ka_energy}"
         )
 
-    @pytest.mark.parametrize("source", ["internal", "xraydb"])
+    @pytest.mark.parametrize("source", ["Chantler2005", "xraydb"])
     def test_auto_add_lines(self, source):
         """Test automatic line addition from metadata."""
         s = exspy.data.EDS_SEM_TM002()
@@ -150,7 +150,7 @@ class TestDatabaseSourcesCalibration:
             },
         )
 
-        for source in ["internal", "xraydb"]:
+        for source in ["Chantler2005", "xraydb"]:
             # Create model with specific database source
             m = s.create_model(xray_line_source=source)
             m.fit()
@@ -178,7 +178,7 @@ class TestDatabaseSourcesCalibration:
                 f"Line should be fixed after calibration with {source}"
             )
 
-    @pytest.mark.parametrize("source", ["internal", "xraydb"])
+    @pytest.mark.parametrize("source", ["Chantler2005", "xraydb"])
     def test_calibration_accuracy(self, source):
         """Test that calibration restores correct energy values."""
         s = utils_eds.xray_lines_model(
@@ -225,7 +225,7 @@ class TestXrayDBWithLazySignals:
         self.s_sem = exspy.data.EDS_SEM_TM002()
         self.s_tem = exspy.data.EDS_TEM_FePt_nanoparticles()
 
-    @pytest.mark.parametrize("source", ["internal", "xraydb"])
+    @pytest.mark.parametrize("source", ["Chantler2005", "xraydb"])
     def test_lazy_model_creation(self, source):
         """Test that lazy signals work with XrayDB integration."""
         # Create models with both sources
@@ -236,7 +236,7 @@ class TestXrayDBWithLazySignals:
         assert len(m_sem) >= 1, "SEM model should have at least background"
         assert len(m_tem) >= 1, "TEM model should have at least background"
 
-    @pytest.mark.parametrize("source", ["internal", "xraydb"])
+    @pytest.mark.parametrize("source", ["Chantler2005", "xraydb"])
     def test_lazy_family_lines(self, source):
         """Test adding family lines to lazy signals."""
         m = self.s_sem.create_model(xray_line_source=source, auto_add_lines=False)

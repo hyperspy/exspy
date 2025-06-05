@@ -1,0 +1,1 @@
+Change default X-ray line source to the new `XrayDB <https://xraypy.github.io/XrayDB//>`_. Using the old legacy "Chantler2005" is now optional. See :ref:`User Guide: X-ray line source <eds_xray_databases-label>` for more details.

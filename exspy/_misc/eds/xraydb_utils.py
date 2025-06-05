@@ -18,20 +18,13 @@
 
 """
 Utilities for X-ray line data retrieval using XrayDB as primary source
-with fallback to internal database.
+with fallback to Chantler2005 database.
 """
 
 import warnings
 from exspy._misc.eds.utils import _get_element_and_line, _get_energy_xray_line
 
-# Try to import XrayDB, set flag if available
-try:
-    import xraydb
-
-    XRAYDB_AVAILABLE = True
-except ImportError:
-    XRAYDB_AVAILABLE = False
-    xraydb = None
+import xraydb
 
 
 def _xraydb_line_mapping(line):
@@ -104,9 +97,6 @@ def get_xray_line_energy_xraydb(element, line):
     float or None
         Energy in keV, None if not found
     """
-    if not XRAYDB_AVAILABLE:
-        return None
-
     try:
         # Map line to XrayDB format
         xraydb_line = _xraydb_line_mapping(line)
@@ -130,10 +120,10 @@ def get_xray_line_energy_with_fallback(xray_line, source="xraydb"):
     ----------
     xray_line : str
         X-ray line in format 'Element_Line' (e.g., 'Fe_Ka', 'Cu_Lb1')
-    source : {'xraydb', 'internal'}, default 'xraydb'
+    source : {'xraydb', 'Chantler2005'}, default 'xraydb'
         Primary source for X-ray line data:
-        - 'xraydb': Use XrayDB as primary source, fallback to internal
-        - 'internal': Use internal database only
+        - 'xraydb': Use XrayDB as primary source, fallback to Chantler2005
+        - 'Chantler2005': Use Chantler2005 database only
 
     Returns
     -------
@@ -147,46 +137,22 @@ def get_xray_line_energy_with_fallback(xray_line, source="xraydb"):
     """
     element, line = _get_element_and_line(xray_line)
 
-    if source == "xraydb" and XRAYDB_AVAILABLE:
+    if source == "xraydb":
         # Try XrayDB first
         energy = get_xray_line_energy_xraydb(element, line)
         if energy is not None:
             return energy
         else:
-            # Fallback to internal database
+            # Fallback to Chantler2005 database
             warnings.warn(
                 f"X-ray line {xray_line} not found in XrayDB, "
-                f"falling back to internal database.",
+                f"falling back to Chantler2005 database.",
                 UserWarning,
             )
             return _get_energy_xray_line(xray_line)
-    elif source == "xraydb" and not XRAYDB_AVAILABLE:
-        # XrayDB requested but not available, warn and use internal
-        warnings.warn(
-            "XrayDB not available, falling back to internal database. "
-            "Install XrayDB with: pip install xraydb",
-            UserWarning,
-        )
-        return _get_energy_xray_line(xray_line)
     else:
-        # Use internal database directly
+        # Use Chantler2005 database directly
         return _get_energy_xray_line(xray_line)
-
-
-def get_available_xray_sources():
-    """
-    Get list of available X-ray line data sources.
-
-    Returns
-    -------
-    list of str
-        Available sources. Always includes 'internal',
-        includes 'xraydb' if XrayDB is available.
-    """
-    sources = ["internal"]
-    if XRAYDB_AVAILABLE:
-        sources.insert(0, "xraydb")  # Put xraydb first as preferred
-    return sources
 
 
 def validate_xray_line_source(source):
@@ -196,24 +162,15 @@ def validate_xray_line_source(source):
     Parameters
     ----------
     source : str
-        The source to validate ('xraydb' or 'internal')
+        The source to validate ('xraydb' or 'Chantler2005')
 
     Raises
     ------
     ValueError
         If source is not recognized
     """
-    valid_sources = ["xraydb", "internal"]
+    valid_sources = ["xraydb", "Chantler2005"]
     if source not in valid_sources:
         raise ValueError(
             f"Invalid X-ray line source '{source}'. Valid options are: {valid_sources}"
-        )
-
-    # Just warn if XrayDB is not available but proceed anyway (will fallback)
-    if source == "xraydb" and not XRAYDB_AVAILABLE:
-        warnings.warn(
-            "XrayDB not available but 'xraydb' source was requested. "
-            "Install XrayDB with: pip install xraydb. "
-            "Will proceed with automatic fallback to internal database.",
-            UserWarning,
         )

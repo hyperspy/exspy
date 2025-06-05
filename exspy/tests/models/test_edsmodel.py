@@ -26,13 +26,6 @@ import exspy
 from exspy._misc.eds import utils as utils_eds
 from exspy._misc.elements import elements as elements_db
 
-try:
-    import importlib.util
-
-    XRAYDB_AVAILABLE = importlib.util.find_spec("xraydb") is not None
-except ImportError:
-    XRAYDB_AVAILABLE = False
-
 
 # Create this outside the test class to
 # reduce computation in test suite by ~10seconds
@@ -167,15 +160,7 @@ class TestlineFit:
 
     @pytest.mark.parametrize(
         "xray_line_source",
-        [
-            "internal",
-            pytest.param(
-                "xraydb",
-                marks=pytest.mark.skipif(
-                    not XRAYDB_AVAILABLE, reason="xraydb not available"
-                ),
-            ),
-        ],
+        ["Chantler2005", "xraydb"],
     )
     def test_calibrate_xray_energy(self, xray_line_source):
         s = self.s
@@ -185,7 +170,7 @@ class TestlineFit:
 
         m.calibrate_xray_lines(calibrate="energy", xray_lines=["Fe_Ka"], bound=100)
 
-        if xray_line_source == "internal":
+        if xray_line_source == "Chantler2005":
             expected_energy = elements_db["Fe"]["Atomic_properties"]["Xray_lines"][
                 "Ka"
             ]["energy (keV)"]
@@ -229,15 +214,7 @@ class TestlineFit:
 
     @pytest.mark.parametrize(
         "xray_line_source",
-        [
-            "internal",
-            pytest.param(
-                "xraydb",
-                marks=pytest.mark.skipif(
-                    not XRAYDB_AVAILABLE, reason="xraydb not available"
-                ),
-            ),
-        ],
+        ["Chantler2005", "xraydb"],
     )
     def test_calibrate_xray_width(self, xray_line_source):
         s = self.s

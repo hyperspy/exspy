@@ -302,9 +302,9 @@ class EDSSEMSpectrum(EDSSpectrum):
         xray_line_source : str, default 'xraydb'
             Source for X-ray line energy data. Options are:
             - 'xraydb': Use XrayDB database (preferred, more accurate)
-            - 'internal': Use internal exspy database
-            If 'xraydb' is selected but XrayDB is not available, will
-            automatically fallback to 'internal' with a warning.
+            - 'Chantler2005': Use Chantler2005 database
+            If 'xraydb' is selected but data is not available, will
+            automatically fallback to 'Chantler2005' with a warning.
         dictionary : {None, dict}, optional
             A dictionary to be used to recreate a model. Usually generated
             using :meth:`hyperspy.model.as_dictionary`

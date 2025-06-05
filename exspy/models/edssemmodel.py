@@ -36,9 +36,9 @@ class EDSSEMModel(EDSModel):
     xray_line_source : str, default 'xraydb'
         Source for X-ray line energy data. Options are:
         - 'xraydb': Use XrayDB database (preferred, more accurate)
-        - 'internal': Use internal exspy database
-        If 'xraydb' is selected but XrayDB is not available, will
-        automatically fallback to 'internal' with a warning.
+        - 'Chantler2005': Use Chantler2005 database
+        If 'xraydb' is selected but data is not available, will
+        automatically fallback to 'Chantler2005' with a warning.
 
     Any extra arguments are passed to the Model constructor.
     """

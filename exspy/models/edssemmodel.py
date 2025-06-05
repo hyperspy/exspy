@@ -33,13 +33,31 @@ class EDSSEMModel(EDSModel):
     auto_background : bool
         If True, adds automatically a polynomial order 6 to the model,
         using the edsmodel.add_polynomial_background method.
+    xray_line_source : str, default 'xraydb'
+        Source for X-ray line energy data. Options are:
+        - 'xraydb': Use XrayDB database (preferred, more accurate)
+        - 'internal': Use internal exspy database
+        If 'xraydb' is selected but XrayDB is not available, will
+        automatically fallback to 'internal' with a warning.
 
     Any extra arguments are passed to the Model constructor.
     """
 
     def __init__(
-        self, spectrum, auto_background=True, auto_add_lines=True, *args, **kwargs
+        self,
+        spectrum,
+        auto_background=True,
+        auto_add_lines=True,
+        xray_line_source="xraydb",
+        *args,
+        **kwargs,
     ):
         EDSModel.__init__(
-            self, spectrum, auto_background, auto_add_lines, *args, **kwargs
+            self,
+            spectrum,
+            auto_background,
+            auto_add_lines,
+            xray_line_source,
+            *args,
+            **kwargs,
         )

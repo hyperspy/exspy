@@ -280,7 +280,14 @@ class EDSSEMSpectrum(EDSSpectrum):
         else:
             return False
 
-    def create_model(self, auto_background=True, auto_add_lines=True, *args, **kwargs):
+    def create_model(
+        self,
+        auto_background=True,
+        auto_add_lines=True,
+        xray_line_source="xraydb",
+        *args,
+        **kwargs,
+    ):
         """Create a model for the current SEM EDS data.
 
         Parameters
@@ -292,6 +299,12 @@ class EDSSEMSpectrum(EDSSpectrum):
             If True, automatically add Gaussians for all X-rays generated in
             the energy range by an element using the edsmodel.add_family_lines
             method.
+        xray_line_source : str, default 'xraydb'
+            Source for X-ray line energy data. Options are:
+            - 'xraydb': Use XrayDB database (preferred, more accurate)
+            - 'internal': Use internal exspy database
+            If 'xraydb' is selected but XrayDB is not available, will
+            automatically fallback to 'internal' with a warning.
         dictionary : {None, dict}, optional
             A dictionary to be used to recreate a model. Usually generated
             using :meth:`hyperspy.model.as_dictionary`
@@ -308,6 +321,7 @@ class EDSSEMSpectrum(EDSSpectrum):
             self,
             auto_background=auto_background,
             auto_add_lines=auto_add_lines,
+            xray_line_source=xray_line_source,
             *args,
             **kwargs,
         )

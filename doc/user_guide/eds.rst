@@ -580,6 +580,43 @@ background.
     Zr_Lb3
     background_order_6
 
+.. _eds_xray_databases-label:
+
+X-ray Line Databases
+^^^^^^^^^^^^^^^^^^^^^
+
+eXSpy supports two X-ray line energy databases to provide reference energies for X-ray lines:
+
+**XrayDB (default and recommended)**: An external database from the `XrayDB package <https://xraypy.github.io/XrayDB/>`_ 
+that provides high-precision X-ray line energies and related atomic data. XrayDB is maintained actively and 
+includes the most accurate and up-to-date values based on modern measurements and calculations.
+
+**Internal database**: A built-in database containing X-ray line energies derived from the 
+`NIST X-Ray Form Factor, Attenuation and Scattering Tables <https://www.nist.gov/pml/x-ray-form-factor-attenuation-and-scattering-tables>`_.
+
+The choice of database affects the reference energies used for X-ray line identification, peak fitting, 
+and energy calibration. XrayDB generally provides more accurate values and is therefore the default choice.
+
+You can specify which database to use when creating a model:
+
+.. code-block:: python
+
+    >>> # Use XrayDB (default, recommended)
+    >>> m = s.create_model(xray_line_source='xraydb')
+    
+    >>> # Use internal database
+    >>> m = s.create_model(xray_line_source='internal')
+
+For example, the Fe Kα line energy differs between the databases:
+
+- **XrayDB**: 6.40521 keV (more precise, modern value)
+- **Internal database**: 6.4039 keV (legacy value)
+
+.. NOTE::
+   XrayDB is now a strict requirement for eXSpy and provides superior accuracy for quantitative 
+   EDS analysis. The internal database is maintained for backward compatibility and specific 
+   use cases where legacy values are required.
+
 The width and the energies are fixed, while the heights of the sub-X-ray
 lines are linked to the main X-ray lines (alpha lines). The model can now be
 fitted:

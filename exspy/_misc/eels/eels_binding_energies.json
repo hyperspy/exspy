@@ -1,0 +1,3223 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "last_updated": "2025-06-04",
+        "units": "eV"
+    },
+    "elements": {
+        "Ac": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3219.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3370.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 15871.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 19840.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 19083.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 5002.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4656.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3909.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1269.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1080.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 890.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 675.0
+            }
+        },
+        "Ag": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 367.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 373.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 571.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 602.0
+            }
+        },
+        "Al": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1560.0
+            },
+            "L2,3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 73.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 118.0
+            }
+        },
+        "Am": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 18504.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4092.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3887.0
+            },
+            "O4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 116.0
+            },
+            "O5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 103.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 23773.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 22944.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 6121.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 5710.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4667.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1617.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1412.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1136.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 879.0
+            },
+            "N5": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 828.0
+            }
+        },
+        "Ar": {
+            "L2,3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 245.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 320.0
+            }
+        },
+        "As": {
+            "L2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1359.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1323.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1526.0
+            }
+        },
+        "At": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 14214.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2908.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2787.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 17493.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 16785.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4317.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4008.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3426.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1042.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 886.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 740.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 879.0
+            },
+            "N5": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 533.0
+            }
+        },
+        "Au": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2206.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2291.0
+            }
+        },
+        "B": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 188.0
+            }
+        },
+        "Ba": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 781.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 796.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1062.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1137.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 90.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 90.0
+            }
+        },
+        "Be": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 111.0
+            }
+        },
+        "Bi": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2580.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2688.0
+            }
+        },
+        "Br": {
+            "L2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1596.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1550.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1782.0
+            }
+        },
+        "C": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 284.0
+            }
+        },
+        "Ca": {
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 350.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 346.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 438.0
+            }
+        },
+        "Cd": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 404.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 411.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 616.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 651.0
+            }
+        },
+        "Ce": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 883.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 901.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1185.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1273.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 110.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 110.0
+            }
+        },
+        "Cl": {
+            "L2,3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 200.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 270.0
+            }
+        },
+        "Co": {
+            "M2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 59.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 794.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 779.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 59.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 926.0
+            }
+        },
+        "Cr": {
+            "M2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 43.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 584.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 575.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 43.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 695.0
+            }
+        },
+        "Cs": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 726.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 740.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 998.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1065.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 78.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 78.0
+            }
+        },
+        "Cu": {
+            "M2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 74.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 951.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 931.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 74.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1096.0
+            }
+        },
+        "Dy": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1295.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1332.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1676.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1842.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 154.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 154.0
+            }
+        },
+        "Er": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1409.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1453.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1812.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2006.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 168.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 168.0
+            }
+        },
+        "Eu": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1131.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1161.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1481.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1614.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 134.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 134.0
+            }
+        },
+        "F": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 685.0
+            }
+        },
+        "Fe": {
+            "K": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 7113.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 846.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 721.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 708.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 57.0
+            },
+            "M2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 57.0
+            }
+        },
+        "Fr": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 15031.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3136.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3000.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 18639.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 17907.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4652.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4327.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3663.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1153.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 980.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 810.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 603.0
+            },
+            "N5": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 577.0
+            }
+        },
+        "Ga": {
+            "L2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1142.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1115.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1298.0
+            }
+        },
+        "Gd": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1185.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1217.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1544.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1688.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 141.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 141.0
+            }
+        },
+        "Ge": {
+            "L2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1248.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1217.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1414.0
+            }
+        },
+        "H": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 13.598
+            }
+        },
+        "He": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 24.587
+            }
+        },
+        "Hf": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1662.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1716.0
+            }
+        },
+        "Hg": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2295.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2385.0
+            }
+        },
+        "Ho": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1351.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1391.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1741.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1923.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 161.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 161.0
+            }
+        },
+        "I": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 620.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 631.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 875.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 930.0
+            }
+        },
+        "In": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 443.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 451.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 664.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 702.0
+            }
+        },
+        "Ir": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2040.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2116.0
+            }
+        },
+        "K": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 294.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 296.0
+            },
+            "L1a": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 377.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 377.0
+            }
+        },
+        "Kr": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 89.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 89.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1727.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1675.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1921.0
+            }
+        },
+        "La": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 832.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 849.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1123.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1204.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 99.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 99.0
+            }
+        },
+        "Li": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 55.0
+            }
+        },
+        "Lu": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1588.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1639.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2024.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2263.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Very delayed",
+                "onset_energy (eV)": 195.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Very delayed",
+                "onset_energy (eV)": 195.0
+            }
+        },
+        "Mg": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1305.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 51.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 51.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 89.0
+            }
+        },
+        "Mn": {
+            "M2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 51.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 651.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 640.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 51.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 769.0
+            }
+        },
+        "Mo": {
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 410.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 227.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 228.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2625.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2520.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 392.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 2866.0
+            }
+        },
+        "N": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 401.0
+            }
+        },
+        "Na": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1072.0
+            },
+            "L2,3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 31.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 63.0
+            }
+        },
+        "Nb": {
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 378.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 202.3
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 205.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2465.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2371.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 363.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 2698.0
+            }
+        },
+        "Nd": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 978.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1000.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1297.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1403.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 118.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 118.0
+            }
+        },
+        "Ne": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 867.0
+            }
+        },
+        "Ni": {
+            "M2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 68.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 872.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 855.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 68.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1008.0
+            }
+        },
+        "Np": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 17610.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3850.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3666.0
+            },
+            "N6": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 415.0
+            },
+            "N7": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 404.0
+            },
+            "O4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 109.0
+            },
+            "O5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 101.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 22427.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 21601.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 5723.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 5366.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4435.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1501.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1328.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1087.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 816.0
+            },
+            "N5": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 770.0
+            },
+            "O2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 283.0
+            },
+            "O1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 206.0
+            }
+        },
+        "O": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 532.0
+            }
+        },
+        "Os": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1960.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2031.0
+            }
+        },
+        "P": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 2146.0
+            },
+            "L2,3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 132.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 189.0
+            }
+        },
+        "Pa": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 16733.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3611.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3442.0
+            },
+            "N6": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 371.0
+            },
+            "N7": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 360.0
+            },
+            "O4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 94.0
+            },
+            "O5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 94.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 21105.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 20314.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 5367.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 5001.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4174.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1387.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1224.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1007.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 743.0
+            },
+            "N5": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 708.0
+            },
+            "O2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 310.0
+            },
+            "O1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 223.0
+            }
+        },
+        "Pb": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2484.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2586.0
+            }
+        },
+        "Pd": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 335.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 340.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 531.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 559.0
+            }
+        },
+        "Pm": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 6459.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1052.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1027.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 120.0
+            },
+            "N5": {
+                "relevance": "Minor",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 121.0
+            },
+            "O2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 24.0
+            },
+            "O3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 24.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 7428.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 7013.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt Onset",
+                "onset_energy (eV)": 1646.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp Peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1471.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp Peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1357.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt Onset",
+                "onset_energy (eV)": 330.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "Sharp Peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 242.0
+            }
+        },
+        "Po": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 13814.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2798.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2683.0
+            },
+            "O4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 31.0
+            },
+            "O5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 31.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 16939.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 16244.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4149.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3854.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3302.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 995.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 851.0
+            }
+        },
+        "Pr": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 931.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 951.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1242.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1337.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 114.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 114.0
+            }
+        },
+        "Pt": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2122.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2202.0
+            }
+        },
+        "Pu": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 18057.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3973.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3778.0
+            },
+            "N6": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 446.0
+            },
+            "N7": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 432.0
+            },
+            "O4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 116.0
+            },
+            "O5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 105.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 23097.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 22266.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 5933.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 5541.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4557.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1559.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1372.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1115.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 849.0
+            },
+            "N5": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 801.0
+            },
+            "O1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 352.0
+            },
+            "O2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 274.0
+            },
+            "O3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 207.0
+            }
+        },
+        "Ra": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 15444.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3248.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3105.0
+            },
+            "N6": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 299.0
+            },
+            "N7": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 299.0
+            },
+            "O4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 67.0
+            },
+            "O5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 67.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 19237.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 18484.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4822.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4490.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3792.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1208.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1058.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 879.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 636.0
+            },
+            "N5": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 603.0
+            },
+            "O1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 254.0
+            },
+            "O2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 254.0
+            },
+            "O3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 153.0
+            }
+        },
+        "Rb": {
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 247.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 110.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 110.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1864.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1804.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 238.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 2065.0
+            }
+        },
+        "Re": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1883.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1949.0
+            }
+        },
+        "Rh": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 308.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 312.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 496.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 521.0
+            }
+        },
+        "Rn": {
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 14619.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3022.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2892.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 18049.0
+            },
+            "L2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 17337.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4482.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 4159.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 3538.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1097.0
+            },
+            "N2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 929.0
+            },
+            "N3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 768.0
+            },
+            "N4": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 567.0
+            }
+        },
+        "Ru": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 279.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 279.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 461.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 483.0
+            }
+        },
+        "S": {
+            "L2,3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 165.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 229.0
+            }
+        },
+        "Sb": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 528.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 537.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 766.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 812.0
+            }
+        },
+        "Sc": {
+            "M2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 32.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 407.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 402.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 32.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 500.0
+            }
+        },
+        "Se": {
+            "L2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1476.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1436.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1654.0
+            }
+        },
+        "Si": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1839.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 99.8
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 99.2
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 149.7
+            }
+        },
+        "Sm": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1080.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1106.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1420.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1541.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 130.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 130.0
+            }
+        },
+        "Sn": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 485.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 494.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 714.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 756.0
+            }
+        },
+        "Sr": {
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 280.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 134.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 134.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2007.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1940.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 269.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 2216.0
+            }
+        },
+        "Ta": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1735.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1793.0
+            }
+        },
+        "Tb": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1241.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1275.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1611.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1768.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 148.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 148.0
+            }
+        },
+        "Tc": {
+            "K": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 21044.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2793.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2677.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 256.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 253.0
+            },
+            "N2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 39.0
+            },
+            "N3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 39.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 3043.0
+            },
+            "M1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 544.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 445.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 425.0
+            },
+            "N1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 68.0
+            }
+        },
+        "Te": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 572.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 582.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 819.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 870.0
+            }
+        },
+        "Th": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 3332.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 3491.0
+            },
+            "O5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 83.0
+            },
+            "O4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 83.0
+            }
+        },
+        "Ti": {
+            "M2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 35.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 462.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 456.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 35.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 564.0
+            }
+        },
+        "Tl": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2389.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2485.0
+            }
+        },
+        "Tm": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1468.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1515.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1884.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2090.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 180.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 180.0
+            }
+        },
+        "U": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 3552.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 3728.0
+            },
+            "O5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 96.0
+            },
+            "O4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 96.0
+            }
+        },
+        "V": {
+            "M2": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 38.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 521.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 513.0
+            },
+            "M3": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 38.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 628.0
+            }
+        },
+        "W": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1809.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1872.0
+            }
+        },
+        "Xe": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 672.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 685.0
+            }
+        },
+        "Y": {
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 312.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 160.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 160.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2155.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2080.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 300.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 2372.0
+            }
+        },
+        "Yb": {
+            "M5": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1528.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1576.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 1950.0
+            },
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "",
+                "onset_energy (eV)": 2173.0
+            },
+            "N4": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 184.0
+            },
+            "N5": {
+                "relevance": "Major",
+                "threshold": "Broad peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 184.0
+            }
+        },
+        "Zn": {
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 87.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1043.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 1020.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 87.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 1194.0
+            }
+        },
+        "Zr": {
+            "M2": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 344.0
+            },
+            "M5": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 181.0
+            },
+            "M4": {
+                "relevance": "Major",
+                "threshold": "",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 181.0
+            },
+            "L2": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2307.0
+            },
+            "L3": {
+                "relevance": "Major",
+                "threshold": "Sharp peak",
+                "edge": "Delayed maximum",
+                "onset_energy (eV)": 2222.0
+            },
+            "M3": {
+                "relevance": "Minor",
+                "threshold": "Sharp peak",
+                "edge": "",
+                "onset_energy (eV)": 330.0
+            },
+            "L1": {
+                "relevance": "Minor",
+                "threshold": "",
+                "edge": "Abrupt onset",
+                "onset_energy (eV)": 2532.0
+            }
+        }
+    }
+}

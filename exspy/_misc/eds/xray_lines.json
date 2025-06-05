@@ -1,0 +1,3985 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "source": "Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R., Kotochigova, S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and Scattering Tables (version 2.1).  https://dx.doi.org/10.18434/T4HS32",
+    "last_updated": "2025-06-04",
+    "units": "keV",
+    "notes": "Am, Li, Np and Pu lines are missing"
+  },
+  "elements": {
+    "Ac": {
+      "Lb1": {
+        "weight": 0.4,
+        "energy (keV)": 15.713
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 102.846
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 90.884
+      },
+      "M2N4": {
+        "weight": 0.00674,
+        "energy (keV)": 3.9811
+      },
+      "Ma": {
+        "energy (keV)": 2.9239330000000003,
+        "weight": 1.0
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 12.652
+      },
+      "Ln": {
+        "weight": 0.0133,
+        "energy (keV)": 14.0812
+      },
+      "M3O4": {
+        "energy (keV)": 3.82586,
+        "weight": 0.01
+      },
+      "Ll": {
+        "weight": 0.06549,
+        "energy (keV)": 10.869
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 3.06626
+      },
+      "Mg": {
+        "weight": 0.33505,
+        "energy (keV)": 3.272
+      },
+      "M3O5": {
+        "energy (keV)": 3.83206,
+        "weight": 0.01
+      },
+      "Lb2": {
+        "weight": 0.236,
+        "energy (keV)": 15.234
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 18.95
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 18.4083
+      },
+      "Lb3": {
+        "weight": 0.06,
+        "energy (keV)": 15.931
+      },
+      "Mz": {
+        "weight": 0.03512,
+        "energy (keV)": 2.329
+      }
+    },
+    "Ag": {
+      "Lb1": {
+        "weight": 0.35175,
+        "energy (keV)": 3.1509
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 24.9426
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 22.1629
+      },
+      "Lb2": {
+        "weight": 0.1165,
+        "energy (keV)": 3.3478
+      },
+      "Lb4": {
+        "weight": 0.0444,
+        "energy (keV)": 3.2034
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 2.9844
+      },
+      "Ln": {
+        "weight": 0.0131,
+        "energy (keV)": 2.8062
+      },
+      "Ll": {
+        "weight": 0.04129,
+        "energy (keV)": 2.6336
+      },
+      "Lb3": {
+        "weight": 0.0737,
+        "energy (keV)": 3.2344
+      },
+      "Lg3": {
+        "weight": 0.014,
+        "energy (keV)": 3.7499
+      },
+      "Lg1": {
+        "weight": 0.03735,
+        "energy (keV)": 3.5204
+      }
+    },
+    "Al": {
+      "Kb": {
+        "weight": 0.0132,
+        "energy (keV)": 1.5596
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 1.4865
+      }
+    },
+    "Am": {},
+    "Ar": {
+      "Kb": {
+        "weight": 0.10169,
+        "energy (keV)": 3.1905
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 2.9577
+      }
+    },
+    "As": {
+      "Lb1": {
+        "weight": 0.16704,
+        "energy (keV)": 1.3174
+      },
+      "Kb": {
+        "weight": 0.14589,
+        "energy (keV)": 11.7262
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 10.5436
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.2819
+      },
+      "Ln": {
+        "weight": 0.01929,
+        "energy (keV)": 1.1551
+      },
+      "Ll": {
+        "weight": 0.04929,
+        "energy (keV)": 1.1196
+      },
+      "Lb3": {
+        "weight": 0.04769,
+        "energy (keV)": 1.386
+      }
+    },
+    "At": {
+      "Lb1": {
+        "weight": 0.38048,
+        "energy (keV)": 13.876
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 92.3039
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 81.5164
+      },
+      "M2N4": {
+        "weight": 0.00863,
+        "energy (keV)": 3.4748
+      },
+      "Lb4": {
+        "weight": 0.05809,
+        "energy (keV)": 13.485
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 11.4268
+      },
+      "Ln": {
+        "weight": 0.0132,
+        "energy (keV)": 12.4677
+      },
+      "Ll": {
+        "weight": 0.06179,
+        "energy (keV)": 9.8965
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.71162
+      },
+      "Mg": {
+        "weight": 0.21845,
+        "energy (keV)": 2.95061
+      },
+      "Lb2": {
+        "weight": 0.2305,
+        "energy (keV)": 13.73812
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 16.753
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 16.2515
+      },
+      "Lb3": {
+        "weight": 0.06,
+        "energy (keV)": 14.067
+      },
+      "Mz": {
+        "weight": 0.00354,
+        "energy (keV)": 2.0467
+      }
+    },
+    "Au": {
+      "Lb1": {
+        "weight": 0.40151,
+        "energy (keV)": 11.4425
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 77.9819
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 68.8062
+      },
+      "M2N4": {
+        "weight": 0.02901,
+        "energy (keV)": 2.7958
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 2.1229
+      },
+      "Lb4": {
+        "weight": 0.0594,
+        "energy (keV)": 11.205
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 9.713
+      },
+      "Ln": {
+        "weight": 0.01379,
+        "energy (keV)": 10.3087
+      },
+      "M3O4": {
+        "energy (keV)": 2.73469,
+        "weight": 0.005
+      },
+      "Ll": {
+        "weight": 0.0562,
+        "energy (keV)": 8.4938
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 2.2047
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 2.4091
+      },
+      "Lb2": {
+        "weight": 0.21949,
+        "energy (keV)": 11.5848
+      },
+      "Lb3": {
+        "weight": 0.069,
+        "energy (keV)": 11.6098
+      },
+      "M3O5": {
+        "energy (keV)": 2.73621,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.0194,
+        "energy (keV)": 13.8074
+      },
+      "Lg1": {
+        "weight": 0.08407,
+        "energy (keV)": 13.3816
+      },
+      "Mz": {
+        "weight": 0.01344,
+        "energy (keV)": 1.6603
+      }
+    },
+    "B": {
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.1833
+      }
+    },
+    "Ba": {
+      "Lb1": {
+        "weight": 0.43048,
+        "energy (keV)": 4.8275
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 36.3784
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 32.1936
+      },
+      "Lb2": {
+        "weight": 0.1905,
+        "energy (keV)": 5.1571
+      },
+      "Lb4": {
+        "weight": 0.08859,
+        "energy (keV)": 4.8521
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 4.4663
+      },
+      "Ln": {
+        "weight": 0.0151,
+        "energy (keV)": 4.3308
+      },
+      "Ll": {
+        "weight": 0.04299,
+        "energy (keV)": 3.9542
+      },
+      "Lb3": {
+        "weight": 0.13779,
+        "energy (keV)": 4.9266
+      },
+      "Lg3": {
+        "weight": 0.0331,
+        "energy (keV)": 5.8091
+      },
+      "Lg1": {
+        "weight": 0.07487,
+        "energy (keV)": 5.5311
+      }
+    },
+    "Be": {
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.10258
+      }
+    },
+    "Bi": {
+      "Lb1": {
+        "weight": 0.4,
+        "energy (keV)": 13.0235
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 87.349
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 77.1073
+      },
+      "M2N4": {
+        "weight": 0.00863,
+        "energy (keV)": 3.2327
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 2.4222
+      },
+      "Lb4": {
+        "weight": 0.05639,
+        "energy (keV)": 12.6912
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 10.839
+      },
+      "Ln": {
+        "weight": 0.0134,
+        "energy (keV)": 11.712
+      },
+      "M3O4": {
+        "energy (keV)": 3.1504,
+        "weight": 0.01
+      },
+      "Ll": {
+        "weight": 0.06,
+        "energy (keV)": 9.4195
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.5257
+      },
+      "Mg": {
+        "weight": 0.21845,
+        "energy (keV)": 2.7369
+      },
+      "Lb2": {
+        "weight": 0.2278,
+        "energy (keV)": 12.9786
+      },
+      "Lb3": {
+        "weight": 0.0607,
+        "energy (keV)": 13.2106
+      },
+      "M3O5": {
+        "energy (keV)": 3.1525,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 15.7086
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 15.2475
+      },
+      "Mz": {
+        "weight": 0.0058,
+        "energy (keV)": 1.9007
+      }
+    },
+    "Br": {
+      "Lb1": {
+        "weight": 0.39175,
+        "energy (keV)": 1.5259
+      },
+      "Kb": {
+        "weight": 0.15289,
+        "energy (keV)": 13.2922
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 11.9238
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.4809
+      },
+      "Ln": {
+        "weight": 0.0182,
+        "energy (keV)": 1.3395
+      },
+      "Ll": {
+        "weight": 0.0462,
+        "energy (keV)": 1.2934
+      },
+      "Lb3": {
+        "weight": 0.04629,
+        "energy (keV)": 1.6005
+      }
+    },
+    "C": {
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.2774
+      }
+    },
+    "Ca": {
+      "Ln": {
+        "weight": 0.23,
+        "energy (keV)": 0.3063
+      },
+      "Kb": {
+        "weight": 0.112,
+        "energy (keV)": 4.0127
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 3.6917
+      },
+      "Ll": {
+        "weight": 1.0,
+        "energy (keV)": 0.3027
+      },
+      "La": {
+        "weight": 0.0,
+        "energy (keV)": 0.3464
+      }
+    },
+    "Cd": {
+      "Lb1": {
+        "weight": 0.35704,
+        "energy (keV)": 3.3165
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 26.0947
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 23.1737
+      },
+      "Lb2": {
+        "weight": 0.1288,
+        "energy (keV)": 3.5282
+      },
+      "Lb4": {
+        "weight": 0.0469,
+        "energy (keV)": 3.3673
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 3.1338
+      },
+      "Ln": {
+        "weight": 0.0132,
+        "energy (keV)": 2.9568
+      },
+      "Ll": {
+        "weight": 0.04169,
+        "energy (keV)": 2.7673
+      },
+      "Lb3": {
+        "weight": 0.07719,
+        "energy (keV)": 3.4015
+      },
+      "Lg3": {
+        "weight": 0.0151,
+        "energy (keV)": 3.9511
+      },
+      "Lg1": {
+        "weight": 0.0416,
+        "energy (keV)": 3.7177
+      }
+    },
+    "Ce": {
+      "Lb1": {
+        "weight": 0.43,
+        "energy (keV)": 5.2629
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 39.2576
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 34.7196
+      },
+      "M2N4": {
+        "weight": 0.08,
+        "energy (keV)": 1.1628
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 0.8455
+      },
+      "Lb4": {
+        "weight": 0.08699,
+        "energy (keV)": 5.276
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 4.8401
+      },
+      "Ln": {
+        "weight": 0.015,
+        "energy (keV)": 4.7296
+      },
+      "Ll": {
+        "weight": 0.0436,
+        "energy (keV)": 4.2888
+      },
+      "Mb": {
+        "weight": 0.91,
+        "energy (keV)": 0.8154
+      },
+      "Mg": {
+        "weight": 0.5,
+        "energy (keV)": 1.0754
+      },
+      "Lb2": {
+        "weight": 0.19399,
+        "energy (keV)": 5.6134
+      },
+      "Lb3": {
+        "weight": 0.1325,
+        "energy (keV)": 5.3634
+      },
+      "Lg3": {
+        "weight": 0.0324,
+        "energy (keV)": 6.3416
+      },
+      "Lg1": {
+        "weight": 0.0764,
+        "energy (keV)": 6.0542
+      },
+      "Mz": {
+        "weight": 0.07,
+        "energy (keV)": 0.6761
+      }
+    },
+    "Cl": {
+      "Kb": {
+        "weight": 0.0838,
+        "energy (keV)": 2.8156
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 2.6224
+      }
+    },
+    "Co": {
+      "Kb": {
+        "weight": 0.1277,
+        "energy (keV)": 7.6494
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 6.9303
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 0.7757
+      },
+      "Ln": {
+        "weight": 0.0833,
+        "energy (keV)": 0.6929
+      },
+      "Ll": {
+        "weight": 0.2157,
+        "energy (keV)": 0.6779
+      },
+      "Lb3": {
+        "weight": 0.0238,
+        "energy (keV)": 0.8661
+      }
+    },
+    "Cr": {
+      "Kb": {
+        "weight": 0.134,
+        "energy (keV)": 5.9467
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 5.4147
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 0.5722
+      },
+      "Ln": {
+        "weight": 0.2353,
+        "energy (keV)": 0.5096
+      },
+      "Ll": {
+        "weight": 0.6903,
+        "energy (keV)": 0.5004
+      },
+      "Lb3": {
+        "weight": 0.0309,
+        "energy (keV)": 0.6521
+      }
+    },
+    "Cs": {
+      "Lb1": {
+        "weight": 0.42983,
+        "energy (keV)": 4.6199
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 34.987
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 30.9727
+      },
+      "Lb2": {
+        "weight": 0.19589,
+        "energy (keV)": 4.9354
+      },
+      "Lb4": {
+        "weight": 0.08869,
+        "energy (keV)": 4.6493
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 4.2864
+      },
+      "Ln": {
+        "weight": 0.0152,
+        "energy (keV)": 4.1423
+      },
+      "Ll": {
+        "weight": 0.04269,
+        "energy (keV)": 3.7948
+      },
+      "Lb3": {
+        "weight": 0.1399,
+        "energy (keV)": 4.7167
+      },
+      "Lg3": {
+        "weight": 0.0325,
+        "energy (keV)": 5.5527
+      },
+      "Lg1": {
+        "weight": 0.07215,
+        "energy (keV)": 5.2806
+      }
+    },
+    "Cu": {
+      "Lb1": {
+        "weight": 0.03197,
+        "energy (keV)": 0.9494
+      },
+      "Kb": {
+        "weight": 0.13157,
+        "energy (keV)": 8.9053
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 8.0478
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 0.9295
+      },
+      "Ln": {
+        "weight": 0.01984,
+        "energy (keV)": 0.8312
+      },
+      "Ll": {
+        "weight": 0.08401,
+        "energy (keV)": 0.8113
+      },
+      "Lb3": {
+        "weight": 0.00114,
+        "energy (keV)": 1.0225
+      }
+    },
+    "Dy": {
+      "Lb1": {
+        "weight": 0.444,
+        "energy (keV)": 7.2481
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 52.1129
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 45.9984
+      },
+      "M2N4": {
+        "weight": 0.008,
+        "energy (keV)": 1.6876
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.2907
+      },
+      "Lb4": {
+        "weight": 0.0891,
+        "energy (keV)": 7.204
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 6.4952
+      },
+      "Ln": {
+        "weight": 0.01489,
+        "energy (keV)": 6.5338
+      },
+      "Ll": {
+        "weight": 0.0473,
+        "energy (keV)": 5.7433
+      },
+      "Mb": {
+        "weight": 0.76,
+        "energy (keV)": 1.3283
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 1.5214
+      },
+      "Lb2": {
+        "weight": 0.2,
+        "energy (keV)": 7.6359
+      },
+      "Lb3": {
+        "weight": 0.12529,
+        "energy (keV)": 7.3702
+      },
+      "Lg3": {
+        "weight": 0.0319,
+        "energy (keV)": 8.7529
+      },
+      "Lg1": {
+        "weight": 0.08295,
+        "energy (keV)": 8.4264
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 1.002
+      }
+    },
+    "Er": {
+      "Lb1": {
+        "weight": 0.45263,
+        "energy (keV)": 7.811
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 55.6737
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 49.1276
+      },
+      "M2N4": {
+        "weight": 0.0045,
+        "energy (keV)": 1.8291
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.405
+      },
+      "Lb4": {
+        "weight": 0.0922,
+        "energy (keV)": 7.7455
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 6.9486
+      },
+      "Ln": {
+        "weight": 0.0153,
+        "energy (keV)": 7.0578
+      },
+      "Ll": {
+        "weight": 0.0482,
+        "energy (keV)": 6.1514
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.449
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 1.6442
+      },
+      "Lb2": {
+        "weight": 0.2005,
+        "energy (keV)": 8.1903
+      },
+      "Lb3": {
+        "weight": 0.1258,
+        "energy (keV)": 7.9395
+      },
+      "Lg3": {
+        "weight": 0.0324,
+        "energy (keV)": 9.4313
+      },
+      "Lg1": {
+        "weight": 0.08487,
+        "energy (keV)": 9.0876
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 1.0893
+      }
+    },
+    "Eu": {
+      "Lb1": {
+        "weight": 0.43904,
+        "energy (keV)": 6.4565
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 47.0384
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 41.5421
+      },
+      "M2N4": {
+        "weight": 0.013,
+        "energy (keV)": 1.4807
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.0991
+      },
+      "Lb4": {
+        "weight": 0.0874,
+        "energy (keV)": 6.4381
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 5.846
+      },
+      "Ln": {
+        "weight": 0.015,
+        "energy (keV)": 5.8171
+      },
+      "Ll": {
+        "weight": 0.04559,
+        "energy (keV)": 5.1769
+      },
+      "Mb": {
+        "weight": 0.87,
+        "energy (keV)": 1.15769
+      },
+      "Mg": {
+        "weight": 0.26,
+        "energy (keV)": 1.3474
+      },
+      "Lb2": {
+        "weight": 0.1985,
+        "energy (keV)": 6.8437
+      },
+      "Lb3": {
+        "weight": 0.1265,
+        "energy (keV)": 6.5714
+      },
+      "Lg3": {
+        "weight": 0.0318,
+        "energy (keV)": 7.7954
+      },
+      "Lg1": {
+        "weight": 0.08064,
+        "energy (keV)": 7.4839
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 0.8743
+      }
+    },
+    "F": {
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.6768
+      }
+    },
+    "Fe": {
+      "Kb": {
+        "weight": 0.1272,
+        "energy (keV)": 7.058
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 6.4039
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 0.7045
+      },
+      "Ln": {
+        "weight": 0.12525,
+        "energy (keV)": 0.6282
+      },
+      "Ll": {
+        "weight": 0.3086,
+        "energy (keV)": 0.6152
+      },
+      "Lb3": {
+        "weight": 0.02448,
+        "energy (keV)": 0.7921
+      }
+    },
+    "Fr": {
+      "Lb1": {
+        "weight": 0.38327,
+        "energy (keV)": 14.7703
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 97.474
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 86.1058
+      },
+      "M2N4": {
+        "weight": 0.00674,
+        "energy (keV)": 3.7237
+      },
+      "Lb4": {
+        "weight": 0.0603,
+        "energy (keV)": 14.312
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 12.0315
+      },
+      "Ln": {
+        "weight": 0.0134,
+        "energy (keV)": 13.2545
+      },
+      "Ll": {
+        "weight": 0.06339,
+        "energy (keV)": 10.3792
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.88971
+      },
+      "Mg": {
+        "weight": 0.21845,
+        "energy (keV)": 3.086
+      },
+      "Lb2": {
+        "weight": 0.2337,
+        "energy (keV)": 14.4542
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 17.829
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 17.3032
+      },
+      "Lb3": {
+        "weight": 0.05969,
+        "energy (keV)": 14.976
+      },
+      "Mz": {
+        "weight": 0.0058,
+        "energy (keV)": 2.1897
+      }
+    },
+    "Ga": {
+      "Lb1": {
+        "weight": 0.16704,
+        "energy (keV)": 1.1249
+      },
+      "Kb": {
+        "weight": 0.1287,
+        "energy (keV)": 10.2642
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 9.2517
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.098
+      },
+      "Ln": {
+        "weight": 0.02509,
+        "energy (keV)": 0.9842
+      },
+      "Ll": {
+        "weight": 0.0544,
+        "energy (keV)": 0.9573
+      },
+      "Lb3": {
+        "weight": 0.0461,
+        "energy (keV)": 1.1948
+      }
+    },
+    "Gd": {
+      "Lb1": {
+        "weight": 0.44127,
+        "energy (keV)": 6.7131
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 48.6951
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 42.9963
+      },
+      "M2N4": {
+        "weight": 0.014,
+        "energy (keV)": 1.5478
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.17668
+      },
+      "Lb4": {
+        "weight": 0.08789,
+        "energy (keV)": 6.6873
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 6.0576
+      },
+      "Ln": {
+        "weight": 0.01489,
+        "energy (keV)": 6.0495
+      },
+      "Ll": {
+        "weight": 0.04629,
+        "energy (keV)": 5.362
+      },
+      "Mb": {
+        "weight": 0.88,
+        "energy (keV)": 1.20792
+      },
+      "Mg": {
+        "weight": 0.261,
+        "energy (keV)": 1.4035
+      },
+      "Lb2": {
+        "weight": 0.2014,
+        "energy (keV)": 7.1023
+      },
+      "Lb3": {
+        "weight": 0.1255,
+        "energy (keV)": 6.8316
+      },
+      "Lg3": {
+        "weight": 0.032,
+        "energy (keV)": 8.1047
+      },
+      "Lg1": {
+        "weight": 0.08207,
+        "energy (keV)": 7.7898
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 0.9143
+      }
+    },
+    "Ge": {
+      "Lb1": {
+        "weight": 0.16704,
+        "energy (keV)": 1.2191
+      },
+      "Kb": {
+        "weight": 0.1322,
+        "energy (keV)": 10.9823
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 9.8864
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.188
+      },
+      "Ln": {
+        "weight": 0.02,
+        "energy (keV)": 1.0678
+      },
+      "Ll": {
+        "weight": 0.0511,
+        "energy (keV)": 1.0367
+      },
+      "Lb3": {
+        "weight": 0.04429,
+        "energy (keV)": 1.2935
+      }
+    },
+    "H": {
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.0013598
+      }
+    },
+    "He": {
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.0024587
+      }
+    },
+    "Hf": {
+      "Lb1": {
+        "weight": 0.46231,
+        "energy (keV)": 9.023
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 63.2432
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 55.7901
+      },
+      "M2N4": {
+        "weight": 0.01,
+        "energy (keV)": 2.1416
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.6446
+      },
+      "Lb4": {
+        "weight": 0.10189,
+        "energy (keV)": 8.9053
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 7.899
+      },
+      "Ln": {
+        "weight": 0.0158,
+        "energy (keV)": 8.1385
+      },
+      "Ll": {
+        "weight": 0.05089,
+        "energy (keV)": 6.9598
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.6993
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 1.8939
+      },
+      "Lb2": {
+        "weight": 0.2048,
+        "energy (keV)": 9.347
+      },
+      "Lb3": {
+        "weight": 0.1316,
+        "energy (keV)": 9.1631
+      },
+      "Lg3": {
+        "weight": 0.0347,
+        "energy (keV)": 10.8903
+      },
+      "Lg1": {
+        "weight": 0.08968,
+        "energy (keV)": 10.5156
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 1.2813
+      }
+    },
+    "Hg": {
+      "Lb1": {
+        "weight": 0.39504,
+        "energy (keV)": 11.8238
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 80.2552
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 70.8184
+      },
+      "M2N4": {
+        "weight": 0.02901,
+        "energy (keV)": 2.9002
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 2.1964
+      },
+      "Lb4": {
+        "weight": 0.0566,
+        "energy (keV)": 11.5608
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 9.989
+      },
+      "Ln": {
+        "weight": 0.0136,
+        "energy (keV)": 10.6471
+      },
+      "M3O4": {
+        "energy (keV)": 2.8407,
+        "weight": 0.005
+      },
+      "Ll": {
+        "weight": 0.05709,
+        "energy (keV)": 8.7223
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.2827
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 2.4873
+      },
+      "Lb2": {
+        "weight": 0.2221,
+        "energy (keV)": 11.9241
+      },
+      "Lb3": {
+        "weight": 0.06469,
+        "energy (keV)": 11.9922
+      },
+      "M3O5": {
+        "energy (keV)": 2.8407,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.0184,
+        "energy (keV)": 14.2683
+      },
+      "Lg1": {
+        "weight": 0.0832,
+        "energy (keV)": 13.8304
+      },
+      "Mz": {
+        "weight": 0.01344,
+        "energy (keV)": 1.7239
+      }
+    },
+    "Ho": {
+      "Lb1": {
+        "weight": 0.45056,
+        "energy (keV)": 7.5263
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 53.8765
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 47.5466
+      },
+      "M2N4": {
+        "weight": 0.072,
+        "energy (keV)": 1.7618
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.3477
+      },
+      "Lb4": {
+        "weight": 0.09039,
+        "energy (keV)": 7.4714
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 6.7197
+      },
+      "Ln": {
+        "weight": 0.0151,
+        "energy (keV)": 6.7895
+      },
+      "Ll": {
+        "weight": 0.04759,
+        "energy (keV)": 5.9428
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.3878
+      },
+      "Mg": {
+        "weight": 0.1418,
+        "energy (keV)": 1.5802
+      },
+      "Lb2": {
+        "weight": 0.23563,
+        "energy (keV)": 7.9101
+      },
+      "Lb3": {
+        "weight": 0.06,
+        "energy (keV)": 7.653
+      },
+      "Lg3": {
+        "weight": 0.0321,
+        "energy (keV)": 9.0876
+      },
+      "Lg1": {
+        "weight": 0.08448,
+        "energy (keV)": 8.7568
+      },
+      "Mz": {
+        "weight": 0.6629,
+        "energy (keV)": 1.0448
+      }
+    },
+    "I": {
+      "Lb1": {
+        "weight": 0.43087,
+        "energy (keV)": 4.2208
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 32.2948
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 28.6123
+      },
+      "Lb2": {
+        "weight": 0.17059,
+        "energy (keV)": 4.5075
+      },
+      "Lb4": {
+        "weight": 0.09189,
+        "energy (keV)": 4.2576
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 3.9377
+      },
+      "Ln": {
+        "weight": 0.0154,
+        "energy (keV)": 3.78
+      },
+      "Ll": {
+        "weight": 0.0423,
+        "energy (keV)": 3.485
+      },
+      "Lb3": {
+        "weight": 0.1464,
+        "energy (keV)": 4.3135
+      },
+      "Lg3": {
+        "weight": 0.0327,
+        "energy (keV)": 5.0654
+      },
+      "Lg1": {
+        "weight": 0.06704,
+        "energy (keV)": 4.8025
+      }
+    },
+    "In": {
+      "Lb1": {
+        "weight": 0.3616,
+        "energy (keV)": 3.4872
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 27.2756
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 24.2098
+      },
+      "Lb2": {
+        "weight": 0.1371,
+        "energy (keV)": 3.7139
+      },
+      "Lb4": {
+        "weight": 0.05349,
+        "energy (keV)": 3.5353
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 3.287
+      },
+      "Ln": {
+        "weight": 0.0132,
+        "energy (keV)": 3.1124
+      },
+      "Ll": {
+        "weight": 0.0415,
+        "energy (keV)": 2.9045
+      },
+      "Lb3": {
+        "weight": 0.08779,
+        "energy (keV)": 3.5732
+      },
+      "Lg3": {
+        "weight": 0.0177,
+        "energy (keV)": 4.1601
+      },
+      "Lg1": {
+        "weight": 0.04535,
+        "energy (keV)": 3.9218
+      }
+    },
+    "Ir": {
+      "Lb1": {
+        "weight": 0.4168,
+        "energy (keV)": 10.708
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 73.5603
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 64.8958
+      },
+      "M2N4": {
+        "weight": 0.02901,
+        "energy (keV)": 2.5973
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.9799
+      },
+      "Lb4": {
+        "weight": 0.07269,
+        "energy (keV)": 10.5098
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 9.1748
+      },
+      "Ln": {
+        "weight": 0.01429,
+        "energy (keV)": 9.6504
+      },
+      "M3O4": {
+        "energy (keV)": 2.54264,
+        "weight": 0.005
+      },
+      "Ll": {
+        "weight": 0.05429,
+        "energy (keV)": 8.0415
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 2.0527
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 2.2558
+      },
+      "Lb2": {
+        "weight": 0.216,
+        "energy (keV)": 10.9203
+      },
+      "Lb3": {
+        "weight": 0.0874,
+        "energy (keV)": 10.8678
+      },
+      "M3O5": {
+        "energy (keV)": 2.54385,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.024,
+        "energy (keV)": 12.9242
+      },
+      "Lg1": {
+        "weight": 0.08543,
+        "energy (keV)": 12.5127
+      },
+      "Mz": {
+        "weight": 0.01344,
+        "energy (keV)": 1.5461
+      }
+    },
+    "K": {
+      "Kb": {
+        "weight": 0.1039,
+        "energy (keV)": 3.5896
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 3.3138
+      }
+    },
+    "Kr": {
+      "Lb1": {
+        "weight": 0.39031,
+        "energy (keV)": 1.6383
+      },
+      "Kb": {
+        "weight": 0.1538,
+        "energy (keV)": 14.1118
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 12.6507
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.586
+      },
+      "Ln": {
+        "weight": 0.0175,
+        "energy (keV)": 1.43887
+      },
+      "Ll": {
+        "weight": 0.04509,
+        "energy (keV)": 1.38657
+      },
+      "Lb3": {
+        "weight": 0.0465,
+        "energy (keV)": 1.7072
+      },
+      "Lg3": {
+        "weight": 0.005,
+        "energy (keV)": 1.921
+      }
+    },
+    "La": {
+      "Lb1": {
+        "weight": 0.42631,
+        "energy (keV)": 5.0421
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 37.8012
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 33.4419
+      },
+      "M2N4": {
+        "weight": 0.022,
+        "energy (keV)": 1.1055
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 0.8173
+      },
+      "Lb4": {
+        "weight": 0.0872,
+        "energy (keV)": 5.0619
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 4.651
+      },
+      "Ln": {
+        "weight": 0.015,
+        "energy (keV)": 4.5293
+      },
+      "Ll": {
+        "weight": 0.0432,
+        "energy (keV)": 4.1214
+      },
+      "Mb": {
+        "weight": 0.9,
+        "energy (keV)": 0.8162
+      },
+      "Mg": {
+        "weight": 0.4,
+        "energy (keV)": 1.0245
+      },
+      "Lb2": {
+        "weight": 0.19579,
+        "energy (keV)": 5.3838
+      },
+      "Lb3": {
+        "weight": 0.1341,
+        "energy (keV)": 5.1429
+      },
+      "Lg3": {
+        "weight": 0.0329,
+        "energy (keV)": 6.0749
+      },
+      "Lg1": {
+        "weight": 0.07656,
+        "energy (keV)": 5.7917
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 0.6403
+      }
+    },
+    "Li": {},
+    "Lu": {
+      "Lb1": {
+        "weight": 0.46975,
+        "energy (keV)": 8.7092
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 61.2902
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 54.0697
+      },
+      "M2N4": {
+        "weight": 0.01,
+        "energy (keV)": 2.0587
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.5816
+      },
+      "Lb4": {
+        "weight": 0.0996,
+        "energy (keV)": 8.6069
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 7.6556
+      },
+      "Ln": {
+        "weight": 0.016,
+        "energy (keV)": 7.8574
+      },
+      "Ll": {
+        "weight": 0.05009,
+        "energy (keV)": 6.7529
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.6325
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 1.8286
+      },
+      "Lb2": {
+        "weight": 0.20359,
+        "energy (keV)": 9.0491
+      },
+      "Lb3": {
+        "weight": 0.13099,
+        "energy (keV)": 8.8468
+      },
+      "Lg3": {
+        "weight": 0.0342,
+        "energy (keV)": 10.5111
+      },
+      "Lg1": {
+        "weight": 0.08968,
+        "energy (keV)": 10.1438
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 1.2292
+      }
+    },
+    "Mg": {
+      "Kb": {
+        "weight": 0.01,
+        "energy (keV)": 1.305
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 1.2536
+      }
+    },
+    "Mn": {
+      "Kb": {
+        "weight": 0.1252,
+        "energy (keV)": 6.4904
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 5.8987
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 0.63316
+      },
+      "Ln": {
+        "weight": 0.1898,
+        "energy (keV)": 0.5675
+      },
+      "Ll": {
+        "weight": 0.3898,
+        "energy (keV)": 0.5564
+      },
+      "Lb3": {
+        "weight": 0.0263,
+        "energy (keV)": 0.7204
+      }
+    },
+    "Mo": {
+      "Lb1": {
+        "weight": 0.32736,
+        "energy (keV)": 2.3948
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 19.6072
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 17.4793
+      },
+      "Lb2": {
+        "weight": 0.04509,
+        "energy (keV)": 2.5184
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 2.2932
+      },
+      "Ln": {
+        "weight": 0.0128,
+        "energy (keV)": 2.1205
+      },
+      "Ll": {
+        "weight": 0.0415,
+        "energy (keV)": 2.0156
+      },
+      "Lb3": {
+        "weight": 0.06299,
+        "energy (keV)": 2.4732
+      },
+      "Lg3": {
+        "weight": 0.0105,
+        "energy (keV)": 2.8307
+      },
+      "Lg1": {
+        "weight": 0.01335,
+        "energy (keV)": 2.6233
+      }
+    },
+    "N": {
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.3924
+      }
+    },
+    "Na": {
+      "Kb": {
+        "weight": 0.01,
+        "energy (keV)": 1.0721
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 1.041
+      }
+    },
+    "Nb": {
+      "Lb1": {
+        "weight": 0.32519,
+        "energy (keV)": 2.2573
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 18.6226
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 16.6151
+      },
+      "Lb2": {
+        "weight": 0.03299,
+        "energy (keV)": 2.3705
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 2.1659
+      },
+      "Ln": {
+        "weight": 0.0129,
+        "energy (keV)": 1.9963
+      },
+      "Ll": {
+        "weight": 0.04169,
+        "energy (keV)": 1.9021
+      },
+      "Lb3": {
+        "weight": 0.06429,
+        "energy (keV)": 2.3347
+      },
+      "Lg3": {
+        "weight": 0.0103,
+        "energy (keV)": 2.6638
+      },
+      "Lg1": {
+        "weight": 0.00975,
+        "energy (keV)": 2.4615
+      }
+    },
+    "Nd": {
+      "Lb1": {
+        "weight": 0.42672,
+        "energy (keV)": 5.722
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 42.2715
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 37.361
+      },
+      "M2N4": {
+        "weight": 0.052,
+        "energy (keV)": 1.2853
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 0.9402
+      },
+      "Lb4": {
+        "weight": 0.0858,
+        "energy (keV)": 5.7232
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 5.2302
+      },
+      "Ln": {
+        "weight": 0.01469,
+        "energy (keV)": 5.1462
+      },
+      "Ll": {
+        "weight": 0.04429,
+        "energy (keV)": 4.6326
+      },
+      "Mb": {
+        "weight": 0.99,
+        "energy (keV)": 0.9965
+      },
+      "Mg": {
+        "weight": 0.625,
+        "energy (keV)": 1.1799
+      },
+      "Lb2": {
+        "weight": 0.1957,
+        "energy (keV)": 6.0904
+      },
+      "Lb3": {
+        "weight": 0.12869,
+        "energy (keV)": 5.8286
+      },
+      "Lg3": {
+        "weight": 0.0318,
+        "energy (keV)": 6.9014
+      },
+      "Lg1": {
+        "weight": 0.07712,
+        "energy (keV)": 6.604
+      },
+      "Mz": {
+        "weight": 0.069,
+        "energy (keV)": 0.7531
+      }
+    },
+    "Ne": {
+      "Kb": {
+        "weight": 0.01,
+        "energy (keV)": 0.8669
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.8486
+      }
+    },
+    "Ni": {
+      "Lb1": {
+        "weight": 0.1677,
+        "energy (keV)": 0.8683
+      },
+      "Kb": {
+        "weight": 0.1277,
+        "energy (keV)": 8.2647
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 7.4781
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 0.8511
+      },
+      "Ln": {
+        "weight": 0.09693,
+        "energy (keV)": 0.7601
+      },
+      "Ll": {
+        "weight": 0.14133,
+        "energy (keV)": 0.7429
+      },
+      "Lb3": {
+        "weight": 0.00199,
+        "energy (keV)": 0.94
+      }
+    },
+    "Np": {},
+    "O": {
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 0.5249
+      }
+    },
+    "Os": {
+      "Lb1": {
+        "weight": 0.43207,
+        "energy (keV)": 10.3542
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 71.4136
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 62.9999
+      },
+      "M2N4": {
+        "weight": 0.02901,
+        "energy (keV)": 2.5028
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.9138
+      },
+      "Lb4": {
+        "weight": 0.08369,
+        "energy (keV)": 10.1758
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 8.9108
+      },
+      "Ln": {
+        "weight": 0.01479,
+        "energy (keV)": 9.3365
+      },
+      "M3O4": {
+        "energy (keV)": 2.45015,
+        "weight": 0.005
+      },
+      "Ll": {
+        "weight": 0.05389,
+        "energy (keV)": 7.8224
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.9845
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 2.1844
+      },
+      "Lb2": {
+        "weight": 0.2146,
+        "energy (keV)": 10.5981
+      },
+      "Lb3": {
+        "weight": 0.1024,
+        "energy (keV)": 10.5108
+      },
+      "M3O5": {
+        "energy (keV)": 2.45117,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.028,
+        "energy (keV)": 12.4998
+      },
+      "Lg1": {
+        "weight": 0.08768,
+        "energy (keV)": 12.0956
+      },
+      "Mz": {
+        "weight": 0.01344,
+        "energy (keV)": 1.4919
+      }
+    },
+    "P": {
+      "Kb": {
+        "weight": 0.0498,
+        "energy (keV)": 2.13916
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 2.0133
+      }
+    },
+    "Pa": {
+      "Lb1": {
+        "weight": 0.4,
+        "energy (keV)": 16.7025
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 108.4272
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 95.8679
+      },
+      "M2N4": {
+        "weight": 0.00674,
+        "energy (keV)": 4.2575
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 3.0823
+      },
+      "Lb4": {
+        "weight": 0.04,
+        "energy (keV)": 16.1037
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 13.2913
+      },
+      "Ln": {
+        "weight": 0.0126,
+        "energy (keV)": 14.9468
+      },
+      "M3O4": {
+        "energy (keV)": 4.07712,
+        "weight": 0.01
+      },
+      "Ll": {
+        "weight": 0.0682,
+        "energy (keV)": 11.3662
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 3.24
+      },
+      "Mg": {
+        "weight": 0.33505,
+        "energy (keV)": 3.4656
+      },
+      "Lb2": {
+        "weight": 0.236,
+        "energy (keV)": 16.0249
+      },
+      "Lb3": {
+        "weight": 0.06,
+        "energy (keV)": 16.9308
+      },
+      "M3O5": {
+        "energy (keV)": 4.08456,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 20.0979
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 19.5703
+      },
+      "Mz": {
+        "weight": 0.03512,
+        "energy (keV)": 2.4351
+      }
+    },
+    "Pb": {
+      "Lb1": {
+        "weight": 0.3836,
+        "energy (keV)": 12.6144
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 84.9381
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 74.9693
+      },
+      "M2N4": {
+        "weight": 0.00863,
+        "energy (keV)": 3.119
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 2.3459
+      },
+      "Lb4": {
+        "weight": 0.055,
+        "energy (keV)": 12.3066
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 10.5512
+      },
+      "Ln": {
+        "weight": 0.0132,
+        "energy (keV)": 11.3493
+      },
+      "M3O4": {
+        "energy (keV)": 3.0446,
+        "weight": 0.01
+      },
+      "Ll": {
+        "weight": 0.0586,
+        "energy (keV)": 9.1845
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.4427
+      },
+      "Mg": {
+        "weight": 0.21845,
+        "energy (keV)": 2.6535
+      },
+      "Lb2": {
+        "weight": 0.2244,
+        "energy (keV)": 12.6223
+      },
+      "Lb3": {
+        "weight": 0.06049,
+        "energy (keV)": 12.7944
+      },
+      "M3O5": {
+        "energy (keV)": 3.0472,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 15.2163
+      },
+      "Lg1": {
+        "weight": 0.08256,
+        "energy (keV)": 14.7648
+      },
+      "Mz": {
+        "weight": 0.0058,
+        "energy (keV)": 1.8395
+      }
+    },
+    "Pd": {
+      "Lb1": {
+        "weight": 0.34375,
+        "energy (keV)": 2.9903
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 23.8188
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 21.177
+      },
+      "Lb2": {
+        "weight": 0.10349,
+        "energy (keV)": 3.16828
+      },
+      "Lb4": {
+        "weight": 0.0407,
+        "energy (keV)": 3.0452
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 2.8386
+      },
+      "Ln": {
+        "weight": 0.0129,
+        "energy (keV)": 2.6604
+      },
+      "Ll": {
+        "weight": 0.0412,
+        "energy (keV)": 2.5034
+      },
+      "Lb3": {
+        "weight": 0.0682,
+        "energy (keV)": 3.0728
+      },
+      "Lg3": {
+        "weight": 0.0125,
+        "energy (keV)": 3.5532
+      },
+      "Lg1": {
+        "weight": 0.03256,
+        "energy (keV)": 3.32485
+      }
+    },
+    "Pm": {
+      "Lb1": {
+        "weight": 0.4308,
+        "energy (keV)": 5.9613
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 43.8271
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 38.7247
+      },
+      "M2N4": {
+        "weight": 0.028,
+        "energy (keV)": 1.351
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 0.9894
+      },
+      "Lb4": {
+        "weight": 0.07799,
+        "energy (keV)": 5.9565
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 5.4324
+      },
+      "Ln": {
+        "weight": 0.01479,
+        "energy (keV)": 5.3663
+      },
+      "Ll": {
+        "weight": 0.0448,
+        "energy (keV)": 4.8128
+      },
+      "Mb": {
+        "weight": 0.89,
+        "energy (keV)": 1.0475
+      },
+      "Mg": {
+        "weight": 0.4,
+        "energy (keV)": 1.2365
+      },
+      "Lb2": {
+        "weight": 0.196,
+        "energy (keV)": 6.3389
+      },
+      "Lb3": {
+        "weight": 0.1247,
+        "energy (keV)": 6.071
+      },
+      "Lg3": {
+        "weight": 0.0311,
+        "energy (keV)": 7.1919
+      },
+      "Lg1": {
+        "weight": 0.0784,
+        "energy (keV)": 6.8924
+      },
+      "Mz": {
+        "weight": 0.068,
+        "energy (keV)": 0.7909
+      }
+    },
+    "Po": {
+      "Lb1": {
+        "weight": 0.38536,
+        "energy (keV)": 13.4463
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 89.8031
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 79.2912
+      },
+      "M2N4": {
+        "weight": 0.00863,
+        "energy (keV)": 3.3539
+      },
+      "Lb4": {
+        "weight": 0.05709,
+        "energy (keV)": 13.0852
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 11.1308
+      },
+      "Ln": {
+        "weight": 0.0133,
+        "energy (keV)": 12.0949
+      },
+      "Ll": {
+        "weight": 0.0607,
+        "energy (keV)": 9.6644
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.62266
+      },
+      "Mg": {
+        "weight": 0.21845,
+        "energy (keV)": 2.8285
+      },
+      "Lb2": {
+        "weight": 0.2289,
+        "energy (keV)": 13.3404
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 16.2343
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 15.7441
+      },
+      "Lb3": {
+        "weight": 0.0603,
+        "energy (keV)": 13.6374
+      },
+      "Mz": {
+        "weight": 0.00354,
+        "energy (keV)": 1.978
+      }
+    },
+    "Pr": {
+      "Lb1": {
+        "weight": 0.42872,
+        "energy (keV)": 5.4893
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 40.7484
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 36.0263
+      },
+      "M2N4": {
+        "weight": 0.055,
+        "energy (keV)": 1.2242
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 0.8936
+      },
+      "Lb4": {
+        "weight": 0.0864,
+        "energy (keV)": 5.4974
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 5.0333
+      },
+      "Ln": {
+        "weight": 0.01489,
+        "energy (keV)": 4.9294
+      },
+      "Ll": {
+        "weight": 0.044,
+        "energy (keV)": 4.4533
+      },
+      "Mb": {
+        "weight": 0.85,
+        "energy (keV)": 0.9476
+      },
+      "Mg": {
+        "weight": 0.6,
+        "energy (keV)": 1.129
+      },
+      "Lb2": {
+        "weight": 0.19519,
+        "energy (keV)": 5.8511
+      },
+      "Lb3": {
+        "weight": 0.13089,
+        "energy (keV)": 5.5926
+      },
+      "Lg3": {
+        "weight": 0.0321,
+        "energy (keV)": 6.6172
+      },
+      "Lg1": {
+        "weight": 0.07687,
+        "energy (keV)": 6.3272
+      },
+      "Mz": {
+        "weight": 0.068,
+        "energy (keV)": 0.7134
+      }
+    },
+    "Pt": {
+      "Lb1": {
+        "weight": 0.4088,
+        "energy (keV)": 11.0707
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 75.7494
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 66.8311
+      },
+      "M2N4": {
+        "weight": 0.02901,
+        "energy (keV)": 2.6957
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 2.0505
+      },
+      "Lb4": {
+        "weight": 0.0662,
+        "energy (keV)": 10.8534
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 9.4421
+      },
+      "Ln": {
+        "weight": 0.01399,
+        "energy (keV)": 9.9766
+      },
+      "M3O4": {
+        "energy (keV)": 2.63796,
+        "weight": 0.005
+      },
+      "Ll": {
+        "weight": 0.0554,
+        "energy (keV)": 8.2677
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 2.1276
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 2.3321
+      },
+      "Lb2": {
+        "weight": 0.21829,
+        "energy (keV)": 11.2504
+      },
+      "Lb3": {
+        "weight": 0.0783,
+        "energy (keV)": 11.2345
+      },
+      "M3O5": {
+        "energy (keV)": 2.63927,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.0218,
+        "energy (keV)": 13.3609
+      },
+      "Lg1": {
+        "weight": 0.08448,
+        "energy (keV)": 12.9418
+      },
+      "Mz": {
+        "weight": 0.01344,
+        "energy (keV)": 1.6026
+      }
+    },
+    "Pu": {},
+    "Ra": {
+      "Lb1": {
+        "weight": 0.4,
+        "energy (keV)": 15.2359
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 100.1302
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 88.4776
+      },
+      "M2N4": {
+        "weight": 0.00674,
+        "energy (keV)": 3.8536
+      },
+      "Lb4": {
+        "weight": 0.06209,
+        "energy (keV)": 14.7472
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 12.3395
+      },
+      "Ln": {
+        "weight": 0.0133,
+        "energy (keV)": 13.6623
+      },
+      "Ll": {
+        "weight": 0.06429,
+        "energy (keV)": 10.6224
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.9495
+      },
+      "Mg": {
+        "weight": 0.33505,
+        "energy (keV)": 3.1891
+      },
+      "Lb2": {
+        "weight": 0.23579,
+        "energy (keV)": 14.8417
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 18.3576
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 17.8484
+      },
+      "Lb3": {
+        "weight": 0.06,
+        "energy (keV)": 15.4449
+      },
+      "Mz": {
+        "weight": 0.03512,
+        "energy (keV)": 2.2258
+      }
+    },
+    "Rb": {
+      "Lb1": {
+        "weight": 0.39095,
+        "energy (keV)": 1.7521
+      },
+      "Kb": {
+        "weight": 0.1558,
+        "energy (keV)": 14.9612
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 13.3953
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.6941
+      },
+      "Ln": {
+        "weight": 0.01709,
+        "energy (keV)": 1.5418
+      },
+      "Ll": {
+        "weight": 0.0441,
+        "energy (keV)": 1.4823
+      },
+      "Lb3": {
+        "weight": 0.04709,
+        "energy (keV)": 1.8266
+      },
+      "Lg3": {
+        "weight": 0.0058,
+        "energy (keV)": 2.0651
+      }
+    },
+    "Re": {
+      "Lb1": {
+        "weight": 0.4408,
+        "energy (keV)": 10.0098
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 69.3091
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 61.1411
+      },
+      "M2N4": {
+        "weight": 0.01,
+        "energy (keV)": 2.4079
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.8423
+      },
+      "Lb4": {
+        "weight": 0.09869,
+        "energy (keV)": 9.8451
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 8.6524
+      },
+      "Ln": {
+        "weight": 0.0151,
+        "energy (keV)": 9.027
+      },
+      "M3O4": {
+        "energy (keV)": 2.36124,
+        "weight": 0.001
+      },
+      "Ll": {
+        "weight": 0.05299,
+        "energy (keV)": 7.6036
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.9083
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 2.1071
+      },
+      "Lb2": {
+        "weight": 0.21219,
+        "energy (keV)": 10.2751
+      },
+      "Lb3": {
+        "weight": 0.1222,
+        "energy (keV)": 10.1594
+      },
+      "M3O5": {
+        "energy (keV)": 2.36209,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.0331,
+        "energy (keV)": 12.0823
+      },
+      "Lg1": {
+        "weight": 0.08864,
+        "energy (keV)": 11.685
+      },
+      "Mz": {
+        "weight": 0.01344,
+        "energy (keV)": 1.4385
+      }
+    },
+    "Rh": {
+      "Lb1": {
+        "weight": 0.33463,
+        "energy (keV)": 2.8344
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 22.7237
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 20.2161
+      },
+      "Lb2": {
+        "weight": 0.08539,
+        "energy (keV)": 3.0013
+      },
+      "Lb4": {
+        "weight": 0.0395,
+        "energy (keV)": 2.8909
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 2.6968
+      },
+      "Ln": {
+        "weight": 0.0126,
+        "energy (keV)": 2.519
+      },
+      "Ll": {
+        "weight": 0.0411,
+        "energy (keV)": 2.3767
+      },
+      "Lb3": {
+        "weight": 0.06669,
+        "energy (keV)": 2.9157
+      },
+      "Lg3": {
+        "weight": 0.0121,
+        "energy (keV)": 3.364
+      },
+      "Lg1": {
+        "weight": 0.02623,
+        "energy (keV)": 3.1436
+      }
+    },
+    "Rn": {
+      "Lb1": {
+        "weight": 0.38463,
+        "energy (keV)": 14.3156
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 94.866
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 83.7846
+      },
+      "M2N4": {
+        "weight": 0.00863,
+        "energy (keV)": 3.5924
+      },
+      "Lb4": {
+        "weight": 0.06,
+        "energy (keV)": 13.89
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 11.727
+      },
+      "Ln": {
+        "weight": 0.0134,
+        "energy (keV)": 12.8551
+      },
+      "Ll": {
+        "weight": 0.0625,
+        "energy (keV)": 10.1374
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.80187
+      },
+      "Mg": {
+        "weight": 0.21845,
+        "energy (keV)": 3.001
+      },
+      "Lb2": {
+        "weight": 0.2325,
+        "energy (keV)": 14.0824
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 17.281
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 16.7705
+      },
+      "Lb3": {
+        "weight": 0.0607,
+        "energy (keV)": 14.511
+      },
+      "Mz": {
+        "weight": 0.0058,
+        "energy (keV)": 2.1244
+      }
+    },
+    "Ru": {
+      "Lb1": {
+        "weight": 0.33039,
+        "energy (keV)": 2.6833
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 21.6566
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 19.2793
+      },
+      "Lb2": {
+        "weight": 0.07259,
+        "energy (keV)": 2.8359
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 2.5585
+      },
+      "Ln": {
+        "weight": 0.0126,
+        "energy (keV)": 2.3819
+      },
+      "Ll": {
+        "weight": 0.0411,
+        "energy (keV)": 2.2529
+      },
+      "Lb3": {
+        "weight": 0.0654,
+        "energy (keV)": 2.7634
+      },
+      "Lg3": {
+        "weight": 0.0115,
+        "energy (keV)": 3.1809
+      },
+      "Lg1": {
+        "weight": 0.02176,
+        "energy (keV)": 2.9649
+      }
+    },
+    "S": {
+      "Kb": {
+        "weight": 0.06525,
+        "energy (keV)": 2.46427
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 2.3072
+      }
+    },
+    "Sb": {
+      "Lb1": {
+        "weight": 0.4276,
+        "energy (keV)": 3.8435
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 29.7256
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 26.359
+      },
+      "Lb2": {
+        "weight": 0.1556,
+        "energy (keV)": 4.1008
+      },
+      "Lb4": {
+        "weight": 0.0932,
+        "energy (keV)": 3.8864
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 3.6047
+      },
+      "Ln": {
+        "weight": 0.0155,
+        "energy (keV)": 3.4367
+      },
+      "Ll": {
+        "weight": 0.0419,
+        "energy (keV)": 3.1885
+      },
+      "Lb3": {
+        "weight": 0.15099,
+        "energy (keV)": 3.9327
+      },
+      "Lg3": {
+        "weight": 0.0321,
+        "energy (keV)": 4.5999
+      },
+      "Lg1": {
+        "weight": 0.06064,
+        "energy (keV)": 4.349
+      }
+    },
+    "Sc": {
+      "Kb": {
+        "weight": 0.12839,
+        "energy (keV)": 4.4605
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 4.0906
+      },
+      "La": {
+        "weight": 0.308,
+        "energy (keV)": 0.4022
+      },
+      "Ln": {
+        "weight": 0.488,
+        "energy (keV)": 0.3529
+      },
+      "Ll": {
+        "weight": 1.0,
+        "energy (keV)": 0.3484
+      },
+      "Lb3": {
+        "weight": 0.037,
+        "energy (keV)": 0.4681
+      }
+    },
+    "Se": {
+      "Lb1": {
+        "weight": 0.38848,
+        "energy (keV)": 1.4195
+      },
+      "Kb": {
+        "weight": 0.1505,
+        "energy (keV)": 12.4959
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 11.222
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.3791
+      },
+      "Ln": {
+        "weight": 0.0187,
+        "energy (keV)": 1.2447
+      },
+      "Ll": {
+        "weight": 0.04759,
+        "energy (keV)": 1.2043
+      },
+      "Lb3": {
+        "weight": 0.047,
+        "energy (keV)": 1.492
+      }
+    },
+    "Si": {
+      "Kb": {
+        "weight": 0.02779,
+        "energy (keV)": 1.8389
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 1.7397
+      }
+    },
+    "Sm": {
+      "Lb1": {
+        "weight": 0.43512,
+        "energy (keV)": 6.2058
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 45.4144
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 40.118
+      },
+      "M2N4": {
+        "weight": 0.012,
+        "energy (keV)": 1.4117
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.0428
+      },
+      "Lb4": {
+        "weight": 0.08689,
+        "energy (keV)": 6.1961
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 5.636
+      },
+      "Ln": {
+        "weight": 0.01489,
+        "energy (keV)": 5.589
+      },
+      "Ll": {
+        "weight": 0.04519,
+        "energy (keV)": 4.9934
+      },
+      "Mb": {
+        "weight": 0.88,
+        "energy (keV)": 1.1005
+      },
+      "Mg": {
+        "weight": 0.26,
+        "energy (keV)": 1.2908
+      },
+      "Lb2": {
+        "weight": 0.19769,
+        "energy (keV)": 6.5872
+      },
+      "Lb3": {
+        "weight": 0.12669,
+        "energy (keV)": 6.317
+      },
+      "Lg3": {
+        "weight": 0.0318,
+        "energy (keV)": 7.4894
+      },
+      "Lg1": {
+        "weight": 0.07951,
+        "energy (keV)": 7.1828
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 0.8328
+      }
+    },
+    "Sn": {
+      "Lb1": {
+        "weight": 0.43456,
+        "energy (keV)": 3.6628
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 28.4857
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 25.2713
+      },
+      "Lb2": {
+        "weight": 0.14689,
+        "energy (keV)": 3.9049
+      },
+      "Lb4": {
+        "weight": 0.0948,
+        "energy (keV)": 3.7083
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 3.444
+      },
+      "Ln": {
+        "weight": 0.0158,
+        "energy (keV)": 3.2723
+      },
+      "Ll": {
+        "weight": 0.0416,
+        "energy (keV)": 3.045
+      },
+      "Lb3": {
+        "weight": 0.1547,
+        "energy (keV)": 3.7503
+      },
+      "Lg3": {
+        "weight": 0.0321,
+        "energy (keV)": 4.3761
+      },
+      "Lg1": {
+        "weight": 0.058,
+        "energy (keV)": 4.1322
+      }
+    },
+    "Sr": {
+      "Lb1": {
+        "weight": 0.37975,
+        "energy (keV)": 1.8718
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 15.8355
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 14.165
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.8065
+      },
+      "Ln": {
+        "weight": 0.01669,
+        "energy (keV)": 1.6493
+      },
+      "Ll": {
+        "weight": 0.04309,
+        "energy (keV)": 1.5821
+      },
+      "Lb3": {
+        "weight": 0.047,
+        "energy (keV)": 1.9472
+      },
+      "Lg3": {
+        "weight": 0.0065,
+        "energy (keV)": 2.1964
+      }
+    },
+    "Ta": {
+      "Lb1": {
+        "weight": 0.46248,
+        "energy (keV)": 9.3429
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 65.2224
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 57.5353
+      },
+      "M2N4": {
+        "weight": 0.01,
+        "energy (keV)": 2.2274
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.7101
+      },
+      "Lb4": {
+        "weight": 0.10449,
+        "energy (keV)": 9.2128
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 8.146
+      },
+      "Ln": {
+        "weight": 0.0158,
+        "energy (keV)": 8.4281
+      },
+      "M3O4": {
+        "energy (keV)": 2.1883,
+        "weight": 0.0001
+      },
+      "Ll": {
+        "weight": 0.0515,
+        "energy (keV)": 7.1731
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.7682
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 1.9647
+      },
+      "Lb2": {
+        "weight": 0.2076,
+        "energy (keV)": 9.6518
+      },
+      "Lb3": {
+        "weight": 0.1333,
+        "energy (keV)": 9.4875
+      },
+      "M3O5": {
+        "energy (keV)": 2.194,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.0354,
+        "energy (keV)": 11.277
+      },
+      "Lg1": {
+        "weight": 0.09071,
+        "energy (keV)": 10.8948
+      },
+      "Mz": {
+        "weight": 0.01344,
+        "energy (keV)": 1.3306
+      }
+    },
+    "Tb": {
+      "Lb1": {
+        "weight": 0.44104,
+        "energy (keV)": 6.9766
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 50.3844
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 44.4817
+      },
+      "M2N4": {
+        "weight": 0.014,
+        "energy (keV)": 1.6207
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.2326
+      },
+      "Lb4": {
+        "weight": 0.0874,
+        "energy (keV)": 6.9403
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 6.2728
+      },
+      "Ln": {
+        "weight": 0.01479,
+        "energy (keV)": 6.2841
+      },
+      "Ll": {
+        "weight": 0.0465,
+        "energy (keV)": 5.5465
+      },
+      "Mb": {
+        "weight": 0.78,
+        "energy (keV)": 1.2656
+      },
+      "Mg": {
+        "weight": 0.2615,
+        "energy (keV)": 1.4643
+      },
+      "Lb2": {
+        "weight": 0.19929,
+        "energy (keV)": 7.367
+      },
+      "Lb3": {
+        "weight": 0.124,
+        "energy (keV)": 7.0967
+      },
+      "Lg3": {
+        "weight": 0.0315,
+        "energy (keV)": 8.423
+      },
+      "Lg1": {
+        "weight": 0.08168,
+        "energy (keV)": 8.1046
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 0.9562
+      }
+    },
+    "Tc": {
+      "Lb1": {
+        "weight": 0.32951,
+        "energy (keV)": 2.5368
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 20.619
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 18.3671
+      },
+      "Lb2": {
+        "weight": 0.05839,
+        "energy (keV)": 2.67017
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 2.424
+      },
+      "Ln": {
+        "weight": 0.0127,
+        "energy (keV)": 2.2456
+      },
+      "Ll": {
+        "weight": 0.0412,
+        "energy (keV)": 2.1293
+      },
+      "Lb3": {
+        "weight": 0.0644,
+        "energy (keV)": 2.6175
+      },
+      "Lg3": {
+        "weight": 0.0111,
+        "energy (keV)": 3.0036
+      },
+      "Lg1": {
+        "weight": 0.01744,
+        "energy (keV)": 2.78619
+      }
+    },
+    "Te": {
+      "Lb1": {
+        "weight": 0.43183,
+        "energy (keV)": 4.0295
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 30.9951
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 27.4724
+      },
+      "Lb2": {
+        "weight": 0.16269,
+        "energy (keV)": 4.3016
+      },
+      "Lb4": {
+        "weight": 0.0906,
+        "energy (keV)": 4.0695
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 3.7693
+      },
+      "Ln": {
+        "weight": 0.0154,
+        "energy (keV)": 3.606
+      },
+      "Ll": {
+        "weight": 0.0419,
+        "energy (keV)": 3.3354
+      },
+      "Lb3": {
+        "weight": 0.1458,
+        "energy (keV)": 4.1205
+      },
+      "Lg3": {
+        "weight": 0.0317,
+        "energy (keV)": 4.829
+      },
+      "Lg1": {
+        "weight": 0.06375,
+        "energy (keV)": 4.5722
+      }
+    },
+    "Th": {
+      "Lb1": {
+        "weight": 0.4,
+        "energy (keV)": 16.2024
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 105.6049
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 93.3507
+      },
+      "M2N4": {
+        "weight": 0.00674,
+        "energy (keV)": 4.1163
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 2.9968
+      },
+      "Lb4": {
+        "weight": 0.05,
+        "energy (keV)": 15.6417
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 12.9683
+      },
+      "Ln": {
+        "weight": 0.0134,
+        "energy (keV)": 14.5109
+      },
+      "M3O4": {
+        "energy (keV)": 3.9518,
+        "weight": 0.01
+      },
+      "Ll": {
+        "weight": 0.06709,
+        "energy (keV)": 11.118
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 3.1464
+      },
+      "Mg": {
+        "weight": 0.33505,
+        "energy (keV)": 3.3697
+      },
+      "Lb2": {
+        "weight": 0.236,
+        "energy (keV)": 15.6239
+      },
+      "Lb3": {
+        "weight": 0.06,
+        "energy (keV)": 16.426
+      },
+      "M3O5": {
+        "energy (keV)": 3.9582,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 19.5048
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 18.9791
+      },
+      "Mz": {
+        "weight": 0.03512,
+        "energy (keV)": 2.3647
+      }
+    },
+    "Ti": {
+      "Kb": {
+        "weight": 0.11673,
+        "energy (keV)": 4.9318
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 4.5109
+      },
+      "La": {
+        "weight": 0.694,
+        "energy (keV)": 0.4555
+      },
+      "Ln": {
+        "weight": 0.491,
+        "energy (keV)": 0.4012
+      },
+      "Ll": {
+        "weight": 1.0,
+        "energy (keV)": 0.3952
+      },
+      "Lb3": {
+        "weight": 0.166,
+        "energy (keV)": 0.5291
+      }
+    },
+    "Tl": {
+      "Lb1": {
+        "weight": 0.39112,
+        "energy (keV)": 12.2128
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 82.5738
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 72.8729
+      },
+      "M2N4": {
+        "weight": 0.00863,
+        "energy (keV)": 3.0091
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 2.2708
+      },
+      "Lb4": {
+        "weight": 0.05419,
+        "energy (keV)": 11.931
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 10.2682
+      },
+      "Ln": {
+        "weight": 0.0134,
+        "energy (keV)": 10.9938
+      },
+      "M3O4": {
+        "energy (keV)": 2.9413,
+        "weight": 0.005
+      },
+      "Ll": {
+        "weight": 0.0578,
+        "energy (keV)": 8.9534
+      },
+      "Mb": {
+        "weight": 0.64124,
+        "energy (keV)": 2.3623
+      },
+      "Mg": {
+        "weight": 0.21845,
+        "energy (keV)": 2.5704
+      },
+      "Lb2": {
+        "weight": 0.22289,
+        "energy (keV)": 12.2713
+      },
+      "Lb3": {
+        "weight": 0.0607,
+        "energy (keV)": 12.3901
+      },
+      "M3O5": {
+        "energy (keV)": 2.9435,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.0175,
+        "energy (keV)": 14.7377
+      },
+      "Lg1": {
+        "weight": 0.08304,
+        "energy (keV)": 14.2913
+      },
+      "Mz": {
+        "weight": 0.0058,
+        "energy (keV)": 1.7803
+      }
+    },
+    "Tm": {
+      "Lb1": {
+        "weight": 0.45831,
+        "energy (keV)": 8.1023
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 57.5051
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 50.7416
+      },
+      "M2N4": {
+        "weight": 0.01,
+        "energy (keV)": 1.9102
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.4624
+      },
+      "Lb4": {
+        "weight": 0.09449,
+        "energy (keV)": 8.0259
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 7.1803
+      },
+      "Ln": {
+        "weight": 0.0156,
+        "energy (keV)": 7.3101
+      },
+      "Ll": {
+        "weight": 0.04889,
+        "energy (keV)": 6.3412
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.5093
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 1.7049
+      },
+      "Lb2": {
+        "weight": 0.20059,
+        "energy (keV)": 8.4684
+      },
+      "Lb3": {
+        "weight": 0.1273,
+        "energy (keV)": 8.2312
+      },
+      "Lg3": {
+        "weight": 0.0329,
+        "energy (keV)": 9.7791
+      },
+      "Lg1": {
+        "weight": 0.08615,
+        "energy (keV)": 9.4373
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 1.1311
+      }
+    },
+    "U": {
+      "Lb1": {
+        "weight": 0.4,
+        "energy (keV)": 17.22
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 111.3026
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 98.4397
+      },
+      "M2N4": {
+        "weight": 0.00674,
+        "energy (keV)": 4.4018
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 3.1708
+      },
+      "Lb4": {
+        "weight": 0.04,
+        "energy (keV)": 16.5752
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 13.6146
+      },
+      "Ln": {
+        "weight": 0.01199,
+        "energy (keV)": 15.3996
+      },
+      "M3O4": {
+        "energy (keV)": 4.1984,
+        "weight": 0.01
+      },
+      "Ll": {
+        "weight": 0.069,
+        "energy (keV)": 11.6183
+      },
+      "Mb": {
+        "weight": 0.6086,
+        "energy (keV)": 3.3363
+      },
+      "Mg": {
+        "weight": 0.33505,
+        "energy (keV)": 3.5657
+      },
+      "Lb2": {
+        "weight": 0.236,
+        "energy (keV)": 16.4286
+      },
+      "Lb3": {
+        "weight": 0.06,
+        "energy (keV)": 17.454
+      },
+      "M3O5": {
+        "energy (keV)": 4.2071,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.017,
+        "energy (keV)": 20.7125
+      },
+      "Lg1": {
+        "weight": 0.08,
+        "energy (keV)": 20.1672
+      },
+      "Mz": {
+        "weight": 0.03512,
+        "energy (keV)": 2.5068
+      }
+    },
+    "V": {
+      "Kb": {
+        "weight": 0.1225,
+        "energy (keV)": 5.4273
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 4.9522
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 0.5129
+      },
+      "Ln": {
+        "weight": 0.2805,
+        "energy (keV)": 0.454
+      },
+      "Ll": {
+        "weight": 0.5745,
+        "energy (keV)": 0.4464
+      },
+      "Lb3": {
+        "weight": 0.0154,
+        "energy (keV)": 0.5904
+      }
+    },
+    "W": {
+      "Lb1": {
+        "weight": 0.3679,
+        "energy (keV)": 9.6724
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 67.244
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 59.3182
+      },
+      "M2N4": {
+        "weight": 0.01,
+        "energy (keV)": 2.3161
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.7756
+      },
+      "Lb4": {
+        "weight": 0.05649,
+        "energy (keV)": 9.5249
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 8.3976
+      },
+      "Ln": {
+        "weight": 0.01155,
+        "energy (keV)": 8.7244
+      },
+      "M3O4": {
+        "energy (keV)": 2.2749,
+        "weight": 0.001
+      },
+      "Ll": {
+        "weight": 0.04169,
+        "energy (keV)": 7.3872
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.8351
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 2.0356
+      },
+      "Lb2": {
+        "weight": 0.21385,
+        "energy (keV)": 9.9614
+      },
+      "Lb3": {
+        "weight": 0.07077,
+        "energy (keV)": 9.8188
+      },
+      "M3O5": {
+        "energy (keV)": 2.281,
+        "weight": 0.01
+      },
+      "Lg3": {
+        "weight": 0.0362,
+        "energy (keV)": 11.6745
+      },
+      "Lg1": {
+        "weight": 0.05658,
+        "energy (keV)": 11.2852
+      },
+      "Mz": {
+        "weight": 0.01344,
+        "energy (keV)": 1.3839
+      }
+    },
+    "Xe": {
+      "Lb1": {
+        "weight": 0.42248,
+        "energy (keV)": 4.4183
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 33.6244
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 29.7792
+      },
+      "Lb2": {
+        "weight": 0.17699,
+        "energy (keV)": 4.7182
+      },
+      "Lb4": {
+        "weight": 0.08929,
+        "energy (keV)": 4.4538
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 4.1099
+      },
+      "Ln": {
+        "weight": 0.015,
+        "energy (keV)": 3.9591
+      },
+      "Ll": {
+        "weight": 0.0424,
+        "energy (keV)": 3.6376
+      },
+      "Lb3": {
+        "weight": 0.14119,
+        "energy (keV)": 4.5158
+      },
+      "Lg3": {
+        "weight": 0.0323,
+        "energy (keV)": 5.3061
+      },
+      "Lg1": {
+        "weight": 0.06848,
+        "energy (keV)": 5.0397
+      }
+    },
+    "Y": {
+      "Lb1": {
+        "weight": 0.39127,
+        "energy (keV)": 1.9959
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 16.7381
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 14.9584
+      },
+      "Lb2": {
+        "weight": 0.00739,
+        "energy (keV)": 2.08
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.9226
+      },
+      "Ln": {
+        "weight": 0.0162,
+        "energy (keV)": 1.7619
+      },
+      "Ll": {
+        "weight": 0.0428,
+        "energy (keV)": 1.6864
+      },
+      "Lb3": {
+        "weight": 0.05059,
+        "energy (keV)": 2.0722
+      },
+      "Lg3": {
+        "weight": 0.0075,
+        "energy (keV)": 2.3469
+      },
+      "Lg1": {
+        "weight": 0.00264,
+        "energy (keV)": 2.1555
+      }
+    },
+    "Yb": {
+      "Lb1": {
+        "weight": 0.46224,
+        "energy (keV)": 8.4019
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 59.3825
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 52.3887
+      },
+      "M2N4": {
+        "weight": 0.01,
+        "energy (keV)": 1.9749
+      },
+      "Ma": {
+        "weight": 1.0,
+        "energy (keV)": 1.5215
+      },
+      "Lb4": {
+        "weight": 0.09589,
+        "energy (keV)": 8.3134
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 7.4158
+      },
+      "Ln": {
+        "weight": 0.0157,
+        "energy (keV)": 7.5801
+      },
+      "Ll": {
+        "weight": 0.0494,
+        "energy (keV)": 6.5455
+      },
+      "Mb": {
+        "weight": 0.59443,
+        "energy (keV)": 1.57
+      },
+      "Mg": {
+        "weight": 0.08505,
+        "energy (keV)": 1.7649
+      },
+      "Lb2": {
+        "weight": 0.2017,
+        "energy (keV)": 8.7587
+      },
+      "Lb3": {
+        "weight": 0.12789,
+        "energy (keV)": 8.5366
+      },
+      "Lg3": {
+        "weight": 0.0331,
+        "energy (keV)": 10.1429
+      },
+      "Lg1": {
+        "weight": 0.08728,
+        "energy (keV)": 9.7801
+      },
+      "Mz": {
+        "weight": 0.06,
+        "energy (keV)": 1.1843
+      }
+    },
+    "Zn": {
+      "Lb1": {
+        "weight": 0.1679,
+        "energy (keV)": 1.0347
+      },
+      "Kb": {
+        "weight": 0.12605,
+        "energy (keV)": 9.572
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 8.6389
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 1.0116
+      },
+      "Ln": {
+        "weight": 0.0368,
+        "energy (keV)": 0.9069
+      },
+      "Ll": {
+        "weight": 0.0603,
+        "energy (keV)": 0.8838
+      },
+      "Lb3": {
+        "weight": 0.002,
+        "energy (keV)": 1.107
+      }
+    },
+    "Zr": {
+      "Lb1": {
+        "weight": 0.37912,
+        "energy (keV)": 2.1243
+      },
+      "Kb": {
+        "weight": 0.15,
+        "energy (keV)": 17.6671
+      },
+      "Ka": {
+        "weight": 1.0,
+        "energy (keV)": 15.7753
+      },
+      "Lb2": {
+        "weight": 0.0177,
+        "energy (keV)": 2.2223
+      },
+      "La": {
+        "weight": 1.0,
+        "energy (keV)": 2.0423
+      },
+      "Ln": {
+        "weight": 0.0153,
+        "energy (keV)": 1.8764
+      },
+      "Ll": {
+        "weight": 0.04209,
+        "energy (keV)": 1.792
+      },
+      "Lb3": {
+        "weight": 0.05219,
+        "energy (keV)": 2.2011
+      },
+      "Lg3": {
+        "weight": 0.0082,
+        "energy (keV)": 2.5029
+      },
+      "Lg1": {
+        "weight": 0.006,
+        "energy (keV)": 2.30268
+      }
+    }
+  }
+}

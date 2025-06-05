@@ -1,0 +1,959 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "source": "unknown",
+        "last_updated": "2025-06-04"
+    },
+    "elements": {
+        "Ac": {
+            "General_properties": {
+                "Z": 89,
+                "atomic_weight": 227,
+                "name": "actinium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 10.07
+            }
+        },
+        "Ag": {
+            "General_properties": {
+                "Z": 47,
+                "atomic_weight": 107.8682,
+                "name": "silver"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 10.49
+            }
+        },
+        "Al": {
+            "General_properties": {
+                "Z": 13,
+                "atomic_weight": 26.9815386,
+                "name": "aluminum"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 2.7
+            }
+        },
+        "Am": {
+            "General_properties": {
+                "Z": 95,
+                "atomic_weight": 243,
+                "name": "americium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 12
+            }
+        },
+        "Ar": {
+            "General_properties": {
+                "Z": 18,
+                "atomic_weight": 39.948,
+                "name": "argon"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.001784
+            }
+        },
+        "As": {
+            "General_properties": {
+                "Z": 33,
+                "atomic_weight": 74.9216,
+                "name": "arsenic"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 5.727
+            }
+        },
+        "At": {
+            "General_properties": {
+                "Z": 85,
+                "atomic_weight": 210,
+                "name": "astatine"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": "NaN"
+            }
+        },
+        "Au": {
+            "General_properties": {
+                "Z": 79,
+                "atomic_weight": 196.966569,
+                "name": "gold"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 19.3
+            }
+        },
+        "B": {
+            "General_properties": {
+                "Z": 5,
+                "atomic_weight": 10.811,
+                "name": "boron"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 2.46
+            }
+        },
+        "Ba": {
+            "General_properties": {
+                "Z": 56,
+                "atomic_weight": 137.327,
+                "name": "barium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 3.51
+            }
+        },
+        "Be": {
+            "General_properties": {
+                "Z": 4,
+                "atomic_weight": 9.012182,
+                "name": "beryllium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 1.848
+            }
+        },
+        "Bi": {
+            "General_properties": {
+                "Z": 83,
+                "atomic_weight": 208.9804,
+                "name": "bismuth"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 9.78
+            }
+        },
+        "Br": {
+            "General_properties": {
+                "Z": 35,
+                "atomic_weight": 79.904,
+                "name": "bromine"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 3.12
+            }
+        },
+        "C": {
+            "General_properties": {
+                "Z": 6,
+                "atomic_weight": 12.0107,
+                "name": "carbon"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 2.26
+            }
+        },
+        "Ca": {
+            "General_properties": {
+                "Z": 20,
+                "atomic_weight": 40.078,
+                "name": "calcium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 1.55
+            }
+        },
+        "Cd": {
+            "General_properties": {
+                "Z": 48,
+                "atomic_weight": 112.411,
+                "name": "cadmium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.65
+            }
+        },
+        "Ce": {
+            "General_properties": {
+                "Z": 58,
+                "atomic_weight": 140.116,
+                "name": "cerium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 6.689
+            }
+        },
+        "Cl": {
+            "General_properties": {
+                "Z": 17,
+                "atomic_weight": 35.453,
+                "name": "chlorine"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.003214
+            }
+        },
+        "Co": {
+            "General_properties": {
+                "Z": 27,
+                "atomic_weight": 58.933195,
+                "name": "cobalt"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.9
+            }
+        },
+        "Cr": {
+            "General_properties": {
+                "Z": 24,
+                "atomic_weight": 51.9961,
+                "name": "chromium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.14
+            }
+        },
+        "Cs": {
+            "General_properties": {
+                "Z": 55,
+                "atomic_weight": 132.9054519,
+                "name": "cesium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 1.879
+            }
+        },
+        "Cu": {
+            "General_properties": {
+                "Z": 29,
+                "atomic_weight": 63.546,
+                "name": "copper"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.92
+            }
+        },
+        "Dy": {
+            "General_properties": {
+                "Z": 66,
+                "atomic_weight": 162.5,
+                "name": "dysprosium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.551
+            }
+        },
+        "Er": {
+            "General_properties": {
+                "Z": 68,
+                "atomic_weight": 167.259,
+                "name": "erbium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 9.066
+            }
+        },
+        "Eu": {
+            "General_properties": {
+                "Z": 63,
+                "atomic_weight": 151.964,
+                "name": "europium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 5.244
+            }
+        },
+        "F": {
+            "General_properties": {
+                "Z": 9,
+                "atomic_weight": 18.9984032,
+                "name": "fluorine"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.001696
+            }
+        },
+        "Fe": {
+            "General_properties": {
+                "Z": 26,
+                "atomic_weight": 55.845,
+                "name": "iron"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.874
+            }
+        },
+        "Fr": {
+            "General_properties": {
+                "Z": 87,
+                "atomic_weight": 223,
+                "name": "francium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": "NaN"
+            }
+        },
+        "Ga": {
+            "General_properties": {
+                "Z": 31,
+                "atomic_weight": 69.723,
+                "name": "gallium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 5.904
+            }
+        },
+        "Gd": {
+            "General_properties": {
+                "Z": 64,
+                "atomic_weight": 157.25,
+                "name": "gadolinium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.901
+            }
+        },
+        "Ge": {
+            "General_properties": {
+                "Z": 32,
+                "atomic_weight": 72.64,
+                "name": "germanium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 5.323
+            }
+        },
+        "H": {
+            "General_properties": {
+                "Z": 1,
+                "atomic_weight": 1.00794,
+                "name": "hydrogen"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.99e-05
+            }
+        },
+        "He": {
+            "General_properties": {
+                "Z": 2,
+                "atomic_weight": 4.002602,
+                "name": "helium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.0001785
+            }
+        },
+        "Hf": {
+            "General_properties": {
+                "Z": 72,
+                "atomic_weight": 178.49,
+                "name": "hafnium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 13.31
+            }
+        },
+        "Hg": {
+            "General_properties": {
+                "Z": 80,
+                "atomic_weight": 200.59,
+                "name": "mercury"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 13.534
+            }
+        },
+        "Ho": {
+            "General_properties": {
+                "Z": 67,
+                "atomic_weight": 164.93032,
+                "name": "holmium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.795
+            }
+        },
+        "I": {
+            "General_properties": {
+                "Z": 53,
+                "atomic_weight": 126.90447,
+                "name": "iodine"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 4.94
+            }
+        },
+        "In": {
+            "General_properties": {
+                "Z": 49,
+                "atomic_weight": 114.818,
+                "name": "indium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.31
+            }
+        },
+        "Ir": {
+            "General_properties": {
+                "Z": 77,
+                "atomic_weight": 192.217,
+                "name": "iridium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 22.56
+            }
+        },
+        "K": {
+            "General_properties": {
+                "Z": 19,
+                "atomic_weight": 39.0983,
+                "name": "potassium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.856
+            }
+        },
+        "Kr": {
+            "General_properties": {
+                "Z": 36,
+                "atomic_weight": 83.798,
+                "name": "krypton"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.00375
+            }
+        },
+        "La": {
+            "General_properties": {
+                "Z": 57,
+                "atomic_weight": 138.90547,
+                "name": "lanthanum"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 6.146
+            }
+        },
+        "Li": {
+            "General_properties": {
+                "atomic_weight": 6.939,
+                "Z": 3,
+                "name": "lithium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.534
+            }
+        },
+        "Lu": {
+            "General_properties": {
+                "Z": 71,
+                "atomic_weight": 174.9668,
+                "name": "lutetium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 9.841
+            }
+        },
+        "Mg": {
+            "General_properties": {
+                "Z": 12,
+                "atomic_weight": 24.305,
+                "name": "magnesium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 1.738
+            }
+        },
+        "Mn": {
+            "General_properties": {
+                "Z": 25,
+                "atomic_weight": 54.938045,
+                "name": "manganese"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.47
+            }
+        },
+        "Mo": {
+            "General_properties": {
+                "Z": 42,
+                "atomic_weight": 95.96,
+                "name": "molybdenum"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 10.28
+            }
+        },
+        "N": {
+            "General_properties": {
+                "Z": 7,
+                "atomic_weight": 14.0067,
+                "name": "nitrogen"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.001251
+            }
+        },
+        "Na": {
+            "General_properties": {
+                "Z": 11,
+                "atomic_weight": 22.98976928,
+                "name": "sodium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.968
+            }
+        },
+        "Nb": {
+            "General_properties": {
+                "Z": 41,
+                "atomic_weight": 92.90638,
+                "name": "niobium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.57
+            }
+        },
+        "Nd": {
+            "General_properties": {
+                "Z": 60,
+                "atomic_weight": 144.242,
+                "name": "neodymium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.01
+            }
+        },
+        "Ne": {
+            "General_properties": {
+                "Z": 10,
+                "atomic_weight": 20.1791,
+                "name": "neon"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.0009
+            }
+        },
+        "Ni": {
+            "General_properties": {
+                "Z": 28,
+                "atomic_weight": 58.6934,
+                "name": "nickel"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.908
+            }
+        },
+        "Np": {
+            "General_properties": {
+                "Z": 93,
+                "atomic_weight": 237,
+                "name": "neptunium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 19.38
+            }
+        },
+        "O": {
+            "General_properties": {
+                "Z": 8,
+                "atomic_weight": 15.9994,
+                "name": "oxygen"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.001429
+            }
+        },
+        "Os": {
+            "General_properties": {
+                "Z": 76,
+                "atomic_weight": 190.23,
+                "name": "osmium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 22.59
+            }
+        },
+        "P": {
+            "General_properties": {
+                "Z": 15,
+                "atomic_weight": 30.973762,
+                "name": "phosphorus"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 1.823
+            }
+        },
+        "Pa": {
+            "General_properties": {
+                "Z": 91,
+                "atomic_weight": 231.03586,
+                "name": "protactinium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 15.37
+            }
+        },
+        "Pb": {
+            "General_properties": {
+                "Z": 82,
+                "atomic_weight": 207.2,
+                "name": "lead"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 11.34
+            }
+        },
+        "Pd": {
+            "General_properties": {
+                "Z": 46,
+                "atomic_weight": 106.42,
+                "name": "palladium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 12.023
+            }
+        },
+        "Pm": {
+            "General_properties": {
+                "Z": 61,
+                "atomic_weight": 145,
+                "name": "promethium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.264
+            }
+        },
+        "Po": {
+            "General_properties": {
+                "Z": 84,
+                "atomic_weight": 209,
+                "name": "polonium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 9.196
+            }
+        },
+        "Pr": {
+            "General_properties": {
+                "Z": 59,
+                "atomic_weight": 140.90765,
+                "name": "praseodymium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 6.64
+            }
+        },
+        "Pt": {
+            "General_properties": {
+                "Z": 78,
+                "atomic_weight": 195.084,
+                "name": "platinum"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 21.09
+            }
+        },
+        "Pu": {
+            "General_properties": {
+                "Z": 94,
+                "atomic_weight": 244,
+                "name": "plutonium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 19.82
+            }
+        },
+        "Ra": {
+            "General_properties": {
+                "Z": 88,
+                "atomic_weight": 226,
+                "name": "radium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 5.0
+            }
+        },
+        "Rb": {
+            "General_properties": {
+                "Z": 37,
+                "atomic_weight": 85.4678,
+                "name": "rubidium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 1.532
+            }
+        },
+        "Re": {
+            "General_properties": {
+                "Z": 75,
+                "atomic_weight": 186.207,
+                "name": "rhenium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 21.02
+            }
+        },
+        "Rh": {
+            "General_properties": {
+                "Z": 45,
+                "atomic_weight": 102.9055,
+                "name": "rhodium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 12.45
+            }
+        },
+        "Rn": {
+            "General_properties": {
+                "Z": 86,
+                "atomic_weight": 222,
+                "name": "radon"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.00973
+            }
+        },
+        "Ru": {
+            "General_properties": {
+                "Z": 44,
+                "atomic_weight": 101.07,
+                "name": "ruthenium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 12.37
+            }
+        },
+        "S": {
+            "General_properties": {
+                "Z": 16,
+                "atomic_weight": 32.065,
+                "name": "sulfur"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 1.96
+            }
+        },
+        "Sb": {
+            "General_properties": {
+                "Z": 51,
+                "atomic_weight": 121.76,
+                "name": "antimony"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 6.697
+            }
+        },
+        "Sc": {
+            "General_properties": {
+                "Z": 21,
+                "atomic_weight": 44.955912,
+                "name": "scandium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 2.985
+            }
+        },
+        "Se": {
+            "General_properties": {
+                "Z": 34,
+                "atomic_weight": 78.96,
+                "name": "selenium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 4.819
+            }
+        },
+        "Si": {
+            "General_properties": {
+                "Z": 14,
+                "atomic_weight": 28.0855,
+                "name": "silicon"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 2.33
+            }
+        },
+        "Sm": {
+            "General_properties": {
+                "Z": 62,
+                "atomic_weight": 150.36,
+                "name": "samarium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.353
+            }
+        },
+        "Sn": {
+            "General_properties": {
+                "Z": 50,
+                "atomic_weight": 118.71,
+                "name": "tin"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.31
+            }
+        },
+        "Sr": {
+            "General_properties": {
+                "Z": 38,
+                "atomic_weight": 87.62,
+                "name": "strontium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 2.63
+            }
+        },
+        "Ta": {
+            "General_properties": {
+                "Z": 73,
+                "atomic_weight": 180.94788,
+                "name": "tantalum"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 16.65
+            }
+        },
+        "Tb": {
+            "General_properties": {
+                "Z": 65,
+                "atomic_weight": 158.92535,
+                "name": "terbium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 8.219
+            }
+        },
+        "Tc": {
+            "General_properties": {
+                "Z": 43,
+                "atomic_weight": 98,
+                "name": "technetium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 11.5
+            }
+        },
+        "Te": {
+            "General_properties": {
+                "Z": 52,
+                "atomic_weight": 127.6,
+                "name": "tellurium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 6.24
+            }
+        },
+        "Th": {
+            "General_properties": {
+                "Z": 90,
+                "atomic_weight": 232.03806,
+                "name": "thorium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 11.724
+            }
+        },
+        "Ti": {
+            "General_properties": {
+                "Z": 22,
+                "atomic_weight": 47.867,
+                "name": "titanium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 4.507
+            }
+        },
+        "Tl": {
+            "General_properties": {
+                "Z": 81,
+                "atomic_weight": 204.3833,
+                "name": "thallium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 11.85
+            }
+        },
+        "Tm": {
+            "General_properties": {
+                "Z": 69,
+                "atomic_weight": 168.93421,
+                "name": "thulium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 9.321
+            }
+        },
+        "U": {
+            "General_properties": {
+                "Z": 92,
+                "atomic_weight": 238.02891,
+                "name": "uranium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 19.05
+            }
+        },
+        "V": {
+            "General_properties": {
+                "Z": 23,
+                "atomic_weight": 50.9415,
+                "name": "vanadium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 6.11
+            }
+        },
+        "W": {
+            "General_properties": {
+                "Z": 74,
+                "atomic_weight": 183.84,
+                "name": "tungsten"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 19.25
+            }
+        },
+        "Xe": {
+            "General_properties": {
+                "Z": 54,
+                "atomic_weight": 131.293,
+                "name": "xenon"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 0.0059
+            }
+        },
+        "Y": {
+            "General_properties": {
+                "Z": 39,
+                "atomic_weight": 88.90585,
+                "name": "yttrium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 4.472
+            }
+        },
+        "Yb": {
+            "General_properties": {
+                "Z": 70,
+                "atomic_weight": 173.054,
+                "name": "ytterbium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 6.57
+            }
+        },
+        "Zn": {
+            "General_properties": {
+                "Z": 30,
+                "atomic_weight": 65.38,
+                "name": "zinc"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 7.14
+            }
+        },
+        "Zr": {
+            "General_properties": {
+                "Z": 40,
+                "atomic_weight": 91.224,
+                "name": "zirconium"
+            },
+            "Physical_properties": {
+                "density (g/cm^3)": 6.511
+            }
+        }
+    }
+}

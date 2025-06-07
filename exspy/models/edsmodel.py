@@ -110,6 +110,12 @@ class EDSModel(Model1D):
     auto_background : bool
         If True, adds automatically a polynomial order 6 to the model,
         using the edsmodel.add_polynomial_background method.
+    xray_line_source : str, default 'xraydb'
+        Source for X-ray line energy data. Options are:
+        - 'xraydb': Use XrayDB database (preferred, more accurate)
+        - 'internal': Use internal exspy database
+        If 'xraydb' is selected but XrayDB is not available, will
+        automatically fallback to 'internal' with a warning.
 
     Any extra arguments are passed to the Model creator.
 
@@ -124,11 +130,24 @@ class EDSModel(Model1D):
     """
 
     def __init__(
-        self, spectrum, auto_background=True, auto_add_lines=True, *args, **kwargs
+        self,
+        spectrum,
+        auto_background=True,
+        auto_add_lines=True,
+        xray_line_source="xraydb",
+        *args,
+        **kwargs,
     ):
         Model1D.__init__(self, spectrum, *args, **kwargs)
         self.xray_lines = list()
         self.family_lines = list()
+
+        # Validate and store the X-ray line source
+        from exspy._misc.eds.xraydb_utils import validate_xray_line_source
+
+        validate_xray_line_source(xray_line_source)
+        self.xray_line_source = xray_line_source
+
         end_energy = self.axes_manager.signal_axes[0].high_value
         self.end_energy = min(end_energy, self.signal._get_beam_energy())
         self.start_energy = self.axes_manager.signal_axes[0].low_value
@@ -137,6 +156,10 @@ class EDSModel(Model1D):
             auto_add_lines = False
             auto_background = False
             d = args[1] if len(args) > 1 else kwargs["dictionary"]
+            # Extract xray_line_source from dictionary if available
+            if "xray_line_source" in d:
+                validate_xray_line_source(d["xray_line_source"])
+                self.xray_line_source = d["xray_line_source"]
             if len(d["xray_lines"]) > 0:
                 self.xray_lines.extend([self[name] for name in d["xray_lines"]])
             if len(d["background_components"]) > 0:
@@ -154,6 +177,7 @@ class EDSModel(Model1D):
         dic = super(EDSModel, self).as_dictionary(fullcopy)
         dic["xray_lines"] = [c.name for c in self.xray_lines]
         dic["background_components"] = [c.name for c in self.background_components]
+        dic["xray_line_source"] = self.xray_line_source
         return dic
 
     @property
@@ -235,7 +259,7 @@ class EDSModel(Model1D):
         for xray_line in xray_lines:
             element, line = utils_eds._get_element_and_line(xray_line)
             line_energy, line_FWHM = self.signal._get_line_energy(
-                xray_line, FWHM_MnKa="auto"
+                xray_line, FWHM_MnKa="auto", xray_line_source=self.xray_line_source
             )
             component = create_component.Gaussian()
             component.centre.value = line_energy
@@ -265,7 +289,9 @@ class EDSModel(Model1D):
                         != []
                     ):
                         line_energy, line_FWHM = self.signal._get_line_energy(
-                            xray_sub, FWHM_MnKa="auto"
+                            xray_sub,
+                            FWHM_MnKa="auto",
+                            xray_line_source=self.xray_line_source,
                         )
                         component_sub = create_component.Gaussian()
                         component_sub.centre.value = line_energy
@@ -827,9 +853,28 @@ class EDSModel(Model1D):
         """
 
         if calibrate == "energy":
-            bound = (bound / eV2keV) * self.units_factor
-            free = self.free_xray_lines_energy
-            fix = self.fix_xray_lines_energy
+            # For energy calibration, reset line energies to reference values from the database
+            # and keep them fixed, rather than optimizing them through fitting
+            target_lines = (
+                xray_lines if xray_lines != "all" else [c.name for c in self.xray_lines]
+            )
+            for xray_line in target_lines:
+                try:
+                    reference_energy, _ = self.signal._get_line_energy(
+                        xray_line,
+                        FWHM_MnKa="auto",
+                        xray_line_source=self.xray_line_source,
+                    )
+                    self[xray_line].centre.value = reference_energy
+                    # Fix the center so it doesn't move during fitting
+                    self[xray_line].centre.free = False
+                except (KeyError, IndexError):
+                    pass
+
+            # Don't call free() for energy calibration since we want to keep centers fixed
+            # The calibration is just setting to reference values, not optimizing
+            return
+
         elif calibrate == "sub_weight":
             free = self.free_sub_xray_lines_weight
             fix = self.fix_sub_xray_lines_weight

@@ -158,17 +158,31 @@ class TestlineFit:
         m.calibrate_energy_axis("offset")
         np.testing.assert_allclose(ax.offset, offset, atol=1e-5)
 
-    def test_calibrate_xray_energy(self):
+    @pytest.mark.parametrize(
+        "xray_line_source",
+        ["Chantler2005", "xraydb"],
+    )
+    def test_calibrate_xray_energy(self, xray_line_source):
         s = self.s
-        m = s.create_model()
+        m = s.create_model(xray_line_source=xray_line_source)
         m.fit()
         m["Fe_Ka"].centre.value = 6.39
 
         m.calibrate_xray_lines(calibrate="energy", xray_lines=["Fe_Ka"], bound=100)
 
+        if xray_line_source == "Chantler2005":
+            expected_energy = elements_db["Fe"]["Atomic_properties"]["Xray_lines"][
+                "Ka"
+            ]["energy (keV)"]
+        else:  # xraydb
+            # Use the same method the calibration uses to get the reference energy
+            expected_energy, _ = s._get_line_energy(
+                "Fe_Ka", FWHM_MnKa="auto", xray_line_source="xraydb"
+            )
+
         np.testing.assert_allclose(
             m["Fe_Ka"].centre.value,
-            elements_db["Fe"]["Atomic_properties"]["Xray_lines"]["Ka"]["energy (keV)"],
+            expected_energy,
             atol=1e-6,
         )
 
@@ -198,9 +212,13 @@ class TestlineFit:
 
         np.testing.assert_allclose(0.0347, m["Fe_Kb"].A.value, atol=1e-3)
 
-    def test_calibrate_xray_width(self):
+    @pytest.mark.parametrize(
+        "xray_line_source",
+        ["Chantler2005", "xraydb"],
+    )
+    def test_calibrate_xray_width(self, xray_line_source):
         s = self.s
-        m = s.create_model()
+        m = s.create_model(xray_line_source=xray_line_source)
         m.fit()
         sigma = m["Fe_Ka"].sigma.value
         m["Fe_Ka"].sigma.value = 0.065

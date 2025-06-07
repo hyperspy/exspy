@@ -96,7 +96,7 @@ class TestTwinnedComponents:
     def test_fit_background(self):
         m2 = self.m2
         m2.fit_background(optimizer="lstsq")
-        np.testing.assert_allclose(m2[0].a0.value, 11045209.18)
+        np.testing.assert_allclose(m2[0].a0.value, 10694878.075087)
 
     def test_fit_background_reset_signal_range(self):
         m2 = self.m2

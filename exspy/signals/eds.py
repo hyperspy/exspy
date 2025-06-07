@@ -54,7 +54,7 @@ class EDSSpectrum(Signal1D):
         self.axes_manager.signal_axes[0].is_binned = True
         self._xray_markers = {}
 
-    def _get_line_energy(self, Xray_line, FWHM_MnKa=None):
+    def _get_line_energy(self, Xray_line, FWHM_MnKa=None, xray_line_source="internal"):
         """
         Get the line energy and the energy resolution of a Xray line.
 
@@ -68,6 +68,10 @@ class EDSSpectrum(Signal1D):
             The energy resolution of the detector in eV
             if 'auto', used the one in
             'self.metadata.Acquisition_instrument.SEM.Detector.EDS.energy_resolution_MnKa'
+        xray_line_source : str, default 'internal'
+            Source for X-ray line energy data. Options are:
+            - 'xraydb': Use XrayDB database (preferred, more accurate)
+            - 'internal': Use internal exspy database
 
         Returns
         -------
@@ -90,7 +94,15 @@ class EDSSpectrum(Signal1D):
                     "`set_signal_type('EDS_SEM')` to convert to one of these"
                     "signal types."
                 )
-        line_energy = utils_eds._get_energy_xray_line(Xray_line)
+
+        # Get line energy using the selected source
+        if xray_line_source == "xraydb":
+            from exspy._misc.eds.xraydb_utils import get_xray_line_energy_with_fallback
+
+            line_energy = get_xray_line_energy_with_fallback(Xray_line, source="xraydb")
+        else:
+            line_energy = utils_eds._get_energy_xray_line(Xray_line)
+
         if units_name == "eV":
             line_energy *= 1000
             if FWHM_MnKa is not None:

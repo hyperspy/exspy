@@ -49,6 +49,7 @@ dependencies = [
   "requests",
   "scipy",
   "traits",
+  "xraydb",
 ]
 dynamic = ["version"]
 

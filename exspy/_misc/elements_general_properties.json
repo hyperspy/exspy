@@ -1,9 +1,4 @@
 {
-  "metadata": {
-    "version": "1.0",
-    "source": "unknown",
-    "last_updated": "2025-06-04"
-  },
   "elements": {
     "Ac": {
       "General_properties": {
@@ -427,8 +422,8 @@
     },
     "Li": {
       "General_properties": {
-        "atomic_weight": 6.939,
         "Z": 3,
+        "atomic_weight": 6.939,
         "name": "lithium"
       },
       "Physical_properties": {
@@ -955,5 +950,10 @@
         "density (g/cm^3)": 6.511
       }
     }
+  },
+  "metadata": {
+    "last_updated": "2025-06-04",
+    "source": "unknown",
+    "version": "1.0"
   }
 }

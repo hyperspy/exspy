@@ -12,7 +12,7 @@ repos:
     rev: v5.0.0
     hooks:
       - id: pretty-format-json
-        args: [ --autofix, --no-sort-keys ]
+        args: [ --autofix ]
 ci:
     # Don't run automatically on PRs, instead add the comment
     # "pre-commit.ci autofix" on a pull request to manually trigger auto-fixing 

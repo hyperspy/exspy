@@ -469,7 +469,7 @@ class Test_EdgesRange:
         _ = er.update_table()
 
         assert er.active_edges == ["V_L2"]
-        assert er.active_complementary_edges == ["V_L3", "V_L1"]
+        assert er.active_complementary_edges == ["V_L1", "V_L3"]
 
     def test_off_complementary_edge(self):
         self.signal.plot(plot_edges=["V_L2"])
@@ -519,7 +519,7 @@ class Test_EdgesRange:
         self.er.update_active_edge(on_V_L2)
 
         assert self.er.active_edges == ["V_L2"]
-        assert self.er.active_complementary_edges == ["V_L3", "V_L1"]
+        assert self.er.active_complementary_edges == ["V_L1", "V_L3"]
 
         off_V_L2 = {"owner": Owner("V_L2"), "new": False}
         self.er.update_active_edge(off_V_L2)

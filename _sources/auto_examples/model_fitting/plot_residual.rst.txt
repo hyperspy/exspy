@@ -110,15 +110,15 @@ Fit for all navigation positions:
 
  .. code-block:: none
 
-    Exception ignored in: <function tqdm.__del__ at 0x7fcdc6444a40>
+    Exception ignored in: <function tqdm.__del__ at 0x7fcc3ab44e00>
     Traceback (most recent call last):
-      File "/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/tqdm/std.py", line 1148, in __del__
+      File "/opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/tqdm/std.py", line 1148, in __del__
         self.close()
-      File "/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/tqdm/notebook.py", line 279, in close
+      File "/opt/hostedtoolcache/Python/3.11.13/x64/lib/python3.11/site-packages/tqdm/notebook.py", line 279, in close
         self.disp(bar_style='danger', check_delay=False)
         ^^^^^^^^^
     AttributeError: 'tqdm_notebook' object has no attribute 'disp'
-      0%|          | 0/10 [00:00<?, ?it/s]    100%|██████████| 10/10 [00:00<00:00, 1504.79it/s]
+      0%|          | 0/10 [00:00<?, ?it/s]    100%|██████████| 10/10 [00:00<00:00, 1492.85it/s]
 
 
 

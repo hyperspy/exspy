@@ -323,55 +323,55 @@ class EDSTEMSpectrum(EDSSpectrum):
 
         Parameters
         ----------
-        intensities: list of signal
+        intensities : list of signal
             the intensitiy for each X-ray lines.
-        method: {'CL', 'zeta', 'cross_section'}
+        method : {'CL', 'zeta', 'cross_section'}
             Set the quantification method: Cliff-Lorimer, zeta-factor, or
             ionization cross sections.
-        factors: list of float
+        factors : list of float
             The list of kfactors, zeta-factors or cross sections in same order
             as intensities. Note that intensities provided by Hyperspy are
             sorted by the alphabetical order of the X-ray lines.
-            eg. factors =[0.982, 1.32, 1.60] for ['Al_Ka', 'Cr_Ka', 'Ni_Ka'].
-        composition_units: {'atomic', 'weight'}
+            eg. factors=[0.982, 1.32, 1.60] for ['Al_Ka', 'Cr_Ka', 'Ni_Ka'].
+        composition_units : {'atomic', 'weight'}
             The quantification returns the composition in 'atomic' percent by
             default, but can also return weight percent if specified.
-        absorption_correction: bool
+        absorption_correction : bool
             Specify whether or not an absorption correction should be applied.
-            'False' by default so absorption will not be applied unless
-            specfied.
+            Default is False.
         take_off_angle : {'auto'}
             The angle between the sample surface and the vector along which
             X-rays travel to reach the centre of the detector.
-        thickness: {'auto'}
+        thickness : {'auto'}
             thickness in nm (can be a single value or
             have the same navigation dimension as the signal).
-            NB: Must be specified for 'CL' method. For 'zeta' or 'cross_section'
-            methods, first quantification step provides a mass_thickness
-            internally during quantification.
-        convergence_criterion: The convergence criterium defined as the percentage
+            NB: Must be specified for ``'CL'`` method. For ``'zeta'`` or
+            ``'cross_section'`` methods, first quantification step provides
+            a mass_thickness internally during quantification.
+        convergence_criterion : The convergence criterium defined as the percentage
             difference between 2 successive iterations. 0.5% by default.
         navigation_mask : None or float or signal
             The navigation locations marked as True are not used in the
             quantification. If float is given the vacuum_mask method is used to
             generate a mask with the float value as threhsold.
             Else provides a signal with the navigation shape. Only for the
-            'Cliff-Lorimer' method.
-        closing: bool
+            ``'Cliff-Lorimer'`` method.
+        closing : bool
             If true, applied a morphologic closing to the mask obtained by
             vacuum_mask.
         plot_result : bool
             If True, plot the calculated composition. If the current
             object is a single spectrum it prints the result instead.
-        probe_area = {'auto'}
+        probe_area : {'auto'}
             This allows the user to specify the probe_area for interaction with
             the sample needed specifically for the cross_section method of
-            quantification. When left as 'auto' the pixel area is used,
+            quantification. When left as ``'auto'`` the pixel area is used,
             calculated from the navigation axes information.
         max_iterations : int
             An upper limit to the number of calculations for absorption correction.
-        kwargs
-            The extra keyword arguments are passed to plot.
+        **kwargs
+            The extra keyword arguments are passed to :func:`~.plot.plot_signals`.
+            Only used if ``plot_result`` is True.
 
         Returns
         -------
@@ -446,43 +446,31 @@ class EDSTEMSpectrum(EDSSpectrum):
         int_stack = utils.stack(intensities, lazy=False, show_progressbar=False)
         comp_old = np.zeros_like(int_stack.data)
 
-        abs_corr_factor = None  # initial
-
+        quant_kwargs = {}
         if method == "CL":
             quantification_method = utils_eds.quantification_cliff_lorimer
-            kwargs = {
-                "intensities": int_stack.data,
-                "kfactors": factors,
-                "absorption_correction": abs_corr_factor,
-                "mask": navigation_mask,
-            }
-
+            quant_kwargs["mask"] = navigation_mask
         elif method == "zeta":
             quantification_method = utils_eds.quantification_zeta_factor
-            kwargs = {
-                "intensities": int_stack.data,
-                "zfactors": factors,
-                "dose": self._get_dose(method),
-                "absorption_correction": abs_corr_factor,
-            }
-
+            quant_kwargs["dose"] = self._get_dose(method)
         elif method == "cross_section":
             quantification_method = utils_eds.quantification_cross_section
-            kwargs = {
-                "intensities": int_stack.data,
-                "cross_sections": factors,
-                "dose": self._get_dose(method, **kwargs),
-                "absorption_correction": abs_corr_factor,
-            }
-
+            quant_kwargs["dose"] = self._get_dose(method, **kwargs)
         else:
             raise ValueError(
                 "Please specify method for quantification, "
                 'as "CL", "zeta" or "cross_section".'
             )
 
+        abs_corr_factor = None  # initial
+
         while True:
-            results = quantification_method(**kwargs)
+            results = quantification_method(
+                int_stack.data,
+                factors,
+                absorption_correction=abs_corr_factor,
+                **quant_kwargs,
+            )
 
             if method == "CL":
                 composition.data = results * 100.0
@@ -514,13 +502,11 @@ class EDSTEMSpectrum(EDSSpectrum):
                     abs_corr_factor = utils_eds.get_abs_corr_cross_section(
                         composition.split(), number_of_atoms.split(), toa, probe_area
                     )
-                    kwargs["absorption_correction"] = abs_corr_factor
             else:
                 if absorption_correction:
                     abs_corr_factor = utils_eds.get_abs_corr_zeta(
                         composition.split(), mass_thickness, toa
                     )
-                    kwargs["absorption_correction"] = abs_corr_factor
 
             res_max = np.max(composition.data - comp_old)
             comp_old = composition.data

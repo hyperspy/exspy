@@ -36,6 +36,7 @@ from hyperspy.axes import DataAxis
 
 from .eds import EDSSpectrum, LazyEDSSpectrum
 from exspy._defaults_parser import preferences
+from exspy._docstrings.eds import DOSE_DOC
 from exspy._misc import material
 from exspy._misc.eds import utils as utils_eds
 from exspy._misc.elements import elements as elements_db
@@ -310,6 +311,8 @@ class EDSTEMSpectrum(EDSSpectrum):
         navigation_mask=1.0,
         closing=True,
         plot_result=False,
+        beam_current="auto",
+        live_time="auto",
         probe_area="auto",
         max_iterations=30,
         show_progressbar=None,
@@ -319,71 +322,68 @@ class EDSTEMSpectrum(EDSSpectrum):
         Absorption corrected quantification using Cliff-Lorimer, the zeta-factor
         method, or ionization cross sections. The function iterates through
         quantification function until two successive interations don't change
-        the final composition by a defined percentage critera (0.5% by default).
+        the final composition by a defined percentage critera (0.5%% by default).
 
         Parameters
         ----------
         intensities : list of signal
             the intensitiy for each X-ray lines.
-        method : {'CL', 'zeta', 'cross_section'}
+        method : {"CL", "zeta", "cross_section"}
             Set the quantification method: Cliff-Lorimer, zeta-factor, or
             ionization cross sections.
         factors : list of float
             The list of kfactors, zeta-factors or cross sections in same order
             as intensities. Note that intensities provided by Hyperspy are
             sorted by the alphabetical order of the X-ray lines.
-            eg. factors=[0.982, 1.32, 1.60] for ['Al_Ka', 'Cr_Ka', 'Ni_Ka'].
-        composition_units : {'atomic', 'weight'}
-            The quantification returns the composition in 'atomic' percent by
+            eg. factors=[0.982, 1.32, 1.60] for ["Al_Ka", "Cr_Ka", "Ni_Ka"].
+        composition_units : {"atomic", "weight"}
+            The quantification returns the composition in "atomic" percent by
             default, but can also return weight percent if specified.
         absorption_correction : bool
             Specify whether or not an absorption correction should be applied.
             Default is False.
-        take_off_angle : {'auto'}
+        take_off_angle : {"auto"}
             The angle between the sample surface and the vector along which
             X-rays travel to reach the centre of the detector.
-        thickness : {'auto'}
+        thickness : {"auto"}
             thickness in nm (can be a single value or
             have the same navigation dimension as the signal).
-            NB: Must be specified for ``'CL'`` method. For ``'zeta'`` or
-            ``'cross_section'`` methods, first quantification step provides
+            NB: Must be specified for ``"CL"`` method. For ``"zeta"`` or
+            ``"cross_section"`` methods, first quantification step provides
             a mass_thickness internally during quantification.
         convergence_criterion : The convergence criterium defined as the percentage
-            difference between 2 successive iterations. 0.5% by default.
+            difference between 2 successive iterations. 0.5%% by default.
         navigation_mask : None or float or signal
             The navigation locations marked as True are not used in the
             quantification. If float is given the vacuum_mask method is used to
             generate a mask with the float value as threhsold.
             Else provides a signal with the navigation shape. Only for the
-            ``'Cliff-Lorimer'`` method.
+            ``"Cliff-Lorimer"`` method.
         closing : bool
             If true, applied a morphologic closing to the mask obtained by
             vacuum_mask.
         plot_result : bool
             If True, plot the calculated composition. If the current
             object is a single spectrum it prints the result instead.
-        probe_area : {'auto'}
-            This allows the user to specify the probe_area for interaction with
-            the sample needed specifically for the cross_section method of
-            quantification. When left as ``'auto'`` the pixel area is used,
-            calculated from the navigation axes information.
         max_iterations : int
             An upper limit to the number of calculations for absorption correction.
+        %s
         **kwargs
-            The extra keyword arguments are passed to :func:`~.plot.plot_signals`.
+            The extra keyword arguments are passed to :func:`hyperspy.api.plot.plot_signals`.
             Only used if ``plot_result`` is True.
 
         Returns
         -------
-        A list of quantified elemental maps (signal) giving the composition of
-        the sample in weight or atomic percent with absorption correciton taken
-        into account based on the sample thickness estimate provided.
-
-        If the method is 'zeta' this function also returns the mass thickness
-        profile for the data.
-
-        If the method is 'cross_section' this function also returns the atom
-        counts for each element.
+        composition : list of signal
+            A list of quantified elemental maps (signal) giving the composition of
+            the sample in weight or atomic percent with absorption correciton taken
+            into account based on the sample thickness estimate provided.
+        mass_thickness : signal
+            If the method is ``"zeta"`` this function also returns the mass thickness
+            profile for the data.
+        number_of_atoms : list of signal
+            If the method is ``"cross_section"`` this function also returns the atom
+            counts for each element.
 
         Examples
         --------
@@ -400,7 +400,7 @@ class EDSTEMSpectrum(EDSSpectrum):
 
         See also
         --------
-        vacuum_mask
+        vacuum_mask, set_microscope_parameters
         """
         if not isinstance(intensities, (list, tuple)) or not isinstance(
             intensities[0], BaseSignal
@@ -446,16 +446,19 @@ class EDSTEMSpectrum(EDSSpectrum):
         int_stack = utils.stack(intensities, lazy=False, show_progressbar=False)
         comp_old = np.zeros_like(int_stack.data)
 
-        quant_kwargs = {}
+        # kwargs to pass to the quantification function
+        qkwargs = {}
         if method == "CL":
             quantification_method = utils_eds.quantification_cliff_lorimer
-            quant_kwargs["mask"] = navigation_mask
+            qkwargs["mask"] = navigation_mask
         elif method == "zeta":
             quantification_method = utils_eds.quantification_zeta_factor
-            quant_kwargs["dose"] = self._get_dose(method)
+            qkwargs["dose"] = self._get_dose(method, beam_current, live_time)
         elif method == "cross_section":
             quantification_method = utils_eds.quantification_cross_section
-            quant_kwargs["dose"] = self._get_dose(method, **kwargs)
+            qkwargs["dose"] = self._get_dose(
+                method, beam_current, live_time, probe_area
+            )
         else:
             raise ValueError(
                 "Please specify method for quantification, "
@@ -469,7 +472,7 @@ class EDSTEMSpectrum(EDSSpectrum):
                 int_stack.data,
                 factors,
                 absorption_correction=abs_corr_factor,
-                **quant_kwargs,
+                **qkwargs,
             )
 
             if method == "CL":
@@ -579,6 +582,8 @@ class EDSTEMSpectrum(EDSSpectrum):
                 "Please specify method for quantification, as "
                 '"CL", "zeta" or "cross_section"'
             )
+
+    quantification.__doc__ %= DOSE_DOC
 
     def vacuum_mask(self, threshold=1.0, closing=True, opening=False):
         """
@@ -868,16 +873,7 @@ class EDSTEMSpectrum(EDSSpectrum):
             where i is the beam current, t is the acquistion time,
             N is the number of electrons per unit charge (1/e) and
             A is the illuminated beam area or pixel area.
-        beam_current: float
-            Probe current in nA
-        live_time: float
-            Acquisiton time in s, compensated for the dead time of the detector.
-        probe_area: float or 'auto'
-            The illumination area of the electron beam in nm².
-            If 'auto' the value is extracted from the scale axes_manager.
-            Therefore we assume the probe is oversampling such that
-            the illumination area can be approximated to the pixel area of the
-            spectrum image.
+        %s
 
         Returns
         --------
@@ -921,6 +917,8 @@ class EDSTEMSpectrum(EDSSpectrum):
             return live_time * beam_current * 1e-9 / constants.e
         else:
             raise Exception("Method need to be 'zeta' or 'cross_section'.")
+
+    _get_dose.__doc__ %= DOSE_DOC
 
     @staticmethod
     def CL_get_mass_thickness(weight_percent, thickness):

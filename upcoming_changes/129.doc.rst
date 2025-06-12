@@ -1,0 +1,1 @@
+Add dose calculation parameter explicitely to the signature and docstring of :meth:`~.signals.EDSTEMSpectrum.quantification`. Distinguish keyword arguments passed to the :func:`hyperspy.api.plot.plot_signals` and the quantification functions.

@@ -1755,7 +1755,7 @@ integer, the provided value is used to index the <code class="docutils literal n
 
 <dl class="py method">
 <dt class="sig sig-object py" id="exspy.signals.EDSTEMSpectrum.quantification">
-<span class="sig-name descname"><span class="pre">quantification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atomic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">absorption_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">take_off_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convergence_criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">navigation_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probe_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progressbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EDSTEMSpectrum.quantification" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">quantification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composition_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atomic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">absorption_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">take_off_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convergence_criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">navigation_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">live_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probe_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progressbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EDSTEMSpectrum.quantification" title="Link to this definition">#</a></dt>
 <dd><p>Absorption corrected quantification using Cliff-Lorimer, the zeta-factor
 method, or ionization cross sections. The function iterates through
 quantification function until two successive interations don’t change
@@ -1764,51 +1764,58 @@ the final composition by a defined percentage critera (0.5% by default).</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>intensities</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>signal</em>) – the intensitiy for each X-ray lines.</p></li>
-<li><p><strong>method</strong> (<em>{'CL'</em><em>, </em><em>'zeta'</em><em>, </em><em>'cross_section'}</em>) – Set the quantification method: Cliff-Lorimer, zeta-factor, or
+<li><p><strong>method</strong> (<em>{&quot;CL&quot;</em><em>, </em><em>&quot;zeta&quot;</em><em>, </em><em>&quot;cross_section&quot;}</em>) – Set the quantification method: Cliff-Lorimer, zeta-factor, or
 ionization cross sections.</p></li>
 <li><p><strong>factors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The list of kfactors, zeta-factors or cross sections in same order
 as intensities. Note that intensities provided by Hyperspy are
 sorted by the alphabetical order of the X-ray lines.
-eg. factors =[0.982, 1.32, 1.60] for [‘Al_Ka’, ‘Cr_Ka’, ‘Ni_Ka’].</p></li>
-<li><p><strong>composition_units</strong> (<em>{'atomic'</em><em>, </em><em>'weight'}</em>) – The quantification returns the composition in ‘atomic’ percent by
+eg. factors=[0.982, 1.32, 1.60] for [“Al_Ka”, “Cr_Ka”, “Ni_Ka”].</p></li>
+<li><p><strong>composition_units</strong> (<em>{&quot;atomic&quot;</em><em>, </em><em>&quot;weight&quot;}</em>) – The quantification returns the composition in “atomic” percent by
 default, but can also return weight percent if specified.</p></li>
 <li><p><strong>absorption_correction</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – Specify whether or not an absorption correction should be applied.
-‘False’ by default so absorption will not be applied unless
-specfied.</p></li>
-<li><p><strong>take_off_angle</strong> (<em>{'auto'}</em>) – The angle between the sample surface and the vector along which
+Default is False.</p></li>
+<li><p><strong>take_off_angle</strong> (<em>{&quot;auto&quot;}</em>) – The angle between the sample surface and the vector along which
 X-rays travel to reach the centre of the detector.</p></li>
-<li><p><strong>thickness</strong> (<em>{'auto'}</em>) – thickness in nm (can be a single value or
+<li><p><strong>thickness</strong> (<em>{&quot;auto&quot;}</em>) – thickness in nm (can be a single value or
 have the same navigation dimension as the signal).
-NB: Must be specified for ‘CL’ method. For ‘zeta’ or ‘cross_section’
-methods, first quantification step provides a mass_thickness
-internally during quantification.</p></li>
+NB: Must be specified for <code class="docutils literal notranslate"><span class="pre">&quot;CL&quot;</span></code> method. For <code class="docutils literal notranslate"><span class="pre">&quot;zeta&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;cross_section&quot;</span></code> methods, first quantification step provides
+a mass_thickness internally during quantification.</p></li>
 <li><p><strong>convergence_criterion</strong> (<em>The convergence criterium defined as the percentage</em>) – difference between 2 successive iterations. 0.5% by default.</p></li>
 <li><p><strong>navigation_mask</strong> (<em>None</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>signal</em>) – The navigation locations marked as True are not used in the
 quantification. If float is given the vacuum_mask method is used to
 generate a mask with the float value as threhsold.
 Else provides a signal with the navigation shape. Only for the
-‘Cliff-Lorimer’ method.</p></li>
+<code class="docutils literal notranslate"><span class="pre">&quot;Cliff-Lorimer&quot;</span></code> method.</p></li>
 <li><p><strong>closing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If true, applied a morphologic closing to the mask obtained by
 vacuum_mask.</p></li>
 <li><p><strong>plot_result</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, plot the calculated composition. If the current
 object is a single spectrum it prints the result instead.</p></li>
-<li><p><strong>{'auto'}</strong> (<em>probe_area =</em>) – This allows the user to specify the probe_area for interaction with
-the sample needed specifically for the cross_section method of
-quantification. When left as ‘auto’ the pixel area is used,
-calculated from the navigation axes information.</p></li>
 <li><p><strong>max_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – An upper limit to the number of calculations for absorption correction.</p></li>
-<li><p><strong>kwargs</strong> – The extra keyword arguments are passed to plot.</p></li>
+<li><p><strong>beam_current</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>&quot;auto&quot;</em>) – Probe current in nA.
+If “auto”, the value is extracted from the metadata.
+Only for <code class="docutils literal notranslate"><span class="pre">&quot;zeta&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;cross_section&quot;</span></code> method.</p></li>
+<li><p><strong>live_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>&quot;auto&quot;</em>) – Acquisition time in s, compensated for the dead time of the detector.
+If “auto”, the value is extracted from the metadata.
+Only for <code class="docutils literal notranslate"><span class="pre">&quot;zeta&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;cross_section&quot;</span></code> method.</p></li>
+<li><p><strong>probe_area</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em> or </em><em>&quot;auto&quot;</em>) – The illumination area of the electron beam in nm².
+If <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code> the value is extracted from the scale axes_manager,
+assuming that the probe is oversampling such that the illumination
+area can be approximated to the pixel area of the spectrum image.
+Only for the <code class="docutils literal notranslate"><span class="pre">&quot;cross_section&quot;</span></code> method.</p></li>
+<li><p><strong>**kwargs</strong> – The extra keyword arguments are passed to <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.plot/index.html#hyperspy.api.plot.plot_signals" title="(in HyperSpy v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.plot.plot_signals()</span></code></a>.
+Only used if <code class="docutils literal notranslate"><span class="pre">plot_result</span></code> is True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><em>A list of quantified elemental maps (signal) giving the composition of</em></p></li>
-<li><p><em>the sample in weight or atomic percent with absorption correciton taken</em></p></li>
-<li><p><em>into account based on the sample thickness estimate provided.</em></p></li>
-<li><p><em>If the method is ‘zeta’ this function also returns the mass thickness</em></p></li>
-<li><p><em>profile for the data.</em></p></li>
-<li><p><em>If the method is ‘cross_section’ this function also returns the atom</em></p></li>
-<li><p><em>counts for each element.</em></p></li>
+<li><p><strong>composition</strong> (<em>list of signal</em>) – A list of quantified elemental maps (signal) giving the composition of
+the sample in weight or atomic percent with absorption correciton taken
+into account based on the sample thickness estimate provided.</p></li>
+<li><p><strong>mass_thickness</strong> (<em>signal</em>) – If the method is <code class="docutils literal notranslate"><span class="pre">&quot;zeta&quot;</span></code> this function also returns the mass thickness
+profile for the data.</p></li>
+<li><p><strong>number_of_atoms</strong> (<em>list of signal</em>) – If the method is <code class="docutils literal notranslate"><span class="pre">&quot;cross_section&quot;</span></code> this function also returns the atom
+counts for each element.</p></li>
 </ul>
 </p>
 </dd>
@@ -1828,7 +1835,7 @@ calculated from the navigation axes information.</p></li>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#exspy.signals.EDSTEMSpectrum.vacuum_mask" title="exspy.signals.EDSTEMSpectrum.vacuum_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vacuum_mask</span></code></a></p>
+<p><a class="reference internal" href="#exspy.signals.EDSTEMSpectrum.vacuum_mask" title="exspy.signals.EDSTEMSpectrum.vacuum_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vacuum_mask</span></code></a>, <a class="reference internal" href="#exspy.signals.EDSTEMSpectrum.set_microscope_parameters" title="exspy.signals.EDSTEMSpectrum.set_microscope_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_microscope_parameters</span></code></a></p>
 </div>
 </dd></dl>
 

@@ -545,13 +545,13 @@ class Test_Get_Complementary_Edges:
         s = self.signal
         complementary = s._get_complementary_edges(["Fe_L2", "O_K"])
 
-        assert complementary == ["Fe_L1", "Fe_L3", "Fe_M3", "Fe_M2"]
+        assert complementary == ["Fe_L1", "Fe_L3", "Fe_M2", "Fe_M3"]
 
     def test_Fe_O_only_major(self):
         s = self.signal
         complementary = s._get_complementary_edges(["Fe_L2", "O_K"], only_major=True)
 
-        assert complementary == ["Fe_L3", "Fe_M3", "Fe_M2"]
+        assert complementary == ["Fe_L3", "Fe_M2", "Fe_M3"]
 
 
 class Test_Plot_EELS:

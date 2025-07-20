@@ -42,9 +42,9 @@ Fit an arctan function.
     Active: True
     Parameter Name |    Free |      Value |        Std |        Min |        Max | Linear
     ============== | ======= | ========== | ========== | ========== | ========== | ======
-                 A |    True | 0.99958850 | 0.00205664 |       None |       None |   True
-                 k |    True | 1.02038361 | 0.08438844 |       None |       None |  False
-                x0 |    True | 0.00061397 | 0.07566791 |       None |       None |  False
+                 A |    True | 0.99590374 | 0.00215841 |       None |       None |   True
+                 k |    True | 0.95646419 | 0.08013627 |       None |       None |  False
+                x0 |    True | -0.1507093 | 0.08291149 |       None |       None |  False
 
 
 
@@ -91,7 +91,7 @@ Fit an arctan function.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.334 seconds)
+   **Total running time of the script:** (0 minutes 0.337 seconds)
 
 
 .. _sphx_glr_download_auto_examples_model_fitting_simple_arctan_fit.py:

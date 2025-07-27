@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import warnings
 
 import hyperspy.api as hs
 import numpy as np
@@ -483,11 +482,11 @@ class Test_quantification:
                 [0.5, 0.0, 0.0],
             ]
         ).T
-        with warnings.catch_warnings():
-            warnings.filterwarnings(
-                "ignore", message="divide by zero encountered", category=RuntimeWarning
-            )
-            quant = eds_utils.quantification_cliff_lorimer(intens, [1, 1, 3]).T
+
+        # Specify intensities_sum_threshold not to set output values to zero
+        quant = utils_eds.quantification_cliff_lorimer(
+            intens, [1, 1, 3], intensities_sum_threshold=0.1
+        ).T
         np.testing.assert_allclose(
             quant,
             np.array(
@@ -500,6 +499,10 @@ class Test_quantification:
                 ]
             ),
         )
+
+        # with default value of intensities_sum_threshold
+        quant = utils_eds.quantification_cliff_lorimer(intens, [1, 1, 3]).T
+        np.testing.assert_allclose(quant, np.zeros_like(quant))
 
     def test_edx_cross_section_to_zeta(self):
         cs = [3, 6]

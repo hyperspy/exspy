@@ -33,7 +33,7 @@ from hyperspy.ui_registry import DISPLAY_DT, TOOLKIT_DT, add_gui_method
 import exspy.utils.eds as eds_utils
 from exspy import material
 from exspy._defaults_parser import preferences
-from exspy._docstrings.eds import DOSE_DOC
+from exspy._docstrings.eds import DOSE_DOC, INTENSITIES_THRESHOLD_DOC, INTENSITIES_SUM_THRESHOLD_DOC
 from exspy.signals._eds import EDSSpectrum
 
 _logger = logging.getLogger(__name__)
@@ -309,6 +309,8 @@ class EDSTEMSpectrum(EDSSpectrum):
         live_time="auto",
         probe_area="auto",
         max_iterations=30,
+        intensities_threshold=2.0,
+        intensities_sum_threshold=None,
         show_progressbar=None,
         **kwargs,
     ):
@@ -361,6 +363,8 @@ class EDSTEMSpectrum(EDSSpectrum):
             object is a single spectrum it prints the result instead.
         max_iterations : int
             An upper limit to the number of calculations for absorption correction.
+        %s
+        %s
         %s
         **kwargs
             The extra keyword arguments are passed to :func:`hyperspy.api.plot.plot_signals`.
@@ -442,7 +446,10 @@ class EDSTEMSpectrum(EDSSpectrum):
         comp_old = np.zeros_like(int_stack.data)
 
         # kwargs to pass to the quantification function
-        qkwargs = {}
+        qkwargs = {
+            "intensities_threshold": intensities_threshold,
+            "intensities_sum_threshold": intensities_sum_threshold
+        }
         if method == "CL":
             quantification_method = eds_utils.quantification_cliff_lorimer
             qkwargs["mask"] = navigation_mask
@@ -578,7 +585,11 @@ class EDSTEMSpectrum(EDSSpectrum):
                 '"CL", "zeta" or "cross_section"'
             )
 
-    quantification.__doc__ %= DOSE_DOC
+    quantification.__doc__ %= (
+        DOSE_DOC,
+        INTENSITIES_THRESHOLD_DOC,
+        INTENSITIES_SUM_THRESHOLD_DOC,
+    )
 
     def vacuum_mask(self, threshold=1.0, closing=True, opening=False):
         """

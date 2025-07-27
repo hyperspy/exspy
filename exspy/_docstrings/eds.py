@@ -34,6 +34,14 @@ DOSE_DOC = """beam_current : float or "auto"
             Only for the ``"cross_section"`` method."""
 
 
+INTENSITIES_SUM_THRESHOLD_DOC = """intensities_sum_threshold : int, float or None, optional
+        Threshold value used to set output values to zero in areas with very low
+        X-ray intensities, such as vacuum areas. If the sum of the
+        intensities falls below this threshold, the output is set to zero.
+        If None, the length of the intensities list is used as the threshold.
+        Default is None."""
+
+
 WEIGHT_THRESHOLD_PARAMETER = """weight_threshold : float
         Define the threshold of the weight below which the lines are
         ignored. Must be between 0 and 1. Default is 0.1."""

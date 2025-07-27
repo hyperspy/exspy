@@ -36,7 +36,7 @@ from hyperspy.axes import DataAxis
 
 from .eds import EDSSpectrum, LazyEDSSpectrum
 from exspy._defaults_parser import preferences
-from exspy._docstrings.eds import DOSE_DOC
+from exspy._docstrings.eds import DOSE_DOC, INTENSITIES_THRESHOLD_DOC
 from exspy._misc import material
 from exspy._misc.eds import utils as utils_eds
 from exspy._misc.elements import elements as elements_db
@@ -315,6 +315,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         live_time="auto",
         probe_area="auto",
         max_iterations=30,
+        intensities_threshold=2.0,
         show_progressbar=None,
         **kwargs,
     ):
@@ -365,6 +366,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         plot_result : bool
             If True, plot the calculated composition. If the current
             object is a single spectrum it prints the result instead.
+        %s
         max_iterations : int
             An upper limit to the number of calculations for absorption correction.
         %s
@@ -447,7 +449,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         comp_old = np.zeros_like(int_stack.data)
 
         # kwargs to pass to the quantification function
-        qkwargs = {}
+        qkwargs = {"intensities_threshold": intensities_threshold}
         if method == "CL":
             quantification_method = utils_eds.quantification_cliff_lorimer
             qkwargs["mask"] = navigation_mask
@@ -583,7 +585,7 @@ class EDSTEMSpectrum(EDSSpectrum):
                 '"CL", "zeta" or "cross_section"'
             )
 
-    quantification.__doc__ %= DOSE_DOC
+    quantification.__doc__ %= (DOSE_DOC, INTENSITIES_THRESHOLD_DOC)
 
     def vacuum_mask(self, threshold=1.0, closing=True, opening=False):
         """

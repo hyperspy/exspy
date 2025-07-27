@@ -16,26 +16,29 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+
+import numpy as np
 import math
+from scipy import constants
+from hyperspy.misc.utils import stack
+from exspy._misc.elements import elements as elements_db
 from functools import reduce
 import warnings
 
 
-from hyperspy.misc.utils import display, stack, DictionaryTreeBrowser
-import numpy as np
+from hyperspy.misc.utils import display, DictionaryTreeBrowser
 from prettytable import PrettyTable
-from scipy import constants
 
 from exspy._docstrings.eds import (
     FLOAT_FORMAT_PARAMETER,
     ENERGY_RANGE_PARAMETER,
     INTENSITIES_SUM_THRESHOLD_DOC,
+    INTENSITIES_THRESHOLD_DOC,
     ONLY_LINES_PARAMETER,
     SORTING_PARAMETER,
     WEIGHT_THRESHOLD_PARAMETER,
     WIDTH_PARAMETER,
 )
-from exspy._misc.elements import elements as elements_db
 
 
 eV2keV = 1000.0
@@ -438,6 +441,7 @@ def quantification_cliff_lorimer(
     kfactors,
     absorption_correction=None,
     mask=None,
+    intensities_threshold=1.0,
     intensities_sum_threshold=None,
 ):
     """
@@ -445,16 +449,17 @@ def quantification_cliff_lorimer(
 
     Parameters
     ----------
-    intensities : numpy.array
+    intensities: numpy.array
         the intensities for each X-ray lines. The first axis should be the
         elements axis.
-    kfactors : list of float
+    kfactors: list of float
         The list of kfactor in same order as intensities eg. kfactors =
         [1, 1.47, 1.72] for ['Al_Ka','Cr_Ka', 'Ni_Ka']
     %s
-    mask : array of bool, signal of bool or None
+    mask: array of bool, signal of bool or None
         The mask with the dimension of intensities[0]. If a pixel is True,
         the composition is set to zero.
+    %s
     %s
 
     Return
@@ -464,6 +469,12 @@ def quantification_cliff_lorimer(
     """
     # Value used as an threshold to prevent using zeros as denominator
     min_intensity = 0.1
+
+    # Apply individual intensities threshold if specified
+    if intensities_threshold > 0:
+        intensities = intensities.copy()
+        intensities[intensities < intensities_threshold] = 0
+
     # Create a mask when the sum of intensities is less than the total
     # intensities over all maps
     if intensities_sum_threshold is None:
@@ -504,8 +515,10 @@ def quantification_cliff_lorimer(
             mask = mask.data
         if mask.dtype != bool:
             mask = mask.astype(bool)
-        intens[..., mask] = 0
+        for i in range(dim[0]):
+            intens[i][mask] = 0
 
+    # Apply sum threshold mask
     intens[..., mask_sum_intensities] = 0
 
     return intens
@@ -513,6 +526,7 @@ def quantification_cliff_lorimer(
 
 quantification_cliff_lorimer.__doc__ %= (
     _ABSORPTION_CORRECTION_DOCSTRING,
+    INTENSITIES_THRESHOLD_DOC,
     INTENSITIES_SUM_THRESHOLD_DOC,
 )
 
@@ -582,6 +596,7 @@ def quantification_zeta_factor(
     zfactors,
     dose,
     absorption_correction=None,
+    intensities_threshold=1.0,
     intensities_sum_threshold=None,
 ):
     """
@@ -601,21 +616,27 @@ def quantification_zeta_factor(
         N the number of electrons per unit electric charge (1/e).
     %s
     %s
+    %s
 
     Returns
     ------
     A numpy.array containing the weight fraction with the same
     shape as intensities and mass thickness in kg/m^2.
     """
-    if absorption_correction is None:
-        # default to ones
-        absorption_correction = np.ones_like(intensities, dtype="float")
+    # Apply individual intensities threshold if specified
+    if intensities_threshold > 0:
+        intensities = intensities.copy()
+        intensities[intensities < intensities_threshold] = 0
 
     # Create a mask when the sum of intensities is less than the total
     # intensities over all maps
     if intensities_sum_threshold is None:
         intensities_sum_threshold = len(intensities)
     mask_sum_intensities = intensities.sum(axis=0) < intensities_sum_threshold
+
+    if absorption_correction is None:
+        # default to ones
+        absorption_correction = np.ones_like(intensities, dtype="float")
 
     sumzi = np.zeros_like(intensities[0], dtype="float")
     composition = np.zeros_like(intensities, dtype="float")
@@ -626,6 +647,7 @@ def quantification_zeta_factor(
     ):
         composition[i] = intensity * zfactor * acf / sumzi
 
+    # Apply sum threshold mask
     composition[..., mask_sum_intensities] = 0
 
     mass_thickness = sumzi / dose
@@ -634,6 +656,7 @@ def quantification_zeta_factor(
 
 quantification_zeta_factor.__doc__ %= (
     _ABSORPTION_CORRECTION_DOCSTRING,
+    INTENSITIES_THRESHOLD_DOC,
     INTENSITIES_SUM_THRESHOLD_DOC,
 )
 
@@ -673,6 +696,7 @@ def quantification_cross_section(
     cross_sections,
     dose,
     absorption_correction=None,
+    intensities_threshold=1.0,
     intensities_sum_threshold=None,
 ):
     """
@@ -694,6 +718,7 @@ def quantification_cross_section(
         N the number of electron by unit electric charge.
     %s
     %s
+    %s
 
     Returns
     -------
@@ -702,16 +727,20 @@ def quantification_cross_section(
     numpy.array of the number of atoms counts for each element, with the same
     shape as the intensity input.
     """
-
-    if absorption_correction is None:
-        # default to ones
-        absorption_correction = np.ones_like(intensities, dtype=float)
+    # Apply individual intensities threshold if specified
+    if intensities_threshold > 0:
+        intensities = intensities.copy()
+        intensities[intensities < intensities_threshold] = 0
 
     # Create a mask when the sum of intensities is less than the total
     # intensities over all maps
     if intensities_sum_threshold is None:
         intensities_sum_threshold = len(intensities)
     mask_sum_intensities = intensities.sum(axis=0) < intensities_sum_threshold
+
+    if absorption_correction is None:
+        # default to ones
+        absorption_correction = np.ones_like(intensities, dtype=float)
 
     shp = len(intensities.shape) - 1
     slices = (slice(None),) + (None,) * shp
@@ -720,6 +749,7 @@ def quantification_cross_section(
     total_atoms = np.cumsum(number_of_atoms, axis=0)[-1]
     composition = number_of_atoms / total_atoms
 
+    # Apply sum threshold mask
     composition[..., mask_sum_intensities] = 0
 
     return composition, number_of_atoms
@@ -727,6 +757,7 @@ def quantification_cross_section(
 
 quantification_cross_section.__doc__ %= (
     _ABSORPTION_CORRECTION_DOCSTRING,
+    INTENSITIES_THRESHOLD_DOC,
     INTENSITIES_SUM_THRESHOLD_DOC,
 )
 

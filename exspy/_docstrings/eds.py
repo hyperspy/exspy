@@ -33,6 +33,12 @@ DOSE_DOC = """beam_current : float or "auto"
             area can be approximated to the pixel area of the spectrum image.
             Only for the ``"cross_section"`` method."""
 
+INTENSITIES_THRESHOLD_DOC = """intensities_threshold : float, optional
+        Threshold value used to set individual intensity values to zero when they
+        fall below this threshold. This helps filter out noise and very low
+        intensity peaks. If <= 0, no individual intensity thresholding is applied.
+        Default is 1.0."""
+
 
 INTENSITIES_SUM_THRESHOLD_DOC = """intensities_sum_threshold : int, float or None, optional
         Threshold value used to set output values to zero in areas with very low

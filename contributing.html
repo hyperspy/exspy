@@ -501,6 +501,16 @@ functions in eXSpy and compare resulting output values with known answers.
 Please refer to the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/dev_guide/testing.html">HyperSpy development guide</a> for further
 information on tests.</p>
 </section>
+<section id="integration-tests">
+<h2>Integration tests<a class="headerlink" href="#integration-tests" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://github.com/hyperspy/hyperspy/actions/workflows/integration_tests.yml">Integration test</a>
+workflow runs the test suite of other libraries in the HyperSpy eco-system using the current development
+branch of exspy. It can be used to check if changes in the eXSpy libraries break these other libraries.
+It can run from pull requests (PR) to the <a class="reference external" href="https://github.com/hyperspy/exspy">eXSpy</a> repository
+when the label <code class="docutils literal notranslate"><span class="pre">run-integration-tests</span></code> is added to a PR.</p>
+<p>This workflow uses the <a class="reference external" href="https://github.com/hyperspy/.github/blob/main/.github/workflows/integration_tests.yml">integration_tests.yml</a>
+reusable workflow from the <a class="github reference external" href="https://github.com/hyperspy/.github">hyperspy/.github</a> repository.</p>
+</section>
 <section id="releasing-a-new-version">
 <h2>Releasing a new version<a class="headerlink" href="#releasing-a-new-version" title="Link to this heading">#</a></h2>
 <p>eXSpy versioning follows <a class="reference external" href="https://semver.org/spec/v2.0.0.html">semantic versioning</a>
@@ -562,6 +572,7 @@ Each number will change depending on the type of changes according to the follow
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-style">Code style</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-tests">Writing tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-tests">Integration tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#releasing-a-new-version">Releasing a new version</a></li>
 </ul>
   </nav></div>

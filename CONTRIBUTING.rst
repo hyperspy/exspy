@@ -88,6 +88,18 @@ Please refer to the `HyperSpy development guide
 <https://hyperspy.org/hyperspy-doc/current/dev_guide/testing.html>`_ for further
 information on tests.
 
+Integration tests
+=================
+
+The `Integration test <https://github.com/hyperspy/hyperspy/actions/workflows/integration_tests.yml>`__
+workflow runs the test suite of other libraries in the HyperSpy eco-system using the current development
+branch of exspy. It can be used to check if changes in the eXSpy libraries break these other libraries.
+It can run from pull requests (PR) to the `eXSpy <https://github.com/hyperspy/exspy>`_ repository
+when the label ``run-integration-tests`` is added to a PR.
+
+This workflow uses the `integration_tests.yml <https://github.com/hyperspy/.github/blob/main/.github/workflows/integration_tests.yml>`_
+reusable workflow from the https://github.com/hyperspy/.github repository.
+
 Releasing a new version
 =======================
 

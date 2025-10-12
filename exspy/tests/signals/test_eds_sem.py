@@ -414,3 +414,57 @@ class Test_energy_units:
         np.testing.assert_allclose(
             s._get_line_energy("Al_Ka", FWHM_MnKa=128), (1.4865, 0.073167615787314)
         )
+
+
+def test_print_lines_near_energy(capsys):
+    s = EDSSEMSpectrum(np.ones(1024))
+    s.print_lines_near_energy(energy=6.4)
+    captured = capsys.readouterr()
+    assert (
+        captured.out
+        == """+---------+------+--------------+--------+------------+
+| Element | Line | Energy (keV) | Weight | Intensity  |
++---------+------+--------------+--------+------------+
+|    Sm   | Lb3  |     6.32     |  0.13  | #          |
+|    Pm   | Lb2  |     6.34     |  0.20  | #          |
+|    Fe   |  Ka  |     6.40     |  1.00  | ########## |
+|    Eu   | Lb1  |     6.46     |  0.44  | ####       |
+|    Mn   |  Kb  |     6.49     |  0.13  | #          |
+|    Dy   |  La  |     6.50     |  1.00  | ########## |
++---------+------+--------------+--------+------------+
+"""
+    )
+
+
+def test_print_lines(capsys):
+    s = EDSSEMSpectrum(np.ones(1024))
+    s.set_elements(["Fe", "Pt"])
+    s.print_lines()
+    captured = capsys.readouterr()
+    assert (
+        captured.out
+        == """+---------+------+--------------+--------+------------+
+| Element | Line | Energy (keV) | Weight | Intensity  |
++---------+------+--------------+--------+------------+
+|    Fe   |  Ka  |     6.40     |  1.00  | ########## |
+|         |  Kb  |     7.06     |  0.13  | #          |
+|         |  La  |     0.70     |  1.00  | ########## |
+|         |  Ll  |     0.62     |  0.31  | ###        |
+|         |  Ln  |     0.63     |  0.13  | #          |
++---------+------+--------------+--------+------------+
+|    Pt   |  Ka  |    66.83     |  1.00  | ########## |
+|         |  Kb  |    75.75     |  0.15  | #          |
+|         |  La  |     9.44     |  1.00  | ########## |
+|         | Lb1  |    11.07     |  0.41  | ####       |
+|         | Lb2  |    11.25     |  0.22  | ##         |
+|         |  Ma  |     2.05     |  1.00  | ########## |
+|         |  Mb  |     2.13     |  0.59  | #####      |
++---------+------+--------------+--------+------------+
+"""
+    )
+
+
+def test_print_lines_no_elements():
+    s = EDSSEMSpectrum(np.ones(1024))
+    with pytest.raises(ValueError):
+        s.print_lines()

@@ -16,24 +16,32 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+from collections.abc import Iterable
 import itertools
 import logging
-
-import numpy as np
 import warnings
-from collections.abc import Iterable
+
 from matplotlib import pyplot as plt
+import numpy as np
 
 import hyperspy.api as hs
 from hyperspy import utils
 from hyperspy.signal import BaseSignal
 from hyperspy._signals.signal1d import Signal1D, LazySignal1D
-from exspy._misc.elements import elements as elements_db
-from exspy._misc.eds import utils as utils_eds
 from hyperspy.misc.utils import isiterable
 from hyperspy.docstrings.plot import BASE_PLOT_DOCSTRING_PARAMETERS, PLOT1D_DOCSTRING
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
+from exspy._docstrings.eds import (
+    ENERGY_RANGE_PARAMETER,
+    FLOAT_FORMAT_PARAMETER,
+    ONLY_LINES_PARAMETER,
+    SORTING_PARAMETER,
+    WEIGHT_THRESHOLD_PARAMETER,
+    WIDTH_PARAMETER,
+)
+from exspy._misc.elements import elements as elements_db
+from exspy._misc.eds import utils as utils_eds
 
 _logger = logging.getLogger(__name__)
 
@@ -1174,6 +1182,138 @@ class EDSSpectrum(Signal1D):
 
         if render_figure:
             self._render_figure(plot=["signal_plot"])
+
+    def print_lines_near_energy(
+        self,
+        energy,
+        width=0.1,
+        only_lines=None,
+        weight_threshold=0.1,
+        sorting="energy",
+        float_format=".2",
+    ):
+        """
+        Display a table of X-ray lines close to a given energy.
+
+        Parameters
+        ----------
+        energy : float
+            The energy to search around, in keV.
+        %s
+        %s
+        %s
+        %s
+        %s
+
+        Examples
+        --------
+        >>> import exspy
+        >>> s = exspy.data.EDS_TEM_FePt_nanoparticles()
+        >>> s.print_lines_near_energy(energy=8)
+        +---------+------+--------------+--------+------------+
+        | Element | Line | Energy (keV) | Weight | Intensity  |
+        +---------+------+--------------+--------+------------+
+        |    Ho   | Lb2  |     7.91     |  0.24  | ##         |
+        |    Er   | Lb3  |     7.94     |  0.13  | #          |
+        |    Cu   |  Ka  |     8.05     |  1.00  | ########## |
+        +---------+------+--------------+--------+------------+
+
+        See also
+        --------
+        print_lines, exspy.utils.eds.get_xray_lines,
+        exspy.utils.eds.get_xray_lines_near_energy
+        """
+        utils_eds.print_lines_near_energy(
+            energy=energy,
+            width=width,
+            weight_threshold=weight_threshold,
+            sorting=sorting,
+            float_format=float_format,
+        )
+
+    print_lines_near_energy.__doc__ %= (
+        WIDTH_PARAMETER.replace("    ", "        "),
+        WEIGHT_THRESHOLD_PARAMETER.replace("    ", "        "),
+        ONLY_LINES_PARAMETER.replace("    ", "        "),
+        SORTING_PARAMETER.replace("    ", "        "),
+        FLOAT_FORMAT_PARAMETER.replace("    ", "        "),
+    )
+
+    def print_lines(
+        self,
+        elements=None,
+        weight_threshold=0.1,
+        energy_range=None,
+        only_lines=None,
+        sorting="elements",
+        float_format=".2",
+    ):
+        """
+        Display a table of X-ray lines for given elements.
+
+        Parameters
+        ----------
+        elements : list, tuple or None
+            The list of elements. If ``None``, take the list defined in
+            the metadata. Default is None.
+        %s
+        %s
+        %s
+        %s
+        %s
+
+        Examples
+        --------
+        >>> import exspy
+        >>> s = exspy.data.EDS_TEM_FePt_nanoparticles()
+        >>> s.print_lines()
+        +---------+------+--------------+--------+------------+
+        | Element | Line | Energy (keV) | Weight | Intensity  |
+        +---------+------+--------------+--------+------------+
+        |    Fe   |  Ka  |     6.40     |  1.00  | ########## |
+        |         |  Kb  |     7.06     |  0.13  | #          |
+        |         |  La  |     0.70     |  1.00  | ########## |
+        |         |  Ll  |     0.62     |  0.31  | ###        |
+        |         |  Ln  |     0.63     |  0.13  | #          |
+        +---------+------+--------------+--------+------------+
+        |    Pt   |  Ka  |    66.83     |  1.00  | ########## |
+        |         |  Kb  |    75.75     |  0.15  | #          |
+        |         |  La  |     9.44     |  1.00  | ########## |
+        |         | Lb1  |    11.07     |  0.41  | ####       |
+        |         | Lb2  |    11.25     |  0.22  | ##         |
+        |         |  Ma  |     2.05     |  1.00  | ########## |
+        |         |  Mb  |     2.13     |  0.59  | #####      |
+        +---------+------+--------------+--------+------------+
+
+        See also
+        --------
+        print_lines_near_energy, exspy.utils.eds.get_xray_lines,
+        exspy.utils.eds.get_xray_lines_near_energy
+        """
+        if elements is None:
+            elements = self.metadata.get_item("Sample.elements")
+            if elements is None:
+                raise ValueError(
+                    "No elements provided and no elements defined in the metadata. "
+                    "Please provide a list of elements or set them in the metadata."
+                )
+
+        utils_eds.print_lines(
+            elements=elements,
+            weight_threshold=weight_threshold,
+            only_lines=only_lines,
+            energy_range=energy_range,
+            sorting=sorting,
+            float_format=float_format,
+        )
+
+    print_lines.__doc__ %= (
+        WEIGHT_THRESHOLD_PARAMETER.replace("    ", "        "),
+        ENERGY_RANGE_PARAMETER.replace("    ", "        "),
+        ONLY_LINES_PARAMETER.replace("    ", "        "),
+        SORTING_PARAMETER.replace("    ", "        "),
+        FLOAT_FORMAT_PARAMETER.replace("    ", "        "),
+    )
 
 
 class LazyEDSSpectrum(EDSSpectrum, LazySignal1D):

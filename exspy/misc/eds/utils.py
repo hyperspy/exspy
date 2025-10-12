@@ -5,7 +5,10 @@ from hyperspy.exceptions import VisibleDeprecationWarning
 from exspy._misc.eds.utils import (
     cross_section_to_zeta,
     electron_range,
+    get_xray_lines,
     get_xray_lines_near_energy,
+    print_lines,
+    print_lines_near_energy,
     take_off_angle,
     xray_range,
     zeta_to_cross_section,
@@ -21,7 +24,10 @@ warnings.warn(
 __all__ = [
     "cross_section_to_zeta",
     "electron_range",
+    "get_xray_lines",
     "get_xray_lines_near_energy",
+    "print_lines",
+    "print_lines_near_energy",
     "take_off_angle",
     "xray_range",
     "zeta_to_cross_section",

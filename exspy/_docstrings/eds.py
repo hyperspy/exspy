@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-"""Common docstring snippets for model."""
+"""Common docstring snippets for EDS functionality."""
 
 DOSE_DOC = """beam_current : float or "auto"
             Probe current in nA.
@@ -32,3 +32,34 @@ DOSE_DOC = """beam_current : float or "auto"
             assuming that the probe is oversampling such that the illumination
             area can be approximated to the pixel area of the spectrum image.
             Only for the ``"cross_section"`` method."""
+
+
+WEIGHT_THRESHOLD_PARAMETER = """weight_threshold : float
+        Define the threshold of the weight below which the lines are
+        ignored. Must be between 0 and 1. Default is 0.1."""
+
+
+ENERGY_RANGE_PARAMETER = """energy_range : list or tuple of length 2
+        Define the start and the end of the X-ray energy range to consider.
+        X-ray energies outside the range will be ignored. If ``None``,
+        all X-ray energies are considered. Default is None."""
+
+
+WIDTH_PARAMETER = """width : float
+        Window width in keV around energy in which to find nearby energies,
+        i.e. a value of 0.1 keV (the default) means to search +/- 0.05 keV."""
+
+
+ONLY_LINES_PARAMETER = """only_lines : list of str, optional
+        Define the lines to be considered (eg. ('a','Kb')).
+        If None, all lines are included. Default is None."""
+
+
+SORTING_PARAMETER = """sorting : str
+        Define the sorting of the table, either ``"elements"`` or ``"energy"``.
+        Default is ``"elements"``."""
+
+
+FLOAT_FORMAT_PARAMETER = """float_format : str
+        The formatting of the float in the table passed to
+        :class:`prettytable.PrettyTable`. Default is ".2"."""

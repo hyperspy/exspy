@@ -18,7 +18,13 @@
 
 import numpy as np
 
-from exspy._misc.eds.utils import get_xray_lines_near_energy, take_off_angle
+from exspy._misc.eds.utils import (
+    get_xray_lines,
+    get_xray_lines_near_energy,
+    print_lines,
+    print_lines_near_energy,
+    take_off_angle,
+)
 
 
 def test_xray_lines_near_energy():
@@ -81,4 +87,74 @@ def test_takeoff_angle():
     np.testing.assert_allclose(40.0, take_off_angle(0.0, 90.0, 10.0, beta_tilt=30.0))
     np.testing.assert_allclose(
         73.15788376370121, take_off_angle(45.0, 45.0, 45.0, 45.0)
+    )
+
+
+def test_get_xray_lines():
+    lines = get_xray_lines(elements=["Fe"], weight_threshold=0.5)
+    assert lines.as_dictionary() == {
+        "Fe": {
+            "Ka": {"energy (keV)": 6.4039, "weight": 1.0},
+            "La": {"energy (keV)": 0.7045, "weight": 1.0},
+        }
+    }
+
+    lines = get_xray_lines(elements=["Fe", "Pt"], weight_threshold=0.5)
+    assert lines.as_dictionary() == {
+        "Fe": {
+            "Ka": {"energy (keV)": 6.4039, "weight": 1.0},
+            "La": {"energy (keV)": 0.7045, "weight": 1.0},
+        },
+        "Pt": {
+            "Ka": {"energy (keV)": 66.8311, "weight": 1.0},
+            "La": {"energy (keV)": 9.4421, "weight": 1.0},
+            "Ma": {"energy (keV)": 2.0505, "weight": 1.0},
+            "Mb": {"energy (keV)": 2.1276, "weight": 0.59443},
+        },
+    }
+
+
+def test_print_lines_near_energy(capsys):
+    # Just test that it runs without error
+    print_lines_near_energy(energy=6.4)
+    captured = capsys.readouterr()
+    assert (
+        captured.out
+        == """+---------+------+--------------+--------+------------+
+| Element | Line | Energy (keV) | Weight | Intensity  |
++---------+------+--------------+--------+------------+
+|    Sm   | Lb3  |     6.32     |  0.13  | #          |
+|    Pm   | Lb2  |     6.34     |  0.20  | #          |
+|    Fe   |  Ka  |     6.40     |  1.00  | ########## |
+|    Eu   | Lb1  |     6.46     |  0.44  | ####       |
+|    Mn   |  Kb  |     6.49     |  0.13  | #          |
+|    Dy   |  La  |     6.50     |  1.00  | ########## |
++---------+------+--------------+--------+------------+
+"""
+    )
+
+
+def test_print_lines(capsys):
+    print_lines(elements=["Fe", "Pt"])
+    captured = capsys.readouterr()
+    assert (
+        captured.out
+        == """+---------+------+--------------+--------+------------+
+| Element | Line | Energy (keV) | Weight | Intensity  |
++---------+------+--------------+--------+------------+
+|    Fe   |  Ka  |     6.40     |  1.00  | ########## |
+|         |  Kb  |     7.06     |  0.13  | #          |
+|         |  La  |     0.70     |  1.00  | ########## |
+|         |  Ll  |     0.62     |  0.31  | ###        |
+|         |  Ln  |     0.63     |  0.13  | #          |
++---------+------+--------------+--------+------------+
+|    Pt   |  Ka  |    66.83     |  1.00  | ########## |
+|         |  Kb  |    75.75     |  0.15  | #          |
+|         |  La  |     9.44     |  1.00  | ########## |
+|         | Lb1  |    11.07     |  0.41  | ####       |
+|         | Lb2  |    11.25     |  0.22  | ##         |
+|         |  Ma  |     2.05     |  1.00  | ########## |
+|         |  Mb  |     2.13     |  0.59  | #####      |
++---------+------+--------------+--------+------------+
+"""
     )

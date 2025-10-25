@@ -7,7 +7,10 @@
 .. autosummary::
    cross_section_to_zeta
    electron_range
+   get_xray_lines
    get_xray_lines_near_energy
+   print_lines
+   print_lines_near_energy
    take_off_angle
    xray_range
    zeta_to_cross_section

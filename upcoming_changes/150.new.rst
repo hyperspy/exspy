@@ -1,0 +1,7 @@
+Add convenience functionalities to get X-ray lines information:
+
+- :func:`~.utils.eds.get_xray_lines`
+- :func:`~.utils.eds.print_lines`
+- :func:`~.utils.eds.print_lines_near_energy`
+- :meth:`~.signals.EDSSpectrum.print_lines`
+- :meth:`~.signals.EDSSpectrum.print_lines_near_energy`

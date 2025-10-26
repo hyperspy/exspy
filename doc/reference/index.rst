@@ -8,6 +8,7 @@ Reference
    :caption: Reference
    :maxdepth: 2
 
+   exspy
    components
    data
    material

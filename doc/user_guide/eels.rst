@@ -293,6 +293,17 @@ the following example download a previous version (1.0) of the GOS file from Zen
     >>> m = s.create_model(gos_file_path=GOSH10)
 
 
+.. note::
+
+    The Hartree-Slater GOS files as provided by Gatan DigitalMicrograph Suite
+    v1.x and v2.x can also be used, but they are not freely distributable.
+    If you have access to the GOS files, you can set the path to the directory
+    containing the Hartree-Slater GOS files in the :py:attr:`~.exspy.preferences`.
+    More recent versions of Gatan DigitalMicrograph Suite (v3.x and above)
+    use a different proprietary format that is not supported. See discussion
+    in https://github.com/hyperspy/exspy/discussions/91 for more details.
+
+
 Fitting model
 ^^^^^^^^^^^^^
 

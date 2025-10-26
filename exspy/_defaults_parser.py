@@ -53,14 +53,40 @@ def guess_gos_path():
 
 
 class EELSConfig(t.HasTraits):
+    """
+    Configuration options for EELS.
+
+    Attributes
+    ----------
+    eels_gos_files_path : str
+        Path to the directory containing the Hartree-Slater GOS files as provided
+        by Gatan DigitalMicrograph Suite v1.x and v2.x, more recent versions
+        are not supported.
+    """
+
     eels_gos_files_path = t.Directory(
         guess_gos_path(),
-        label="Hartree-Slater GOS directory",
+        label="Hartree-Slater GOS directory (GMS v1 and v2)",
         desc="The GOS files are used to create the EELS edge components",
     )
 
 
 class EDSConfig(t.HasTraits):
+    """
+    Configuration options for EDS.
+
+    Attributes
+    ----------
+    eds_mn_ka : float
+        Energy resolution at Mn Ka in eV.
+    eds_tilt_stage : float
+        Stage tilt in degree.
+    eds_detector_azimuth : float
+        Azimuth angle in degree.
+    eds_detector_elevation : float
+        Elevation angle in degree.
+    """
+
     eds_mn_ka = t.CFloat(
         130.0,
         label="Energy resolution at Mn Ka (eV)",

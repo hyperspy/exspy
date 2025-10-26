@@ -1,0 +1,1 @@
+Add :attr:`~.preferences` to API reference and add a note explaining that only Hartree-Slater GOS from Gatan DigitalMicrograph Suite v1.x and v2.x are supported.

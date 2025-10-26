@@ -145,8 +145,7 @@ or through the GUI:
 
 Any microscope and detector parameters that are not found in the imported file
 will be set by default. These default values can be changed in the
-:py:class:`~._defaults_parser.Preferences` class (see :external+hyperspy:ref:`preferences
-<configuring-hyperspy-label>`).
+:py:attr:`~.exspy.preferences`.
 
 .. code-block:: python
 

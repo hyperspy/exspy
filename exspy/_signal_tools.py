@@ -3,12 +3,13 @@ import traits.api as t
 
 from hyperspy.exceptions import SignalDimensionError
 from hyperspy.ui_registry import add_gui_method
-from hyperspy.signal_tools import SpanSelectorInSignal1D
+from hyperspy.signal_tools import LineInSignal1D, SpanSelectorInSignal1D
 from exspy._misc.eels.tools import get_edges_near_energy, get_info_from_edges
 
 
 @add_gui_method(toolkey="exspy.EELSSpectrum.print_edges_table")
 class EdgesRange(SpanSelectorInSignal1D):
+    # Class to handle SpanSelector and update table
     units = t.Unicode()
     edges_list = t.Tuple()
     only_major = t.Bool()
@@ -184,3 +185,52 @@ class EdgesRange(SpanSelectorInSignal1D):
         self.signal._remove_edge_labels()
         self.active_edges = []
         self.active_complementary_edges = []
+
+
+# @add_gui_method(toolkey="exspy.EDSSpectrum.print_edges_table")
+class EDSRange(LineInSignal1D):
+    # Class to handle Line selector and table of X-ray lines
+    units = t.Unicode()
+    line_list = t.Tuple()
+    only_major = t.Bool()
+    order = t.Unicode("closest")
+
+    def __init__(self, signal, interactive=True):
+        if signal.axes_manager.signal_dimension != 1:
+            raise SignalDimensionError(signal.axes_manager.signal_dimension, 1)
+
+        if interactive:
+            super().__init__(signal)
+        else:
+            # ins non-interactive mode, don't initialise the span selector
+            self.signal = signal
+            self.axis = self.signal.axes_manager.signal_axes[0]
+
+        self._active_line = list(self.signal._edge_markers["names"])
+        self._units = self.axis.units
+        self._btns = []
+
+        if self.signal._lines_markers["lines"] is None:
+            # initialise markers and the
+            self.signal._initialise_markers()
+
+        self.signal.axes_manager.events.indices_changed.connect(
+            self._on_navigation_indices_changed, []
+        )
+        self.signal._plot.signal_plot.events.closed.connect(
+            lambda: self.signal.axes_manager.events.indices_changed.disconnect(
+                self._on_navigation_indices_changed
+            ),
+            [],
+        )
+
+    def _on_navigation_indices_changed(self):
+        self.signal._plot.signal_plot.update()
+
+    def _get_lines_with_ranges(self):
+        pass
+
+    def _update_table(self):
+        self._get_lines_info_within_energy_axis()
+
+        pass

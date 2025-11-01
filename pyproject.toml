@@ -40,7 +40,7 @@ classifiers = [
 ]
 dependencies = [
   "dask[array]",
-  "hyperspy>=2.4.0",  # lazy import
+  "hyperspy>=2.5.0",  # Modernised LineInSignal1D
   "lazy-loader",
   "matplotlib",
   "numpy",

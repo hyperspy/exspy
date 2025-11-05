@@ -32,7 +32,7 @@ angle to 15 degrees:
 
 >>> exspy.preferences.EDS.eds_detector_elevation = 15.0
 
-To open the preferences dialog. To enable GUI widgets, see the hyperspy
+To open the preferences dialog. Requires GUI widgets, to enable them see the hyperspy
 documentation for :external+hyperspy:ref:`configuring HyperSpy <configuring-hyperspy-label>`.
 
 >>> exspy.preferences.gui()

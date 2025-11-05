@@ -144,8 +144,10 @@ or through the GUI:
    EDS microscope parameters preferences window
 
 Any microscope and detector parameters that are not found in the imported file
-will be set by default. These default values can be changed in the
+will be set to default values. These default values can be changed in the `eXSpy`
 :py:attr:`~.exspy.preferences`.
+
+For example, the EDS detector elevation angle can be set using:
 
 .. code-block:: python
 

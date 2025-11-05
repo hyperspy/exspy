@@ -357,6 +357,9 @@ database:
 The lines are returned in order of distance from the specified energy, and can
 be limited by additional, optional arguments.
 
+.. minigallery:: ../examples/EDS/find_EDS_lines*
+
+
 .. _eds_plot-label:
 
 Plotting

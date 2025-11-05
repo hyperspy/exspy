@@ -1279,6 +1279,98 @@ navigation indices are changed. Default is <code class="docutils literal notrans
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="exspy.signals.EDSSpectrum.print_lines">
+<span class="sig-name descname"><span class="pre">print_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sorting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'elements'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.2'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EDSSpectrum.print_lines" title="Link to this definition">#</a></dt>
+<dd><p>Display a table of X-ray lines for given elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em> or </em><em>None</em>) – The list of elements. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, take the list defined in
+the metadata. Default is None.</p></li>
+<li><p><strong>weight_threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Define the threshold of the weight below which the lines are
+ignored. Must be between 0 and 1. Default is 0.1.</p></li>
+<li><p><strong>energy_range</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em> of </em><em>length 2</em>) – Define the start and the end of the X-ray energy range to consider.
+X-ray energies outside the range will be ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+all X-ray energies are considered. Default is None.</p></li>
+<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Define the lines to be considered (eg. (‘a’,’Kb’)).
+If None, all lines are included. Default is None.</p></li>
+<li><p><strong>sorting</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Define the sorting of the table, either <code class="docutils literal notranslate"><span class="pre">&quot;elements&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;energy&quot;</span></code>.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;elements&quot;</span></code>.</p></li>
+<li><p><strong>float_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The formatting of the float in the table passed to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">prettytable.PrettyTable</span></code>. Default is “.2”.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">exspy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">EDS_TEM_FePt_nanoparticles</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">print_lines</span><span class="p">()</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">| Element | Line | Energy (keV) | Weight | Intensity  |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">|    Fe   |  Ka  |     6.40     |  1.00  | ########## |</span>
+<span class="go">|         |  Kb  |     7.06     |  0.13  | #          |</span>
+<span class="go">|         |  La  |     0.70     |  1.00  | ########## |</span>
+<span class="go">|         |  Ll  |     0.62     |  0.31  | ###        |</span>
+<span class="go">|         |  Ln  |     0.63     |  0.13  | #          |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">|    Pt   |  Ka  |    66.83     |  1.00  | ########## |</span>
+<span class="go">|         |  Kb  |    75.75     |  0.15  | #          |</span>
+<span class="go">|         |  La  |     9.44     |  1.00  | ########## |</span>
+<span class="go">|         | Lb1  |    11.07     |  0.41  | ####       |</span>
+<span class="go">|         | Lb2  |    11.25     |  0.22  | ##         |</span>
+<span class="go">|         |  Ma  |     2.05     |  1.00  | ########## |</span>
+<span class="go">|         |  Mb  |     2.13     |  0.59  | #####      |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.signals.EDSSpectrum.print_lines_near_energy" title="exspy.signals.EDSSpectrum.print_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines_near_energy</span></code></a>, <a class="reference internal" href="utils.eds.html#exspy.utils.eds.get_xray_lines" title="exspy.utils.eds.get_xray_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.utils.eds.get_xray_lines</span></code></a>, <a class="reference internal" href="utils.eds.html#exspy.utils.eds.get_xray_lines_near_energy" title="exspy.utils.eds.get_xray_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.utils.eds.get_xray_lines_near_energy</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exspy.signals.EDSSpectrum.print_lines_near_energy">
+<span class="sig-name descname"><span class="pre">print_lines_near_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sorting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'energy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.2'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EDSSpectrum.print_lines_near_energy" title="Link to this definition">#</a></dt>
+<dd><p>Display a table of X-ray lines close to a given energy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The energy to search around, in keV.</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Window width in keV around energy in which to find nearby energies,
+i.e. a value of 0.1 keV (the default) means to search +/- 0.05 keV.</p></li>
+<li><p><strong>weight_threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Define the threshold of the weight below which the lines are
+ignored. Must be between 0 and 1. Default is 0.1.</p></li>
+<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Define the lines to be considered (eg. (‘a’,’Kb’)).
+If None, all lines are included. Default is None.</p></li>
+<li><p><strong>sorting</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Define the sorting of the table, either <code class="docutils literal notranslate"><span class="pre">&quot;elements&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;energy&quot;</span></code>.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;elements&quot;</span></code>.</p></li>
+<li><p><strong>float_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The formatting of the float in the table passed to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">prettytable.PrettyTable</span></code>. Default is “.2”.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">exspy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">EDS_TEM_FePt_nanoparticles</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">print_lines_near_energy</span><span class="p">(</span><span class="n">energy</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">| Element | Line | Energy (keV) | Weight | Intensity  |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">|    Ho   | Lb2  |     7.91     |  0.24  | ##         |</span>
+<span class="go">|    Er   | Lb3  |     7.94     |  0.13  | #          |</span>
+<span class="go">|    Cu   |  Ka  |     8.05     |  1.00  | ########## |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.signals.EDSSpectrum.print_lines" title="exspy.signals.EDSSpectrum.print_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines</span></code></a>, <a class="reference internal" href="utils.eds.html#exspy.utils.eds.get_xray_lines" title="exspy.utils.eds.get_xray_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.utils.eds.get_xray_lines</span></code></a>, <a class="reference internal" href="utils.eds.html#exspy.utils.eds.get_xray_lines_near_energy" title="exspy.utils.eds.get_xray_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.utils.eds.get_xray_lines_near_energy</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="exspy.signals.EDSSpectrum.rebin">
 <span class="sig-name descname"><span class="pre">rebin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.signals.EDSSpectrum.rebin" title="Link to this definition">#</a></dt>
 <dd><p>Rebin the signal into a smaller or larger shape, based on linear
@@ -3012,6 +3104,8 @@ nothing. Default is None.</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.signals.EDSSpectrum.get_lines_intensity"><code class="docutils literal notranslate"><span class="pre">get_lines_intensity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.signals.EDSSpectrum.get_take_off_angle"><code class="docutils literal notranslate"><span class="pre">get_take_off_angle()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.signals.EDSSpectrum.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.signals.EDSSpectrum.print_lines"><code class="docutils literal notranslate"><span class="pre">print_lines()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.signals.EDSSpectrum.print_lines_near_energy"><code class="docutils literal notranslate"><span class="pre">print_lines_near_energy()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.signals.EDSSpectrum.rebin"><code class="docutils literal notranslate"><span class="pre">rebin()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.signals.EDSSpectrum.remove_xray_lines_markers"><code class="docutils literal notranslate"><span class="pre">remove_xray_lines_markers()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.signals.EDSSpectrum.set_elements"><code class="docutils literal notranslate"><span class="pre">set_elements()</span></code></a></li>

@@ -456,16 +456,25 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#exspy.utils.eds.electron_range" title="exspy.utils.eds.electron_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">electron_range</span></code></a>(element, beam_energy[, ...])</p></td>
 <td><p>Returns the maximum electron range for a pure bulk material according to the Kanaya-Okayama parameterziation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.utils.eds.get_xray_lines_near_energy" title="exspy.utils.eds.get_xray_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines_near_energy</span></code></a>(energy[, width, ...])</p></td>
-<td><p>Find xray lines near a specific energy, more specifically all xray lines that satisfy only_lines and are within the given energy window width around the passed energy.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.utils.eds.get_xray_lines" title="exspy.utils.eds.get_xray_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines</span></code></a>(elements[, weight_threshold, ...])</p></td>
+<td><p>Get all X-ray lines for the given elements.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#exspy.utils.eds.take_off_angle" title="exspy.utils.eds.take_off_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">take_off_angle</span></code></a>(tilt_stage, azimuth_angle, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.utils.eds.get_xray_lines_near_energy" title="exspy.utils.eds.get_xray_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines_near_energy</span></code></a>(energy[, width, ...])</p></td>
+<td><p>Find X-ray lines near a specific energy, more specifically all X-ray lines that satisfy <code class="docutils literal notranslate"><span class="pre">only_lines</span></code> and are within the given energy window width around the passed energy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.utils.eds.print_lines" title="exspy.utils.eds.print_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines</span></code></a>(elements[, weight_threshold, ...])</p></td>
+<td><p>Display a table of X-ray lines for given elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.utils.eds.print_lines_near_energy" title="exspy.utils.eds.print_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines_near_energy</span></code></a>(energy[, width, ...])</p></td>
+<td><p>Display a table of X-ray lines close to a given energy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.utils.eds.take_off_angle" title="exspy.utils.eds.take_off_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">take_off_angle</span></code></a>(tilt_stage, azimuth_angle, ...)</p></td>
 <td><p>Calculate the take-off-angle (TOA).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.utils.eds.xray_range" title="exspy.utils.eds.xray_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xray_range</span></code></a>(xray_line, beam_energy[, density])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.utils.eds.xray_range" title="exspy.utils.eds.xray_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xray_range</span></code></a>(xray_line, beam_energy[, density])</p></td>
 <td><p>Return the maximum range of X-ray generation according to the Anderson-Hasler parameterization.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#exspy.utils.eds.zeta_to_cross_section" title="exspy.utils.eds.zeta_to_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zeta_to_cross_section</span></code></a>(zfactors, elements)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.utils.eds.zeta_to_cross_section" title="exspy.utils.eds.zeta_to_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zeta_to_cross_section</span></code></a>(zfactors, elements)</p></td>
 <td><p>Convert a list of zeta-factors (kg/m^2) to cross_sections in barns (b).</p></td>
 </tr>
 </tbody>
@@ -492,7 +501,7 @@ cross sections e.g. [‘Al’,’Zn’]</p></li>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#exspy.utils.eds.zeta_to_cross_section" title="exspy.utils.eds.zeta_to_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.utils.eds.zeta_to_cross_section</span></code></a></p>
+<p><a class="reference internal" href="#exspy.utils.eds.zeta_to_cross_section" title="exspy.utils.eds.zeta_to_cross_section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zeta_to_cross_section</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -535,27 +544,230 @@ third edition p 72.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="exspy.utils.eds.get_xray_lines_near_energy">
-<span class="sig-prename descclassname"><span class="pre">exspy.utils.eds.</span></span><span class="sig-name descname"><span class="pre">get_xray_lines_near_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.utils.eds.get_xray_lines_near_energy" title="Link to this definition">#</a></dt>
-<dd><p>Find xray lines near a specific energy, more specifically all xray lines
-that satisfy only_lines and are within the given energy window width around
-the passed energy.</p>
+<dt class="sig sig-object py" id="exspy.utils.eds.get_xray_lines">
+<span class="sig-prename descclassname"><span class="pre">exspy.utils.eds.</span></span><span class="sig-name descname"><span class="pre">get_xray_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.utils.eds.get_xray_lines" title="Link to this definition">#</a></dt>
+<dd><p>Get all X-ray lines for the given elements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Energy to search near in keV</p></li>
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a>) – The list of elements.</p></li>
+<li><p><strong>weight_threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Define the threshold of the weight below which the lines are
+ignored. Must be between 0 and 1. Default is 0.1.</p></li>
+<li><p><strong>energy_range</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em> of </em><em>length 2</em>) – Define the start and the end of the X-ray energy range to consider.
+X-ray energies outside the range will be ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+all X-ray energies are considered. Default is None.</p></li>
+<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Define the lines to be considered (eg. (‘a’,’Kb’)).
+If None, all lines are included. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/utils/index.html#hyperspy.misc.utils.DictionaryTreeBrowser" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.misc.utils.DictionaryTreeBrowser</span></code></a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get the X-ray lines of a single element:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">exspy.utils.eds</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_xray_lines</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_xray_lines</span><span class="p">([</span><span class="s2">&quot;O&quot;</span><span class="p">])</span>
+<span class="go">└── O</span>
+<span class="go">    └── Ka</span>
+<span class="go">        ├── energy (keV) = 0.5249</span>
+<span class="go">        └── weight = 1.0</span>
+</pre></div>
+</div>
+<p>Get the X-ray lines of multiple elements:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_xray_lines</span><span class="p">([</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Fe&quot;</span><span class="p">])</span>
+<span class="go">├── Fe</span>
+<span class="go">│   ├── Ka</span>
+<span class="go">│   │   ├── energy (keV) = 6.4039</span>
+<span class="go">│   │   └── weight = 1.0</span>
+<span class="go">│   ├── Kb</span>
+<span class="go">│   │   ├── energy (keV) = 7.058</span>
+<span class="go">│   │   └── weight = 0.1272</span>
+<span class="go">│   ├── La</span>
+<span class="go">│   │   ├── energy (keV) = 0.7045</span>
+<span class="go">│   │   └── weight = 1.0</span>
+<span class="go">│   ├── Ll</span>
+<span class="go">│   │   ├── energy (keV) = 0.6152</span>
+<span class="go">│   │   └── weight = 0.3086</span>
+<span class="go">│   └── Ln</span>
+<span class="go">│       ├── energy (keV) = 0.6282</span>
+<span class="go">│       └── weight = 0.12525</span>
+<span class="go">└── O</span>
+<span class="go">    └── Ka</span>
+<span class="go">        ├── energy (keV) = 0.5249</span>
+<span class="go">        └── weight = 1.0</span>
+</pre></div>
+</div>
+<p>Restrict to a specific energy range:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eds</span><span class="o">.</span><span class="n">get_xray_lines</span><span class="p">([</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Fe&quot;</span><span class="p">],</span> <span class="n">energy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="go">├── Fe</span>
+<span class="go">│   ├── La</span>
+<span class="go">│   │   ├── energy (keV) = 0.7045</span>
+<span class="go">│   │   └── weight = 1.0</span>
+<span class="go">│   ├── Ll</span>
+<span class="go">│   │   ├── energy (keV) = 0.6152</span>
+<span class="go">│   │   └── weight = 0.3086</span>
+<span class="go">│   └── Ln</span>
+<span class="go">│       ├── energy (keV) = 0.6282</span>
+<span class="go">│       └── weight = 0.12525</span>
+<span class="go">└── O</span>
+<span class="go">    └── Ka</span>
+<span class="go">        ├── energy (keV) = 0.5249</span>
+<span class="go">        └── weight = 1.0</span>
+</pre></div>
+</div>
+<p>Restrict to specific lines:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eds</span><span class="o">.</span><span class="n">get_xray_lines</span><span class="p">([</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Fe&quot;</span><span class="p">],</span> <span class="n">energy_range</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">only_lines</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">])</span>
+<span class="go">├── Fe</span>
+<span class="go">│   └── La</span>
+<span class="go">│       ├── energy (keV) = 0.7045</span>
+<span class="go">│       └── weight = 1.0</span>
+<span class="go">└── O</span>
+<span class="go">    └── Ka</span>
+<span class="go">        ├── energy (keV) = 0.5249</span>
+<span class="go">        └── weight = 1.0</span>
+</pre></div>
+</div>
+<p>Specify a threshold to only return high intensity X-ray lines</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eds</span><span class="o">.</span><span class="n">get_xray_lines</span><span class="p">([</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;Fe&quot;</span><span class="p">],</span> <span class="n">weight_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="go">├── Fe</span>
+<span class="go">│   ├── Ka</span>
+<span class="go">│   │   ├── energy (keV) = 6.4039</span>
+<span class="go">│   │   └── weight = 1.0</span>
+<span class="go">│   └── La</span>
+<span class="go">│       ├── energy (keV) = 0.7045</span>
+<span class="go">│       └── weight = 1.0</span>
+<span class="go">└── O</span>
+<span class="go">    └── Ka</span>
+<span class="go">        ├── energy (keV) = 0.5249</span>
+<span class="go">        └── weight = 1.0</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.utils.eds.get_xray_lines_near_energy" title="exspy.utils.eds.get_xray_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines_near_energy</span></code></a>, <a class="reference internal" href="#exspy.utils.eds.print_lines" title="exspy.utils.eds.print_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines</span></code></a>, <a class="reference internal" href="#exspy.utils.eds.print_lines_near_energy" title="exspy.utils.eds.print_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines_near_energy</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exspy.utils.eds.get_xray_lines_near_energy">
+<span class="sig-prename descclassname"><span class="pre">exspy.utils.eds.</span></span><span class="sig-name descname"><span class="pre">get_xray_lines_near_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.utils.eds.get_xray_lines_near_energy" title="Link to this definition">#</a></dt>
+<dd><p>Find X-ray lines near a specific energy, more specifically all X-ray lines
+that satisfy <code class="docutils literal notranslate"><span class="pre">only_lines</span></code> and are within the given energy window width
+around the passed energy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Energy in keV around which to search.</p></li>
 <li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Window width in keV around energy in which to find nearby energies,
-i.e. a value of 0.2 keV (the default) means to search +/- 0.1 keV.</p></li>
-<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> or </em><em>None</em>) – If not None, only the given lines will be added (eg. (‘a’,’Kb’)).</p></li>
+i.e. a value of 0.1 keV (the default) means to search +/- 0.05 keV.</p></li>
+<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Define the lines to be considered (eg. (‘a’,’Kb’)).
+If None, all lines are included. Default is None.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>xray_lines</strong> – List of xray-lines sorted by energy difference to the given energy.</p>
+<dd class="field-even"><p><strong>xray_lines</strong> – List of X-ray-lines sorted by energy difference to the given energy.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)">numpy.ndarray</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a></p>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.utils.eds.get_xray_lines" title="exspy.utils.eds.get_xray_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines</span></code></a>, <a class="reference internal" href="#exspy.utils.eds.print_lines" title="exspy.utils.eds.print_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines</span></code></a>, <a class="reference internal" href="#exspy.utils.eds.print_lines_near_energy" title="exspy.utils.eds.print_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines_near_energy</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exspy.utils.eds.print_lines">
+<span class="sig-prename descclassname"><span class="pre">exspy.utils.eds.</span></span><span class="sig-name descname"><span class="pre">print_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sorting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'elements'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.2'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.utils.eds.print_lines" title="Link to this definition">#</a></dt>
+<dd><p>Display a table of X-ray lines for given elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em> or </em><em>None</em>) – The list of elements.</p></li>
+<li><p><strong>weight_threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Define the threshold of the weight below which the lines are
+ignored. Must be between 0 and 1. Default is 0.1.</p></li>
+<li><p><strong>energy_range</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em> of </em><em>length 2</em>) – Define the start and the end of the X-ray energy range to consider.
+X-ray energies outside the range will be ignored. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+all X-ray energies are considered. Default is None.</p></li>
+<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Define the lines to be considered (eg. (‘a’,’Kb’)).
+If None, all lines are included. Default is None.</p></li>
+<li><p><strong>sorting</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Define the sorting of the table, either <code class="docutils literal notranslate"><span class="pre">&quot;elements&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;energy&quot;</span></code>.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;elements&quot;</span></code>.</p></li>
+<li><p><strong>float_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The formatting of the float in the table passed to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">prettytable.PrettyTable</span></code>. Default is “.2”.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">exspy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eds</span><span class="o">.</span><span class="n">print_lines</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span> <span class="s2">&quot;Pt&quot;</span><span class="p">])</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">| Element | Line | Energy (keV) | Weight | Intensity  |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">|    Fe   |  Ka  |     6.40     |  1.00  | ########## |</span>
+<span class="go">|         |  Kb  |     7.06     |  0.13  | #          |</span>
+<span class="go">|         |  La  |     0.70     |  1.00  | ########## |</span>
+<span class="go">|         |  Ll  |     0.62     |  0.31  | ###        |</span>
+<span class="go">|         |  Ln  |     0.63     |  0.13  | #          |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">|    Pt   |  Ka  |    66.83     |  1.00  | ########## |</span>
+<span class="go">|         |  Kb  |    75.75     |  0.15  | #          |</span>
+<span class="go">|         |  La  |     9.44     |  1.00  | ########## |</span>
+<span class="go">|         | Lb1  |    11.07     |  0.41  | ####       |</span>
+<span class="go">|         | Lb2  |    11.25     |  0.22  | ##         |</span>
+<span class="go">|         |  Ma  |     2.05     |  1.00  | ########## |</span>
+<span class="go">|         |  Mb  |     2.13     |  0.59  | #####      |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.utils.eds.get_xray_lines" title="exspy.utils.eds.get_xray_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines</span></code></a>, <a class="reference internal" href="#exspy.utils.eds.get_xray_lines_near_energy" title="exspy.utils.eds.get_xray_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines_near_energy</span></code></a>, <a class="reference internal" href="#exspy.utils.eds.print_lines_near_energy" title="exspy.utils.eds.print_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines_near_energy</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exspy.utils.eds.print_lines_near_energy">
+<span class="sig-prename descclassname"><span class="pre">exspy.utils.eds.</span></span><span class="sig-name descname"><span class="pre">print_lines_near_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sorting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'energy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.2'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exspy.utils.eds.print_lines_near_energy" title="Link to this definition">#</a></dt>
+<dd><p>Display a table of X-ray lines close to a given energy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The energy to search around, in keV.</p></li>
+<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Window width in keV around energy in which to find nearby energies,
+i.e. a value of 0.1 keV (the default) means to search +/- 0.05 keV.</p></li>
+<li><p><strong>weight_threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Define the threshold of the weight below which the lines are
+ignored. Must be between 0 and 1. Default is 0.1.</p></li>
+<li><p><strong>only_lines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – Define the lines to be considered (eg. (‘a’,’Kb’)).
+If None, all lines are included. Default is None.</p></li>
+<li><p><strong>sorting</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Define the sorting of the table, either <code class="docutils literal notranslate"><span class="pre">&quot;elements&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;energy&quot;</span></code>.
+Default is <code class="docutils literal notranslate"><span class="pre">&quot;elements&quot;</span></code>.</p></li>
+<li><p><strong>float_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The formatting of the float in the table passed to
+<code class="xref py py-class docutils literal notranslate"><span class="pre">prettytable.PrettyTable</span></code>. Default is “.2”.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">exspy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eds</span><span class="o">.</span><span class="n">print_lines_near_energy</span><span class="p">(</span><span class="n">energy</span><span class="o">=</span><span class="mf">6.4</span><span class="p">)</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">| Element | Line | Energy (keV) | Weight | Intensity  |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+<span class="go">|    Sm   | Lb3  |     6.32     |  0.13  | #          |</span>
+<span class="go">|    Pm   | Lb2  |     6.34     |  0.20  | #          |</span>
+<span class="go">|    Fe   |  Ka  |     6.40     |  1.00  | ########## |</span>
+<span class="go">|    Eu   | Lb1  |     6.46     |  0.44  | ####       |</span>
+<span class="go">|    Mn   |  Kb  |     6.49     |  0.13  | #          |</span>
+<span class="go">|    Dy   |  La  |     6.50     |  1.00  | ########## |</span>
+<span class="go">+---------+------+--------------+--------+------------+</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#exspy.utils.eds.get_xray_lines" title="exspy.utils.eds.get_xray_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines</span></code></a>, <a class="reference internal" href="#exspy.utils.eds.get_xray_lines_near_energy" title="exspy.utils.eds.get_xray_lines_near_energy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xray_lines_near_energy</span></code></a>, <a class="reference internal" href="#exspy.utils.eds.print_lines" title="exspy.utils.eds.print_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_lines</span></code></a></p>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -656,7 +868,7 @@ cross sections e.g. [‘Al’,’Zn’]</p></li>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#exspy.utils.eds.cross_section_to_zeta" title="exspy.utils.eds.cross_section_to_zeta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exspy.utils.eds.cross_section_to_zeta</span></code></a></p>
+<p><a class="reference internal" href="#exspy.utils.eds.cross_section_to_zeta" title="exspy.utils.eds.cross_section_to_zeta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cross_section_to_zeta</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -711,7 +923,10 @@ cross sections e.g. [‘Al’,’Zn’]</p></li>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.cross_section_to_zeta"><code class="docutils literal notranslate"><span class="pre">cross_section_to_zeta()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.electron_range"><code class="docutils literal notranslate"><span class="pre">electron_range()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.get_xray_lines"><code class="docutils literal notranslate"><span class="pre">get_xray_lines()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.get_xray_lines_near_energy"><code class="docutils literal notranslate"><span class="pre">get_xray_lines_near_energy()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.print_lines"><code class="docutils literal notranslate"><span class="pre">print_lines()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.print_lines_near_energy"><code class="docutils literal notranslate"><span class="pre">print_lines_near_energy()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.take_off_angle"><code class="docutils literal notranslate"><span class="pre">take_off_angle()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.xray_range"><code class="docutils literal notranslate"><span class="pre">xray_range()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exspy.utils.eds.zeta_to_cross_section"><code class="docutils literal notranslate"><span class="pre">zeta_to_cross_section()</span></code></a></li>

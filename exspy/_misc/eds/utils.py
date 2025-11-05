@@ -17,12 +17,23 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-import numpy as np
 import math
-from scipy import constants
-from hyperspy.misc.utils import stack
-from exspy._misc.elements import elements as elements_db
 from functools import reduce
+
+from hyperspy.misc.utils import display, stack, DictionaryTreeBrowser
+import numpy as np
+from prettytable import PrettyTable
+from scipy import constants
+
+from exspy._docstrings.eds import (
+    FLOAT_FORMAT_PARAMETER,
+    ENERGY_RANGE_PARAMETER,
+    ONLY_LINES_PARAMETER,
+    SORTING_PARAMETER,
+    WEIGHT_THRESHOLD_PARAMETER,
+    WIDTH_PARAMETER,
+)
+from exspy._misc.elements import elements as elements_db
 
 
 eV2keV = 1000.0
@@ -86,24 +97,26 @@ def _parse_only_lines(only_lines):
 
 
 def get_xray_lines_near_energy(energy, width=0.2, only_lines=None):
-    """Find xray lines near a specific energy, more specifically all xray lines
-    that satisfy only_lines and are within the given energy window width around
-    the passed energy.
+    """
+    Find X-ray lines near a specific energy, more specifically all X-ray lines
+    that satisfy ``only_lines`` and are within the given energy window width
+    around the passed energy.
 
     Parameters
     ----------
     energy : float
-        Energy to search near in keV
-    width : float
-        Window width in keV around energy in which to find nearby energies,
-        i.e. a value of 0.2 keV (the default) means to search +/- 0.1 keV.
-    only_lines : str or None
-        If not None, only the given lines will be added (eg. ('a','Kb')).
+        Energy in keV around which to search.
+    %s
+    %s
 
     Returns
     -------
-    xray_lines : numpy.ndarray
-        List of xray-lines sorted by energy difference to the given energy.
+    xray_lines : list
+        List of X-ray-lines sorted by energy difference to the given energy.
+
+    See also
+    --------
+    get_xray_lines, print_lines, print_lines_near_energy
     """
     only_lines = _parse_only_lines(only_lines)
     valid_lines = []
@@ -121,12 +134,17 @@ def get_xray_lines_near_energy(energy, width=0.2, only_lines=None):
             if E_min <= line_energy <= E_max:
                 # Store line in Element_Line format, and energy difference
                 valid_lines.append((element + "_" + line, abs(line_energy - energy)))
+
     # Sort by energy difference, but return only the line names
     return [line for line, _ in sorted(valid_lines, key=lambda x: x[1])]
 
 
+get_xray_lines_near_energy.__doc__ %= (WIDTH_PARAMETER, ONLY_LINES_PARAMETER)
+
+
 def get_FWHM_at_Energy(energy_resolution_MnKa, E):
-    """Calculates an approximate FWHM, accounting for peak broadening due to the
+    """
+    Calculates an approximate FWHM, accounting for peak broadening due to the
     detector, for a peak at energy E given a known width at a reference energy.
 
     The factor 2.5 is a constant derived by Fiori & Newbury as references
@@ -165,7 +183,8 @@ def get_FWHM_at_Energy(energy_resolution_MnKa, E):
 
 
 def xray_range(xray_line, beam_energy, density="auto"):
-    """Return the maximum range of X-ray generation according to the
+    """
+    Return the maximum range of X-ray generation according to the
     Anderson-Hasler parameterization.
 
     Parameters
@@ -719,7 +738,7 @@ def cross_section_to_zeta(cross_sections, elements):
 
     See Also
     --------
-    exspy.utils.eds.zeta_to_cross_section
+    zeta_to_cross_section
 
     """
     if len(elements) != len(cross_sections):
@@ -752,7 +771,7 @@ def zeta_to_cross_section(zfactors, elements):
 
     See Also
     --------
-    exspy.utils.eds.cross_section_to_zeta
+    cross_section_to_zeta
 
     """
     if len(elements) != len(zfactors):
@@ -765,3 +784,290 @@ def zeta_to_cross_section(zfactors, elements):
         xsec = atomic_weight / (zfactors[i] * constants.Avogadro * 1e-25)
         cross_sections.append(xsec)
     return cross_sections
+
+
+def get_xray_lines(elements, weight_threshold=0.1, energy_range=None, only_lines=None):
+    """
+    Get all X-ray lines for the given elements.
+
+    Parameters
+    ----------
+    elements : tuple or list
+        The list of elements.
+    %s
+    %s
+    %s
+
+    Returns
+    -------
+    :class:`hyperspy.misc.utils.DictionaryTreeBrowser`
+
+    Examples
+    --------
+    Get the X-ray lines of a single element:
+
+    >>> from exspy.utils.eds import get_xray_lines
+    >>> get_xray_lines(["O"])
+    └── O
+        └── Ka
+            ├── energy (keV) = 0.5249
+            └── weight = 1.0
+
+    Get the X-ray lines of multiple elements:
+
+    >>> get_xray_lines(["O", "Fe"])
+    ├── Fe
+    │   ├── Ka
+    │   │   ├── energy (keV) = 6.4039
+    │   │   └── weight = 1.0
+    │   ├── Kb
+    │   │   ├── energy (keV) = 7.058
+    │   │   └── weight = 0.1272
+    │   ├── La
+    │   │   ├── energy (keV) = 0.7045
+    │   │   └── weight = 1.0
+    │   ├── Ll
+    │   │   ├── energy (keV) = 0.6152
+    │   │   └── weight = 0.3086
+    │   └── Ln
+    │       ├── energy (keV) = 0.6282
+    │       └── weight = 0.12525
+    └── O
+        └── Ka
+            ├── energy (keV) = 0.5249
+            └── weight = 1.0
+
+    Restrict to a specific energy range:
+
+    >>> exspy.utils.eds.get_xray_lines(["O", "Fe"], energy_range=[0.5, 1.0])
+    ├── Fe
+    │   ├── La
+    │   │   ├── energy (keV) = 0.7045
+    │   │   └── weight = 1.0
+    │   ├── Ll
+    │   │   ├── energy (keV) = 0.6152
+    │   │   └── weight = 0.3086
+    │   └── Ln
+    │       ├── energy (keV) = 0.6282
+    │       └── weight = 0.12525
+    └── O
+        └── Ka
+            ├── energy (keV) = 0.5249
+            └── weight = 1.0
+
+    Restrict to specific lines:
+
+    >>> exspy.utils.eds.get_xray_lines(["O", "Fe"], energy_range=[0.5, 1.0], only_lines=["a"])
+    ├── Fe
+    │   └── La
+    │       ├── energy (keV) = 0.7045
+    │       └── weight = 1.0
+    └── O
+        └── Ka
+            ├── energy (keV) = 0.5249
+            └── weight = 1.0
+
+    Specify a threshold to only return high intensity X-ray lines
+
+    >>> exspy.utils.eds.get_xray_lines(["O", "Fe"], weight_threshold=0.5)
+    ├── Fe
+    │   ├── Ka
+    │   │   ├── energy (keV) = 6.4039
+    │   │   └── weight = 1.0
+    │   └── La
+    │       ├── energy (keV) = 0.7045
+    │       └── weight = 1.0
+    └── O
+        └── Ka
+            ├── energy (keV) = 0.5249
+            └── weight = 1.0
+
+    See also
+    --------
+    get_xray_lines_near_energy, print_lines, print_lines_near_energy
+    """
+    only_lines = _parse_only_lines(only_lines)
+
+    out = DictionaryTreeBrowser()
+    if energy_range is None:
+        energy_range = [0.0, 400.0]
+    energy_min, energy_max = energy_range
+    for element in elements:
+        if element not in ["Am", "Np", "Pu"]:
+            # no xray lines for these elements in the database
+            d = {
+                k: v
+                for k, v in elements_db[element]["Atomic_properties"][
+                    "Xray_lines"
+                ].items()
+                if (
+                    float(v["weight"]) >= weight_threshold
+                    and energy_min <= float(v["energy (keV)"])
+                    and float(v["energy (keV)"]) <= energy_max
+                    and not (only_lines and k not in only_lines)
+                )
+            }
+            if d:
+                out[element] = d
+
+    return out
+
+
+get_xray_lines.__doc__ %= (
+    WEIGHT_THRESHOLD_PARAMETER,
+    ENERGY_RANGE_PARAMETER,
+    ONLY_LINES_PARAMETER,
+)
+
+
+def _as_xray_lines_table(dtb, sorting, float_format):
+    table = PrettyTable()
+    table.field_names = ["Element", "Line", "Energy (keV)", "Weight", "Intensity"]
+
+    def get_weight_scale(weight):
+        # weight is a number in range [0, 1]
+        return "".join(["#"] * int(weight * 10))
+
+    for element, element_d in dtb:
+        element_ = element
+        for i, (line, line_d) in enumerate(element_d):
+            w = line_d["weight"]
+            table.add_row(
+                [element_, line, line_d["energy (keV)"], w, get_weight_scale(w)],
+                divider=(i == len(element_d) - 1),
+            )
+
+            if sorting == "elements":
+                # Only display in the first line
+                element_ = ""
+
+    # this ensures the html version try its best to mimick the ASCII one
+    table.format = True
+    table.float_format = float_format
+    table.align["Intensity"] = "l"
+    if sorting == "energy":
+        table.sortby = "Energy (keV)"
+
+    return table
+
+
+def print_lines_near_energy(
+    energy,
+    width=0.1,
+    weight_threshold=0.1,
+    only_lines=None,
+    sorting="energy",
+    float_format=".2",
+):
+    """
+    Display a table of X-ray lines close to a given energy.
+
+    Parameters
+    ----------
+    energy : float
+        The energy to search around, in keV.
+    %s
+    %s
+    %s
+    %s
+    %s
+
+    Examples
+    --------
+    >>> import exspy
+    >>> exspy.utils.eds.print_lines_near_energy(energy=6.4)
+    +---------+------+--------------+--------+------------+
+    | Element | Line | Energy (keV) | Weight | Intensity  |
+    +---------+------+--------------+--------+------------+
+    |    Sm   | Lb3  |     6.32     |  0.13  | #          |
+    |    Pm   | Lb2  |     6.34     |  0.20  | #          |
+    |    Fe   |  Ka  |     6.40     |  1.00  | ########## |
+    |    Eu   | Lb1  |     6.46     |  0.44  | ####       |
+    |    Mn   |  Kb  |     6.49     |  0.13  | #          |
+    |    Dy   |  La  |     6.50     |  1.00  | ########## |
+    +---------+------+--------------+--------+------------+
+
+    See also
+    --------
+    get_xray_lines, get_xray_lines_near_energy, print_lines
+    """
+    energy_range = [energy - width, energy + width]
+    dict_tree = get_xray_lines(
+        elements_db.keys(), weight_threshold, energy_range, only_lines
+    )
+    # Convert to a table
+    table = _as_xray_lines_table(dict_tree, sorting, float_format)
+
+    display(table)
+
+
+print_lines_near_energy.__doc__ %= (
+    WIDTH_PARAMETER,
+    WEIGHT_THRESHOLD_PARAMETER,
+    ONLY_LINES_PARAMETER,
+    SORTING_PARAMETER,
+    FLOAT_FORMAT_PARAMETER,
+)
+
+
+def print_lines(
+    elements,
+    weight_threshold=0.1,
+    energy_range=None,
+    only_lines=None,
+    sorting="elements",
+    float_format=".2",
+):
+    """
+    Display a table of X-ray lines for given elements.
+
+    Parameters
+    ----------
+    elements : list, tuple or None
+        The list of elements.
+    %s
+    %s
+    %s
+    %s
+    %s
+
+    Examples
+    --------
+    >>> import exspy
+    >>> exspy.utils.eds.print_lines(elements=["Fe", "Pt"])
+    +---------+------+--------------+--------+------------+
+    | Element | Line | Energy (keV) | Weight | Intensity  |
+    +---------+------+--------------+--------+------------+
+    |    Fe   |  Ka  |     6.40     |  1.00  | ########## |
+    |         |  Kb  |     7.06     |  0.13  | #          |
+    |         |  La  |     0.70     |  1.00  | ########## |
+    |         |  Ll  |     0.62     |  0.31  | ###        |
+    |         |  Ln  |     0.63     |  0.13  | #          |
+    +---------+------+--------------+--------+------------+
+    |    Pt   |  Ka  |    66.83     |  1.00  | ########## |
+    |         |  Kb  |    75.75     |  0.15  | #          |
+    |         |  La  |     9.44     |  1.00  | ########## |
+    |         | Lb1  |    11.07     |  0.41  | ####       |
+    |         | Lb2  |    11.25     |  0.22  | ##         |
+    |         |  Ma  |     2.05     |  1.00  | ########## |
+    |         |  Mb  |     2.13     |  0.59  | #####      |
+    +---------+------+--------------+--------+------------+
+
+    See also
+    --------
+    get_xray_lines, get_xray_lines_near_energy, print_lines_near_energy
+    """
+    # Get the xray lines data as dictionary
+    dict_tree = get_xray_lines(elements, weight_threshold, energy_range, only_lines)
+    # Convert to a table
+    table = _as_xray_lines_table(dict_tree, sorting, float_format)
+    display(table)
+
+
+print_lines.__doc__ %= (
+    WEIGHT_THRESHOLD_PARAMETER,
+    ENERGY_RANGE_PARAMETER,
+    ONLY_LINES_PARAMETER,
+    SORTING_PARAMETER,
+    FLOAT_FORMAT_PARAMETER,
+)

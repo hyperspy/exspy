@@ -16,6 +16,29 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+"""
+Attributes
+----------
+__version__ : str
+    The version of the eXSpy package.
+preferences :
+    The global preferences for eXSpy, where the default settings are stored.
+
+Examples
+--------
+
+To set a preference value, for example setting the EDS detector elevation
+angle to 15 degrees:
+
+>>> exspy.preferences.EDS.eds_detector_elevation = 15.0
+
+To open the preferences dialog. Requires GUI widgets, to enable them see the hyperspy
+documentation for :external+hyperspy:ref:`configuring HyperSpy <configuring-hyperspy-label>`.
+
+>>> exspy.preferences.gui()
+
+"""
+
 from importlib.metadata import version
 from pathlib import Path
 

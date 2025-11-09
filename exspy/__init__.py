@@ -39,16 +39,9 @@ documentation for :external+hyperspy:ref:`configuring HyperSpy <configuring-hype
 
 """
 
+import importlib
 from importlib.metadata import version
 from pathlib import Path
-
-from . import components
-from . import data
-from . import models
-from . import signals
-from . import utils
-from . import material
-from ._defaults_parser import preferences
 
 
 __version__ = version("exspy")
@@ -76,6 +69,8 @@ if (_root / ".git").exists() and not (_root / ".git/shallow").exists():
         pass
 
 
+# ruff: noqa: F822
+
 __all__ = [
     "__version__",
     "components",
@@ -88,5 +83,22 @@ __all__ = [
 ]
 
 
+# mapping following the pattern: from value import key
+_import_mapping = {
+    "preferences": "._defaults_parser",
+}
+
+
 def __dir__():
     return sorted(__all__)
+
+
+def __getattr__(name):
+    if name in __all__:
+        if name in _import_mapping.keys():
+            import_path = "exspy" + _import_mapping.get(name)
+            return getattr(importlib.import_module(import_path), name)
+        else:
+            return importlib.import_module("." + name, "exspy")
+
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

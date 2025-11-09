@@ -42,6 +42,7 @@ from exspy._docstrings.eds import (
 )
 from exspy._misc.elements import elements as elements_db
 from exspy._misc.eds import utils as utils_eds
+from exspy._signal_tools import EDSRange
 
 _logger = logging.getLogger(__name__)
 
@@ -1096,7 +1097,7 @@ class EDSSpectrum(Signal1D):
     def _xray_marker_closed(self, obj):
         self._xray_markers = {}
 
-    def remove_xray_lines_markers(self, xray_lines, render_figure=True):
+    def remove_xray_lines_markers(self, xray_lines=None, render_figure=True):
         """
         Remove marker previously added on a spec.plot() with the name of the
         selected X-ray lines
@@ -1108,10 +1109,14 @@ class EDSSpectrum(Signal1D):
         render_figure: bool
             If True, render the figure after removing the markers
         """
+        if xray_lines is None:
+            xray_lines = self._xray_markers["names"]
+
         ind = np.where(np.isin(self._xray_markers["names"], xray_lines))
         self._xray_markers["lines"].remove_items(ind)
         self._xray_markers["texts"].remove_items(ind)
         self._xray_markers["names"] = np.delete(self._xray_markers["names"], ind)
+
         if render_figure:
             self._render_figure(plot=["signal_plot"])
 
@@ -1314,6 +1319,46 @@ class EDSSpectrum(Signal1D):
         SORTING_PARAMETER.replace("    ", "        "),
         FLOAT_FORMAT_PARAMETER.replace("    ", "        "),
     )
+
+    def lines_at_energy(
+        self,
+        energy="interactive",
+        width=0.1,
+        display=True,
+        toolkit=None,
+    ):
+        """
+        Return a list of X-ray lines close to a given energy.
+
+        Parameters
+        ----------
+        energy : 'interactive' or float
+            If 'interactive', a table with lines are shown.
+            The energy to search around, in keV.
+        %s
+
+        Returns
+        -------
+        xray_lines : list of string
+            A list of X-ray lines close to the given energy.
+
+        Examples
+        --------
+        >>> import exspy
+        >>> s = exspy.data.EDS_TEM_FePt_nanoparticles()
+        >>> s.lines_at_energy(energy=8)
+        ['Cu_Ka', 'Er_Lb3', 'Ho_Lb2']
+
+        See also
+        --------
+        exspy.utils.eds.get_xray_lines_near_energy,
+        print_lines_near_energy
+        """
+        if energy == "interactive":
+            er = EDSRange(self)
+            return er.gui(display=display, toolkit=toolkit)
+        else:
+            self.print_lines_near_energy(energy, width)
 
 
 class LazyEDSSpectrum(EDSSpectrum, LazySignal1D):

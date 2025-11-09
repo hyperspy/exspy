@@ -80,6 +80,8 @@ def _get_xray_lines_family(xray_line):
 
 
 def _parse_only_lines(only_lines):
+    if only_lines == "all":
+        only_lines = None
     if isinstance(only_lines, str):
         pass
     elif hasattr(only_lines, "__iter__"):
@@ -920,13 +922,14 @@ get_xray_lines.__doc__ %= (
 )
 
 
+def get_weight_scale(weight, max=10):
+    # weight is a number in range [0, 1]
+    return "".join(["#"] * int(weight * max))
+
+
 def _as_xray_lines_table(dtb, sorting, float_format):
     table = PrettyTable()
     table.field_names = ["Element", "Line", "Energy (keV)", "Weight", "Intensity"]
-
-    def get_weight_scale(weight):
-        # weight is a number in range [0, 1]
-        return "".join(["#"] * int(weight * 10))
 
     for element, element_d in dtb:
         element_ = element

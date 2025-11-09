@@ -52,7 +52,7 @@ WIDTH_PARAMETER = """width : float
 
 ONLY_LINES_PARAMETER = """only_lines : list of str, optional
         Define the lines to be considered (eg. ('a','Kb')).
-        If None, all lines are included. Default is None."""
+        If None or "all", all lines are included. Default is None."""
 
 
 SORTING_PARAMETER = """sorting : str

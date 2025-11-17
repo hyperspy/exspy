@@ -562,8 +562,9 @@ as follows:</p>
 </figcaption>
 </figure>
 <p>Any microscope and detector parameters that are not found in the imported file
-will be set by default. These default values can be changed in the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">Preferences</span></code> class (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/basic_usage.html#configuring-hyperspy-label" title="(in HyperSpy v2.3)"><span class="xref std std-ref">preferences</span></a>).</p>
+will be set to default values. These default values can be changed in the <cite>eXSpy</cite>
+<a class="reference internal" href="../reference/exspy.html#exspy.preferences" title="exspy.preferences"><code class="xref py py-attr docutils literal notranslate"><span class="pre">preferences</span></code></a>.</p>
+<p>For example, the EDS detector elevation angle can be set using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">preferences</span><span class="o">.</span><span class="n">EDS</span><span class="o">.</span><span class="n">eds_detector_elevation</span> <span class="o">=</span> <span class="mi">37</span>
 </pre></div>
 </div>

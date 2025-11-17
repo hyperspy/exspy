@@ -678,6 +678,16 @@ the following example download a previous version (1.0) of the GOS file from Zen
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">gos_file_path</span><span class="o">=</span><span class="n">GOSH10</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Hartree-Slater GOS files as provided by Gatan DigitalMicrograph Suite
+v1.x and v2.x can also be used, but they are not freely distributable.
+If you have access to the GOS files, you can set the path to the directory
+containing the Hartree-Slater GOS files in the <a class="reference internal" href="../reference/exspy.html#exspy.preferences" title="exspy.preferences"><code class="xref py py-attr docutils literal notranslate"><span class="pre">preferences</span></code></a>.
+More recent versions of Gatan DigitalMicrograph Suite (v3.x and above)
+use a different proprietary format that is not supported. See discussion
+in <a class="github reference external" href="https://github.com/hyperspy/exspy/discussions/91">hyperspy/exspy#91</a> for more details.</p>
+</div>
 </section>
 <section id="fitting-model">
 <h3>Fitting model<a class="headerlink" href="#fitting-model" title="Link to this heading">#</a></h3>

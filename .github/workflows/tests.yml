@@ -71,6 +71,8 @@ jobs:
 
       - name: Install
         run: |
+          # hyperspy dev branch is required for fixes in LineInSignal1D
+          pip install https://github.com/ericpre/hyperspy/archive/fix_LineInSignal1D.zip
           pip install -e '.${{ matrix.PIP_SELECTOR }}'
 
       - name: Install (HyperSpy dev)
@@ -78,7 +80,7 @@ jobs:
         if: contains( matrix.LABEL, 'dev')
         shell: bash
         run: |
-          pip install https://github.com/hyperspy/hyperspy/archive/RELEASE_next_minor.zip
+          pip install https://github.com/ericpre/hyperspy/archive/fix_LineInSignal1D.zip
 
       - name: Pip list
         run: |

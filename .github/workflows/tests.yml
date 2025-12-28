@@ -12,37 +12,38 @@ jobs:
     name: ${{ matrix.os }}-py${{ matrix.PYTHON_VERSION }}${{ matrix.LABEL }}
     runs-on: ${{ matrix.os }}-latest
     timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash -el {0}
     env:
       MPLBACKEND: agg
     strategy:
       fail-fast: false
       matrix:
-        # os: [ubuntu, windows, macos]
-        os: [ubuntu]
-        # PYTHON_VERSION: ['3.10', '3.12']
-        PYTHON_VERSION: ['3.12']
+        os: [ubuntu, windows, macos]
+        PYTHON_VERSION: ['3.10', '3.12']
         LABEL: ['']
         PIP_SELECTOR: ['[tests, speed]']
-        # include:
-        #   - os: ubuntu
-        #     PYTHON_VERSION: '3.9'
-        #     PIP_SELECTOR: '[tests, speed]'
-        #   - os: ubuntu
-        #     PYTHON_VERSION: '3.11'
-        #     PIP_SELECTOR: '[tests, speed]'
-        #   - os: ubuntu
-        #     PYTHON_VERSION: '3.13'
-        #     PIP_SELECTOR: '[tests, speed]'
-        #   # test with hyperspy dev branch
-        #   - os: ubuntu
-        #     PYTHON_VERSION: '3.12'
-        #     PIP_SELECTOR: '[tests]'
-        #     LABEL: '-dev'
-        #   # test minimum requirement
-        #   - os: ubuntu
-        #     PYTHON_VERSION: '3.9'
-        #     LABEL: '-minimum'
-        #     PIP_SELECTOR: '[tests]'
+        include:
+          - os: ubuntu
+            PYTHON_VERSION: '3.9'
+            PIP_SELECTOR: '[tests, speed]'
+          - os: ubuntu
+            PYTHON_VERSION: '3.11'
+            PIP_SELECTOR: '[tests, speed]'
+          - os: ubuntu
+            PYTHON_VERSION: '3.13'
+            PIP_SELECTOR: '[tests, speed]'
+          # test with hyperspy dev branch
+          - os: ubuntu
+            PYTHON_VERSION: '3.12'
+            PIP_SELECTOR: '[tests]'
+            LABEL: '-dev'
+          # test minimum requirement
+          - os: ubuntu
+            PYTHON_VERSION: '3.9'
+            LABEL: '-minimum'
+            PIP_SELECTOR: '[tests]'
 
     steps:
       - uses: actions/checkout@v6
@@ -50,7 +51,6 @@ jobs:
           fetch-depth: 0
 
       - name: get repository name
-        shell: bash
         run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
       - name: Fetch tags upstream
@@ -78,7 +78,6 @@ jobs:
       - name: Install (HyperSpy dev)
         # Test against the hyperspy `RELEASE_next_minor` branch
         if: contains( matrix.LABEL, 'dev')
-        shell: bash
         run: |
           pip install https://github.com/hyperspy/hyperspy/archive/RELEASE_next_minor.zip
 
@@ -95,9 +94,8 @@ jobs:
           CACHE_NUMBER: 0
         with:
           path: ${{ env.POOCH_CACHE_PATHS }}
-          key: GOS_cache-${{ env.CACHE_NUMBER }}
-          restore-keys: |
-            GOS_cache-${{ env.CACHE_NUMBER }}
+          key: ${{ runner.os }}-GOS_cache-${{ env.CACHE_NUMBER }}
+          restore-keys:  ${{ runner.os }}-GOS_cache
 
       - name: Pip list
         run: |

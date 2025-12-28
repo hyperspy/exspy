@@ -11,7 +11,7 @@ jobs:
 
   Push:
     needs: Build
-    if: ${{ github.event_name != 'pull_request' && github.repository_owner == 'hyperspy' }}
+    if: ${{ github.ref_name == 'main' && github.repository_owner == 'hyperspy' }}
     permissions:
       # needs write permission to push the docs to gh-pages
       contents: write

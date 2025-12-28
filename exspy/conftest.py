@@ -68,7 +68,7 @@ def _download_and_cache_GOS():
     pooch.retrieve(
         url="https://zenodo.org/records/6599071/files/Segger_Guzzinati_Kohl_1.0.0.gos",
         known_hash="md5:d65d5c23142532fde0a80e160ab51574",
-        downloader=pooch.HTTPDownloader(chunk_size=8192),
+        downloader=pooch.HTTPDownloader(chunk_size=30000),
         progressbar=False,
     )
     print("sleeping 30s to throttle zenodo requests")
@@ -76,7 +76,7 @@ def _download_and_cache_GOS():
     pooch.retrieve(
         url="https://zenodo.org/records/7645765/files/Segger_Guzzinati_Kohl_1.5.0.gosh",
         known_hash="md5:7fee8891c147a4f769668403b54c529b",
-        downloader=pooch.HTTPDownloader(chunk_size=8192),
+        downloader=pooch.HTTPDownloader(chunk_size=30000),
         progressbar=False,
     )
     print("sleeping 30s to throttle zenodo requests")
@@ -84,7 +84,7 @@ def _download_and_cache_GOS():
     pooch.retrieve(
         url="https://zenodo.org/records/12800856/files/Dirac_GOS_compact.gosh",
         known_hash="md5:01a855d3750d2c063955248358dbee8d",
-        downloader=pooch.HTTPDownloader(chunk_size=8192),
+        downloader=pooch.HTTPDownloader(chunk_size=30000),
         progressbar=False,
     )
     print("finished download of GOS files")

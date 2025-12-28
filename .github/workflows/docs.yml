@@ -6,6 +6,8 @@ jobs:
   Build:
     # Use the "reusable workflow" from the hyperspy organisation
     uses: hyperspy/.github/.github/workflows/doc.yml@main
+    with:
+      CACHE_POOCH: 'pooch'
 
   Push:
     needs: Build

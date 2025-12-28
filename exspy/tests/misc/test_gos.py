@@ -68,6 +68,11 @@ def test_gosh_not_in_conventions():
 
 
 def test_gosh_not_in_file():
+    GOSH10 = pooch.retrieve(
+        url="https://zenodo.org/records/6599071/files/Segger_Guzzinati_Kohl_1.0.0.gos",
+        known_hash="md5:d65d5c23142532fde0a80e160ab51574",
+        progressbar=False,
+    )
     # Use version 1.0 which doesn't have the Ac element
     with pytest.raises(ValueError):
         _ = GoshGOS("Ac_L3", gos_file_path=GOSH10)

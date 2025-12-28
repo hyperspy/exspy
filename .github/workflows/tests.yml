@@ -17,30 +17,32 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu, windows, macos]
-        PYTHON_VERSION: ['3.10', '3.12']
+        # os: [ubuntu, windows, macos]
+        os: [ubuntu]
+        # PYTHON_VERSION: ['3.10', '3.12']
+        PYTHON_VERSION: ['3.12']
         LABEL: ['']
         PIP_SELECTOR: ['[tests, speed]']
-        include:
-          - os: ubuntu
-            PYTHON_VERSION: '3.9'
-            PIP_SELECTOR: '[tests, speed]'
-          - os: ubuntu
-            PYTHON_VERSION: '3.11'
-            PIP_SELECTOR: '[tests, speed]'
-          - os: ubuntu
-            PYTHON_VERSION: '3.13'
-            PIP_SELECTOR: '[tests, speed]'
-          # test with hyperspy dev branch
-          - os: ubuntu
-            PYTHON_VERSION: '3.12'
-            PIP_SELECTOR: '[tests]'
-            LABEL: '-dev'
-          # test minimum requirement
-          - os: ubuntu
-            PYTHON_VERSION: '3.9'
-            LABEL: '-minimum'
-            PIP_SELECTOR: '[tests]'
+        # include:
+        #   - os: ubuntu
+        #     PYTHON_VERSION: '3.9'
+        #     PIP_SELECTOR: '[tests, speed]'
+        #   - os: ubuntu
+        #     PYTHON_VERSION: '3.11'
+        #     PIP_SELECTOR: '[tests, speed]'
+        #   - os: ubuntu
+        #     PYTHON_VERSION: '3.13'
+        #     PIP_SELECTOR: '[tests, speed]'
+        #   # test with hyperspy dev branch
+        #   - os: ubuntu
+        #     PYTHON_VERSION: '3.12'
+        #     PIP_SELECTOR: '[tests]'
+        #     LABEL: '-dev'
+        #   # test minimum requirement
+        #   - os: ubuntu
+        #     PYTHON_VERSION: '3.9'
+        #     LABEL: '-minimum'
+        #     PIP_SELECTOR: '[tests]'
 
     steps:
       - uses: actions/checkout@v6
@@ -80,13 +82,30 @@ jobs:
         run: |
           pip install https://github.com/hyperspy/hyperspy/archive/RELEASE_next_minor.zip
 
+      - name: Get pooch cache paths
+        run: |
+          # create list of pooch cache paths as a string (space separated)
+          python -c "import pooch; print(str(pooch.os_cache('pooch')))" > pooch_cache_paths.txt
+          echo "POOCH_CACHE_PATHS=$(cat pooch_cache_paths.txt)" >> $GITHUB_ENV
+
+      - name: Cache GOS data
+        uses: actions/cache@v4
+        env:
+          # Increase this value to reset cache
+          CACHE_NUMBER: 0
+        with:
+          path: ${{ env.POOCH_CACHE_PATHS }}
+          key: GOS_cache-${{ env.CACHE_NUMBER }}
+          restore-keys: |
+            GOS_cache-${{ env.CACHE_NUMBER }}
+
       - name: Pip list
         run: |
           pip list
 
       - name: Run test suite
         run: |
-          pytest --pyargs exspy -n 2 --cov=. --cov-report=xml
+          pytest --pyargs exspy --cov=. --cov-report=xml
 
       - name: Upload coverage to Codecov
         if: ${{ always() }}

@@ -101,11 +101,16 @@ class GoshGOS(TabulatedGOS):
 
         if gos_file_path is None:
             source = source.lower()
-            assert source in _GOSH_SOURCES.keys(), f"Invalid source: {source}"
+            if source not in _GOSH_SOURCES.keys():
+                raise ValueError(
+                    f"Invalid source: {source}, valid options are "
+                    f"{list(_GOSH_SOURCES.keys())}"
+                )
             self._name = source
             gos_file_path = pooch.retrieve(
                 url=_GOSH_SOURCES[source]["URL"],
                 known_hash=_GOSH_SOURCES[source]["KNOWN_HASH"],
+                downloader=pooch.HTTPDownloader(chunk_size=8192),
                 progressbar=preferences.General.show_progressbar,
             )
         self.gos_file_path = gos_file_path

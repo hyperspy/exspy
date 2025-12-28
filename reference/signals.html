@@ -516,7 +516,7 @@ is unbinned by default.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -610,7 +610,7 @@ in the Electron Microscope”, Springer-Verlag, 2011.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -736,7 +736,7 @@ all listed toolkits are displayed or returned.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -1235,7 +1235,7 @@ the value is always set to <code class="docutils literal notranslate"><span clas
 <li><p><strong>plot_markers</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>default True</em>) – Plot markers added using <cite>s.add_marker(marker, permanent=True)</cite>.
 Note, a large number of markers might lead to very slow plotting.</p></li>
 <li><p><strong>navigator_kwds</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Only for image navigator, additional keyword arguments for
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html#matplotlib.pyplot.imshow" title="(in Matplotlib v3.10.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.imshow()</span></code></a>.</p></li>
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html#matplotlib.pyplot.imshow" title="(in Matplotlib v3.10.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.imshow()</span></code></a>.</p></li>
 <li><p><strong>norm</strong> (str, default <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>) – The function used to normalize the data prior to plotting.
 Allowable strings are: <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>, <code class="docutils literal notranslate"><span class="pre">'log'</span></code>.
 If <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, intensity is plotted on a linear scale except when
@@ -1401,8 +1401,8 @@ a 5*5 array binned by 2.1 will produce two rows containing
 dimension may appear black if a fractional number of pixels are left
 over. It can be removed but has been left to preserve total counts
 before and after binning.</em></p></li>
-<li><p><strong>dtype</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.3)"><em>numpy.dtype</em></a><em>, </em><em>&quot;same&quot;}</em>) – Specify the dtype of the output. If None, the dtype will be
-determined by the behaviour of <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="(in NumPy v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.sum()</span></code></a>, if <code class="docutils literal notranslate"><span class="pre">&quot;same&quot;</span></code>,
+<li><p><strong>dtype</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.4)"><em>numpy.dtype</em></a><em>, </em><em>&quot;same&quot;}</em>) – Specify the dtype of the output. If None, the dtype will be
+determined by the behaviour of <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="(in NumPy v2.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.sum()</span></code></a>, if <code class="docutils literal notranslate"><span class="pre">&quot;same&quot;</span></code>,
 the dtype will be kept the same. Default is None.</p></li>
 <li><p><strong>out</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass) or None) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new Signal is created with the result of the
 operation and returned (default). If a Signal is passed,
@@ -1611,7 +1611,7 @@ it raises a warning when working with an unbinned, non-uniform axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -1640,7 +1640,7 @@ using the Cliff Lorimer method.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>weight_percent</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass)) – Stack of compositions as determined from an initial k_factor
 quantification.</p></li>
-<li><p><strong>thickness</strong> (float or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>) – Either a float value for thickness in nm or an array equal to the
+<li><p><strong>thickness</strong> (float or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>) – Either a float value for thickness in nm or an array equal to the
 size of the EDX map with thickness at each position of the sample.</p></li>
 </ul>
 </dd>
@@ -1648,7 +1648,7 @@ size of the EDX map with thickness at each position of the sample.</p></li>
 <dd class="field-even"><p><strong>mass_thickness</strong> – Mass thickness in kg/m².</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2017,7 +2017,7 @@ pixel is considered as vacuum.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -2437,7 +2437,7 @@ locations not marked as True (masked).</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>zero_loss_peak_mask_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Width of the zero loss peak mask.</p></li>
-<li><p><strong>signal_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Restricts the operation to the signal locations not marked
+<li><p><strong>signal_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Restricts the operation to the signal locations not marked
 as True (masked).</p></li>
 </ul>
 </dd>
@@ -2644,8 +2644,8 @@ a 5*5 array binned by 2.1 will produce two rows containing
 dimension may appear black if a fractional number of pixels are left
 over. It can be removed but has been left to preserve total counts
 before and after binning.</em></p></li>
-<li><p><strong>dtype</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.3)"><em>numpy.dtype</em></a><em>, </em><em>&quot;same&quot;}</em>) – Specify the dtype of the output. If None, the dtype will be
-determined by the behaviour of <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="(in NumPy v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.sum()</span></code></a>, if <code class="docutils literal notranslate"><span class="pre">&quot;same&quot;</span></code>,
+<li><p><strong>dtype</strong> (<em>{None</em><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.4)"><em>numpy.dtype</em></a><em>, </em><em>&quot;same&quot;}</em>) – Specify the dtype of the output. If None, the dtype will be
+determined by the behaviour of <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.sum.html#numpy.sum" title="(in NumPy v2.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.sum()</span></code></a>, if <code class="docutils literal notranslate"><span class="pre">&quot;same&quot;</span></code>,
 the dtype will be kept the same. Default is None.</p></li>
 <li><p><strong>out</strong> (<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSignal</span></code></a> (or subclass) or None) – If <code class="docutils literal notranslate"><span class="pre">None</span></code>, a new Signal is created with the result of the
 operation and returned (default). If a Signal is passed,
@@ -2800,9 +2800,9 @@ If non-interactive, it removes all spikes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>signal_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Restricts the operation to the signal locations not marked
+<li><p><strong>signal_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Restricts the operation to the signal locations not marked
 as True (masked).</p></li>
-<li><p><strong>navigation_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Restricts the operation to the navigation locations not marked
+<li><p><strong>navigation_mask</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>) – Restricts the operation to the navigation locations not marked
 as True (masked).</p></li>
 <li><p><strong>threshold</strong> (<code class="docutils literal notranslate"><span class="pre">'auto'</span></code> or int) – if <code class="docutils literal notranslate"><span class="pre">int</span></code> set the threshold value use for the detecting the spikes.
 If <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>, determine the threshold value as being the first zero
@@ -2876,7 +2876,7 @@ The computation is delayed until explicitly requested.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -2911,7 +2911,7 @@ The computation is delayed until explicitly requested.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -2946,7 +2946,7 @@ The computation is delayed until explicitly requested.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -2981,7 +2981,7 @@ The computation is delayed until explicitly requested.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>
@@ -3016,7 +3016,7 @@ The computation is delayed until explicitly requested.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><em>numpy.ndarray</em></a>) – The signal data. It can be an array of any dimensions.</p></li>
 <li><p><strong>axes</strong> (<em>[</em><em>dict/axes</em><em>]</em><em>, </em><em>optional</em>) – List of either dictionaries or axes objects to define the axes (see
 the documentation of the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/axes.html#hyperspy.axes.AxesManager" title="(in HyperSpy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AxesManager</span></code></a>
 class for more details).</p></li>

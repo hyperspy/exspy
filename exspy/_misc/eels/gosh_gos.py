@@ -110,7 +110,7 @@ class GoshGOS(TabulatedGOS):
             gos_file_path = pooch.retrieve(
                 url=_GOSH_SOURCES[source]["URL"],
                 known_hash=_GOSH_SOURCES[source]["KNOWN_HASH"],
-                downloader=pooch.HTTPDownloader(chunk_size=8192),
+                downloader=pooch.HTTPDownloader(chunk_size=30000),
                 progressbar=preferences.General.show_progressbar,
             )
         self.gos_file_path = gos_file_path

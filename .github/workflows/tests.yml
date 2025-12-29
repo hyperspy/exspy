@@ -37,7 +37,7 @@ jobs:
           # test with hyperspy dev branch
           - os: ubuntu
             PYTHON_VERSION: '3.12'
-            PIP_SELECTOR: '[tests]'
+            PIP_SELECTOR: '[tests, speed]'
             LABEL: '-dev'
           # test minimum requirement
           - os: ubuntu

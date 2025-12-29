@@ -42,6 +42,8 @@ from matplotlib.testing.conftest import mpl_test_settings  # noqa: F401
 
 from exspy._misc import _download_GOS_files
 
+hs.preferences.General.show_progressbar = False
+
 
 @pytest.fixture(autouse=True)
 def add_np(doctest_namespace):

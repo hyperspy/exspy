@@ -24,13 +24,13 @@ import math
 import logging
 
 from hyperspy.misc.utils import stash_active_state
-from exspy._misc.eds.utils import _get_element_and_line
-
+import hyperspy.components1d as create_component
 from hyperspy.models.model1d import Model1D
-from exspy.signals.eds import EDSSpectrum
+
+from exspy import signals
+from exspy._misc.eds.utils import _get_element_and_line
 from exspy._misc.elements import elements as elements_db
 from exspy._misc.eds import utils as utils_eds
-import hyperspy.components1d as create_component
 
 _logger = logging.getLogger(__name__)
 
@@ -172,7 +172,7 @@ class EDSModel(Model1D):
 
     @spectrum.setter
     def spectrum(self, value):
-        if isinstance(value, EDSSpectrum):
+        if isinstance(value, signals.EDSSpectrum):
             self._signal = value
         else:
             raise ValueError(

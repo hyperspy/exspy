@@ -26,12 +26,14 @@ import numpy as np
 from scipy.interpolate import splev
 
 from hyperspy.component import Component
+from hyperspy.ui_registry import add_gui_method
+from hyperspy.exceptions import VisibleDeprecationWarning
+
+from exspy import signals
 from exspy._misc.eels.gosh_gos import GoshGOS, _GOSH_SOURCES
 from exspy._misc.eels.hartree_slater_gos import HartreeSlaterGOS
 from exspy._misc.eels.hydrogenic_gos import HydrogenicGOS
 from exspy._misc.eels.effective_angle import effective_angle
-from hyperspy.ui_registry import add_gui_method
-from hyperspy.exceptions import VisibleDeprecationWarning
 
 _logger = logging.getLogger(__name__)
 
@@ -523,11 +525,11 @@ class EELSCLEdge(Component):
         the model was convolved with a low-loss spectrum
 
         """
-        from exspy.signals.eels import EELSSpectrum
-
         channels = int(np.floor(self.fine_structure_width / self.energy_scale))
         data = np.zeros(self.fine_structure_coeff.map.shape + (channels,))
-        s = EELSSpectrum(data, axes=self.intensity._axes_manager._get_axes_dicts())
+        s = signals.EELSSpectrum(
+            data, axes=self.intensity._axes_manager._get_axes_dicts()
+        )
         s.get_dimensions_from_data()
         s.axes_manager.signal_axes[0].offset = self.onset_energy.value
         # Backup the axes_manager

@@ -21,10 +21,10 @@ import logging
 import traits.api as t
 
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
-from hyperspy.signal import BaseSetMetadataItems
+from hyperspy.signals._signal import BaseSetMetadataItems
 from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
 
-from .eds import EDSSpectrum, LazyEDSSpectrum
+from exspy.signals import EDSSpectrum, LazyEDSSpectrum
 from exspy._defaults_parser import preferences
 
 

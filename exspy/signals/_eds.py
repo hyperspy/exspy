@@ -26,8 +26,7 @@ import numpy as np
 
 import hyperspy.api as hs
 from hyperspy import utils
-from hyperspy.signal import BaseSignal
-from hyperspy._signals.signal1d import Signal1D, LazySignal1D
+from hyperspy.signals import BaseSignal, Signal1D, LazySignal1D
 from hyperspy.misc.utils import isiterable
 from hyperspy.docstrings.plot import BASE_PLOT_DOCSTRING_PARAMETERS, PLOT1D_DOCSTRING
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
@@ -42,6 +41,7 @@ from exspy._docstrings.eds import (
 )
 from exspy._misc.elements import elements as elements_db
 from exspy._misc.eds import utils as utils_eds
+
 
 _logger = logging.getLogger(__name__)
 

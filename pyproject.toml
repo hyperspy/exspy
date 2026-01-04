@@ -40,7 +40,8 @@ classifiers = [
 ]
 dependencies = [
   "dask[array]",
-  "hyperspy>=2.3.0",
+  "hyperspy @ https://github.com/ericpre/hyperspy/archive/refs/heads/rsciio_deprecation&lazy_import_part2.zip",
+  "lazy-loader",
   "matplotlib",
   "numpy",
   "pint",

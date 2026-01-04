@@ -16,29 +16,24 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-"""
-Attributes
-----------
-__version__ : str
-    The version of the eXSpy package.
-preferences :
-    The global preferences for eXSpy, where the default settings are stored.
+from ._dielectric_function import DielectricFunction, LazyDielectricFunction
+from ._eds import EDSSpectrum, LazyEDSSpectrum
+from ._eds_sem import EDSSEMSpectrum, LazyEDSSEMSpectrum
+from ._eds_tem import EDSTEMSpectrum, LazyEDSTEMSpectrum
+from ._eels import EELSSpectrum, LazyEELSSpectrum
 
-Examples
---------
+__all__ = [
+    "DielectricFunction",
+    "LazyDielectricFunction",
+    "EDSSpectrum",
+    "LazyEDSSpectrum",
+    "EDSTEMSpectrum",
+    "LazyEDSTEMSpectrum",
+    "EELSSpectrum",
+    "LazyEELSSpectrum",
+    "EDSSEMSpectrum",
+    "LazyEDSSEMSpectrum",
+]
 
-To set a preference value, for example setting the EDS detector elevation
-angle to 15 degrees:
-
->>> exspy.preferences.EDS.eds_detector_elevation = 15.0
-
-To open the preferences dialog. Requires GUI widgets, to enable them see the hyperspy
-documentation for :external+hyperspy:ref:`configuring HyperSpy <configuring-hyperspy-label>`.
-
->>> exspy.preferences.gui()
-
-"""
-
-import lazy_loader
-
-__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)
+def __dir__():
+    return sorted(__all__)

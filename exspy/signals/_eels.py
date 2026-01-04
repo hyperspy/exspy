@@ -19,15 +19,14 @@
 import numbers
 import logging
 
-import numpy as np
-import dask.array as da
-import traits.api as t
-from scipy import constants
 from prettytable import PrettyTable
+import numpy as np
+import scipy
+import traits.api as t
 
 import hyperspy.api as hs
-from hyperspy.signal import BaseSetMetadataItems, BaseSignal
-from hyperspy._signals.signal1d import Signal1D, LazySignal1D
+from hyperspy.signals._signal import BaseSetMetadataItems
+from hyperspy.signals import BaseSignal, Signal1D, LazySignal1D
 from hyperspy.misc.utils import display, isiterable, underline
 from hyperspy.misc.math_tools import optimal_fft_size
 
@@ -396,6 +395,7 @@ class EELSSpectrum(Signal1D):
         more information read its docstring.
 
         """
+        import dask.array as da
 
         def substract_from_offset(value, signals):
             # Test that axes is uniform
@@ -619,10 +619,8 @@ class EELSSpectrum(Signal1D):
                     if binned:
                         return data.sum()
                     else:
-                        from scipy.integrate import simpson
-
                         axis = ax.axis[:ind]
-                        return simpson(y=data, x=axis)
+                        return scipy.integrate.simpson(y=data, x=axis)
 
             I0 = self.map(
                 estimating_function,
@@ -706,6 +704,8 @@ class EELSSpectrum(Signal1D):
         this method when using it.
 
         """
+        import dask.array as da
+
         self._check_signal_dimension_equals_one()
         # Create threshold with the same shape as the navigation dims.
         threshold = self._get_navigation_signal().transpose(signal_axes=0)
@@ -900,6 +900,8 @@ class EELSSpectrum(Signal1D):
         Spectroscopy in the Electron Microscope. Springer-Verlag, 2011.
 
         """
+        import dask.array as da
+
         self._check_signal_dimension_equals_one()
         if not self.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
@@ -1260,6 +1262,8 @@ class EELSSpectrum(Signal1D):
         A new spectrum, with the extrapolation.
 
         """
+        import dask.array as da
+
         self._check_signal_dimension_equals_one()
         axis = self.axes_manager.signal_axes[0]
         s = self.deepcopy()
@@ -1444,7 +1448,9 @@ class EELSSpectrum(Signal1D):
             sorig = self.isig[1:]
 
         # Constants and units
-        me = constants.value("electron mass energy equivalent in MeV") * 1e3  # keV
+        me = (
+            scipy.constants.value("electron mass energy equivalent in MeV") * 1e3
+        )  # keV
 
         # Mapped parameters
         self._are_microscope_parameters_missing(ignore_parameters=["convergence_angle"])
@@ -2014,14 +2020,12 @@ class EELSSpectrum(Signal1D):
 
         mask = self.isig[start_energy:].mean(-1) <= threshold
 
-        from scipy.ndimage import binary_dilation, binary_erosion
-
         if closing:
-            mask.data = binary_dilation(mask.data, border_value=0)
-            mask.data = binary_erosion(mask.data, border_value=1)
+            mask.data = scipy.ndimage.binary_dilation(mask.data, border_value=0)
+            mask.data = scipy.ndimage.binary_erosion(mask.data, border_value=1)
         if opening:
-            mask.data = binary_erosion(mask.data, border_value=1)
-            mask.data = binary_dilation(mask.data, border_value=0)
+            mask.data = scipy.ndimage.binary_erosion(mask.data, border_value=1)
+            mask.data = scipy.ndimage.binary_dilation(mask.data, border_value=0)
         return mask
 
 

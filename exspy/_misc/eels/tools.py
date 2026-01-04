@@ -21,12 +21,11 @@ import numbers
 import logging
 
 import numpy as np
-import matplotlib.pyplot as plt
-from scipy import constants
+import scipy
 
+import hyperspy.api as hs
 from hyperspy.misc.array_tools import rebin
 from exspy._misc.elements import elements as elements_db
-import hyperspy.defaults_parser
 
 _logger = logging.getLogger(__name__)
 
@@ -62,8 +61,6 @@ def _estimate_gain(
 
     fit = np.polynomial.Polynomial.fit(average2fit, variance2fit, pol_order)
     if weighted is True:
-        import hyperspy.api as hs
-
         s = hs.signals.Signal1D(variance2fit)
         s.axes_manager.signal_axes[0].axis = average2fit
         m = s.create_model()
@@ -76,6 +73,8 @@ def _estimate_gain(
         fit[1] = line.a.value
 
     if plot_results is True:
+        import matplotlib.pyplot as plt
+
         plt.figure()
         plt.scatter(average.squeeze(), variance.squeeze())
         plt.xlabel("Counts")
@@ -281,7 +280,7 @@ def eels_constant(s, zlp, t):
     """
 
     # Constants and units
-    me = constants.value("electron mass energy equivalent in MeV") * 1e3  # keV
+    me = scipy.constants.value("electron mass energy equivalent in MeV") * 1e3  # keV
 
     # Mapped parameters
     try:
@@ -307,7 +306,7 @@ def eels_constant(s, zlp, t):
         # Avoid singularity at E=0
         eaxis[0] = 1e-10
 
-    if isinstance(zlp, hyperspy.signal.BaseSignal):
+    if isinstance(zlp, hs.signals.BaseSignal):
         if zlp.axes_manager.navigation_dimension == s.axes_manager.navigation_dimension:
             if zlp.axes_manager.signal_dimension == 0:
                 i0 = zlp.data
@@ -330,7 +329,7 @@ def eels_constant(s, zlp, t):
                          in the BaseSignal class or a Number."
         )
 
-    if isinstance(t, hyperspy.signal.BaseSignal):
+    if isinstance(t, hs.signals.BaseSignal):
         if (
             t.axes_manager.navigation_dimension == s.axes_manager.navigation_dimension
         ) and (t.axes_manager.signal_dimension == 0):

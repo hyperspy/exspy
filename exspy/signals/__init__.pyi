@@ -16,35 +16,24 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-# Deprecated and to be removed in exspy 1.0
+from ._dielectric_function import DielectricFunction, LazyDielectricFunction
+from ._eds import EDSSpectrum, LazyEDSSpectrum
+from ._eds_sem import EDSSEMSpectrum, LazyEDSSEMSpectrum
+from ._eds_tem import EDSTEMSpectrum, LazyEDSTEMSpectrum
+from ._eels import EELSSpectrum, LazyEELSSpectrum
 
-import warnings
-
-from hyperspy.exceptions import VisibleDeprecationWarning
-
-# ruff: noqa: F822
-
-__all__ = ["EDSSEMSpectrum", "LazyEDSSEMSpectrum"]
-
+__all__ = [
+    "DielectricFunction",
+    "LazyDielectricFunction",
+    "EDSSpectrum",
+    "LazyEDSSpectrum",
+    "EDSTEMSpectrum",
+    "LazyEDSTEMSpectrum",
+    "EELSSpectrum",
+    "LazyEELSSpectrum",
+    "EDSSEMSpectrum",
+    "LazyEDSSEMSpectrum",
+]
 
 def __dir__():
     return sorted(__all__)
-
-
-def __getattr__(name):
-    warnings.warn(
-        "This module has been privatised, use `exspy.signals` instead. "
-        "It will be removed in exspy 1.0.",
-        VisibleDeprecationWarning,
-    )
-
-    if name == "EDSSEMSpectrum":
-        from ._eds_sem import EDSSEMSpectrum
-
-        return EDSSEMSpectrum
-    elif name == "LazyEDSSEMSpectrum":
-        from ._lazy_eds_sem import LazyEDSSEMSpectrum
-
-        return LazyEDSSEMSpectrum
-    else:
-        raise AttributeError(f"module {__name__} has no attribute {name}")

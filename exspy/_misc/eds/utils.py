@@ -25,6 +25,7 @@ import numpy as np
 from prettytable import PrettyTable
 from scipy import constants
 
+from exspy import signals
 from exspy._docstrings.eds import (
     FLOAT_FORMAT_PARAMETER,
     ENERGY_RANGE_PARAMETER,
@@ -389,7 +390,6 @@ def xray_lines_model(
     >>> s = xray_lines_model(['Cu', 'Fe'], beam_energy=30)
     >>> s.plot()
     """
-    from exspy.signals.eds_tem import EDSTEMSpectrum
 
     if energy_axis is None:
         energy_axis = {
@@ -399,7 +399,7 @@ def xray_lines_model(
             "offset": -0.1,
             "size": 1024,
         }
-    s = EDSTEMSpectrum(np.zeros(energy_axis["size"]), axes=[energy_axis])
+    s = signals.EDSTEMSpectrum(np.zeros(energy_axis["size"]), axes=[energy_axis])
     s.set_microscope_parameters(
         beam_energy=beam_energy, energy_resolution_MnKa=energy_resolution_MnKa
     )

@@ -19,7 +19,7 @@
 import numpy as np
 import math
 
-from hyperspy.component import Component
+from hyperspy.components import Component
 from hyperspy.docstrings.parameters import FUNCTION_ND_DOCSTRING
 
 sqrt2pi = np.sqrt(2 * np.pi)

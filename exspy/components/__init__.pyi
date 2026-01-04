@@ -16,7 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+from ._eels_arctan import EELSArctan
+from ._eels_cl_edge import EELSCLEdge
+from ._eels_double_power_law import DoublePowerLaw
+from ._eels_vignetting import Vignetting
+from ._pes_core_line_shape import PESCoreLineShape
+from ._pes_see import SEE
+from ._pes_voigt import PESVoigt
+from ._volume_plasmon_drude import VolumePlasmonDrude
 
-import lazy_loader
+__all__ = [
+    "EELSArctan",
+    "EELSCLEdge",
+    "DoublePowerLaw",
+    "PESCoreLineShape",
+    "PESVoigt",
+    "SEE",
+    "Vignetting",
+    "VolumePlasmonDrude",
+]
 
-__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)
+def __dir__():
+    return sorted(__all__)

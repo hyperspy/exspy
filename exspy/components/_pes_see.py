@@ -20,7 +20,7 @@
 import numpy as np
 import logging
 
-import hyperspy.api as hs
+from hyperspy.components import Expression
 
 from exspy._utils import parse_component_module
 
@@ -28,7 +28,7 @@ from exspy._utils import parse_component_module
 _logger = logging.getLogger(__name__)
 
 
-class SEE(hs.model.components1D.Expression):
+class SEE(Expression):
     r"""Secondary electron emission component for Photoemission Spectroscopy.
 
     .. math::

@@ -20,17 +20,12 @@ import logging
 
 import h5py
 import numpy as np
-import pooch
-from scipy import constants
 
 from hyperspy.defaults_parser import preferences
 from exspy._misc.eels.base_gos import TabulatedGOS
 
 
 _logger = logging.getLogger(__name__)
-
-R = constants.value("Rydberg constant times hc in eV")
-a0 = constants.value("Bohr radius")
 
 _DFT_GOSH = {
     "DOI": "10.5281/zenodo.7645765",
@@ -98,6 +93,7 @@ class GoshGOS(TabulatedGOS):
         source : str
             The source of the GOS data. Options are 'dft' or 'dirac'.
         """
+        import pooch
 
         if gos_file_path is None:
             source = source.lower()

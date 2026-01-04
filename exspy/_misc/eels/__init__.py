@@ -1,5 +1,3 @@
-from exspy._misc.eels.hydrogenic_gos import HydrogenicGOS
-from exspy._misc.eels.gosh_gos import GoshGOS
-from exspy._misc.eels.hartree_slater_gos import HartreeSlaterGOS
+import lazy_loader
 
-__all__ = ["HydrogenicGOS", "GoshGOS", "HartreeSlaterGOS"]
+__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)

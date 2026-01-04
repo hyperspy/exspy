@@ -17,10 +17,10 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-import hyperspy.api as hs
+from hyperspy.components import Expression
 
 
-class EELSArctan(hs.model.components1D.Expression):
+class EELSArctan(Expression):
     r"""Arctan function component for EELS (with minimum at zero).
 
     .. math::

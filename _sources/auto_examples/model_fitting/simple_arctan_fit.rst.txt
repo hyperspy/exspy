@@ -37,14 +37,18 @@ Fit an arctan function.
 
  .. code-block:: none
 
+    /opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/rsciio/utils/rgb_tools.py:62: VisibleDeprecationWarning: The module `rsciio.utils.rgb_tools` has been renamed to `rsciio.utils.rgb` and it will be removed in version 1.0. Use `RGB_DTYPES` instead
+      warnings.warn(
+    /opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/rsciio/utils/rgb_tools.py:62: VisibleDeprecationWarning: The module `rsciio.utils.rgb_tools` has been renamed to `rsciio.utils.rgb` and it will be removed in version 1.0.
+      warnings.warn(
     Model1D: Simple arctan fit
     CurrentComponentValues: Arctan
     Active: True
     Parameter Name |    Free |      Value |        Std |        Min |        Max | Linear
     ============== | ======= | ========== | ========== | ========== | ========== | ======
-                 A |    True | 1.00364076 | 0.00213567 |       None |       None |   True
-                 k |    True | 1.22395268 | 0.11634980 |       None |       None |  False
-                x0 |    True | 0.03707586 | 0.07045415 |       None |       None |  False
+                 A |    True | 1.00201204 | 0.00210596 |       None |       None |   True
+                 k |    True | 0.89997105 | 0.07089802 |       None |       None |  False
+                x0 |    True | -0.0863293 | 0.08268254 |       None |       None |  False
 
 
 
@@ -91,7 +95,7 @@ Fit an arctan function.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.366 seconds)
+   **Total running time of the script:** (0 minutes 0.371 seconds)
 
 
 .. _sphx_glr_download_auto_examples_model_fitting_simple_arctan_fit.py:

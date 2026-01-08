@@ -16,11 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-from ._dielectric_function import DielectricFunction, LazyDielectricFunction
-from ._eds import EDSSpectrum, LazyEDSSpectrum
-from ._eds_sem import EDSSEMSpectrum, LazyEDSSEMSpectrum
-from ._eds_tem import EDSTEMSpectrum, LazyEDSTEMSpectrum
-from ._eels import EELSSpectrum, LazyEELSSpectrum
+from ._dielectric_function import DielectricFunction
+from ._eds import EDSSpectrum
+from ._eds_sem import EDSSEMSpectrum
+from ._eds_tem import EDSTEMSpectrum
+from ._eels import EELSSpectrum
+from ._lazy_dielectric_function import LazyDielectricFunction
+from ._lazy_eds import LazyEDSSpectrum
+from ._lazy_eds_sem import LazyEDSSEMSpectrum
+from ._lazy_eds_tem import LazyEDSTEMSpectrum
+from ._lazy_eels import LazyEELSSpectrum
 
 __all__ = [
     "DielectricFunction",

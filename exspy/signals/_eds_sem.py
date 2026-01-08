@@ -20,12 +20,11 @@ import logging
 
 import traits.api as t
 
-from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 from hyperspy.signals._signal import BaseSetMetadataItems
 from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
 
-from exspy.signals import EDSSpectrum, LazyEDSSpectrum
 from exspy._defaults_parser import preferences
+from exspy.signals import EDSSpectrum
 
 
 _logger = logging.getLogger(__name__)
@@ -312,9 +311,3 @@ class EDSSEMSpectrum(EDSSpectrum):
             **kwargs,
         )
         return model
-
-
-class LazyEDSSEMSpectrum(EDSSEMSpectrum, LazyEDSSpectrum):
-    """Lazy signal class for EDS spectra measured in an SEM."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSSEMSpectrum")

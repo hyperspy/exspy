@@ -244,7 +244,7 @@ def ratio(edge_A, edge_B):
     return ratio, ratio_std
 
 
-def eels_constant(s, zlp, t):
+def eels_constant_dielectric(s, zlp, t):
     r"""Calculate the constant of proportionality (k) in the relationship
     between the EELS signal and the dielectric function.
     dielectric function from a single scattering distribution (SSD) using

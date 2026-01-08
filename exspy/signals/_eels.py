@@ -26,7 +26,7 @@ import traits.api as t
 
 import hyperspy.api as hs
 from hyperspy.signals._signal import BaseSetMetadataItems
-from hyperspy.signals import BaseSignal, Signal1D, LazySignal1D
+from hyperspy.signals import BaseSignal, Signal1D
 from hyperspy.misc.utils import display, isiterable, underline
 from hyperspy.misc.math_tools import optimal_fft_size
 
@@ -42,7 +42,6 @@ from hyperspy.docstrings.signal import (
     NUM_WORKERS_ARG,
     SIGNAL_MASK_ARG,
     NAVIGATION_MASK_ARG,
-    LAZYSIGNAL_DOC,
 )
 
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
@@ -2027,9 +2026,3 @@ class EELSSpectrum(Signal1D):
             mask.data = scipy.ndimage.binary_erosion(mask.data, border_value=1)
             mask.data = scipy.ndimage.binary_dilation(mask.data, border_value=0)
         return mask
-
-
-class LazyEELSSpectrum(EELSSpectrum, LazySignal1D):
-    """Lazy signal class for EELS spectra."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EELSSpectrum")

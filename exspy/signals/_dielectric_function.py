@@ -19,9 +19,9 @@
 import numpy as np
 import scipy
 
-from hyperspy.signals import ComplexSignal1D, LazyComplexSignal1D
-from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
-from exspy._misc.eels.tools import eels_constant
+from hyperspy.signals import ComplexSignal1D
+
+from exspy._misc import eels
 
 
 class DielectricFunction(ComplexSignal1D):
@@ -156,7 +156,7 @@ class DielectricFunction(ComplexSignal1D):
                 )
         data = (
             (-1 / self.data).imag
-            * eels_constant(self, zlp, t).data
+            * eels.eels_constant_dielectric(self, zlp, t).data
             * self.axes_manager.signal_axes[0].scale
         )
         s = self._deepcopy_with_new_data(data)
@@ -164,9 +164,3 @@ class DielectricFunction(ComplexSignal1D):
         s.set_signal_type("EELS")
         s.metadata.General.title = "EELS calculated from " + self.metadata.General.title
         return s
-
-
-class LazyDielectricFunction(DielectricFunction, LazyComplexSignal1D):
-    """Lazy signal class for dielectric functions."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "DielectricFunction")

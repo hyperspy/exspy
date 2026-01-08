@@ -26,10 +26,9 @@ import numpy as np
 
 import hyperspy.api as hs
 from hyperspy import utils
-from hyperspy.signals import BaseSignal, Signal1D, LazySignal1D
+from hyperspy.signals import BaseSignal, Signal1D
 from hyperspy.misc.utils import isiterable
 from hyperspy.docstrings.plot import BASE_PLOT_DOCSTRING_PARAMETERS, PLOT1D_DOCSTRING
-from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
 from exspy._docstrings.eds import (
     ENERGY_RANGE_PARAMETER,
@@ -41,7 +40,6 @@ from exspy._docstrings.eds import (
 )
 from exspy._misc.elements import elements as elements_db
 from exspy._misc.eds import utils as utils_eds
-
 
 _logger = logging.getLogger(__name__)
 
@@ -1314,9 +1312,3 @@ class EDSSpectrum(Signal1D):
         SORTING_PARAMETER.replace("    ", "        "),
         FLOAT_FORMAT_PARAMETER.replace("    ", "        "),
     )
-
-
-class LazyEDSSpectrum(EDSSpectrum, LazySignal1D):
-    """Lazy general signal class for EDS spectra."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSSpectrum")

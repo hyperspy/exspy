@@ -10,6 +10,6 @@
 # The field 'threshold' and 'edge' are taken from Gatan EELS atlas
 # https://eels.info/atlas (retrieved in June 2020)
 
-import lazy_loader
+from ._elements import elements, elements_db
 
-__getattr__, __dir__, __all__ = lazy_loader.attach_stub("exspy._misc", __file__)
+__all__ = ["elements", "elements_db"]

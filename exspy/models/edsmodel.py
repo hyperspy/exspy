@@ -29,7 +29,7 @@ from hyperspy.models.model1d import Model1D
 
 from exspy import signals
 from exspy._misc.eds.utils import _get_element_and_line
-from exspy._misc.elements import elements as elements_db
+from exspy._misc import elements
 from exspy._misc.eds import utils as utils_eds
 
 _logger = logging.getLogger(__name__)
@@ -40,9 +40,9 @@ sigma2fwhm = 2 * math.sqrt(2 * math.log(2))
 
 def _get_weight(element, line, weight_line=None):
     if weight_line is None:
-        weight_line = elements_db[element]["Atomic_properties"]["Xray_lines"][line][
-            "weight"
-        ]
+        weight_line = elements.elements[element]["Atomic_properties"]["Xray_lines"][
+            line
+        ]["weight"]
     return "x * {}".format(weight_line)
 
 
@@ -257,7 +257,7 @@ class EDSModel(Model1D):
                 )
             component.A.map["is_set"] = True
             component.A.ext_force_positive = True
-            for li in elements_db[element]["Atomic_properties"]["Xray_lines"]:
+            for li in elements.elements[element]["Atomic_properties"]["Xray_lines"]:
                 if line[0] in li and line != li:
                     xray_sub = element + "_" + li
                     if (
@@ -692,7 +692,7 @@ class EDSModel(Model1D):
             component.A.bmin = 0.0
             component.A.bmax = None
             element, line = utils_eds._get_element_and_line(component.name)
-            for li in elements_db[element]["Atomic_properties"]["Xray_lines"]:
+            for li in elements.elements[element]["Atomic_properties"]["Xray_lines"]:
                 if line[0] in li and line != li:
                     xray_sub = element + "_" + li
                     if xray_sub in self:

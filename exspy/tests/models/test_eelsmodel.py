@@ -32,7 +32,7 @@ from hyperspy.decorators import lazifyTestClass
 from hyperspy.exceptions import VisibleDeprecationWarning
 
 from exspy._misc.eels.gosh_gos import _DFT_GOSH, _DIRAC_GOSH
-from exspy._misc.elements import elements_db as elements
+from exspy.material import elements
 from exspy.signals import EELSSpectrum
 
 

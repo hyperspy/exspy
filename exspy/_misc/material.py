@@ -21,10 +21,9 @@ import numpy as np
 import numbers
 import copy
 
-from exspy._misc.elements import elements as elements_db
-from exspy._misc.eds.ffast_mac import ffast_mac_db as ffast_mac
-from exspy._misc.eds import utils as utils_eds
-from hyperspy.misc.utils import stack
+import hyperspy.api as hs
+
+from exspy._misc import eds as eds_utils
 
 
 __all__ = [
@@ -66,7 +65,7 @@ def _weight_to_atomic(weight_percent, elements):
         )
     atomic_weights = np.array(
         [
-            elements_db[element]["General_properties"]["atomic_weight"]
+            elements.elements[element]["General_properties"]["atomic_weight"]
             for element in elements
         ]
     )
@@ -107,12 +106,10 @@ def weight_to_atomic(weight_percent, elements="auto"):
     exspy.material.atomic_to_weight
 
     """
-    from hyperspy.signals import BaseSignal
-
     elements = _elements_auto(weight_percent, elements)
 
-    if isinstance(weight_percent[0], BaseSignal):
-        atomic_percent = stack(weight_percent)
+    if isinstance(weight_percent[0], hs.signals.BaseSignal):
+        atomic_percent = hs.stack(weight_percent)
         atomic_percent.data = _weight_to_atomic(atomic_percent.data, elements)
         atomic_percent.data = np.nan_to_num(atomic_percent.data)
         atomic_percent = atomic_percent.split()
@@ -153,7 +150,7 @@ def _atomic_to_weight(atomic_percent, elements):
         )
     atomic_weights = np.array(
         [
-            elements_db[element]["General_properties"]["atomic_weight"]
+            elements.elements[element]["General_properties"]["atomic_weight"]
             for element in elements
         ]
     )
@@ -194,11 +191,9 @@ def atomic_to_weight(atomic_percent, elements="auto"):
     exspy.material.weight_to_atomic
 
     """
-    from hyperspy.signals import BaseSignal
-
     elements = _elements_auto(atomic_percent, elements)
-    if isinstance(atomic_percent[0], BaseSignal):
-        weight_percent = stack(atomic_percent, show_progressbar=False)
+    if isinstance(atomic_percent[0], hs.signals.BaseSignal):
+        weight_percent = hs.stack(atomic_percent, show_progressbar=False)
         weight_percent.data = _atomic_to_weight(weight_percent.data, elements)
         weight_percent = weight_percent.split()
         for i, el in enumerate(elements):
@@ -247,7 +242,7 @@ def _density_of_mixture(weight_percent, elements, mean="harmonic"):
         )
     densities = np.array(
         [
-            elements_db[element]["Physical_properties"]["density (g/cm^3)"]
+            elements.elements[element]["Physical_properties"]["density (g/cm^3)"]
             for element in elements
         ]
     )
@@ -306,12 +301,10 @@ def density_of_mixture(weight_percent, elements="auto", mean="harmonic"):
     8.6903187973131466
 
     """
-    from hyperspy.signals import BaseSignal
-
     elements = _elements_auto(weight_percent, elements)
-    if isinstance(weight_percent[0], BaseSignal):
+    if isinstance(weight_percent[0], hs.signals.BaseSignal):
         density = weight_percent[0]._deepcopy_with_new_data(
-            _density_of_mixture(stack(weight_percent).data, elements, mean=mean)
+            _density_of_mixture(hs.stack(weight_percent).data, elements, mean=mean)
         )
         return density
     else:
@@ -354,15 +347,15 @@ def mass_absorption_coefficient(element, energies):
        S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
        Scattering Tables (version 2.1). https://dx.doi.org/10.18434/T4HS32
     """
-    energies_db = np.array(ffast_mac[element].energies_keV)
-    macs = np.array(ffast_mac[element].mass_absorption_coefficient_cm2g)
+    energies_db = np.array(eds_utils.ffast_mac[element]["energies (keV)"])
+    macs = np.array(eds_utils.ffast_mac[element]["mass_absorption_coefficient (cm2/g)"])
     energies = copy.copy(energies)
     if isinstance(energies, str):
-        energies = utils_eds._get_energy_xray_line(energies)
+        energies = eds_utils._get_energy_xray_line(energies)
     elif isinstance(energies, Iterable):
         for i, energy in enumerate(energies):
             if isinstance(energy, str):
-                energies[i] = utils_eds._get_energy_xray_line(energy)
+                energies[i] = eds_utils._get_energy_xray_line(energy)
     index = np.searchsorted(energies_db, energies)
     mac_res = np.exp(
         np.log(macs[index - 1])
@@ -474,13 +467,11 @@ def mass_absorption_mixture(weight_percent, elements="auto", energies="auto"):
        S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
        Scattering Tables (version 2.1). https://dx.doi.org/10.18434/T4HS32
     """
-    from hyperspy.signals import BaseSignal
-
     elements = _elements_auto(weight_percent, elements)
     energies = _lines_auto(weight_percent, energies)
-    if isinstance(weight_percent[0], BaseSignal):
+    if isinstance(weight_percent[0], hs.signals.BaseSignal):
         weight_per = np.array([wt.data for wt in weight_percent])
-        mac_res = stack(
+        mac_res = hs.stack(
             [weight_percent[0].deepcopy()] * len(energies), show_progressbar=False
         )
         mac_res.data = _mass_absorption_mixture(weight_per, elements, energies)

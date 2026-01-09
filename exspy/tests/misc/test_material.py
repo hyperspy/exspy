@@ -20,7 +20,7 @@ import numpy as np
 import pytest
 
 import exspy as ex
-from exspy._misc.elements import elements_db
+from exspy._misc import elements
 import hyperspy.api as hs
 
 
@@ -32,7 +32,7 @@ class TestWeightToFromAtomic:
         self.at = [100 * nat / float(sum(natoms)) for nat in natoms]
         atomic_weight = np.array(
             [
-                elements_db[element].General_properties.atomic_weight
+                elements.elements_db[element].General_properties.atomic_weight
                 for element in self.elements
             ]
         )
@@ -65,7 +65,10 @@ def test_density_of_mixture():
     elements = ("Cu", "Sn")
     wt = (88.0, 12.0)
     densities = np.array(
-        [elements_db[element].Physical_properties.density_gcm3 for element in elements]
+        [
+            elements.elements_db[element].Physical_properties.density_gcm3
+            for element in elements
+        ]
     )
 
     volumes = wt * densities

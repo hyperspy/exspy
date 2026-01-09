@@ -45,7 +45,7 @@ from hyperspy.docstrings.signal import (
 )
 
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
-from exspy._misc.elements import elements as elements_db
+from exspy._misc import elements
 from exspy._misc.eels.tools import get_edges_near_energy
 from exspy._misc.eels.electron_inelastic_mean_free_path import (
     iMFP_Iakoubovskii,
@@ -126,7 +126,7 @@ class EELSSpectrum(Signal1D):
         for element in elements:
             if isinstance(element, bytes):
                 element = element.decode()
-            if element in elements_db:
+            if element in elements.elements:
                 self.elements.add(element)
             else:
                 raise ValueError(
@@ -157,9 +157,11 @@ class EELSSpectrum(Signal1D):
         end_energy = Eaxis[-1]
         for element in self.elements:
             e_shells = list()
-            for shell in elements_db[element]["Atomic_properties"]["Binding_energies"]:
+            for shell in elements.elements[element]["Atomic_properties"][
+                "Binding_energies"
+            ]:
                 if shell[-1] != "a":
-                    energy = elements_db[element]["Atomic_properties"][
+                    energy = elements.elements[element]["Atomic_properties"][
                         "Binding_energies"
                     ][shell]["onset_energy (eV)"]
                     if start_energy <= energy <= end_energy:
@@ -253,9 +255,9 @@ class EELSSpectrum(Signal1D):
 
         for edge in edges:
             element, shell = edge.split("_")
-            shell_dict = elements_db[element]["Atomic_properties"]["Binding_energies"][
-                shell
-            ]
+            shell_dict = elements.elements[element]["Atomic_properties"][
+                "Binding_energies"
+            ][shell]
 
             onset = shell_dict["onset_energy (eV)"]
             relevance = shell_dict["relevance"]
@@ -1806,7 +1808,7 @@ class EELSSpectrum(Signal1D):
                 memtype = "element"
 
             try:
-                Binding_energies = elements_db[element]["Atomic_properties"][
+                Binding_energies = elements.elements[element]["Atomic_properties"][
                     "Binding_energies"
                 ]
             except KeyError as err:
@@ -1884,7 +1886,7 @@ class EELSSpectrum(Signal1D):
             edges_dict = {}
             for edge in edges:
                 element, ss = edge.split("_")
-                Binding_energies = elements_db[element]["Atomic_properties"][
+                Binding_energies = elements.elements[element]["Atomic_properties"][
                     "Binding_energies"
                 ]
                 edges_dict[edge] = Binding_energies[ss]["onset_energy (eV)"]
@@ -1932,7 +1934,9 @@ class EELSSpectrum(Signal1D):
             elements.update([element])
 
         for element in elements:
-            ss_info = elements_db[element]["Atomic_properties"]["Binding_energies"]
+            ss_info = elements.elements[element]["Atomic_properties"][
+                "Binding_energies"
+            ]
 
             for subshell in ss_info:
                 sse = ss_info[subshell]["onset_energy (eV)"]

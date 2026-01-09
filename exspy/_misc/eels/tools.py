@@ -25,7 +25,7 @@ import scipy
 
 import hyperspy.api as hs
 from hyperspy.misc.array_tools import rebin
-from exspy._misc.elements import elements as elements_db
+from exspy._misc import elements
 
 _logger = logging.getLogger(__name__)
 
@@ -390,7 +390,7 @@ def get_edges_near_energy(energy, width=10, only_major=False, order="closest"):
 
     # find all subshells that have its energy within range
     valid_edges = []
-    for element, element_info in elements_db.items():
+    for element, element_info in elements.elements.items():
         try:
             for shell, shell_info in element_info["Atomic_properties"][
                 "Binding_energies"
@@ -443,7 +443,9 @@ def get_info_from_edges(edges):
     info = []
     for edge in edges:
         element, subshell = edge.split("_")
-        d = elements_db[element]["Atomic_properties"]["Binding_energies"][subshell]
+        d = elements.elements[element]["Atomic_properties"]["Binding_energies"][
+            subshell
+        ]
         info.append(d)
 
     return info

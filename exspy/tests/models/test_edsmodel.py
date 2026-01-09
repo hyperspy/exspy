@@ -24,7 +24,7 @@ from hyperspy.misc import utils
 
 import exspy
 from exspy._misc.eds import utils as utils_eds
-from exspy._misc.elements import elements as elements_db
+from exspy._misc import elements
 
 
 # Create this outside the test class to
@@ -168,7 +168,9 @@ class TestlineFit:
 
         np.testing.assert_allclose(
             m["Fe_Ka"].centre.value,
-            elements_db["Fe"]["Atomic_properties"]["Xray_lines"]["Ka"]["energy (keV)"],
+            elements.elements["Fe"]["Atomic_properties"]["Xray_lines"]["Ka"][
+                "energy (keV)"
+            ],
             atol=1e-6,
         )
 

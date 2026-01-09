@@ -22,7 +22,7 @@ import logging
 
 import traits.api as t
 import numpy as np
-from scipy import constants
+import scipy
 import pint
 
 import hyperspy.api as hs
@@ -30,15 +30,13 @@ from hyperspy.signals._signal import BaseSetMetadataItems, BaseSignal
 from hyperspy import utils
 from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
 from hyperspy.misc.utils import isiterable
-from hyperspy.external.progressbar import progressbar
 from hyperspy.axes import DataAxis
 
 from exspy.signals import EDSSpectrum
 from exspy._defaults_parser import preferences
 from exspy._docstrings.eds import DOSE_DOC
 from exspy._misc import material
-from exspy._misc.eds import utils as utils_eds
-from exspy._misc.elements import elements as elements_db
+from exspy._misc.eds import utils as eds_utils
 
 
 _logger = logging.getLogger(__name__)
@@ -422,6 +420,8 @@ class EDSTEMSpectrum(EDSSpectrum):
             if show_progressbar is None:  # pragma: no cover
                 show_progressbar = hs.preferences.General.show_progressbar
             if show_progressbar:
+                from hyperspy.external.progressbar import progressbar
+
                 pbar = progressbar(total=None, desc="Absorption correction calculation")
 
         composition = utils.stack(intensities, lazy=False, show_progressbar=False)
@@ -448,13 +448,13 @@ class EDSTEMSpectrum(EDSSpectrum):
         # kwargs to pass to the quantification function
         qkwargs = {}
         if method == "CL":
-            quantification_method = utils_eds.quantification_cliff_lorimer
+            quantification_method = eds_utils.quantification_cliff_lorimer
             qkwargs["mask"] = navigation_mask
         elif method == "zeta":
-            quantification_method = utils_eds.quantification_zeta_factor
+            quantification_method = eds_utils.quantification_zeta_factor
             qkwargs["dose"] = self._get_dose(method, beam_current, live_time)
         elif method == "cross_section":
-            quantification_method = utils_eds.quantification_cross_section
+            quantification_method = eds_utils.quantification_cross_section
             qkwargs["dose"] = self._get_dose(
                 method, beam_current, live_time, probe_area
             )
@@ -501,12 +501,12 @@ class EDSTEMSpectrum(EDSSpectrum):
 
             if method == "cross_section":
                 if absorption_correction:
-                    abs_corr_factor = utils_eds.get_abs_corr_cross_section(
+                    abs_corr_factor = eds_utils.get_abs_corr_cross_section(
                         composition.split(), number_of_atoms.split(), toa, probe_area
                     )
             else:
                 if absorption_correction:
-                    abs_corr_factor = utils_eds.get_abs_corr_zeta(
+                    abs_corr_factor = eds_utils.get_abs_corr_zeta(
                         composition.split(), mass_thickness, toa
                     )
 
@@ -542,7 +542,7 @@ class EDSTEMSpectrum(EDSSpectrum):
 
         # Label each of the elemental maps in the image stacks for composition.
         for i, xray_line in enumerate(xray_lines):
-            element, line = utils_eds._get_element_and_line(xray_line)
+            element, line = eds_utils._get_element_and_line(xray_line)
             composition[i].metadata.General.title = (
                 composition_units + " percent of " + element
             )
@@ -554,7 +554,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         # For the cross section method this is repeated for the number of atom maps
         if method == "cross_section":
             for i, xray_line in enumerate(xray_lines):
-                element, line = utils_eds._get_element_and_line(xray_line)
+                element, line = eds_utils._get_element_and_line(xray_line)
                 number_of_atoms[i].metadata.General.title = "atom counts of " + element
                 number_of_atoms[i].metadata.set_item("Sample.elements", ([element]))
                 number_of_atoms[i].metadata.set_item("Sample.xray_lines", ([xray_line]))
@@ -910,10 +910,10 @@ class EDSTEMSpectrum(EDSSpectrum):
                     probe_area = self.get_probe_area(
                         navigation_axes=self.axes_manager.navigation_axes
                     )
-            return (live_time * beam_current * 1e-9) / (constants.e * probe_area)
+            return (live_time * beam_current * 1e-9) / (scipy.constants.e * probe_area)
             # 1e-9 is included here because the beam_current is in nA.
         elif method == "zeta":
-            return live_time * beam_current * 1e-9 / constants.e
+            return live_time * beam_current * 1e-9 / scipy.constants.e
         else:
             raise Exception("Method need to be 'zeta' or 'cross_section'.")
 
@@ -940,19 +940,21 @@ class EDSTEMSpectrum(EDSSpectrum):
         mass_thickness : :py:class:`numpy.ndarray`
             Mass thickness in kg/m².
         """
+        from exspy._misc.elements import elements
+
         if isinstance(thickness, (float, int)):
             thickness_map = np.ones_like(weight_percent[0]) * thickness
         else:
             thickness_map = thickness
 
-        elements = [
+        elements_ = [
             intensity.metadata.Sample.elements[0] for intensity in weight_percent
         ]
         mass_thickness = np.zeros_like(weight_percent[0])
         densities = np.array(
             [
-                elements_db[element]["Physical_properties"]["density (g/cm^3)"]
-                for element in elements
+                elements[element]["Physical_properties"]["density (g/cm^3)"]
+                for element in elements_
             ]
         )
         for density, element_composition in zip(densities, weight_percent):

@@ -37,6 +37,8 @@ from exspy._docstrings.eds import (
     WIDTH_PARAMETER,
 )
 from exspy._misc import eds as eds_utils
+from exspy._misc import elements as elements_module
+
 
 _logger = logging.getLogger(__name__)
 
@@ -299,7 +301,7 @@ class EDSSpectrum(Signal1D):
         else:
             elements_ = set()
         for element in elements:
-            if element in elements.elements:
+            if element in elements_module.elements:
                 elements_.add(element)
             else:
                 raise ValueError(f"{element} is not a valid chemical element symbol.")
@@ -431,11 +433,13 @@ class EDSSpectrum(Signal1D):
                 raise ValueError(
                     "Invalid line symbol. Please provide a valid line symbol e.g. Fe_Ka"
                 )
-            if element in elements.elements:
+            if element in elements_module.elements:
                 elements.add(element)
                 if (
                     subshell
-                    in elements.elements[element]["Atomic_properties"]["Xray_lines"]
+                    in elements_module.elements[element]["Atomic_properties"][
+                        "Xray_lines"
+                    ]
                 ):
                     lines_len = len(xray_lines)
                     xray_lines.add(line)
@@ -498,7 +502,9 @@ class EDSSpectrum(Signal1D):
             # Possible line (existing and excited by electron)
             element_lines = []
             for subshell in list(
-                elements.elements[element]["Atomic_properties"]["Xray_lines"].keys()
+                elements_module.elements[element]["Atomic_properties"][
+                    "Xray_lines"
+                ].keys()
             ):
                 if only_lines and subshell not in only_lines:
                     continue

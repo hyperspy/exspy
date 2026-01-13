@@ -20,7 +20,7 @@ import logging
 
 import traits.api as t
 
-from hyperspy.signals._signal import BaseSetMetadataItems
+from hyperspy.signal import BaseSetMetadataItems
 from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
 
 from exspy._defaults_parser import preferences

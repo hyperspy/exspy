@@ -24,8 +24,8 @@ import hyperspy.api as hs
 from hyperspy.components1d import Lorentzian
 
 from exspy.components import VolumePlasmonDrude
-from exspy._misc.eels.tools import eels_constant
 from exspy.signals import EELSSpectrum
+from exspy._misc.eels.tools import eels_constant_dielectric
 
 
 class Test2D:
@@ -51,7 +51,7 @@ class Test2D:
             beam_energy=300.0, convergence_angle=5, collection_angle=10.0
         )
         s.axes_manager.signal_axes[0].scale = scale
-        k = eels_constant(s, i0, t)
+        k = eels_constant_dielectric(s, i0, t)
 
         vpm = VolumePlasmonDrude()
         m = s.create_model(auto_background=False)

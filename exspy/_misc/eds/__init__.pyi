@@ -1,5 +1,8 @@
 from .ffast_mac import ffast_mac, ffast_mac_db
 from .utils import (
+    _get_element_and_line,
+    _get_energy_xray_line,
+    _parse_only_lines,
     cross_section_to_zeta,
     electron_range,
     get_abs_corr_cross_section,
@@ -19,6 +22,9 @@ from .utils import (
 )
 
 __all__ = [
+    "_get_element_and_line",
+    "_get_energy_xray_line",
+    "_parse_only_lines",
     "cross_section_to_zeta",
     "electron_range",
     "ffast_mac",

@@ -25,7 +25,7 @@ import scipy
 import traits.api as t
 
 import hyperspy.api as hs
-from hyperspy.signals._signal import BaseSetMetadataItems
+from hyperspy.signal import BaseSetMetadataItems
 from hyperspy.signals import BaseSignal, Signal1D
 from hyperspy.misc.utils import display, isiterable, underline
 from hyperspy.misc.math_tools import optimal_fft_size
@@ -45,13 +45,12 @@ from hyperspy.docstrings.signal import (
 )
 
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
-from exspy._misc import elements
-from exspy._misc.eels.tools import get_edges_near_energy
+from exspy._misc import elements as elements_module
+from exspy._misc import eels
 from exspy._misc.eels.electron_inelastic_mean_free_path import (
     iMFP_Iakoubovskii,
     iMFP_angular_correction,
 )
-from exspy._signal_tools import EdgesRange
 
 
 _logger = logging.getLogger(__name__)
@@ -126,7 +125,7 @@ class EELSSpectrum(Signal1D):
         for element in elements:
             if isinstance(element, bytes):
                 element = element.decode()
-            if element in elements.elements:
+            if element in elements_module.elements:
                 self.elements.add(element)
             else:
                 raise ValueError(
@@ -157,11 +156,11 @@ class EELSSpectrum(Signal1D):
         end_energy = Eaxis[-1]
         for element in self.elements:
             e_shells = list()
-            for shell in elements.elements[element]["Atomic_properties"][
+            for shell in elements_module.elements[element]["Atomic_properties"][
                 "Binding_energies"
             ]:
                 if shell[-1] != "a":
-                    energy = elements.elements[element]["Atomic_properties"][
+                    energy = elements_module.elements[element]["Atomic_properties"][
                         "Binding_energies"
                     ][shell]["onset_energy (eV)"]
                     if start_energy <= energy <= end_energy:
@@ -207,6 +206,8 @@ class EELSSpectrum(Signal1D):
         """
 
         if energy == "interactive":
+            from exspy._signal_tools import EdgesRange
+
             er = EdgesRange(self, interactive=True)
             return er.gui(display=display, toolkit=toolkit)
         else:
@@ -244,7 +245,7 @@ class EELSSpectrum(Signal1D):
         """
 
         if edges is None and energy is not None:
-            edges = get_edges_near_energy(
+            edges = eels.get_edges_near_energy(
                 energy=energy, width=width, only_major=only_major, order=order
             )
         elif edges is None and energy is None:
@@ -255,7 +256,7 @@ class EELSSpectrum(Signal1D):
 
         for edge in edges:
             element, shell = edge.split("_")
-            shell_dict = elements.elements[element]["Atomic_properties"][
+            shell_dict = elements_module.elements[element]["Atomic_properties"][
                 "Binding_energies"
             ][shell]
 
@@ -1753,6 +1754,8 @@ class EELSSpectrum(Signal1D):
         """
         # the object is needed to connect replot method when axes_manager
         # indices changed
+        from exspy._signal_tools import EdgesRange
+
         _ = EdgesRange(self, interactive=False)
         self._add_edge_labels(edges)
 
@@ -1808,9 +1811,9 @@ class EELSSpectrum(Signal1D):
                 memtype = "element"
 
             try:
-                Binding_energies = elements.elements[element]["Atomic_properties"][
-                    "Binding_energies"
-                ]
+                Binding_energies = elements_module.elements[element][
+                    "Atomic_properties"
+                ]["Binding_energies"]
             except KeyError as err:
                 raise ValueError("'{}' is not a valid element".format(element)) from err
 
@@ -1886,9 +1889,9 @@ class EELSSpectrum(Signal1D):
             edges_dict = {}
             for edge in edges:
                 element, ss = edge.split("_")
-                Binding_energies = elements.elements[element]["Atomic_properties"][
-                    "Binding_energies"
-                ]
+                Binding_energies = elements_module.elements[element][
+                    "Atomic_properties"
+                ]["Binding_energies"]
                 edges_dict[edge] = Binding_energies[ss]["onset_energy (eV)"]
             edges = edges_dict
 
@@ -1934,7 +1937,7 @@ class EELSSpectrum(Signal1D):
             elements.update([element])
 
         for element in elements:
-            ss_info = elements.elements[element]["Atomic_properties"][
+            ss_info = elements_module.elements[element]["Atomic_properties"][
                 "Binding_energies"
             ]
 

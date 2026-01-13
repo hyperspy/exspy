@@ -24,6 +24,7 @@ import copy
 import hyperspy.api as hs
 
 from exspy._misc import eds as eds_utils
+from exspy._misc import elements as elements_module
 
 
 __all__ = [
@@ -65,7 +66,7 @@ def _weight_to_atomic(weight_percent, elements):
         )
     atomic_weights = np.array(
         [
-            elements.elements[element]["General_properties"]["atomic_weight"]
+            elements_module.elements[element]["General_properties"]["atomic_weight"]
             for element in elements
         ]
     )
@@ -150,7 +151,7 @@ def _atomic_to_weight(atomic_percent, elements):
         )
     atomic_weights = np.array(
         [
-            elements.elements[element]["General_properties"]["atomic_weight"]
+            elements_module.elements[element]["General_properties"]["atomic_weight"]
             for element in elements
         ]
     )
@@ -242,7 +243,7 @@ def _density_of_mixture(weight_percent, elements, mean="harmonic"):
         )
     densities = np.array(
         [
-            elements.elements[element]["Physical_properties"]["density (g/cm^3)"]
+            elements_module.elements[element]["Physical_properties"]["density (g/cm^3)"]
             for element in elements
         ]
     )

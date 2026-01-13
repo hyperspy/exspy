@@ -19,7 +19,8 @@
 
 import numpy as np
 
-from hyperspy.components import Component, Gaussian
+from hyperspy.component import Component
+from hyperspy.components1d import Gaussian
 
 
 class Vignetting(Component):

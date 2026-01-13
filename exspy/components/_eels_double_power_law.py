@@ -19,7 +19,7 @@
 
 import numpy as np
 
-from hyperspy.components import Expression
+from hyperspy.components1d import Expression
 
 from exspy._utils import parse_component_module
 

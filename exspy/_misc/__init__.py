@@ -18,8 +18,6 @@
 
 from time import sleep
 
-import pooch
-
 
 def _download_GOS_files(download_all=True):
     """
@@ -31,6 +29,7 @@ def _download_GOS_files(download_all=True):
         If True, download all GOS files. If False, download only recent GOS files.
         Default is True.
     """
+    import pooch
 
     def retry_and_sleep(url, known_hash, retries=3, sleep_time=30):
         for attempt in range(retries):

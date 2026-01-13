@@ -35,7 +35,7 @@ from exspy._docstrings.eds import (
     WEIGHT_THRESHOLD_PARAMETER,
     WIDTH_PARAMETER,
 )
-from exspy._misc import elements
+from exspy._misc import elements as elements_module
 
 
 eV2keV = 1000.0
@@ -69,7 +69,7 @@ def _get_energy_xray_line(xray_line):
     By example, if xray_line = 'Mn_Ka' this function returns 5.8987
     """
     element, line = _get_element_and_line(xray_line)
-    return elements.elements[element]["Atomic_properties"]["Xray_lines"][line][
+    return elements_module.elements[element]["Atomic_properties"]["Xray_lines"][line][
         "energy (keV)"
     ]
 
@@ -125,7 +125,7 @@ def get_xray_lines_near_energy(energy, width=0.2, only_lines=None):
     only_lines = _parse_only_lines(only_lines)
     valid_lines = []
     E_min, E_max = energy - width / 2.0, energy + width / 2.0
-    for element, el_props in elements.elements.items():
+    for element, el_props in elements_module.elements.items():
         # Not all elements in the DB have the keys, so catch KeyErrors
         try:
             lines = el_props["Atomic_properties"]["Xray_lines"]
@@ -233,7 +233,9 @@ def xray_range(xray_line, beam_energy, density="auto"):
 
     element, line = _get_element_and_line(xray_line)
     if density == "auto":
-        density = elements.elements[element]["Physical_properties"]["density (g/cm^3)"]
+        density = elements_module.elements[element]["Physical_properties"][
+            "density (g/cm^3)"
+        ]
     Xray_energy = _get_energy_xray_line(xray_line)
     # Note: magic numbers here are from Andersen-Hasler parameterization. See
     # docstring for associated references.
@@ -281,9 +283,11 @@ def electron_range(element, beam_energy, density="auto", tilt=0):
     """
 
     if density == "auto":
-        density = elements.elements[element]["Physical_properties"]["density (g/cm^3)"]
-    Z = elements.elements[element]["General_properties"]["Z"]
-    A = elements.elements[element]["General_properties"]["atomic_weight"]
+        density = elements_module.elements[element]["Physical_properties"][
+            "density (g/cm^3)"
+        ]
+    Z = elements_module.elements[element]["General_properties"]["Z"]
+    A = elements_module.elements[element]["General_properties"]["atomic_weight"]
     # Note: magic numbers here are from Kanaya-Okayama parameterization. See
     # docstring for associated references.
     return (
@@ -698,7 +702,7 @@ def get_abs_corr_cross_section(
     elements = [intensity.metadata.Sample.elements[0] for intensity in number_of_atoms]
     atomic_weights = np.array(
         [
-            elements.elements[element]["General_properties"]["atomic_weight"]
+            elements_module.elements[element]["General_properties"]["atomic_weight"]
             for element in elements
         ]
     )
@@ -750,7 +754,7 @@ def cross_section_to_zeta(cross_sections, elements):
         )
     zeta_factors = []
     for i, element in enumerate(elements):
-        atomic_weight = elements.elements[element]["General_properties"][
+        atomic_weight = elements_module.elements[element]["General_properties"][
             "atomic_weight"
         ]
         zeta = atomic_weight / (cross_sections[i] * scipy.constants.Avogadro * 1e-25)
@@ -785,7 +789,7 @@ def zeta_to_cross_section(zfactors, elements):
         )
     cross_sections = []
     for i, element in enumerate(elements):
-        atomic_weight = elements.elements[element]["General_properties"][
+        atomic_weight = elements_module.elements[element]["General_properties"][
             "atomic_weight"
         ]
         xsec = atomic_weight / (zfactors[i] * scipy.constants.Avogadro * 1e-25)
@@ -904,7 +908,7 @@ def get_xray_lines(elements, weight_threshold=0.1, energy_range=None, only_lines
             # no xray lines for these elements in the database
             d = {
                 k: v
-                for k, v in elements.elements[element]["Atomic_properties"][
+                for k, v in elements_module.elements[element]["Atomic_properties"][
                     "Xray_lines"
                 ].items()
                 if (
@@ -1000,7 +1004,7 @@ def print_lines_near_energy(
     """
     energy_range = [energy - width, energy + width]
     dict_tree = get_xray_lines(
-        elements.elements.keys(), weight_threshold, energy_range, only_lines
+        elements_module.elements.keys(), weight_threshold, energy_range, only_lines
     )
     # Convert to a table
     table = _as_xray_lines_table(dict_tree, sorting, float_format)

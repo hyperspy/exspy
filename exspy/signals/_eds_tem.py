@@ -23,10 +23,9 @@ import logging
 import traits.api as t
 import numpy as np
 import scipy
-import pint
 
 import hyperspy.api as hs
-from hyperspy.signals._signal import BaseSetMetadataItems, BaseSignal
+from hyperspy.signal import BaseSetMetadataItems, BaseSignal
 from hyperspy import utils
 from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
 from hyperspy.misc.utils import isiterable
@@ -830,11 +829,11 @@ class EDSTEMSpectrum(EDSSpectrum):
         scales = []
 
         for axis in navigation_axes:
+            if not isinstance(navigation_axes, DataAxis):
+                axis = self.axes_manager[axis]
             try:
-                if not isinstance(navigation_axes, DataAxis):
-                    axis = self.axes_manager[axis]
                 scales.append(axis.convert_to_units("nm", inplace=False)[0])
-            except pint.DimensionalityError:
+            except Exception:
                 raise ValueError(
                     f"The unit of the axis {axis} has not the dimension of length."
                 )

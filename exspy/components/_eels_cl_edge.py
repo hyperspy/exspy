@@ -25,7 +25,7 @@ import math
 import numpy as np
 import scipy
 
-from hyperspy.components import Component
+from hyperspy.component import Component
 from hyperspy.ui_registry import add_gui_method
 from hyperspy.exceptions import VisibleDeprecationWarning
 

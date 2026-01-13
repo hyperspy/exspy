@@ -17,7 +17,7 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-from hyperspy.components import Expression
+from hyperspy.components1d import Expression
 
 
 class EELSArctan(Expression):

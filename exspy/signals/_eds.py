@@ -36,7 +36,7 @@ from exspy._docstrings.eds import (
     WEIGHT_THRESHOLD_PARAMETER,
     WIDTH_PARAMETER,
 )
-from exspy._misc import eds as eds_utils
+import exspy.utils.eds as eds_utils
 from exspy._misc import elements as elements_module
 
 

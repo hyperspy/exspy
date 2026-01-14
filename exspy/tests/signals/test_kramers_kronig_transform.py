@@ -25,7 +25,7 @@ from hyperspy.components1d import Lorentzian
 
 from exspy.components import VolumePlasmonDrude
 from exspy.signals import EELSSpectrum
-from exspy._misc.eels.tools import eels_constant_dielectric
+from exspy.utils.eels import eels_constant_dielectric
 
 
 class Test2D:

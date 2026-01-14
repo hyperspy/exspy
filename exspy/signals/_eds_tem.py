@@ -35,7 +35,7 @@ from exspy.signals import EDSSpectrum
 from exspy._defaults_parser import preferences
 from exspy._docstrings.eds import DOSE_DOC
 from exspy._misc import material
-from exspy._misc.eds import utils as eds_utils
+import exspy.utils.eds as eds_utils
 
 
 _logger = logging.getLogger(__name__)

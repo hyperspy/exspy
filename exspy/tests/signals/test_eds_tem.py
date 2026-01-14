@@ -27,7 +27,7 @@ from hyperspy.decorators import lazifyTestClass
 
 import exspy
 from exspy._defaults_parser import preferences
-from exspy._misc.eds import utils as utils_eds
+import exspy.utils.eds as eds_utils
 from exspy.signals import EDSTEMSpectrum
 
 
@@ -421,14 +421,14 @@ class Test_quantification:
         factors = [3, 5]
         method = "zeta"
         intensities = s.get_lines_intensity()
-        zfactors = utils_eds.cross_section_to_zeta([3, 5], ["Al", "Zn"])
-        factors2 = utils_eds.zeta_to_cross_section(zfactors, ["Al", "Zn"])
+        zfactors = eds_utils.cross_section_to_zeta([3, 5], ["Al", "Zn"])
+        factors2 = eds_utils.zeta_to_cross_section(zfactors, ["Al", "Zn"])
         np.testing.assert_allclose(factors, factors2, atol=1e-3)
 
         res = s.quantification(
             intensities,
             method,
-            factors=utils_eds.cross_section_to_zeta([22.402, 21.7132], ["Al", "Zn"]),
+            factors=eds_utils.cross_section_to_zeta([22.402, 21.7132], ["Al", "Zn"]),
         )
         res2 = s.quantification(
             intensities, method="cross_section", factors=[22.402, 21.7132]
@@ -464,7 +464,7 @@ class Test_quantification:
         s = self.signal
         method = "cross_section"
         zfactors = [20, 50]
-        factors = utils_eds.zeta_to_cross_section(zfactors, ["Al", "Zn"])
+        factors = eds_utils.zeta_to_cross_section(zfactors, ["Al", "Zn"])
         intensities = s.get_lines_intensity()
         res = s.quantification(intensities, method, factors, absorption_correction=True)
         res2 = s.quantification(
@@ -489,7 +489,7 @@ class Test_quantification:
             warnings.filterwarnings(
                 "ignore", message="divide by zero encountered", category=RuntimeWarning
             )
-            quant = utils_eds.quantification_cliff_lorimer(intens, [1, 1, 3]).T
+            quant = eds_utils.quantification_cliff_lorimer(intens, [1, 1, 3]).T
         np.testing.assert_allclose(
             quant,
             np.array(
@@ -506,13 +506,13 @@ class Test_quantification:
     def test_edx_cross_section_to_zeta(self):
         cs = [3, 6]
         elements = ["Pt", "Ni"]
-        res = utils_eds.cross_section_to_zeta(cs, elements)
+        res = eds_utils.cross_section_to_zeta(cs, elements)
         np.testing.assert_allclose(res, [1079.815272, 162.4378035], atol=1e-3)
 
     def test_zeta_to_edx_cross_section(self):
         factors = [1079.815272, 162.4378035]
         elements = ["Pt", "Ni"]
-        res = utils_eds.zeta_to_cross_section(factors, elements)
+        res = eds_utils.zeta_to_cross_section(factors, elements)
         np.testing.assert_allclose(res, [3, 6], atol=1e-3)
 
     def test_quant_element_order(self):
@@ -579,7 +579,7 @@ def test_decomposition(normalise_poissonian_noise):
 @lazifyTestClass
 class Test_simple_model:
     def setup_method(self, method):
-        s = utils_eds.xray_lines_model(elements=["Al", "Zn"], weight_percents=[50, 50])
+        s = eds_utils.xray_lines_model(elements=["Al", "Zn"], weight_percents=[50, 50])
         self.signal = s
 
     def test_intensity(self):
@@ -636,7 +636,7 @@ def test_with_signals_examples():
 
 class Test_eds_markers:
     def setup_method(self, method):
-        s = utils_eds.xray_lines_model(elements=["Al", "Zn"], weight_percents=[50, 50])
+        s = eds_utils.xray_lines_model(elements=["Al", "Zn"], weight_percents=[50, 50])
         self.signal = s
 
     def test_plot_auto_add(self):

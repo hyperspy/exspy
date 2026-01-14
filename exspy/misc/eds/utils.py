@@ -2,7 +2,7 @@ import warnings
 
 from hyperspy.exceptions import VisibleDeprecationWarning
 
-from exspy._misc.eds.utils import (
+from exspy.utils.eds import (
     cross_section_to_zeta,
     electron_range,
     get_xray_lines,

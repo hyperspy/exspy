@@ -18,7 +18,7 @@
 
 import numpy as np
 
-from exspy._misc.eds.utils import (
+from exspy.utils.eds import (
     get_xray_lines,
     get_xray_lines_near_energy,
     print_lines,

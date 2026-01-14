@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "exspy"
 description = "EELS and EDS analysis with the HyperSpy framework"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 readme = "README.md"
 keywords=[
     "python",
@@ -32,11 +32,11 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Physics",
   "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
   "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
   "dask[array]",
@@ -69,9 +69,8 @@ file = "LICENSE"
   "sphinx-design",
   "sphinx-favicon",
   "sphinx-gallery",
-  "sphinxcontrib-towncrier",
-  # unpin when sphinxcontrib-towncrier support more recent version to towncrier
-  "towncrier<24",
+  "sphinxcontrib-towncrier>=0.5.0a0",  # towncrier 24.7.0 support
+  "towncrier",
 ]
 speed = [
     "hyperspy[speed]",

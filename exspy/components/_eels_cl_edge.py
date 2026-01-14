@@ -16,9 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-
 import functools
-import logging
 import warnings
 import math
 
@@ -30,9 +28,8 @@ from hyperspy.ui_registry import add_gui_method
 from hyperspy.exceptions import VisibleDeprecationWarning
 
 from exspy import signals
-from exspy._misc import eels
-
-_logger = logging.getLogger(__name__)
+import exspy.utils.eels as eels_utils
+import exspy._misc.eels as eels_misc
 
 
 class FSet(set):
@@ -177,17 +174,17 @@ class EELSCLEdge(Component):
             )
             GOS = "dft"
         if GOS == "dft":
-            self.GOS = eels.GoshGOS(
+            self.GOS = eels_misc.GoshGOS(
                 element_subshell, gos_file_path=gos_file_path, source="dft"
             )
         elif GOS == "dirac":
-            self.GOS = eels.GoshGOS(
+            self.GOS = eels_misc.GoshGOS(
                 element_subshell, gos_file_path=gos_file_path, source="dirac"
             )
         elif GOS == "Hartree-Slater":  # pragma: no cover
-            self.GOS = eels.HartreeSlaterGOS(element_subshell)
+            self.GOS = eels_misc.HartreeSlaterGOS(element_subshell)
         elif GOS == "hydrogenic":
-            self.GOS = eels.HydrogenicGOS(element_subshell)
+            self.GOS = eels_misc.HydrogenicGOS(element_subshell)
         else:
             raise ValueError(
                 "GOS must be one of 'dft', 'dirac','hydrogenic' or 'Hartree-Slater'."
@@ -289,7 +286,7 @@ class EELSCLEdge(Component):
 
     def _calculate_effective_angle(self):
         try:
-            self.effective_angle.value = eels.effective_angle(
+            self.effective_angle.value = eels_utils.effective_angle(
                 self.E0,
                 self.GOS.onset_energy,
                 self.convergence_angle,
@@ -553,7 +550,7 @@ class EELSCLEdge(Component):
 
 
 EELSCLEdge.__doc__ %= (
-    eels._GOSH_SOURCES["dft"]["DOI"],
-    eels._GOSH_SOURCES["dirac"]["DOI"],
-    eels._GOSH_SOURCES["dft"]["DOI"],
+    eels_misc._GOSH_SOURCES["dft"]["DOI"],
+    eels_misc._GOSH_SOURCES["dirac"]["DOI"],
+    eels_misc._GOSH_SOURCES["dft"]["DOI"],
 )

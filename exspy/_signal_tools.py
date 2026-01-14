@@ -4,7 +4,7 @@ import traits.api as t
 from hyperspy.exceptions import SignalDimensionError
 from hyperspy.ui_registry import add_gui_method
 from hyperspy.signal_tools import SpanSelectorInSignal1D
-from exspy._misc.eels.tools import get_edges_near_energy, get_info_from_edges
+import exspy.utils.eels as eels_utils
 
 
 @add_gui_method(toolkey="exspy.EELSSpectrum.print_edges_table")
@@ -50,9 +50,9 @@ class EdgesRange(SpanSelectorInSignal1D):
         mid_energy = (self.axis.low_value + self.axis.high_value) / 2
         rng = self.axis.high_value - self.axis.low_value
         self.edge_all = np.asarray(
-            get_edges_near_energy(mid_energy, rng, order=self.order)
+            eels_utils.get_edges_near_energy(mid_energy, rng, order=self.order)
         )
-        info = get_info_from_edges(self.edge_all)
+        info = eels_utils.get_info_from_edges(self.edge_all)
 
         energy_all = []
         relevance_all = []

@@ -20,16 +20,16 @@ import numpy as np
 import pytest
 
 from hyperspy.decorators import lazifyTestClass
-from hyperspy.misc import utils
+import hyperspy.api as hs
 
 import exspy
-from exspy._misc.eds import utils as utils_eds
+import exspy.utils.eds as eds_utils
 from exspy._misc import elements as elements_module
 
 
 # Create this outside the test class to
 # reduce computation in test suite by ~10seconds
-s = utils_eds.xray_lines_model(
+s = eds_utils.xray_lines_model(
     elements=["Fe", "Cr", "Zn"],
     beam_energy=200,
     weight_percents=[20, 50, 30],
@@ -176,7 +176,7 @@ class TestlineFit:
 
     def test_calibrate_xray_weight(self):
         s = self.s
-        s1 = utils_eds.xray_lines_model(
+        s1 = eds_utils.xray_lines_model(
             elements=["Co"],
             weight_percents=[50],
             energy_axis={
@@ -240,7 +240,7 @@ class TestlineFit:
             factors=[1.0, 1.0, 1.0],
             composition_units="weight",
         )
-        np.testing.assert_allclose(utils.stack(quant, axis=0), [50, 20, 30])
+        np.testing.assert_allclose(hs.stack(quant, axis=0), [50, 20, 30])
 
     def test_quantification_2_elements(self):
         s = self.s
@@ -283,14 +283,14 @@ class TestMaps:
         beam_energy = 200
         energy_resolution_MnKa = 130
         energy_axis = {"units": "keV", "size": 1200, "scale": 0.01, "name": "E"}
-        s1 = utils_eds.xray_lines_model(
+        s1 = eds_utils.xray_lines_model(
             elements=["Fe", "Cr"],
             weight_percents=[30, 70],
             beam_energy=beam_energy,
             energy_resolution_MnKa=energy_resolution_MnKa,
             energy_axis=energy_axis,
         )
-        s2 = utils_eds.xray_lines_model(
+        s2 = eds_utils.xray_lines_model(
             elements=["Ga", "As"],
             weight_percents=[50, 50],
             beam_energy=beam_energy,

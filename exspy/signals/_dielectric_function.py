@@ -21,7 +21,7 @@ import scipy
 
 from hyperspy.signals import ComplexSignal1D
 
-from exspy._misc import eels
+import exspy.utils.eels as eels_utils
 
 
 class DielectricFunction(ComplexSignal1D):
@@ -156,7 +156,7 @@ class DielectricFunction(ComplexSignal1D):
                 )
         data = (
             (-1 / self.data).imag
-            * eels.eels_constant_dielectric(self, zlp, t).data
+            * eels_utils.eels_constant_dielectric(self, zlp, t).data
             * self.axes_manager.signal_axes[0].scale
         )
         s = self._deepcopy_with_new_data(data)

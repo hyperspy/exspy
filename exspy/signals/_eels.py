@@ -46,11 +46,7 @@ from hyperspy.docstrings.signal import (
 
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
 from exspy._misc import elements as elements_module
-from exspy._misc import eels
-from exspy._misc.eels.electron_inelastic_mean_free_path import (
-    iMFP_Iakoubovskii,
-    iMFP_angular_correction,
-)
+import exspy.utils.eels as eels_utils
 
 
 _logger = logging.getLogger(__name__)
@@ -245,7 +241,7 @@ class EELSSpectrum(Signal1D):
         """
 
         if edges is None and energy is not None:
-            edges = eels.get_edges_near_energy(
+            edges = eels_utils.get_edges_near_energy(
                 energy=energy, width=width, only_major=only_major, order=order
             )
         elif edges is None and energy is None:
@@ -830,14 +826,14 @@ class EELSSpectrum(Signal1D):
                 )
             else:
                 md = self.metadata.Acquisition_instrument.TEM
-                t_over_lambda *= iMFP_angular_correction(
+                t_over_lambda *= eels_utils.iMFP_angular_correction(
                     beam_energy=md.beam_energy,
                     alpha=md.convergence_angle,
                     beta=md.Detector.EELS.collection_angle,
                     density=density,
                 )
                 if mean_free_path is None:
-                    mean_free_path = iMFP_Iakoubovskii(
+                    mean_free_path = eels_utils.iMFP_Iakoubovskii(
                         electron_energy=self.metadata.Acquisition_instrument.TEM.beam_energy,
                         density=density,
                     )

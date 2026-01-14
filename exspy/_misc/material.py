@@ -23,7 +23,8 @@ import copy
 
 import hyperspy.api as hs
 
-from exspy._misc import eds as eds_utils
+import exspy._misc.eds as eds_misc
+import exspy.utils.eds as eds_utils
 from exspy._misc import elements as elements_module
 
 
@@ -348,8 +349,8 @@ def mass_absorption_coefficient(element, energies):
        S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
        Scattering Tables (version 2.1). https://dx.doi.org/10.18434/T4HS32
     """
-    energies_db = np.array(eds_utils.ffast_mac[element]["energies (keV)"])
-    macs = np.array(eds_utils.ffast_mac[element]["mass_absorption_coefficient (cm2/g)"])
+    energies_db = np.array(eds_misc.ffast_mac[element]["energies (keV)"])
+    macs = np.array(eds_misc.ffast_mac[element]["mass_absorption_coefficient (cm2/g)"])
     energies = copy.copy(energies)
     if isinstance(energies, str):
         energies = eds_utils._get_energy_xray_line(energies)

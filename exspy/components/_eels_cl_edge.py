@@ -550,7 +550,7 @@ class EELSCLEdge(Component):
 
 
 EELSCLEdge.__doc__ %= (
-    eels_misc._GOSH_SOURCES["dft"]["DOI"],
-    eels_misc._GOSH_SOURCES["dirac"]["DOI"],
-    eels_misc._GOSH_SOURCES["dft"]["DOI"],
+    eels_misc.GOSH_SOURCES["dft"]["DOI"],
+    eels_misc.GOSH_SOURCES["dirac"]["DOI"],
+    eels_misc.GOSH_SOURCES["dft"]["DOI"],
 )

@@ -31,7 +31,7 @@ import hyperspy.api as hs
 from hyperspy.decorators import lazifyTestClass
 from hyperspy.exceptions import VisibleDeprecationWarning
 
-from exspy._misc.eels.gosh_gos import _DFT_GOSH, _DIRAC_GOSH
+from exspy._misc.eels.gosh_gos_source import DFT_GOSH, DIRAC_GOSH
 from exspy.material import elements
 from exspy.signals import EELSSpectrum
 
@@ -103,15 +103,15 @@ class TestCreateEELSModel:
 
     def test_gos_file(self):
         gos_file_path = pooch.retrieve(
-            url=_DFT_GOSH["URL"],
-            known_hash=_DFT_GOSH["KNOWN_HASH"],
+            url=DFT_GOSH["URL"],
+            known_hash=DFT_GOSH["KNOWN_HASH"],
         )
         self.s.create_model(auto_add_edges=True, gos_file_path=gos_file_path)
 
     def test_gos_file_dirac(self):
         gos_file_path = pooch.retrieve(
-            url=_DIRAC_GOSH["URL"],
-            known_hash=_DIRAC_GOSH["KNOWN_HASH"],
+            url=DIRAC_GOSH["URL"],
+            known_hash=DIRAC_GOSH["KNOWN_HASH"],
         )
         self.s.create_model(
             auto_add_edges=True, gos_file_path=gos_file_path, GOS="dirac"

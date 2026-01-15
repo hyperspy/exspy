@@ -16,14 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-_DFT_GOSH = {
+DFT_GOSH = {
     "DOI": "10.5281/zenodo.7645765",
     "URL": "https://zenodo.org/records/7645765/files/Segger_Guzzinati_Kohl_1.5.0.gosh",
     "KNOWN_HASH": "md5:7fee8891c147a4f769668403b54c529b",
 }
-_DIRAC_GOSH = {
+DIRAC_GOSH = {
     "DOI": "10.5281/zenodo.12800856",
     "URL": "https://zenodo.org/records/12800856/files/Dirac_GOS_compact.gosh",
     "KNOWN_HASH": "md5:01a855d3750d2c063955248358dbee8d",
 }
-_GOSH_SOURCES = {"dft": _DFT_GOSH, "dirac": _DIRAC_GOSH}
+GOSH_SOURCES = {"dft": DFT_GOSH, "dirac": DIRAC_GOSH}

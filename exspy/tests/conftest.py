@@ -40,6 +40,10 @@ import hyperspy.api as hs
 # Use matplotlib fixture to clean up figure, setup backend, etc.
 from matplotlib.testing.conftest import mpl_test_settings  # noqa: F401
 
+from exspy._misc import _download_GOS_files
+
+hs.preferences.General.show_progressbar = False
+
 
 @pytest.fixture(autouse=True)
 def add_np(doctest_namespace):
@@ -71,3 +75,9 @@ if pytest_mpl_spec is None:
             "mpl_image_compare: dummy marker registration to allow running "
             "without the pytest-mpl plugin.",
         )
+        _download_GOS_files()
+
+else:
+
+    def pytest_configure(config):
+        _download_GOS_files()

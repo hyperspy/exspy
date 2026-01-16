@@ -29,13 +29,6 @@ from exspy._misc.eels import HydrogenicGOS
 from exspy._misc.elements import elements
 
 
-GOSH10 = pooch.retrieve(
-    url="doi:10.5281/zenodo.6599071/Segger_Guzzinati_Kohl_1.0.0.gos",
-    known_hash="md5:d65d5c23142532fde0a80e160ab51574",
-    progressbar=False,
-)
-
-
 @pytest.mark.skipif(
     not Path(preferences.EELS.eels_gos_files_path).exists(),
     reason="Hartree-Slater GOS not available",
@@ -68,6 +61,11 @@ def test_gosh_not_in_conventions():
 
 
 def test_gosh_not_in_file():
+    GOSH10 = pooch.retrieve(
+        url="https://zenodo.org/records/6599071/files/Segger_Guzzinati_Kohl_1.0.0.gos",
+        known_hash="md5:d65d5c23142532fde0a80e160ab51574",
+        progressbar=False,
+    )
     # Use version 1.0 which doesn't have the Ac element
     with pytest.raises(ValueError):
         _ = GoshGOS("Ac_L3", gos_file_path=GOSH10)

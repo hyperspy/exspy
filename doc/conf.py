@@ -18,6 +18,7 @@ import numpydoc
 from datetime import datetime
 from packaging.version import Version
 
+from exspy._misc import _download_GOS_files
 
 # -- Project information -----------------------------------------------------
 
@@ -172,3 +173,5 @@ import hyperspy.api as hs
 import exspy
 import numpy as np
 """
+
+_download_GOS_files(download_all=False)

@@ -34,12 +34,12 @@ a0 = constants.value("Bohr radius")
 
 _DFT_GOSH = {
     "DOI": "10.5281/zenodo.7645765",
-    "URL": "doi:10.5281/zenodo.7645765/Segger_Guzzinati_Kohl_1.5.0.gosh",
+    "URL": "https://zenodo.org/records/7645765/files/Segger_Guzzinati_Kohl_1.5.0.gosh",
     "KNOWN_HASH": "md5:7fee8891c147a4f769668403b54c529b",
 }
 _DIRAC_GOSH = {
     "DOI": "10.5281/zenodo.12800856",
-    "URL": "doi:10.5281/zenodo.12800856/Dirac_GOS_compact.gosh",
+    "URL": "https://zenodo.org/records/12800856/files/Dirac_GOS_compact.gosh",
     "KNOWN_HASH": "md5:01a855d3750d2c063955248358dbee8d",
 }
 _GOSH_SOURCES = {"dft": _DFT_GOSH, "dirac": _DIRAC_GOSH}
@@ -101,11 +101,16 @@ class GoshGOS(TabulatedGOS):
 
         if gos_file_path is None:
             source = source.lower()
-            assert source in _GOSH_SOURCES.keys(), f"Invalid source: {source}"
+            if source not in _GOSH_SOURCES.keys():
+                raise ValueError(
+                    f"Invalid source: {source}, valid options are "
+                    f"{list(_GOSH_SOURCES.keys())}"
+                )
             self._name = source
             gos_file_path = pooch.retrieve(
                 url=_GOSH_SOURCES[source]["URL"],
                 known_hash=_GOSH_SOURCES[source]["KNOWN_HASH"],
+                downloader=pooch.HTTPDownloader(chunk_size=30000),
                 progressbar=preferences.General.show_progressbar,
             )
         self.gos_file_path = gos_file_path

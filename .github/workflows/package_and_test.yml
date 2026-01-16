@@ -6,3 +6,5 @@ jobs:
   package_and_test:
     # Use the "reusable workflow" from the hyperspy organisation
     uses: hyperspy/.github/.github/workflows/package_and_test.yml@main
+    with:
+      CACHE_POOCH: 'pooch'

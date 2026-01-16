@@ -18,15 +18,18 @@ s.set_microscope_parameters(
     beam_energy=300, convergence_angle=24.6, collection_angle=13.6
 )
 
+# %%
+# Create a model and fit it to the data.
+#
+# .. note::
+#
+#    By default, :ref:`generalized oscillator strength (GOS) <eels.GOS>` calculated using density functional theory (DFT)
+#    are used. Use the ``GOS`` parameter to change to use other GOS, for example ``GOS="dirac"``.
+
 m = s.create_model(low_loss=low_loss)
 m.enable_fine_structure()
 m.multifit(kind="smart")
-m.plot()
-
-# one can also use the Dirac GOS by specifying the GOS parameter
-m = s.create_model(low_loss=low_loss, GOS="dirac")
-m.enable_fine_structure()
-m.multifit(kind="smart")
-m.plot()
 
 # %%
+# Plot the model fit result
+m.plot()

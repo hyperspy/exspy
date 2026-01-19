@@ -16,7 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import warnings
 
 import numpy as np
 import pytest
@@ -485,11 +484,11 @@ class Test_quantification:
                 [0.5, 0.0, 0.0],
             ]
         ).T
-        with warnings.catch_warnings():
-            warnings.filterwarnings(
-                "ignore", message="divide by zero encountered", category=RuntimeWarning
-            )
-            quant = utils_eds.quantification_cliff_lorimer(intens, [1, 1, 3]).T
+
+        # Specify intensities_sum_threshold not to set output values to zero
+        quant = utils_eds.quantification_cliff_lorimer(
+            intens, [1, 1, 3], intensities_threshold=0, intensities_sum_threshold=0
+        ).T
         np.testing.assert_allclose(
             quant,
             np.array(
@@ -502,6 +501,93 @@ class Test_quantification:
                 ]
             ),
         )
+
+        # with default value of intensities_sum_threshold
+        quant = utils_eds.quantification_cliff_lorimer(intens, [1, 1, 3]).T
+        np.testing.assert_allclose(quant, np.zeros_like(quant))
+
+    def test_quantification_cliff_lorimer_with_intensities_threshold(self):
+        # Test the new intensities_threshold parameter
+        # Setup test data: 3 elements, 5 pixels (first axis = elements)
+        # Include some values that will be filtered by threshold=1.0
+        # Use moderate values in range 1-30 to test threshold behavior
+        intens = np.array(
+            [
+                [5.0, 2.0, 1.5, 8.0, 25.0],  # First element intensities
+                [4.0, 0.8, 2.5, 6.0, 15.0],  # Second element intensities
+                [8.0, 3.0, 4.0, 7.0, 20.0],  # Third element intensities
+            ]
+        )  # Shape: (3 elements, 5 pixels)
+        # Sums per pixel: [17.0, 5.8, 8.0, 21.0, 60.0] - reasonable intensity values
+
+        # Test without threshold (baseline) - set to 0 to disable
+        quant_no_threshold = utils_eds.quantification_cliff_lorimer(
+            intens, [1, 1, 3], intensities_threshold=0
+        )
+
+        # Test with default threshold (1.0) - should be applied automatically
+        quant_default_threshold = utils_eds.quantification_cliff_lorimer(
+            intens, [1, 1, 3]
+        )
+
+        # Apply explicit intensities_threshold=1.0 (same as default)
+        # This should set values < 1.0 to zero: 0.8, 0.5, 0.3, 0.9 -> 0.0
+        quant_with_threshold = utils_eds.quantification_cliff_lorimer(
+            intens, [1, 1, 3], intensities_threshold=1.0
+        )
+
+        # Default and explicit 1.0 should be the same
+        np.testing.assert_allclose(
+            quant_default_threshold, quant_with_threshold, rtol=1e-10
+        )
+
+        # Check that results are different when threshold is applied vs disabled
+        # With threshold=1.0, values [0.8] should become 0.0
+        # This will change the quantification results
+        assert not np.array_equal(quant_no_threshold, quant_with_threshold)
+
+        # The quantification should handle the modified intensities
+        assert quant_with_threshold.shape == (3, 5)  # 3 elements, 5 pixels
+
+        # Test with both thresholds
+        quant_both = utils_eds.quantification_cliff_lorimer(
+            intens,
+            [1, 1, 3],
+            intensities_threshold=2.0,  # Filter values < 2.0: 1.5, 0.8 -> 0.0
+            intensities_sum_threshold=10.0,  # Only keep pixels where sum >= 10.0
+        )
+
+        # Check that the sum threshold is applied correctly
+        # Sum of original intensities per pixel: [17.0, 5.8, 8.0, 21.0, 60.0]
+        # With sum_threshold=10.0, only pixels 0, 3, and 4 should have non-zero results
+        assert np.all(quant_both[:, 1] == 0)  # Pixel 1: sum=5.8 < 10.0
+        assert np.all(quant_both[:, 2] == 0)  # Pixel 2: sum=8.0 < 10.0
+
+        # Test that intensities_threshold=0 (disables threshold) works
+        quant_zero_threshold = utils_eds.quantification_cliff_lorimer(
+            intens, [1, 1, 3], intensities_threshold=0, intensities_sum_threshold=0
+        )
+
+        # Should be same as the no threshold case since they're the same call
+        np.testing.assert_allclose(quant_zero_threshold, quant_no_threshold, rtol=1e-10)
+
+        # Test specific behavior: verify that low intensities are actually being filtered
+        # Create a simple case where the difference is obvious
+        simple_intens = np.array(
+            [[10.0, 2.0], [8.0, 1.5], [12.0, 0.8]]
+        )  # 3 elements, 2 pixels
+
+        simple_no_threshold = utils_eds.quantification_cliff_lorimer(
+            simple_intens, [1, 1, 1], intensities_threshold=0
+        )
+        simple_with_threshold = utils_eds.quantification_cliff_lorimer(
+            simple_intens,
+            [1, 1, 1],
+            intensities_threshold=1.0,  # Should filter 0.8
+        )
+
+        # These should definitely be different
+        assert not np.array_equal(simple_no_threshold, simple_with_threshold)
 
     def test_edx_cross_section_to_zeta(self):
         cs = [3, 6]

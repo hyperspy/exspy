@@ -84,9 +84,10 @@ components1D:
 
 GUI:
   toolkeys:
-    - exspy.Preferences
+    - exspy.EDSSpectrum.print_lines_table
     - exspy.EELSCLEdge_Component
-    - exspy.microscope_parameters_EELS
-    - exspy.microscope_parameters_EDS_TEM
-    - exspy.microscope_parameters_EDS_SEM
     - exspy.EELSSpectrum.print_edges_table
+    - exspy.microscope_parameters_EDS_SEM
+    - exspy.microscope_parameters_EDS_TEM
+    - exspy.microscope_parameters_EELS
+    - exspy.Preferences

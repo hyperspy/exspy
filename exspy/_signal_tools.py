@@ -3,12 +3,15 @@ import traits.api as t
 
 from hyperspy.exceptions import SignalDimensionError
 from hyperspy.ui_registry import add_gui_method
-from hyperspy.signal_tools import SpanSelectorInSignal1D
+from hyperspy.signal_tools import LineInSignal1D, SpanSelectorInSignal1D
 from exspy._misc.eels.tools import get_edges_near_energy, get_info_from_edges
+from exspy._misc.eds.utils import get_xray_lines, get_weight_scale
+from exspy.material import elements
 
 
 @add_gui_method(toolkey="exspy.EELSSpectrum.print_edges_table")
 class EdgesRange(SpanSelectorInSignal1D):
+    # Class to handle SpanSelector and update table
     units = t.Unicode()
     edges_list = t.Tuple()
     only_major = t.Bool()
@@ -184,3 +187,78 @@ class EdgesRange(SpanSelectorInSignal1D):
         self.signal._remove_edge_labels()
         self.active_edges = []
         self.active_complementary_edges = []
+
+
+@add_gui_method(toolkey="exspy.EDSSpectrum.print_lines_table")
+class EDSRange(LineInSignal1D):
+    # Class to handle Line selector and table of X-ray lines
+    width = t.Float(0.2)  # in keV
+    only_lines = t.Enum("all", "a", "b", "g", "l", "z", default="all")
+    weight_threshold = t.Float(0.1)
+    order = t.Unicode("closest")
+
+    def __init__(self, signal):
+        if signal.axes_manager.signal_dimension != 1:
+            raise SignalDimensionError(signal.axes_manager.signal_dimension, 1)
+
+        self.active_elements = set()
+        # backup active elements to restore
+        self._active_elements_backup = None
+        if len(signal._xray_markers) > 0:
+            self._active_elements_backup = list(signal._xray_markers["names"])
+        else:
+            signal.plot(True)
+
+        LineInSignal1D.__init__(self, signal)
+        self.axis = self.signal.axes_manager.signal_axes[0]
+        # TODO: implement support of units in width in units setter
+        self.units = self.signal.axes_manager.signal_axes[0].units
+
+    def get_lines_information(self):
+        """
+        Returns a dictionary of lines information within the selected energy range
+        to be used by the GUI widgets.
+        """
+        energy_range = (
+            self.position - self.width / 2,
+            self.position + self.width / 2,
+        )
+
+        lines_info = get_xray_lines(
+            elements.keys(), self.weight_threshold, energy_range, self.only_lines
+        )
+
+        # Add intensity representation
+        for element_str in lines_info.keys():
+            element = lines_info[element_str]
+            for line in element.keys():
+                line_info = element[line]
+                line_info["intensity"] = get_weight_scale(line_info["weight"])
+
+        return lines_info
+
+    def update_markers(self):
+        """
+        Update the displayed X-ray line markers based on the currently active elements.
+        """
+        if self.signal._plot is None or not self.signal._plot.is_active:
+            return  # Do nothing if the plot is not active
+
+        # Remove all existing markers, if self.active_elements is empty,
+        # this will just clear all markers
+        self.signal.remove_xray_lines_markers(render_figure=False)
+
+        # Then, add markers for the active elements
+        if self.active_elements:
+            xray_lines = self.signal._get_lines_from_elements(
+                self.active_elements,
+                only_one=False,
+                only_lines="all",
+            )
+            self.signal.add_xray_lines_markers(xray_lines, render_figure=False)
+
+        # Finally, render the figure once after all updates
+        self.signal._render_figure(plot=["signal_plot"])
+
+    def close(self):
+        self.on = False

@@ -6,7 +6,7 @@ signals:
     signal_dimension: 1
     dtype: real
     lazy: False
-    module: exspy.signals.eels
+    module: exspy.signals
   LazyEELSSpectrum:
     signal_type: EELS
     signal_type_aliases:
@@ -14,31 +14,31 @@ signals:
     signal_dimension: 1
     dtype: real
     lazy: True
-    module: exspy.signals.eels
+    module: exspy.signals
   EDSTEMSpectrum:
     signal_type: EDS_TEM
     signal_dimension: 1
     dtype: real
     lazy: False
-    module: exspy.signals.eds_tem
+    module: exspy.signals
   LazyEDSTEMSpectrum:
     signal_type: EDS_TEM
     signal_dimension: 1
     dtype: real
     lazy: True
-    module: exspy.signals.eds_tem
+    module: exspy.signals
   EDSSEMSpectrum:
     signal_type: EDS_SEM
     signal_dimension: 1
     dtype: real
     lazy: False
-    module: exspy.signals.eds_sem
+    module: exspy.signals
   LazyEDSSEMSpectrum:
     signal_type: EDS_SEM
     signal_dimension: 1
     dtype: real
     lazy: True
-    module: exspy.signals.eds_sem
+    module: exspy.signals
   DielectricFunction:
     signal_type: DielectricFunction
     signal_type_aliases:
@@ -46,7 +46,7 @@ signals:
     signal_dimension: 1
     dtype: complex
     lazy: False
-    module: exspy.signals.dielectric_function
+    module: exspy.signals
   LazyDielectricFunction:
     signal_type: DielectricFunction
     signal_type_aliases:
@@ -54,32 +54,32 @@ signals:
     signal_dimension: 1
     dtype: complex
     lazy: True
-    module: exspy.signals.dielectric_function
+    module: exspy.signals
 
 components1D:
   DoublePowerLaw:
-    module: exspy.components.eels_double_power_law
+    module: exspy.components
     class: DoublePowerLaw
   EELSArctan:
-    module: exspy.components.eels_arctan
+    module: exspy.components
     class: EELSArctan
   EELSCLEdge:
-    module: exspy.components.eels_cl_edge
+    module: exspy.components
     class: EELSCLEdge
   PESCoreLineShape:
-    module: exspy.components.pes_core_line_shape
+    module: exspy.components
     class: PESCoreLineShape
   PESVoigt:
-    module: exspy.components.pes_voigt
+    module: exspy.components
     class: PESVoigt
   SEE:
-    module: exspy.components.pes_see
+    module: exspy.components
     class: SEE
   Vignetting:
-    module: exspy.components.eels_vignetting
+    module: exspy.components
     class: Vignetting
   VolumePlasmonDrude:
-    module: exspy.components.volume_plasmon_drude
+    module: exspy.components
     class: VolumePlasmonDrude
 
 GUI:

@@ -16,24 +16,20 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-
 import functools
-import logging
 import warnings
 import math
 
 import numpy as np
-from scipy.interpolate import splev
+import scipy
 
 from hyperspy.component import Component
-from exspy._misc.eels.gosh_gos import GoshGOS, _GOSH_SOURCES
-from exspy._misc.eels.hartree_slater_gos import HartreeSlaterGOS
-from exspy._misc.eels.hydrogenic_gos import HydrogenicGOS
-from exspy._misc.eels.effective_angle import effective_angle
 from hyperspy.ui_registry import add_gui_method
 from hyperspy.exceptions import VisibleDeprecationWarning
 
-_logger = logging.getLogger(__name__)
+from exspy import signals
+import exspy.utils.eels as eels_utils
+import exspy._misc.eels as eels_misc
 
 
 class FSet(set):
@@ -178,17 +174,17 @@ class EELSCLEdge(Component):
             )
             GOS = "dft"
         if GOS == "dft":
-            self.GOS = GoshGOS(
+            self.GOS = eels_misc.GoshGOS(
                 element_subshell, gos_file_path=gos_file_path, source="dft"
             )
         elif GOS == "dirac":
-            self.GOS = GoshGOS(
+            self.GOS = eels_misc.GoshGOS(
                 element_subshell, gos_file_path=gos_file_path, source="dirac"
             )
         elif GOS == "Hartree-Slater":  # pragma: no cover
-            self.GOS = HartreeSlaterGOS(element_subshell)
+            self.GOS = eels_misc.HartreeSlaterGOS(element_subshell)
         elif GOS == "hydrogenic":
-            self.GOS = HydrogenicGOS(element_subshell)
+            self.GOS = eels_misc.HydrogenicGOS(element_subshell)
         else:
             raise ValueError(
                 "GOS must be one of 'dft', 'dirac','hydrogenic' or 'Hartree-Slater'."
@@ -290,7 +286,7 @@ class EELSCLEdge(Component):
 
     def _calculate_effective_angle(self):
         try:
-            self.effective_angle.value = effective_angle(
+            self.effective_angle.value = eels_utils.effective_angle(
                 self.E0,
                 self.GOS.onset_energy,
                 self.convergence_angle,
@@ -481,7 +477,7 @@ class EELSCLEdge(Component):
                 bifs = (E >= ifsx1) & (E < ifsx2)
                 # Only set the spline values if the spline is in the energy region
                 if np.any(bifs):
-                    cts[bifs] = splev(
+                    cts[bifs] = scipy.interpolate.splev(
                         E[bifs],
                         (self.__knots, self.fine_structure_coeff.value + (0,) * 4, 3),
                     )
@@ -523,11 +519,11 @@ class EELSCLEdge(Component):
         the model was convolved with a low-loss spectrum
 
         """
-        from exspy.signals.eels import EELSSpectrum
-
         channels = int(np.floor(self.fine_structure_width / self.energy_scale))
         data = np.zeros(self.fine_structure_coeff.map.shape + (channels,))
-        s = EELSSpectrum(data, axes=self.intensity._axes_manager._get_axes_dicts())
+        s = signals.EELSSpectrum(
+            data, axes=self.intensity._axes_manager._get_axes_dicts()
+        )
         s.get_dimensions_from_data()
         s.axes_manager.signal_axes[0].offset = self.onset_energy.value
         # Backup the axes_manager
@@ -554,7 +550,7 @@ class EELSCLEdge(Component):
 
 
 EELSCLEdge.__doc__ %= (
-    _GOSH_SOURCES["dft"]["DOI"],
-    _GOSH_SOURCES["dirac"]["DOI"],
-    _GOSH_SOURCES["dft"]["DOI"],
+    eels_misc.GOSH_SOURCES["dft"]["DOI"],
+    eels_misc.GOSH_SOURCES["dirac"]["DOI"],
+    eels_misc.GOSH_SOURCES["dft"]["DOI"],
 )

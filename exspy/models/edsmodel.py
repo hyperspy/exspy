@@ -24,13 +24,12 @@ import math
 import logging
 
 from hyperspy.misc.utils import stash_active_state
-from exspy._misc.eds.utils import _get_element_and_line
-
-from hyperspy.models.model1d import Model1D
-from exspy.signals.eds import EDSSpectrum
-from exspy._misc.elements import elements as elements_db
-from exspy._misc.eds import utils as utils_eds
 import hyperspy.components1d as create_component
+from hyperspy.models.model1d import Model1D
+
+from exspy import signals
+from exspy._misc import elements as elements_module
+import exspy.utils.eds as eds_utils
 
 _logger = logging.getLogger(__name__)
 
@@ -40,9 +39,9 @@ sigma2fwhm = 2 * math.sqrt(2 * math.log(2))
 
 def _get_weight(element, line, weight_line=None):
     if weight_line is None:
-        weight_line = elements_db[element]["Atomic_properties"]["Xray_lines"][line][
-            "weight"
-        ]
+        weight_line = elements_module.elements[element]["Atomic_properties"][
+            "Xray_lines"
+        ][line]["weight"]
     return "x * {}".format(weight_line)
 
 
@@ -172,7 +171,7 @@ class EDSModel(Model1D):
 
     @spectrum.setter
     def spectrum(self, value):
-        if isinstance(value, EDSSpectrum):
+        if isinstance(value, signals.EDSSpectrum):
             self._signal = value
         else:
             raise ValueError(
@@ -233,7 +232,7 @@ class EDSModel(Model1D):
             warnings.warn("%s is not in the data energy range." % (xray))
 
         for xray_line in xray_lines:
-            element, line = utils_eds._get_element_and_line(xray_line)
+            element, line = eds_utils._get_element_and_line(xray_line)
             line_energy, line_FWHM = self.signal._get_line_energy(
                 xray_line, FWHM_MnKa="auto"
             )
@@ -257,7 +256,9 @@ class EDSModel(Model1D):
                 )
             component.A.map["is_set"] = True
             component.A.ext_force_positive = True
-            for li in elements_db[element]["Atomic_properties"]["Xray_lines"]:
+            for li in elements_module.elements[element]["Atomic_properties"][
+                "Xray_lines"
+            ]:
                 if line[0] in li and line != li:
                     xray_sub = element + "_" + li
                     if (
@@ -331,8 +332,9 @@ class EDSModel(Model1D):
         super(EDSModel, self)._make_position_adjuster(component, fix_it, show_label)
         if show_label and component in (self.xray_lines + self.family_lines):
             label = self._position_widgets[component._position][1]
-            label.string = r"$\mathrm{%s}_{\mathrm{%s}}$" % _get_element_and_line(
-                component.name
+            label.string = (
+                r"$\mathrm{%s}_{\mathrm{%s}}$"
+                % eds_utils._get_element_and_line(component.name)
             )
 
     def fit_background(
@@ -673,12 +675,12 @@ class EDSModel(Model1D):
             component.A.bmax = component.A.value + bound * component.A.value
             component.A.ext_force_positive = True
 
-        xray_families = [utils_eds._get_xray_lines_family(line) for line in xray_lines]
+        xray_families = [eds_utils._get_xray_lines_family(line) for line in xray_lines]
         for component in self:
             if component.isbackground is False:
                 if xray_lines == "all":
                     free_twin(component)
-                elif utils_eds._get_xray_lines_family(component.name) in xray_families:
+                elif eds_utils._get_xray_lines_family(component.name) in xray_families:
                     free_twin(component)
 
     def fix_sub_xray_lines_weight(self, xray_lines="all"):
@@ -691,8 +693,10 @@ class EDSModel(Model1D):
         def fix_twin(component):
             component.A.bmin = 0.0
             component.A.bmax = None
-            element, line = utils_eds._get_element_and_line(component.name)
-            for li in elements_db[element]["Atomic_properties"]["Xray_lines"]:
+            element, line = eds_utils._get_element_and_line(component.name)
+            for li in elements_module.elements[element]["Atomic_properties"][
+                "Xray_lines"
+            ]:
                 if line[0] in li and line != li:
                     xray_sub = element + "_" + li
                     if xray_sub in self:
@@ -906,7 +910,7 @@ class EDSModel(Model1D):
             raise ValueError("These X-ray lines are not part of the model.")
 
         for xray_line in xray_lines:
-            element, line = utils_eds._get_element_and_line(xray_line)
+            element, line = eds_utils._get_element_and_line(xray_line)
             line_energy = self.signal._get_line_energy(xray_line)
             data_res = self[xray_line].A.map["values"]
             if self.axes_manager.navigation_dimension == 0:

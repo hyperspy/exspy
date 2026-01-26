@@ -19,15 +19,14 @@
 import numbers
 import logging
 
-import numpy as np
-import dask.array as da
-import traits.api as t
-from scipy import constants
 from prettytable import PrettyTable
+import numpy as np
+import scipy
+import traits.api as t
 
 import hyperspy.api as hs
-from hyperspy.signal import BaseSetMetadataItems, BaseSignal
-from hyperspy._signals.signal1d import Signal1D, LazySignal1D
+from hyperspy.signal import BaseSetMetadataItems
+from hyperspy.signals import BaseSignal, Signal1D
 from hyperspy.misc.utils import display, isiterable, underline
 from hyperspy.misc.math_tools import optimal_fft_size
 
@@ -43,17 +42,11 @@ from hyperspy.docstrings.signal import (
     NUM_WORKERS_ARG,
     SIGNAL_MASK_ARG,
     NAVIGATION_MASK_ARG,
-    LAZYSIGNAL_DOC,
 )
 
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
-from exspy._misc.elements import elements as elements_db
-from exspy._misc.eels.tools import get_edges_near_energy
-from exspy._misc.eels.electron_inelastic_mean_free_path import (
-    iMFP_Iakoubovskii,
-    iMFP_angular_correction,
-)
-from exspy._signal_tools import EdgesRange
+from exspy._misc import elements as elements_module
+import exspy.utils.eels as eels_utils
 
 
 _logger = logging.getLogger(__name__)
@@ -128,7 +121,7 @@ class EELSSpectrum(Signal1D):
         for element in elements:
             if isinstance(element, bytes):
                 element = element.decode()
-            if element in elements_db:
+            if element in elements_module.elements:
                 self.elements.add(element)
             else:
                 raise ValueError(
@@ -159,9 +152,11 @@ class EELSSpectrum(Signal1D):
         end_energy = Eaxis[-1]
         for element in self.elements:
             e_shells = list()
-            for shell in elements_db[element]["Atomic_properties"]["Binding_energies"]:
+            for shell in elements_module.elements[element]["Atomic_properties"][
+                "Binding_energies"
+            ]:
                 if shell[-1] != "a":
-                    energy = elements_db[element]["Atomic_properties"][
+                    energy = elements_module.elements[element]["Atomic_properties"][
                         "Binding_energies"
                     ][shell]["onset_energy (eV)"]
                     if start_energy <= energy <= end_energy:
@@ -207,6 +202,8 @@ class EELSSpectrum(Signal1D):
         """
 
         if energy == "interactive":
+            from exspy._signal_tools import EdgesRange
+
             er = EdgesRange(self, interactive=True)
             return er.gui(display=display, toolkit=toolkit)
         else:
@@ -244,7 +241,7 @@ class EELSSpectrum(Signal1D):
         """
 
         if edges is None and energy is not None:
-            edges = get_edges_near_energy(
+            edges = eels_utils.get_edges_near_energy(
                 energy=energy, width=width, only_major=only_major, order=order
             )
         elif edges is None and energy is None:
@@ -255,9 +252,9 @@ class EELSSpectrum(Signal1D):
 
         for edge in edges:
             element, shell = edge.split("_")
-            shell_dict = elements_db[element]["Atomic_properties"]["Binding_energies"][
-                shell
-            ]
+            shell_dict = elements_module.elements[element]["Atomic_properties"][
+                "Binding_energies"
+            ][shell]
 
             onset = shell_dict["onset_energy (eV)"]
             relevance = shell_dict["relevance"]
@@ -396,6 +393,7 @@ class EELSSpectrum(Signal1D):
         more information read its docstring.
 
         """
+        import dask.array as da
 
         def substract_from_offset(value, signals):
             # Test that axes is uniform
@@ -619,10 +617,8 @@ class EELSSpectrum(Signal1D):
                     if binned:
                         return data.sum()
                     else:
-                        from scipy.integrate import simpson
-
                         axis = ax.axis[:ind]
-                        return simpson(y=data, x=axis)
+                        return scipy.integrate.simpson(y=data, x=axis)
 
             I0 = self.map(
                 estimating_function,
@@ -706,6 +702,8 @@ class EELSSpectrum(Signal1D):
         this method when using it.
 
         """
+        import dask.array as da
+
         self._check_signal_dimension_equals_one()
         # Create threshold with the same shape as the navigation dims.
         threshold = self._get_navigation_signal().transpose(signal_axes=0)
@@ -828,14 +826,14 @@ class EELSSpectrum(Signal1D):
                 )
             else:
                 md = self.metadata.Acquisition_instrument.TEM
-                t_over_lambda *= iMFP_angular_correction(
+                t_over_lambda *= eels_utils.iMFP_angular_correction(
                     beam_energy=md.beam_energy,
                     alpha=md.convergence_angle,
                     beta=md.Detector.EELS.collection_angle,
                     density=density,
                 )
                 if mean_free_path is None:
-                    mean_free_path = iMFP_Iakoubovskii(
+                    mean_free_path = eels_utils.iMFP_Iakoubovskii(
                         electron_energy=self.metadata.Acquisition_instrument.TEM.beam_energy,
                         density=density,
                     )
@@ -900,6 +898,8 @@ class EELSSpectrum(Signal1D):
         Spectroscopy in the Electron Microscope. Springer-Verlag, 2011.
 
         """
+        import dask.array as da
+
         self._check_signal_dimension_equals_one()
         if not self.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
@@ -1260,6 +1260,8 @@ class EELSSpectrum(Signal1D):
         A new spectrum, with the extrapolation.
 
         """
+        import dask.array as da
+
         self._check_signal_dimension_equals_one()
         axis = self.axes_manager.signal_axes[0]
         s = self.deepcopy()
@@ -1444,7 +1446,9 @@ class EELSSpectrum(Signal1D):
             sorig = self.isig[1:]
 
         # Constants and units
-        me = constants.value("electron mass energy equivalent in MeV") * 1e3  # keV
+        me = (
+            scipy.constants.value("electron mass energy equivalent in MeV") * 1e3
+        )  # keV
 
         # Mapped parameters
         self._are_microscope_parameters_missing(ignore_parameters=["convergence_angle"])
@@ -1746,6 +1750,8 @@ class EELSSpectrum(Signal1D):
         """
         # the object is needed to connect replot method when axes_manager
         # indices changed
+        from exspy._signal_tools import EdgesRange
+
         _ = EdgesRange(self, interactive=False)
         self._add_edge_labels(edges)
 
@@ -1801,9 +1807,9 @@ class EELSSpectrum(Signal1D):
                 memtype = "element"
 
             try:
-                Binding_energies = elements_db[element]["Atomic_properties"][
-                    "Binding_energies"
-                ]
+                Binding_energies = elements_module.elements[element][
+                    "Atomic_properties"
+                ]["Binding_energies"]
             except KeyError as err:
                 raise ValueError("'{}' is not a valid element".format(element)) from err
 
@@ -1879,9 +1885,9 @@ class EELSSpectrum(Signal1D):
             edges_dict = {}
             for edge in edges:
                 element, ss = edge.split("_")
-                Binding_energies = elements_db[element]["Atomic_properties"][
-                    "Binding_energies"
-                ]
+                Binding_energies = elements_module.elements[element][
+                    "Atomic_properties"
+                ]["Binding_energies"]
                 edges_dict[edge] = Binding_energies[ss]["onset_energy (eV)"]
             edges = edges_dict
 
@@ -1927,7 +1933,9 @@ class EELSSpectrum(Signal1D):
             elements.update([element])
 
         for element in elements:
-            ss_info = elements_db[element]["Atomic_properties"]["Binding_energies"]
+            ss_info = elements_module.elements[element]["Atomic_properties"][
+                "Binding_energies"
+            ]
 
             for subshell in ss_info:
                 sse = ss_info[subshell]["onset_energy (eV)"]
@@ -2014,18 +2022,10 @@ class EELSSpectrum(Signal1D):
 
         mask = self.isig[start_energy:].mean(-1) <= threshold
 
-        from scipy.ndimage import binary_dilation, binary_erosion
-
         if closing:
-            mask.data = binary_dilation(mask.data, border_value=0)
-            mask.data = binary_erosion(mask.data, border_value=1)
+            mask.data = scipy.ndimage.binary_dilation(mask.data, border_value=0)
+            mask.data = scipy.ndimage.binary_erosion(mask.data, border_value=1)
         if opening:
-            mask.data = binary_erosion(mask.data, border_value=1)
-            mask.data = binary_dilation(mask.data, border_value=0)
+            mask.data = scipy.ndimage.binary_erosion(mask.data, border_value=1)
+            mask.data = scipy.ndimage.binary_dilation(mask.data, border_value=0)
         return mask
-
-
-class LazyEELSSpectrum(EELSSpectrum, LazySignal1D):
-    """Lazy signal class for EELS spectra."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EELSSpectrum")

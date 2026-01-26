@@ -16,17 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+import importlib
 from pathlib import Path
 import warnings
 
-import numpy as np
-from scipy import interpolate
-
 import hyperspy.api as hs
-from hyperspy.misc.math_tools import check_random_state
+import numpy as np
+import scipy
 
 import exspy
-from exspy._misc.eels.eelsdb import eelsdb
+from exspy import signals
 
 
 __all__ = [
@@ -37,9 +36,25 @@ __all__ = [
     "EELS_MnFe",
 ]
 
+# mapping following the pattern: from value import key
+_import_mapping = {
+    "eelsdb": "._misc.eels.eelsdb",
+}
+
 
 def __dir__():
     return sorted(__all__)
+
+
+def __getattr__(name):
+    if name in __all__:
+        if name in _import_mapping.keys():
+            import_path = "exspy" + _import_mapping.get(name)
+            return getattr(importlib.import_module(import_path), name)
+        else:
+            return importlib.import_module("." + name, "exspy")
+
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 _ADD_NOISE_DOCSTRING = """add_noise : bool
@@ -120,6 +135,8 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10,)):
     EELS_MnFe
 
     """
+    from hyperspy.misc.math_tools import check_random_state
+
     random_state = check_random_state(random_state)
 
     x = np.arange(-10, 40, 0.2)
@@ -152,9 +169,7 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10,)):
     if add_noise:
         data = data + random_state.uniform(size=len(x))
 
-    from exspy.signals import EELSSpectrum
-
-    s = EELSSpectrum(data)
+    s = signals.EELSSpectrum(data)
     s.axes_manager[-1].offset = x[0]
     s.axes_manager[-1].scale = x[1] - x[0]
     s.metadata.General.title = "Artifical low loss EEL spectrum"
@@ -208,6 +223,8 @@ def EELS_MnFe(
     EELS_low_loss
 
     """
+    from hyperspy.misc.math_tools import check_random_state
+
     if len(navigation_shape) > 1:
         raise ValueError("`navigation_shape` must be of length 1.")
 
@@ -227,8 +244,8 @@ def EELS_MnFe(
     else:
         Mn = np.array([1, 1, 0.75, 0.5, 0])
         Fe = np.array([0, 0, 0.25, 0.5, 1])
-        Mn_interpolate = interpolate.interp1d(np.arange(0, len(Mn)), Mn)
-        Fe_interpolate = interpolate.interp1d(np.arange(0, len(Fe)), Fe)
+        Mn_interpolate = scipy.interpolate.interp1d(np.arange(0, len(Mn)), Mn)
+        Fe_interpolate = scipy.interpolate.interp1d(np.arange(0, len(Fe)), Fe)
         Mn = Mn_interpolate(np.linspace(0, len(Mn) - 1, navigation_shape[0]))
         Fe = Fe_interpolate(np.linspace(0, len(Fe) - 1, navigation_shape[0]))
 

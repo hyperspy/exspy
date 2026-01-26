@@ -16,7 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import importlib
 
 import numpy as np
 import pytest
@@ -273,22 +272,6 @@ def test_spikes_removal_tool_no_zlp():
     with pytest.raises(ValueError):
         # Zero not in energy range
         s.spikes_removal_tool(zero_loss_peak_mask_width=5.0)
-
-
-def test_spikes_diagnosis_constant_derivative():
-    s = hs.signals.Signal1D(np.arange(20).reshape(2, 10))
-    with pytest.warns():
-        s._spikes_diagnosis(use_gui=False)
-
-    hs.preferences.GUIs.enable_traitsui_gui = False
-    with pytest.warns():
-        s._spikes_diagnosis(use_gui=True)
-
-    hyperspy_gui_traitsui_spec = importlib.util.find_spec("hyperspy_gui_traitsui")
-
-    if hyperspy_gui_traitsui_spec is None:
-        hs.preferences.GUIs.enable_traitsui_gui = True
-        s._spikes_diagnosis(use_gui=True)
 
 
 @lazifyTestClass

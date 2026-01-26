@@ -16,13 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import pytest
+from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
-from exspy.utils.eds import _get_element_and_line
+from exspy.signals import EDSTEMSpectrum, LazyEDSSpectrum
 
 
-def test_get_element_and_line():
-    assert _get_element_and_line("Mn_Ka") == ("Mn", "Ka")
+class LazyEDSTEMSpectrum(EDSTEMSpectrum, LazyEDSSpectrum):
+    """Lazy signal class for EDS spectra measured in an TEM."""
 
-    with pytest.raises(ValueError):
-        _get_element_and_line("MnKa") == -1
+    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSTEMSpectrum")

@@ -21,16 +21,12 @@ import itertools
 import logging
 import warnings
 
-from matplotlib import pyplot as plt
 import numpy as np
 
 import hyperspy.api as hs
-from hyperspy import utils
-from hyperspy.signal import BaseSignal
-from hyperspy._signals.signal1d import Signal1D, LazySignal1D
-from hyperspy.misc.utils import isiterable
+from hyperspy.signals import BaseSignal, Signal1D
+from hyperspy.misc import utils as hs_utils
 from hyperspy.docstrings.plot import BASE_PLOT_DOCSTRING_PARAMETERS, PLOT1D_DOCSTRING
-from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
 from exspy._docstrings.eds import (
     ENERGY_RANGE_PARAMETER,
@@ -40,8 +36,9 @@ from exspy._docstrings.eds import (
     WEIGHT_THRESHOLD_PARAMETER,
     WIDTH_PARAMETER,
 )
-from exspy._misc.elements import elements as elements_db
-from exspy._misc.eds import utils as utils_eds
+import exspy.utils.eds as eds_utils
+from exspy._misc import elements as elements_module
+
 
 _logger = logging.getLogger(__name__)
 
@@ -98,16 +95,16 @@ class EDSSpectrum(Signal1D):
                     "`set_signal_type('EDS_SEM')` to convert to one of these"
                     "signal types."
                 )
-        line_energy = utils_eds._get_energy_xray_line(Xray_line)
+        line_energy = eds_utils._get_energy_xray_line(Xray_line)
         if units_name == "eV":
             line_energy *= 1000
             if FWHM_MnKa is not None:
                 line_FWHM = (
-                    utils_eds.get_FWHM_at_Energy(FWHM_MnKa, line_energy / 1000) * 1000
+                    eds_utils.get_FWHM_at_Energy(FWHM_MnKa, line_energy / 1000) * 1000
                 )
         elif units_name == "keV":
             if FWHM_MnKa is not None:
-                line_FWHM = utils_eds.get_FWHM_at_Energy(FWHM_MnKa, line_energy)
+                line_FWHM = eds_utils.get_FWHM_at_Energy(FWHM_MnKa, line_energy)
         else:
             raise ValueError(
                 f"{units_name} is not a valid units for the energy axis. "
@@ -292,7 +289,7 @@ class EDSSpectrum(Signal1D):
         set_elements, add_lines, set_lines
 
         """
-        if not isiterable(elements) or isinstance(elements, str):
+        if not hs_utils.isiterable(elements) or isinstance(elements, str):
             raise ValueError(
                 "Input must be in the form of a list. For example, "
                 "if `s` is the variable containing this EDS spectrum:\n "
@@ -304,7 +301,7 @@ class EDSSpectrum(Signal1D):
         else:
             elements_ = set()
         for element in elements:
-            if element in elements_db:
+            if element in elements_module.elements:
                 elements_.add(element)
             else:
                 raise ValueError(f"{element} is not a valid chemical element symbol.")
@@ -360,7 +357,7 @@ class EDSSpectrum(Signal1D):
         add_lines, add_elements, set_elements
 
         """
-        only_lines = utils_eds._parse_only_lines(only_lines)
+        only_lines = eds_utils._parse_only_lines(only_lines)
         if "Sample.xray_lines" in self.metadata:
             del self.metadata.Sample.xray_lines
         self.add_lines(lines=lines, only_one=only_one, only_lines=only_lines)
@@ -419,7 +416,7 @@ class EDSSpectrum(Signal1D):
         set_lines, add_elements, set_elements
 
         """
-        only_lines = utils_eds._parse_only_lines(only_lines)
+        only_lines = eds_utils._parse_only_lines(only_lines)
         if "Sample.xray_lines" in self.metadata:
             xray_lines = set(self.metadata.Sample.xray_lines)
         else:
@@ -436,9 +433,14 @@ class EDSSpectrum(Signal1D):
                 raise ValueError(
                     "Invalid line symbol. Please provide a valid line symbol e.g. Fe_Ka"
                 )
-            if element in elements_db:
+            if element in elements_module.elements:
                 elements.add(element)
-                if subshell in elements_db[element]["Atomic_properties"]["Xray_lines"]:
+                if (
+                    subshell
+                    in elements_module.elements[element]["Atomic_properties"][
+                        "Xray_lines"
+                    ]
+                ):
                     lines_len = len(xray_lines)
                     xray_lines.add(line)
                     if lines_len != len(xray_lines):
@@ -488,7 +490,7 @@ class EDSSpectrum(Signal1D):
 
         """
 
-        only_lines = utils_eds._parse_only_lines(only_lines)
+        only_lines = eds_utils._parse_only_lines(only_lines)
         try:
             beam_energy = self._get_beam_energy()
         except BaseException:
@@ -500,7 +502,9 @@ class EDSSpectrum(Signal1D):
             # Possible line (existing and excited by electron)
             element_lines = []
             for subshell in list(
-                elements_db[element]["Atomic_properties"]["Xray_lines"].keys()
+                elements_module.elements[element]["Atomic_properties"][
+                    "Xray_lines"
+                ].keys()
             ):
                 if only_lines and subshell not in only_lines:
                     continue
@@ -529,7 +533,7 @@ class EDSSpectrum(Signal1D):
         return lines
 
     def _parse_xray_lines(self, xray_lines, only_one, only_lines):
-        only_lines = utils_eds._parse_only_lines(only_lines)
+        only_lines = eds_utils._parse_only_lines(only_lines)
         xray_lines = self._get_xray_lines(
             xray_lines, only_one=only_one, only_lines=only_lines
         )
@@ -599,7 +603,7 @@ class EDSSpectrum(Signal1D):
             If not None, use only the given lines.
         kwargs
             The extra keyword arguments for plotting. See
-            `utils.plot.plot_signals`
+            `hs.plot.plot_signals`
 
         Returns
         -------
@@ -650,7 +654,7 @@ class EDSSpectrum(Signal1D):
         # test Signal1D (0D problem)
         # signal_to_index = self.axes_manager.navigation_dimension - 2
         for i, (Xray_line, window) in enumerate(zip(xray_lines, integration_windows)):
-            element, line = utils_eds._get_element_and_line(Xray_line)
+            element, _ = eds_utils._get_element_and_line(Xray_line)
             line_energy = self._get_line_energy(Xray_line)
             # Replace with `map` function for lazy large datasets
             img = self.isig[window[0] : window[1]].integrate1D(
@@ -693,7 +697,7 @@ class EDSSpectrum(Signal1D):
             img.metadata.set_item("Sample.xray_lines", ([Xray_line]))
             intensities.append(img)
         if plot_result and img.axes_manager.navigation_size != 1:
-            utils.plot.plot_signals(intensities, **kwargs)
+            hs.plot.plot_signals(intensities, **kwargs)
         return intensities
 
     def get_take_off_angle(self):
@@ -733,7 +737,7 @@ class EDSSpectrum(Signal1D):
         elevation_angle = mp.get_item("Detector.EDS.elevation_angle", None)
         beta_tilt = mp.get_item("Stage.tilt_beta", 0.0)
 
-        return utils_eds.take_off_angle(
+        return eds_utils.take_off_angle(
             tilt_stage, azimuth_angle, elevation_angle, beta_tilt
         )
 
@@ -776,7 +780,6 @@ class EDSSpectrum(Signal1D):
         integration_windows = []
         for Xray_line in xray_lines:
             line_energy, line_FWHM = self._get_line_energy(Xray_line, FWHM_MnKa="auto")
-            element, line = utils_eds._get_element_and_line(Xray_line)
             det = windows_width * line_FWHM / 2.0
             integration_windows.append([line_energy - det, line_energy + det])
         return integration_windows
@@ -965,7 +968,7 @@ class EDSSpectrum(Signal1D):
         ):
             if xray_lines is False:
                 xray_lines = True
-            only_lines = utils_eds._parse_only_lines(only_lines)
+            only_lines = eds_utils._parse_only_lines(only_lines)
             if xray_lines is True or xray_lines == "from_elements":
                 if (
                     "Sample.xray_lines" in self.metadata
@@ -1022,6 +1025,8 @@ class EDSSpectrum(Signal1D):
         **kwargs : dict
             keywords argument for :class:`hyperspy.api.plot.markers.VerticalLine`
         """
+        from matplotlib import pyplot as plt
+
         position = np.array(position)
         length = position.shape[1]
         colors_cycle = itertools.cycle(
@@ -1055,13 +1060,13 @@ class EDSSpectrum(Signal1D):
         offsets = np.empty((len(xray_lines), 2))
         # might want to set the intensity based on the alpha line intensity
         for i, xray_line in enumerate(xray_lines):
-            element, line = utils_eds._get_element_and_line(xray_line)
+            element, line = eds_utils._get_element_and_line(xray_line)
             eng = self._get_line_energy(f"{element}_{line}")
             segments[i] = [[eng, 0], [eng, 1]]
             offsets[i] = [eng, 1]
             line_names.append(
                 r"$\mathrm{%s}_{\mathrm{%s}}$"
-                % utils_eds._get_element_and_line(xray_line)
+                % eds_utils._get_element_and_line(xray_line)
             )
 
         line_markers = hs.plot.markers.Lines(
@@ -1136,6 +1141,8 @@ class EDSSpectrum(Signal1D):
         --------
         estimate_background_windows, get_lines_intensity
         """
+        from matplotlib import pyplot as plt
+
         self._add_vertical_lines_groups(windows_position, **kwargs)
 
         # Calculate the start and end of segments for each window
@@ -1223,7 +1230,7 @@ class EDSSpectrum(Signal1D):
         print_lines, exspy.utils.eds.get_xray_lines,
         exspy.utils.eds.get_xray_lines_near_energy
         """
-        utils_eds.print_lines_near_energy(
+        eds_utils.print_lines_near_energy(
             energy=energy,
             width=width,
             weight_threshold=weight_threshold,
@@ -1298,7 +1305,7 @@ class EDSSpectrum(Signal1D):
                     "Please provide a list of elements or set them in the metadata."
                 )
 
-        utils_eds.print_lines(
+        eds_utils.print_lines(
             elements=elements,
             weight_threshold=weight_threshold,
             only_lines=only_lines,
@@ -1314,9 +1321,3 @@ class EDSSpectrum(Signal1D):
         SORTING_PARAMETER.replace("    ", "        "),
         FLOAT_FORMAT_PARAMETER.replace("    ", "        "),
     )
-
-
-class LazyEDSSpectrum(EDSSpectrum, LazySignal1D):
-    """Lazy general signal class for EDS spectra."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSSpectrum")

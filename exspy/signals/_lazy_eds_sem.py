@@ -16,32 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
-from exspy._misc.eds.utils import (
-    cross_section_to_zeta,
-    electron_range,
-    get_xray_lines,
-    get_xray_lines_near_energy,
-    print_lines,
-    print_lines_near_energy,
-    take_off_angle,
-    xray_range,
-    zeta_to_cross_section,
-)
+from exspy.signals import EDSSEMSpectrum, LazyEDSSpectrum
 
 
-__all__ = [
-    "cross_section_to_zeta",
-    "electron_range",
-    "get_xray_lines",
-    "get_xray_lines_near_energy",
-    "print_lines",
-    "print_lines_near_energy",
-    "take_off_angle",
-    "xray_range",
-    "zeta_to_cross_section",
-]
+class LazyEDSSEMSpectrum(EDSSEMSpectrum, LazyEDSSpectrum):
+    """Lazy signal class for EDS spectra measured in an SEM."""
 
-
-def __dir__():
-    return sorted(__all__)
+    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSSEMSpectrum")

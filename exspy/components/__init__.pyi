@@ -16,28 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-
-from exspy._misc.eels.effective_angle import effective_angle
-from exspy._misc.eels.electron_inelastic_mean_free_path import (
-    iMFP_angular_correction,
-    iMFP_Iakoubovskii,
-    iMFP_TPP2M,
-)
-from exspy._misc.eels.tools import (
-    get_edges_near_energy,
-    get_info_from_edges,
-)
-
+from ._eels_arctan import EELSArctan
+from ._eels_cl_edge import EELSCLEdge
+from ._eels_double_power_law import DoublePowerLaw
+from ._eels_vignetting import Vignetting
+from ._pes_core_line_shape import PESCoreLineShape
+from ._pes_see import SEE
+from ._pes_voigt import PESVoigt
+from ._volume_plasmon_drude import VolumePlasmonDrude
 
 __all__ = [
-    "effective_angle",
-    "get_edges_near_energy",
-    "get_info_from_edges",
-    "iMFP_angular_correction",
-    "iMFP_Iakoubovskii",
-    "iMFP_TPP2M",
+    "EELSArctan",
+    "EELSCLEdge",
+    "DoublePowerLaw",
+    "PESCoreLineShape",
+    "PESVoigt",
+    "SEE",
+    "Vignetting",
+    "VolumePlasmonDrude",
 ]
-
 
 def __dir__():
     return sorted(__all__)

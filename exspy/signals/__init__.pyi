@@ -16,7 +16,29 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+from ._dielectric_function import DielectricFunction
+from ._eds import EDSSpectrum
+from ._eds_sem import EDSSEMSpectrum
+from ._eds_tem import EDSTEMSpectrum
+from ._eels import EELSSpectrum
+from ._lazy_dielectric_function import LazyDielectricFunction
+from ._lazy_eds import LazyEDSSpectrum
+from ._lazy_eds_sem import LazyEDSSEMSpectrum
+from ._lazy_eds_tem import LazyEDSTEMSpectrum
+from ._lazy_eels import LazyEELSSpectrum
 
-import lazy_loader
+__all__ = [
+    "DielectricFunction",
+    "LazyDielectricFunction",
+    "EDSSpectrum",
+    "LazyEDSSpectrum",
+    "EDSTEMSpectrum",
+    "LazyEDSTEMSpectrum",
+    "EELSSpectrum",
+    "LazyEELSSpectrum",
+    "EDSSEMSpectrum",
+    "LazyEDSSEMSpectrum",
+]
 
-__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)
+def __dir__():
+    return sorted(__all__)

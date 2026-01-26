@@ -19,12 +19,12 @@
 
 import numpy as np
 
-import hyperspy.api as hs
+from hyperspy.components1d import Expression
 
 from exspy._utils import parse_component_module
 
 
-class DoublePowerLaw(hs.model.components1D.Expression):
+class DoublePowerLaw(Expression):
     r"""Double power law component for EELS spectra.
 
     .. math::

@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import pytest
+from hyperspy.signals import LazyComplexSignal1D
+from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
-from exspy.utils.eds import _get_element_and_line
+from exspy.signals import DielectricFunction
 
 
-def test_get_element_and_line():
-    assert _get_element_and_line("Mn_Ka") == ("Mn", "Ka")
+class LazyDielectricFunction(DielectricFunction, LazyComplexSignal1D):
+    """Lazy signal class for dielectric functions."""
 
-    with pytest.raises(ValueError):
-        _get_element_and_line("MnKa") == -1
+    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "DielectricFunction")

@@ -20,9 +20,8 @@
 import math
 
 import numpy as np
-from scipy import constants, integrate, interpolate
+import scipy
 
-from exspy._misc.elements import elements
 from hyperspy.misc.export_dictionary import (
     export_to_dictionary,
     load_from_dictionary,
@@ -30,12 +29,10 @@ from hyperspy.misc.export_dictionary import (
 from hyperspy.misc.math_tools import get_linear_interpolation
 
 
-R = constants.value("Rydberg constant times hc in eV")
-a0 = constants.value("Bohr radius")
-
-
 class BaseGOS:
     def read_elements(self):
+        from exspy._misc.elements import elements
+
         element = self.element
         subshell = self.subshell
         # Convert to the "GATAN" nomenclature
@@ -125,6 +122,9 @@ class TabulatedGOS(BaseGOS):
         return dic
 
     def integrateq(self, onset_energy, angle, E0):
+        a0 = scipy.constants.value("Bohr radius")
+        R = scipy.constants.value("Rydberg constant times hc in eV")
+
         energy_shift = onset_energy - self.onset_energy
         self.energy_shift = energy_shift
         qint = np.zeros((self.energy_axis.shape[0]))
@@ -144,9 +144,9 @@ class TabulatedGOS(BaseGOS):
             # Perform the integration in a log grid
             qaxis, gos = self.get_qaxis_and_gos(i, qmin, qmax)
             logsqa0qaxis = np.log((a0 * qaxis) ** 2)
-            qint[i] = integrate.simpson(gos, x=logsqa0qaxis)
+            qint[i] = scipy.integrate.simpson(gos, x=logsqa0qaxis)
         E = self.energy_axis + energy_shift
         # Energy differential cross section in (barn/eV/atom)
         qint *= (4.0 * np.pi * a0**2.0 * R**2 / E / T * self.subshell_factor) * 1e28
         self.qint = qint
-        return interpolate.make_interp_spline(E, qint, k=3)
+        return scipy.interpolate.make_interp_spline(E, qint, k=3)

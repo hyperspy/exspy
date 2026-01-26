@@ -16,13 +16,24 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import pytest
+from . import (
+    components,
+    data,
+    models,
+    signals,
+    utils,
+)
+from ._version import __version__
+from ._defaults_parser import preferences
+from ._misc import material
 
-from exspy.utils.eds import _get_element_and_line
-
-
-def test_get_element_and_line():
-    assert _get_element_and_line("Mn_Ka") == ("Mn", "Ka")
-
-    with pytest.raises(ValueError):
-        _get_element_and_line("MnKa") == -1
+__all__ = [
+    "__version__",
+    "components",
+    "data",
+    "preferences",
+    "material",
+    "models",
+    "signals",
+    "utils",
+]

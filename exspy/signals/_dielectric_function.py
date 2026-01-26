@@ -17,15 +17,11 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import numpy as np
-from scipy import constants
-from scipy.integrate import simpson, cumulative_trapezoid
+import scipy
 
-from hyperspy._signals.complex_signal1d import (
-    ComplexSignal1D,
-    LazyComplexSignal1D,
-)
-from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
-from exspy._misc.eels.tools import eels_constant
+from hyperspy.signals import ComplexSignal1D
+
+import exspy.utils.eels as eels_utils
 
 
 class DielectricFunction(ComplexSignal1D):
@@ -75,19 +71,19 @@ class DielectricFunction(ComplexSignal1D):
 
         """
 
-        m0 = constants.value("electron mass")
-        epsilon0 = constants.epsilon_0  # Vacuum permittivity [F/m]
-        hbar = constants.hbar  # Reduced Plank constant [J·s]
+        m0 = scipy.constants.value("electron mass")
+        epsilon0 = scipy.constants.epsilon_0  # Vacuum permittivity [F/m]
+        hbar = scipy.constants.hbar  # Reduced Plank constant [J·s]
         k = 2 * epsilon0 * m0 / (np.pi * nat * hbar**2)
 
         axis = self.axes_manager.signal_axes[0]
         if cumulative is False:
-            dneff1 = k * simpson(
+            dneff1 = k * scipy.integrate.simpson(
                 (-1.0 / self.data).imag * axis.axis,
                 x=axis.axis,
                 axis=axis.index_in_array,
             )
-            dneff2 = k * simpson(
+            dneff2 = k * scipy.integrate.simpson(
                 self.data.imag * axis.axis, x=axis.axis, axis=axis.index_in_array
             )
             neff1 = self._get_navigation_signal(data=dneff1)
@@ -95,7 +91,7 @@ class DielectricFunction(ComplexSignal1D):
         else:
             neff1 = self._deepcopy_with_new_data(
                 k
-                * cumulative_trapezoid(
+                * scipy.integrate.cumulative_trapezoid(
                     (-1.0 / self.data).imag * axis.axis,
                     x=axis.axis,
                     axis=axis.index_in_array,
@@ -104,7 +100,7 @@ class DielectricFunction(ComplexSignal1D):
             )
             neff2 = self._deepcopy_with_new_data(
                 k
-                * cumulative_trapezoid(
+                * scipy.integrate.cumulative_trapezoid(
                     self.data.imag * axis.axis,
                     x=axis.axis,
                     axis=axis.index_in_array,
@@ -160,7 +156,7 @@ class DielectricFunction(ComplexSignal1D):
                 )
         data = (
             (-1 / self.data).imag
-            * eels_constant(self, zlp, t).data
+            * eels_utils.eels_constant_dielectric(self, zlp, t).data
             * self.axes_manager.signal_axes[0].scale
         )
         s = self._deepcopy_with_new_data(data)
@@ -168,9 +164,3 @@ class DielectricFunction(ComplexSignal1D):
         s.set_signal_type("EELS")
         s.metadata.General.title = "EELS calculated from " + self.metadata.General.title
         return s
-
-
-class LazyDielectricFunction(DielectricFunction, LazyComplexSignal1D):
-    """Lazy signal class for dielectric functions."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "DielectricFunction")

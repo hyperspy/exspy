@@ -9,22 +9,8 @@ on:
 
 jobs:
   download_cache_GOS:
-    name: Download GOS data
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ssciwr/pooch-cache@v1
-        with:
-          # eXSpy uses pooch.retrieve to download the GOS data,
-          # so we need to use the default pooch cache
-          name: pooch
-          file-urls: |
-            https://zenodo.org/records/7645765/files/Segger_Guzzinati_Kohl_1.5.0.gosh
-            https://zenodo.org/records/12800856/files/Dirac_GOS_compact.gosh
-            https://zenodo.org/records/6599071/files/Segger_Guzzinati_Kohl_1.0.0.gos
-          known-hashes: |
-            md5:7fee8891c147a4f769668403b54c529b
-            md5:01a855d3750d2c063955248358dbee8d
-            md5:d65d5c23142532fde0a80e160ab51574
+    # Use the "reusable workflow" from the hyperspy organisation
+    uses: hyperspy/.github/.github/workflows/download_exspy_GOS.yml@main
 
   run_test_site:
     name: ${{ matrix.os }}-py${{ matrix.PYTHON_VERSION }}${{ matrix.LABEL }}

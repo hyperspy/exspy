@@ -8,8 +8,27 @@ on:
   pull_request:
 
 jobs:
+  download_cache_GOS:
+    name: Download GOS data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ssciwr/pooch-cache@v1
+        with:
+          # eXSpy uses pooch.retrieve to download the GOS data,
+          # so we need to use the default pooch cache
+          name: pooch
+          file-urls: |
+            https://zenodo.org/records/7645765/files/Segger_Guzzinati_Kohl_1.5.0.gosh
+            https://zenodo.org/records/12800856/files/Dirac_GOS_compact.gosh
+            https://zenodo.org/records/6599071/files/Segger_Guzzinati_Kohl_1.0.0.gos
+          known-hashes: |
+            md5:7fee8891c147a4f769668403b54c529b
+            md5:01a855d3750d2c063955248358dbee8d
+            md5:d65d5c23142532fde0a80e160ab51574
+
   run_test_site:
     name: ${{ matrix.os }}-py${{ matrix.PYTHON_VERSION }}${{ matrix.LABEL }}
+    needs: [download_cache_GOS]
     runs-on: ${{ matrix.os }}-latest
     timeout-minutes: 30
     defaults:
@@ -61,6 +80,11 @@ jobs:
           git remote add upstream https://github.com/hyperspy/${{ env.REPOSITORY_NAME }}.git
           git fetch upstream --tags
 
+      - uses: ssciwr/pooch-cache@v1
+        with:
+          name: pooch
+          fail-on-cache-miss: true
+
       - uses: actions/setup-python@v6
         name: Install Python
         with:
@@ -80,22 +104,6 @@ jobs:
         if: contains( matrix.LABEL, 'dev')
         run: |
           pip install https://github.com/hyperspy/hyperspy/archive/RELEASE_next_minor.zip
-
-      - name: Get pooch cache paths
-        run: |
-          # create list of pooch cache paths as a string (space separated)
-          python -c "import pooch; print(str(pooch.os_cache('pooch')))" > pooch_cache_paths.txt
-          echo "POOCH_CACHE_PATHS=$(cat pooch_cache_paths.txt)" >> $GITHUB_ENV
-
-      - name: Cache GOS data
-        uses: actions/cache@v4
-        env:
-          # Increase this value to reset cache
-          CACHE_NUMBER: 0
-        with:
-          path: ${{ env.POOCH_CACHE_PATHS }}
-          key: ${{ runner.os }}-GOS_cache-${{ env.CACHE_NUMBER }}
-          restore-keys:  ${{ runner.os }}-GOS_cache
 
       - name: Pip list
         run: |

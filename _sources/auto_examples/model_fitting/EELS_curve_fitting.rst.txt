@@ -68,15 +68,6 @@ Create a model and fit it to the data.
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    /opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/rsciio/utils/rgb_tools.py:62: VisibleDeprecationWarning: The module `rsciio.utils.rgb_tools` has been renamed to `rsciio.utils.rgb` and it will be removed in version 1.0. Use `RGB_DTYPES` instead
-      warnings.warn(
-    /opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/rsciio/utils/rgb_tools.py:62: VisibleDeprecationWarning: The module `rsciio.utils.rgb_tools` has been renamed to `rsciio.utils.rgb` and it will be removed in version 1.0.
-      warnings.warn(
-
 
 
 
@@ -104,7 +95,7 @@ Plot the model fit result
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.731 seconds)
+   **Total running time of the script:** (0 minutes 2.643 seconds)
 
 
 .. _sphx_glr_download_auto_examples_model_fitting_EELS_curve_fitting.py:

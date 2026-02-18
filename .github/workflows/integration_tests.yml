@@ -11,9 +11,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  integration_test:
+  download_exspy_GOS:
     if: ${{ contains(github.event.pull_request.labels.*.name, 'run-integration-tests') || github.event_name == 'workflow_dispatch' }}
+    # Use the "reusable workflow" from the hyperspy organisation
+    uses: hyperspy/.github/.github/workflows/download_exspy_GOS.yml@main
+
+  download_rsciio_test_data:
+    # Use the "reusable workflow" from the hyperspy organisation
+    uses: hyperspy/.github/.github/workflows/download_rsciio_test_data.yml@main
+    strategy:
+      fail-fast: false
+      matrix:
+        VERSION: [release, main]
+    with:
+      VERSION: ${{ matrix.VERSION }}
+
+  integration_test:
     name: hs_${{ matrix.HYPERSPY_VERSION }}-rs_${{ matrix.ROSETTASCIIO_VERSION }}-ext_${{ matrix.EXTENSION_VERSION }}
+    needs: [download_exspy_GOS, download_rsciio_test_data]  
     strategy:
       fail-fast: false
       matrix:
@@ -30,3 +45,5 @@ jobs:
       ROSETTASCIIO_VERSION: ${{ matrix.ROSETTASCIIO_VERSION }}
       PIP_EXTRAS: '[all,tests]'
       USE_CONDA: false
+      RSCIIO_CACHE_POOCH_LABEL: ${{ needs.download_rsciio_test_data.outputs.VERSION }}
+                                                                                      

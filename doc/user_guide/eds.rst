@@ -422,6 +422,28 @@ You can also select a subset of lines to label:
 
    EDS spectrum plot with a selection of line markers
 
+
+Finding X-ray lines interactively
+---------------------------------
+
+The X-ray lines can also be found interactively using the
+:py:meth:`~.signals.EDSSpectrum.lines_at_energy` method in a jupyter notebook:
+
+.. code-block:: python
+
+    >>> s = exspy.data.EDS_TEM_FePt_nanoparticles()
+    >>> s.lines_at_energy()
+
+.. figure::  images/lines_at_energy_ipywidgets.jpg
+   :align:   center
+   :width:   750
+
+   EDS spectrum plot with ipywidgets to find X-ray lines interactively. Moving the blue
+   vertical line changes the energy at which the X-ray lines are searched for and all
+   the lines from a given element can be displayed by clicking on the element name in the
+   table.
+
+
 .. _get_lines_intensity:
 
 

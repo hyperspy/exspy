@@ -673,3 +673,9 @@ class Test_eds_markers:
         assert len(s._xray_markers["texts"].get_current_kwargs()["offsets"]) == 0
         assert len(s._xray_markers["texts"].get_current_kwargs()["texts"]) == 0
         assert len(s._xray_markers["lines"].get_current_kwargs()["segments"]) == 0
+
+    def test_manual_remove_element_error_no_markers(self):
+        s = self.signal
+        s.plot()
+        # It shouldn't raise an error if there are no markers, but it should do nothing
+        s.remove_xray_lines_markers(None)

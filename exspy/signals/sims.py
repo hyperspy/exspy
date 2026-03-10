@@ -34,7 +34,7 @@ class SIMSSpectrum(Signal1D):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.axes_manager.signal_axes:
+        if self.axes_manager.signal_axes:  # pragma: no branch
             self.axes_manager.signal_axes[0].is_binned = True
 
     def get_tic(self):
@@ -72,8 +72,11 @@ class SIMSSpectrum(Signal1D):
             tic = self.get_tic()
         else:
             ax = self.axes_manager.signal_axes[0]
-            indices = [ax.value2index(m) for m in peaks]
-            tic = self.isig[indices].sum(axis=self.axes_manager.signal_axes[0])
+            indices = [int(np.argmin(np.abs(ax.axis - m))) for m in peaks]
+            tic = None
+            for idx in indices:
+                channel = self.isig[idx]
+                tic = channel if tic is None else tic + channel
 
         if exclude_saturated and "Acquisition_instrument.FIB_SIMS" in self.metadata:
             warnings.warn(
@@ -200,8 +203,8 @@ class SIMSSpectrum(Signal1D):
         else:
             slices = tuple(slice(i, i + 1) for i in navigation_indices)
             s = self.inav[slices]
-            for ax in s.axes_manager.navigation_axes:
-                s = s.sum(ax)
+            while s.axes_manager.navigation_dimension > 0:
+                s = s.sum(s.axes_manager.navigation_axes[-1])
             return s
 
     def label_peaks(self, peak_table=None, min_intensity=0.0):

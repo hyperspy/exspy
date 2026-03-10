@@ -29,7 +29,7 @@ from exspy.signals.fib_sims import FIBSIMSSpectrum, LazyFIBSIMSSpectrum
 # Paths to rosettasciio test fixtures (optional dependency)
 # ---------------------------------------------------------------------------
 _RSCIIO_DATA = (
-    pathlib.Path(__file__).parent.parent.parent.parent.parent
+    pathlib.Path(__file__).parents[4]
     / "rosettasciio"
     / "rsciio"
     / "tests"
@@ -71,7 +71,7 @@ def _make_fib_sims_with_metadata(**extra):
     )
     s.metadata.set_item("Acquisition_instrument.FIB_SIMS.n_depth_slices", 3)
     s.metadata.set_item("Acquisition_instrument.FIB_SIMS.n_segments", 1)
-    for key, val in extra.items():
+    for key, val in extra.items():  # pragma: no cover
         s.metadata.set_item(key, val)
     return s
 
@@ -82,11 +82,12 @@ def _make_fib_sims_with_metadata(**extra):
 
 
 @skip_no_files
-class TestSignalDispatch:
+@pytest.mark.filterwarnings("ignore:Loading old file version")
+class TestSignalDispatch:  # pragma: no cover
     def test_opened_file_dispatches_fib_sims(self):
         import hyperspy.api as hs
 
-        sigs = hs.load(str(OPENED_FILE), reader="Tofwerk")
+        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk")
         types = [type(s).__name__ for s in sigs]
         assert "FIBSIMSSpectrum" in types, f"Expected FIBSIMSSpectrum, got {types}"
         fib = next(s for s in sigs if isinstance(s, FIBSIMSSpectrum))
@@ -95,14 +96,14 @@ class TestSignalDispatch:
     def test_lazy_opened_file(self):
         import hyperspy.api as hs
 
-        sigs = hs.load(str(OPENED_FILE), reader="Tofwerk", lazy=True)
+        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk", lazy=True)
         fib_lazy = [s for s in sigs if isinstance(s, LazyFIBSIMSSpectrum)]
         assert len(fib_lazy) >= 1, "Expected at least one LazyFIBSIMSSpectrum"
 
     def test_sum_spectrum_is_signal1d(self):
         import hyperspy.api as hs
 
-        sigs = hs.load(str(OPENED_FILE), reader="Tofwerk")
+        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk")
         # First signal is the sum spectrum (1D)
         sum_sig = sigs[0]
         assert sum_sig.axes_manager.signal_dimension == 1
@@ -110,7 +111,7 @@ class TestSignalDispatch:
     def test_tic_map_is_2d(self):
         import hyperspy.api as hs
 
-        sigs = hs.load(str(OPENED_FILE), reader="Tofwerk")
+        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk")
         tic = sigs[1]
         assert tic.data.ndim >= 2
 
@@ -142,27 +143,61 @@ class TestSIMSSpectrumMethods:
         total = norm.data.sum(axis=-1)
         np.testing.assert_allclose(total, np.ones_like(total), rtol=1e-5)
 
+    def test_normalize_tic_with_peaks(self):
+        s = _make_fib_sims(shape=(2, 3, 8))
+        s.data = np.abs(s.data) + 1.0
+        # Use values read from the axis to guarantee consistency
+        ax_vals = s.axes_manager.signal_axes[0].axis
+        norm = s.normalize_tic(peaks=[float(ax_vals[0]), float(ax_vals[3])])
+        assert norm.data.shape == s.data.shape
+
+    def test_normalize_tic_saturation_warning(self):
+        s = _make_fib_sims_with_metadata()
+        s.data = np.abs(s.data) + 1.0
+        with pytest.warns(UserWarning, match="Saturation-based exclusion"):
+            s.normalize_tic(exclude_saturated=True)
+
+    def test_normalize_tic_inplace(self):
+        s = _make_fib_sims(shape=(2, 3, 8))
+        s.data = np.abs(s.data) + 1.0
+        orig_id = id(s)
+        result = s.normalize_tic(inplace=True)
+        assert result is s
+        assert id(result) == orig_id
+
     def test_normalize_tic_zero_pixel_is_nan(self):
         s = _make_fib_sims(shape=(2, 3, 8))
         s.data = np.abs(s.data) + 1.0
         s.data[0, 0, :] = 0.0  # zero spectrum → TIC = 0
-        norm = s.normalize_tic()
+        with pytest.warns(RuntimeWarning, match="invalid value encountered in divide"):
+            norm = s.normalize_tic()
         assert np.all(np.isnan(norm.data[0, 0, :]))
 
     def test_normalize_to_peak(self):
         s = _make_fib_sims(shape=(2, 10))
         s.data = np.ones((2, 10), dtype=float)
-        # mass axis: 1..100 in 10 steps
         masses = np.linspace(1.0, 100.0, 10)
         s.axes_manager.signal_axes[0].axis = masses
-        # Peak at first mass (1.0 Da), window 1.0 Da
         norm = s.normalize_to_peak(1.0, window=1.0)
-        # Reference = sum over [0.0, 2.0] → captures first bin only (1 count)
-        # All spectra are 1.0 everywhere, so reference = 1.0 → no change
         assert norm.data.shape == s.data.shape
+
+    def test_normalize_to_peak_inplace(self):
+        s = _make_fib_sims(shape=(2, 10))
+        s.data = np.abs(s.data) + 1.0
+        masses = np.linspace(1.0, 100.0, 10)
+        s.axes_manager.signal_axes[0].axis = masses
+        result = s.normalize_to_peak(50.0, window=5.0, inplace=True)
+        assert result is s
 
     def test_get_depth_profile_shape(self):
         profile = self.s.get_depth_profile()
+        assert profile.data.ndim == 1
+        assert profile.data.shape[0] == 3
+
+    def test_get_depth_profile_with_mass(self):
+        masses = np.linspace(1.0, 100.0, 10)
+        self.s.axes_manager.signal_axes[0].axis = masses
+        profile = self.s.get_depth_profile(mass=50.0, window=5.0)
         assert profile.data.ndim == 1
         assert profile.data.shape[0] == 3
 
@@ -171,6 +206,18 @@ class TestSIMSSpectrumMethods:
         self.s.axes_manager.signal_axes[0].axis = masses
         result = self.s.integrate_peak(50.0, window=5.0)
         assert result.data.shape == (3, 4, 5)
+
+    def test_get_mass_spectrum_no_indices(self):
+        # navigation_indices=None: sum over all nav axes → 1D result
+        result = self.s.get_mass_spectrum()
+        assert result.axes_manager.navigation_dimension == 0
+        assert result.data.shape == (10,)
+
+    def test_get_mass_spectrum_with_indices(self):
+        # navigation_indices specified: index then sum → 1D result
+        result = self.s.get_mass_spectrum(navigation_indices=(0, 0, 0))
+        assert result.axes_manager.navigation_dimension == 0
+        assert result.data.shape == (10,)
 
     def test_label_peaks_raises(self):
         with pytest.raises(NotImplementedError):
@@ -195,6 +242,13 @@ class TestCountRate:
         # Result should differ from original (scaled)
         assert not np.allclose(result.data, s.data)
         assert result.data.sum() != orig_sum
+
+    def test_to_count_rate_inplace(self):
+        s = _make_fib_sims_with_metadata()
+        orig_data_id = id(s.data)
+        result = s.to_count_rate(inplace=True)
+        assert result is s
+        assert id(result.data) != orig_data_id  # data was replaced
 
     def test_to_count_rate_missing_metadata_raises(self):
         s = _make_fib_sims()

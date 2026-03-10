@@ -11,3 +11,5 @@ dist/*
 .vscode/*
 .zed
 .DS_Store
+coverage.xml
+.coverage

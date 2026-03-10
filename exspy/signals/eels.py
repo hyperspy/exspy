@@ -27,7 +27,7 @@ from prettytable import PrettyTable
 
 import hyperspy.api as hs
 from hyperspy.signal import BaseSetMetadataItems, BaseSignal
-from hyperspy._signals.signal1d import Signal1D, LazySignal1D
+from hyperspy.signals import Signal1D, LazySignal1D
 from hyperspy.misc.utils import display, isiterable, underline
 from hyperspy.misc.math_tools import optimal_fft_size
 

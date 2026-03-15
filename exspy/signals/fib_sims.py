@@ -18,6 +18,7 @@
 
 import logging
 
+import numpy as np
 from hyperspy.signals import LazySignal1D
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
@@ -39,6 +40,30 @@ class FIBSIMSSpectrum(SIMSSpectrum):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+    def plot(self, *args, **kwargs):
+        kwargs.setdefault("norm", "log")
+        super().plot(*args, **kwargs)
+
+    def get_tic(self):
+        """Return the Total Ion Count map as a Signal2D.
+
+        Sums all mass channels and promotes the spatial navigation axes
+        (y, x) to signal axes so the result is a 2D image per depth slice.
+
+        Returns
+        -------
+        Signal2D
+            Shape ``(depth | y, x)`` for a standard 4D FIB-SIMS input.
+        """
+        result = super().get_tic()  # BaseSignal with all-navigation axes
+        if result.axes_manager.navigation_dimension >= 2:
+            result = result.transpose(signal_axes=2)
+        base_title = self.metadata.General.title
+        result.metadata.General.title = (
+            f"{base_title} TIC" if base_title else "TIC"
+        )
+        return result
+
     def get_depth_profile(self, mass=None, window=0.5):
         """Return a 1D depth profile.
 
@@ -52,19 +77,18 @@ class FIBSIMSSpectrum(SIMSSpectrum):
 
         Returns
         -------
-        Signal1D
+        BaseSignal
             1D signal with the depth axis.
         """
         if mass is None:
-            nav_signal = self.get_tic()
+            # Use the parent class get_tic() which returns a navigation-aligned
+            # BaseSignal (depth, y, x | 0D) suitable for collapsing below.
+            nav_signal = super().get_tic()
         else:
             roi = self.isig[mass - window : mass + window]
             nav_signal = roi.sum(axis=roi.axes_manager.signal_axes[0])
 
         # Collapse all navigation axes except axis 0 (depth / outermost).
-        # Sum from the innermost navigation axis outward; each sum reduces
-        # the navigation dimension by one, so we always collapse axis index 1
-        # until only the depth axis (index 0) remains.
         result = nav_signal
         while result.axes_manager.navigation_dimension > 1:
             result = result.sum(result.axes_manager.navigation_axes[0])
@@ -133,6 +157,149 @@ class FIBSIMSSpectrum(SIMSSpectrum):
             borders[float(m)] = (float(low), float(high))
 
         return borders
+
+
+    def reintegrate_peaks(self, event_list_signal, peak_table=None):
+        """Reintegrate the 4D peak data cube from a loaded EventList signal.
+
+        Re-derives the ``(depth, y, x, m/z)`` peak-integrated array from the
+        raw TDC timestamps using the integration windows in
+        ``metadata.Signal.peak_table`` (or a user-supplied override).
+
+        The ``event_list_signal`` must be loaded from the same acquisition
+        using ``rsciio.tofwerk.file_reader(signal="event_list")``.  All
+        calibration parameters (mass axis, clock ratio, normalisation) are
+        read from its ``original_metadata``.
+
+        Parameters
+        ----------
+        event_list_signal : hyperspy.signals.BaseSignal
+            The EventList signal loaded from the same Tofwerk ``.h5`` file
+            via ``file_reader(signal="event_list")``.  Its ``original_metadata``
+            must contain ``MassAxis`` and ``FullSpectra`` timing attributes.
+        peak_table : list of dict, optional
+            Integration windows to use.  Each dict must have keys:
+
+            * ``"label"`` (str)
+            * ``"mass"`` (float, Da)
+            * ``"lower_integration_limit"`` (float, Da)
+            * ``"upper_integration_limit"`` (float, Da)
+
+            If not provided, ``self.metadata.Signal.peak_table`` is used.
+
+        Returns
+        -------
+        FIBSIMSSpectrum
+            New signal with reintegrated data and updated m/z axis.
+
+        Raises
+        ------
+        AttributeError
+            If ``peak_table`` is None and ``metadata.Signal.peak_table`` is
+            not set.
+        AttributeError
+            If ``event_list_signal.original_metadata`` does not contain the
+            required timing attributes (``MassAxis``, ``FullSpectra``).
+        """
+        if peak_table is None:
+            try:
+                peak_table = list(self.metadata.Signal.peak_table)
+            except AttributeError:
+                raise AttributeError(
+                    "No peak_table found in metadata.Signal.peak_table. "
+                    "Load the signal from a Tofwerk file or supply peak_table explicitly."
+                )
+
+        # Extract calibration parameters from the EventList signal's metadata.
+        omd = event_list_signal.original_metadata
+        try:
+            mass_axis = np.asarray(omd.MassAxis, dtype=np.float64)
+        except AttributeError:
+            raise AttributeError(
+                "event_list_signal.original_metadata.MassAxis is not set. "
+                "Load the EventList signal via rsciio.tofwerk.file_reader(signal='event_list')."
+            )
+        nbr_samples = len(mass_axis)
+
+        try:
+            fs = omd.FullSpectra
+            sample_interval = float(fs["SampleInterval"])
+            clock_period = float(fs["ClockPeriod"])
+        except (AttributeError, KeyError):
+            sample_interval = 1.0
+            clock_period = 1.0
+        clock_ratio = int(round(sample_interval / clock_period)) if clock_period else 1
+
+        nbr_waveforms_raw = omd.as_dictionary().get("NbrWaveforms", 1)
+        if isinstance(nbr_waveforms_raw, list):
+            nbr_waveforms_raw = nbr_waveforms_raw[0]
+        nbr_waveforms = int(nbr_waveforms_raw)
+        ini = omd.as_dictionary().get("Configuration File Contents", "")
+        from rsciio.tofwerk._api import _count_active_channels
+        n_active = _count_active_channels(ini)
+        normalization = nbr_waveforms * n_active
+
+        # Sort peak_table by mass for a monotonically increasing m/z axis.
+        masses = np.array([p["mass"] for p in peak_table])
+        sort_idx = np.argsort(masses)
+        sorted_peak_table = [peak_table[i] for i in sort_idx]
+        sorted_masses = masses[sort_idx]
+
+        from rsciio.tofwerk import compute_peak_data_from_eventlist
+
+        # Get the raw event data (numpy object array or dask array).
+        el = event_list_signal.data
+        if hasattr(el, "compute"):
+            try:
+                from dask.diagnostics import ProgressBar
+                with ProgressBar(dt=0.5):
+                    el = el.compute()
+            except ImportError:
+                el = el.compute()
+
+        peak_data = compute_peak_data_from_eventlist(
+            el, mass_axis, nbr_samples, clock_ratio, normalization, sorted_peak_table
+        )
+
+        # Rebuild axes: reuse the navigation axes from this signal, replace m/z.
+        new_axes = []
+        for ax in self.axes_manager._axes[:-1]:  # depth, y, x
+            if not ax.is_uniform:
+                new_axes.append(
+                    {
+                        "name": ax.name,
+                        "axis": ax.axis.copy(),
+                        "units": ax.units,
+                        "navigate": True,
+                    }
+                )
+            else:
+                new_axes.append(
+                    {
+                        "name": ax.name,
+                        "offset": ax.offset,
+                        "scale": ax.scale,
+                        "units": ax.units,
+                        "size": ax.size,
+                        "navigate": True,
+                    }
+                )
+        new_axes.append(
+            {
+                "name": "m/z",
+                "axis": sorted_masses,
+                "units": "Da",
+                "navigate": False,
+                "is_binned": True,
+            }
+        )
+
+        result_cls = self.__class__ if hasattr(peak_data, "compute") else FIBSIMSSpectrum
+        result = result_cls(peak_data, axes=new_axes)
+        result.metadata.add_dictionary(self.metadata.as_dictionary())
+        result.metadata.Signal.peak_table = sorted_peak_table
+        result.original_metadata.add_dictionary(self.original_metadata.as_dictionary())
+        return result
 
 
 class LazyFIBSIMSSpectrum(FIBSIMSSpectrum, LazySignal1D):

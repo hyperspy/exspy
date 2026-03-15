@@ -69,7 +69,10 @@ class SIMSSpectrum(Signal1D):
             Normalised signal.
         """
         if peaks is None:
-            tic = self.get_tic()
+            # Sum over signal axis directly so that the result is always a
+            # navigation-aligned BaseSignal, regardless of how get_tic() may
+            # be overridden in subclasses for visualisation purposes.
+            tic = self.sum(axis=self.axes_manager.signal_axes[0])
         else:
             ax = self.axes_manager.signal_axes[0]
             indices = [int(np.argmin(np.abs(ax.axis - m))) for m in peaks]

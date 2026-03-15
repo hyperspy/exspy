@@ -108,12 +108,14 @@ class TestSignalDispatch:  # pragma: no cover
         sum_sig = sigs[0]
         assert sum_sig.axes_manager.signal_dimension == 1
 
-    def test_tic_map_is_2d(self):
+    def test_get_tic_returns_signal2d(self):
         import hyperspy.api as hs
 
-        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk")
-        tic = sigs[1]
-        assert tic.data.ndim >= 2
+        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk", signal="all")
+        peak_data = next(s for s in sigs if s.axes_manager.navigation_dimension == 3)
+        tic = peak_data.get_tic()
+        assert tic.axes_manager.signal_dimension == 2
+        assert tic.axes_manager.navigation_dimension == 1
 
 
 # ---------------------------------------------------------------------------
@@ -134,6 +136,9 @@ class TestSIMSSpectrumMethods:
     def test_get_tic_shape(self):
         tic = self.s.get_tic()
         assert tic.data.shape == (3, 4, 5)
+        # y and x are promoted to signal axes: Signal2D (depth | y, x)
+        assert tic.axes_manager.signal_dimension == 2
+        assert tic.axes_manager.navigation_dimension == 1
 
     def test_normalize_tic_sums_to_one(self):
         s = _make_fib_sims(shape=(2, 3, 8))
@@ -302,3 +307,123 @@ class TestComputeIntegrationBorders:
         # high border of 100 Da: min(midpoint=150, 100 + 100/100=101) → 101
         _, high_100 = borders[100.0]
         assert high_100 == pytest.approx(101.0, rel=1e-6)
+
+
+# ---------------------------------------------------------------------------
+# TestReintegratePeaks
+# ---------------------------------------------------------------------------
+
+
+class TestReintegratePeaks:
+    """Tests for FIBSIMSSpectrum.reintegrate_peaks()."""
+
+    NWRITES = 3
+    NSEGS = 8
+    NX = 8
+    NPEAKS = 5
+    NSAMPLES = 256
+
+    _PEAK_TABLE = [
+        {
+            "label": f"nominal_{i}",
+            "mass": float(i + 1),
+            "lower_integration_limit": float(i) + 0.5,
+            "upper_integration_limit": float(i) + 1.5,
+        }
+        for i in range(NPEAKS)
+    ]
+
+    def _make_fib_sims_signal(self):
+        """Synthetic FIBSIMSSpectrum with peak_table in metadata."""
+        rng = np.random.default_rng(42)
+        data = rng.uniform(0, 10, (self.NWRITES, self.NSEGS, self.NX, self.NPEAKS)).astype(
+            np.float32
+        )
+        s = FIBSIMSSpectrum(data)
+        masses = np.array([p["mass"] for p in self._PEAK_TABLE])
+        s.axes_manager.signal_axes[0].axis = masses
+        s.metadata.set_item("Signal.peak_table", self._PEAK_TABLE)
+        return s
+
+    def _make_event_list_signal(self):
+        """Synthetic EventList signal with required calibration metadata."""
+        from hyperspy.signals import BaseSignal
+
+        mass_axis = np.linspace(0.0, 20.0, self.NSAMPLES)
+        rng = np.random.default_rng(7)
+        el = np.empty((self.NWRITES, self.NSEGS, self.NX), dtype=object)
+        for w in range(self.NWRITES):
+            for s in range(self.NSEGS):
+                for x in range(self.NX):
+                    n = int(rng.poisson(5))
+                    # indices in [0, NSAMPLES) map to mass_axis values [0, 20] Da
+                    el[w, s, x] = rng.integers(0, self.NSAMPLES, n, dtype=np.uint16)
+
+        sig = BaseSignal(el)
+        sig.original_metadata.add_dictionary(
+            {
+                "MassAxis": mass_axis.tolist(),
+                "FullSpectra": {"SampleInterval": 1.0, "ClockPeriod": 1.0},
+                "NbrWaveforms": 1,
+                "Configuration File Contents": "Ch1Record=1\nCh2Record=0\n",
+            }
+        )
+        return sig
+
+    # -- error cases --------------------------------------------------------
+
+    def test_no_peak_table_raises(self):
+        s = _make_fib_sims()
+        el_sig = self._make_event_list_signal()
+        with pytest.raises(AttributeError, match="peak_table"):
+            s.reintegrate_peaks(el_sig)
+
+    def test_missing_mass_axis_raises(self):
+        """event_list_signal without MassAxis in original_metadata raises AttributeError."""
+        from hyperspy.signals import BaseSignal
+
+        s = _make_fib_sims()
+        s.metadata.set_item("Signal.peak_table", self._PEAK_TABLE)
+        el_sig = BaseSignal(np.zeros((2, 3, 4), dtype=object))
+        # No MassAxis in original_metadata
+        with pytest.raises(AttributeError, match="MassAxis"):
+            s.reintegrate_peaks(el_sig)
+
+    # -- success cases ------------------------------------------------------
+
+    def test_returns_fib_sims_spectrum(self):
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal()
+        result = s.reintegrate_peaks(el_sig)
+        assert isinstance(result, FIBSIMSSpectrum)
+
+    def test_output_shape(self):
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal()
+        result = s.reintegrate_peaks(el_sig)
+        assert result.data.shape == (self.NWRITES, self.NSEGS, self.NX, self.NPEAKS)
+
+    def test_mz_axis_matches_peak_table(self):
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal()
+        result = s.reintegrate_peaks(el_sig)
+        expected_masses = np.array(sorted(p["mass"] for p in self._PEAK_TABLE))
+        np.testing.assert_array_almost_equal(
+            result.axes_manager.signal_axes[0].axis, expected_masses
+        )
+
+    def test_explicit_peak_table_override(self):
+        """Passing a subset peak_table reduces the m/z dimension."""
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal()
+        subset = self._PEAK_TABLE[:3]
+        result = s.reintegrate_peaks(el_sig, peak_table=subset)
+        assert result.data.shape[-1] == 3
+
+    def test_result_peak_table_is_mass_sorted(self):
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal()
+        shuffled = self._PEAK_TABLE[::-1]
+        result = s.reintegrate_peaks(el_sig, peak_table=shuffled)
+        result_masses = [r["mass"] for r in result.metadata.Signal.peak_table]
+        assert result_masses == sorted(result_masses)

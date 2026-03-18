@@ -57,6 +57,8 @@ linkcheck_ignore = [
     "https://doi.org/10.1017/S1431927615015494",  # 403 Client Error: Forbidden for url
     "https://scholar.google.co.uk",  # 403 Client Error: Forbidden for url
     "https://www.gnu.org/licenses",
+    "https://zenodo.org",  # 403 Client Error: Forbidden for url (blocks CI bots)
+    "https://doi.org/10.5281/zenodo",  # resolves to zenodo.org, also blocked
 ]
 
 intersphinx_mapping = {

@@ -336,9 +336,9 @@ class TestReintegratePeaks:
     def _make_fib_sims_signal(self):
         """Synthetic FIBSIMSSpectrum with peak_table in metadata."""
         rng = np.random.default_rng(42)
-        data = rng.uniform(0, 10, (self.NWRITES, self.NSEGS, self.NX, self.NPEAKS)).astype(
-            np.float32
-        )
+        data = rng.uniform(
+            0, 10, (self.NWRITES, self.NSEGS, self.NX, self.NPEAKS)
+        ).astype(np.float32)
         s = FIBSIMSSpectrum(data)
         masses = np.array([p["mass"] for p in self._PEAK_TABLE])
         s.axes_manager.signal_axes[0].axis = masses

@@ -59,9 +59,7 @@ class FIBSIMSSpectrum(SIMSSpectrum):
         if result.axes_manager.navigation_dimension >= 2:
             result = result.transpose(signal_axes=2)
         base_title = self.metadata.General.title
-        result.metadata.General.title = (
-            f"{base_title} TIC" if base_title else "TIC"
-        )
+        result.metadata.General.title = f"{base_title} TIC" if base_title else "TIC"
         return result
 
     def get_depth_profile(self, mass=None, window=0.5):
@@ -158,7 +156,6 @@ class FIBSIMSSpectrum(SIMSSpectrum):
 
         return borders
 
-
     def reintegrate_peaks(self, event_list_signal, peak_table=None):
         """Reintegrate the 4D peak data cube from a loaded EventList signal.
 
@@ -236,6 +233,7 @@ class FIBSIMSSpectrum(SIMSSpectrum):
         nbr_waveforms = int(nbr_waveforms_raw)
         ini = omd.as_dictionary().get("Configuration File Contents", "")
         from rsciio.tofwerk._api import _count_active_channels
+
         n_active = _count_active_channels(ini)
         normalization = nbr_waveforms * n_active
 
@@ -252,6 +250,7 @@ class FIBSIMSSpectrum(SIMSSpectrum):
         if hasattr(el, "compute"):
             try:
                 from dask.diagnostics import ProgressBar
+
                 with ProgressBar(dt=0.5):
                     el = el.compute()
             except ImportError:
@@ -294,7 +293,9 @@ class FIBSIMSSpectrum(SIMSSpectrum):
             }
         )
 
-        result_cls = self.__class__ if hasattr(peak_data, "compute") else FIBSIMSSpectrum
+        result_cls = (
+            self.__class__ if hasattr(peak_data, "compute") else FIBSIMSSpectrum
+        )
         result = result_cls(peak_data, axes=new_axes)
         result.metadata.add_dictionary(self.metadata.as_dictionary())
         result.metadata.Signal.peak_table = sorted_peak_table

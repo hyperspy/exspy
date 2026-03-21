@@ -20,10 +20,7 @@ import numpy as np
 from scipy import constants
 from scipy.integrate import simpson, cumulative_trapezoid
 
-from hyperspy._signals.complex_signal1d import (
-    ComplexSignal1D,
-    LazyComplexSignal1D,
-)
+from hyperspy.signals import ComplexSignal1D, LazyComplexSignal1D
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 from exspy._misc.eels.tools import eels_constant
 

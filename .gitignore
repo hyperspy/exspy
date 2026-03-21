@@ -8,3 +8,7 @@ dist/*
 *.pyc
 .spyproject/*
 *__pycache__*
+.zed
+.DS_Store
+coverage.xml
+.coverage

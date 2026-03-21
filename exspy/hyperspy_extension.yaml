@@ -55,6 +55,30 @@ signals:
     dtype: complex
     lazy: True
     module: exspy.signals.dielectric_function
+  SIMSSpectrum:
+    signal_type: SIMS
+    signal_dimension: 1
+    dtype: real
+    lazy: False
+    module: exspy.signals.sims
+  LazySIMSSpectrum:
+    signal_type: SIMS
+    signal_dimension: 1
+    dtype: real
+    lazy: True
+    module: exspy.signals.sims
+  FIBSIMSSpectrum:
+    signal_type: FIB-SIMS
+    signal_dimension: 1
+    dtype: real
+    lazy: False
+    module: exspy.signals.fib_sims
+  LazyFIBSIMSSpectrum:
+    signal_type: FIB-SIMS
+    signal_dimension: 1
+    dtype: real
+    lazy: True
+    module: exspy.signals.fib_sims
 
 components1D:
   DoublePowerLaw:

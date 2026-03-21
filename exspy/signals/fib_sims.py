@@ -232,7 +232,7 @@ class FIBSIMSSpectrum(SIMSSpectrum):
             nbr_waveforms_raw = nbr_waveforms_raw[0]
         nbr_waveforms = int(nbr_waveforms_raw)
         ini = omd.as_dictionary().get("Configuration File Contents", "")
-        from rsciio.tofwerk._api import _count_active_channels
+        from rsciio.tofwerk._reconstruction import _count_active_channels
 
         n_active = _count_active_channels(ini)
         normalization = nbr_waveforms * n_active

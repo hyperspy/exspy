@@ -17,7 +17,7 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 """
-Modules containing the eXSpy signals and their lazy counterparts.
+Module containing the eXSpy signals and their lazy counterparts.
 
 EELSSpectrum
     For electron energy-loss data with ``signal_dimension`` equal one, i.e.

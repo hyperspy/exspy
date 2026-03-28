@@ -16,6 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+"""
+This module contains functions to load example datasets.
+"""
+
 import importlib
 from pathlib import Path
 import warnings

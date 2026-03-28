@@ -4,6 +4,7 @@
 .. currentmodule:: exspy.components
 
 .. autosummary::
+    :nosignatures:
 
     DoublePowerLaw
     EELSArctan

@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+"""Material properties and related functions."""
+
 from ._misc.material import (
     atomic_to_weight,
     density_of_mixture,

@@ -17,6 +17,8 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
+"""eXSpy components used in model fitting."""
+
 import lazy_loader
 
 __getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)

@@ -15,19 +15,18 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
-"""
-Module containing eXSpy models used in model fitting.
 
-EDSModel
-    Base model for X-ray dispersive electron spectroscopy
-EDSSEMModel
-    Model for X-ray dispersive electron spectroscopy acquired in a scanning electron microscope
-EDSTEMModel
-    Model for X-ray dispersive electron spectroscopy acquired in a transmission electron microscope
-EELSModel
-    Model for electron energy-loss spectroscopy
-"""
+from .edsmodel import EDSModel
+from .edssemmodel import EDSSEMModel
+from .edstemmodel import EDSTEMModel
+from .eelsmodel import EELSModel
 
-import lazy_loader
+__all__ = [
+    "EDSModel",
+    "EDSSEMModel",
+    "EDSTEMModel",
+    "EELSModel",
+]
 
-__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)
+def __dir__():
+    return sorted(__all__)

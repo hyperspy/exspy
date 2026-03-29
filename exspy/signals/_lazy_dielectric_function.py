@@ -19,7 +19,7 @@
 from hyperspy.signals import LazyComplexSignal1D
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
-from exspy.signals import DielectricFunction
+from exspy.signals._dielectric_function import DielectricFunction
 
 
 class LazyDielectricFunction(DielectricFunction, LazyComplexSignal1D):

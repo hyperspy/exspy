@@ -22,8 +22,8 @@ import h5py
 import numpy as np
 
 from hyperspy.defaults_parser import preferences
-from exspy._misc.eels.base_gos import TabulatedGOS
-from exspy._misc.eels import GOSH_SOURCES
+from .base_gos import TabulatedGOS
+from .gosh_gos_source import GOSH_SOURCES
 
 _logger = logging.getLogger(__name__)
 

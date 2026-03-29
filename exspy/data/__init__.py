@@ -29,7 +29,6 @@ import numpy as np
 import scipy
 
 import exspy
-from exspy import signals
 
 
 __all__ = [
@@ -140,6 +139,7 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10,)):
 
     """
     from hyperspy.misc.math_tools import check_random_state
+    from exspy.signals import EELSSpectrum
 
     random_state = check_random_state(random_state)
 
@@ -173,7 +173,7 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10,)):
     if add_noise:
         data = data + random_state.uniform(size=len(x))
 
-    s = signals.EELSSpectrum(data)
+    s = EELSSpectrum(data)
     s.axes_manager[-1].offset = x[0]
     s.axes_manager[-1].scale = x[1] - x[0]
     s.metadata.General.title = "Artifical low loss EEL spectrum"

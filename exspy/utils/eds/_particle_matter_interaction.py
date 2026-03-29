@@ -20,8 +20,8 @@ import math
 
 import numpy as np
 
-from exspy._misc import elements as elements_module
-from exspy.utils.eds import _get_element_and_line, _get_energy_xray_line
+from exspy import material
+from ._xray_lines import _get_element_and_line, _get_energy_xray_line
 
 
 def electron_range(element, beam_energy, density="auto", tilt=0):
@@ -63,13 +63,12 @@ def electron_range(element, beam_energy, density="auto", tilt=0):
     third edition p 72.
 
     """
-
     if density == "auto":
-        density = elements_module.elements[element]["Physical_properties"][
+        density = material._elements_dict[element]["Physical_properties"][
             "density (g/cm^3)"
         ]
-    Z = elements_module.elements[element]["General_properties"]["Z"]
-    A = elements_module.elements[element]["General_properties"]["atomic_weight"]
+    Z = material._elements_dict[element]["General_properties"]["Z"]
+    A = material._elements_dict[element]["General_properties"]["atomic_weight"]
     # Note: magic numbers here are from Kanaya-Okayama parameterization. See
     # docstring for associated references.
     return (
@@ -113,8 +112,9 @@ def xray_range(xray_line, beam_energy, density="auto"):
     1.9361716759499248
 
     >>> # X-ray range of Cu Ka in pure Carbon at 30kV in micron
-    >>> hs.eds.xray_range('Cu_Ka', 30., hs.material.elements.C.
-    >>>                      Physical_properties.density_gcm3)
+    >>> hs.eds.xray_range(
+    >>>    'Cu_Ka', 30., hs.material.elements.C.Physical_properties.density_gcm3
+    >>> )
     7.6418811280855454
 
     Notes
@@ -126,10 +126,9 @@ def xray_range(xray_line, beam_energy, density="auto"):
     third edition p 286
 
     """
-
-    element, line = _get_element_and_line(xray_line)
+    element, _ = _get_element_and_line(xray_line)
     if density == "auto":
-        density = elements_module.elements[element]["Physical_properties"][
+        density = material._elements_dict[element]["Physical_properties"][
             "density (g/cm^3)"
         ]
     Xray_energy = _get_energy_xray_line(xray_line)

@@ -19,13 +19,13 @@
 from . import (
     components,
     data,
+    material,
     models,
     signals,
     utils,
 )
 from ._version import __version__
 from ._defaults_parser import preferences
-from ._misc import material
 
 __all__ = [
     "__version__",

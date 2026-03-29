@@ -44,8 +44,8 @@ from hyperspy.docstrings.signal import (
     NAVIGATION_MASK_ARG,
 )
 
+from exspy import material
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
-from exspy._misc import elements as elements_module
 import exspy.utils.eels as eels_utils
 
 
@@ -121,7 +121,7 @@ class EELSSpectrum(Signal1D):
         for element in elements:
             if isinstance(element, bytes):
                 element = element.decode()
-            if element in elements_module.elements:
+            if element in material._elements_dict:
                 self.elements.add(element)
             else:
                 raise ValueError(
@@ -152,11 +152,11 @@ class EELSSpectrum(Signal1D):
         end_energy = Eaxis[-1]
         for element in self.elements:
             e_shells = list()
-            for shell in elements_module.elements[element]["Atomic_properties"][
+            for shell in material._elements_dict[element]["Atomic_properties"][
                 "Binding_energies"
             ]:
                 if shell[-1] != "a":
-                    energy = elements_module.elements[element]["Atomic_properties"][
+                    energy = material._elements_dict[element]["Atomic_properties"][
                         "Binding_energies"
                     ][shell]["onset_energy (eV)"]
                     if start_energy <= energy <= end_energy:
@@ -239,7 +239,6 @@ class EELSSpectrum(Signal1D):
         A PrettyText object where its representation is ASCII in terminal and
         html-formatted in Jupyter notebook
         """
-
         if edges is None and energy is not None:
             edges = eels_utils.get_edges_near_energy(
                 energy=energy, width=width, only_major=only_major, order=order
@@ -252,7 +251,7 @@ class EELSSpectrum(Signal1D):
 
         for edge in edges:
             element, shell = edge.split("_")
-            shell_dict = elements_module.elements[element]["Atomic_properties"][
+            shell_dict = material._elements_dict[element]["Atomic_properties"][
                 "Binding_energies"
             ][shell]
 
@@ -1655,7 +1654,7 @@ class EELSSpectrum(Signal1D):
         NotImplementedError
             If the signal axis is a non-uniform axis.
         """
-        from exspy.models.eelsmodel import EELSModel
+        from exspy.models import EELSModel
 
         if low_loss is not None and not self.axes_manager.signal_axes[0].is_uniform:
             raise NotImplementedError(
@@ -1807,7 +1806,7 @@ class EELSSpectrum(Signal1D):
                 memtype = "element"
 
             try:
-                Binding_energies = elements_module.elements[element][
+                Binding_energies = material._elements_dict[element][
                     "Atomic_properties"
                 ]["Binding_energies"]
             except KeyError as err:
@@ -1885,7 +1884,7 @@ class EELSSpectrum(Signal1D):
             edges_dict = {}
             for edge in edges:
                 element, ss = edge.split("_")
-                Binding_energies = elements_module.elements[element][
+                Binding_energies = material._elements_dict[element][
                     "Atomic_properties"
                 ]["Binding_energies"]
                 edges_dict[edge] = Binding_energies[ss]["onset_energy (eV)"]
@@ -1933,7 +1932,7 @@ class EELSSpectrum(Signal1D):
             elements.update([element])
 
         for element in elements:
-            ss_info = elements_module.elements[element]["Atomic_properties"][
+            ss_info = material._elements_dict[element]["Atomic_properties"][
                 "Binding_energies"
             ]
 

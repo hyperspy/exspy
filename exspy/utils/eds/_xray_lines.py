@@ -22,8 +22,8 @@ import numpy as np
 from prettytable import PrettyTable
 
 from hyperspy.misc import utils as hs_utils
+from exspy import material
 
-from exspy import signals
 from exspy._docstrings.eds import (
     FLOAT_FORMAT_PARAMETER,
     ENERGY_RANGE_PARAMETER,
@@ -32,7 +32,6 @@ from exspy._docstrings.eds import (
     WEIGHT_THRESHOLD_PARAMETER,
     WIDTH_PARAMETER,
 )
-from exspy._misc import elements as elements_module
 
 
 eV2keV = 1000.0
@@ -59,7 +58,7 @@ def _get_energy_xray_line(xray_line):
     By example, if xray_line = 'Mn_Ka' this function returns 5.8987
     """
     element, line = _get_element_and_line(xray_line)
-    return elements_module.elements[element]["Atomic_properties"]["Xray_lines"][line][
+    return material._elements_dict[element]["Atomic_properties"]["Xray_lines"][line][
         "energy (keV)"
     ]
 
@@ -115,7 +114,7 @@ def get_xray_lines_near_energy(energy, width=0.2, only_lines=None):
     only_lines = _parse_only_lines(only_lines)
     valid_lines = []
     E_min, E_max = energy - width / 2.0, energy + width / 2.0
-    for element, el_props in elements_module.elements.items():
+    for element, el_props in material._elements_dict.items():
         # Not all elements in the DB have the keys, so catch KeyErrors
         try:
             lines = el_props["Atomic_properties"]["Xray_lines"]
@@ -209,6 +208,7 @@ def xray_lines_model(
     >>> s = xray_lines_model(['Cu', 'Fe'], beam_energy=30)
     >>> s.plot()
     """
+    from exspy.signals import EDSTEMSpectrum
 
     if energy_axis is None:
         energy_axis = {
@@ -218,7 +218,7 @@ def xray_lines_model(
             "offset": -0.1,
             "size": 1024,
         }
-    s = signals.EDSTEMSpectrum(np.zeros(energy_axis["size"]), axes=[energy_axis])
+    s = EDSTEMSpectrum(np.zeros(energy_axis["size"]), axes=[energy_axis])
     s.set_microscope_parameters(
         beam_energy=beam_energy, energy_resolution_MnKa=energy_resolution_MnKa
     )
@@ -361,7 +361,7 @@ def get_xray_lines(elements, weight_threshold=0.1, energy_range=None, only_lines
             # no xray lines for these elements in the database
             d = {
                 k: v
-                for k, v in elements_module.elements[element]["Atomic_properties"][
+                for k, v in material._elements_dict[element]["Atomic_properties"][
                     "Xray_lines"
                 ].items()
                 if (
@@ -457,7 +457,7 @@ def print_lines_near_energy(
     """
     energy_range = [energy - width, energy + width]
     dict_tree = get_xray_lines(
-        elements_module.elements.keys(), weight_threshold, energy_range, only_lines
+        material._elements_dict.keys(), weight_threshold, energy_range, only_lines
     )
     # Convert to a table
     table = _as_xray_lines_table(dict_tree, sorting, float_format)

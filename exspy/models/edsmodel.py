@@ -27,8 +27,7 @@ from hyperspy.misc.utils import stash_active_state
 import hyperspy.components1d as create_component
 from hyperspy.models.model1d import Model1D
 
-from exspy import signals
-from exspy._misc import elements as elements_module
+from exspy import material
 import exspy.utils.eds as eds_utils
 
 _logger = logging.getLogger(__name__)
@@ -39,7 +38,7 @@ sigma2fwhm = 2 * math.sqrt(2 * math.log(2))
 
 def _get_weight(element, line, weight_line=None):
     if weight_line is None:
-        weight_line = elements_module.elements[element]["Atomic_properties"][
+        weight_line = material._elements_dict[element]["Atomic_properties"][
             "Xray_lines"
         ][line]["weight"]
     return "x * {}".format(weight_line)
@@ -171,7 +170,9 @@ class EDSModel(Model1D):
 
     @spectrum.setter
     def spectrum(self, value):
-        if isinstance(value, signals.EDSSpectrum):
+        from exspy.signals import EDSSpectrum
+
+        if isinstance(value, EDSSpectrum):
             self._signal = value
         else:
             raise ValueError(
@@ -256,7 +257,7 @@ class EDSModel(Model1D):
                 )
             component.A.map["is_set"] = True
             component.A.ext_force_positive = True
-            for li in elements_module.elements[element]["Atomic_properties"][
+            for li in material._elements_dict[element]["Atomic_properties"][
                 "Xray_lines"
             ]:
                 if line[0] in li and line != li:
@@ -694,7 +695,7 @@ class EDSModel(Model1D):
             component.A.bmin = 0.0
             component.A.bmax = None
             element, line = eds_utils._get_element_and_line(component.name)
-            for li in elements_module.elements[element]["Atomic_properties"][
+            for li in material._elements_dict[element]["Atomic_properties"][
                 "Xray_lines"
             ]:
                 if line[0] in li and line != li:

@@ -28,30 +28,39 @@ from hyperspy.misc.export_dictionary import (
 )
 from hyperspy.misc.math_tools import get_linear_interpolation
 
+from exspy import material
+
 
 class BaseGOS:
     def read_elements(self):
-        from exspy._misc.elements import elements
-
         element = self.element
         subshell = self.subshell
         # Convert to the "GATAN" nomenclature
-        if (element in elements) is not True:
+        if (element in material._elements_dict) is not True:
             raise ValueError(f"The given element {element} is not in the database.")
-        elif subshell not in elements[element]["Atomic_properties"]["Binding_energies"]:
+        elif (
+            subshell
+            not in material._elements_dict[element]["Atomic_properties"][
+                "Binding_energies"
+            ]
+        ):
             subshells = ", ".join(
-                list(elements[element]["Atomic_properties"]["Binding_energies"].keys())
+                list(
+                    material._elements_dict[element]["Atomic_properties"][
+                        "Binding_energies"
+                    ].keys()
+                )
             )
             raise ValueError(
                 f"The given subshell {subshell} is not in the database. The "
                 f"available subshells are:\n{subshells}"
             )
 
-        self.onset_energy = elements[element]["Atomic_properties"]["Binding_energies"][
-            subshell
-        ]["onset_energy (eV)"]
-        self.Z = elements[element]["General_properties"]["Z"]
-        self.element_dict = elements[element]
+        self.onset_energy = material._elements_dict[element]["Atomic_properties"][
+            "Binding_energies"
+        ][subshell]["onset_energy (eV)"]
+        self.Z = material._elements_dict[element]["General_properties"]["Z"]
+        self.element_dict = material._elements_dict[element]
 
     def get_parametrized_qaxis(self, k1, k2, n):
         return k1 * (np.exp(np.arange(n) * k2) - 1) * 1e10

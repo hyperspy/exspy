@@ -17,12 +17,34 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 """
+This reference manual describes the public functions, modules, and objects in eXSpy.
+
 Attributes
 ----------
 __version__ : str
     The version of the eXSpy package.
 preferences :
     The global preferences for eXSpy, where the default settings are stored.
+
+Submodules
+----------
+components
+    The components module contains components used in model fitting.
+data
+    The data module contains example datasets.
+material
+    The material module contains objects and functions related to materials
+    properties and functionalities, such as density calculations, absorption
+    coefficients, etc.
+models
+    The models module contains the model classes used for EDS and EELS model
+    fitting.
+signals
+    The signals module contains the signal classes, such as EDS and EELS.
+utils
+    The utils module contains EDS and EELS utility functions, such as those
+    for getting X-ray lines, EELS edges information, calculating
+    cross-section, inelastic mean free paths, etc.
 
 Examples
 --------

@@ -12,7 +12,11 @@
 
 import json
 from pathlib import Path
+
 from hyperspy.misc import utils as hs_utils
+
+
+__all__ = ["atomic_number_to_name", "elements"]
 
 
 def _load_json_data(file_path):
@@ -29,8 +33,8 @@ def _load_elements_data():
 
     # Load data from JSON files
     general_properties_path = current_dir / "elements_general_properties.json"
-    xray_lines_path = current_dir / "eds" / "xray_lines.json"
-    binding_energies_path = current_dir / "eels" / "eels_binding_energies.json"
+    xray_lines_path = current_dir / "xray_lines.json"
+    binding_energies_path = current_dir / "eels_binding_energies.json"
 
     general_data = _load_json_data(general_properties_path)
     xray_data = _load_json_data(xray_lines_path)
@@ -77,10 +81,10 @@ def _load_elements_data():
 
 
 # Load elements data from JSON files
-elements = _load_elements_data()
-elements_db = hs_utils.DictionaryTreeBrowser(elements)
-elements_db.__doc__ = """
-Database of element properties.
+_elements_dict = _load_elements_data()
+elements = hs_utils.DictionaryTreeBrowser(_elements_dict)
+elements.__doc__ = """
+Database of element properties as a dictionary tree.
 
 The following properties are included:
 
@@ -145,11 +149,18 @@ References
    https://github.com/usnistgov/EPQ
 """
 
+
+class Dict(dict):
+    """Class based on the built-in dict to allow updating docstring."""
+
+    pass
+
+
 # read dictionary of atomic numbers from eXSpy, and add the elements that
 # do not currently exist in the database (in case anyone is doing EDS on
 # Ununpentium...)
-atomic_number2name = dict((p.General_properties.Z, e) for (e, p) in elements_db)
-atomic_number2name.update(
+atomic_number_to_name = Dict((p.General_properties.Z, e) for (e, p) in elements)
+atomic_number_to_name.update(
     {
         96: "Cm",
         97: "Bk",
@@ -177,3 +188,4 @@ atomic_number2name.update(
         119: "Uue",
     }
 )
+atomic_number_to_name.__doc__ = "Dictionary mapping atomic numbers to element symbols."

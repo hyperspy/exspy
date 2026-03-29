@@ -23,6 +23,7 @@ import numpy as np
 import scipy
 
 import hyperspy.api as hs
+from exspy import material
 
 
 _ABSORPTION_CORRECTION_DOCSTRING = """absorption_correction : numpy.ndarray or None
@@ -210,8 +211,6 @@ def get_abs_corr_zeta(weight_percent, mass_thickness, take_off_angle):
     take_off_angle: float
         X-ray take-off angle in degrees.
     """
-    from exspy._misc import material
-
     toa_rad = np.radians(take_off_angle)
     csc_toa = 1.0 / np.sin(toa_rad)
     # convert from cm^2/g to m^2/kg
@@ -287,15 +286,12 @@ def get_abs_corr_cross_section(
     take_off_angle: float
         X-ray take-off angle in degrees.
     """
-    from exspy._misc import material
-    from exspy._misc import elements as elements_module
-
     toa_rad = np.radians(take_off_angle)
     Av = scipy.constants.Avogadro
     elements = [intensity.metadata.Sample.elements[0] for intensity in number_of_atoms]
     atomic_weights = np.array(
         [
-            elements_module.elements[element]["General_properties"]["atomic_weight"]
+            material._elements_dict[element]["General_properties"]["atomic_weight"]
             for element in elements
         ]
     )
@@ -341,15 +337,13 @@ def cross_section_to_zeta(cross_sections, elements):
     zeta_to_cross_section
 
     """
-    from exspy._misc import elements as elements_module
-
     if len(elements) != len(cross_sections):
         raise ValueError(
             "The number of elements must match the number of cross sections."
         )
     zeta_factors = []
     for i, element in enumerate(elements):
-        atomic_weight = elements_module.elements[element]["General_properties"][
+        atomic_weight = material._elements_dict[element]["General_properties"][
             "atomic_weight"
         ]
         zeta = atomic_weight / (cross_sections[i] * scipy.constants.Avogadro * 1e-25)
@@ -378,15 +372,13 @@ def zeta_to_cross_section(zfactors, elements):
     cross_section_to_zeta
 
     """
-    from exspy._misc import elements as elements_module
-
     if len(elements) != len(zfactors):
         raise ValueError(
             "The number of elements must match the number of cross sections."
         )
     cross_sections = []
     for i, element in enumerate(elements):
-        atomic_weight = elements_module.elements[element]["General_properties"][
+        atomic_weight = material._elements_dict[element]["General_properties"][
             "atomic_weight"
         ]
         xsec = atomic_weight / (zfactors[i] * scipy.constants.Avogadro * 1e-25)

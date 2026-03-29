@@ -6,17 +6,10 @@ Reference
 
 This reference manual describes the public functions, modules, and objects in eXSpy.
 
+Modules
+-------
+
 .. currentmodule:: exspy
-
-.. rubric:: Attributes
-
-.. autosummary::
-   :nosignatures:
-
-   __version__
-   preferences
-
-.. rubric:: Modules
 
 .. autosummary::
    :nosignatures:

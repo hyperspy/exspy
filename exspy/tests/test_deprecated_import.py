@@ -8,9 +8,11 @@ from hyperspy.exceptions import VisibleDeprecationWarning
 
 def test_import_element():
     with pytest.warns(VisibleDeprecationWarning) as record:
-        from exspy.misc.elements import elements_db
+        from exspy.misc.elements import elements
 
-    assert "use `exspy.material` instead" in record[0].message.args[0]
+    assert (
+        "use `from exspy.material import elements` instead" in record[0].message.args[0]
+    )
 
 
 def test_import_material():

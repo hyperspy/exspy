@@ -27,7 +27,7 @@ from exspy._defaults_parser import preferences
 from exspy._misc.eels.gosh_gos import GoshGOS
 from exspy._misc.eels.hartree_slater_gos import HartreeSlaterGOS
 from exspy._misc.eels import HydrogenicGOS
-from exspy._misc.elements import elements
+from exspy import material
 
 
 @pytest.mark.skipif(
@@ -81,7 +81,10 @@ def test_binding_energy_database():
     for element in gosh15.keys():
         # These elements are not in the database
         if element not in ["Bk", "Cf", "Cm", "metadata"]:
-            assert "Binding_energies" in elements[element]["Atomic_properties"].keys()
+            assert (
+                "Binding_energies"
+                in material._elements_dict[element]["Atomic_properties"].keys()
+            )
 
 
 def test_dirac_gosh_not_in_conventions():

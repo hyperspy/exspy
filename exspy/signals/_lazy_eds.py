@@ -19,7 +19,7 @@
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 from hyperspy.signals import LazySignal1D
 
-from exspy.signals import EDSSpectrum
+from exspy.signals._eds import EDSSpectrum
 
 
 class LazyEDSSpectrum(EDSSpectrum, LazySignal1D):

@@ -132,6 +132,10 @@ nitpicky = False
 # Remove when fixed in hyperspy
 nitpick_ignore_regex = [(r"py:.*", r"hyperspy.api.*")]
 
+# -- Options for sphinx.ext.napoleon extension ------------------------
+
+napoleon_custom_sections = ["Submodules"]
+
 # -- Options for numpydoc extension -----------------------------------
 
 numpydoc_xref_param_type = True

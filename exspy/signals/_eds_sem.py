@@ -24,7 +24,7 @@ from hyperspy.signal import BaseSetMetadataItems
 from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
 
 from exspy._defaults_parser import preferences
-from exspy.signals import EDSSpectrum
+from exspy.signals._eds import EDSSpectrum
 
 
 _logger = logging.getLogger(__name__)
@@ -301,7 +301,7 @@ class EDSSEMSpectrum(EDSSpectrum):
         model : `EDSSEMModel` instance.
 
         """
-        from exspy.models.edssemmodel import EDSSEMModel
+        from exspy.models import EDSSEMModel
 
         model = EDSSEMModel(
             self,

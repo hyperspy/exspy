@@ -23,17 +23,13 @@ import copy
 
 import hyperspy.api as hs
 
-import exspy._misc.eds as eds_misc
-import exspy.utils.eds as eds_utils
-from exspy._misc import elements as elements_module
-
 
 __all__ = [
-    "weight_to_atomic",
     "atomic_to_weight",
     "density_of_mixture",
     "mass_absorption_coefficient",
     "mass_absorption_mixture",
+    "weight_to_atomic",
 ]
 
 
@@ -60,6 +56,8 @@ def _weight_to_atomic(weight_percent, elements):
     array([ 93.19698614,   6.80301386])
 
     """
+    from exspy import material
+
     if len(elements) != len(weight_percent):
         raise ValueError(
             "The number of elements must match the size of the first axis"
@@ -67,7 +65,7 @@ def _weight_to_atomic(weight_percent, elements):
         )
     atomic_weights = np.array(
         [
-            elements_module.elements[element]["General_properties"]["atomic_weight"]
+            material._elements_dict[element]["General_properties"]["atomic_weight"]
             for element in elements
         ]
     )
@@ -145,6 +143,8 @@ def _atomic_to_weight(atomic_percent, elements):
     array([ 88.00501989,  11.99498011])
 
     """
+    from exspy import material
+
     if len(elements) != len(atomic_percent):
         raise ValueError(
             "The number of elements must match the size of the first axis"
@@ -152,7 +152,7 @@ def _atomic_to_weight(atomic_percent, elements):
         )
     atomic_weights = np.array(
         [
-            elements_module.elements[element]["General_properties"]["atomic_weight"]
+            material._elements_dict[element]["General_properties"]["atomic_weight"]
             for element in elements
         ]
     )
@@ -237,6 +237,8 @@ def _density_of_mixture(weight_percent, elements, mean="harmonic"):
     8.6903187973131466
 
     """
+    from exspy import material
+
     if len(elements) != len(weight_percent):
         raise ValueError(
             "The number of elements must match the size of the first axis"
@@ -244,7 +246,7 @@ def _density_of_mixture(weight_percent, elements, mean="harmonic"):
         )
     densities = np.array(
         [
-            elements_module.elements[element]["Physical_properties"]["density (g/cm^3)"]
+            material._elements_dict[element]["Physical_properties"]["density (g/cm^3)"]
             for element in elements
         ]
     )
@@ -349,6 +351,9 @@ def mass_absorption_coefficient(element, energies):
        S.A., and Zucker, D.S. (2005), X-Ray Form Factor, Attenuation and
        Scattering Tables (version 2.1). https://dx.doi.org/10.18434/T4HS32
     """
+    import exspy._misc.eds as eds_misc
+    import exspy.utils.eds as eds_utils
+
     energies_db = np.array(eds_misc.ffast_mac[element]["energies (keV)"])
     macs = np.array(eds_misc.ffast_mac[element]["mass_absorption_coefficient (cm2/g)"])
     energies = copy.copy(energies)

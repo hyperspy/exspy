@@ -31,10 +31,10 @@ from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
 from hyperspy.misc.utils import isiterable
 from hyperspy.axes import DataAxis
 
-from exspy.signals import EDSSpectrum
+from exspy import material
+from exspy.signals._eds import EDSSpectrum
 from exspy._defaults_parser import preferences
 from exspy._docstrings.eds import DOSE_DOC
-from exspy._misc import material
 import exspy.utils.eds as eds_utils
 
 
@@ -772,7 +772,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         model : `EDSTEMModel` instance.
 
         """
-        from exspy.models.edstemmodel import EDSTEMModel
+        from exspy.models import EDSTEMModel
 
         model = EDSTEMModel(
             self,
@@ -939,8 +939,6 @@ class EDSTEMSpectrum(EDSSpectrum):
         mass_thickness : :py:class:`numpy.ndarray`
             Mass thickness in kg/m².
         """
-        from exspy._misc.elements import elements
-
         if isinstance(thickness, (float, int)):
             thickness_map = np.ones_like(weight_percent[0]) * thickness
         else:
@@ -952,7 +950,9 @@ class EDSTEMSpectrum(EDSSpectrum):
         mass_thickness = np.zeros_like(weight_percent[0])
         densities = np.array(
             [
-                elements[element]["Physical_properties"]["density (g/cm^3)"]
+                material._elements_dict[element]["Physical_properties"][
+                    "density (g/cm^3)"
+                ]
                 for element in elements_
             ]
         )

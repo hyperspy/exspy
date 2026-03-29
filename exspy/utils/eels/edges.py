@@ -18,7 +18,7 @@
 
 import numpy as np
 
-from exspy._misc import elements as elements_module
+from exspy import material
 
 
 def get_edges_near_energy(energy, width=10, only_major=False, order="closest"):
@@ -49,7 +49,6 @@ def get_edges_near_energy(energy, width=10, only_major=False, order="closest"):
     --------
     exspy.utils.eels.get_info_from_edges
     """
-
     if width < 0:
         raise ValueError("Provided width needs to be >= 0.")
     if order not in ("closest", "ascending", "descending"):
@@ -59,7 +58,7 @@ def get_edges_near_energy(energy, width=10, only_major=False, order="closest"):
 
     # find all subshells that have its energy within range
     valid_edges = []
-    for element, element_info in elements_module.elements.items():
+    for element, element_info in material._elements_dict.items():
         try:
             for shell, shell_info in element_info["Atomic_properties"][
                 "Binding_energies"
@@ -112,7 +111,7 @@ def get_info_from_edges(edges):
     info = []
     for edge in edges:
         element, subshell = edge.split("_")
-        d = elements_module.elements[element]["Atomic_properties"]["Binding_energies"][
+        d = material._elements_dict[element]["Atomic_properties"]["Binding_energies"][
             subshell
         ]
         info.append(d)

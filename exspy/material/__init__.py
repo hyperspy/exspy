@@ -15,28 +15,17 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
-
-"""Material properties and related functions."""
-
-from ._misc.material import (
-    atomic_to_weight,
-    density_of_mixture,
-    mass_absorption_coefficient,
-    mass_absorption_mixture,
-    weight_to_atomic,
-)
-from ._misc.elements import elements_db as elements
+"""
+The material module contains objects and functions related to materials
+"""
 
 
-__all__ = [
-    "atomic_to_weight",
-    "density_of_mixture",
-    "elements",
-    "mass_absorption_coefficient",
-    "mass_absorption_mixture",
-    "weight_to_atomic",
-]
+# """
+# The material module contains objects and functions related to materials
+# properties and functionalities, such as density calculations, absorption
+# coefficients, etc.
+# """
 
+import lazy_loader
 
-def __dir__():
-    return sorted(__all__)
+__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)

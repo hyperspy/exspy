@@ -15,14 +15,3 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
-
-from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
-
-from exspy.signals._eds_sem import EDSSEMSpectrum
-from exspy.signals._lazy_eds import LazyEDSSpectrum
-
-
-class LazyEDSSEMSpectrum(EDSSEMSpectrum, LazyEDSSpectrum):
-    """Lazy signal class for EDS spectra measured in an SEM."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSSEMSpectrum")

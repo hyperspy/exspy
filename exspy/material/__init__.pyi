@@ -16,13 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
+from ._material import (
+    atomic_to_weight,
+    density_of_mixture,
+    mass_absorption_coefficient,
+    mass_absorption_mixture,
+    weight_to_atomic,
+)
+from ._elements import _elements_dict, atomic_number_to_name, elements
 
-from exspy.signals._eds_sem import EDSSEMSpectrum
-from exspy.signals._lazy_eds import LazyEDSSpectrum
+__all__ = [
+    "_elements_dict",
+    "atomic_number_to_name",
+    "atomic_to_weight",
+    "density_of_mixture",
+    "elements",
+    "mass_absorption_coefficient",
+    "mass_absorption_mixture",
+    "weight_to_atomic",
+]
 
-
-class LazyEDSSEMSpectrum(EDSSEMSpectrum, LazyEDSSpectrum):
-    """Lazy signal class for EDS spectra measured in an SEM."""
-
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSSEMSpectrum")
+def __dir__():
+    return sorted(__all__)

@@ -18,7 +18,8 @@
 
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
-from exspy.signals import EDSTEMSpectrum, LazyEDSSpectrum
+from exspy.signals._eds_tem import EDSTEMSpectrum
+from exspy.signals._lazy_eds import LazyEDSSpectrum
 
 
 class LazyEDSTEMSpectrum(EDSTEMSpectrum, LazyEDSSpectrum):

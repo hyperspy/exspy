@@ -15,8 +15,13 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import numpydoc
+import os
 from datetime import datetime
 from packaging.version import Version
+
+
+os.environ["EAGER_IMPORT"] = "1"
+
 
 from exspy._misc import _download_GOS_files
 

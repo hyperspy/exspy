@@ -4,7 +4,9 @@
 .. currentmodule:: exspy.material
 
 .. autosummary::
+   :nosignatures:
 
+    atomic_number_to_name
     atomic_to_weight
     density_of_mixture
     elements
@@ -16,9 +18,10 @@
    :members:
 
 .. autoattribute:: exspy.material.elements
+   :no-value:
    :annotation:
 
-Database of element properties.
+Database of element properties as a dictionary tree.
 
 The following properties are included:
 
@@ -70,7 +73,6 @@ Examples
     ├── energy (keV) = 0.62799
     └── weight = 0.12525
 
-    
 References
 
 .. [1] Chantler, C.T., Olsen, K., Dragoset, R.A., Kishore, A.R.,
@@ -81,3 +83,9 @@ References
 .. [2] Ritchie, N. EPQ is the Electron Probe Quantification library
    - the basis for DTSA-II.
    https://github.com/usnistgov/EPQ
+
+.. autoattribute:: exspy.material.atomic_number_to_name
+   :no-value:
+   :annotation:
+
+Dictionary mapping atomic numbers to element symbols.

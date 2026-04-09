@@ -4,8 +4,24 @@
 Reference
 #########
 
+This reference manual describes the public functions, modules, and objects in eXSpy.
+
+Modules
+-------
+
+.. currentmodule:: exspy
+
+.. autosummary::
+   :nosignatures:
+
+   components
+   data
+   material
+   models
+   signals
+   utils
+
 .. toctree::
-   :caption: Reference
    :maxdepth: 2
 
    exspy
@@ -14,5 +30,4 @@ Reference
    material
    models
    signals
-   utils.eds
-   utils.eels
+   utils

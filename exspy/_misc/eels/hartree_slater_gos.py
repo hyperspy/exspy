@@ -22,8 +22,7 @@ from pathlib import Path
 import numpy as np
 from scipy import constants
 
-from exspy._defaults_parser import preferences
-from exspy._misc.eels.base_gos import TabulatedGOS
+from .base_gos import TabulatedGOS
 
 
 _logger = logging.getLogger(__name__)
@@ -115,6 +114,8 @@ class HartreeSlaterGOS(TabulatedGOS):
         self.subshell_factor = conventions[self.subshell]["factor"]
 
     def read_gos_data(self):  # pragma: no cover
+        from exspy._defaults_parser import preferences
+
         _logger.info(
             "Hartree-Slater GOS\n"
             f"\tElement: {self.element} "

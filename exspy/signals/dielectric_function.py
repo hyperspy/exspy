@@ -16,161 +16,35 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import numpy as np
-from scipy import constants
-from scipy.integrate import simpson, cumulative_trapezoid
+# Deprecated and to be removed in exspy 1.0
 
-from hyperspy._signals.complex_signal1d import (
-    ComplexSignal1D,
-    LazyComplexSignal1D,
-)
-from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
-from exspy._misc.eels.tools import eels_constant
+import warnings
 
+from hyperspy.exceptions import VisibleDeprecationWarning
 
-class DielectricFunction(ComplexSignal1D):
-    """Signal class for dielectric functions."""
+# ruff: noqa: F822
 
-    _signal_type = "DielectricFunction"
-    _alias_signal_types = ["dielectric function"]
-
-    def get_number_of_effective_electrons(self, nat, cumulative=False):
-        r"""
-        Compute the number of effective electrons using the Bethe f-sum
-        rule.
-
-        The Bethe f-sum rule gives rise to two definitions of the effective
-        number (see [*]_), neff1 and neff2:
-
-        .. math::
-
-            n_{\mathrm{eff_{1}}} = n_{\mathrm{eff}}\left(-\Im\left(\epsilon^{-1}\right)\right)
-
-        and:
-
-        .. math::
-
-            n_{\mathrm{eff_{2}}} = n_{\mathrm{eff}}\left(\epsilon_{2}\right)
-
-        This method computes and return both.
-
-        Parameters
-        ----------
-        nat : float
-            Number of atoms (or molecules) per unit volume of the sample.
-
-        Returns
-        -------
-        neff1, neff2 : :py:class:`hyperspy.api.signals.Signal1D`
-            Signal1D instances containing neff1 and neff2. The signal and
-            navigation dimensions are the same as the current signal if
-            `cumulative` is True, otherwise the signal dimension is 0
-            and the navigation dimension is the same as the current
-            signal.
-
-        Notes
-        -----
-        .. [*] Ray Egerton, "Electron Energy-Loss Spectroscopy
-           in the Electron Microscope", Springer-Verlag, 2011.
-
-        """
-
-        m0 = constants.value("electron mass")
-        epsilon0 = constants.epsilon_0  # Vacuum permittivity [F/m]
-        hbar = constants.hbar  # Reduced Plank constant [J·s]
-        k = 2 * epsilon0 * m0 / (np.pi * nat * hbar**2)
-
-        axis = self.axes_manager.signal_axes[0]
-        if cumulative is False:
-            dneff1 = k * simpson(
-                (-1.0 / self.data).imag * axis.axis,
-                x=axis.axis,
-                axis=axis.index_in_array,
-            )
-            dneff2 = k * simpson(
-                self.data.imag * axis.axis, x=axis.axis, axis=axis.index_in_array
-            )
-            neff1 = self._get_navigation_signal(data=dneff1)
-            neff2 = self._get_navigation_signal(data=dneff2)
-        else:
-            neff1 = self._deepcopy_with_new_data(
-                k
-                * cumulative_trapezoid(
-                    (-1.0 / self.data).imag * axis.axis,
-                    x=axis.axis,
-                    axis=axis.index_in_array,
-                    initial=0,
-                )
-            )
-            neff2 = self._deepcopy_with_new_data(
-                k
-                * cumulative_trapezoid(
-                    self.data.imag * axis.axis,
-                    x=axis.axis,
-                    axis=axis.index_in_array,
-                    initial=0,
-                )
-            )
-
-        # Prepare return
-        neff1.metadata.General.title = (
-            r"$n_{\mathrm{eff}}\left(-\Im\left(\epsilon^{-1}\right)\right)$ "
-            "calculated from "
-            + self.metadata.General.title
-            + " using the Bethe f-sum rule."
-        )
-        neff2.metadata.General.title = (
-            r"$n_{\mathrm{eff}}\left(\epsilon_{2}\right)$ "
-            "calculated from "
-            + self.metadata.General.title
-            + " using the Bethe f-sum rule."
-        )
-
-        return neff1, neff2
-
-    def get_electron_energy_loss_spectrum(self, zlp, t):
-        """
-        Compute single-scattering electron-energy loss spectrum from
-        the dielectric function.
-
-        Parameters
-        ----------
-        zlp: float or :py:class:`hyperspy.api.signals.BaseSignal`
-            If the ZLP is the same for all spectra, the intengral of the ZLP
-            can be provided as a number. Otherwise, if the ZLP intensity is not
-            the same for all spectra, it can be provided as i) a Signal
-            of the same dimensions as the current signal containing the ZLP
-            spectra for each location ii) a Signal of signal dimension 0
-            and navigation_dimension equal to the current signal containing the
-            integrated ZLP intensity.
-        t: None, float or :py:class:`hyperspy.api.signals.BaseSignal`
-            The sample thickness in nm. If the thickness is the same for all
-            spectra it can be given by a number. Otherwise, it can be provided
-            as a Signal with signal dimension 0 and navigation_dimension equal
-            to the current signal.
-
-        Returns
-        -------
-        :py:class:`hyperspy.api.signals.BaseSignal`
-        """
-        for axis in self.axes_manager.signal_axes:
-            if not axis.is_uniform:
-                raise NotImplementedError(
-                    "The function is not implemented for non-uniform axes."
-                )
-        data = (
-            (-1 / self.data).imag
-            * eels_constant(self, zlp, t).data
-            * self.axes_manager.signal_axes[0].scale
-        )
-        s = self._deepcopy_with_new_data(data)
-        s.data = s.data.real
-        s.set_signal_type("EELS")
-        s.metadata.General.title = "EELS calculated from " + self.metadata.General.title
-        return s
+__all__ = ["DielectricFunction", "LazyDielectricFunction"]
 
 
-class LazyDielectricFunction(DielectricFunction, LazyComplexSignal1D):
-    """Lazy signal class for dielectric functions."""
+def __dir__():
+    return sorted(__all__)
 
-    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "DielectricFunction")
+
+def __getattr__(name):
+    warnings.warn(
+        "This module has been privatised, use `exspy.signals` instead. "
+        "It will be removed in exspy 1.0.",
+        VisibleDeprecationWarning,
+    )
+
+    if name == "DielectricFunction":
+        from ._dielectric_function import DielectricFunction
+
+        return DielectricFunction
+    elif name == "LazyDielectricFunction":
+        from ._lazy_dielectric_function import LazyDielectricFunction
+
+        return LazyDielectricFunction
+    else:
+        raise AttributeError(f"module {__name__} has no attribute {name}")

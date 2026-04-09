@@ -17,12 +17,34 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 """
+This reference manual describes the public functions, modules, and objects in eXSpy.
+
 Attributes
 ----------
 __version__ : str
     The version of the eXSpy package.
 preferences :
     The global preferences for eXSpy, where the default settings are stored.
+
+Submodules
+----------
+components
+    The components module contains components used in model fitting.
+data
+    The data module contains example datasets.
+material
+    The material module contains objects and functions related to materials
+    properties and functionalities, such as density calculations, absorption
+    coefficients, etc.
+models
+    The models module contains the model classes used for EDS and EELS model
+    fitting.
+signals
+    The signals module contains the signal classes, such as EDS and EELS.
+utils
+    The utils module contains EDS and EELS utility functions, such as those
+    for getting X-ray lines, EELS edges information, calculating
+    cross-section, inelastic mean free paths, etc.
 
 Examples
 --------
@@ -39,54 +61,6 @@ documentation for :external+hyperspy:ref:`configuring HyperSpy <configuring-hype
 
 """
 
-from importlib.metadata import version
-from pathlib import Path
+import lazy_loader
 
-from . import components
-from . import data
-from . import models
-from . import signals
-from . import utils
-from . import material
-from ._defaults_parser import preferences
-
-
-__version__ = version("exspy")
-
-# For development version, `setuptools_scm` will be used at build time
-# to get the dev version, in case of missing vcs information (git archive,
-# shallow repository), the fallback version defined in pyproject.toml will
-# be used
-
-# If we have an editable installed from a git repository try to use
-# `setuptools_scm` to find a more accurate version:
-# `importlib.metadata` will provide the version at installation
-# time and for editable version this may be different
-
-# we only do that if we have enough git history, e.g. not shallow checkout
-_root = Path(__file__).resolve().parents[1]
-if (_root / ".git").exists() and not (_root / ".git/shallow").exists():
-    try:
-        # setuptools_scm may not be installed
-        from setuptools_scm import get_version
-
-        __version__ = get_version(_root)
-    except ImportError:  # pragma: no cover
-        # setuptools_scm not installed, we keep the existing __version__
-        pass
-
-
-__all__ = [
-    "__version__",
-    "components",
-    "data",
-    "preferences",
-    "material",
-    "models",
-    "signals",
-    "utils",
-]
-
-
-def __dir__():
-    return sorted(__all__)
+__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)

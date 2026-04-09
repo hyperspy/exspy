@@ -6,6 +6,7 @@
 .. automodule:: exspy
    :members:
 
+
 .. figure::  ../user_guide/images/EDS_preferences_gui.png
    :align:   center
    :width:   300

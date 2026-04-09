@@ -16,28 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
-from exspy._misc.eels.effective_angle import effective_angle
-from exspy._misc.eels.electron_inelastic_mean_free_path import (
-    iMFP_angular_correction,
-    iMFP_Iakoubovskii,
-    iMFP_TPP2M,
-)
-from exspy._misc.eels.tools import (
-    get_edges_near_energy,
-    get_info_from_edges,
-)
+from exspy.signals._eds_sem import EDSSEMSpectrum
+from exspy.signals._lazy_eds import LazyEDSSpectrum
 
 
-__all__ = [
-    "effective_angle",
-    "get_edges_near_energy",
-    "get_info_from_edges",
-    "iMFP_angular_correction",
-    "iMFP_Iakoubovskii",
-    "iMFP_TPP2M",
-]
+class LazyEDSSEMSpectrum(EDSSEMSpectrum, LazyEDSSpectrum):
+    """Lazy signal class for EDS spectra measured in an SEM."""
 
-
-def __dir__():
-    return sorted(__all__)
+    __doc__ += LAZYSIGNAL_DOC.replace("__BASECLASS__", "EDSSEMSpectrum")

@@ -29,7 +29,6 @@ from hyperspy.models.model1d import Model1D
 
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
 from exspy.components import EELSCLEdge
-from exspy.signals.eels import EELSSpectrum
 
 
 _logger = logging.getLogger(__name__)
@@ -116,6 +115,8 @@ class EELSModel(Model1D):
 
     @signal.setter
     def signal(self, value):
+        from exspy.signals import EELSSpectrum
+
         if isinstance(value, EELSSpectrum):
             self._signal = value
         else:

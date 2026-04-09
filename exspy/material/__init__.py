@@ -15,33 +15,17 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
+"""
+The material module contains objects and functions related to materials
+"""
 
 
-from exspy._misc.eds.utils import (
-    cross_section_to_zeta,
-    electron_range,
-    get_xray_lines,
-    get_xray_lines_near_energy,
-    print_lines,
-    print_lines_near_energy,
-    take_off_angle,
-    xray_range,
-    zeta_to_cross_section,
-)
+# """
+# The material module contains objects and functions related to materials
+# properties and functionalities, such as density calculations, absorption
+# coefficients, etc.
+# """
 
+import lazy_loader
 
-__all__ = [
-    "cross_section_to_zeta",
-    "electron_range",
-    "get_xray_lines",
-    "get_xray_lines_near_energy",
-    "print_lines",
-    "print_lines_near_energy",
-    "take_off_angle",
-    "xray_range",
-    "zeta_to_cross_section",
-]
-
-
-def __dir__():
-    return sorted(__all__)
+__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)

@@ -15,8 +15,13 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import numpydoc
+import os
 from datetime import datetime
 from packaging.version import Version
+
+
+os.environ["EAGER_IMPORT"] = "1"
+
 
 from exspy._misc import _download_GOS_files
 
@@ -126,6 +131,10 @@ favicons = [
 nitpicky = False
 # Remove when fixed in hyperspy
 nitpick_ignore_regex = [(r"py:.*", r"hyperspy.api.*")]
+
+# -- Options for sphinx.ext.napoleon extension ------------------------
+
+napoleon_custom_sections = ["Submodules"]
 
 # -- Options for numpydoc extension -----------------------------------
 

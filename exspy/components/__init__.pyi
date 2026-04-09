@@ -16,25 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-from ._misc.material import (
-    atomic_to_weight,
-    density_of_mixture,
-    mass_absorption_coefficient,
-    mass_absorption_mixture,
-    weight_to_atomic,
-)
-from ._misc.elements import elements_db as elements
-
+from ._eels_arctan import EELSArctan
+from ._eels_cl_edge import EELSCLEdge
+from ._eels_double_power_law import DoublePowerLaw
+from ._eels_vignetting import Vignetting
+from ._pes_core_line_shape import PESCoreLineShape
+from ._pes_see import SEE
+from ._pes_voigt import PESVoigt
+from ._volume_plasmon_drude import VolumePlasmonDrude
 
 __all__ = [
-    "atomic_to_weight",
-    "density_of_mixture",
-    "elements",
-    "mass_absorption_coefficient",
-    "mass_absorption_mixture",
-    "weight_to_atomic",
+    "EELSArctan",
+    "EELSCLEdge",
+    "DoublePowerLaw",
+    "PESCoreLineShape",
+    "PESVoigt",
+    "SEE",
+    "Vignetting",
+    "VolumePlasmonDrude",
 ]
-
 
 def __dir__():
     return sorted(__all__)

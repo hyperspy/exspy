@@ -20,18 +20,15 @@
 import math
 
 import numpy as np
-from scipy import constants, integrate, interpolate
+import scipy
 
-from exspy._misc.elements import elements
 from hyperspy.misc.export_dictionary import (
     export_to_dictionary,
     load_from_dictionary,
 )
 from hyperspy.misc.math_tools import get_linear_interpolation
 
-
-R = constants.value("Rydberg constant times hc in eV")
-a0 = constants.value("Bohr radius")
+from exspy import material
 
 
 class BaseGOS:
@@ -39,22 +36,31 @@ class BaseGOS:
         element = self.element
         subshell = self.subshell
         # Convert to the "GATAN" nomenclature
-        if (element in elements) is not True:
+        if (element in material._elements_dict) is not True:
             raise ValueError(f"The given element {element} is not in the database.")
-        elif subshell not in elements[element]["Atomic_properties"]["Binding_energies"]:
+        elif (
+            subshell
+            not in material._elements_dict[element]["Atomic_properties"][
+                "Binding_energies"
+            ]
+        ):
             subshells = ", ".join(
-                list(elements[element]["Atomic_properties"]["Binding_energies"].keys())
+                list(
+                    material._elements_dict[element]["Atomic_properties"][
+                        "Binding_energies"
+                    ].keys()
+                )
             )
             raise ValueError(
                 f"The given subshell {subshell} is not in the database. The "
                 f"available subshells are:\n{subshells}"
             )
 
-        self.onset_energy = elements[element]["Atomic_properties"]["Binding_energies"][
-            subshell
-        ]["onset_energy (eV)"]
-        self.Z = elements[element]["General_properties"]["Z"]
-        self.element_dict = elements[element]
+        self.onset_energy = material._elements_dict[element]["Atomic_properties"][
+            "Binding_energies"
+        ][subshell]["onset_energy (eV)"]
+        self.Z = material._elements_dict[element]["General_properties"]["Z"]
+        self.element_dict = material._elements_dict[element]
 
     def get_parametrized_qaxis(self, k1, k2, n):
         return k1 * (np.exp(np.arange(n) * k2) - 1) * 1e10
@@ -125,6 +131,9 @@ class TabulatedGOS(BaseGOS):
         return dic
 
     def integrateq(self, onset_energy, angle, E0):
+        a0 = scipy.constants.value("Bohr radius")
+        R = scipy.constants.value("Rydberg constant times hc in eV")
+
         energy_shift = onset_energy - self.onset_energy
         self.energy_shift = energy_shift
         qint = np.zeros((self.energy_axis.shape[0]))
@@ -144,9 +153,9 @@ class TabulatedGOS(BaseGOS):
             # Perform the integration in a log grid
             qaxis, gos = self.get_qaxis_and_gos(i, qmin, qmax)
             logsqa0qaxis = np.log((a0 * qaxis) ** 2)
-            qint[i] = integrate.simpson(gos, x=logsqa0qaxis)
+            qint[i] = scipy.integrate.simpson(gos, x=logsqa0qaxis)
         E = self.energy_axis + energy_shift
         # Energy differential cross section in (barn/eV/atom)
         qint *= (4.0 * np.pi * a0**2.0 * R**2 / E / T * self.subshell_factor) * 1e28
         self.qint = qint
-        return interpolate.make_interp_spline(E, qint, k=3)
+        return scipy.interpolate.make_interp_spline(E, qint, k=3)

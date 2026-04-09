@@ -18,12 +18,12 @@
 
 import numpy as np
 
-import hyperspy.api as hs
+from hyperspy.components1d import Expression
 
 from exspy._utils import parse_component_module
 
 
-class VolumePlasmonDrude(hs.model.components1D.Expression):
+class VolumePlasmonDrude(Expression):
     r"""
     Drude volume plasmon energy loss function component, the energy loss
     function is defined as:

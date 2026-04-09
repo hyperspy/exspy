@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 import hyperspy.api as hs
-from hyperspy import _lazy_signals
+from hyperspy import signals
 from hyperspy.decorators import lazifyTestClass
 
 import exspy
@@ -17,7 +17,7 @@ class TestConvertSigna:
         self.s.set_signal_type("EELS")
         assert isinstance(self.s, exspy.signals.LazyEELSSpectrum)
         self.s.set_signal_type("")
-        assert isinstance(self.s, _lazy_signals.LazySignal1D)
+        assert isinstance(self.s, signals.LazySignal1D)
 
     def test_signal1d_to_eels(self):
         self.s.set_signal_type("EELS")
@@ -59,7 +59,7 @@ def test_lazy_to_eels_and_back():
     s.set_signal_type("EELS")
     assert isinstance(s, exspy.signals.LazyEELSSpectrum)
     s.set_signal_type("")
-    assert isinstance(s, _lazy_signals.LazySignal1D)
+    assert isinstance(s, signals.LazySignal1D)
 
 
 def test_complex_to_dielectric_function():

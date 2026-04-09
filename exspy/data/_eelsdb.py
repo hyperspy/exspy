@@ -52,7 +52,7 @@ def eelsdb(
     verify_certificate=True,
     show_progressbar=None,
 ):
-    r"""Download spectra from the EELS Data Base.
+    r"""Download spectra from the `EELS database <https://eelsdb.eu/>`_.
 
     Parameters
     ----------
@@ -85,6 +85,7 @@ def eelsdb(
         Maximum number of spectra to return. -1 to return all.
     order: string
         Key to sort results by. Valid keys are:
+
         * "spectrumType",
         * "spectrumMin",
         * "spectrumMax",

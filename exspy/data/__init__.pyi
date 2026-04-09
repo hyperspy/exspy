@@ -16,11 +16,17 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-"""
-This module contains functions to load example or datasets from
-`EELSDB <https://eelsdb.eu/>`_.
-"""
+from ._eds import EDS_SEM_TM002, EDS_TEM_FePt_nanoparticles
+from ._eels import EELS_low_loss, EELS_MnFe
+from ._eelsdb import eelsdb
 
-import lazy_loader
+__all__ = [
+    "EDS_SEM_TM002",
+    "EDS_TEM_FePt_nanoparticles",
+    "eelsdb",
+    "EELS_low_loss",
+    "EELS_MnFe",
+]
 
-__getattr__, __dir__, __all__ = lazy_loader.attach_stub(__name__, __file__)
+def __dir__():
+    return sorted(__all__)

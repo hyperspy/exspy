@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2007-2025 The eXSpy developers
+# Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
 #
@@ -20,12 +20,12 @@ import pytest
 
 import numpy as np
 
-from exspy.signals import EDSSpectrum
+from exspy.signals import EDSTEMSpectrum
 from exspy._signal_tools import EDSRange
 
 
 def test_print_lines_near_energy(capsys):
-    s = EDSSpectrum(np.ones(1024))
+    s = EDSTEMSpectrum(np.ones(1024))
     s.print_lines_near_energy(energy=6.4)
     captured = capsys.readouterr()
     assert (
@@ -45,7 +45,7 @@ def test_print_lines_near_energy(capsys):
 
 
 def test_print_lines(capsys):
-    s = EDSSpectrum(np.ones(1024))
+    s = EDSTEMSpectrum(np.ones(1024))
     s.set_elements(["Fe", "Pt"])
     s.print_lines()
     captured = capsys.readouterr()
@@ -73,13 +73,13 @@ def test_print_lines(capsys):
 
 
 def test_print_lines_no_elements():
-    s = EDSSpectrum(np.ones(1024))
+    s = EDSTEMSpectrum(np.ones(1024))
     with pytest.raises(ValueError):
         s.print_lines()
 
 
 def test_lines_at_energy_non_interactive():
-    s = EDSSpectrum(np.ones(1024))
+    s = EDSTEMSpectrum(np.ones(1024))
     out = s.lines_at_energy(energy=6.4, width=0.2)
     expected_out = s.print_lines_near_energy(energy=6.4, width=0.2)
 
@@ -87,7 +87,7 @@ def test_lines_at_energy_non_interactive():
 
 
 def test_lines_at_energy_interactive():
-    s = EDSSpectrum(np.ones(1024))
+    s = EDSTEMSpectrum(np.ones(1024))
     s.axes_manager[0].units = "keV"
     s.add_elements(["Pt"])
     er = EDSRange(s)
@@ -136,7 +136,7 @@ def test_lines_at_energy_interactive():
 
 
 def test_lines_at_energy_interactive_units_error():
-    s = EDSSpectrum(np.ones(1024))
+    s = EDSTEMSpectrum(np.ones(1024))
     s.add_elements(["Pt"])
     with pytest.raises(RuntimeError):
         # units must be keV
@@ -144,7 +144,7 @@ def test_lines_at_energy_interactive_units_error():
 
 
 def test_lines_at_energy_interactive_plot_without_markers():
-    s = EDSSpectrum(np.ones(1024))
+    s = EDSTEMSpectrum(np.ones(1024))
     s.axes_manager[0].units = "keV"
     s.add_elements(["Pt"])
     # plot without markers

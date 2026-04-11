@@ -27,19 +27,12 @@ jobs:
       # IMPORTANT: this permission is mandatory for trusted publishing
       id-token: write
     steps:
-    - name: Download dist
-      uses: actions/download-artifact@v7
-      with:
-        name: dist
-        path: dist
+      - name: Download distribution artefacts
+        uses: hyperspy/.github/.github/actions/download-artifact@main
 
-    - name: Display downloaded files
-      run: |
-        ls -shR
-
-    - uses: pypa/gh-action-pypi-publish@release/v1
-      if: ${{ startsWith(github.ref, 'refs/tags/') && github.repository_owner == 'hyperspy' }}
-      # See https://docs.pypi.org/trusted-publishers/using-a-publisher/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        if: ${{ startsWith(github.ref, 'refs/tags/') && github.repository_owner == 'hyperspy' }}
+        # See https://docs.pypi.org/trusted-publishers/using-a-publisher/
 
   create_github_release:
     # If zenodo is setup to create a DOI automatically on a GitHub release,
@@ -50,8 +43,12 @@ jobs:
     name: Create GitHub Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - name: Create Release
-        if: ${{ startsWith(github.ref, 'refs/tags/') && github.repository_owner == 'hyperspy' }}
-        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b
+      # Create GitHub release:
+      # - Download dist and upload as release asset
+      # - Extract release notes from changelog and upload as release description
+      - name: Create GitHub Release
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        uses: hyperspy/.github/.github/actions/create-github-release@main
+        with:
+          changelog: CHANGES.rst
+          heading-level: '='

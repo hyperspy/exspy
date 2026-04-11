@@ -36,9 +36,9 @@ information is stored in the :py:attr:`hyperspy.api.signals.BaseSignal.metadata`
 attribute (see :ref:`metadata_structure`). This information is saved to file
 when saving in the hspy format (HyperSpy's HDF5 specification).
 
-An utility function :py:meth:`~.misc.eels.tools.get_edges_near_energy` can be
+An utility function :py:func:`~.utils.eels.get_edges_near_energy` can be
 helpful to identify possible elements in the sample.
-:py:meth:`~.misc.eels.tools.get_edges_near_energy` returns a list of edges
+:py:func:`~.utils.eels.get_edges_near_energy` returns a list of edges
 arranged in the order closest to the specified energy within a window, both
 measured in eV. The size of the window can be controlled by the argument
 `width` (default as 10)--- If the specified energy is 849 eV and the width is
@@ -140,6 +140,9 @@ Three deconvolution methods are currently available:
 * :py:meth:`~.signals.EELSSpectrum.fourier_ratio_deconvolution`
 * :py:meth:`~.signals.EELSSpectrum.richardson_lucy_deconvolution`
 
+.. minigallery:: ../examples/EELS/fourier_ratio_deconvolution*
+
+
 Estimate elastic scattering intensity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -159,7 +162,7 @@ of the signal and assigns the inflexion point to the first point below a
 certain tolerance.  This tolerance value can be set using the ``tol`` keyword.
 Currently, the method uses smoothing to reduce the impact of the noise in the
 measure. The number of points used for the smoothing window can be specified by
-the ```npoints`` keyword.
+the ``npoints`` keyword.
 
 
 .. _eels.kk:
@@ -256,6 +259,9 @@ automatically, named after its element symbol:
     <N_K (EELSCLEdge component)>
     >>> m.components.B_K
     <B_K (EELSCLEdge component)>
+
+.. minigallery:: ../examples/model_fitting/EELS_curve_fitting*
+
 
 .. _eels.GOS:
 

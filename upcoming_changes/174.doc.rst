@@ -1,0 +1,1 @@
+Add EELS examples to the gallery of examples showing how to perform :meth:`~.signals.EELSSpectrum.fourier_ratio_deconvolution` and to download spectra from the `EELS database <https://eelsdb.eu>`_.

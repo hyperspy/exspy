@@ -10,8 +10,8 @@ png file.
 
 import hyperspy.api as hs
 
-s = hs.load("coreloss_spectrum.msa", signal_type="EELS")
-low_loss = hs.load("lowloss_spectrum.msa", signal_type="EELS")
+s = hs.load("../coreloss_spectrum.msa", signal_type="EELS")
+low_loss = hs.load("../lowloss_spectrum.msa", signal_type="EELS")
 
 s.add_elements(("Mn", "O"))
 s.set_microscope_parameters(

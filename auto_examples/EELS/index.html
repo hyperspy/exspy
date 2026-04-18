@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../../_static/exspy.ico" rel="icon" type="image/x-icon">
-    <title>Plot Residual &#8212; eXSpy  documentation</title>
+    <title>Electron Energy Loss Spectroscopy (EELS) &#8212; eXSpy  documentation</title>
   
   
   
@@ -50,12 +50,12 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=ccdb6887"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/model_fitting/plot_residual';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/EELS/index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="EELS curve fitting" href="EELS_curve_fitting.html" />
-    <link rel="prev" title="Model fitting" href="index.html" />
+    <link rel="next" title="Get spectra from the EELS database" href="EELS_database.html" />
+    <link rel="prev" title="Find EDS lines" href="../EDS/find_EDS_lines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -394,15 +394,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../EDS/find_EDS_lines.html">Find EDS lines</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../EELS/index.html">Electron Energy Loss Spectroscopy (EELS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../EELS/EELS_database.html">Get spectra from the EELS database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../EELS/fourier_ratio_deconvolution.html">Fourier ratio deconvolution</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Electron Energy Loss Spectroscopy (EELS)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="EELS_database.html">Get spectra from the EELS database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fourier_ratio_deconvolution.html">Fourier ratio deconvolution</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Model fitting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Plot Residual</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EELS_curve_fitting.html">EELS curve fitting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="simple_arctan_fit.html">Simple arctan fit</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../model_fitting/index.html">Model fitting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../model_fitting/plot_residual.html">Plot Residual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_fitting/EELS_curve_fitting.html">EELS curve fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_fitting/simple_arctan_fit.html">Simple arctan fit</a></li>
 </ul>
 </details></li>
 </ul>
@@ -448,10 +448,7 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Gallery of Examples</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Model fitting</a></li>
-    
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Plot Residual</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Electron Energy Loss Spectroscopy (EELS)</span></li>
   </ul>
 </nav>
 </div>
@@ -468,63 +465,17 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="sphx-glr-download-link-note admonition note">
-<p class="admonition-title">Note</p>
-<p><a class="reference internal" href="#sphx-glr-download-auto-examples-model-fitting-plot-residual-py"><span class="std std-ref">Go to the end</span></a>
-to download the full example code.</p>
+  <section id="electron-energy-loss-spectroscopy-eels">
+<span id="sphx-glr-auto-examples-eels"></span><h1>Electron Energy Loss Spectroscopy (EELS)<a class="headerlink" href="#electron-energy-loss-spectroscopy-eels" title="Link to this heading">#</a></h1>
+<p>Below is a gallery of examples on electron energy loss spectroscopy (EELS).</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to load EELS spectra from the EELS database in eXSpy."><img alt="" src="../../_images/sphx_glr_EELS_database_thumb.png" />
+<p><a class="reference internal" href="EELS_database.html"><span class="doc">Get spectra from the EELS database</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Get spectra from the EELS database</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to perform Fourier ratio deconvolution on Mn L\ 2,3 core-loss edge."><img alt="" src="../../_images/sphx_glr_fourier_ratio_deconvolution_thumb.png" />
+<p><a class="reference internal" href="fourier_ratio_deconvolution.html"><span class="doc">Fourier ratio deconvolution</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Fourier ratio deconvolution</div>
+</div></div><div class="toctree-wrapper compound">
 </div>
-<section class="sphx-glr-example-title" id="plot-residual">
-<span id="sphx-glr-auto-examples-model-fitting-plot-residual-py"></span><h1>Plot Residual<a class="headerlink" href="#plot-residual" title="Link to this heading">#</a></h1>
-<p>Fit an affine function and plot the residual.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">hyperspy.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">hs</span>
-</pre></div>
-</div>
-<p>Create a signal:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html#numpy.arange" title="numpy.arange" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="numpy.int64" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">np</span><span class="o">.</span><span class="n">int64</span></a><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-<a href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="hyperspy._signals.signal1d.Signal1D" class="sphx-glr-backref-module-hyperspy-_signals-signal1d sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">s</span></a> <span class="o">=</span> <a href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="hyperspy._signals.signal1d.Signal1D" class="sphx-glr-backref-module-hyperspy-_signals-signal1d sphx-glr-backref-type-py-class"><span class="n">hs</span><span class="o">.</span><span class="n">signals</span><span class="o">.</span><span class="n">Signal1D</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">data</span></a><span class="p">)</span>
-</pre></div>
-</div>
-<p>Add noise:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="hyperspy._signals.signal1d.Signal1D" class="sphx-glr-backref-module-hyperspy-_signals-signal1d sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">s</span></a><span class="o">.</span><span class="n">add_poissonian_noise</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Create model:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D" title="hyperspy.models.model1d.Model1D" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">m</span></a> <span class="o">=</span> <a href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D" title="hyperspy._signals.signal1d.Signal1D" class="sphx-glr-backref-module-hyperspy-_signals-signal1d sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">s</span></a><span class="o">.</span><span class="n">create_model</span><span class="p">()</span>
-<a href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="hyperspy._components.expression.Expression" class="sphx-glr-backref-module-hyperspy-_components-expression sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">line</span></a> <span class="o">=</span> <a href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="hyperspy._components.expression.Expression" class="sphx-glr-backref-module-hyperspy-_components-expression sphx-glr-backref-type-py-class"><span class="n">hs</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components1D</span><span class="o">.</span><span class="n">Expression</span></a><span class="p">(</span><span class="s2">&quot;a * x + b&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Affine&quot;</span><span class="p">)</span>
-<a href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D.append" title="hyperspy.models.model1d.Model1D.append" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">append</span></a><span class="p">(</span><a href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Expression" title="hyperspy._components.expression.Expression" class="sphx-glr-backref-module-hyperspy-_components-expression sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">line</span></a><span class="p">)</span>
-</pre></div>
-</div>
-<p>Fit for all navigation positions:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.multifit" title="hyperspy.model.BaseModel.multifit" class="sphx-glr-backref-module-hyperspy-model sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">multifit</span></a><span class="p">()</span>
-</pre></div>
-</div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/10 [00:00&lt;?, ?it/s]
-100%|██████████| 10/10 [00:00&lt;00:00, 1609.48it/s]
-</pre></div>
-</div>
-<p>Plot the fitted model with residual:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/model1d.html#hyperspy.models.model1d.Model1D.plot" title="hyperspy.models.model1d.Model1D.plot" class="sphx-glr-backref-module-hyperspy-models-model1d sphx-glr-backref-type-py-method"><span class="n">m</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">plot_residual</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<ul class="sphx-glr-horizontal">
-<li><img src="../../_images/sphx_glr_plot_residual_001.png" srcset="../../_images/sphx_glr_plot_residual_001.png" alt="plot residual" class = "sphx-glr-multi-img"/></li>
-<li><img src="../../_images/sphx_glr_plot_residual_002.png" srcset="../../_images/sphx_glr_plot_residual_002.png" alt="Signal" class = "sphx-glr-multi-img"/></li>
-</ul>
-<p>sphinx_gallery_thumbnail_number = 2</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.369 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-model-fitting-plot-residual-py">
-<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/971c2906ad663020c2e6701928a24c9a/plot_residual.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_residual.ipynb</span></code></a></p>
-</div>
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/ce00382f897fad5b3dcb0c4b2ab12fce/plot_residual.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_residual.py</span></code></a></p>
-</div>
-<div class="sphx-glr-download sphx-glr-download-zip docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/90f956a0ec1a60c2f96c8c92607d6fea/plot_residual.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_residual.zip</span></code></a></p>
-</div>
-</div>
-<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
 
 
@@ -538,20 +489,20 @@ to download the full example code.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="../EDS/find_EDS_lines.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Model fitting</p>
+        <p class="prev-next-title">Find EDS lines</p>
       </div>
     </a>
     <a class="right-next"
-       href="EELS_curve_fitting.html"
+       href="EELS_database.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">EELS curve fitting</p>
+        <p class="prev-next-title">Get spectra from the EELS database</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -569,7 +520,7 @@ to download the full example code.</p>
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../../_sources/auto_examples/model_fitting/plot_residual.rst.txt">
+    <a href="../../_sources/auto_examples/EELS/index.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

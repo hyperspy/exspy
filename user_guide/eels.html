@@ -480,9 +480,9 @@ using <a class="reference internal" href="../reference/signals.html#exspy.signal
 information is stored in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a>
 attribute (see <a class="reference internal" href="metadata_structure.html#metadata-structure"><span class="std std-ref">eXSpy Metadata Structure</span></a>). This information is saved to file
 when saving in the hspy format (HyperSpy’s HDF5 specification).</p>
-<p>An utility function <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code> can be
+<p>An utility function <a class="reference internal" href="../reference/utils.eels.html#exspy.utils.eels.get_edges_near_energy" title="exspy.utils.eels.get_edges_near_energy"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code></a> can be
 helpful to identify possible elements in the sample.
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code> returns a list of edges
+<a class="reference internal" href="../reference/utils.eels.html#exspy.utils.eels.get_edges_near_energy" title="exspy.utils.eels.get_edges_near_energy"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code></a> returns a list of edges
 arranged in the order closest to the specified energy within a window, both
 measured in eV. The size of the window can be controlled by the argument
 <cite>width</cite> (default as 10)— If the specified energy is 849 eV and the width is
@@ -573,7 +573,10 @@ down the energy range for searching for the ZLP.</p>
 <li><p><a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.fourier_ratio_deconvolution" title="exspy.signals.EELSSpectrum.fourier_ratio_deconvolution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fourier_ratio_deconvolution()</span></code></a></p></li>
 <li><p><a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.richardson_lucy_deconvolution" title="exspy.signals.EELSSpectrum.richardson_lucy_deconvolution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">richardson_lucy_deconvolution()</span></code></a></p></li>
 </ul>
-</section>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to perform Fourier ratio deconvolution on Mn L\ 2,3 core-loss edge."><img alt="" src="../_images/sphx_glr_fourier_ratio_deconvolution_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/EELS/fourier_ratio_deconvolution.html"><span class="doc">Fourier ratio deconvolution</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Fourier ratio deconvolution</div>
+</div></div></section>
 <section id="estimate-elastic-scattering-intensity">
 <h3>Estimate elastic scattering intensity<a class="headerlink" href="#estimate-elastic-scattering-intensity" title="Link to this heading">#</a></h3>
 <p>The
@@ -591,7 +594,7 @@ of the signal and assigns the inflexion point to the first point below a
 certain tolerance.  This tolerance value can be set using the <code class="docutils literal notranslate"><span class="pre">tol</span></code> keyword.
 Currently, the method uses smoothing to reduce the impact of the noise in the
 measure. The number of points used for the smoothing window can be specified by
-the <code class="docutils literal notranslate"><span class="pre">`npoints</span></code> keyword.</p>
+the <code class="docutils literal notranslate"><span class="pre">npoints</span></code> keyword.</p>
 </section>
 <section id="kramers-kronig-analysis">
 <span id="eels-kk"></span><h3>Kramers-Kronig Analysis<a class="headerlink" href="#kramers-kronig-analysis" title="Link to this heading">#</a></h3>
@@ -661,7 +664,10 @@ automatically, named after its element symbol:</p>
 <span class="go">&lt;B_K (EELSCLEdge component)&gt;</span>
 </pre></div>
 </div>
-</section>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Performs curve fitting to an EELS spectrum, plots the result and saves it as png file."><img alt="" src="../_images/sphx_glr_EELS_curve_fitting_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/model_fitting/EELS_curve_fitting.html"><span class="doc">EELS curve fitting</span></a></p>
+  <div class="sphx-glr-thumbnail-title">EELS curve fitting</div>
+</div></div></section>
 <section id="generalised-oscillator-strengths">
 <span id="eels-gos"></span><h3>Generalised Oscillator Strengths<a class="headerlink" href="#generalised-oscillator-strengths" title="Link to this heading">#</a></h3>
 <p>Fitting EELS edges requires a model for the so-called <em>Generalised Oscillator

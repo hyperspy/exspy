@@ -31,8 +31,8 @@ png file.
 
     import hyperspy.api as hs
 
-    s = hs.load("coreloss_spectrum.msa", signal_type="EELS")
-    low_loss = hs.load("lowloss_spectrum.msa", signal_type="EELS")
+    s = hs.load("../coreloss_spectrum.msa", signal_type="EELS")
+    low_loss = hs.load("../lowloss_spectrum.msa", signal_type="EELS")
 
     s.add_elements(("Mn", "O"))
     s.set_microscope_parameters(
@@ -95,7 +95,7 @@ Plot the model fit result
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.739 seconds)
+   **Total running time of the script:** (0 minutes 2.684 seconds)
 
 
 .. _sphx_glr_download_auto_examples_model_fitting_EELS_curve_fitting.py:

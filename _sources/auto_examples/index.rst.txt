@@ -56,6 +56,59 @@ Below is a gallery of examples on energy dispersive X-ray spectroscopy (EDS).
 
     </div>
 
+Electron Energy Loss Spectroscopy (EELS)
+========================================
+
+Below is a gallery of examples on electron energy loss spectroscopy (EELS).
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to load EELS spectra from the EELS database in eXSpy.">
+
+.. only:: html
+
+  .. image:: /auto_examples/EELS/images/thumb/sphx_glr_EELS_database_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/EELS/EELS_database`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Get spectra from the EELS database</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to perform Fourier ratio deconvolution on Mn L\ 2,3 core-loss edge.">
+
+.. only:: html
+
+  .. image:: /auto_examples/EELS/images/thumb/sphx_glr_fourier_ratio_deconvolution_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/EELS/fourier_ratio_deconvolution`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Fourier ratio deconvolution</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
 Model fitting
 =============
 
@@ -133,6 +186,7 @@ Below is a gallery of examples on model fitting.
 
 
    /auto_examples/EDS/index.rst
+   /auto_examples/EELS/index.rst
    /auto_examples/model_fitting/index.rst
 
 

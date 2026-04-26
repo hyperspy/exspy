@@ -98,7 +98,7 @@ class SIMSSpectrum(Signal1D):
             self.data = result.data
             self.metadata.Signal.TIC = result.metadata.Signal.TIC
             return self
-        return result._deepcopy_with_new_data(result.data)
+        return result
 
     def normalize_to_peak(self, mass, window=0.5, inplace=False):
         """Normalise every spectrum by the intensity of a reference peak.
@@ -128,7 +128,7 @@ class SIMSSpectrum(Signal1D):
             self.data = result.data
             self.metadata.Signal.reference_mass_Da = mass
             return self
-        return result._deepcopy_with_new_data(result.data)
+        return result
 
     def to_count_rate(self, inplace=False):
         """Convert raw counts to count rate (counts / second).
@@ -174,14 +174,16 @@ class SIMSSpectrum(Signal1D):
                 f"Original error: {exc}"
             ) from exc
 
-        # Integration time per pixel per acquisition cycle
+        # tof_period_samples is the ToF period in ADC clock ticks (ns each);
+        # multiply by 1e-9 to convert to seconds, then by the number of
+        # segments and depth slices to get total integration time per pixel.
         inttime = tof_period_samples * n_segments * n_depth_slices * 1e-9
         result = self * (sample_interval_s / single_ion_signal / inttime)
 
         if inplace:
             self.data = result.data
             return self
-        return result._deepcopy_with_new_data(result.data)
+        return result
 
     def get_mass_spectrum(self, navigation_indices=None):
         """Return a 1D mass spectrum by summing over navigation axes.

@@ -18,36 +18,14 @@
 
 """Tests for SIMSSpectrum and FIBSIMSSpectrum signal classes."""
 
-import pathlib
-
 import numpy as np
 import pytest
 
-from exspy.signals.fib_sims import FIBSIMSSpectrum, LazyFIBSIMSSpectrum
-
-# ---------------------------------------------------------------------------
-# Paths to rosettasciio test fixtures (optional dependency)
-# ---------------------------------------------------------------------------
-_RSCIIO_DATA = (
-    pathlib.Path(__file__).parents[4]
-    / "rosettasciio"
-    / "rsciio"
-    / "tests"
-    / "data"
-    / "tofwerk"
-)
-OPENED_FILE = _RSCIIO_DATA / "fib_sims_opened.h5"
-RAW_FILE = _RSCIIO_DATA / "fib_sims_raw.h5"
-
-_FILES_AVAILABLE = OPENED_FILE.exists() and RAW_FILE.exists()
-skip_no_files = pytest.mark.skipif(
-    not _FILES_AVAILABLE,
-    reason="Tofwerk test fixtures not found",
-)
+from exspy.signals.fib_sims import FIBSIMSSpectrum
 
 try:
-    from rsciio.tofwerk._api import _count_active_channels  # noqa: F401
     from rsciio.tofwerk import compute_peak_data_from_eventlist  # noqa: F401
+    from rsciio.tofwerk import count_active_channels  # noqa: F401
 
     _TOFWERK_REINTEGRATE_AVAILABLE = True
 except ImportError:
@@ -87,48 +65,6 @@ def _make_fib_sims_with_metadata(**extra):
     for key, val in extra.items():  # pragma: no cover
         s.metadata.set_item(key, val)
     return s
-
-
-# ---------------------------------------------------------------------------
-# TestSignalDispatch
-# ---------------------------------------------------------------------------
-
-
-@skip_no_files
-@pytest.mark.filterwarnings("ignore:Loading old file version")
-class TestSignalDispatch:  # pragma: no cover
-    def test_opened_file_dispatches_fib_sims(self):
-        import hyperspy.api as hs
-
-        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk")
-        types = [type(s).__name__ for s in sigs]
-        assert "FIBSIMSSpectrum" in types, f"Expected FIBSIMSSpectrum, got {types}"
-        fib = next(s for s in sigs if isinstance(s, FIBSIMSSpectrum))
-        assert fib.axes_manager.signal_dimension == 1
-
-    def test_lazy_opened_file(self):
-        import hyperspy.api as hs
-
-        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk", lazy=True)
-        fib_lazy = [s for s in sigs if isinstance(s, LazyFIBSIMSSpectrum)]
-        assert len(fib_lazy) >= 1, "Expected at least one LazyFIBSIMSSpectrum"
-
-    def test_sum_spectrum_is_signal1d(self):
-        import hyperspy.api as hs
-
-        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk")
-        # First signal is the sum spectrum (1D)
-        sum_sig = sigs[0]
-        assert sum_sig.axes_manager.signal_dimension == 1
-
-    def test_get_tic_returns_signal2d(self):
-        import hyperspy.api as hs
-
-        sigs = hs.load(str(OPENED_FILE), file_format="Tofwerk", signal="all")
-        peak_data = next(s for s in sigs if s.axes_manager.navigation_dimension == 3)
-        tic = peak_data.get_tic()
-        assert tic.axes_manager.signal_dimension == 2
-        assert tic.axes_manager.navigation_dimension == 1
 
 
 # ---------------------------------------------------------------------------

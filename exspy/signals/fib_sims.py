@@ -22,7 +22,7 @@ import numpy as np
 from hyperspy.signals import LazySignal1D
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
 
-from .sims import SIMSSpectrum, LazySIMSSpectrum  # noqa: F401
+from .sims import SIMSSpectrum
 
 _logger = logging.getLogger(__name__)
 
@@ -36,9 +36,6 @@ class FIBSIMSSpectrum(SIMSSpectrum):
     """
 
     _signal_type = "FIB-SIMS"
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     def plot(self, *args, **kwargs):
         kwargs.setdefault("norm", "log")
@@ -223,6 +220,11 @@ class FIBSIMSSpectrum(SIMSSpectrum):
             sample_interval = float(fs["SampleInterval"])
             clock_period = float(fs["ClockPeriod"])
         except (AttributeError, KeyError):
+            _logger.warning(
+                "FullSpectra.SampleInterval or FullSpectra.ClockPeriod not found "
+                "in event_list_signal.original_metadata; assuming clock_ratio=1. "
+                "Results may be incorrect."
+            )
             sample_interval = 1.0
             clock_period = 1.0
         clock_ratio = int(round(sample_interval / clock_period)) if clock_period else 1
@@ -232,9 +234,9 @@ class FIBSIMSSpectrum(SIMSSpectrum):
             nbr_waveforms_raw = nbr_waveforms_raw[0]
         nbr_waveforms = int(nbr_waveforms_raw)
         ini = omd.as_dictionary().get("Configuration File Contents", "")
-        from rsciio.tofwerk._reconstruction import _count_active_channels
+        from rsciio.tofwerk import count_active_channels
 
-        n_active = _count_active_channels(ini)
+        n_active = count_active_channels(ini)
         normalization = nbr_waveforms * n_active
 
         # Sort peak_table by mass for a monotonically increasing m/z axis.

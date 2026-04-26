@@ -250,12 +250,9 @@ class FIBSIMSSpectrum(SIMSSpectrum):
         # Get the raw event data (numpy object array or dask array).
         el = event_list_signal.data
         if hasattr(el, "compute"):
-            try:
-                from dask.diagnostics import ProgressBar
+            from dask.diagnostics import ProgressBar
 
-                with ProgressBar(dt=0.5):
-                    el = el.compute()
-            except ImportError:
+            with ProgressBar(dt=0.5):
                 el = el.compute()
 
         peak_data = compute_peak_data_from_eventlist(

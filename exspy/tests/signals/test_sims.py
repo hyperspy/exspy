@@ -18,17 +18,21 @@
 
 """Tests for SIMSSpectrum and FIBSIMSSpectrum signal classes."""
 
+import sys
+from unittest.mock import MagicMock, patch
+
 import numpy as np
 import pytest
 
 from exspy.signals.fib_sims import FIBSIMSSpectrum
+from exspy.signals.sims import SIMSSpectrum
 
 try:
     from rsciio.tofwerk import compute_peak_data_from_eventlist  # noqa: F401
     from rsciio.tofwerk import count_active_channels  # noqa: F401
 
     _TOFWERK_REINTEGRATE_AVAILABLE = True
-except ImportError:
+except ImportError:  # pragma: no cover
     _TOFWERK_REINTEGRATE_AVAILABLE = False
 
 skip_no_reintegrate = pytest.mark.skipif(
@@ -381,3 +385,194 @@ class TestReintegratePeaks:
         result = s.reintegrate_peaks(el_sig, peak_table=shuffled)
         result_masses = [r["mass"] for r in result.metadata.Signal.peak_table]
         assert result_masses == sorted(result_masses)
+
+
+# ---------------------------------------------------------------------------
+# TestFIBSIMSPlot
+# ---------------------------------------------------------------------------
+
+
+class TestFIBSIMSPlot:
+    def test_plot_default_log_norm(self, monkeypatch):
+        called_kwargs = {}
+
+        def mock_plot(*args, **kwargs):
+            called_kwargs.update(kwargs)
+
+        monkeypatch.setattr(SIMSSpectrum, "plot", mock_plot)
+        s = _make_fib_sims()
+        s.plot()
+        assert called_kwargs.get("norm") == "log"
+
+    def test_plot_norm_override(self, monkeypatch):
+        called_kwargs = {}
+
+        def mock_plot(*args, **kwargs):
+            called_kwargs.update(kwargs)
+
+        monkeypatch.setattr(SIMSSpectrum, "plot", mock_plot)
+        s = _make_fib_sims()
+        s.plot(norm="linear")
+        assert called_kwargs.get("norm") == "linear"
+
+
+# ---------------------------------------------------------------------------
+# TestFIBSIMSGetTICExtras
+# ---------------------------------------------------------------------------
+
+
+class TestFIBSIMSGetTICExtras:
+    def test_get_tic_low_nav_dim(self):
+        # 2D signal: 1 nav axis -- navigation_dimension stays 1 after TIC, no transpose
+        s = FIBSIMSSpectrum(np.ones((5, 10)))
+        tic = s.get_tic()
+        assert tic.data.shape == (5,)
+
+    def test_get_tic_sets_title_when_present(self):
+        s = _make_fib_sims(shape=(3, 4, 5, 10))
+        s.metadata.General.title = "My signal"
+        tic = s.get_tic()
+        assert tic.metadata.General.title == "My signal TIC"
+
+
+# ---------------------------------------------------------------------------
+# TestReintegratePeaksMocked -- cover branches that rsciio-gated tests skip
+# ---------------------------------------------------------------------------
+
+
+class TestReintegratePeaksMocked:
+    """Tests for reintegrate_peaks() with mocked rsciio.tofwerk functions.
+
+    These run regardless of whether rsciio exposes the event-list API, and
+    specifically target code branches that the @skip_no_reintegrate tests
+    cannot exercise.
+    """
+
+    NWRITES = 2
+    NSEGS = 3
+    NX = 4
+    NPEAKS = 3
+    NSAMPLES = 64
+
+    _PEAK_TABLE = [
+        {
+            "label": f"peak_{i}",
+            "mass": float(i + 1),
+            "lower_integration_limit": float(i) + 0.5,
+            "upper_integration_limit": float(i) + 1.5,
+        }
+        for i in range(NPEAKS)
+    ]
+
+    def _make_fib_sims_signal(self, nonuniform_depth=False):
+        data = np.zeros((self.NWRITES, self.NSEGS, self.NX, self.NPEAKS))
+        if nonuniform_depth:
+            axes = [
+                {
+                    "axis": np.array([0.0, 1.0, 4.0])[: self.NWRITES],
+                    "name": "depth",
+                    "units": "cycle",
+                    "navigate": True,
+                },
+                {
+                    "offset": 0,
+                    "scale": 1,
+                    "units": "um",
+                    "size": self.NSEGS,
+                    "navigate": True,
+                },
+                {
+                    "offset": 0,
+                    "scale": 1,
+                    "units": "um",
+                    "size": self.NX,
+                    "navigate": True,
+                },
+                {
+                    "offset": 0,
+                    "scale": 1,
+                    "units": "Da",
+                    "size": self.NPEAKS,
+                    "navigate": False,
+                    "is_binned": True,
+                },
+            ]
+            s = FIBSIMSSpectrum(data, axes=axes)
+        else:
+            s = FIBSIMSSpectrum(data)
+        masses = np.array([p["mass"] for p in self._PEAK_TABLE])
+        s.axes_manager.signal_axes[0].axis = masses
+        s.metadata.set_item("Signal.peak_table", self._PEAK_TABLE)
+        return s
+
+    def _make_event_list_signal(
+        self, include_fullspectra=True, nbr_waveforms=1, use_dask=False
+    ):
+        from hyperspy.signals import BaseSignal
+
+        mass_axis = np.linspace(0.0, 10.0, self.NSAMPLES)
+        el = np.empty((self.NWRITES, self.NSEGS, self.NX), dtype=object)
+        for w in range(self.NWRITES):
+            for sg in range(self.NSEGS):
+                for x in range(self.NX):
+                    el[w, sg, x] = np.array([], dtype=np.uint16)
+        if use_dask:
+            da = pytest.importorskip("dask.array")
+            el = da.from_array(el, chunks=el.shape)
+        sig = BaseSignal(el)
+        md = {
+            "MassAxis": mass_axis.tolist(),
+            "NbrWaveforms": nbr_waveforms,
+            "Configuration File Contents": "",
+        }
+        if include_fullspectra:
+            md["FullSpectra"] = {"SampleInterval": 1.0, "ClockPeriod": 1.0}
+        sig.original_metadata.add_dictionary(md)
+        return sig
+
+    def _mock_tofwerk(self):
+        peak_data = np.zeros((self.NWRITES, self.NSEGS, self.NX, self.NPEAKS))
+        mock = MagicMock()
+        mock.count_active_channels.return_value = 2
+        mock.compute_peak_data_from_eventlist.return_value = peak_data
+        return mock
+
+    def test_basic_reintegration(self):
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal()
+        with patch.dict(sys.modules, {"rsciio.tofwerk": self._mock_tofwerk()}):
+            result = s.reintegrate_peaks(el_sig)
+        assert isinstance(result, FIBSIMSSpectrum)
+
+    def test_missing_fullspectra_logs_warning(self, caplog):
+        import logging
+
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal(include_fullspectra=False)
+        with patch.dict(sys.modules, {"rsciio.tofwerk": self._mock_tofwerk()}):
+            with caplog.at_level(logging.WARNING):
+                result = s.reintegrate_peaks(el_sig)
+        assert "SampleInterval" in caplog.text or "clock_ratio" in caplog.text
+        assert isinstance(result, FIBSIMSSpectrum)
+
+    def test_nbr_waveforms_as_list(self):
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal(nbr_waveforms=[5, 3])
+        with patch.dict(sys.modules, {"rsciio.tofwerk": self._mock_tofwerk()}):
+            result = s.reintegrate_peaks(el_sig)
+        assert isinstance(result, FIBSIMSSpectrum)
+
+    def test_dask_el_compute_path(self):
+        pytest.importorskip("dask.array")
+        s = self._make_fib_sims_signal()
+        el_sig = self._make_event_list_signal(use_dask=True)
+        with patch.dict(sys.modules, {"rsciio.tofwerk": self._mock_tofwerk()}):
+            result = s.reintegrate_peaks(el_sig)
+        assert isinstance(result, FIBSIMSSpectrum)
+
+    def test_nonuniform_nav_axis(self):
+        s = self._make_fib_sims_signal(nonuniform_depth=True)
+        el_sig = self._make_event_list_signal()
+        with patch.dict(sys.modules, {"rsciio.tofwerk": self._mock_tofwerk()}):
+            result = s.reintegrate_peaks(el_sig)
+        assert isinstance(result, FIBSIMSSpectrum)

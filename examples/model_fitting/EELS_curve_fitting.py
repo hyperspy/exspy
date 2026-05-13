@@ -31,5 +31,15 @@ m.enable_fine_structure()
 m.multifit(kind="smart")
 
 # %%
+# Print the fitted intensities and convert them to areal density
+# (atoms/nm²).  This assumes the low-loss spectrum was passed *raw*
+# (counts) and that both spectra share the same dwell time.
+
+m.quantify()
+for edge in m.edges:
+    N = edge.intensity.value * 1e10
+    print(f"{edge.name}: {N:.3e} atoms/nm²")
+
+# %%
 # Plot the model fit result
 m.plot()

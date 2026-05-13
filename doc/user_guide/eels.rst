@@ -409,6 +409,49 @@ edge functionalities:
 * :py:meth:`~.models.EELSModel.fix_fine_structure`
 * :py:meth:`~.models.EELSModel.free_fine_structure`
 
+.. _eels.absolute_quantification:
+
+Absolute quantification
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The fitted :py:attr:`~.components.EELSCLEdge.intensity` parameter is the
+scaling factor applied to the theoretical cross-section (in
+barns/eV/atom). When the model is convolved with a **raw** low-loss
+spectrum (i.e. in counts, not normalised), the fitted intensity is
+directly proportional to the areal density :math:`N` of the element:
+
+.. math::
+
+    \text{intensity} = N \times 10^{-10}
+
+where :math:`N` is in atoms/nm². Therefore, to obtain the areal density:
+
+.. code-block:: python
+
+    >>> N_B = m.components.B_K.intensity.value * 1e10
+    >>> N_N = m.components.N_K.intensity.value * 1e10
+
+.. warning::
+
+    If the core-loss and low-loss spectra were acquired with different
+    dwell times (or total acquisition times), the fitted intensity must
+    be corrected by the ratio of the dwell times before converting to
+    areal density. The dwell time can often be found in the signal
+    metadata (e.g.
+    :py:attr:`~hyperspy.api.signals.BaseSignal.metadata`\ ``.Acquisition_instrument.TEM.Detector.EELS.dwell_time``).
+    The corrected conversion is:
+
+    .. math::
+
+        N = \text{intensity} \times \frac{t_{\text{core}}}{t_{\text{low}}} \times 10^{10}
+
+    where :math:`t_{\text{core}}` and :math:`t_{\text{low}}` are the
+    dwell times of the core-loss and low-loss spectra, respectively.
+
+    If the low-loss spectrum has been normalised (e.g. to sum to unity)
+    before convolution, the zero-loss intensity factor is removed and
+    the simple relationship above no longer holds.
+
 .. _eels.fine_structure:
 
 Fine structure analysis using a spline function

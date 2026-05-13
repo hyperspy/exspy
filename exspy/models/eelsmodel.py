@@ -673,7 +673,21 @@ class EELSModel(Model1D):
 
     def quantify(self):
         """Prints the value of the intensity of all the independent
-        active EELS core loss edges defined in the model
+        active EELS core loss edges defined in the model.
+
+        The printed ``intensity`` is the fitted scaling factor of the
+        cross-section (in barns/eV/atom). When the model has been
+        convolved with a *raw* low-loss spectrum, this value is
+        proportional to the areal density :math:`N` (atoms/nm²) via
+        :math:`\\text{intensity} = N \\times 10^{-10}`. See the
+        :attr:`~.components.EELSCLEdge.intensity` attribute for the
+        full conversion formula, including the dwell-time correction
+        required when the core-loss and low-loss acquisition times
+        differ.
+
+        See Also
+        --------
+        :attr:`exspy.components.EELSCLEdge.intensity`
 
         """
         elements = {}

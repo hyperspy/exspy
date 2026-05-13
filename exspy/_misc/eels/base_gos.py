@@ -131,6 +131,23 @@ class TabulatedGOS(BaseGOS):
         return dic
 
     def integrateq(self, onset_energy, angle, E0):
+        """Integrate the GOS over q to obtain the energy-differential cross-section.
+
+        Parameters
+        ----------
+        onset_energy : float
+            The edge onset energy in eV.
+        angle : float
+            The effective collection semi-angle in rad.
+        E0 : float
+            The electron beam energy in keV.
+
+        Returns
+        -------
+        scipy.interpolate.BSpline
+            A spline representing the energy-differential cross-section
+            in barns/eV/atom as a function of energy loss in eV.
+        """
         a0 = scipy.constants.value("Bohr radius")
         R = scipy.constants.value("Rydberg constant times hc in eV")
 

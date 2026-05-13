@@ -101,10 +101,34 @@ class EELSCLEdge(Component):
     onset_energy : Parameter
         The edge onset position
     intensity : Parameter
-        The factor by which the cross section is multiplied, what in
-        favourable cases is proportional to the number of atoms of
-        the element. It is a component.Parameter instance.
-        It is fixed by default.
+        The factor by which the cross section is multiplied. The
+        internal cross-section is given in barns per eV per atom,
+        so ``intensity`` is proportional to the areal density of
+        atoms. When the model is convolved with a *raw* low-loss
+        spectrum (i.e. counts), the fitted ``intensity`` equals
+        :math:`N \times 10^{-10}`, where :math:`N` is the areal
+        density in atoms/nm². Consequently:
+
+        .. code-block:: python
+
+            N_atoms_per_nm2 = edge.intensity.value * 1e10
+
+        If the core-loss and low-loss spectra were acquired with
+        different dwell times (or total acquisition times), the
+        ratio of the dwell times must be accounted for:
+
+        .. code-block:: python
+
+            N_atoms_per_nm2 = edge.intensity.value * (t_core / t_low) * 1e10
+
+        where ``t_core`` and ``t_low`` are the dwell times of the
+        core-loss and low-loss spectra, respectively. Note that
+        if the low-loss spectrum is normalised (e.g. summed to
+        unity) before convolution, the zero-loss intensity factor
+        is removed and the simple relationship above no longer
+        holds.
+
+        It is a component.Parameter instance. It is fixed by default.
     effective_angle : Parameter
         The effective collection semi-angle. It is automatically
         calculated by ``set_microscope_parameters``. It is a

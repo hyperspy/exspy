@@ -907,7 +907,7 @@ class EELSSpectrum(Signal1D):
             scattering component normalised to the ZLP integral (sum
             equals :math:`I_0 \\cdot t/\\lambda`).
             If True, divides by :math:`I_0` to recover the single-
-             scattering distribution (sum equals :math:`t/\\lambda`).
+            scattering distribution (sum equals :math:`t/\\lambda`).
 
         Returns
         -------
@@ -924,6 +924,29 @@ class EELSSpectrum(Signal1D):
         -----
         For details see: Egerton, R. *Electron Energy-Loss Spectroscopy in
         the Electron Microscope*.  Springer-Verlag, 2011, §4.4.
+
+        .. warning::
+
+           **Quantification pitfall.**  When using the default output
+           :math:`J^1(E)` for elemental quantification, the edge integral
+           includes the factor :math:`I_0`.  The areal density of element
+           *k* must be computed as
+
+               :math:`N_k = \\int_\\text{edge} J^1(E)\\,dE \\,/\\, (I_0 \\cdot \\sigma_k)`
+
+           where :math:`\\sigma_k` is the partial cross-section.  Omitting
+           :math:`I_0` overestimates the areal density by the factor
+           :math:`I_0` (typically :math:`10^4`–:math:`10^6`).
+
+           To avoid this, either supply :math:`I_0` separately (from
+           ``zlp.data.sum()`` or
+           :meth:`estimate_elastic_scattering_intensity`) **or** pass
+           ``ssd=True`` to obtain :math:`S(E)` directly, for which
+
+               :math:`N_k = \\int_\\text{edge} S(E)\\,dE \\,/\\, \\sigma_k`
+
+           holds without further normalisation.  See the user guide for an
+           extended discussion.
 
         """
         import dask.array as da
@@ -969,6 +992,11 @@ class EELSSpectrum(Signal1D):
                 i0 = i0 * axis.scale
             s.data = s.data / i0
         if add_zlp is True:
+            # When returning the SSD (ssd=True) the output is normalised to
+            # I₀, so the ZLP must share that normalisation to keep consistent
+            # units.  When returning J¹(E) (ssd=False) the raw ZLP, which is
+            # already in counts, can be added directly.
+            zlp_add = zlp.data / i0 if ssd else zlp.data
             if self_size >= zlp_size:
                 if self._lazy:
                     _slices_before = s.axes_manager._get_data_slice(
@@ -982,7 +1010,7 @@ class EELSSpectrum(Signal1D):
                         ]
                     )
                     s.data = da.stack(
-                        (s.data[_slices_before] + zlp.data, s.data[_slices_after]),
+                        (s.data[_slices_before] + zlp_add, s.data[_slices_after]),
                         axis=axis.index_in_array,
                     )
                 else:
@@ -992,9 +1020,9 @@ class EELSSpectrum(Signal1D):
                                 (axis.index_in_array, slice(None, zlp_size)),
                             ]
                         )
-                    ] += zlp.data
+                    ] += zlp_add
             else:
-                s.data += zlp.data[
+                s.data += zlp_add[
                     s.axes_manager._get_data_slice(
                         [
                             (axis.index_in_array, slice(None, self_size)),

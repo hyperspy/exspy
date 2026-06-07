@@ -658,3 +658,124 @@ class TestVacuumMask:
         s2 = s.sum()
         with pytest.raises(RuntimeError):
             s2.vacuum_mask()
+
+
+class TestFourierLogDeconvolution:
+    """Tests for the ``ssd`` parameter of fourier_log_deconvolution."""
+
+    def setup_method(self, method):
+        from hyperspy.misc.math_tools import optimal_fft_size
+
+        scale = 0.5
+        offset = -25.0
+        n = 1401  # -25 to 675 eV
+        energy = np.linspace(offset, offset + (n - 1) * scale, n)
+
+        # Narrow Gaussian ZLP at E=0 — σ=0.1 eV so convolution z⊗s ≈ I₀·s
+        zlp_data = self._gaussian(energy, centre=0.0, sigma=0.1, area=1000.0)
+        zlp = exspy.signals.EELSSpectrum(zlp_data)
+        zlp.axes_manager[-1].scale, zlp.axes_manager[-1].offset = scale, offset
+        zlp.axes_manager[-1].units, zlp.axes_manager[-1].name = "eV", "Energy loss"
+        self.I0 = zlp_data.sum()
+
+        # SSD: Gaussian plasmon at 16.7 eV with t/λ = 0.3
+        ssd_data = self._gaussian(energy, centre=16.7, sigma=1.5, area=0.3)
+        self.t_over_lambda = ssd_data.sum()
+
+        # Forward model J(ν) = Z(ν)·exp(S(ν)) — the Poisson model that the
+        # deconvolution formula z·log(j/z) is designed to invert.
+        # Signals must be rolled E=0→index0 before FFT to prevent phase
+        # errors that would displace the convolution peak by k₀ channels.
+        k0 = int(round((0.0 - offset) / scale))
+        size = optimal_fft_size(2 * n)
+        z_rolled = np.roll(zlp_data, -k0)
+        s_rolled = np.roll(ssd_data, -k0)
+        z_f = np.fft.rfft(z_rolled, n=size)
+        s_f = np.fft.rfft(s_rolled, n=size)
+        j_data = np.roll(np.fft.irfft(z_f * np.exp(s_f))[:n], k0)
+
+        j = exspy.signals.EELSSpectrum(j_data)
+        j.axes_manager[-1].scale, j.axes_manager[-1].offset = scale, offset
+        j.axes_manager[-1].units, j.axes_manager[-1].name = "eV", "Energy loss"
+
+        self.zlp = zlp
+        self.j = j
+        self.ssd_ref = ssd_data
+        self.energy = energy
+
+    @staticmethod
+    def _gaussian(x, centre, sigma, area):
+        """Return a Gaussian on *x* with the given area."""
+        return (area / (sigma * np.sqrt(2 * np.pi))) * np.exp(
+            -0.5 * ((x - centre) / sigma) ** 2
+        )
+
+    def test_ssd_false_returns_j1(self):
+        """ssd=False (default) returns J¹(E) with sum ≈ I₀·t/λ."""
+        result = self.j.fourier_log_deconvolution(zlp=self.zlp, ssd=False)
+        integral = result.data.sum()
+        expected = self.I0 * self.t_over_lambda
+        assert np.isclose(integral, expected, rtol=0.01), (
+            f"J¹ sum {integral:.3f} ≠ I₀·t/λ = {expected:.3f}"
+        )
+
+    def test_ssd_true_returns_ssd(self):
+        """ssd=True returns S(E) with sum ≈ t/λ."""
+        result = self.j.fourier_log_deconvolution(zlp=self.zlp, ssd=True)
+        integral = result.data.sum()
+        assert np.isclose(integral, self.t_over_lambda, rtol=0.01), (
+            f"SSD sum {integral:.3f} ≠ t/λ = {self.t_over_lambda:.3f}"
+        )
+
+    def test_j1_equals_i0_times_ssd(self):
+        """J¹(E) / I₀ should equal S(E)."""
+        j1 = self.j.fourier_log_deconvolution(zlp=self.zlp, ssd=False)
+        ssd = self.j.fourier_log_deconvolution(zlp=self.zlp, ssd=True)
+        ratio = (j1.data.sum() / self.I0) / ssd.data.sum()
+        assert np.isclose(ratio, 1.0, rtol=0.01), f"J¹/I₀ / S = {ratio:.4f} ≠ 1.0"
+
+    def test_ssd_recovers_plasmon_peak(self):
+        """The plasmon peak position and shape are recovered for both modes."""
+        ssd_out = self.j.fourier_log_deconvolution(zlp=self.zlp, ssd=True)
+        energy = ssd_out.axes_manager[-1].axis
+
+        mask = (energy > 0) & (energy < 50)
+        corr = np.corrcoef(self.ssd_ref[mask], ssd_out.data[mask])[0, 1]
+        assert corr > 0.99, f"Plasmon correlation {corr:.4f} < 0.99"
+
+    def test_add_zlp_j1_raw_zlp(self):
+        """add_zlp=True with ssd=False adds raw ZLP (counts)."""
+        result = self.j.fourier_log_deconvolution(zlp=self.zlp, add_zlp=True, ssd=False)
+        i0 = self.zlp.data.sum()
+        # J¹ integral = I₀·t/λ, ZLP integral = I₀ → total = I₀·(t/λ + 1)
+        expected = i0 * self.t_over_lambda + i0
+        assert np.isclose(result.data.sum(), expected, rtol=0.02), (
+            f"J¹+ZLP sum {result.data.sum():.3f} ≠ I₀·(t/λ+1) = {expected:.3f}"
+        )
+
+    def test_add_zlp_with_ssd(self):
+        """add_zlp=True with ssd=True scales the ZLP by 1/I₀."""
+        result = self.j.fourier_log_deconvolution(zlp=self.zlp, add_zlp=True, ssd=True)
+        i0 = self.zlp.data.sum()
+        # SSD integral = t/λ, normalized ZLP integral = 1 → total = t/λ + 1
+        assert np.isclose(result.data.sum(), self.t_over_lambda + 1.0, rtol=0.02), (
+            f"SSD+ZLP sum {result.data.sum():.3f} ≠ t/λ+1 = {self.t_over_lambda + 1.0:.3f}"
+        )
+        # The deconvolution output plus normalized ZLP should match the
+        # ssd=False add_zlp=True output divided by I₀ everywhere except
+        # in the Hanning-taper region.
+        result_j1 = self.j.fourier_log_deconvolution(
+            zlp=self.zlp, add_zlp=True, ssd=False
+        )
+        # Skip first/last 100 channels (Hanning taper)
+        n = self.j.axes_manager[-1].size
+        compare = slice(100, n - 100)
+        expected = result_j1.data[compare] / i0
+        assert np.allclose(result.data[compare], expected, rtol=0.001), (
+            "SSD add_zlp output ≠ J¹ add_zlp output / I₀ outside taper region"
+        )
+
+    def test_crop(self):
+        """crop=True works with ssd=True."""
+        result = self.j.fourier_log_deconvolution(zlp=self.zlp, crop=True, ssd=True)
+        assert result.axes_manager[-1].size < self.j.axes_manager[-1].size

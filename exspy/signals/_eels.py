@@ -867,24 +867,53 @@ class EELSSpectrum(Signal1D):
         s.set_signal_type("")
         return s
 
-    def fourier_log_deconvolution(self, zlp, add_zlp=False, crop=False):
-        """Performs fourier-log deconvolution.
+    def fourier_log_deconvolution(self, zlp, add_zlp=False, crop=False, ssd=False):
+        """Perform Fourier-log deconvolution.
+
+        By default this method returns the single-scattering component
+        :math:`J^1(E)`, the spectrum that would be recorded in the absence
+        of plural scattering (Egerton 2011, §4.4):
+
+            :math:`J^1(E) = I_0 \\cdot S(E)`
+
+        where :math:`I_0 = \\int Z(E)\\,dE` is the ZLP integral and
+        :math:`S(E)` is the single-scattering distribution (SSD).  The
+        total scattered intensity is :math:`\\int J^1(E)\\,dE = I_0 \\cdot
+        t/\\lambda`.
+
+        Setting ``ssd=True`` divides the result by :math:`I_0` to recover
+        the SSD directly, whose integral equals :math:`t/\\lambda`:
+
+            :math:`S(E) = J^1(E)\\,/\\,I_0`
+
+        Use ``ssd=True`` when the deconvolved spectrum is needed for
+        absolute areal-density quantification or when comparing spectra
+        acquired at different beam currents.
 
         Parameters
         ----------
         zlp : EELSSpectrum
             The corresponding zero-loss peak.
-
-        add_zlp : bool
-            If True, adds the ZLP to the deconvolved spectrum
-        crop : bool
-            If True crop the spectrum to leave out the channels that
-            have been modified to decay smoothly to zero at the sides
-            of the spectrum.
+        add_zlp : bool, default=False
+            If True, adds the ZLP to the deconvolved spectrum.  Useful
+            when the ZLP region should contain the original zero-loss
+            signal (e.g. for display of low-loss spectra).
+        crop : bool, default=False
+            If True, crop the spectrum to discard the channels that have
+            been modified by the Hanning taper at the sides of the
+            spectrum.
+        ssd : bool, default=False
+            If False (default), returns :math:`J^1(E)`, the single-
+            scattering component normalised to the ZLP integral (sum
+            equals :math:`I_0 \\cdot t/\\lambda`).
+            If True, divides by :math:`I_0` to recover the single-
+             scattering distribution (sum equals :math:`t/\\lambda`).
 
         Returns
         -------
-        An EELSSpectrum containing the current data deconvolved.
+        EELSSpectrum
+            The deconvolved spectrum.  By default this is :math:`J^1(E)`;
+            with ``ssd=True`` it is :math:`S(E)`.
 
         Raises
         ------
@@ -893,8 +922,8 @@ class EELSSpectrum(Signal1D):
 
         Notes
         -----
-        For details see: Egerton, R. Electron Energy-Loss
-        Spectroscopy in the Electron Microscope. Springer-Verlag, 2011.
+        For details see: Egerton, R. *Electron Energy-Loss Spectroscopy in
+        the Electron Microscope*.  Springer-Verlag, 2011, §4.4.
 
         """
         import dask.array as da
@@ -931,6 +960,14 @@ class EELSSpectrum(Signal1D):
                 ]
             )
         ]
+        if ssd:
+            # Divide by the ZLP area I₀ = ∫Z(E)dE to recover S(E).
+            # For binned data (counts/channel): I₀ = Σ zlp.data.
+            # For density data (counts/eV):     I₀ = Σ zlp.data · Δε.
+            i0 = np.sum(zlp.data, axis=axis.index_in_array, keepdims=True)
+            if not self.axes_manager.signal_axes[0].is_binned:
+                i0 = i0 * axis.scale
+            s.data = s.data / i0
         if add_zlp is True:
             if self_size >= zlp_size:
                 if self._lazy:

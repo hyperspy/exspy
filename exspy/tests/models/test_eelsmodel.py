@@ -216,8 +216,9 @@ class TestEELSModel:
         self.m.signal.data = 2.0 * self.m.axis.axis ** (-3)  # A= 2, r=3
         # self.m.signal.axes_manager[-1].is_binned = False
         self.m.two_area_background_estimation()
+        # increase rtol following https://github.com/hyperspy/hyperspy/pull/3381
         np.testing.assert_allclose(
-            self.m._background_components[0].A.value, 2.1451237089380295
+            self.m._background_components[0].A.value, 2.1451237089380295, rtol=5e-3
         )
         np.testing.assert_allclose(
             self.m._background_components[0].r.value, 3.0118980767392736
@@ -228,8 +229,9 @@ class TestEELSModel:
         self.m.signal.data = 2.0 * self.m.axis.axis ** (-3)  # A= 2, r=3
         # self.m.signal.axes_manager[-1].is_binned = False
         self.m.two_area_background_estimation()
+        # increase rtol following https://github.com/hyperspy/hyperspy/pull/3381
         np.testing.assert_allclose(
-            self.m._background_components[0].A.value, 2.3978438900878087
+            self.m._background_components[0].A.value, 2.3978438900878087, rtol=2e-2
         )
         np.testing.assert_allclose(
             self.m._background_components[0].r.value, 3.031884021065014
@@ -242,8 +244,9 @@ class TestEELSModel:
         print(self.m.signal.axes_manager[-1].is_binned)
         # self.m.signal.axes_manager[-1].is_binned = False
         self.m.two_area_background_estimation()
+        # increase rtol following https://github.com/hyperspy/hyperspy/pull/3381
         np.testing.assert_allclose(
-            self.m._background_components[0].A.value, 2.6598803469440986
+            self.m._background_components[0].A.value, 2.6598803469440986, rtol=5e-2
         )
         np.testing.assert_allclose(
             self.m._background_components[0].r.value, 3.0494030409062058

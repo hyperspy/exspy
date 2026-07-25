@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2025 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -19,6 +18,7 @@
 """Tests for SIMSSpectrum and FIBSIMSSpectrum signal classes."""
 
 import sys
+from typing import ClassVar
 from unittest.mock import MagicMock, patch
 
 import numpy as np
@@ -26,20 +26,6 @@ import pytest
 
 from exspy.signals.fib_sims import FIBSIMSSpectrum
 from exspy.signals.sims import SIMSSpectrum
-
-try:
-    from rsciio.tofwerk import compute_peak_data_from_eventlist  # noqa: F401
-    from rsciio.tofwerk import count_active_channels  # noqa: F401
-
-    _TOFWERK_REINTEGRATE_AVAILABLE = True
-except ImportError:  # pragma: no cover
-    _TOFWERK_REINTEGRATE_AVAILABLE = False
-
-skip_no_reintegrate = pytest.mark.skipif(
-    not _TOFWERK_REINTEGRATE_AVAILABLE,
-    reason="rsciio.tofwerk event-list API not available (needs rosettasciio#491)",
-)
-
 
 # ---------------------------------------------------------------------------
 # Helper: build a synthetic FIBSIMSSpectrum with known values
@@ -276,7 +262,7 @@ class TestReintegratePeaks:
     NPEAKS = 5
     NSAMPLES = 256
 
-    _PEAK_TABLE = [
+    _PEAK_TABLE: ClassVar[list[dict[str, float | str]]] = [
         {
             "label": f"nominal_{i}",
             "mass": float(i + 1),
@@ -344,21 +330,18 @@ class TestReintegratePeaks:
 
     # -- success cases ------------------------------------------------------
 
-    @skip_no_reintegrate
     def test_returns_fib_sims_spectrum(self):
         s = self._make_fib_sims_signal()
         el_sig = self._make_event_list_signal()
         result = s.reintegrate_peaks(el_sig)
         assert isinstance(result, FIBSIMSSpectrum)
 
-    @skip_no_reintegrate
     def test_output_shape(self):
         s = self._make_fib_sims_signal()
         el_sig = self._make_event_list_signal()
         result = s.reintegrate_peaks(el_sig)
         assert result.data.shape == (self.NWRITES, self.NSEGS, self.NX, self.NPEAKS)
 
-    @skip_no_reintegrate
     def test_mz_axis_matches_peak_table(self):
         s = self._make_fib_sims_signal()
         el_sig = self._make_event_list_signal()
@@ -368,7 +351,6 @@ class TestReintegratePeaks:
             result.axes_manager.signal_axes[0].axis, expected_masses
         )
 
-    @skip_no_reintegrate
     def test_explicit_peak_table_override(self):
         """Passing a subset peak_table reduces the m/z dimension."""
         s = self._make_fib_sims_signal()
@@ -377,7 +359,6 @@ class TestReintegratePeaks:
         result = s.reintegrate_peaks(el_sig, peak_table=subset)
         assert result.data.shape[-1] == 3
 
-    @skip_no_reintegrate
     def test_result_peak_table_is_mass_sorted(self):
         s = self._make_fib_sims_signal()
         el_sig = self._make_event_list_signal()
@@ -436,17 +417,12 @@ class TestFIBSIMSGetTICExtras:
 
 
 # ---------------------------------------------------------------------------
-# TestReintegratePeaksMocked -- cover branches that rsciio-gated tests skip
+# TestReintegratePeaksMocked -- cover reintegrate_peaks branches cheaply
 # ---------------------------------------------------------------------------
 
 
 class TestReintegratePeaksMocked:
-    """Tests for reintegrate_peaks() with mocked rsciio.tofwerk functions.
-
-    These run regardless of whether rsciio exposes the event-list API, and
-    specifically target code branches that the @skip_no_reintegrate tests
-    cannot exercise.
-    """
+    """Tests for reintegrate_peaks() with mocked rsciio.tofwerk functions."""
 
     NWRITES = 2
     NSEGS = 3
@@ -454,7 +430,7 @@ class TestReintegratePeaksMocked:
     NPEAKS = 3
     NSAMPLES = 64
 
-    _PEAK_TABLE = [
+    _PEAK_TABLE: ClassVar[list[dict[str, float | str]]] = [
         {
             "label": f"peak_{i}",
             "mass": float(i + 1),
@@ -549,9 +525,11 @@ class TestReintegratePeaksMocked:
 
         s = self._make_fib_sims_signal()
         el_sig = self._make_event_list_signal(include_fullspectra=False)
-        with patch.dict(sys.modules, {"rsciio.tofwerk": self._mock_tofwerk()}):
-            with caplog.at_level(logging.WARNING):
-                result = s.reintegrate_peaks(el_sig)
+        with (
+            patch.dict(sys.modules, {"rsciio.tofwerk": self._mock_tofwerk()}),
+            caplog.at_level(logging.WARNING),
+        ):
+            result = s.reintegrate_peaks(el_sig)
         assert "SampleInterval" in caplog.text or "clock_ratio" in caplog.text
         assert isinstance(result, FIBSIMSSpectrum)
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2025 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -19,8 +18,8 @@
 import logging
 
 import numpy as np
-from hyperspy.signals import LazySignal1D
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
+from hyperspy.signals import LazySignal1D
 
 from .sims import SIMSSpectrum
 
@@ -192,8 +191,7 @@ class FIBSIMSSpectrum(SIMSSpectrum):
             If ``peak_table`` is None and ``metadata.Signal.peak_table`` is
             not set.
         AttributeError
-            If ``event_list_signal.original_metadata`` does not contain the
-            required timing attributes (``MassAxis``, ``FullSpectra``).
+            If ``event_list_signal.original_metadata.MassAxis`` is not set.
         """
         if peak_table is None:
             try:
@@ -227,7 +225,7 @@ class FIBSIMSSpectrum(SIMSSpectrum):
             )
             sample_interval = 1.0
             clock_period = 1.0
-        clock_ratio = int(round(sample_interval / clock_period)) if clock_period else 1
+        clock_ratio = round(sample_interval / clock_period) if clock_period else 1
 
         nbr_waveforms_raw = omd.as_dictionary().get("NbrWaveforms", 1)
         if isinstance(nbr_waveforms_raw, list):
@@ -261,27 +259,13 @@ class FIBSIMSSpectrum(SIMSSpectrum):
 
         # Rebuild axes: reuse the navigation axes from this signal, replace m/z.
         new_axes = []
-        for ax in self.axes_manager._axes[:-1]:  # depth, y, x
-            if not ax.is_uniform:
-                new_axes.append(
-                    {
-                        "name": ax.name,
-                        "axis": ax.axis.copy(),
-                        "units": ax.units,
-                        "navigate": True,
-                    }
-                )
-            else:
-                new_axes.append(
-                    {
-                        "name": ax.name,
-                        "offset": ax.offset,
-                        "scale": ax.scale,
-                        "units": ax.units,
-                        "size": ax.size,
-                        "navigate": True,
-                    }
-                )
+        for ax in sorted(
+            self.axes_manager.navigation_axes,
+            key=lambda axis: axis.index_in_array,
+        ):
+            axis_dict = ax.get_axis_dictionary()
+            axis_dict["navigate"] = True
+            new_axes.append(axis_dict)
         new_axes.append(
             {
                 "name": "m/z",

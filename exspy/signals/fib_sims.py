@@ -169,7 +169,9 @@ class FIBSIMSSpectrum(SIMSSpectrum):
         event_list_signal : hyperspy.signals.BaseSignal
             The EventList signal loaded from the same Tofwerk ``.h5`` file
             via ``file_reader(signal="event_list")``.  Its ``original_metadata``
-            must contain ``MassAxis`` and ``FullSpectra`` timing attributes.
+            must contain ``MassAxis``. ``FullSpectra`` timing attributes are
+            used when available; otherwise, ``clock_ratio=1`` is assumed and a
+            warning is logged.
         peak_table : list of dict, optional
             Integration windows to use.  Each dict must have keys:
 

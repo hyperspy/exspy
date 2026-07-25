@@ -117,6 +117,15 @@ class TestSIMSSpectrumMethods:
             norm = s.normalize_tic()
         assert np.all(np.isnan(norm.data[0, 0, :]))
 
+    def test_lazy_normalize_tic_zero_peak_reference_is_nan(self):
+        s = _make_fib_sims(shape=(2, 3, 8))
+        s.data = np.ones_like(s.data)
+        s.data[..., 0] = 0.0
+        s.axes_manager.signal_axes[0].axis = np.arange(8.0)
+        norm = s.as_lazy().normalize_tic(peaks=[0.0])
+        assert norm._lazy
+        assert np.all(np.isnan(norm.data.compute()))
+
     def test_normalize_to_peak(self):
         s = _make_fib_sims(shape=(2, 10))
         s.data = np.ones((2, 10), dtype=float)
@@ -133,6 +142,15 @@ class TestSIMSSpectrumMethods:
         result = s.normalize_to_peak(50.0, window=5.0, inplace=True)
         assert result is s
 
+    def test_lazy_normalize_to_peak_zero_reference_is_nan(self):
+        s = _make_fib_sims(shape=(2, 3, 8))
+        s.data = np.ones_like(s.data)
+        s.data[..., 0] = 0.0
+        s.axes_manager.signal_axes[0].axis = np.arange(8.0)
+        norm = s.as_lazy().normalize_to_peak(0.0, window=1.0)
+        assert norm._lazy
+        assert np.all(np.isnan(norm.data.compute()))
+
     def test_get_depth_profile_shape(self):
         profile = self.s.get_depth_profile()
         assert profile.data.ndim == 1
@@ -144,6 +162,15 @@ class TestSIMSSpectrumMethods:
         profile = self.s.get_depth_profile(mass=50.0, window=5.0)
         assert profile.data.ndim == 1
         assert profile.data.shape[0] == 3
+
+    def test_get_depth_profile_preserves_depth_axis(self):
+        data = np.zeros((3, 4, 5, 2))
+        data[0, ...] = 1.0
+        data[1, ...] = 2.0
+        data[2, ...] = 3.0
+        s = FIBSIMSSpectrum(data)
+        profile = s.get_depth_profile()
+        np.testing.assert_allclose(profile.data, [40.0, 80.0, 120.0])
 
     def test_integrate_peak_shape(self):
         masses = np.linspace(1.0, 100.0, 10)
@@ -186,6 +213,17 @@ class TestCountRate:
         # Result should differ from original (scaled)
         assert not np.allclose(result.data, s.data)
         assert result.data.sum() != orig_sum
+
+    def test_to_count_rate_uses_sample_interval_metadata(self):
+        s = _make_fib_sims_with_metadata()
+        s.data = np.ones_like(s.data)
+        s.metadata.Acquisition_instrument.FIB_SIMS.ToF.sample_interval_s = 2e-9
+        s.metadata.Acquisition_instrument.FIB_SIMS.ToF.single_ion_signal = 4.0
+        s.metadata.Acquisition_instrument.FIB_SIMS.ToF.tof_period_samples = 10
+        s.metadata.Acquisition_instrument.FIB_SIMS.n_depth_slices = 5
+        s.metadata.Acquisition_instrument.FIB_SIMS.n_segments = 2
+        result = s.to_count_rate()
+        np.testing.assert_allclose(result.data, np.full_like(s.data, 1.25e6))
 
     def test_to_count_rate_inplace(self):
         s = _make_fib_sims_with_metadata()

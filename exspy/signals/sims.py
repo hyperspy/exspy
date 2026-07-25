@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2025 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -19,12 +18,19 @@
 import logging
 import warnings
 
+import dask.array as da
 import numpy as np
-
-from hyperspy.signals import Signal1D, LazySignal1D
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
+from hyperspy.signals import LazySignal1D, Signal1D
 
 _logger = logging.getLogger(__name__)
+
+
+def _replace_inf_with_nan(data):
+    if isinstance(data, da.Array):
+        return da.where(da.isinf(data), np.nan, data)
+    data[np.isinf(data)] = np.nan
+    return data
 
 
 class SIMSSpectrum(Signal1D):
@@ -91,7 +97,7 @@ class SIMSSpectrum(Signal1D):
             )
 
         result = self / tic
-        result.data[np.isinf(result.data)] = np.nan
+        result.data = _replace_inf_with_nan(result.data)
         result.metadata.Signal.TIC = tic.data.copy()
 
         if inplace:
@@ -121,7 +127,7 @@ class SIMSSpectrum(Signal1D):
         ref = roi.sum(axis=roi.axes_manager.signal_axes[0])
 
         result = self / ref
-        result.data[np.isinf(result.data)] = np.nan
+        result.data = _replace_inf_with_nan(result.data)
         result.metadata.Signal.reference_mass_Da = mass
 
         if inplace:
@@ -174,11 +180,11 @@ class SIMSSpectrum(Signal1D):
                 f"Original error: {exc}"
             ) from exc
 
-        # tof_period_samples is the ToF period in ADC clock ticks (ns each);
-        # multiply by 1e-9 to convert to seconds, then by the number of
+        # tof_period_samples is the ToF period in ADC clock ticks; multiply by
+        # the sample interval to convert to seconds, then by the number of
         # segments and depth slices to get total integration time per pixel.
-        inttime = tof_period_samples * n_segments * n_depth_slices * 1e-9
-        result = self * (sample_interval_s / single_ion_signal / inttime)
+        inttime = tof_period_samples * sample_interval_s * n_segments * n_depth_slices
+        result = self / single_ion_signal / inttime
 
         if inplace:
             self.data = result.data

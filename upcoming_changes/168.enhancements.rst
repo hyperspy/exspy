@@ -1,0 +1,1 @@
+Add ``ssd`` parameter to :meth:`~.signals.EELSSpectrum.fourier_log_deconvolution` to optionally return the normalised single-scattering distribution ``S(E)`` instead of the default ``J¹(E) = I₀ · S(E)``.

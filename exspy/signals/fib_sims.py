@@ -102,7 +102,8 @@ class FIBSIMSSpectrum(SIMSSpectrum):
         -------
         BaseSignal
             Navigation-space signal (depth × y × x for a 4D input).
-        """
+        mass = float(mass)
+        window = float(window) # Cast to float so that real units are used to slice
         roi = self.isig[mass - window : mass + window]
         return roi.sum(axis=roi.axes_manager.signal_axes[0])
 

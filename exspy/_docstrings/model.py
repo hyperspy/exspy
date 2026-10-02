@@ -34,7 +34,13 @@ EELSMODEL_PARAMETERS = """low_loss : None or EELSSpectrum
             If an EELSSpectrum is provided, it will be assumed that it is
             a low-loss EELS spectrum, and it will be used to simulate the
             effect of multiple scattering by convolving it with the EELS
-            spectrum.
+            spectrum. For absolute quantification (areal density in
+            atoms/nm²), the low-loss spectrum should be the *raw* (i.e.
+            unnormalised) spectrum in counts. If the core-loss and low-loss
+            spectra were acquired with different dwell times, the fitted
+            ``intensity`` must be corrected by the ratio of dwell times
+            before conversion to areal density. See
+            :attr:`~exspy.components.EELSCLEdge.intensity` for details.
         auto_background : bool
             If True, and if spectrum is an EELS instance adds automatically
             a powerlaw to the model and estimate the parameters by the

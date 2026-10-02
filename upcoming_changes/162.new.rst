@@ -1,0 +1,1 @@
+Add :meth:`~.signals.EDSSpectrum.lines_at_energy` method to find EDS lines interactively in a jupyter notebook.

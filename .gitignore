@@ -9,3 +9,7 @@ dist/*
 .spyproject/*
 *__pycache__*
 .vscode/*
+.zed
+.DS_Store
+coverage.xml
+.coverage

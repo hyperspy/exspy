@@ -26,6 +26,8 @@ from ._lazy_eds import LazyEDSSpectrum
 from ._lazy_eds_sem import LazyEDSSEMSpectrum
 from ._lazy_eds_tem import LazyEDSTEMSpectrum
 from ._lazy_eels import LazyEELSSpectrum
+from .sims import SIMSSpectrum, LazySIMSSpectrum
+from .fib_sims import FIBSIMSSpectrum, LazyFIBSIMSSpectrum
 
 __all__ = [
     "DielectricFunction",
@@ -38,6 +40,10 @@ __all__ = [
     "LazyEELSSpectrum",
     "EDSSEMSpectrum",
     "LazyEDSSEMSpectrum",
+    "SIMSSpectrum",
+    "LazySIMSSpectrum",
+    "FIBSIMSSpectrum",
+    "LazyFIBSIMSSpectrum",
 ]
 
 def __dir__():

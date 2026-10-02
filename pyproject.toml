@@ -48,6 +48,7 @@ dependencies = [
   "pooch",
   "prettytable",
   "requests",
+  "rosettasciio>=0.14.0",
   "scipy",
   "traits",
 ]

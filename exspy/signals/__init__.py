@@ -33,6 +33,12 @@ EDSSEMSpectrum
 DielectricFunction
     For dielectric function data with ``signal_dimension`` equal one. The signal
     is unbinned by default.
+SIMSSpectrum
+    For Secondary Ion Mass Spectrometry data with ``signal_dimension`` equal
+    one. The signal is binned by default.
+FIBSIMSSpectrum
+    For FIB-ToF-SIMS depth-profiling data with ``signal_dimension`` equal one.
+    The signal is binned by default.
 """
 
 import lazy_loader

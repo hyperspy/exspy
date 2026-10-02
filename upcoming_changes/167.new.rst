@@ -1,0 +1,5 @@
+Add :class:`~.signals.SIMSSpectrum` and :class:`~.signals.FIBSIMSSpectrum`
+signal classes for Secondary Ion Mass Spectrometry data, including lazy
+variants. :class:`~.signals.FIBSIMSSpectrum` extends
+:class:`~.signals.SIMSSpectrum` with depth-profiling support for FIB-ToF-SIMS
+datasets.

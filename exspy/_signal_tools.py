@@ -4,10 +4,10 @@ from hyperspy.exceptions import SignalDimensionError
 from hyperspy.signal_tools import LineInSignal1D, SpanSelectorInSignal1D
 from hyperspy.ui_registry import add_gui_method
 
-import exspy.utils.eels as eels_utils
 import exspy.utils.eds as eds_utils
-from exspy.utils.eds._xray_lines import get_weight_scale
+import exspy.utils.eels as eels_utils
 from exspy.material import elements
+from exspy.utils.eds._xray_lines import get_weight_scale
 
 
 @add_gui_method(toolkey="exspy.EELSSpectrum.print_edges_table")
@@ -190,11 +190,15 @@ class EdgesRange(SpanSelectorInSignal1D):
         self.active_complementary_edges = []
 
 
+# Single line-family selectors supported by the EDSRange GUI
+_ONLY_LINES_CHOICES = ("all", "a", "b", "g", "l", "z")
+
+
 @add_gui_method(toolkey="exspy.EDSSpectrum.print_lines_table")
 class EDSRange(LineInSignal1D):
     # Class to handle Line selector and table of X-ray lines
     width = t.Float(0.2)  # in keV
-    only_lines = t.Enum("all", "a", "b", "g", "l", "z", default="all")
+    only_lines = t.Enum(*_ONLY_LINES_CHOICES, default="all")
     weight_threshold = t.Float(0.1)
 
     def __init__(self, signal, width=0.2, weight_threshold=0.1, only_lines="all"):
@@ -212,6 +216,21 @@ class EDSRange(LineInSignal1D):
         # Set the parameters
         self.width = width
         self.weight_threshold = weight_threshold
+        # Normalise `only_lines`: the general API also accepts `None` (all
+        # lines) and lists/tuples of family selectors (e.g. `("a",)`), but the
+        # GUI dropdown only supports one family selector at a time.
+        if only_lines is None:
+            only_lines = "all"
+        elif isinstance(only_lines, (list, tuple)):
+            if len(only_lines) == 1 and only_lines[0] in _ONLY_LINES_CHOICES:
+                only_lines = only_lines[0]
+            else:
+                raise ValueError(
+                    f"In interactive mode, `only_lines` must be None, 'all', "
+                    f"one of {_ONLY_LINES_CHOICES} or a single-element "
+                    f"list/tuple containing one of these values, but "
+                    f"{only_lines!r} was specified."
+                )
         self.only_lines = only_lines
 
     def get_lines_information(self):
@@ -229,13 +248,16 @@ class EDSRange(LineInSignal1D):
         )
 
         # Add intensity representation
-        for element_str in lines_info.keys():
-            element = lines_info[element_str]
-            for line in element.keys():
-                line_info = element[line]
+        for element_str, element in lines_info:
+            for line, line_info in element:
                 line_info["intensity"] = get_weight_scale(line_info["weight"])
 
         return lines_info
+
+    @t.observe("only_lines")
+    def _only_lines_changed(self, event=None):
+        if hasattr(self, "selected_elements"):
+            self.update_markers()
 
     def update_markers(self):
         """
@@ -259,6 +281,3 @@ class EDSRange(LineInSignal1D):
 
         # Finally, render the figure once after all updates
         self.signal._render_figure(plot=["signal_plot"])
-
-    def close(self):
-        self.on = False

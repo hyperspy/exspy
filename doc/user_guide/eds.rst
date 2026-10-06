@@ -427,7 +427,7 @@ Finding X-ray lines interactively
 ---------------------------------
 
 The X-ray lines can also be found interactively using the
-:py:meth:`~.signals.EDSSpectrum.lines_at_energy` method in a jupyter notebook:
+:py:meth:`~.signals.EDSSpectrum.lines_at_energy` method in a Jupyter notebook:
 
 .. code-block:: python
 

@@ -85,6 +85,12 @@ def _parse_only_lines(only_lines):
             only_lines.extend(["Ka", "La", "Ma"])
         elif only_line == "b":
             only_lines.extend(["Kb", "Lb1", "Mb"])
+        elif only_line == "g":
+            only_lines.extend(["Lg1", "Lg3", "Mg"])
+        elif only_line == "l":
+            only_lines.extend(["Ll"])
+        elif only_line == "z":
+            only_lines.extend(["Mz"])
     return only_lines
 
 
@@ -439,7 +445,7 @@ def print_lines_near_energy(
     Examples
     --------
     >>> import exspy
-    >>> exspy.utils.eds.print_lines_near_energy(energy=6.4)
+    >>> exspy.utils.eds.print_lines_near_energy(energy=6.4, width=0.2)
     +---------+------+--------------+--------+------------+
     | Element | Line | Energy (keV) | Weight | Intensity  |
     +---------+------+--------------+--------+------------+
@@ -455,7 +461,8 @@ def print_lines_near_energy(
     --------
     get_xray_lines, get_xray_lines_near_energy, print_lines
     """
-    energy_range = [energy - width, energy + width]
+    # `width` is the full window width, as documented in WIDTH_PARAMETER
+    energy_range = [energy - width / 2, energy + width / 2]
     dict_tree = get_xray_lines(
         material._elements_dict.keys(), weight_threshold, energy_range, only_lines
     )

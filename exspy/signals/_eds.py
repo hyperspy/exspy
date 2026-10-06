@@ -25,6 +25,7 @@ import numpy as np
 from hyperspy.docstrings.plot import BASE_PLOT_DOCSTRING_PARAMETERS, PLOT1D_DOCSTRING
 from hyperspy.misc import utils as hs_utils
 from hyperspy.signals import BaseSignal, Signal1D
+from hyperspy.ui_registry import DISPLAY_DT, TOOLKIT_DT
 
 import exspy.utils.eds as eds_utils
 from exspy import material
@@ -37,7 +38,6 @@ from exspy._docstrings.eds import (
     WIDTH_PARAMETER,
 )
 from exspy._signal_tools import EDSRange
-
 
 _logger = logging.getLogger(__name__)
 
@@ -1204,8 +1204,8 @@ class EDSSpectrum(Signal1D):
         self,
         energy,
         width=0.1,
-        weight_threshold=0.1,
         only_lines=None,
+        weight_threshold=0.1,
         sorting="energy",
         float_format=".2",
     ):
@@ -1226,7 +1226,7 @@ class EDSSpectrum(Signal1D):
         --------
         >>> import exspy
         >>> s = exspy.data.EDS_TEM_FePt_nanoparticles()
-        >>> s.print_lines_near_energy(energy=8)
+        >>> s.print_lines_near_energy(energy=8, width=0.2)
         +---------+------+--------------+--------+------------+
         | Element | Line | Energy (keV) | Weight | Intensity  |
         +---------+------+--------------+--------+------------+
@@ -1251,8 +1251,8 @@ class EDSSpectrum(Signal1D):
 
     print_lines_near_energy.__doc__ %= (
         WIDTH_PARAMETER.replace("    ", "        "),
-        WEIGHT_THRESHOLD_PARAMETER.replace("    ", "        "),
         ONLY_LINES_PARAMETER.replace("    ", "        "),
+        WEIGHT_THRESHOLD_PARAMETER.replace("    ", "        "),
         SORTING_PARAMETER.replace("    ", "        "),
         FLOAT_FORMAT_PARAMETER.replace("    ", "        "),
     )
@@ -1343,24 +1343,36 @@ class EDSSpectrum(Signal1D):
         toolkit=None,
     ):
         """
-        Return a list of X-ray lines close to a given energy.
+        Find the X-ray lines close to a given energy.
+
+        If ``energy`` is ``'interactive'``, an interactive tool is displayed
+        and its GUI element is returned; otherwise a table with the X-ray
+        lines found near ``energy`` is displayed and no value is returned.
 
         Parameters
         ----------
         energy : 'interactive' or float
-            If 'interactive', a table with lines are shown.
-            The energy to search around, in keV.
+            If ``'interactive'``, display an interactive tool to find the
+            X-ray lines and return its GUI element. Otherwise, the energy
+            to search around, in keV.
         %s
         %s
         %s
         %s
         %s
+
+        Notes
+        -----
+        In interactive mode, only a subset of the ``only_lines`` values is
+        supported by the tool: ``None``, ``'all'``, a single family selector
+        (``'a'``, ``'b'``, ``'g'``, ``'l'``, ``'z'``) or a single-element
+        list/tuple containing one of these values.
 
         Examples
         --------
         >>> import exspy
         >>> s = exspy.data.EDS_TEM_FePt_nanoparticles()
-        >>> s.lines_at_energy(energy=8)
+        >>> s.lines_at_energy(energy=6.4, width=0.2)
         +---------+------+--------------+--------+------------+
         | Element | Line | Energy (keV) | Weight | Intensity  |
         +---------+------+--------------+--------+------------+
@@ -1387,7 +1399,12 @@ class EDSSpectrum(Signal1D):
                 display=display, toolkit=toolkit
             )
         else:
-            self.print_lines_near_energy(energy, width, weight_threshold, only_lines)
+            self.print_lines_near_energy(
+                energy=energy,
+                width=width,
+                weight_threshold=weight_threshold,
+                only_lines=only_lines,
+            )
 
     lines_at_energy.__doc__ %= (
         WIDTH_PARAMETER.replace("    ", "        "),

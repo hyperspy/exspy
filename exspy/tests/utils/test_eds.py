@@ -18,6 +18,7 @@
 import numpy as np
 
 from exspy.utils.eds import (
+    _parse_only_lines,
     get_xray_lines,
     get_xray_lines_near_energy,
     print_lines,
@@ -113,9 +114,29 @@ def test_get_xray_lines():
     }
 
 
+def test_parse_only_lines():
+    assert _parse_only_lines("all") is None
+    assert _parse_only_lines(None) is None
+    assert _parse_only_lines("a") == ["a", "Ka", "La", "Ma"]
+    assert _parse_only_lines("b") == ["b", "Kb", "Lb1", "Mb"]
+    assert _parse_only_lines("g") == ["g", "Lg1", "Lg3", "Mg"]
+    assert _parse_only_lines("l") == ["l", "Ll"]
+    assert _parse_only_lines("z") == ["z", "Mz"]
+    assert _parse_only_lines(("a", "b")) == [
+        "a",
+        "b",
+        "Ka",
+        "La",
+        "Ma",
+        "Kb",
+        "Lb1",
+        "Mb",
+    ]
+    assert _parse_only_lines(("Ka", "Lb1")) == ["Ka", "Lb1"]
+
+
 def test_print_lines_near_energy(capsys):
-    # Just test that it runs without error
-    print_lines_near_energy(energy=6.4)
+    print_lines_near_energy(energy=6.4, width=0.2)
     captured = capsys.readouterr()
     assert (
         captured.out
@@ -128,6 +149,22 @@ def test_print_lines_near_energy(capsys):
 |    Eu   | Lb1  |     6.46     |  0.44  | ####       |
 |    Mn   |  Kb  |     6.49     |  0.13  | #          |
 |    Dy   |  La  |     6.50     |  1.00  | ########## |
++---------+------+--------------+--------+------------+
+"""
+    )
+
+
+def test_print_lines_near_energy_width_is_full_window(capsys):
+    # Regression guard: `width` is the full window (energy +/- width/2),
+    # as in `get_xray_lines_near_energy`
+    print_lines_near_energy(energy=6.4)
+    captured = capsys.readouterr()
+    assert (
+        captured.out
+        == """+---------+------+--------------+--------+------------+
+| Element | Line | Energy (keV) | Weight | Intensity  |
++---------+------+--------------+--------+------------+
+|    Fe   |  Ka  |     6.40     |  1.00  | ########## |
 +---------+------+--------------+--------+------------+
 """
     )

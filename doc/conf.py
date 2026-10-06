@@ -177,7 +177,9 @@ copybutton_prompt_is_regexp = True
 # Options: draft/sphinx-version/sphinx-release
 towncrier_draft_autoversion_mode = "draft"
 towncrier_draft_include_empty = False
-towncrier_draft_working_directory = ".."
+towncrier_draft_working_directory = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), ".."
+)
 
 doctest_global_setup = """
 import hyperspy.api as hs

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,13 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-from collections.abc import Iterable
-import numpy as np
-import numbers
 import copy
+import numbers
+from collections.abc import Iterable
 
 import hyperspy.api as hs
-
+import numpy as np
 
 __all__ = [
     "atomic_to_weight",
@@ -487,8 +485,7 @@ def mass_absorption_mixture(weight_percent, elements="auto", energies="auto"):
             mac_res[i].metadata.set_item("Sample.xray_lines", ([energy]))
             mac_res[i].metadata.General.set_item(
                 "title",
-                "Absoprtion coeff of"
-                " %s in %s" % (energy, mac_res[i].metadata.General.title),
+                f"Absoprtion coeff of {energy} in {mac_res[i].metadata.General.title}",
             )
             if mac_res[i].metadata.has_item("Sample.elements"):
                 del mac_res[i].metadata.Sample.elements
@@ -499,41 +496,37 @@ def mass_absorption_mixture(weight_percent, elements="auto", energies="auto"):
 
 def _lines_auto(composition, xray_lines):
     if isinstance(composition[0], numbers.Number):
-        if isinstance(xray_lines, str):
-            if xray_lines == "auto":
-                raise ValueError("The X-ray lines needs to be provided.")
+        if isinstance(xray_lines, str) and xray_lines == "auto":
+            raise ValueError("The X-ray lines needs to be provided.")
     else:
-        if isinstance(xray_lines, str):
-            if xray_lines == "auto":
-                xray_lines = []
-                for compo in composition:
-                    if len(compo.metadata.Sample.xray_lines) > 1:
-                        raise ValueError(
-                            "The signal %s contains more than one X-ray lines "
-                            "but this function requires only one X-ray lines "
-                            "per signal." % compo.metadata.General.title
-                        )
-                    else:
-                        xray_lines.append(compo.metadata.Sample.xray_lines[0])
+        if isinstance(xray_lines, str) and xray_lines == "auto":
+            xray_lines = []
+            for compo in composition:
+                if len(compo.metadata.Sample.xray_lines) > 1:
+                    raise ValueError(
+                        f"The signal {compo.metadata.General.title} contains more than one X-ray lines "
+                        "but this function requires only one X-ray lines "
+                        "per signal."
+                    )
+                else:
+                    xray_lines.append(compo.metadata.Sample.xray_lines[0])
     return xray_lines
 
 
 def _elements_auto(composition, elements):
     if isinstance(composition[0], numbers.Number):
-        if isinstance(elements, str):
-            if elements == "auto":
-                raise ValueError("The elements needs to be provided.")
+        if isinstance(elements, str) and elements == "auto":
+            raise ValueError("The elements needs to be provided.")
     else:
-        if isinstance(elements, str):
-            if elements == "auto":
-                elements = []
-                for compo in composition:
-                    if len(compo.metadata.Sample.elements) > 1:
-                        raise ValueError(
-                            "The signal %s contains more than one element "
-                            "but this function requires only one element "
-                            "per signal." % compo.metadata.General.title
-                        )
-                    else:
-                        elements.append(compo.metadata.Sample.elements[0])
+        if isinstance(elements, str) and elements == "auto":
+            elements = []
+            for compo in composition:
+                if len(compo.metadata.Sample.elements) > 1:
+                    raise ValueError(
+                        f"The signal {compo.metadata.General.title} contains more than one element "
+                        "but this function requires only one element "
+                        "per signal."
+                    )
+                else:
+                    elements.append(compo.metadata.Sample.elements[0])
     return elements

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,18 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-from collections.abc import Iterable
 import itertools
 import logging
 import warnings
-
-import numpy as np
+from collections.abc import Iterable
 
 import hyperspy.api as hs
-from hyperspy.signals import BaseSignal, Signal1D
-from hyperspy.misc import utils as hs_utils
+import numpy as np
 from hyperspy.docstrings.plot import BASE_PLOT_DOCSTRING_PARAMETERS, PLOT1D_DOCSTRING
+from hyperspy.misc import utils as hs_utils
+from hyperspy.signals import BaseSignal, Signal1D
 
+import exspy.utils.eds as eds_utils
+from exspy import material
 from exspy._docstrings.eds import (
     ENERGY_RANGE_PARAMETER,
     FLOAT_FORMAT_PARAMETER,
@@ -36,9 +36,6 @@ from exspy._docstrings.eds import (
     WEIGHT_THRESHOLD_PARAMETER,
     WIDTH_PARAMETER,
 )
-import exspy.utils.eds as eds_utils
-from exspy import material
-
 
 _logger = logging.getLogger(__name__)
 
@@ -157,8 +154,7 @@ class EDSSpectrum(Signal1D):
         low_value = ax.low_value
         high_value = ax.high_value
         try:
-            if self._get_beam_energy() < high_value:
-                high_value = self._get_beam_energy()
+            high_value = min(high_value, self._get_beam_energy())
         except AttributeError:
             # in case the beam energy is not defined in the metadata
             pass
@@ -305,7 +301,7 @@ class EDSSpectrum(Signal1D):
                 elements_.add(element)
             else:
                 raise ValueError(f"{element} is not a valid chemical element symbol.")
-        self.metadata.set_item("Sample.elements", sorted(list(elements_)))
+        self.metadata.set_item("Sample.elements", sorted(elements_))
 
     def _get_xray_lines(self, xray_lines=None, only_one=None, only_lines=("a",)):
         if xray_lines is None:
@@ -467,7 +463,7 @@ class EDSSpectrum(Signal1D):
             self.metadata.add_node("Sample")
         if "Sample.xray_lines" in self.metadata:
             xray_lines = xray_lines.union(self.metadata.Sample.xray_lines)
-        self.metadata.Sample.xray_lines = sorted(list(xray_lines))
+        self.metadata.Sample.xray_lines = sorted(xray_lines)
 
     def _get_lines_from_elements(self, elements, only_one=False, only_lines=("a",)):
         """Returns the X-ray lines of the given elements in spectral range
@@ -493,7 +489,7 @@ class EDSSpectrum(Signal1D):
         only_lines = eds_utils._parse_only_lines(only_lines)
         try:
             beam_energy = self._get_beam_energy()
-        except BaseException:
+        except Exception:  # noqa: BLE001
             # Fall back to the high_value of the energy axis
             beam_energy = self.axes_manager.signal_axes[0].high_value
         lines = []
@@ -785,7 +781,7 @@ class EDSSpectrum(Signal1D):
         return integration_windows
 
     def estimate_background_windows(
-        self, line_width=[2, 2], windows_width=1, xray_lines=None
+        self, line_width=None, windows_width=1, xray_lines=None
     ):
         """
         Estimate two windows around each X-ray line containing only the
@@ -827,6 +823,8 @@ class EDSSpectrum(Signal1D):
         --------
         plot, get_lines_intensity
         """
+        if line_width is None:
+            line_width = [2, 2]
         xray_lines = self._get_xray_lines(xray_lines)
         windows_position = []
         for xray_line in xray_lines:
@@ -861,7 +859,7 @@ class EDSSpectrum(Signal1D):
         autoscale="v",
         norm="auto",
         axes_manager=None,
-        navigator_kwds={},
+        navigator_kwds=None,
         **kwargs,
     ):
         """Plot the EDS spectrum. The following markers can be added
@@ -931,6 +929,8 @@ class EDSSpectrum(Signal1D):
         set_elements, add_elements, estimate_integration_windows,
         get_lines_intensity, estimate_background_windows
         """
+        if navigator_kwds is None:
+            navigator_kwds = {}
         super().plot(
             navigator=navigator,
             plot_markers=plot_markers,
@@ -1065,8 +1065,9 @@ class EDSSpectrum(Signal1D):
             segments[i] = [[eng, 0], [eng, 1]]
             offsets[i] = [eng, 1]
             line_names.append(
-                r"$\mathrm{%s}_{\mathrm{%s}}$"
-                % eds_utils._get_element_and_line(xray_line)
+                r"$\mathrm{{{}}}_{{\mathrm{{{}}}}}$".format(
+                    *eds_utils._get_element_and_line(xray_line)
+                )
             )
 
         line_markers = hs.plot.markers.Lines(

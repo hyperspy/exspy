@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,10 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+import hyperspy.api as hs
 import numpy as np
 import pytest
-
-import hyperspy.api as hs
 
 from exspy.components import PESCoreLineShape
 

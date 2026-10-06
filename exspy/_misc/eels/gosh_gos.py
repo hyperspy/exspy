@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,11 +16,12 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import logging
+from typing import ClassVar
 
 import h5py
 import numpy as np
-
 from hyperspy.defaults_parser import preferences
+
 from .base_gos import TabulatedGOS
 from .gosh_gos_source import GOSH_SOURCES
 
@@ -61,7 +61,7 @@ class GoshGOS(TabulatedGOS):
     """
 
     _name = "gosh"
-    _whitelist = {
+    _whitelist: ClassVar[dict] = {
         "gos_array": None,
         "rel_energy_axis": None,
         "qaxis": None,
@@ -85,7 +85,7 @@ class GoshGOS(TabulatedGOS):
 
         if gos_file_path is None:
             source = source.lower()
-            if source not in GOSH_SOURCES.keys():
+            if source not in GOSH_SOURCES:
                 raise ValueError(
                     f"Invalid source: {source}, valid options are "
                     f"{list(GOSH_SOURCES.keys())}"

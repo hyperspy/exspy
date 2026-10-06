@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,15 +16,14 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import logging
+from typing import ClassVar
 
 import traits.api as t
-
 from hyperspy.signal import BaseSetMetadataItems
-from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
+from hyperspy.ui_registry import DISPLAY_DT, TOOLKIT_DT, add_gui_method
 
 from exspy._defaults_parser import preferences
 from exspy.signals._eds import EDSSpectrum
-
 
 _logger = logging.getLogger(__name__)
 
@@ -38,7 +36,7 @@ class EDSSEMParametersUI(BaseSetMetadataItems):
     azimuth_angle = t.Float(t.Undefined, label="Azimuth angle (degree)")
     elevation_angle = t.Float(t.Undefined, label="Elevation angle (degree)")
     energy_resolution_MnKa = t.Float(t.Undefined, label="Energy resolution MnKa (eV)")
-    mapping = {
+    mapping: ClassVar[dict] = {
         "Acquisition_instrument.SEM.beam_energy": "beam_energy",
         "Acquisition_instrument.TEM.Stage.tilt_alpha": "tilt_stage",
         "Acquisition_instrument.SEM.Detector.EDS.live_time": "live_time",
@@ -56,13 +54,15 @@ class EDSSEMSpectrum(EDSSpectrum):
     def __init__(self, *args, **kwards):
         super().__init__(*args, **kwards)
         # Attributes defaults
-        if "Acquisition_instrument.SEM.Detector.EDS" not in self.metadata:
-            if "Acquisition_instrument.TEM" in self.metadata:
-                self.metadata.set_item(
-                    "Acquisition_instrument.SEM",
-                    self.metadata.Acquisition_instrument.TEM,
-                )
-                del self.metadata.Acquisition_instrument.TEM
+        if (
+            "Acquisition_instrument.SEM.Detector.EDS" not in self.metadata
+            and "Acquisition_instrument.TEM" in self.metadata
+        ):
+            self.metadata.set_item(
+                "Acquisition_instrument.SEM",
+                self.metadata.Acquisition_instrument.TEM,
+            )
+            del self.metadata.Acquisition_instrument.TEM
         self._set_default_param()
 
     def get_calibration_from(self, ref, nb_pix=1):
@@ -184,16 +184,14 @@ class EDSSEMSpectrum(EDSSpectrum):
         display=True,
         toolkit=None,
     ):
-        if set(
-            [
-                beam_energy,
-                live_time,
-                tilt_stage,
-                azimuth_angle,
-                elevation_angle,
-                energy_resolution_MnKa,
-            ]
-        ) == {None}:
+        if {
+            beam_energy,
+            live_time,
+            tilt_stage,
+            azimuth_angle,
+            elevation_angle,
+            energy_resolution_MnKa,
+        } == {None}:
             tem_par = EDSSEMParametersUI(self)
             return tem_par.gui(toolkit=toolkit, display=display)
         md = self.metadata
@@ -219,7 +217,7 @@ class EDSSEMSpectrum(EDSSpectrum):
                 energy_resolution_MnKa,
             )
 
-    set_microscope_parameters.__doc__ = """
+    set_microscope_parameters.__doc__ = f"""
         Set the microscope parameters.
 
         If no arguments are given, raises an interactive mode to fill
@@ -239,8 +237,8 @@ class EDSSEMSpectrum(EDSSpectrum):
             In degree
         energy_resolution_MnKa : float
             In eV
-        {}
-        {}
+        {DISPLAY_DT}
+        {TOOLKIT_DT}
 
         Examples
         --------
@@ -255,7 +253,7 @@ class EDSSEMSpectrum(EDSSpectrum):
         Default value 130.0 eV
         Now set to 135.0 eV
 
-        """.format(DISPLAY_DT, TOOLKIT_DT)
+        """
 
     def _are_microscope_parameters_missing(self):
         """Check if the EDS parameters necessary for quantification
@@ -274,7 +272,7 @@ class EDSSEMSpectrum(EDSSpectrum):
             if exists is False:
                 missing_parameters.append(item)
         if missing_parameters:
-            _logger.info("Missing parameters {}".format(missing_parameters))
+            _logger.info(f"Missing parameters {missing_parameters}")
             return True
         else:
             return False
@@ -305,9 +303,9 @@ class EDSSEMSpectrum(EDSSpectrum):
 
         model = EDSSEMModel(
             self,
+            *args,
             auto_background=auto_background,
             auto_add_lines=auto_add_lines,
-            *args,
             **kwargs,
         )
         return model

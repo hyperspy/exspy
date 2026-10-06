@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -25,4 +24,4 @@ def test_get_element_and_line():
     assert _get_element_and_line("Mn_Ka") == ("Mn", "Ka")
 
     with pytest.raises(ValueError):
-        _get_element_and_line("MnKa") == -1
+        _get_element_and_line("MnKa")

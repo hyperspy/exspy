@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -22,7 +21,7 @@ import exspy
 
 
 def test_eels():
-    s = exspy.signals.EELSSpectrum(([0, 1]))
+    s = exspy.signals.EELSSpectrum([0, 1])
     s0 = s.deepcopy()
     s.axes_manager[0].convert_to_non_uniform_axis()
     with pytest.raises(NotImplementedError):
@@ -48,8 +47,8 @@ def test_eels():
 
 
 def test_eds():
-    s = exspy.signals.EDSTEMSpectrum(([0, 1]))
-    s2 = exspy.signals.EDSSEMSpectrum(([0, 1]))
+    s = exspy.signals.EDSTEMSpectrum([0, 1])
+    s2 = exspy.signals.EDSSEMSpectrum([0, 1])
     s.axes_manager[0].convert_to_non_uniform_axis()
     s2.axes_manager[0].convert_to_non_uniform_axis()
     s.set_microscope_parameters(20)

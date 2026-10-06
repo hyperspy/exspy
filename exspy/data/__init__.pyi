@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -23,10 +22,7 @@ from ._eelsdb import eelsdb
 __all__ = [
     "EDS_SEM_TM002",
     "EDS_TEM_FePt_nanoparticles",
-    "eelsdb",
-    "EELS_low_loss",
     "EELS_MnFe",
+    "EELS_low_loss",
+    "eelsdb",
 ]
-
-def __dir__():
-    return sorted(__all__)

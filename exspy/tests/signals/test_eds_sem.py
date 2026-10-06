@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,17 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import pytest
-
 import numpy as np
-
+import pytest
 from hyperspy import utils
 from hyperspy.components1d import Gaussian
 from hyperspy.decorators import lazifyTestClass
 
 import exspy
-from exspy._defaults_parser import preferences
 import exspy.utils.eds as eds_utils
+from exspy._defaults_parser import preferences
 from exspy.signals import EDSSEMSpectrum
 
 
@@ -258,7 +255,7 @@ class Test_get_lines_intensity:
             s.get_lines_intensity(xray_lines=bad_iter, plot_result=False)
 
     @pytest.mark.parametrize(
-        "good_iter", [("Al_Kb", "Ca_Ka"), ["Al_Kb", "Ca_Ka"], set(["Al_Kb", "Ca_Ka"])]
+        "good_iter", [("Al_Kb", "Ca_Ka"), ["Al_Kb", "Ca_Ka"], {"Al_Kb", "Ca_Ka"}]
     )
     def test_good_iter(self, good_iter):
         s = self.signal

@@ -24,7 +24,8 @@ A few sentences and/or a bulleted list to describe and motivate the change:
 ```python
 import exspy
 import numpy as np
-s = exspy.signals.EELSSpectrum(np.arange(100).reshape(10,10))
+
+s = exspy.signals.EELSSpectrum(np.arange(100).reshape(10, 10))
 # Your new feature...
 ```
 

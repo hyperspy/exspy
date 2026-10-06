@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import math
 import logging
+import math
 
 import numpy as np
-from scipy import integrate, interpolate, constants
+from scipy import constants, integrate, interpolate
 
 from .base_gos import BaseGOS
 
@@ -147,9 +146,9 @@ class HydrogenicGOS(BaseGOS):
 
         info_str = (
             "\nHydrogenic GOS\n"
-            + ("\tElement: %s " % self.element)
-            + ("\tSubshell: %s " % self.subshell)
-            + ("\tOnset Energy = %s " % self.onset_energy)
+            + (f"\tElement: {self.element} ")
+            + (f"\tSubshell: {self.subshell} ")
+            + (f"\tOnset Energy = {self.onset_energy} ")
         )
         _logger.info(info_str)
 
@@ -175,7 +174,7 @@ class HydrogenicGOS(BaseGOS):
         self.energy_shift = energy_shift
         gamma = 1 + E0 / 511.06
         T = 511060 * (1 - 1 / gamma**2) / 2
-        qint = np.zeros((self.energy_axis.shape[0]))
+        qint = np.zeros(self.energy_axis.shape[0])
         for i, E in enumerate(self.energy_axis + energy_shift):
             qa0sqmin = (E**2) / (4 * R * T) + (E**3) / (8 * gamma**3 * R * T**2)
             p02 = T / (R * (1 - 2 * T / 511060))
@@ -189,7 +188,7 @@ class HydrogenicGOS(BaseGOS):
                 * (R / E)
                 * (
                     integrate.quad(
-                        lambda x: self.gosfunc(E, np.exp(x)),
+                        lambda x, E=E: self.gosfunc(E, np.exp(x)),
                         math.log(qa0sqmin),
                         math.log(qa0sqmax),
                     )[0]
@@ -215,8 +214,7 @@ class HydrogenicGOS(BaseGOS):
         q = qa02 / zs**2
         kh2 = E / (r * zs**2) - 1
         akh = np.sqrt(abs(kh2))
-        if akh < 0.01:
-            akh = 0.01
+        akh = max(akh, 0.01)
         if kh2 >= 0.0:
             d = 1 - np.e ** (-2 * np.pi / akh)
             bp = np.arctan(2 * akh / (q - kh2 + 1))

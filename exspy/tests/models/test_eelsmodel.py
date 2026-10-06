@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,19 +16,18 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import contextlib
-import logging
-from packaging.version import Version
 import io
+import logging
 from unittest import mock
 
 import dask
+import hyperspy.api as hs
 import numpy as np
 import pooch
 import pytest
-
-import hyperspy.api as hs
 from hyperspy.decorators import lazifyTestClass
 from hyperspy.exceptions import VisibleDeprecationWarning
+from packaging.version import Version
 
 from exspy._misc.eels.gosh_gos_source import DFT_GOSH, DIRAC_GOSH
 from exspy.material import elements
@@ -291,7 +289,7 @@ class TestEELSModel:
     def test_signal1d_property_wrong_value_setter(self):
         m = self.m
         s = hs.signals.Signal1D(np.ones(200))
-        with pytest.raises(ValueError):
+        with pytest.raises(TypeError):
             m.signal = s
 
     def test_remove(self):
@@ -526,7 +524,7 @@ class TestFitBackground2D:
 @lazifyTestClass
 class TestEELSFineStructure:
     def setup_method(self, method):
-        s = EELSSpectrum(np.zeros((1024)))
+        s = EELSSpectrum(np.zeros(1024))
         s.axes_manager[0].units = "eV"
         s.axes_manager[0].scale = 0.1
         s.axes_manager[0].offset = 690

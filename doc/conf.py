@@ -14,11 +14,11 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-import numpydoc
 import os
-from datetime import datetime
-from packaging.version import Version
+from datetime import datetime, timezone
 
+import numpydoc
+from packaging.version import Version
 
 os.environ["EAGER_IMPORT"] = "1"
 
@@ -28,7 +28,7 @@ from exspy._misc import _download_GOS_files
 # -- Project information -----------------------------------------------------
 
 project = "eXSpy"
-copyright = f"2023-{datetime.today().year}, eXSpy Developers"
+copyright = f"2023-{datetime.now(timezone.utc).year}, eXSpy Developers"
 author = "eXSpy Developers"
 
 

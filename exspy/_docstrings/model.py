@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -30,7 +29,7 @@ GOS_PARAMETER = """GOS : 'hydrogenic', 'dft', 'dirac', 'Hartree-Slater'.
     eels_misc.GOSH_SOURCES["dft"]["DOI"]
 )
 
-EELSMODEL_PARAMETERS = """low_loss : None or EELSSpectrum
+EELSMODEL_PARAMETERS = f"""low_loss : None or EELSSpectrum
             If an EELSSpectrum is provided, it will be assumed that it is
             a low-loss EELS spectrum, and it will be used to simulate the
             effect of multiple scattering by convolving it with the EELS
@@ -51,7 +50,7 @@ EELSMODEL_PARAMETERS = """low_loss : None or EELSSpectrum
             :class:`~.api.signals.EELSSpectrum` instance. Adding a new element to
             the spectrum using the :meth:`~.api.signals.EELSSpectrum.add_elements`
             method automatically add the corresponding ionisation edges to the model.
-        {}
+        {GOS_PARAMETER}
         dictionary : None or dict
             A dictionary to be used to recreate a model. Usually generated using
-            :meth:`~.model.BaseModel.as_dictionary`""".format(GOS_PARAMETER)
+            :meth:`~.model.BaseModel.as_dictionary`"""

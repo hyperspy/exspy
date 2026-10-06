@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -21,11 +20,9 @@ import itertools
 
 import numpy as np
 import pytest
-
 from hyperspy.signals import Signal1D
 
 from exspy.components import PESVoigt
-
 
 TRUE_FALSE_2_TUPLE = [p for p in itertools.product((True, False), repeat=2)]
 

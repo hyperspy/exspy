@@ -1,9 +1,9 @@
 import logging
-import pytest
 
-from hyperspy.utils.markers import Lines, Texts
+import pytest
 from hyperspy.misc.test_utils import update_close_figure
 from hyperspy.utils import stack
+from hyperspy.utils.markers import Lines, Texts
 
 import exspy
 

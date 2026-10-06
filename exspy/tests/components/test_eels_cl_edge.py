@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -20,7 +19,6 @@ from pathlib import Path
 
 import hyperspy.api as hs
 import numpy as np
-
 
 TEST_DATA_DIR = Path(__file__).parent
 

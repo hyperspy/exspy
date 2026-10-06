@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,9 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+from typing import ClassVar
+
 import numpy as np
 import scipy
-
 from hyperspy.signals import ComplexSignal1D
 
 import exspy.utils.eels as eels_utils
@@ -28,7 +28,7 @@ class DielectricFunction(ComplexSignal1D):
     """Signal class for dielectric functions."""
 
     _signal_type = "DielectricFunction"
-    _alias_signal_types = ["dielectric function"]
+    _alias_signal_types: ClassVar[list] = ["dielectric function"]
 
     def get_number_of_effective_electrons(self, nat, cumulative=False):
         r"""

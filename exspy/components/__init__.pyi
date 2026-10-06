@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -26,15 +25,12 @@ from ._pes_voigt import PESVoigt
 from ._volume_plasmon_drude import VolumePlasmonDrude
 
 __all__ = [
+    "SEE",
+    "DoublePowerLaw",
     "EELSArctan",
     "EELSCLEdge",
-    "DoublePowerLaw",
     "PESCoreLineShape",
     "PESVoigt",
-    "SEE",
     "Vignetting",
     "VolumePlasmonDrude",
 ]
-
-def __dir__():
-    return sorted(__all__)

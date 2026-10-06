@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,38 +15,36 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import numbers
 import logging
+import numbers
+from typing import ClassVar
 
-from prettytable import PrettyTable
+import hyperspy.api as hs
 import numpy as np
 import scipy
 import traits.api as t
-
-import hyperspy.api as hs
-from hyperspy.signal import BaseSetMetadataItems
-from hyperspy.signals import BaseSignal, Signal1D
-from hyperspy.misc.utils import display, isiterable, underline
-from hyperspy.misc.math_tools import optimal_fft_size
-
-from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
+from hyperspy.docstrings.signal import (
+    NAVIGATION_MASK_ARG,
+    NUM_WORKERS_ARG,
+    SHOW_PROGRESSBAR_ARG,
+    SIGNAL_MASK_ARG,
+)
 from hyperspy.docstrings.signal1d import (
     CROP_PARAMETER_DOC,
-    SPIKES_DIAGNOSIS_DOCSTRING,
     MASK_ZERO_LOSS_PEAK_WIDTH,
+    SPIKES_DIAGNOSIS_DOCSTRING,
     SPIKES_REMOVAL_TOOL_DOCSTRING,
 )
-from hyperspy.docstrings.signal import (
-    SHOW_PROGRESSBAR_ARG,
-    NUM_WORKERS_ARG,
-    SIGNAL_MASK_ARG,
-    NAVIGATION_MASK_ARG,
-)
+from hyperspy.misc.math_tools import optimal_fft_size
+from hyperspy.misc.utils import display, isiterable, underline
+from hyperspy.signal import BaseSetMetadataItems
+from hyperspy.signals import BaseSignal, Signal1D
+from hyperspy.ui_registry import DISPLAY_DT, TOOLKIT_DT, add_gui_method
+from prettytable import PrettyTable
 
+import exspy.utils.eels as eels_utils
 from exspy import material
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
-import exspy.utils.eels as eels_utils
-
 
 _logger = logging.getLogger(__name__)
 
@@ -57,7 +54,7 @@ class EELSTEMParametersUI(BaseSetMetadataItems):
     convergence_angle = t.Float(t.Undefined, label="Convergence semi-angle (mrad)")
     beam_energy = t.Float(t.Undefined, label="Beam energy (keV)")
     collection_angle = t.Float(t.Undefined, label="Collection semi-angle (mrad)")
-    mapping = {
+    mapping: ClassVar[dict] = {
         "Acquisition_instrument.TEM.convergence_angle": "convergence_angle",
         "Acquisition_instrument.TEM.beam_energy": "beam_energy",
         "Acquisition_instrument.TEM.Detector.EELS.collection_angle": "collection_angle",
@@ -68,14 +65,14 @@ class EELSSpectrum(Signal1D):
     """Signal class for EELS spectra."""
 
     _signal_type = "EELS"
-    _alias_signal_types = ["TEM EELS"]
+    _alias_signal_types: ClassVar[list] = ["TEM EELS"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Attributes defaults
         self.subshells = set()
         self.elements = set()
-        self.edges = list()
+        self.edges = []
         if hasattr(self.metadata, "Sample") and hasattr(
             self.metadata.Sample, "elements"
         ):
@@ -125,7 +122,7 @@ class EELSSpectrum(Signal1D):
                 self.elements.add(element)
             else:
                 raise ValueError(
-                    "%s is not a valid symbol of a chemical element" % element
+                    f"{element} is not a valid symbol of a chemical element"
                 )
         if not hasattr(self.metadata, "Sample"):
             self.metadata.add_node("Sample")
@@ -151,7 +148,7 @@ class EELSSpectrum(Signal1D):
             start_energy = 0.0
         end_energy = Eaxis[-1]
         for element in self.elements:
-            e_shells = list()
+            e_shells = []
             for shell in material._elements_dict[element]["Atomic_properties"][
                 "Binding_energies"
             ]:
@@ -160,9 +157,9 @@ class EELSSpectrum(Signal1D):
                         "Binding_energies"
                     ][shell]["onset_energy (eV)"]
                     if start_energy <= energy <= end_energy:
-                        subshell = "%s_%s" % (element, shell)
+                        subshell = f"{element}_{shell}"
                         if subshell not in self.subshells:
-                            self.subshells.add("%s_%s" % (element, shell))
+                            self.subshells.add(f"{element}_{shell}")
                             e_shells.append(subshell)
 
     def edges_at_energy(
@@ -308,13 +305,13 @@ class EELSSpectrum(Signal1D):
             zlpc.data = np.where(mask, np.nan, zlpc.data)
         zlpc.set_signal_type("")
         title = self.metadata.General.title
-        zlpc.metadata.General.title = "ZLP(%s)" % title
+        zlpc.metadata.General.title = f"ZLP({title})"
         return zlpc
 
     def align_zero_loss_peak(
         self,
         calibrate=True,
-        also_align=[],
+        also_align=None,
         print_stats=True,
         subpixel=True,
         mask=None,
@@ -394,6 +391,9 @@ class EELSSpectrum(Signal1D):
         """
         import dask.array as da
 
+        if also_align is None:
+            also_align = []
+
         def substract_from_offset(value, signals):
             # Test that axes is uniform
             if not self.axes_manager[-1].is_uniform:
@@ -450,16 +450,8 @@ class EELSSpectrum(Signal1D):
             start += mean_
             end += mean_
 
-        start = (
-            start
-            if start > self.axes_manager[-1].axis[0]
-            else self.axes_manager[-1].axis[0]
-        )
-        end = (
-            end
-            if end < self.axes_manager[-1].axis[-1]
-            else self.axes_manager[-1].axis[-1]
-        )
+        start = max(self.axes_manager[-1].axis[0], start)
+        end = min(self.axes_manager[-1].axis[-1], end)
 
         if self.axes_manager.navigation_size > 1:
             self.align1D(
@@ -1061,7 +1053,7 @@ class EELSSpectrum(Signal1D):
                 .estimate_peak_width()
                 ._get_current_data()[0]
             )
-            _logger.info("FWHM = %1.2f" % fwhm)
+            _logger.info(f"FWHM = {fwhm:1.2f}")
 
         I0 = low_loss.estimate_elastic_scattering_intensity(threshold=threshold)
         I0 = I0.data
@@ -1161,21 +1153,23 @@ class EELSSpectrum(Signal1D):
         )
 
         ds.metadata.General.title += (
-            " after Richardson-Lucy deconvolution %i iterations" % iterations
+            f" after Richardson-Lucy deconvolution {iterations} iterations"
         )
         if ds.tmp_parameters.has_item("filename"):
-            ds.tmp_parameters.filename += "_after_R-L_deconvolution_%iiter" % iterations
+            ds.tmp_parameters.filename += f"_after_R-L_deconvolution_{iterations}iter"
         return ds
 
     richardson_lucy_deconvolution.__doc__ %= (SHOW_PROGRESSBAR_ARG, NUM_WORKERS_ARG)
 
-    def _are_microscope_parameters_missing(self, ignore_parameters=[]):
+    def _are_microscope_parameters_missing(self, ignore_parameters=None):
         """
         Check if the EELS parameters necessary to calculate the GOS
         are defined in metadata. If not, in interactive mode
         raises an UI item to fill the values.
         The `ignore_parameters` list can be to ignore parameters.
         """
+        if ignore_parameters is None:
+            ignore_parameters = []
         must_exist = (
             "Acquisition_instrument.TEM.convergence_angle",
             "Acquisition_instrument.TEM.beam_energy",
@@ -1187,7 +1181,7 @@ class EELSSpectrum(Signal1D):
             if exists is False and item.split(".")[-1] not in ignore_parameters:
                 missing_parameters.append(item)
         if missing_parameters:
-            _logger.info("Missing parameters {}".format(missing_parameters))
+            _logger.info(f"Missing parameters {missing_parameters}")
             return True
         else:
             return False
@@ -1200,7 +1194,7 @@ class EELSSpectrum(Signal1D):
         toolkit=None,
         display=True,
     ):
-        if set((beam_energy, convergence_angle, collection_angle)) == {None}:
+        if {beam_energy, convergence_angle, collection_angle} == {None}:
             tem_par = EELSTEMParametersUI(self)
             return tem_par.gui(toolkit=toolkit, display=display)
         mp = self.metadata
@@ -1216,7 +1210,7 @@ class EELSSpectrum(Signal1D):
                 collection_angle,
             )
 
-    set_microscope_parameters.__doc__ = """
+    set_microscope_parameters.__doc__ = f"""
         Set the microscope parameters that are necessary to calculate
         the GOS.
 
@@ -1229,9 +1223,9 @@ class EELSSpectrum(Signal1D):
             The microscope convergence semi-angle in mrad.
         collection_angle : float
             The collection semi-angle in mrad.
-        {}
-        {}
-        """.format(TOOLKIT_DT, DISPLAY_DT)
+        {TOOLKIT_DT}
+        {DISPLAY_DT}
+        """
 
     def power_law_extrapolation(
         self, window_size=20, extrapolation_size=1024, add_noise=False, fix_neg_r=False
@@ -1264,11 +1258,9 @@ class EELSSpectrum(Signal1D):
         self._check_signal_dimension_equals_one()
         axis = self.axes_manager.signal_axes[0]
         s = self.deepcopy()
-        s.metadata.General.title += " %i channels extrapolated" % extrapolation_size
+        s.metadata.General.title += f" {extrapolation_size} channels extrapolated"
         if s.tmp_parameters.has_item("filename"):
-            s.tmp_parameters.filename += (
-                "_%i_channels_extrapolated" % extrapolation_size
-            )
+            s.tmp_parameters.filename += f"_{extrapolation_size}_channels_extrapolated"
         new_shape = list(self.data.shape)
         new_shape[axis.index_in_array] += extrapolation_size
         if self._lazy:
@@ -1478,9 +1470,9 @@ class EELSSpectrum(Signal1D):
         elif isinstance(zlp, numbers.Number):
             i0 = zlp
         else:
-            raise ValueError(
-                "The zero-loss peak input is not valid, it must be\
-                             in the BaseSignal class or a Number."
+            raise TypeError(
+                "The zero-loss peak input is not valid, it must be "
+                "in the BaseSignal class or a Number."
             )
 
         if isinstance(t, hs.signals.BaseSignal):
@@ -1770,7 +1762,7 @@ class EELSSpectrum(Signal1D):
             extra_element_edge_family.extend(np.atleast_1d(plot_edges))
             try:
                 elements = self.metadata.Sample.elements
-            except Exception:
+            except AttributeError:
                 elements = []
 
         element_edge_family = elements + extra_element_edge_family
@@ -1810,9 +1802,9 @@ class EELSSpectrum(Signal1D):
                     "Atomic_properties"
                 ]["Binding_energies"]
             except KeyError as err:
-                raise ValueError("'{}' is not a valid element".format(element)) from err
+                raise ValueError(f"'{element}' is not a valid element") from err
 
-            for edge in Binding_energies.keys():
+            for edge in Binding_energies:
                 relevance = Binding_energies[edge]["relevance"]
                 energy = Binding_energies[edge]["onset_energy (eV)"]
 
@@ -1940,9 +1932,8 @@ class EELSSpectrum(Signal1D):
                 sse = ss_info[subshell]["onset_energy (eV)"]
                 ssr = ss_info[subshell]["relevance"]
 
-                if only_major:
-                    if ssr != "Major":
-                        continue
+                if only_major and ssr != "Major":
+                    continue
 
                 edge = element + "_" + subshell
                 if (

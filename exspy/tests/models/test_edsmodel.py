@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+import hyperspy.api as hs
 import numpy as np
 import pytest
-
 from hyperspy.decorators import lazifyTestClass
-import hyperspy.api as hs
 
 import exspy
 import exspy.utils.eds as eds_utils
 from exspy import material
-
 
 # Create this outside the test class to
 # reduce computation in test suite by ~10seconds
@@ -216,7 +213,7 @@ class TestlineFit:
         m.enable_adjust_position()
         assert len(m._position_widgets) == 5
         # Check that both line and label was added
-        assert len(list(m._position_widgets.values())[0]) == 2
+        assert len(next(iter(m._position_widgets.values()))) == 2
         lbls = [p[1].string for p in m._position_widgets.values()]
         assert sorted(lbls) == [
             "$\\mathrm{Cr}_{\\mathrm{Ka}}$",

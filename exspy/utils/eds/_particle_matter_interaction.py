@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -21,6 +20,7 @@ import math
 import numpy as np
 
 from exspy import material
+
 from ._xray_lines import _get_element_and_line, _get_energy_xray_line
 
 

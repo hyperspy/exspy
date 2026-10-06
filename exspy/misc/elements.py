@@ -6,7 +6,6 @@ from hyperspy.exceptions import VisibleDeprecationWarning
 
 from exspy.material import elements
 
-
 __all__ = ["elements"]
 
 

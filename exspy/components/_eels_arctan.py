@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -51,10 +50,11 @@ class EELSArctan(Expression):
 
     """
 
-    def __init__(self, A=1.0, k=1.0, x0=1.0, module=["numpy"], **kwargs):
+    def __init__(self, A=1.0, k=1.0, x0=1.0, module=None, **kwargs):
         # To be able to still read old file versions that contain this argument
-        if "minimum_at_zero" in kwargs:
-            del kwargs["minimum_at_zero"]
+        if module is None:
+            module = ["numpy"]
+        kwargs.pop("minimum_at_zero", None)
         super().__init__(
             expression="A * (pi /2 + atan(k * (x - x0)))",
             name="EELSArctan",

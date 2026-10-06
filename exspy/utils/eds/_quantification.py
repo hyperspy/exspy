@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,15 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-from functools import reduce
 import math
+from functools import reduce
 
+import hyperspy.api as hs
 import numpy as np
 import scipy
 
-import hyperspy.api as hs
 from exspy import material
-
 
 _ABSORPTION_CORRECTION_DOCSTRING = """absorption_correction : numpy.ndarray or None
         If None (default), absorption correction is ignored, otherwise, the

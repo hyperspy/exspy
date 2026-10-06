@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -130,7 +129,7 @@ def test_multiple_edges_descending():
 
 
 def test_negative_energy_width():
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         get_edges_near_energy(849, width=-5)
 
 

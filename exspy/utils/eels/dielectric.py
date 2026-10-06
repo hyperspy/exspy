@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,12 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import numbers
 import logging
+import numbers
 
 import numpy as np
 import scipy
-
 from hyperspy.signals import BaseSignal
 
 _logger = logging.getLogger(__name__)
@@ -68,20 +66,20 @@ def eels_constant_dielectric(s, zlp, t):
     # Mapped parameters
     try:
         e0 = s.metadata.Acquisition_instrument.TEM.beam_energy
-    except BaseException:
+    except AttributeError as e:
         raise AttributeError(
-            "Please define the beam energy."
+            "Please define the beam energy. "
             "You can do this e.g. by using the "
             "set_microscope_parameters method"
-        )
+        ) from e
     try:
         beta = s.metadata.Acquisition_instrument.TEM.Detector.EELS.collection_angle
-    except BaseException:
+    except AttributeError as e:
         raise AttributeError(
-            "Please define the collection semi-angle."
+            "Please define the collection semi-angle. "
             "You can do this e.g. by using the "
             "set_microscope_parameters method"
-        )
+        ) from e
 
     axis = s.axes_manager.signal_axes[0]
     eaxis = axis.axis.copy()
@@ -107,9 +105,9 @@ def eels_constant_dielectric(s, zlp, t):
     elif isinstance(zlp, numbers.Number):
         i0 = zlp
     else:
-        raise ValueError(
-            "The zero-loss peak input is not valid, it must be\
-                         in the BaseSignal class or a Number."
+        raise TypeError(
+            "The zero-loss peak input is not valid, it must be "
+            "in the BaseSignal class or a Number."
         )
 
     if isinstance(t, BaseSignal):

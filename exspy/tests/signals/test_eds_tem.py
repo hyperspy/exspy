@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -18,16 +17,15 @@
 
 import warnings
 
+import hyperspy.api as hs
 import numpy as np
 import pytest
-
-import hyperspy.api as hs
 from hyperspy.components1d import Gaussian
 from hyperspy.decorators import lazifyTestClass
 
 import exspy
-from exspy._defaults_parser import preferences
 import exspy.utils.eds as eds_utils
+from exspy._defaults_parser import preferences
 from exspy.signals import EDSTEMSpectrum
 
 
@@ -221,7 +219,7 @@ class Test_quantification:
             _ = s.quantification(intensities, method, kfactors)
 
         intensities = s.get_lines_intensity()[0]
-        with pytest.raises(ValueError):
+        with pytest.raises(TypeError):
             _ = s.quantification(intensities, method, kfactors)
 
     def test_quant_lorimer(self):
@@ -613,10 +611,10 @@ def test_plot_windows():
 
     rng = np.random.default_rng()
 
-    [s * v * 10 for v in rng.random((10))]
+    [s * v * 10 for v in rng.random(10)]
 
-    s = hs.stack([s * v * 10 for v in rng.random((10))])
-    s = hs.stack([s * v * 10 for v in rng.random((5))])
+    s = hs.stack([s * v * 10 for v in rng.random(10)])
+    s = hs.stack([s * v * 10 for v in rng.random(5)])
 
     bw = s.estimate_background_windows(line_width=[5.0, 2.0])
     iw = s.estimate_integration_windows(windows_width=3)

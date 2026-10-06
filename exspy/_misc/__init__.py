@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -41,7 +40,7 @@ def _download_GOS_files(download_all=True):
                     downloader=pooch.HTTPDownloader(chunk_size=30000),
                     progressbar=False,
                 )
-            except Exception as e:
+            except Exception:
                 if attempt < retries - 1:
                     print(
                         f"Download failed (attempt {attempt + 1}/{retries}). "
@@ -50,7 +49,7 @@ def _download_GOS_files(download_all=True):
                     sleep(sleep_time)
                 else:
                     print("All download attempts failed.")
-                    raise e
+                    raise
 
     print("Checking if GOS files need downloading...")
     retry_and_sleep(

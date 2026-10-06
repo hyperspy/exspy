@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,10 +16,9 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
+import hyperspy.api as hs
 import numpy as np
 import pytest
-
-import hyperspy.api as hs
 from hyperspy.components1d import Lorentzian
 
 from exspy.components import VolumePlasmonDrude
@@ -134,7 +132,7 @@ class Test2D:
         scattering distribution, we can use it for testing putposes.
 
         """
-        cdf, output = self.s.kramers_kronig_analysis(
+        _cdf, output = self.s.kramers_kronig_analysis(
             zlp=self.zlp, iterations=1, n=1000.0, full_output=True
         )
         np.testing.assert_allclose(

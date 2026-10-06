@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -23,13 +22,12 @@ import warnings
 from hyperspy import components1d
 from hyperspy.components1d import PowerLaw
 from hyperspy.docstrings.model import FIT_PARAMETERS_ARG
-from hyperspy.misc.utils import dummy_context_manager
 from hyperspy.misc.axis_tools import calculate_convolution1D_axis
+from hyperspy.misc.utils import dummy_context_manager
 from hyperspy.models.model1d import Model1D
 
 from exspy._docstrings.model import EELSMODEL_PARAMETERS
 from exspy.components import EELSCLEdge
-
 
 _logger = logging.getLogger(__name__)
 
@@ -120,9 +118,9 @@ class EELSModel(Model1D):
         if isinstance(value, EELSSpectrum):
             self._signal = value
         else:
-            raise ValueError(
+            raise TypeError(
                 "This attribute can only contain an EELSSpectrum "
-                "but an object of type %s was provided" % str(type(value))
+                f"but an object of type {type(value)!s} was provided"
             )
 
     @property
@@ -143,7 +141,7 @@ class EELSModel(Model1D):
                     self._convolved = value
                     self.update_plot()
         else:
-            raise ValueError("`convolved` must be a boolean.")
+            raise TypeError("`convolved` must be a boolean.")
 
     @property
     def low_loss(self):
@@ -321,8 +319,8 @@ class EELSModel(Model1D):
 
                 edge.intensity.twin = master_edge.intensity
                 edge.onset_energy.twin = master_edge.onset_energy
-                edge.onset_energy.twin_function_expr = "x + {}".format(
-                    (edge.GOS.onset_energy - master_edge.GOS.onset_energy)
+                edge.onset_energy.twin_function_expr = (
+                    f"x + {edge.GOS.onset_energy - master_edge.GOS.onset_energy}"
                 )
                 edge.free_onset_energy = False
                 self.append(edge)
@@ -373,12 +371,9 @@ class EELSModel(Model1D):
                         distance_between_edges - self._preedge_safe_window_width
                     ) <= min_d:
                         _logger.info(
-                            (
-                                "Automatically deactivating the fine structure "
-                                "of edge number %d to avoid conflicts with edge "
-                                "number %d"
-                            )
-                            % (i2 + 1, i1 + 1)
+                            f"Automatically deactivating the fine structure "
+                            f"of edge number {i2 + 1} to avoid conflicts with "
+                            f"edge number {i1 + 1}"
                         )
                         self._active_edges[i2].fine_structure_active = False
                         self._active_edges[i2].fine_structure_coeff.free = False
@@ -388,17 +383,11 @@ class EELSModel(Model1D):
                             distance_between_edges - self._preedge_safe_window_width
                         )
                         _logger.info(
-                            (
-                                "Automatically changing the fine structure "
-                                "width of edge %d from %s eV to %s eV to avoid "
-                                "conflicts with edge number %d"
-                            )
-                            % (
-                                i1 + 1,
-                                self._active_edges[i1].fine_structure_width,
-                                new_fine_structure_width,
-                                i2 + 1,
-                            )
+                            f"Automatically changing the fine structure "
+                            f"width of edge {i1 + 1} from "
+                            f"{self._active_edges[i1].fine_structure_width} eV "
+                            f"to {new_fine_structure_width} eV to avoid "
+                            f"conflicts with edge number {i2 + 1}"
                         )
                         self._active_edges[
                             i1
@@ -475,7 +464,7 @@ class EELSModel(Model1D):
             self.fit_background(start_energy, **kwargs)
 
             # Fit the edges
-            for i in range(0, len(self._active_edges)):
+            for i in range(len(self._active_edges)):
                 self._fit_edge(i, start_energy, **kwargs)
 
     smart_fit.__doc__ %= FIT_PARAMETERS_ARG
@@ -701,15 +690,13 @@ class EELSModel(Model1D):
         print()
         print("Absolute quantification:")
         print("Elem.\tIntensity")
-        for element in elements:
-            if len(elements[element]) == 1:
-                for subshell in elements[element]:
-                    print("%s\t%f" % (element, elements[element][subshell]))
+        for element, subshells in elements.items():
+            if len(subshells) == 1:
+                for intensity in subshells.values():
+                    print(f"{element}\t{intensity:f}")
             else:
-                for subshell in elements[element]:
-                    print(
-                        "%s_%s\t%f" % (element, subshell, elements[element][subshell])
-                    )
+                for subshell, intensity in subshells.items():
+                    print(f"{element}_{subshell}\t{intensity:f}")
 
     def remove_fine_structure_data(self, edges_list=None):
         """Remove the fine structure data from the fitting routine as

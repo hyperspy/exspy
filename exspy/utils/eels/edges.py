@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -63,11 +62,10 @@ def get_edges_near_energy(energy, width=10, only_major=False, order="closest"):
             for shell, shell_info in element_info["Atomic_properties"][
                 "Binding_energies"
             ].items():
-                if only_major:
-                    if shell_info["relevance"] != "Major":
-                        continue
+                if only_major and shell_info["relevance"] != "Major":
+                    continue
                 if shell[-1] != "a" and Emin <= shell_info["onset_energy (eV)"] <= Emax:
-                    subshell = "{}_{}".format(element, shell)
+                    subshell = f"{element}_{shell}"
                     Ediff = abs(shell_info["onset_energy (eV)"] - energy)
                     valid_edges.append(
                         (subshell, shell_info["onset_energy (eV)"], Ediff)

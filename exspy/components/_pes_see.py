@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,13 +16,12 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-import numpy as np
 import logging
 
+import numpy as np
 from hyperspy.components1d import Expression
 
 from exspy._utils import parse_component_module
-
 
 _logger = logging.getLogger(__name__)
 
@@ -92,7 +90,7 @@ class SEE(Expression):
         self.convolved = True
 
     def grad_A(self, x):
-        """ """
+        """Return the gradient of the SEE component with respect to A."""
         return np.where(
             x > self.Phi.value,
             (x - self.Phi.value) / (x - self.Phi.value + self.B.value) ** 4,
@@ -100,7 +98,7 @@ class SEE(Expression):
         )
 
     def grad_Phi(self, x):
-        """ """
+        """Return the gradient of the SEE component with respect to Phi."""
         return np.where(
             x > self.Phi.value,
             (4 * (x - self.Phi.value) * self.A.value)

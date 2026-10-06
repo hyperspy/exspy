@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,12 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import numpy as np
 import math
 
-from hyperspy.component import Component, _get_scaling_factor
+import numpy as np
 from hyperspy._components.gaussian import _estimate_gaussian_parameters
-
+from hyperspy.component import Component, _get_scaling_factor
 
 sqrt2pi = math.sqrt(2 * math.pi)
 sigma2fwhm = 2 * math.sqrt(2 * math.log(2))

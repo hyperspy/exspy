@@ -11,9 +11,9 @@ from exspy.utils.eels import (
 )
 
 __all__ = [
-    "iMFP_angular_correction",
     "iMFP_Iakoubovskii",
     "iMFP_TPP2M",
+    "iMFP_angular_correction",
 ]
 
 

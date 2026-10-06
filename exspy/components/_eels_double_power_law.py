@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -18,7 +17,6 @@
 
 
 import numpy as np
-
 from hyperspy.components1d import Expression
 
 from exspy._utils import parse_component_module

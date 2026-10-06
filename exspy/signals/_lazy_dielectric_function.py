@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-from hyperspy.signals import LazyComplexSignal1D
 from hyperspy.docstrings.signal import LAZYSIGNAL_DOC
+from hyperspy.signals import LazyComplexSignal1D
 
 from exspy.signals._dielectric_function import DielectricFunction
 

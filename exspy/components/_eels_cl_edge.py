@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,18 +16,17 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import functools
-import warnings
 import math
+import warnings
 
 import numpy as np
 import scipy
-
 from hyperspy.component import Component
-from hyperspy.ui_registry import add_gui_method
 from hyperspy.exceptions import VisibleDeprecationWarning
+from hyperspy.ui_registry import add_gui_method
 
-import exspy.utils.eels as eels_utils
 import exspy._misc.eels as eels_misc
+import exspy.utils.eels as eels_utils
 
 
 class FSet(set):
@@ -180,7 +178,7 @@ class EELSCLEdge(Component):
             self.subshell = element_subshell["subshell"]
         else:
             self.element, self.subshell = element_subshell.split("_")
-        self.name = "_".join([self.element, self.subshell])
+        self.name = f"{self.element}_{self.subshell}"
         self.energy_scale = None
         self.effective_angle.free = False
         self.fine_structure_active = False
@@ -222,11 +220,7 @@ class EELSCLEdge(Component):
         self.intensity.bmax = None
 
         self._whitelist["GOS"] = ("init", GOS)
-        if GOS == "dft":
-            self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))
-        elif GOS == "dirac":
-            self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))
-        elif GOS == "Hartree-Slater":  # pragma: no cover
+        if GOS == "dft" or GOS == "dirac" or GOS == "Hartree-Slater":
             self._whitelist["element_subshell"] = ("init", self.GOS.as_dictionary(True))
         elif GOS == "hydrogenic":
             self._whitelist["element_subshell"] = ("init", element_subshell)
@@ -315,7 +309,7 @@ class EELSCLEdge(Component):
                 self.convergence_angle,
                 self.collection_angle,
             )
-        except BaseException:
+        except Exception:  # noqa: BLE001, S110
             # All the parameters may not be defined yet...
             pass
 
@@ -376,12 +370,10 @@ class EELSCLEdge(Component):
         if self.energy_scale is None:
             return
         self.fine_structure_coeff._number_of_elements = (
-            int(
-                round(
-                    self.fine_structure_smoothing
-                    * (self.fine_structure_width - self.fine_structure_spline_onset)
-                    / self.energy_scale
-                )
+            round(
+                self.fine_structure_smoothing
+                * (self.fine_structure_width - self.fine_structure_spline_onset)
+                / self.energy_scale
             )
             + 4
         )

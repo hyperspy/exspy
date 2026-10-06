@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -21,7 +20,6 @@ import math
 
 import numpy as np
 import scipy
-
 from hyperspy.misc.export_dictionary import (
     export_to_dictionary,
     load_from_dictionary,
@@ -153,12 +151,12 @@ class TabulatedGOS(BaseGOS):
 
         energy_shift = onset_energy - self.onset_energy
         self.energy_shift = energy_shift
-        qint = np.zeros((self.energy_axis.shape[0]))
+        qint = np.zeros(self.energy_axis.shape[0])
         # Calculate the cross section at each energy position of the
         # tabulated GOS
         gamma = 1 + E0 / 511.06
         T = 511060 * (1 - 1 / gamma**2) / 2
-        for i in range(0, self.gos_array.shape[0]):
+        for i in range(self.gos_array.shape[0]):
             E = self.energy_axis[i] + energy_shift
             # Calculate the limits of the q integral
             qa0sqmin = (E**2) / (4 * R * T) + (E**3) / (8 * gamma**3 * R * T**2)

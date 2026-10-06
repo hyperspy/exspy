@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -19,20 +18,18 @@
 import math
 
 import numpy as np
+from hyperspy.misc import utils as hs_utils
 from prettytable import PrettyTable
 
-from hyperspy.misc import utils as hs_utils
 from exspy import material
-
 from exspy._docstrings.eds import (
-    FLOAT_FORMAT_PARAMETER,
     ENERGY_RANGE_PARAMETER,
+    FLOAT_FORMAT_PARAMETER,
     ONLY_LINES_PARAMETER,
     SORTING_PARAMETER,
     WEIGHT_THRESHOLD_PARAMETER,
     WIDTH_PARAMETER,
 )
-
 
 eV2keV = 1000.0
 sigma2fwhm = 2 * math.sqrt(2 * math.log(2))

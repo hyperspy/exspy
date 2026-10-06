@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -23,7 +22,6 @@ from pathlib import Path
 
 import traits.api as t
 from hyperspy.ui_registry import add_gui_method
-
 
 config_path = Path("~/.exspy").expanduser()
 config_path.mkdir(parents=True, exist_ok=True)
@@ -174,7 +172,8 @@ class Preferences(t.HasTraits):
     def save(self):
         config = configparser.ConfigParser(allow_no_value=True)
         template2config(template, config)
-        config.write(open(defaults_file, "w"))
+        with open(defaults_file, "w") as fout:
+            config.write(fout)
 
 
 preferences = Preferences(

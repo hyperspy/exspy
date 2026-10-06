@@ -15,7 +15,6 @@ from pathlib import Path
 
 from hyperspy.misc import utils as hs_utils
 
-
 __all__ = ["atomic_number_to_name", "elements"]
 
 
@@ -152,8 +151,6 @@ References
 
 class Dict(dict):
     """Class based on the built-in dict to allow updating docstring."""
-
-    pass
 
 
 # read dictionary of atomic numbers from eXSpy, and add the elements that

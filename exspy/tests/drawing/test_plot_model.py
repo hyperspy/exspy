@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,13 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
-import numpy as np
-import pytest
 from pathlib import Path
 
 import hyperspy.api as hs
+import numpy as np
+import pytest
 from hyperspy.components1d import Gaussian
 from hyperspy.exceptions import VisibleDeprecationWarning
+
 from exspy.signals import EELSSpectrum
 
 my_path = Path(__file__).resolve().parent
@@ -88,9 +88,8 @@ def create_sum_of_gaussians(convolved=False):
 @pytest.mark.mpl_image_compare(baseline_dir=baseline_dir, tolerance=default_tol)
 def test_plot_gaussian_EELSSpectrum(convolved, plot_component, binned):
     s = create_sum_of_gaussians(convolved)
-    s.axes_manager[-1].is_binned == binned
-    s.metadata.General.title = "Convolved: {}, plot_component: {}, binned: {}".format(
-        convolved, plot_component, binned
+    s.metadata.General.title = (
+        f"Convolved: {convolved}, plot_component: {plot_component}, binned: {binned}"
     )
 
     s.axes_manager[-1].is_binned = binned
@@ -134,7 +133,7 @@ def test_fit_EELS_convolved(convolved):
     with pytest.warns(VisibleDeprecationWarning):
         cl = hs.load(dname.joinpath("Cr_L_cl.hspy"))
     cl.axes_manager[-1].is_binned = False
-    cl.metadata.General.title = "Convolved: {}".format(convolved)
+    cl.metadata.General.title = f"Convolved: {convolved}"
     ll = None
     if convolved:
         with pytest.warns(VisibleDeprecationWarning):

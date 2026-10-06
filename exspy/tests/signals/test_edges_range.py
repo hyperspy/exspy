@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -405,51 +404,40 @@ class Test_EdgesRange:
         self.er.ss_right_value = 550
 
         edges, energy, relevance, description = self.er.update_table()
-        assert set(edges) == set(
-            (
-                "Tc_M1",
-                "Sb_M4",
-                "At_N5",
-                "O_K",
-                "Pd_M3",
-                "Sb_M5",
-                "Rh_M2",
-                "V_L2",
-                "V_L3",
-                "Sc_L1",
-            )
-        )
-        assert set(energy) == set(
-            (544.0, 537.0, 533.0, 532.0, 531.0, 528.0, 521.0, 521.0, 513.0, 500.0)
-        )
-        assert set(relevance) == set(
-            (
-                "Minor",
-                "Major",
-                "Minor",
-                "Major",
-                "Minor",
-                "Major",
-                "Minor",
-                "Major",
-                "Major",
-                "Minor",
-            )
-        )
-        assert set(description) == set(
-            (
-                "Abrupt onset",
-                "Delayed maximum",
-                "",
-                "Abrupt onset",
-                "",
-                "Delayed maximum",
-                "Sharp peak",
-                "Sharp peak. Delayed maximum",
-                "Sharp peak. Delayed maximum",
-                "Abrupt onset",
-            )
-        )
+        assert set(edges) == {
+            "Tc_M1",
+            "Sb_M4",
+            "At_N5",
+            "O_K",
+            "Pd_M3",
+            "Sb_M5",
+            "Rh_M2",
+            "V_L2",
+            "V_L3",
+            "Sc_L1",
+        }
+        assert set(energy) == {
+            544.0,
+            537.0,
+            533.0,
+            532.0,
+            531.0,
+            528.0,
+            521.0,
+            513.0,
+            500.0,
+        }
+        assert set(relevance) == {
+            "Minor",
+            "Major",
+        }
+        assert set(description) == {
+            "Abrupt onset",
+            "Delayed maximum",
+            "",
+            "Sharp peak",
+            "Sharp peak. Delayed maximum",
+        }
 
     def test_none_span_selector(self):
         self.er.span_selector = None

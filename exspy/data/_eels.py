@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -22,10 +21,9 @@ import scipy
 
 import exspy
 
-
 __all__ = [
-    "EELS_low_loss",
     "EELS_MnFe",
+    "EELS_low_loss",
 ]
 
 
@@ -68,6 +66,7 @@ def EELS_low_loss(add_noise=True, random_state=None, navigation_shape=(10,)):
 
     """
     from hyperspy.misc.math_tools import check_random_state
+
     from exspy.signals import EELSSpectrum
 
     random_state = check_random_state(random_state)

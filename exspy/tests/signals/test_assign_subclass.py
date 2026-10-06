@@ -1,7 +1,6 @@
+import hyperspy.api as hs
 import numpy as np
 import pytest
-
-import hyperspy.api as hs
 from hyperspy import signals
 from hyperspy.decorators import lazifyTestClass
 

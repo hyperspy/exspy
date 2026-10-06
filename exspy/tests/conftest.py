@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -31,11 +30,10 @@ except ValueError:
 
 # pytest-mpl 0.7 already import pyplot, so setting the matplotlib backend to
 # 'agg' as early as we can is useless for testing.
-import matplotlib.pyplot as plt
-
-import pytest
-import numpy as np
 import hyperspy.api as hs
+import matplotlib.pyplot as plt
+import numpy as np
+import pytest
 
 # Use matplotlib fixture to clean up figure, setup backend, etc.
 from matplotlib.testing.conftest import mpl_test_settings  # noqa: F401

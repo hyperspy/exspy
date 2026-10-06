@@ -12,7 +12,6 @@ from exspy.material import (
     weight_to_atomic,
 )
 
-
 __all__ = [
     "atomic_to_weight",
     "density_of_mixture",

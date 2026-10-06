@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,15 +16,14 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-import numpy as np
-import pytest
 from pathlib import Path
 
 import hyperspy.api as hs
+import numpy as np
+import pytest
 from hyperspy.decorators import lazifyTestClass
 
 import exspy
-
 
 MYPATH = Path(__file__).resolve().parent
 
@@ -571,7 +569,7 @@ class Test_Plot_EELS:
     def test_plot_edges_True_without_elements(self):
         s = self.signal
         del s.metadata.Sample.elements
-        s.metadata
+        print(s.metadata)
         with pytest.raises(ValueError):
             s.plot(plot_edges=True)
 
@@ -614,7 +612,7 @@ class Test_Plot_EELS:
         s._remove_edge_labels(["Cr_L1", "Fe_L2"])
 
         assert len(s._edge_markers["names"]) == 2
-        assert set(s._edge_markers["names"]) == set(["Cr_L2", "Cr_L3"])
+        assert set(s._edge_markers["names"]) == {"Cr_L2", "Cr_L3"}
 
     def test_plot_edges_without_markers_provided(self):
         s = self.signal
@@ -622,7 +620,7 @@ class Test_Plot_EELS:
         s._plot_edge_labels({"Fe_L2": 721.0, "O_K": 532.0})
 
         assert len(s._edge_markers["names"]) == 2
-        assert set(s._edge_markers["names"]) == set(["Fe_L2", "O_K"])
+        assert set(s._edge_markers["names"]) == {"Fe_L2", "O_K"}
 
 
 @lazifyTestClass

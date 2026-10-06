@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -34,7 +33,7 @@ def _eelsdb(**kwargs):
             "Consider notifying the issue to the EELSdb webmaster."
         )
         ss = eelsdb(verify_certificate=False, **kwargs)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         # e.g. failures such as ConnectionError or MaxRetryError
         pytest.skip(f"Skipping eelsdb test due to {e}")
     return ss

@@ -10,7 +10,6 @@ from exspy.utils.eels import (
     get_info_from_edges,
 )
 
-
 __all__ = [
     "effective_angle",
     "get_edges_near_energy",

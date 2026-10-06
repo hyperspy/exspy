@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,26 +16,25 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
-import warnings
 import logging
-
-import traits.api as t
-import numpy as np
-import scipy
+import warnings
+from typing import ClassVar
 
 import hyperspy.api as hs
-from hyperspy.signal import BaseSetMetadataItems, BaseSignal
+import numpy as np
+import scipy
+import traits.api as t
 from hyperspy import utils
-from hyperspy.ui_registry import add_gui_method, DISPLAY_DT, TOOLKIT_DT
-from hyperspy.misc.utils import isiterable
 from hyperspy.axes import DataAxis
+from hyperspy.misc.utils import isiterable
+from hyperspy.signal import BaseSetMetadataItems, BaseSignal
+from hyperspy.ui_registry import DISPLAY_DT, TOOLKIT_DT, add_gui_method
 
+import exspy.utils.eds as eds_utils
 from exspy import material
-from exspy.signals._eds import EDSSpectrum
 from exspy._defaults_parser import preferences
 from exspy._docstrings.eds import DOSE_DOC
-import exspy.utils.eds as eds_utils
-
+from exspy.signals._eds import EDSSpectrum
 
 _logger = logging.getLogger(__name__)
 
@@ -52,7 +50,7 @@ class EDSTEMParametersUI(BaseSetMetadataItems):
     elevation_angle = t.Float(t.Undefined, label="Elevation angle (degree)")
     energy_resolution_MnKa = t.Float(t.Undefined, label="Energy resolution MnKa (eV)")
     beam_current = t.Float(t.Undefined, label="Beam current (nA)")
-    mapping = {
+    mapping: ClassVar[dict] = {
         "Acquisition_instrument.TEM.beam_energy": "beam_energy",
         "Acquisition_instrument.TEM.Stage.tilt_alpha": "tilt_stage",
         "Acquisition_instrument.TEM.Detector.EDS.live_time": "live_time",
@@ -73,13 +71,15 @@ class EDSTEMSpectrum(EDSSpectrum):
     def __init__(self, *args, **kwards):
         super().__init__(*args, **kwards)
         # Attributes defaults
-        if "Acquisition_instrument.TEM.Detector.EDS" not in self.metadata:
-            if "Acquisition_instrument.SEM.Detector.EDS" in self.metadata:
-                self.metadata.set_item(
-                    "Acquisition_instrument.TEM",
-                    self.metadata.Acquisition_instrument.SEM,
-                )
-                del self.metadata.Acquisition_instrument.SEM
+        if (
+            "Acquisition_instrument.TEM.Detector.EDS" not in self.metadata
+            and "Acquisition_instrument.SEM.Detector.EDS" in self.metadata
+        ):
+            self.metadata.set_item(
+                "Acquisition_instrument.TEM",
+                self.metadata.Acquisition_instrument.SEM,
+            )
+            del self.metadata.Acquisition_instrument.SEM
         self._set_default_param()
 
     def _set_default_param(self):
@@ -124,19 +124,17 @@ class EDSTEMSpectrum(EDSSpectrum):
         display=True,
         toolkit=None,
     ):
-        if set(
-            [
-                beam_energy,
-                live_time,
-                tilt_stage,
-                azimuth_angle,
-                elevation_angle,
-                energy_resolution_MnKa,
-                beam_current,
-                probe_area,
-                real_time,
-            ]
-        ) == {None}:
+        if {
+            beam_energy,
+            live_time,
+            tilt_stage,
+            azimuth_angle,
+            elevation_angle,
+            energy_resolution_MnKa,
+            beam_current,
+            probe_area,
+            real_time,
+        } == {None}:
             tem_par = EDSTEMParametersUI(self)
             return tem_par.gui(display=display, toolkit=toolkit)
         md = self.metadata
@@ -168,7 +166,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         if real_time is not None:
             md.set_item("Acquisition_instrument.TEM.Detector.EDS.real_time", real_time)
 
-    set_microscope_parameters.__doc__ = """
+    set_microscope_parameters.__doc__ = f"""
         Set the microscope parameters.
 
         If no arguments are given, raises an interactive mode to fill
@@ -194,8 +192,8 @@ class EDSTEMSpectrum(EDSSpectrum):
             In nm²
         real_time: float
             In seconds
-        {}
-        {}
+        {DISPLAY_DT}
+        {TOOLKIT_DT}
 
         Examples
         --------
@@ -208,7 +206,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         133.312296
         135.0
 
-        """.format(DISPLAY_DT, TOOLKIT_DT)
+        """
 
     def _are_microscope_parameters_missing(self):
         """Check if the EDS parameters necessary for quantification are
@@ -224,7 +222,7 @@ class EDSTEMSpectrum(EDSSpectrum):
             if exists is False:
                 missing_parameters.append(item)
         if missing_parameters:
-            _logger.info("Missing parameters {}".format(missing_parameters))
+            _logger.info(f"Missing parameters {missing_parameters}")
             return True
         else:
             return False
@@ -401,7 +399,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         if not isinstance(intensities, (list, tuple)) or not isinstance(
             intensities[0], BaseSignal
         ):
-            raise ValueError("The parameter `intensities` must be a list of signals.")
+            raise TypeError("The parameter `intensities` must be a list of signals.")
         elif len(intensities) <= 1:
             raise ValueError("Several X-ray line intensities are required.")
 
@@ -431,15 +429,14 @@ class EDSTEMSpectrum(EDSSpectrum):
             toa = take_off_angle
 
         # determining illumination area for cross sections quantification.
-        if method == "cross_section":
-            if probe_area == "auto":
-                parameters = self.metadata.Acquisition_instrument.TEM
-                if probe_area in parameters:
-                    probe_area = parameters.TEM.probe_area
-                else:
-                    probe_area = self.get_probe_area(
-                        navigation_axes=self.axes_manager.navigation_axes
-                    )
+        if method == "cross_section" and probe_area == "auto":
+            parameters = self.metadata.Acquisition_instrument.TEM
+            if probe_area in parameters:
+                probe_area = parameters.TEM.probe_area
+            else:
+                probe_area = self.get_probe_area(
+                    navigation_axes=self.axes_manager.navigation_axes
+                )
 
         int_stack = utils.stack(intensities, lazy=False, show_progressbar=False)
         comp_old = np.zeros_like(int_stack.data)
@@ -518,7 +515,7 @@ class EDSTEMSpectrum(EDSSpectrum):
             if not absorption_correction or abs(res_max) < convergence_criterion:
                 break
             elif it >= max_iterations:
-                raise Exception(
+                raise ValueError(
                     "Absorption correction failed as solution "
                     f"did not converge after {max_iterations} "
                     "iterations"
@@ -541,7 +538,7 @@ class EDSTEMSpectrum(EDSSpectrum):
 
         # Label each of the elemental maps in the image stacks for composition.
         for i, xray_line in enumerate(xray_lines):
-            element, line = eds_utils._get_element_and_line(xray_line)
+            element, _ = eds_utils._get_element_and_line(xray_line)
             composition[i].metadata.General.title = (
                 composition_units + " percent of " + element
             )
@@ -553,7 +550,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         # For the cross section method this is repeated for the number of atom maps
         if method == "cross_section":
             for i, xray_line in enumerate(xray_lines):
-                element, line = eds_utils._get_element_and_line(xray_line)
+                element, _line = eds_utils._get_element_and_line(xray_line)
                 number_of_atoms[i].metadata.General.title = "atom counts of " + element
                 number_of_atoms[i].metadata.set_item("Sample.elements", ([element]))
                 number_of_atoms[i].metadata.set_item("Sample.xray_lines", ([xray_line]))
@@ -744,9 +741,9 @@ class EDSTEMSpectrum(EDSSpectrum):
         if isinstance(navigation_mask, float):
             navigation_mask = self.vacuum_mask(navigation_mask, closing)
         super().decomposition(
+            *args,
             normalize_poissonian_noise=normalize_poissonian_noise,
             navigation_mask=navigation_mask,
-            *args,
             **kwargs,
         )
         self.learning_results.loadings = np.nan_to_num(self.learning_results.loadings)
@@ -776,9 +773,9 @@ class EDSTEMSpectrum(EDSSpectrum):
 
         model = EDSTEMModel(
             self,
+            *args,
             auto_background=auto_background,
             auto_add_lines=auto_add_lines,
-            *args,
             **kwargs,
         )
         return model
@@ -833,10 +830,10 @@ class EDSTEMSpectrum(EDSSpectrum):
                 axis = self.axes_manager[axis]
             try:
                 scales.append(axis.convert_to_units("nm", inplace=False)[0])
-            except Exception:
+            except Exception as e:
                 raise ValueError(
                     f"The unit of the axis {axis} has not the dimension of length."
-                )
+                ) from e
 
         if len(scales) == 1:
             probe_area = scales[0] ** 2
@@ -887,7 +884,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         if beam_current == "auto":
             beam_current = parameters.get_item("beam_current")
             if beam_current is None:
-                raise Exception(
+                raise ValueError(
                     "Electron dose could not be calculated as the "
                     "beam current is not set. It can set using "
                     "`set_microscope_parameters()`."
@@ -896,7 +893,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         if live_time == "auto":
             live_time = parameters.get_item("Detector.EDS.live_time")
             if live_time is None:
-                raise Exception(
+                raise ValueError(
                     "Electron dose could not be calculated as "
                     "live time is not set. It can set using "
                     "`set_microscope_parameters()`."
@@ -914,7 +911,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         elif method == "zeta":
             return live_time * beam_current * 1e-9 / scipy.constants.e
         else:
-            raise Exception("Method need to be 'zeta' or 'cross_section'.")
+            raise ValueError("Method need to be 'zeta' or 'cross_section'.")
 
     _get_dose.__doc__ %= DOSE_DOC
 

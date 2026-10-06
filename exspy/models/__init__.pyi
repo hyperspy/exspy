@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -27,6 +26,3 @@ __all__ = [
     "EDSTEMModel",
     "EELSModel",
 ]
-
-def __dir__():
-    return sorted(__all__)

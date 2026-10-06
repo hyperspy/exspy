@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -19,15 +18,14 @@
 
 """This module provides tools to interact with The EELS Database."""
 
-import requests
 import logging
 
+import requests
 from hyperspy.defaults_parser import preferences
 from hyperspy.docstrings.signal import SHOW_PROGRESSBAR_ARG
 from hyperspy.external.progressbar import progressbar
 from hyperspy.io import dict2signal
 from rsciio.msa import parse_msa_string
-
 
 _logger = logging.getLogger(__name__)
 
@@ -207,10 +205,12 @@ def eelsdb(
         "otherURLs",
     ]
     if edge is not None and edge not in valid_edges:
-        raise ValueError("`edge` must be one of %s." % ", ".join(valid_edges))
+        raise ValueError("`edge` must be one of {}.".format(", ".join(valid_edges)))
 
     if order is not None and order not in valid_order_keys:
-        raise ValueError("`order` must be one of %s." % ", ".join(valid_order_keys))
+        raise ValueError(
+            "`order` must be one of {}.".format(", ".join(valid_order_keys))
+        )
     if order_direction is not None and order_direction not in ["ASC", "DESC"]:
         raise ValueError('`order_direction` must be "ASC" or "DESC".')
     for kwarg, label in (
@@ -219,7 +219,7 @@ def eelsdb(
         (max_energy_compare, "max_energy_compare"),
     ):
         if kwarg not in ("lt", "gt", "eq"):
-            raise ValueError('`%s` must be "lt", "eq" or "gt".' % label)
+            raise ValueError(f'`{label}` must be "lt", "eq" or "gt".')
     if monochromated is not None:
         monochromated = 1 if monochromated else 0
     params = {
@@ -261,7 +261,7 @@ def eelsdb(
     jsons = request.json()
     if "message" in jsons:
         # Invalid query, EELSdb raises error.
-        raise IOError(
+        raise OSError(
             "Please report the following error to the eXSpy developers: "
             f"{jsons['message']}."
         )
@@ -292,9 +292,10 @@ def eelsdb(
             # a valid one.
             _logger.exception(
                 "Failed to load the spectrum.\n"
-                "Title: %s id: %s.\n"
-                "Please report this error to https://eelsdb.eu/about \n"
-                % (json_spectrum["title"], json_spectrum["id"])
+                "Title: {} id: {}.\n"
+                "Please report this error to https://eelsdb.eu/about \n".format(
+                    json_spectrum["title"], json_spectrum["id"]
+                )
             )
 
     if not spectra:
@@ -323,10 +324,9 @@ def eelsdb(
                         _logger.exception(
                             "The following spectrum contains invalid chemical "
                             "element information:\n"
-                            "Title: %s id: %s. Elements: %s.\n"
+                            f"Title: {json_md.title} id: {json_md.id}. Elements: {json_md.elements}.\n"
                             "Please report this error in "
                             "https://eelsdb.eu/about \n"
-                            % (json_md.title, json_md.id, json_md.elements)
                         )
                 if "collection" in json_md and " mrad" in json_md.collection:
                     beta = float(json_md.collection.replace(" mrad", ""))

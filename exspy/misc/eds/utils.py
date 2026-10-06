@@ -14,7 +14,6 @@ from exspy.utils.eds import (
     zeta_to_cross_section,
 )
 
-
 warnings.warn(
     "This module is deprecated, use `exspy.utils.eds` instead. "
     "It will be removed in exspy 1.0.",

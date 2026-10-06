@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -26,25 +25,22 @@ from ._lazy_eds import LazyEDSSpectrum
 from ._lazy_eds_sem import LazyEDSSEMSpectrum
 from ._lazy_eds_tem import LazyEDSTEMSpectrum
 from ._lazy_eels import LazyEELSSpectrum
-from .sims import SIMSSpectrum, LazySIMSSpectrum
 from .fib_sims import FIBSIMSSpectrum, LazyFIBSIMSSpectrum
+from .sims import LazySIMSSpectrum, SIMSSpectrum
 
 __all__ = [
     "DielectricFunction",
-    "LazyDielectricFunction",
-    "EDSSpectrum",
-    "LazyEDSSpectrum",
-    "EDSTEMSpectrum",
-    "LazyEDSTEMSpectrum",
-    "EELSSpectrum",
-    "LazyEELSSpectrum",
     "EDSSEMSpectrum",
-    "LazyEDSSEMSpectrum",
-    "SIMSSpectrum",
-    "LazySIMSSpectrum",
+    "EDSSpectrum",
+    "EDSTEMSpectrum",
+    "EELSSpectrum",
     "FIBSIMSSpectrum",
+    "LazyDielectricFunction",
+    "LazyEDSSEMSpectrum",
+    "LazyEDSSpectrum",
+    "LazyEDSTEMSpectrum",
+    "LazyEELSSpectrum",
     "LazyFIBSIMSSpectrum",
+    "LazySIMSSpectrum",
+    "SIMSSpectrum",
 ]
-
-def __dir__():
-    return sorted(__all__)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -17,10 +16,10 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 
+import hyperspy.api as hs
 import numpy as np
 import pytest
 from hyperspy.decorators import lazifyTestClass
-import hyperspy.api as hs
 
 import exspy
 from exspy.signals import EELSSpectrum

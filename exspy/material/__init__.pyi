@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -16,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
+from ._elements import _elements_dict, atomic_number_to_name, elements
 from ._material import (
     atomic_to_weight,
     density_of_mixture,
@@ -23,7 +23,6 @@ from ._material import (
     mass_absorption_mixture,
     weight_to_atomic,
 )
-from ._elements import _elements_dict, atomic_number_to_name, elements
 
 __all__ = [
     "_elements_dict",
@@ -35,6 +34,3 @@ __all__ = [
     "mass_absorption_mixture",
     "weight_to_atomic",
 ]
-
-def __dir__():
-    return sorted(__all__)

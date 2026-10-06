@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -18,12 +17,12 @@
 
 import logging
 from pathlib import Path
+from typing import ClassVar
 
 import numpy as np
 from scipy import constants
 
 from .base_gos import TabulatedGOS
-
 
 _logger = logging.getLogger(__name__)
 
@@ -100,7 +99,7 @@ class HartreeSlaterGOS(TabulatedGOS):
     """
 
     _name = "Hartree-Slater"
-    _whitelist = {
+    _whitelist: ClassVar[dict] = {
         "gos_array": None,
         "rel_energy_axis": None,
         "qaxis": None,

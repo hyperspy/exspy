@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -23,11 +22,11 @@ import pooch
 import pytest
 import requests
 
+from exspy import material
 from exspy._defaults_parser import preferences
+from exspy._misc.eels import HydrogenicGOS
 from exspy._misc.eels.gosh_gos import GoshGOS
 from exspy._misc.eels.hartree_slater_gos import HartreeSlaterGOS
-from exspy._misc.eels import HydrogenicGOS
-from exspy import material
 
 
 @pytest.mark.skipif(
@@ -78,12 +77,12 @@ def test_gosh_not_in_file():
 def test_binding_energy_database():
     gos = GoshGOS("Ti_L3")
     gosh15 = h5py.File(gos.gos_file_path)
-    for element in gosh15.keys():
+    for element in gosh15:
         # These elements are not in the database
         if element not in ["Bk", "Cf", "Cm", "metadata"]:
             assert (
                 "Binding_energies"
-                in material._elements_dict[element]["Atomic_properties"].keys()
+                in material._elements_dict[element]["Atomic_properties"]
             )
 
 

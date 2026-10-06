@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2007-2026 The eXSpy developers
 #
 # This file is part of eXSpy.
@@ -24,16 +23,16 @@ from . import (
     signals,
     utils,
 )
-from ._version import __version__
 from ._defaults_parser import preferences
+from ._version import __version__
 
 __all__ = [
     "__version__",
     "components",
     "data",
-    "preferences",
     "material",
     "models",
+    "preferences",
     "signals",
     "utils",
 ]

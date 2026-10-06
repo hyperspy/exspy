@@ -1,9 +1,9 @@
 import numpy as np
 import traits.api as t
-
 from hyperspy.exceptions import SignalDimensionError
-from hyperspy.ui_registry import add_gui_method
 from hyperspy.signal_tools import SpanSelectorInSignal1D
+from hyperspy.ui_registry import add_gui_method
+
 import exspy.utils.eels as eels_utils
 
 

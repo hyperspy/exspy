@@ -1,4 +1,5 @@
 from ._geometry import take_off_angle
+from ._particle_matter_interaction import electron_range, xray_range
 from ._quantification import (
     cross_section_to_zeta,
     get_abs_corr_cross_section,
@@ -8,7 +9,6 @@ from ._quantification import (
     quantification_zeta_factor,
     zeta_to_cross_section,
 )
-from ._particle_matter_interaction import electron_range, xray_range
 from ._xray_lines import (
     _get_element_and_line,
     _get_energy_xray_line,
@@ -29,9 +29,9 @@ __all__ = [
     "_parse_only_lines",
     "cross_section_to_zeta",
     "electron_range",
+    "get_FWHM_at_Energy",
     "get_abs_corr_cross_section",
     "get_abs_corr_zeta",
-    "get_FWHM_at_Energy",
     "get_xray_lines",
     "get_xray_lines_near_energy",
     "print_lines",

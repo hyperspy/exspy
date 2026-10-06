@@ -444,7 +444,7 @@ Therefore, to obtain the areal density:
 
     .. math::
 
-        N = \text{intensity} \times \frac{t_{\text{core}}}{t_{\text{low}}} \times 10^{10}
+        N = \text{intensity} \times \frac{t_{\text{low}}}{t_{\text{core}}} \times 10^{10}
 
     where :math:`t_{\text{core}}` and :math:`t_{\text{low}}` are the
     dwell times of the core-loss and low-loss spectra, respectively.

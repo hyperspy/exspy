@@ -119,7 +119,7 @@ class EELSCLEdge(Component):
 
         .. code-block:: python
 
-            N_atoms_per_nm2 = edge.intensity.value * (t_core / t_low) * 1e10
+            N_atoms_per_nm2 = edge.intensity.value * (t_low / t_core) * 1e10
 
         where ``t_core`` and ``t_low`` are the dwell times of the
         core-loss and low-loss spectra, respectively. Note that

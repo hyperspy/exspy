@@ -13,3 +13,4 @@ dist/*
 .DS_Store
 coverage.xml
 .coverage
+.omo

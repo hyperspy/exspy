@@ -424,7 +424,8 @@ directly proportional to the areal density :math:`N` of the element:
 
     \text{intensity} = N \times 10^{-10}
 
-where :math:`N` is in atoms/nm². Therefore, to obtain the areal density:
+where :math:`N` is in atoms/nm² - the factor :math:`10^{-10}` comes from the conversion between barns and nm².
+Therefore, to obtain the areal density:
 
 .. code-block:: python
 

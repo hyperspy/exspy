@@ -106,7 +106,7 @@ class EELSCLEdge(Component):
         so ``intensity`` is proportional to the areal density of
         atoms. When the model is convolved with a *raw* low-loss
         spectrum (i.e. counts), the fitted ``intensity`` equals
-        :math:`N \times 10^{-10}`, where :math:`N` is the areal
+        :math:`N \\times 10^{-10}`, where :math:`N` is the areal
         density in atoms/nm². Consequently:
 
         .. code-block:: python

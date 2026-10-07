@@ -70,6 +70,8 @@ def _get_xray_lines_family(xray_line):
 
 
 def _parse_only_lines(only_lines):
+    if only_lines == "all":
+        only_lines = None
     if isinstance(only_lines, str):
         pass
     elif hasattr(only_lines, "__iter__"):
@@ -83,6 +85,12 @@ def _parse_only_lines(only_lines):
             only_lines.extend(["Ka", "La", "Ma"])
         elif only_line == "b":
             only_lines.extend(["Kb", "Lb1", "Mb"])
+        elif only_line == "g":
+            only_lines.extend(["Lg1", "Lg3", "Mg"])
+        elif only_line == "l":
+            only_lines.extend(["Ll"])
+        elif only_line == "z":
+            only_lines.extend(["Mz"])
     return only_lines
 
 
@@ -381,13 +389,14 @@ get_xray_lines.__doc__ %= (
 )
 
 
+def get_weight_scale(weight):
+    # weight is a number in range [0, 1]
+    return "".join(["#"] * int(weight * 10))
+
+
 def _as_xray_lines_table(dtb, sorting, float_format):
     table = PrettyTable()
     table.field_names = ["Element", "Line", "Energy (keV)", "Weight", "Intensity"]
-
-    def get_weight_scale(weight):
-        # weight is a number in range [0, 1]
-        return "".join(["#"] * int(weight * 10))
 
     for element, element_d in dtb:
         element_ = element
@@ -436,7 +445,7 @@ def print_lines_near_energy(
     Examples
     --------
     >>> import exspy
-    >>> exspy.utils.eds.print_lines_near_energy(energy=6.4)
+    >>> exspy.utils.eds.print_lines_near_energy(energy=6.4, width=0.2)
     +---------+------+--------------+--------+------------+
     | Element | Line | Energy (keV) | Weight | Intensity  |
     +---------+------+--------------+--------+------------+
@@ -452,7 +461,8 @@ def print_lines_near_energy(
     --------
     get_xray_lines, get_xray_lines_near_energy, print_lines
     """
-    energy_range = [energy - width, energy + width]
+    # `width` is the full window width, as documented in WIDTH_PARAMETER
+    energy_range = [energy - width / 2, energy + width / 2]
     dict_tree = get_xray_lines(
         material._elements_dict.keys(), weight_threshold, energy_range, only_lines
     )

@@ -11,7 +11,13 @@ A few sentences and/or a bulleted list to describe and motivate the change:
 - Change B.
 - etc.
 
+### AI-assisted contribution?
+- [ ] Is this an AI-assisted contribution? If yes, and non-trivial, link to the accepted proposal:
+      - [ ] N/A (human-only contribution or trivial change)
+      - [ ] Proposal accepted: <link to PR in hyperspy/hyperspy-proposals>
+
 ### Progress of the PR
+- [ ] if AI-assisted, ``Assisted-by: <tool>:<model>`` in every commit and no AI ``Co-authored-by:`` trailer,
 - [ ] Change implemented (can be split into several points),
 - [ ] docstring updated (if appropriate),
 - [ ] update user guide (if appropriate),

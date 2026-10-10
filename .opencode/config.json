@@ -1,0 +1,11 @@
+{
+  "agents": {
+    "Atlas": {
+      "rules": [
+        "Follow the HyperSpy AI policy (https://github.com/hyperspy/.github/blob/main/AI-POLICY.md): add the trailer Assisted-by: <tool>:<model> to every commit, never add Co-authored-by for AI tools, run pre-commit install before committing.",
+        "Non-trivial AI-assisted changes need an accepted proposal in hyperspy/hyperspy-proposals before the implementation PR.",
+        "Add a changelog fragment under upcoming_changes/ for every user-facing change; build docs with sphinx-build -W."
+      ]
+    }
+  }
+}

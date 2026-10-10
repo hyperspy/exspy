@@ -30,6 +30,20 @@ Please refer to the
 `HyperSpy developer guide <http://hyperspy.org/hyperspy-doc/current/dev_guide/intro.html>`_
 in order to get started and for detailed contributing guidelines.
 
+AI-assisted contributions
+========================
+
+eXSpy follows the HyperSpy AI policy shared by all HyperSpy repositories.
+In short: non-trivial AI-assisted changes require an accepted proposal in
+`hyperspy/hyperspy-proposals <https://github.com/hyperspy/hyperspy-proposals>`_
+before the implementation pull request is reviewed; every AI-assisted commit
+carries the ``Assisted-by: <tool>:<model>`` trailer (disclosure is the
+contributor's responsibility) and never an AI ``Co-authored-by:`` trailer (a
+pre-commit hook and the ``compliance`` CI checks reject those). See the `Coding
+with AI assistants
+<https://hyperspy.org/hyperspy-doc/current/dev_guide/coding_with_ai.html>`_
+section of the HyperSpy developer guide for the full guidance.
+
 The :doc:`kikuchipy contributors guide <kikuchipy:dev/index>`, another HyperSpy
 extension, also is a valuable resource that can get you started and provides useful
 guidelines.

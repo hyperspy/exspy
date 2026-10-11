@@ -16,7 +16,6 @@ constants, module boundary, high reference count from models/components.
 | GOS source classes | `eels/base_gos.py`, `gosh_gos.py`, `gosh_gos_source.py`, `hartree_slater_gos.py`, `hydrogenic_gos.py` | generalized oscillator strengths |
 | GOS helpers | `eels/tools.py` | |
 | FFAST table | `eds/ffast_mac.py` | 748KB periodic-table constants; data, not code |
-| Common helpers | `common_functions.py` | |
 
 ## CONVENTIONS
 

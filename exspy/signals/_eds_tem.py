@@ -33,7 +33,11 @@ from hyperspy.ui_registry import DISPLAY_DT, TOOLKIT_DT, add_gui_method
 import exspy.utils.eds as eds_utils
 from exspy import material
 from exspy._defaults_parser import preferences
-from exspy._docstrings.eds import DOSE_DOC, INTENSITIES_THRESHOLD_DOC, INTENSITIES_SUM_THRESHOLD_DOC
+from exspy._docstrings.eds import (
+    DOSE_DOC,
+    INTENSITIES_SUM_THRESHOLD_DOC,
+    INTENSITIES_THRESHOLD_DOC,
+)
 from exspy.signals._eds import EDSSpectrum
 
 _logger = logging.getLogger(__name__)
@@ -448,7 +452,7 @@ class EDSTEMSpectrum(EDSSpectrum):
         # kwargs to pass to the quantification function
         qkwargs = {
             "intensities_threshold": intensities_threshold,
-            "intensities_sum_threshold": intensities_sum_threshold
+            "intensities_sum_threshold": intensities_sum_threshold,
         }
         if method == "CL":
             quantification_method = eds_utils.quantification_cliff_lorimer

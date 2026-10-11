@@ -16,20 +16,18 @@
 # along with eXSpy. If not, see <https://www.gnu.org/licenses/#GPL>.
 
 import math
-from functools import reduce
 import warnings
+from functools import reduce
 
 import hyperspy.api as hs
 import numpy as np
 import scipy
 
 from exspy import material
-
 from exspy._docstrings.eds import (
     INTENSITIES_SUM_THRESHOLD_DOC,
     INTENSITIES_THRESHOLD_DOC,
 )
-
 
 _ABSORPTION_CORRECTION_DOCSTRING = """absorption_correction : numpy.ndarray or None
         If None (default), absorption correction is ignored, otherwise, the
@@ -37,7 +35,10 @@ _ABSORPTION_CORRECTION_DOCSTRING = """absorption_correction : numpy.ndarray or N
         based on estimated absorption.
 """
 
-def _threshold_intensities(intensities, intensities_threshold, intensities_sum_threshold):
+
+def _threshold_intensities(
+    intensities, intensities_threshold, intensities_sum_threshold
+):
     if intensities_threshold > 0:
         intensities = intensities.copy()
         intensities[intensities < intensities_threshold] = 0
@@ -294,7 +295,7 @@ def quantification_cross_section(
     dose,
     absorption_correction=None,
     intensities_threshold=1.0,
-    intensities_sum_threshold=None,    
+    intensities_sum_threshold=None,
 ):
     """
     Quantification using EDX cross sections
@@ -347,8 +348,8 @@ def quantification_cross_section(
 
 quantification_cross_section.__doc__ %= (
     _ABSORPTION_CORRECTION_DOCSTRING,
-    _INTENSITIES_THRESHOLD_DOCSTRING,
-    _INTENSITIES_SUM_THRESHOLD_DOCSTRING
+    INTENSITIES_THRESHOLD_DOC,
+    INTENSITIES_SUM_THRESHOLD_DOC,
 )
 
 

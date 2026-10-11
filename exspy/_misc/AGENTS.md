@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Private physics data and download utilities: GOS/FFAST/Segre tables for
+Private physics data and download utilities: GOS/FFAST tables for
 EELS/EDS quantification. Score 12 (distinct domain): lazy-loaded physics
 constants, module boundary, high reference count from models/components.
 
@@ -13,8 +13,9 @@ constants, module boundary, high reference count from models/components.
 | Task | Location | Notes |
 |------|----------|-------|
 | GOS download | `__init__.py` | `_download_GOS_files(download_all=True)`: Zenodo via `pooch`, md5-pinned, 3 retries |
-| EELS tables | `eels/` | `eels_"GOS"`.py per shell (Hartree-Slater, hydrogens) |
-| EDS tables | `eds/` | `ffast_mac.py` (data), `ffast.py`, `_segre.py` |
+| GOS source classes | `eels/base_gos.py`, `gosh_gos.py`, `gosh_gos_source.py`, `hartree_slater_gos.py`, `hydrogenic_gos.py` | generalized oscillator strengths |
+| GOS helpers | `eels/tools.py` | |
+| FFAST table | `eds/ffast_mac.py` | 748KB periodic-table constants; data, not code |
 | Common helpers | `common_functions.py` | |
 
 ## CONVENTIONS
@@ -28,5 +29,5 @@ constants, module boundary, high reference count from models/components.
 
 - NEVER read `eds/ffast_mac.py` whole: 748KB periodic-table constants;
   it breaks naive tooling.
-- NEVER hand-edit generated data tables.
+- NEVER hand-edit the generated data tables.
 - Do not add a runtime download on import — download is explicit.

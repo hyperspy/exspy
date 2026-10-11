@@ -1,4 +1,12 @@
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
 repos:
+  - repo: https://github.com/francisco-dlp/.github   # interim; todo 21 flips to hyperspy/.github @ v1.0.0
+    rev: b1a6954ab0ba717864d66837ef6946cc0a3a9edd
+    hooks:
+      - id: check-ai-co-author
+      - id: check-agents-policy
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
     rev: v0.16.10

@@ -71,6 +71,7 @@ file = "LICENSE"
   "sphinx-design",
   "sphinx-favicon",
   "sphinx-gallery",
+  "sphinx-llm",
   "sphinxcontrib-towncrier>=0.5.0a0",  # towncrier 24.7.0 support
   "towncrier",
 ]

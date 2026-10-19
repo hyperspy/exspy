@@ -31,7 +31,7 @@ Please refer to the
 in order to get started and for detailed contributing guidelines.
 
 AI-assisted contributions
-========================
+=========================
 
 eXSpy follows the HyperSpy AI policy shared by all HyperSpy repositories.
 In short: non-trivial AI-assisted changes require an accepted proposal in

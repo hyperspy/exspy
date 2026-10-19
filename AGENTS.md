@@ -69,7 +69,7 @@ exspy/
 ```bash
 python3 -m pytest exspy tests            # unit suite
 pre-commit install                        # commit-msg stage included
-pre-commit run --all-files               # ruff + json + policy hooks
+pre-commit run --all-files               # ruff + json + commit-msg hooks
 ```
 
 ## NOTES

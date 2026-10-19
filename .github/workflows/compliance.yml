@@ -7,7 +7,7 @@ on:
 
 jobs:
   compliance:
-    uses: francisco-dlp/.github/.github/workflows/compliance.yml@b1a6954ab0ba717864d66837ef6946cc0a3a9edd   # interim; todo 21 flips to hyperspy/.github@v1
+    uses: hyperspy/.github@v1
     with:
       tooling_repo: francisco-dlp/.github
       tooling_ref: b1a6954ab0ba717864d66837ef6946cc0a3a9edd

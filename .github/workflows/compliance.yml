@@ -7,8 +7,7 @@ on:
 
 jobs:
   compliance:
-    uses: hyperspy/.github@v1
+    uses: hyperspy/.github@main
     with:
-      tooling_repo: francisco-dlp/.github
-      tooling_ref: b1a6954ab0ba717864d66837ef6946cc0a3a9edd
+      tooling_repo: hyperspy/.github
       source_dirs: exspy

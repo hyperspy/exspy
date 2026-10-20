@@ -1,0 +1,1 @@
+Adopt the HyperSpy AI policy: shared pre-commit hooks, compliance CI workflow and an AGENTS.md knowledge base.

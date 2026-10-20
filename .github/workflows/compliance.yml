@@ -9,4 +9,5 @@ jobs:
   compliance:
     uses: hyperspy/.github/.github/workflows/compliance.yml@main
     with:
+      tooling_ref: main
       source_dirs: exspy

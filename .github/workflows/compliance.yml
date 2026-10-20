@@ -7,7 +7,6 @@ on:
 
 jobs:
   compliance:
-    uses: hyperspy/.github@main
+    uses: hyperspy/.github/.github/workflows/compliance.yml@main
     with:
-      tooling_repo: hyperspy/.github
       source_dirs: exspy

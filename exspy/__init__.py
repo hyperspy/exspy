@@ -39,7 +39,7 @@ models
     The models module contains the model classes used for EDS and EELS model
     fitting.
 signals
-    The signals module contains the signal classes, such as EDS and EELS.
+    The signals module contains the signal classes, such as EDS, EELS and SIMS.
 utils
     The utils module contains EDS and EELS utility functions, such as those
     for getting X-ray lines, EELS edges information, calculating

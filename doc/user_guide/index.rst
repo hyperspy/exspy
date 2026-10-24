@@ -10,6 +10,7 @@ User Guide
    install
    eds
    eels
+   sims
    dielectric_function
    metadata_structure
    bibliography

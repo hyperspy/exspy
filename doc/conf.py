@@ -64,6 +64,7 @@ linkcheck_ignore = [
     "https://www.gnu.org/licenses",
     "https://zenodo.org",  # 403 Client Error: Forbidden for url (blocks CI bots)
     "https://doi.org/10.5281/zenodo",  # resolves to zenodo.org, also blocked
+    "https://eels.info/atlas",  # 429 Client Error: Too Many Requests for url
 ]
 
 intersphinx_mapping = {

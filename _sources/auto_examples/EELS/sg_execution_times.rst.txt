@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:02.885** total execution time for 2 files **from auto_examples/EELS**:
+**00:03.107** total execution time for 2 files **from auto_examples/EELS**:
 
 .. container::
 
@@ -33,8 +33,8 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_EELS_EELS_database.py` (``EELS_database.py``)
-     - 00:01.837
+     - 00:02.012
      - 0.0
    * - :ref:`sphx_glr_auto_examples_EELS_fourier_ratio_deconvolution.py` (``fourier_ratio_deconvolution.py``)
-     - 00:01.049
+     - 00:01.095
      - 0.0

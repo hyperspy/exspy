@@ -8,6 +8,10 @@ Electron Energy Loss Spectroscopy (EELS)
 Below is a gallery of examples on electron energy loss spectroscopy (EELS).
 
 
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
 
 .. raw:: html
 

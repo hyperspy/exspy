@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -27,29 +26,31 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=ccdb6887"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/eels';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -57,6 +58,7 @@
     <link rel="next" title="Dielectric function tools" href="dielectric_function.html" />
     <link rel="prev" title="Energy-Dispersive X-ray Spectrometry (EDS)" href="eds.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
   
@@ -76,7 +78,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -104,7 +108,7 @@
   
     <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -196,7 +200,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -206,11 +210,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -223,8 +234,7 @@
           
           
           
-          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -235,8 +245,7 @@
           
           
           
-          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">Gitter</span></a>
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Gitter</span></a>
         </li>
 </ul></div>
       
@@ -247,7 +256,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -256,7 +265,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -339,11 +348,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -356,8 +372,7 @@
           
           
           
-          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -368,8 +383,7 @@
           
           
           
-          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">Gitter</span></a>
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Gitter</span></a>
         </li>
 </ul></div>
         
@@ -378,7 +392,8 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
     <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
   </svg>
   <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
@@ -392,7 +407,7 @@
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eds.html">Energy-Dispersive X-ray Spectrometry (EDS)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Electron Energy Loss Spectroscopy</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Electron Energy Loss Spectroscopy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dielectric_function.html">Dielectric function tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metadata_structure.html">eXSpy Metadata Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
@@ -462,9 +477,9 @@
 <span id="eels-tools-label"></span><h2>Tools for EELS data analysis<a class="headerlink" href="#tools-for-eels-data-analysis" title="Link to this heading">#</a></h2>
 <p>The functions described in this chapter are only available for the
 <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a> class. To transform a
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a> (or subclass) into an
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal" title="(in HyperSpy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal</span></code></a> (or subclass) into an
 <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum" title="exspy.signals.EELSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSSpectrum</span></code></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_signal_type</span><span class="p">(</span><span class="s2">&quot;EELS&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_signal_type</span><span class="p">(</span><span class="s2">"EELS"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Note these chapter discusses features that are available only for
@@ -477,7 +492,7 @@ chapters.</p>
 archiving purposes or to use some feature (e.g. curve fitting) that requires
 this information.  The elemental composition of the sample can be declared
 using <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.add_elements" title="exspy.signals.EELSSpectrum.add_elements"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_elements()</span></code></a>. The
-information is stored in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.4)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a>
+information is stored in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.5)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.metadata</span></code></a>
 attribute (see <a class="reference internal" href="metadata_structure.html#metadata-structure"><span class="std std-ref">eXSpy Metadata Structure</span></a>). This information is saved to file
 when saving in the hspy format (HyperSpy’s HDF5 specification).</p>
 <p>An utility function <a class="reference internal" href="../reference/utils.eels.html#exspy.utils.eels.get_edges_near_energy" title="exspy.utils.eels.get_edges_near_energy"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_edges_near_energy()</span></code></a> can be
@@ -489,9 +504,9 @@ measured in eV. The size of the window can be controlled by the argument
 6 eV, it returns a list of edges with onset energy between 846 eV to 852 eV and
 they are arranged in the order closest to 849 eV.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eels</span><span class="o">.</span><span class="n">get_edges_near_energy</span><span class="p">(</span><span class="mi">532</span><span class="p">)</span>
-<span class="go">[&#39;O_K&#39;, &#39;Pd_M3&#39;, &#39;Sb_M5&#39;, &#39;Sb_M4&#39;]</span>
+<span class="go">['O_K', 'Pd_M3', 'Sb_M5', 'Sb_M4']</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">exspy</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">eels</span><span class="o">.</span><span class="n">get_edges_near_energy</span><span class="p">(</span><span class="mi">849</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-<span class="go">[&#39;La_M4&#39;, &#39;Fe_L1&#39;]</span>
+<span class="go">['La_M4', 'Fe_L1']</span>
 </pre></div>
 </div>
 <p>The static method <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.print_edges_near_energy" title="exspy.signals.EELSSpectrum.print_edges_near_energy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_edges_near_energy()</span></code></a>
@@ -543,7 +558,7 @@ and mean free path estimation.</p>
 estimate the thickness from a low-loss EELS spectrum using the log-ratio
 method. If the beam energy, collection angle, convergence angle and sample
 density are known, the absolute thickness is computed using the method in
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/bibliography.html#iakoubovskii2008" title="(in HyperSpy v2.4)"><span class="xref std std-ref">[Iakoubovskii2008]</span></a>. This includes the estimation of
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/bibliography.html#iakoubovskii2008" title="(in HyperSpy v2.5)"><span class="xref std std-ref">[Iakoubovskii2008]</span></a>. This includes the estimation of
 the inelastic mean free path (iMFP). For more accurate results, it is possible
 to input the iMFP of the material if known.  If the density and/or the iMFP are
 not known, the output is the thickness relative to the (unknown) iMFP without
@@ -555,10 +570,10 @@ any angular corrections.</p>
 <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.estimate_zero_loss_peak_centre" title="exspy.signals.EELSSpectrum.estimate_zero_loss_peak_centre"><code class="xref py py-meth docutils literal notranslate"><span class="pre">estimate_zero_loss_peak_centre()</span></code></a>
 can be used to estimate the position of the zero-loss peak (ZLP). The method assumes
 that the ZLP is the most intense feature in the spectra. For a more general
-approach see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.find_peaks1D_ohaver" title="(in HyperSpy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.find_peaks1D_ohaver()</span></code></a>.</p>
+approach see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.find_peaks1D_ohaver" title="(in HyperSpy v2.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.find_peaks1D_ohaver()</span></code></a>.</p>
 <p>The <a class="reference internal" href="../reference/signals.html#exspy.signals.EELSSpectrum.align_zero_loss_peak" title="exspy.signals.EELSSpectrum.align_zero_loss_peak"><code class="xref py py-meth docutils literal notranslate"><span class="pre">align_zero_loss_peak()</span></code></a> can
 align the ZLP with subpixel accuracy. It is more robust and easy to use for the task
-than <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.align1D" title="(in HyperSpy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.align1D()</span></code></a>. Note that it is
+than <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/Signal1D.html#hyperspy.api.signals.Signal1D.align1D" title="(in HyperSpy v2.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.Signal1D.align1D()</span></code></a>. Note that it is
 possible to apply the same alignment to other spectra using the <code class="docutils literal notranslate"><span class="pre">also_align</span></code>
 argument. This can be useful e.g. to align core-loss spectra acquired
 quasi-simultaneously. If there are other features in the low loss signal
@@ -612,12 +627,12 @@ plasmon excitations in layers.</p>
 <span id="eels-fitting"></span><h2>EELS curve fitting<a class="headerlink" href="#eels-curve-fitting" title="Link to this heading">#</a></h2>
 <p>HyperSpy makes it really easy to quantify EELS core-loss spectra by curve
 fitting as it is shown in the next example of quantification of a boron nitride
-EELS spectrum from the <a class="reference external" href="https://eelsdb.eu/">EELS Data Base</a> (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/io.html#example-data-label" title="(in HyperSpy v2.4)"><span>Loading example data and data from online databases</span></a>).</p>
+EELS spectrum from the <a class="reference external" href="https://eelsdb.eu/">EELS Data Base</a> (see <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/io.html#example-data-label" title="(in HyperSpy v2.5)"><span>Loading example data and data from online databases</span></a>).</p>
 <p>Load the core-loss and low-loss spectra</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eelsdb</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hexagonal Boron Nitride&quot;</span><span class="p">,</span>
-<span class="gp">... </span>                      <span class="n">spectrum_type</span><span class="o">=</span><span class="s2">&quot;coreloss&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">low_loss</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eelsdb</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hexagonal Boron Nitride&quot;</span><span class="p">,</span>
-<span class="gp">... </span>                             <span class="n">spectrum_type</span><span class="o">=</span><span class="s2">&quot;lowloss&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eelsdb</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Hexagonal Boron Nitride"</span><span class="p">,</span>
+<span class="gp">... </span>                      <span class="n">spectrum_type</span><span class="o">=</span><span class="s2">"coreloss"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">low_loss</span> <span class="o">=</span> <span class="n">exspy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">eelsdb</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Hexagonal Boron Nitride"</span><span class="p">,</span>
+<span class="gp">... </span>                             <span class="n">spectrum_type</span><span class="o">=</span><span class="s2">"lowloss"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 <section id="creating-model">
@@ -635,7 +650,7 @@ such as the beam energy and experimental angles:</p>
 given in mrad. <code class="docutils literal notranslate"><span class="pre">beam_energy</span></code> is in keV.</p>
 </div>
 <p>Define the chemical composition of the sample, that will be used in the model:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_elements</span><span class="p">((</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">add_elements</span><span class="p">((</span><span class="s1">'B'</span><span class="p">,</span> <span class="s1">'N'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>It is worth noting that in this case the experimental parameters and the list of
@@ -681,7 +696,7 @@ are strictly necessary. Therefore, tabulated data will be used by default.</p>
 format, is downloaded from Zenodo:
 <a class="reference external" href="https://zenodo.org/record/7645765">doi:10.5281/zenodo.7645765</a>.
 As an alternative, one can use the <a class="reference external" href="https://arxiv.org/abs/2405.10151">Dirac GOS</a> to include the relativistic effects using the Dirac solution, which can be downloaded from Zenodo: <a class="reference external" href="https://zenodo.org/record/12800856">doi:10.5281/zenodo.12800856</a>. The Dirac GOS can be used as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">low_loss</span><span class="o">=</span><span class="n">low_loss</span><span class="p">,</span> <span class="n">GOS</span><span class="o">=</span><span class="s2">&quot;Dirac&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">low_loss</span><span class="o">=</span><span class="n">low_loss</span><span class="p">,</span> <span class="n">GOS</span><span class="o">=</span><span class="s2">"Dirac"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Custom GOS saved in the <a class="reference external" href="https://gitlab.com/gguzzina/gosh">gosh</a> format can be used,
@@ -690,8 +705,8 @@ the following example download a previous version (1.0) of the GOS file from Zen
 <a class="reference external" href="https://www.fatiando.org/pooch">pooch</a>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pooch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">GOSH10</span> <span class="o">=</span> <span class="n">pooch</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;doi:10.5281/zenodo.6599071/Segger_Guzzinati_Kohl_1.0.0.gos&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">known_hash</span><span class="o">=</span><span class="s2">&quot;md5:d65d5c23142532fde0a80e160ab51574&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">url</span><span class="o">=</span><span class="s2">"doi:10.5281/zenodo.6599071/Segger_Guzzinati_Kohl_1.0.0.gos"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">known_hash</span><span class="o">=</span><span class="s2">"md5:d65d5c23142532fde0a80e160ab51574"</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">create_model</span><span class="p">(</span><span class="n">gos_file_path</span><span class="o">=</span><span class="n">GOSH10</span><span class="p">)</span>
 </pre></div>
@@ -704,7 +719,7 @@ If you have access to the GOS files, you can set the path to the directory
 containing the Hartree-Slater GOS files in the <a class="reference internal" href="../reference/exspy.html#exspy.preferences" title="exspy.preferences"><code class="xref py py-attr docutils literal notranslate"><span class="pre">preferences</span></code></a>.
 More recent versions of Gatan DigitalMicrograph Suite (v3.x and above)
 use a different proprietary format that is not supported. See discussion
-in <a class="reference external" href="https://github.com/hyperspy/exspy/discussions/91">https://github.com/hyperspy/exspy/discussions/91</a> for more details.</p>
+in <a class="github reference external" href="https://github.com/hyperspy/exspy/discussions/91">hyperspy/exspy#91</a> for more details.</p>
 </div>
 </section>
 <section id="fitting-model">
@@ -722,7 +737,7 @@ optimized to fit EELS core-loss spectra</p>
 </div>
 <p>This fit can also be applied over the entire signal to fit a whole spectrum
 image</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">multifit</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;smart&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">multifit</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'smart'</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -790,6 +805,39 @@ edge functionalities:</p>
 <li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.fix_fine_structure" title="exspy.models.EELSModel.fix_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fix_fine_structure()</span></code></a></p></li>
 <li><p><a class="reference internal" href="../reference/models.html#exspy.models.EELSModel.free_fine_structure" title="exspy.models.EELSModel.free_fine_structure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">free_fine_structure()</span></code></a></p></li>
 </ul>
+</section>
+<section id="absolute-quantification">
+<span id="eels-absolute-quantification"></span><h3>Absolute quantification<a class="headerlink" href="#absolute-quantification" title="Link to this heading">#</a></h3>
+<p>The fitted <a class="reference internal" href="../reference/components.html#exspy.components.EELSCLEdge.intensity" title="exspy.components.EELSCLEdge.intensity"><code class="xref py py-attr docutils literal notranslate"><span class="pre">intensity</span></code></a> parameter is the
+scaling factor applied to the theoretical cross-section (in
+barns/eV/atom). When the model is convolved with a <strong>raw</strong> low-loss
+spectrum (i.e. in counts, not normalised), the fitted intensity is
+directly proportional to the areal density <span class="math notranslate nohighlight">\(N\)</span> of the element:</p>
+<div class="math notranslate nohighlight">
+\[\text{intensity} = N \times 10^{-10}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is in atoms/nm² - the factor <span class="math notranslate nohighlight">\(10^{-10}\)</span> comes from the conversion between barns and nm².
+Therefore, to obtain the areal density:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">N_B</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">B_K</span><span class="o">.</span><span class="n">intensity</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mf">1e10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">N_N</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">N_K</span><span class="o">.</span><span class="n">intensity</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="mf">1e10</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the core-loss and low-loss spectra were acquired with different
+dwell times (or total acquisition times), the fitted intensity must
+be corrected by the ratio of the dwell times before converting to
+areal density. The dwell time can often be found in the signal
+metadata (e.g.
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.metadata" title="(in HyperSpy v2.5)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">metadata</span></code></a><code class="docutils literal notranslate"><span class="pre">.Acquisition_instrument.TEM.Detector.EELS.dwell_time</span></code>).
+The corrected conversion is:</p>
+<div class="math notranslate nohighlight">
+\[N = \text{intensity} \times \frac{t_{\text{low}}}{t_{\text{core}}} \times 10^{10}\]</div>
+<p>where <span class="math notranslate nohighlight">\(t_{\text{core}}\)</span> and <span class="math notranslate nohighlight">\(t_{\text{low}}\)</span> are the
+dwell times of the core-loss and low-loss spectra, respectively.</p>
+<p>If the low-loss spectrum has been normalised (e.g. to sum to unity)
+before convolution, the zero-loss intensity factor is removed and
+the simple relationship above no longer holds.</p>
+</div>
 </section>
 <section id="fine-structure-analysis-using-a-spline-function">
 <span id="eels-fine-structure"></span><h3>Fine structure analysis using a spline function<a class="headerlink" href="#fine-structure-analysis-using-a-spline-function" title="Link to this heading">#</a></h3>
@@ -880,9 +928,9 @@ model the features that we want to measure.</p>
 <p>As an example, lets model the first two peaks of the Boron-K edge fine structure using two
 Gaussian functions instead of the spline function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g1</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components1D</span><span class="o">.</span><span class="n">GaussianHF</span><span class="p">(</span><span class="n">centre</span><span class="o">=</span><span class="mf">194.7</span><span class="p">,</span> <span class="n">fwhm</span><span class="o">=</span><span class="mf">3.</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;B_K_l1&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"B_K_l1"</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">components1D</span><span class="o">.</span><span class="n">GaussianHF</span><span class="p">(</span><span class="n">centre</span><span class="o">=</span><span class="mf">201.9</span><span class="p">,</span> <span class="n">fwhm</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;B_K_l2&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"B_K_l2"</span>
 </pre></div>
 </div>
 <p>Next, we need to let HyperSpy know that these two Gaussian functions are part
@@ -990,6 +1038,7 @@ fine structure.</span><a class="headerlink" href="#id4" title="Link to this imag
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-model">Creating model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalised-oscillator-strengths">Generalised Oscillator Strengths</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-model">Fitting model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absolute-quantification">Absolute quantification</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-structure-analysis-using-a-spline-function">Fine structure analysis using a spline function</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-structure-analysis-using-gaussian-functions">Fine structure analysis using Gaussian functions</a></li>
 </ul>
@@ -1019,8 +1068,8 @@ fine structure.</span><a class="headerlink" href="#id4" title="Link to this imag
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1040,8 +1089,7 @@ fine structure.</span><a class="headerlink" href="#id4" title="Link to this imag
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
   </p>
 </div>
       
@@ -1054,7 +1102,7 @@ fine structure.</span><a class="headerlink" href="#id4" title="Link to this imag
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

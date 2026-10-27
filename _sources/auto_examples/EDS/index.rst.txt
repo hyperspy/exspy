@@ -7,6 +7,10 @@ Energy Dispersive X-ray Spectroscopy (EDS)
 
 Below is a gallery of examples on energy dispersive X-ray spectroscopy (EDS).
 
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
 
 .. raw:: html
 

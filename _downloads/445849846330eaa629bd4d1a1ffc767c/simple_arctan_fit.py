@@ -6,8 +6,8 @@ Fit an arctan function.
 
 """
 
-import numpy as np
 import hyperspy.api as hs
+import numpy as np
 
 # Generate the data and make the spectrum
 data = np.arctan(np.arange(-500, 500))

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -27,28 +26,29 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=ccdb6887"></script>
+    <script src="_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'changes';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
@@ -57,6 +57,7 @@
     <link rel="next" title="Contributing" href="contributing.html" />
     <link rel="prev" title="exspy.utils.eels" href="reference/utils.eels.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
   
@@ -76,7 +77,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -104,7 +107,7 @@
   
     <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -166,7 +169,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="#" aria-current="page">
     Release Notes
   </a>
 </li>
@@ -196,7 +199,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -206,11 +209,18 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -223,8 +233,7 @@
           
           
           
-          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -235,8 +244,7 @@
           
           
           
-          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">Gitter</span></a>
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Gitter</span></a>
         </li>
 </ul></div>
       
@@ -247,7 +255,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -256,7 +264,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -308,7 +316,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="#" aria-current="page">
     Release Notes
   </a>
 </li>
@@ -339,11 +347,18 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -356,8 +371,7 @@
           
           
           
-          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
+          <a href="https://github.com/hyperspy/exspy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
         </li>
         <li class="nav-item">
           
@@ -368,8 +382,7 @@
           
           
           
-          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
-            <span class="sr-only">Gitter</span></a>
+          <a href="https://gitter.im/hyperspy/hyperspy" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Gitter</span></a>
         </li>
 </ul></div>
         
@@ -378,7 +391,8 @@
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
     <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
   </svg>
   <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
@@ -449,13 +463,13 @@
 <h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
 <p>Changelog entries for the development version are available at
 <a class="reference external" href="https://exspy.readthedocs.io/en/latest/changes.html">https://exspy.readthedocs.io/en/latest/changes.html</a></p>
-<section id="release-unreleased-2026-04-18">
-<h2> [UNRELEASED] (2026-04-18)<a class="headerlink" href="#release-unreleased-2026-04-18" title="Link to this heading">#</a></h2>
+<section id="release-unreleased-2026-10-27">
+<h2> [UNRELEASED] (2026-10-27)<a class="headerlink" href="#release-unreleased-2026-10-27" title="Link to this heading">#</a></h2>
 <section id="new-features">
 <h3>New features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Add convenience functionalities to get X-ray lines information:</p>
 <ul>
+<li><p>Add convenience functionalities to get X-ray lines information:</p>
+<ul class="simple">
 <li><p><a class="reference internal" href="reference/utils.eds.html#exspy.utils.eds.get_xray_lines" title="exspy.utils.eds.get_xray_lines"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_xray_lines()</span></code></a></p></li>
 <li><p><a class="reference internal" href="reference/utils.eds.html#exspy.utils.eds.print_lines" title="exspy.utils.eds.print_lines"><code class="xref py py-func docutils literal notranslate"><span class="pre">print_lines()</span></code></a></p></li>
 <li><p><a class="reference internal" href="reference/utils.eds.html#exspy.utils.eds.print_lines_near_energy" title="exspy.utils.eds.print_lines_near_energy"><code class="xref py py-func docutils literal notranslate"><span class="pre">print_lines_near_energy()</span></code></a></p></li>
@@ -463,6 +477,14 @@
 <li><p><a class="reference internal" href="reference/signals.html#exspy.signals.EDSSpectrum.print_lines_near_energy" title="exspy.signals.EDSSpectrum.print_lines_near_energy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">print_lines_near_energy()</span></code></a> (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/150">#150</a>)</p></li>
 </ul>
 </li>
+<li><p>Add <a class="reference internal" href="reference/signals.html#exspy.signals.EDSSpectrum.lines_at_energy" title="exspy.signals.EDSSpectrum.lines_at_energy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lines_at_energy()</span></code></a> method to find EDS lines interactively in a Jupyter notebook.</p>
+<p>Also fix <code class="docutils literal notranslate"><span class="pre">print_lines_near_energy</span></code> to search within <code class="docutils literal notranslate"><span class="pre">energy</span> <span class="pre">+/-</span> <span class="pre">width/2</span></code>, consistently with <code class="docutils literal notranslate"><span class="pre">get_xray_lines_near_energy</span></code> and the documentation of the <code class="docutils literal notranslate"><span class="pre">width</span></code> parameter, which previously searched within <code class="docutils literal notranslate"><span class="pre">energy</span> <span class="pre">+/-</span> <span class="pre">width</span></code>. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/162">#162</a>)</p>
+</li>
+<li><p>Add <a class="reference internal" href="reference/signals.html#exspy.signals.SIMSSpectrum" title="exspy.signals.SIMSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">SIMSSpectrum</span></code></a> and <a class="reference internal" href="reference/signals.html#exspy.signals.FIBSIMSSpectrum" title="exspy.signals.FIBSIMSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIBSIMSSpectrum</span></code></a>
+signal classes for Secondary Ion Mass Spectrometry data, including lazy
+variants. <a class="reference internal" href="reference/signals.html#exspy.signals.FIBSIMSSpectrum" title="exspy.signals.FIBSIMSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIBSIMSSpectrum</span></code></a> extends
+<a class="reference internal" href="reference/signals.html#exspy.signals.SIMSSpectrum" title="exspy.signals.SIMSSpectrum"><code class="xref py py-class docutils literal notranslate"><span class="pre">SIMSSpectrum</span></code></a> with depth-profiling support for FIB-ToF-SIMS
+datasets. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/167">#167</a>)</p></li>
 </ul>
 </section>
 <section id="enhancements">
@@ -475,7 +497,7 @@
 <section id="improved-documentation">
 <h3>Improved Documentation<a class="headerlink" href="#improved-documentation" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Add dose calculation parameter explicitely to the signature and docstring of <a class="reference internal" href="reference/signals.html#exspy.signals.EDSTEMSpectrum.quantification" title="exspy.signals.EDSTEMSpectrum.quantification"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quantification()</span></code></a>. Distinguish keyword arguments passed to the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.plot/index.html#hyperspy.api.plot.plot_signals" title="(in HyperSpy v2.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.plot.plot_signals()</span></code></a> and the quantification functions. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/129">#129</a>)</p></li>
+<li><p>Add dose calculation parameter explicitely to the signature and docstring of <a class="reference internal" href="reference/signals.html#exspy.signals.EDSTEMSpectrum.quantification" title="exspy.signals.EDSTEMSpectrum.quantification"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quantification()</span></code></a>. Distinguish keyword arguments passed to the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.plot/index.html#hyperspy.api.plot.plot_signals" title="(in HyperSpy v2.5)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.plot.plot_signals()</span></code></a> and the quantification functions. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/129">#129</a>)</p></li>
 <li><p>Add <a class="reference internal" href="reference/exspy.html#exspy.preferences" title="exspy.preferences"><code class="xref py py-attr docutils literal notranslate"><span class="pre">preferences</span></code></a> to API reference and add a note explaining that only Hartree-Slater GOS from Gatan DigitalMicrograph Suite v1.x and v2.x are supported. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/151">#151</a>)</p></li>
 <li><p>Add EELS examples to the gallery of examples showing how to perform <a class="reference internal" href="reference/signals.html#exspy.signals.EELSSpectrum.fourier_ratio_deconvolution" title="exspy.signals.EELSSpectrum.fourier_ratio_deconvolution"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fourier_ratio_deconvolution()</span></code></a> and to download spectra from the <a class="reference external" href="https://eelsdb.eu">EELS database</a>. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/174">#174</a>)</p></li>
 </ul>
@@ -488,22 +510,26 @@
 <li><p>Implement workaround for Zenodo rate limits in eXSpy tests suite and documentation build. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/156">#156</a>)</p></li>
 <li><p>Add support for Python 3.14 and drop Python 3.9. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/159">#159</a>)</p></li>
 <li><p>Improve caching of GOS files on GitHub CI by sharing cache across different jobs. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/164">#164</a>)</p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">.mailmap</span></code> file to consolidate duplicate author identities in
+the git history, fixing contributor attribution for tools that respect
+mailmap. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/183">#183</a>)</p></li>
+<li><p>Adopt the HyperSpy AI policy: shared pre-commit hooks, compliance CI workflow and an AGENTS.md knowledge base. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/185">#185</a>)</p></li>
 </ul>
 </section>
 </section>
-<section id="id12">
-<h2>0.3.2 (2025-03-02)<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
-<section id="id13">
-<h3>Maintenance<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h2>0.3.2 (2025-03-02)<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<section id="id17">
+<h3>Maintenance<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Update for changes in <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.as_signal" title="(in HyperSpy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.model.BaseModel.as_signal()</span></code></a>. Implementation of convolution support in model fitting moved to <code class="docutils literal notranslate"><span class="pre">hyperspy</span></code> in <a class="reference external" href="https://github.com/hyperspy/hyperspy/pull/3494">hyperspy/hyperspy#3494</a>. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/106">#106</a>)</p></li>
+<li><p>Update for changes in <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/base_classes/model/basemodel.html#hyperspy.model.BaseModel.as_signal" title="(in HyperSpy v2.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.model.BaseModel.as_signal()</span></code></a>. Implementation of convolution support in model fitting moved to <code class="docutils literal notranslate"><span class="pre">hyperspy</span></code> in <a class="reference external" href="https://github.com/hyperspy/hyperspy/pull/3494">hyperspy/hyperspy#3494</a>. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/106">#106</a>)</p></li>
 <li><p>Drop support python 3.8 and add explicit support for python 3.13. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/108">#108</a>)</p></li>
 <li><p>Fix API changes in user guide and rename <code class="docutils literal notranslate"><span class="pre">ll</span></code> to <code class="docutils literal notranslate"><span class="pre">low_loss</span></code> consistently. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/109">#109</a>)</p></li>
 </ul>
 </section>
 </section>
-<section id="id17">
-<h2>0.3.1 (2024-10-16)<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<section id="id21">
+<h2>0.3.1 (2024-10-16)<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
 <section id="bug-fixes">
 <h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -511,23 +537,23 @@
 </ul>
 </section>
 </section>
-<section id="id19">
-<h2>0.3 (2024-10-11)<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
-<section id="id20">
-<h3>New features<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<section id="id23">
+<h2>0.3 (2024-10-11)<a class="headerlink" href="#id23" title="Link to this heading">#</a></h2>
+<section id="id24">
+<h3>New features<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Support for <a class="reference external" href="https://zenodo.org/records/12800856">Dirac GOS</a> in the gosh format for EELS quantification, which includes the relativistic effects (e.g. spin-orbit coupling) based on Dirac equation. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/72">#72</a>)</p></li>
 </ul>
 </section>
-<section id="id22">
-<h3>Enhancements<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<section id="id26">
+<h3>Enhancements<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Make <code class="docutils literal notranslate"><span class="pre">numexpr</span></code> an optional dependency to allow installation in pyodide. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/80">#80</a>)</p></li>
 <li><p>Mention source of <a class="reference internal" href="reference/material.html#exspy.material.elements" title="exspy.material.elements"><code class="xref py py-attr docutils literal notranslate"><span class="pre">elements</span></code></a> database in docstring (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/87">#87</a>)</p></li>
 </ul>
 </section>
-<section id="id25">
-<h3>Bug Fixes<a class="headerlink" href="#id25" title="Link to this heading">#</a></h3>
+<section id="id29">
+<h3>Bug Fixes<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add back functionalities, which were unintentionally removed from public API when splitting from hyperspy in <a class="reference internal" href="reference/utils.eds.html#module-exspy.utils.eds" title="exspy.utils.eds"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eds</span></code></a>, <a class="reference internal" href="reference/utils.eels.html#module-exspy.utils.eels" title="exspy.utils.eels"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.utils.eels</span></code></a> and <a class="reference internal" href="reference/material.html#module-exspy.material" title="exspy.material"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exspy.material</span></code></a>. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/59">#59</a>)</p></li>
 <li><p><a class="reference internal" href="reference/models.html#exspy.models.EDSModel.fit_background" title="exspy.models.EDSModel.fit_background"><code class="xref py py-meth docutils literal notranslate"><span class="pre">exspy.models.EDSModel.fit_background()</span></code></a> fixes:</p>
@@ -545,72 +571,72 @@
 </li>
 </ul>
 </section>
-<section id="id29">
-<h3>Improved Documentation<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<section id="id33">
+<h3>Improved Documentation<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fix examples in user guide, which needed to be updated after the split from hyperspy. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/59">#59</a>)</p></li>
 </ul>
 </section>
 </section>
-<section id="id31">
-<h2>0.2.1 (2024-07-12)<a class="headerlink" href="#id31" title="Link to this heading">#</a></h2>
-<section id="id32">
-<h3>Bug Fixes<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<section id="id35">
+<h2>0.2.1 (2024-07-12)<a class="headerlink" href="#id35" title="Link to this heading">#</a></h2>
+<section id="id36">
+<h3>Bug Fixes<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fix gradients of the <a class="reference internal" href="reference/components.html#exspy.components.EELSArctan" title="exspy.components.EELSArctan"><code class="xref py py-class docutils literal notranslate"><span class="pre">EELSArctan</span></code></a> component. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/55">#55</a>)</p></li>
 <li><p>Fix blocked eelsdb queries (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/66">#66</a>)</p></li>
 </ul>
 </section>
-<section id="id35">
-<h3>Improved Documentation<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<section id="id39">
+<h3>Improved Documentation<a class="headerlink" href="#id39" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fix broken links in the documentation and missing docstring of the <a class="reference internal" href="reference/components.html#exspy.components.PESCoreLineShape" title="exspy.components.PESCoreLineShape"><code class="xref py py-class docutils literal notranslate"><span class="pre">PESCoreLineShape</span></code></a> component in the API reference. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/55">#55</a>)</p></li>
 </ul>
 </section>
 </section>
-<section id="id37">
-<h2>0.2 (2024-04-10)<a class="headerlink" href="#id37" title="Link to this heading">#</a></h2>
-<section id="id38">
-<h3>Bug Fixes<a class="headerlink" href="#id38" title="Link to this heading">#</a></h3>
+<section id="id41">
+<h2>0.2 (2024-04-10)<a class="headerlink" href="#id41" title="Link to this heading">#</a></h2>
+<section id="id42">
+<h3>Bug Fixes<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fix restoring Gosh and Hartree Slater GOS from stored models. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/32">#32</a>)</p></li>
 </ul>
 </section>
-<section id="id40">
-<h3>Improved Documentation<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<section id="id44">
+<h3>Improved Documentation<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add eXSpy logo and adapt spelling to capital X (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/22">#22</a>)</p></li>
 <li><p>Fix DOI and add more badges to readme file. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/36">#36</a>, <a class="reference external" href="https://github.com/hyperspy/exspy/issues/38">#38</a>)</p></li>
 </ul>
 </section>
-<section id="id44">
-<h3>Maintenance<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<section id="id48">
+<h3>Maintenance<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Use <a class="reference external" href="https://docs.astral.sh/ruff">ruff</a> for linting and formatting the code. Remove redundant GitHub workflow in favour of pre-commit. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/27">#27</a>)</p></li>
 <li><p>Fix deprecation scipy and numpy warnings. (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/33">#33</a>)</p></li>
 </ul>
 </section>
 </section>
-<section id="id47">
-<h2>0.1 (2023-12-03)<a class="headerlink" href="#id47" title="Link to this heading">#</a></h2>
-<section id="id48">
-<h3>New features<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
+<section id="id51">
+<h2>0.1 (2023-12-03)<a class="headerlink" href="#id51" title="Link to this heading">#</a></h2>
+<section id="id52">
+<h3>New features<a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Support for tabulated <a class="reference internal" href="user_guide/eels.html#eels-gos"><span class="std std-ref">Generalised Oscillator Strengths (GOS)</span></a> using the
 <a class="reference external" href="https://gitlab.com/gguzzina/gosh">GOSH</a> open file format. By default, a freely
 usable dataset is downloaded from <a class="reference external" href="https://zenodo.org/record/6599071">doi:10.5281/zenodo.7645765</a>
 (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3082">HyperSpy #3082</a>)</p></li>
-<li><p>Add functionality to fit the <a class="reference internal" href="user_guide/eels.html#eels-fine-structure"><span class="std std-ref">EELS fine structure</span></a> using components, e.g. <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Gaussian" title="(in HyperSpy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.model.components1D.Gaussian</span></code></a>. (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3206">HyperSpy #3206</a>)</p></li>
+<li><p>Add functionality to fit the <a class="reference internal" href="user_guide/eels.html#eels-fine-structure"><span class="std std-ref">EELS fine structure</span></a> using components, e.g. <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.model/components1D.html#hyperspy.api.model.components1D.Gaussian" title="(in HyperSpy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">hyperspy.api.model.components1D.Gaussian</span></code></a>. (<a class="reference external" href="https://github.com/hyperspy/hyperspy/issues/3206">HyperSpy #3206</a>)</p></li>
 </ul>
 </section>
-<section id="id49">
-<h3>Enhancements<a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
+<section id="id53">
+<h3>Enhancements<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Enable <code class="docutils literal notranslate"><span class="pre">signal_range</span></code> arguments when using <code class="docutils literal notranslate"><span class="pre">subpixel=True</span></code> in <a class="reference internal" href="reference/signals.html#exspy.signals.EELSSpectrum.align_zero_loss_peak" title="exspy.signals.EELSSpectrum.align_zero_loss_peak"><code class="xref py py-meth docutils literal notranslate"><span class="pre">align_zero_loss_peak()</span></code></a> (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/7">#7</a>)</p></li>
 </ul>
 </section>
-<section id="id51">
-<h3>Maintenance<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
+<section id="id55">
+<h3>Maintenance<a class="headerlink" href="#id55" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Use towncrier to manage release notes and improve setting dev version (<a class="reference external" href="https://github.com/hyperspy/exspy/issues/14">#14</a>)</p></li>
 <li><p>Use reusable workflow from the hyperspy organisation for the doc workflow (<a class="reference external" href="https://github.com/hyperspy/exspy/pull/13">#13</a>)</p></li>
@@ -680,43 +706,43 @@ functionalities so far developed in HyperSpy were moved to the
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-unreleased-2026-04-18"> [UNRELEASED] (2026-04-18)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-unreleased-2026-10-27"> [UNRELEASED] (2026-10-27)</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New features</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancements">Enhancements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improved-documentation">Improved Documentation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maintenance">Maintenance</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">0.3.2 (2025-03-02)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Maintenance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">0.3.2 (2025-03-02)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Maintenance</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">0.3.1 (2024-10-16)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">0.3.1 (2024-10-16)</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-fixes">Bug Fixes</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">0.3 (2024-10-11)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">New features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Enhancements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Bug Fixes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Improved Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">0.3 (2024-10-11)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">New features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Enhancements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Bug Fixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">Improved Documentation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">0.2.1 (2024-07-12)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Bug Fixes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">Improved Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">0.2.1 (2024-07-12)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">Bug Fixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">Improved Documentation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">0.2 (2024-04-10)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">Bug Fixes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">Improved Documentation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">Maintenance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">0.2 (2024-04-10)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Bug Fixes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">Improved Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Maintenance</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">0.1 (2023-12-03)</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">New features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">Enhancements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Maintenance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">0.1 (2023-12-03)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">New features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Enhancements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">Maintenance</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initiation-2023-10-28">Initiation (2023-10-28)</a></li>
@@ -745,8 +771,8 @@ functionalities so far developed in HyperSpy were moved to the
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -766,8 +792,7 @@ functionalities so far developed in HyperSpy were moved to the
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
   </p>
 </div>
       
@@ -780,7 +805,7 @@ functionalities so far developed in HyperSpy were moved to the
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.17.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

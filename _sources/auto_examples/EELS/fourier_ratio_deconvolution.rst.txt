@@ -70,15 +70,17 @@ The core-loss spectrum contains the O K edge at 532 eV and the Mn L\ :sub:`2,3` 
     Initial ZLP position statistics
     -------------------------------
     Summary statistics
-    ------------------
-    mean:   0.8
-    std:    0
-
-    min:    0.8
-    Q1:     0.8
-    median: 0.8
-    Q3:     0.8
-    max:    0.8
+    +--------------+------------+
+    |    Statistic |      Value |
+    +--------------+------------+
+    |         mean |        0.8 |
+    |          std |          0 |
+    |          min |        0.8 |
+    |           Q1 |        0.8 |
+    |       median |        0.8 |
+    |           Q3 |        0.8 |
+    |          max |        0.8 |
+    +--------------+------------+
 
     <Axes: xlabel=' (eV)', ylabel='Intensity'>
 
@@ -125,7 +127,7 @@ Then perform Fourier ratio deconvolution using the low-loss spectrum as the refe
 
  .. code-block:: none
 
-      0%|          | 0/2 [00:00<?, ?it/s]    100%|██████████| 2/2 [00:00<00:00, 3515.76it/s]
+      0%|          | 0/2 [00:00<?, ?it/s]    100%|██████████| 2/2 [00:00<00:00, 2989.53it/s]
 
 
 
@@ -167,7 +169,7 @@ sphinx_gallery_thumbnail_number = 3
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.049 seconds)
+   **Total running time of the script:** (0 minutes 1.095 seconds)
 
 
 .. _sphx_glr_download_auto_examples_EELS_fourier_ratio_deconvolution.py:

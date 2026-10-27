@@ -6,8 +6,9 @@ This example demonstrates how to load EELS spectra from the EELS database in eXS
 
 """
 
-import exspy
 import hyperspy.api as hs
+
+import exspy
 
 # %%
 # Load a core-loss and low-loss EELS spectra from a Ti\ :sub:`3`\Ni\ :sub:`4` alloy from the EELS database.

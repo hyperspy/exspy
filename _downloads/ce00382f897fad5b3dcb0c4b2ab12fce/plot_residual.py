@@ -6,8 +6,8 @@ Fit an affine function and plot the residual.
 
 """
 
-import numpy as np
 import hyperspy.api as hs
+import numpy as np
 
 # %%
 # Create a signal:

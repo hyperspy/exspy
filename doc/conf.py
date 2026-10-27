@@ -15,12 +15,18 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import os
+import sys
 from datetime import datetime, timezone
 
 import numpydoc
 from packaging.version import Version
 
 os.environ["EAGER_IMPORT"] = "1"
+
+# Local extensions used by the documentation build
+sys.path.insert(
+    0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "_extensions")
+)
 
 
 from exspy._misc import _download_GOS_files
@@ -43,6 +49,9 @@ extensions = [
     # "numpydoc",
     "sphinx_design",
     "sphinx_favicon",
+    "sphinx_llm.txt",
+    # Extra Markdown translator handlers for the sphinx-llm Markdown build
+    "llm_markdown_extras",
     "sphinx_copybutton",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -172,6 +181,21 @@ sphinx_gallery_conf = {
 
 copybutton_prompt_text = r">>> |\.\.\. "
 copybutton_prompt_is_regexp = True
+
+# -- Options for sphinx_llm.txt (LLM-friendly Markdown output) -------------
+
+# Renders a Markdown version of every page alongside the HTML output and
+# generates an ``llms.txt`` index for LLMs and agents, following the
+# llms.txt standard. Each page is reachable by appending ``.md`` to its
+# HTML URL. See https://github.com/NVIDIA/sphinx-llm
+llms_txt_description = (
+    "eXSpy is a Python package extending the functionality for "
+    "multi-dimensional data analysis provided by the HyperSpy library. "
+    "It provides Electron Energy Loss Spectroscopy (EELS) and Energy "
+    "Dispersive X-ray Spectroscopy (EDS) analysis tools."
+)
+# Also concatenate all the Markdown files into a single ``llms-full.txt``
+llms_txt_full_build = True
 
 # -- Options for towncrier_draft extension -----------------------------------
 

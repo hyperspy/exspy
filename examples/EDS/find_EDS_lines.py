@@ -10,11 +10,11 @@ import exspy
 
 # %%
 # Show the X-ray lines near 6.4 keV:
-exspy.utils.eds.print_lines_near_energy(energy=6.4)
+exspy.utils.eds.print_lines_near_energy(energy=6.4, width=0.2)
 
 # %%
 # Show the main (high weight) X-ray lines near 6.4 keV:
-exspy.utils.eds.print_lines_near_energy(energy=6.4, weight_threshold=0.5)
+exspy.utils.eds.print_lines_near_energy(energy=6.4, width=0.2, weight_threshold=0.5)
 
 
 # %%
@@ -37,4 +37,4 @@ s.print_lines()
 # Display the X-ray lines close to 8 keV, which corresponds to the Cu Kα line
 # coming from the TEM grid
 
-s.print_lines_near_energy(8.0)
+s.print_lines_near_energy(8.0, width=0.2)

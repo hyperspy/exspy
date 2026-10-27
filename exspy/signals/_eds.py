@@ -25,6 +25,7 @@ import numpy as np
 from hyperspy.docstrings.plot import BASE_PLOT_DOCSTRING_PARAMETERS, PLOT1D_DOCSTRING
 from hyperspy.misc import utils as hs_utils
 from hyperspy.signals import BaseSignal, Signal1D
+from hyperspy.ui_registry import DISPLAY_DT, TOOLKIT_DT
 
 import exspy.utils.eds as eds_utils
 from exspy import material
@@ -36,6 +37,7 @@ from exspy._docstrings.eds import (
     WEIGHT_THRESHOLD_PARAMETER,
     WIDTH_PARAMETER,
 )
+from exspy._signal_tools import EDSRange
 
 _logger = logging.getLogger(__name__)
 
@@ -1102,22 +1104,29 @@ class EDSSpectrum(Signal1D):
     def _xray_marker_closed(self, obj):
         self._xray_markers = {}
 
-    def remove_xray_lines_markers(self, xray_lines, render_figure=True):
+    def remove_xray_lines_markers(self, xray_lines=None, render_figure=True):
         """
         Remove marker previously added on a spec.plot() with the name of the
         selected X-ray lines
 
         Parameters
         ----------
-        xray_lines: list of string
-            A valid list of X-ray lines to remove
+        xray_lines: list of string or None
+            A valid list of X-ray lines to remove. If None, remove all
+            the X-ray lines markers.
         render_figure: bool
             If True, render the figure after removing the markers
         """
+        if xray_lines is None:
+            if len(self._xray_markers) == 0:
+                return
+            xray_lines = self._xray_markers["names"]
+
         ind = np.where(np.isin(self._xray_markers["names"], xray_lines))
         self._xray_markers["lines"].remove_items(ind)
         self._xray_markers["texts"].remove_items(ind)
         self._xray_markers["names"] = np.delete(self._xray_markers["names"], ind)
+
         if render_figure:
             self._render_figure(plot=["signal_plot"])
 
@@ -1217,7 +1226,7 @@ class EDSSpectrum(Signal1D):
         --------
         >>> import exspy
         >>> s = exspy.data.EDS_TEM_FePt_nanoparticles()
-        >>> s.print_lines_near_energy(energy=8)
+        >>> s.print_lines_near_energy(energy=8, width=0.2)
         +---------+------+--------------+--------+------------+
         | Element | Line | Energy (keV) | Weight | Intensity  |
         +---------+------+--------------+--------+------------+
@@ -1228,21 +1237,22 @@ class EDSSpectrum(Signal1D):
 
         See also
         --------
-        print_lines, exspy.utils.eds.get_xray_lines,
+        lines_at_energy, print_lines, exspy.utils.eds.get_xray_lines,
         exspy.utils.eds.get_xray_lines_near_energy
         """
         eds_utils.print_lines_near_energy(
             energy=energy,
             width=width,
             weight_threshold=weight_threshold,
+            only_lines=only_lines,
             sorting=sorting,
             float_format=float_format,
         )
 
     print_lines_near_energy.__doc__ %= (
         WIDTH_PARAMETER.replace("    ", "        "),
-        WEIGHT_THRESHOLD_PARAMETER.replace("    ", "        "),
         ONLY_LINES_PARAMETER.replace("    ", "        "),
+        WEIGHT_THRESHOLD_PARAMETER.replace("    ", "        "),
         SORTING_PARAMETER.replace("    ", "        "),
         FLOAT_FORMAT_PARAMETER.replace("    ", "        "),
     )
@@ -1321,4 +1331,85 @@ class EDSSpectrum(Signal1D):
         ONLY_LINES_PARAMETER.replace("    ", "        "),
         SORTING_PARAMETER.replace("    ", "        "),
         FLOAT_FORMAT_PARAMETER.replace("    ", "        "),
+    )
+
+    def lines_at_energy(
+        self,
+        energy="interactive",
+        width=0.1,
+        weight_threshold=0.1,
+        only_lines="all",
+        display=True,
+        toolkit=None,
+    ):
+        """
+        Find the X-ray lines close to a given energy.
+
+        If ``energy`` is ``'interactive'``, an interactive tool is displayed
+        and its GUI element is returned; otherwise a table with the X-ray
+        lines found near ``energy`` is displayed and no value is returned.
+
+        Parameters
+        ----------
+        energy : 'interactive' or float
+            If ``'interactive'``, display an interactive tool to find the
+            X-ray lines and return its GUI element. Otherwise, the energy
+            to search around, in keV.
+        %s
+        %s
+        %s
+        %s
+        %s
+
+        Notes
+        -----
+        In interactive mode, only a subset of the ``only_lines`` values is
+        supported by the tool: ``None``, ``'all'``, a single family selector
+        (``'a'``, ``'b'``, ``'g'``, ``'l'``, ``'z'``) or a single-element
+        list/tuple containing one of these values.
+
+        Examples
+        --------
+        >>> import exspy
+        >>> s = exspy.data.EDS_TEM_FePt_nanoparticles()
+        >>> s.lines_at_energy(energy=6.4, width=0.2)
+        +---------+------+--------------+--------+------------+
+        | Element | Line | Energy (keV) | Weight | Intensity  |
+        +---------+------+--------------+--------+------------+
+        |    Sm   | Lb3  |     6.32     |  0.13  | #          |
+        |    Pm   | Lb2  |     6.34     |  0.20  | #          |
+        |    Fe   |  Ka  |     6.40     |  1.00  | ########## |
+        |    Eu   | Lb1  |     6.46     |  0.44  | ####       |
+        |    Mn   |  Kb  |     6.49     |  0.13  | #          |
+        |    Dy   |  La  |     6.50     |  1.00  | ########## |
+        +---------+------+--------------+--------+------------+
+
+        To use interactively - needs ipywidgets toolkit installed and configured:
+
+        >>> s.lines_at_energy()
+
+        See also
+        --------
+        print_lines_near_energy, print_lines,
+        exspy.utils.eds.get_xray_lines_near_energy,
+        exspy.utils.eds.get_xray_lines,
+        """
+        if energy == "interactive":  # pragma: no cover
+            return EDSRange(self, width, weight_threshold, only_lines).gui(
+                display=display, toolkit=toolkit
+            )
+        else:
+            self.print_lines_near_energy(
+                energy=energy,
+                width=width,
+                weight_threshold=weight_threshold,
+                only_lines=only_lines,
+            )
+
+    lines_at_energy.__doc__ %= (
+        WIDTH_PARAMETER.replace("    ", "        "),
+        WEIGHT_THRESHOLD_PARAMETER.replace("    ", "        "),
+        ONLY_LINES_PARAMETER.replace("    ", "        "),
+        DISPLAY_DT,
+        TOOLKIT_DT,
     )

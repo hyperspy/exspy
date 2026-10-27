@@ -1,0 +1,10 @@
+Add a SIMS chapter to the user guide documenting the
+:class:`~.signals.SIMSSpectrum` and :class:`~.signals.FIBSIMSSpectrum`
+signal classes: loading Tofwerk ToF-SIMS data, Total Ion Count (TIC)
+normalisation, count-rate conversion, FIB-SIMS depth profiling and
+reintegration of peaks from a raw event list. The two signal classes are
+now also listed in the `API reference
+<https://hyperspy.org/exspy/reference/signals.html>`_.
+Support for SIMS and FIB-SIMS is now mentioned in the introduction of the
+user guide, the documentation landing page, the README and the package
+description.

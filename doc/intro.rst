@@ -2,8 +2,8 @@ Welcome to the documentation of eXSpy!
 **************************************
 **eXSpy** is a Python package extending the functionality for multi-dimensional
 data analysis provided by the `HyperSpy <https://hyperspy.org/>`_ library. It is
-aimed at helping with the analysis of X-rays Energy Dispersive Spectroscopy (EDS)
-and Electron Energy Loss Spectroscopy (EELS).
+aimed at helping with the analysis of X-rays Energy Dispersive Spectroscopy (EDS),
+Electron Energy Loss Spectroscopy (EELS) and Secondary Ion Mass Spectrometry (SIMS).
 
 Check out the :ref:`installation <install-label>` section for further information,
 including how to start using this project.

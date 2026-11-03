@@ -10,6 +10,8 @@
    EDSTEMSpectrum
    EELSSpectrum
    EDSSEMSpectrum
+   SIMSSpectrum
+   FIBSIMSSpectrum
 
 .. autosummary::
    LazyDielectricFunction
@@ -17,6 +19,8 @@
    LazyEDSSEMSpectrum
    LazyEDSTEMSpectrum
    LazyEELSSpectrum
+   LazySIMSSpectrum
+   LazyFIBSIMSSpectrum
 
 
 .. automodule:: exspy.signals

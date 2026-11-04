@@ -71,6 +71,11 @@ file = "LICENSE"
   "sphinx-design",
   "sphinx-favicon",
   "sphinx-gallery",
+  # Development version until
+  # https://github.com/NVIDIA/sphinx-llm/pull/188 is included in a release
+  # (latest release v1.1.0 predates it). Revert to "sphinx-llm" once a
+  # release containing it is out.
+  "sphinx-llm @ git+https://github.com/NVIDIA/sphinx-llm.git",
   "sphinxcontrib-towncrier>=0.5.0a0",  # towncrier 24.7.0 support
   "towncrier",
 ]

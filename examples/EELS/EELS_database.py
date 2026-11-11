@@ -12,9 +12,8 @@ import exspy
 
 # %%
 # Load a core-loss and low-loss EELS spectra from a Ti\ :sub:`3`\Ni\ :sub:`4` alloy from the EELS database.
-# The order parameter is set to "spectrumType" to load the low-loss spectrum as the first item and the
-# core-loss spectrum as the second item.
-cl, ll = exspy.data.eelsdb(element=["Ti", "Ni"], order="spectrumType")
+cl = exspy.data.eelsdb(element=["Ti", "Ni"], spectrum_type="coreloss")[0]
+ll = exspy.data.eelsdb(element=["Ti", "Ni"], spectrum_type="lowloss")[0]
 
 # %%
 # Plot both spectra. The core-loss spectrum contains the Ti L\ :sub:`2,3` edge at around 450 eV,

@@ -19,9 +19,11 @@ import warnings
 
 import pytest
 import requests
+from hyperspy.exceptions import VisibleDeprecationWarning
 from requests.exceptions import SSLError
 
 from exspy.data import eelsdb
+from exspy.data._eelsdb import API_URL
 
 
 def _eelsdb(**kwargs):
@@ -41,10 +43,10 @@ def _eelsdb(**kwargs):
 
 def eelsdb_down():
     try:
-        _ = requests.get("https://api.eelsdb.eu", verify=True)
+        _ = requests.get(API_URL, verify=True)
         return False
     except SSLError:
-        _ = requests.get("https://api.eelsdb.eu", verify=False)
+        _ = requests.get(API_URL, verify=False)
         return False
     except requests.exceptions.ConnectionError:
         return True
@@ -59,14 +61,10 @@ def test_eelsdb_eels():
         edge="K",
         min_energy=370,
         max_energy=1000,
-        min_energy_compare="gt",
-        max_energy_compare="lt",
-        resolution="0.7 eV",
-        resolution_compare="lt",
+        resolution=0.7,
         max_n=2,
         order="spectrumMin",
         order_direction="DESC",
-        monochromated=False,
     )
 
     assert len(ss) == 2
@@ -111,3 +109,18 @@ def test_eelsdb_elements_no():
 @pytest.mark.skipif(eelsdb_down(), reason="Unable to connect to EELSdb")
 def test_eelsdb_txt_file():
     _ = _eelsdb(title="Porous cobalt coating with He-filled nanopores")
+
+
+@pytest.mark.skipif(eelsdb_down(), reason="Unable to connect to EELSdb")
+def test_eelsdb_gas():
+    ss = _eelsdb(phase="gas", max_n=1)
+    assert len(ss) == 1
+    assert ss[0].original_metadata.json.phase == "gas"
+
+
+def test_eelsdb_compare_deprecated():
+    with (
+        pytest.warns(VisibleDeprecationWarning, match="min_energy_compare"),
+        pytest.raises(ValueError, match='only supports "gt"'),
+    ):
+        eelsdb(min_energy=100, min_energy_compare="lt")

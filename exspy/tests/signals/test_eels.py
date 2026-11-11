@@ -437,7 +437,7 @@ class TestPrintEdgesNearEnergy:
             }
 
         # Test that all expected edges are present
-        expected_edges = {"O_K", "Pd_M3", "At_N5", "Sb_M5", "Sb_M4"}
+        expected_edges = {"O_K", "Pd_M3", "At_N4", "Sb_M5", "Sb_M4"}
         assert set(captured_edges) == expected_edges
         assert len(captured_edges) == 5
 
@@ -450,9 +450,9 @@ class TestPrintEdgesNearEnergy:
         assert captured_data["Pd_M3"]["relevance"] == "Minor"
         assert captured_data["Pd_M3"]["description"] == ""
 
-        assert captured_data["At_N5"]["energy"] == 533.0
-        assert captured_data["At_N5"]["relevance"] == "Minor"
-        assert captured_data["At_N5"]["description"] == ""
+        assert captured_data["At_N4"]["energy"] == 533.0
+        assert captured_data["At_N4"]["relevance"] == "Minor"
+        assert captured_data["At_N4"]["description"] == ""
 
         assert captured_data["Sb_M5"]["energy"] == 528.0
         assert captured_data["Sb_M5"]["relevance"] == "Major"
@@ -466,10 +466,10 @@ class TestPrintEdgesNearEnergy:
         # O_K (532.0) should be first (distance = 0)
         assert captured_edges[0] == "O_K"
 
-        # Pd_M3 (531.0) and At_N5 (533.0) both have distance = 1.0
+        # Pd_M3 (531.0) and At_N4 (533.0) both have distance = 1.0
         # Their relative order is not deterministic, so just check they're next
-        assert captured_edges[1] in ["Pd_M3", "At_N5"]
-        assert captured_edges[2] in ["Pd_M3", "At_N5"]
+        assert captured_edges[1] in ["Pd_M3", "At_N4"]
+        assert captured_edges[2] in ["Pd_M3", "At_N4"]
         assert captured_edges[1] != captured_edges[2]  # They should be different
 
     def test_sequence_edges(self, capsys):

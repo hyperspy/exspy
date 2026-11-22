@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -49,7 +49,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=ccdb6887"></script>
     <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/signals';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
@@ -495,6 +495,12 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#exspy.signals.EDSSEMSpectrum" title="exspy.signals.EDSSEMSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EDSSEMSpectrum</span></code></a>(*args, **kwards)</p></td>
 <td><p>Signal class for EDS spectra measured in an SEM.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.signals.SIMSSpectrum" title="exspy.signals.SIMSSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SIMSSpectrum</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Signal class for Secondary Ion Mass Spectrometry (SIMS) spectra.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.signals.FIBSIMSSpectrum" title="exspy.signals.FIBSIMSSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FIBSIMSSpectrum</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Signal class for FIB-ToF-SIMS spectra (3D depth-profiling).</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -514,6 +520,12 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#exspy.signals.LazyEELSSpectrum" title="exspy.signals.LazyEELSSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LazyEELSSpectrum</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Lazy signal class for EELS spectra.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#exspy.signals.LazySIMSSpectrum" title="exspy.signals.LazySIMSSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LazySIMSSpectrum</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Lazy version of SIMSSpectrum.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#exspy.signals.LazyFIBSIMSSpectrum" title="exspy.signals.LazyFIBSIMSSpectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LazyFIBSIMSSpectrum</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Lazy version of FIBSIMSSpectrum.</p></td>
 </tr>
 </tbody>
 </table>

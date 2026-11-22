@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
@@ -49,7 +49,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=ccdb6887"></script>
     <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -407,6 +407,7 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eds.html">Energy-Dispersive X-ray Spectrometry (EDS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eels.html">Electron Energy Loss Spectroscopy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sims.html">Secondary Ion Mass Spectrometry (SIMS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dielectric_function.html">Dielectric function tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metadata_structure.html">eXSpy Metadata Structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
@@ -469,6 +470,10 @@
                   
   <section id="user-guide">
 <span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Link to this heading">#</a></h1>
+<p><strong>eXSpy</strong> extends HyperSpy with tools for the analysis of multi-dimensional
+Energy Dispersive X-ray Spectroscopy (EDS), Electron Energy Loss Spectroscopy
+(EELS) and Secondary Ion Mass Spectrometry (SIMS) data. The chapters below
+document the tools specific to each of these signals.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
@@ -491,6 +496,16 @@
 <li class="toctree-l1"><a class="reference internal" href="eels.html">Electron Energy Loss Spectroscopy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="eels.html#tools-for-eels-data-analysis">Tools for EELS data analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eels.html#eels-curve-fitting">EELS curve fitting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sims.html">Secondary Ion Mass Spectrometry (SIMS)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sims.html#loading-data">Loading data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sims.html#visualising-the-data">Visualising the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sims.html#total-ion-count">Total Ion Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sims.html#converting-counts-to-count-rate">Converting counts to count rate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sims.html#summing-to-a-mass-spectrum">Summing to a mass spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sims.html#depth-profiling">Depth profiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sims.html#reintegrating-peaks-from-an-event-list">Reintegrating peaks from an event list</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dielectric_function.html">Dielectric function tools</a><ul>

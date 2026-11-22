@@ -2,8 +2,8 @@ Welcome to the documentation of eXSpy!
 **************************************
 **eXSpy** is a Python package extending the functionality for multi-dimensional
 data analysis provided by the `HyperSpy <https://hyperspy.org/>`_ library. It is
-aimed at helping with the analysis of X-rays Energy Dispersive Spectroscopy (EDS)
-and Electron Energy Loss Spectroscopy (EELS).
+aimed at helping with the analysis of X-rays Energy Dispersive Spectroscopy (EDS),
+Electron Energy Loss Spectroscopy (EELS) and Secondary Ion Mass Spectrometry (SIMS).
 
 Check out the :ref:`installation <install-label>` section for further information,
 including how to start using this project.
@@ -20,61 +20,43 @@ Learning resources
 .. grid:: 2 3 3 3
   :gutter: 2
 
-  .. grid-item-card::
+  .. grid-item-card:: :octicon:`rocket;2em;sd-text-info` Getting Started
     :link: user_guide/install
     :link-type: doc
-
-    :octicon:`rocket;2em;sd-text-info` Getting Started
-    ^^^
 
     New to eXSpy or the HyperSpy ecosystem? The getting started guide provides an
     introduction on basic usage of eXSpy and how to install it.
 
-  .. grid-item-card::
+  .. grid-item-card:: :octicon:`book;2em;sd-text-info` User Guide
     :link: user_guide/index
     :link-type: doc
-
-    :octicon:`book;2em;sd-text-info` User Guide
-    ^^^
 
     The user guide provides in-depth information on key concepts of eXSpy
     and how to use it along with background information and explanations.
 
-  .. grid-item-card::
+  .. grid-item-card:: :octicon:`code-square;2em;sd-text-info` Reference
     :link: reference/index
     :link-type: doc
-
-    :octicon:`code-square;2em;sd-text-info` Reference
-    ^^^
 
     Documentation of the metadata specification and of the Application Progamming Interface (API),
     which describe how eXSpy functions work and which parameters can be used.
 
-  .. grid-item-card::
+  .. grid-item-card:: :octicon:`zap;2em;sd-text-info` Example
     :link: auto_examples/index
     :link-type: doc
-
-    :octicon:`zap;2em;sd-text-info` Example
-    ^^^
 
     Gallery of short examples illustrating simple tasks that
     can be performed with eXSpy and HyperSpy.
 
-  .. grid-item-card::
+  .. grid-item-card:: :octicon:`workflow;2em;sd-text-info` Tutorials
     :link: https://github.com/hyperspy/exspy-demos
-
-    :octicon:`workflow;2em;sd-text-info` Tutorials
-    ^^^
 
     Tutorials in form of Jupyter Notebooks to learn how to process
     multi-dimensional electron/X-ray spectroscopy data using eXSpy.
 
-  .. grid-item-card::
+  .. grid-item-card:: :octicon:`people;2em;sd-text-info` Contributing
     :link: contributing
     :link-type: doc
-
-    :octicon:`people;2em;sd-text-info` Contributing
-    ^^^
 
     eXSpy and the whole HyperSpy ecosystem are a community project
     maintained for and by its users. There are many ways you can help!

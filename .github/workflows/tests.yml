@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 30
     defaults:
       run:
-        shell: bash -el {0}
+        shell: bash -eo pipefail {0}
     env:
       MPLBACKEND: agg
     strategy:

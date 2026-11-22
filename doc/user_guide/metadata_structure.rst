@@ -128,7 +128,8 @@ signal_type
     type: string
 
     String that describes the type of signal. Currently, the only eXSpy
-    specific signal class is ``EELS``, ``EDS``, ``EDS_SEM`` or ``EDS_TEM``.
+    specific signal class is ``EELS``, ``EDS``, ``EDS_SEM``, ``EDS_TEM``,
+    ``SIMS`` or ``FIB-SIMS``.
 
 See also :external+hyperspy:ref:`HyperSpy-Metadata-Sample <signal-metadata>`.
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "exspy"
-description = "EELS and EDS analysis with the HyperSpy framework"
+description = "EELS, EDS and SIMS analysis with the HyperSpy framework"
 requires-python = ">=3.10"
 readme = "README.md"
 keywords=[
@@ -15,10 +15,12 @@ keywords=[
     "electron microscopy",
     "electron energy loss spectroscopy",
     "energy-dispersive X-ray spectroscopy",
+    "secondary ion mass spectrometry",
     "X-ray energy-dispersive spectroscopy",
     "EELS",
     "EDS",
     "EDX",
+    "SIMS",
     "SEM",
     "STEM",
     "TEM",

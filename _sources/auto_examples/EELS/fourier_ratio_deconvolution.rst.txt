@@ -127,7 +127,7 @@ Then perform Fourier ratio deconvolution using the low-loss spectrum as the refe
 
  .. code-block:: none
 
-      0%|          | 0/2 [00:00<?, ?it/s]    100%|██████████| 2/2 [00:00<00:00, 2716.52it/s]
+      0%|          | 0/2 [00:00<?, ?it/s]    100%|██████████| 2/2 [00:00<00:00, 4619.28it/s]
 
 
 
@@ -169,7 +169,7 @@ sphinx_gallery_thumbnail_number = 3
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.258 seconds)
+   **Total running time of the script:** (0 minutes 0.644 seconds)
 
 
 .. _sphx_glr_download_auto_examples_EELS_fourier_ratio_deconvolution.py:

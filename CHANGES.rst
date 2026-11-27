@@ -9,6 +9,70 @@ https://exspy.readthedocs.io/en/latest/changes.html
 
 .. towncrier release notes start
 
+0.4.0 (2026-11-27)
+==================
+
+New features
+------------
+
+- Add convenience functionalities to get X-ray lines information:
+
+  - :func:`~.utils.eds.get_xray_lines`
+  - :func:`~.utils.eds.print_lines`
+  - :func:`~.utils.eds.print_lines_near_energy`
+  - :meth:`~.signals.EDSSpectrum.print_lines`
+  - :meth:`~.signals.EDSSpectrum.print_lines_near_energy` (`#150 <https://github.com/hyperspy/exspy/issues/150>`_)
+- Add :meth:`~.signals.EDSSpectrum.lines_at_energy` method to find EDS lines interactively in a Jupyter notebook.
+
+  Also fix ``print_lines_near_energy`` to search within ``energy +/- width/2``, consistently with ``get_xray_lines_near_energy`` and the documentation of the ``width`` parameter, which previously searched within ``energy +/- width``. (`#162 <https://github.com/hyperspy/exspy/issues/162>`_)
+- Add :class:`~.signals.SIMSSpectrum` and :class:`~.signals.FIBSIMSSpectrum`
+  signal classes for Secondary Ion Mass Spectrometry data, including lazy
+  variants. :class:`~.signals.FIBSIMSSpectrum` extends
+  :class:`~.signals.SIMSSpectrum` with depth-profiling support for FIB-ToF-SIMS
+  datasets. (`#167 <https://github.com/hyperspy/exspy/issues/167>`_)
+
+
+Enhancements
+------------
+
+- Split the in-code elements.py database into three external JSON files (`#125 <https://github.com/hyperspy/exspy/issues/125>`_)
+- Implement lazy import to speed up ``exspy`` import time and reduce memory usage by deferring the import of dependencies until they are actually needed. (`#160 <https://github.com/hyperspy/exspy/issues/160>`_)
+
+
+Improved Documentation
+----------------------
+
+- Add dose calculation parameter explicitely to the signature and docstring of :meth:`~.signals.EDSTEMSpectrum.quantification`. Distinguish keyword arguments passed to the :func:`hyperspy.api.plot.plot_signals` and the quantification functions. (`#129 <https://github.com/hyperspy/exspy/issues/129>`_)
+- Add :attr:`~.preferences` to API reference and add a note explaining that only Hartree-Slater GOS from Gatan DigitalMicrograph Suite v1.x and v2.x are supported. (`#151 <https://github.com/hyperspy/exspy/issues/151>`_)
+- Add a SIMS chapter to the user guide documenting the
+  :class:`~.signals.SIMSSpectrum` and :class:`~.signals.FIBSIMSSpectrum`
+  signal classes: loading Tofwerk ToF-SIMS data, Total Ion Count (TIC)
+  normalisation, count-rate conversion, FIB-SIMS depth profiling and
+  reintegration of peaks from a raw event list. The two signal classes are
+  now also listed in the `API reference
+  <https://hyperspy.org/exspy/reference/signals.html>`_.
+  Support for SIMS and FIB-SIMS is now mentioned in the introduction of the
+  user guide, the documentation landing page, the README and the package
+  description. (`#169 <https://github.com/hyperspy/exspy/issues/169>`_)
+- Add EELS examples to the gallery of examples showing how to perform :meth:`~.signals.EELSSpectrum.fourier_ratio_deconvolution` and to download spectra from the `EELS database <https://eelsdb.eu>`_. (`#174 <https://github.com/hyperspy/exspy/issues/174>`_)
+
+
+Maintenance
+-----------
+
+- Add pre-commit hook to check the formatting of json files. (`#128 <https://github.com/hyperspy/exspy/issues/128>`_)
+- Add integration tests to run the test suites of software packages in the HyperSpy ecosystem. (`#134 <https://github.com/hyperspy/exspy/issues/134>`_)
+- Implement workaround for Zenodo rate limits in eXSpy tests suite and documentation build. (`#156 <https://github.com/hyperspy/exspy/issues/156>`_)
+- Add support for Python 3.14 and drop Python 3.9. (`#159 <https://github.com/hyperspy/exspy/issues/159>`_)
+- Improve caching of GOS files on GitHub CI by sharing cache across different jobs. (`#164 <https://github.com/hyperspy/exspy/issues/164>`_)
+- Add a ``.mailmap`` file to consolidate duplicate author identities in
+  the git history, fixing contributor attribution for tools that respect
+  mailmap. (`#183 <https://github.com/hyperspy/exspy/issues/183>`_)
+- Adopt the HyperSpy AI policy: shared pre-commit hooks, compliance CI workflow and an AGENTS.md knowledge base. (`#185 <https://github.com/hyperspy/exspy/issues/185>`_)
+- Modernize the SPDX license declaration in ``pyproject.toml``. (`#193 <https://github.com/hyperspy/exspy/issues/193>`_)
+- eXSpy now requires Python 3.11 or newer and supports Python 3.15. (`#196 <https://github.com/hyperspy/exspy/issues/196>`_)
+
+
 0.3.2 (2025-03-02)
 ==================
 

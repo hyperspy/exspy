@@ -15,7 +15,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import numpydoc
 from packaging.version import Version
@@ -28,7 +28,7 @@ from exspy._misc import _download_GOS_files
 # -- Project information -----------------------------------------------------
 
 project = "eXSpy"
-copyright = f"2023-{datetime.now(timezone.utc).year}, eXSpy Developers"
+copyright = f"2023-{datetime.now(UTC).year}, eXSpy Developers"
 author = "eXSpy Developers"
 
 

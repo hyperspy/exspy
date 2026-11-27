@@ -31,14 +31,14 @@ jobs:
         PIP_SELECTOR: ['[tests, speed]']
         include:
           - os: ubuntu
-            PYTHON_VERSION: '3.10'
-            PIP_SELECTOR: '[tests, speed]'
-          - os: ubuntu
             PYTHON_VERSION: '3.12'
             PIP_SELECTOR: '[tests, speed]'
           - os: ubuntu
             PYTHON_VERSION: '3.14'
             PIP_SELECTOR: '[tests, speed]'
+          - os: ubuntu
+            PYTHON_VERSION: '3.15'
+            PIP_SELECTOR: '[tests]'
           # test with hyperspy dev branch
           - os: ubuntu
             PYTHON_VERSION: '3.13'
@@ -46,7 +46,7 @@ jobs:
             LABEL: '-dev'
           # test minimum requirement
           - os: ubuntu
-            PYTHON_VERSION: '3.10'
+            PYTHON_VERSION: '3.11'
             LABEL: '-minimum'
             PIP_SELECTOR: '[tests]'
 
@@ -75,6 +75,14 @@ jobs:
         name: Install Python
         with:
           python-version: ${{ matrix.PYTHON_VERSION }}
+
+      - name: Install HDF5 development library
+        # PyPI does not yet have h5py wheels for Python 3.15. Building h5py
+        # from source requires HDF5 headers and libraries on the runner.
+        if: ${{ matrix.os == 'ubuntu' && matrix.PYTHON_VERSION == '3.15' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libhdf5-dev
 
       - name: Display version
         run: |

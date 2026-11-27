@@ -9,6 +9,8 @@
 Installation
 ************
 
+eXSpy requires Python 3.11 or newer.
+
 To install eXSpy, you have the following options (independent of the operating system you use):
 
 1. eXSpy is included in the `HyperSpy Bundle <https://hyperspy.org/hyperspy-bundle/>`_,
@@ -31,8 +33,8 @@ Follow these 3 steps to install eXSpy using **conda** and start using it.
 1. Creating a conda environment
 -------------------------------
 
-eXSpy requires Python 3 and ``conda`` -- we suggest using the Python 3 version
-of `Miniforge <https://conda-forge.org/miniforge/>`_.
+For a ``conda`` installation, we suggest using
+`Miniforge <https://conda-forge.org/miniforge/>`_.
 
 We recommend creating a new environment for the eXSpy package (or installing
 it in the :external+hyperspy:ref:`HyperSpy <anaconda-install>`

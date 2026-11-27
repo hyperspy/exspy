@@ -140,6 +140,74 @@ Three deconvolution methods are currently available:
 * :py:meth:`~.signals.EELSSpectrum.fourier_ratio_deconvolution`
 * :py:meth:`~.signals.EELSSpectrum.richardson_lucy_deconvolution`
 
+Fourier-log deconvolution
+"""""""""""""""""""""""""
+
+The Fourier-log method (:ref:`[Egerton2011] <Egerton2011>`, §4.4) recovers the
+inelastic scattering distribution from a low-loss spectrum.  It is the de facto
+standard for plural-scattering deconvolution in EELS.
+
+By default ``fourier_log_deconvolution()`` returns ``J¹(E)``, the
+single-scattering intensity scaled by the zero-loss integral:
+
+.. code-block:: python
+
+    >>> j1 = s.fourier_log_deconvolution(zlp=low_loss)
+
+    # j1 is J¹(E).  Its integral equals I₀·t/λ:
+    >>> print(j1.data.sum())
+    104284.3
+
+``J¹(E)`` is the correct quantity for most workflows — it has the same units
+as the input spectrum and may be used for elemental quantification provided
+:math:`I_0` is included in the formula (see the warning below).
+
+To obtain the true single-scattering distribution ``S(E)`` — whose integral
+equals the thickness ratio ``t/λ`` — pass ``ssd=True``:
+
+.. code-block:: python
+
+    >>> ssd = s.fourier_log_deconvolution(zlp=low_loss, ssd=True)
+
+    # ssd is S(E).  Its integral equals t/λ:
+    >>> print(ssd.data.sum())
+    0.364
+
+The relationship between the two forms is:
+
+.. math::
+
+    J^1(E) = I_0 \cdot S(E), \qquad
+    I_0 = \int Z(E) \, \mathrm dE
+
+where ``I₀`` is the total elastic intensity (ZLP integral) and ``t/λ`` is the
+ratio of the sample thickness to the inelastic mean free path.
+
+.. warning::
+
+   **Do not omit** :math:`I_0` **in quantification.**  The default output
+   ``J¹(E)`` includes the ZLP integral as a multiplicative factor.
+   Quantifying an element with the edge integral of ``J¹(E)`` requires
+   dividing by :math:`I_0`:
+
+   .. math::
+
+       N_k = \frac{ \int_\text{edge} J^1(E)\,\mathrm dE }
+                    { I_0 \cdot \sigma_k(\beta, \Delta) }
+
+   where :math:`\sigma_k` is the partial cross-section for edge *k*.
+
+   If you omit :math:`I_0` and use :math:`N_k = \int J^1 / \sigma_k`, the
+   areal density will be incorrect by the factor :math:`I_0` (typically
+   :math:`10^4`–:math:`10^6`).  To avoid this, either:
+
+   - **supply** :math:`I_0` from ``zlp.data.sum()`` or
+     :meth:`~.signals.EELSSpectrum.estimate_elastic_scattering_intensity`, or
+   - **pass ``ssd=True``** to ``fourier_log_deconvolution`` — the output
+     ``S(E)`` is already normalised so that
+     :math:`\int_\text{edge} S(E) = t/\lambda_k` and
+     :math:`N_k = \int_\text{edge} S(E) / \sigma_k`.
+
 .. minigallery:: ../examples/EELS/fourier_ratio_deconvolution*
 
 

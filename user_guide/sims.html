@@ -493,8 +493,8 @@ signal is binned: the value of each mass channel is the number of ions
 detected in that channel.</p>
 <section id="loading-data">
 <h2>Loading data<a class="headerlink" href="#loading-data" title="Link to this heading">#</a></h2>
-<p>SIMS data are loaded with the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.html#hyperspy.api.load" title="(in HyperSpy v2.5)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.load()</span></code></a> function, as
-described in detail in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/io.html#loading-files" title="(in HyperSpy v2.5)"><span class="xref std std-ref">loading files</span></a>
+<p>SIMS data are loaded with the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.html#hyperspy.api.load" title="(in HyperSpy v2.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hyperspy.api.load()</span></code></a> function, as
+described in detail in the <a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/user_guide/io.html#loading-files" title="(in HyperSpy v2.6)"><span class="xref std std-ref">loading files</span></a>
 section of the HyperSpy documentation. Tofwerk TofDAQ HDF5 (<code class="docutils literal notranslate"><span class="pre">.h5</span></code>) files
 are read by the <code class="docutils literal notranslate"><span class="pre">rsciio.tofwerk</span></code> reader of rosettasciio. Because several
 readers use the <code class="docutils literal notranslate"><span class="pre">.h5</span></code> extension, the reader must be selected with the
@@ -516,7 +516,7 @@ nominal peak data:</p>
 time-of-flight calibration is stored under
 <code class="docutils literal notranslate"><span class="pre">metadata.Acquisition_instrument.FIB_SIMS</span></code>.</p>
 <p>Any other signal can be converted to a SIMS signal with the
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.set_signal_type" title="(in HyperSpy v2.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.set_signal_type()</span></code></a> method:</p>
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.set_signal_type" title="(in HyperSpy v2.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hyperspy.api.signals.BaseSignal.set_signal_type()</span></code></a> method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">set_signal_type</span><span class="p">(</span><span class="s2">"SIMS"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -534,7 +534,7 @@ time-of-flight calibration is stored under
 <p>Because the intensity of SIMS mass spectra spans many orders of magnitude,
 <a class="reference internal" href="../reference/signals.html#exspy.signals.FIBSIMSSpectrum.plot" title="exspy.signals.FIBSIMSSpectrum.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> uses a logarithmic colour scale by
 default. Any other
-<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.plot" title="(in HyperSpy v2.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> keyword argument, including
+<a class="reference external" href="https://hyperspy.org/hyperspy-doc/current/reference/api.signals/BaseSignal.html#hyperspy.api.signals.BaseSignal.plot" title="(in HyperSpy v2.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> keyword argument, including
 <code class="docutils literal notranslate"><span class="pre">norm</span></code>, is passed to HyperSpy as usual:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>  <span class="c1"># logarithmic norm by default</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">)</span>

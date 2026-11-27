@@ -59,7 +59,7 @@ core-loss spectrum as the second item.
 
  .. code-block:: none
 
-      0%|          | 0/2 [00:00<?, ?it/s]     50%|█████     | 1/2 [00:00<00:00,  1.60it/s]    100%|██████████| 2/2 [00:01<00:00,  1.68it/s]    100%|██████████| 2/2 [00:01<00:00,  1.67it/s]
+      0%|          | 0/2 [00:00<?, ?it/s]     50%|█████     | 1/2 [00:00<00:00,  1.30it/s]    100%|██████████| 2/2 [00:01<00:00,  1.53it/s]    100%|██████████| 2/2 [00:01<00:00,  1.49it/s]
 
 
 
@@ -96,7 +96,7 @@ peak and plasmon peaks.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.266 seconds)
+   **Total running time of the script:** (0 minutes 2.091 seconds)
 
 
 .. _sphx_glr_download_auto_examples_EELS_EELS_database.py:

@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:05.164** total execution time for 6 files **from all galleries**:
+**00:08.801** total execution time for 6 files **from all galleries**:
 
 .. container::
 
@@ -32,21 +32,21 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_EELS_EELS_database.py` (``../examples/EELS/EELS_database.py``)
-     - 00:02.266
-     - 0.0
    * - :ref:`sphx_glr_auto_examples_model_fitting_EELS_curve_fitting.py` (``../examples/model_fitting/EELS_curve_fitting.py``)
-     - 00:01.496
+     - 00:03.711
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_EELS_EELS_database.py` (``../examples/EELS/EELS_database.py``)
+     - 00:02.091
      - 0.0
    * - :ref:`sphx_glr_auto_examples_EELS_fourier_ratio_deconvolution.py` (``../examples/EELS/fourier_ratio_deconvolution.py``)
-     - 00:00.578
+     - 00:01.258
      - 0.0
    * - :ref:`sphx_glr_auto_examples_EDS_find_EDS_lines.py` (``../examples/EDS/find_EDS_lines.py``)
-     - 00:00.310
+     - 00:00.611
      - 0.0
    * - :ref:`sphx_glr_auto_examples_model_fitting_plot_residual.py` (``../examples/model_fitting/plot_residual.py``)
-     - 00:00.278
+     - 00:00.590
      - 0.0
    * - :ref:`sphx_glr_auto_examples_model_fitting_simple_arctan_fit.py` (``../examples/model_fitting/simple_arctan_fit.py``)
-     - 00:00.236
+     - 00:00.540
      - 0.0

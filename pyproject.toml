@@ -41,7 +41,7 @@ classifiers = [
 ]
 dependencies = [
   "dask[array]",
-  "hyperspy>=2.5.0",  # Modernised LineInSignal1D
+  "hyperspy>=2.6.0",  # Security vulnerability fixes
   "lazy-loader",
   "matplotlib",
   "numpy",
@@ -49,7 +49,7 @@ dependencies = [
   "pooch",
   "prettytable",
   "requests",
-  "rosettasciio>=0.14.0",
+  "rosettasciio>=0.16.0",
   "scipy",
   "traits",
 ]

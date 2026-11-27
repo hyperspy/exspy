@@ -18,18 +18,39 @@
 
 """This module provides tools to interact with The EELS Database."""
 
+import io
 import logging
+import os
+import warnings
 
 import requests
+from hyperspy.decorators import deprecated_argument
 from hyperspy.defaults_parser import preferences
 from hyperspy.docstrings.signal import SHOW_PROGRESSBAR_ARG
+from hyperspy.exceptions import VisibleDeprecationWarning
 from hyperspy.external.progressbar import progressbar
 from hyperspy.io import dict2signal
-from rsciio.msa import parse_msa_string
+from rsciio.hspy import file_reader
+
+from exspy._version import __version__
 
 _logger = logging.getLogger(__name__)
 
+API_URL = os.environ.get("EELSDB_API_URL", "https://api.eelsdb.eu/v2/spectra")
 
+_ORDER_KEYS = {
+    "spectrumMin": "min_energy_ev",
+    "spectrumMax": "max_energy_ev",
+    "spectrumFormula": "formula",
+    "spectrumUpload": "published_at",
+    "beamenergy": "beam_energy_kv",
+    "resolution": "resolution_ev",
+}
+
+
+@deprecated_argument("min_energy_compare", since="0.4", removal="1.0")
+@deprecated_argument("max_energy_compare", since="0.4", removal="1.0")
+@deprecated_argument("resolution_compare", since="0.4", removal="1.0")
 def eelsdb(
     spectrum_type=None,
     title=None,
@@ -49,6 +70,7 @@ def eelsdb(
     order_direction="ASC",
     verify_certificate=True,
     show_progressbar=None,
+    phase=None,
 ):
     r"""Download spectra from the `EELS database <https://eelsdb.eu/>`_.
 
@@ -56,7 +78,7 @@ def eelsdb(
     ----------
     spectrum_type: {'coreloss', 'lowloss', 'zeroloss', 'xrayabs'}, optional
     title: string
-        Search spectra titles for a text string.
+        Search spectra titles and descriptions for a text string.
     author: string, optional
         Search authors for a text string.
     element: string or list of strings, optional
@@ -64,71 +86,30 @@ def eelsdb(
         correspond with a valid element symbol.
     formula: string
         Chemical formula of the sample.
-    edge: {'K', 'L1', 'L2,3', 'M2,3', 'M4,5', 'N2,3', 'N4,5' 'O2,3', 'O4,5'}, optional
-        Filter for spectra with a specific class of edge.
+    edge: string, optional
+        Filter for spectra with an edge, matched whole: for example 'K' or
+        'L2,3' for any element, or 'Fe_L2,3' for one element.
     min_energy, max_energy: float, optional
-        Minimum and maximum energy in eV.
+        Spectra that start at or above `min_energy` and end at or below
+        `max_energy`, in eV.
     resolution: float, optional
-        Energy resolution in eV.
-    resolution_compare: {"lt", "eq", "gt"}, optional, default "lt"
-        "lt" to search for all spectra with resolution less than `resolution`.
-        "eq" for equal, "gt" for greater than.
-    min_energy_compare, max_energy_compare: {"lt", "eq", "gt"}, optional
-        "lt" to search for all spectra with min/max energy less than
-        `min_energy`\`max_energy`. "eq" for equal, "gt" for greater than.
-        Deafault values are "gt"/"lt" for `min_energy`\`max_energy`
-        respectively.
+        Spectra with this energy resolution or better, in eV.
+    min_energy_compare, max_energy_compare, resolution_compare: str, optional
+        Deprecated. Only the defaults, "gt", "lt" and "lt", are supported.
     monochromated: bool or None (default)
     max_n: int, default -1
         Maximum number of spectra to return. -1 to return all.
     order: string
         Key to sort results by. Valid keys are:
 
-        * "spectrumType",
         * "spectrumMin",
         * "spectrumMax",
-        * "stepSize",
         * "spectrumFormula",
-        * "spectrumElement",
         * "spectrumUpload",
-        * "source_purity",
-        * "spectrumEdges",
-        * "microscope",
-        * "guntype",
         * "beamenergy",
-        * "resolution",
-        * "monochromated",
-        * "acquisition_mode",
-        * "convergence",
-        * "collection",
-        * "probesize",
-        * "beamcurrent",
-        * "integratetime",
-        * "readouts",
-        * "detector",
-        * "darkcurrent",
-        * "gainvariation",
-        * "calibration",
-        * "zeroloss_deconv",
-        * "thickness",
-        * "deconv_fourier_log",
-        * "deconv_fourier_ratio",
-        * "deconv_stephens_deconvolution",
-        * "deconv_richardson_lucy",
-        * "deconv_maximum_entropy",
-        * "deconv_other",
-        * "assoc_spectra",
-        * "ref_freetext",
-        * "ref_doi",
-        * "ref_url",
-        * "ref_authors",
-        * "ref_journal",
-        * "ref_volume",
-        * "ref_issue",
-        * "ref_page",
-        * "ref_year",
-        * "ref_title",
-        * "otherURLs"
+        * "resolution"
+
+        Other keys are ignored with a warning.
     order_direction : {"ASC", "DESC"}
         Sorting `order` direction.
     verify_certificate: bool
@@ -136,8 +117,8 @@ def eelsdb(
         if it is invalid. If False, continue querying the database if the certificate
         is invalid. (This is a potential security risk.)
     %s
-
-
+    phase: {'solid', 'liquid', 'gas'} or list of strings, optional
+        Phase of the specimen.
 
     Returns
     -------
@@ -145,158 +126,108 @@ def eelsdb(
         A list containing all the spectra matching the given criteria if
         any.
 
-    """
-    # Verify arguments
-    if spectrum_type is not None and spectrum_type not in {
-        "coreloss",
-        "lowloss",
-        "zeroloss",
-        "xrayabs",
-    }:
-        raise ValueError(
-            "spectrum_type must be one of 'coreloss', 'lowloss', 'zeroloss', 'xrayabs'."
-        )
-    valid_edges = ["K", "L1", "L2,3", "M2,3", "M4,5", "N2,3", "N4,5", "O2,3", "O4,5"]
-    valid_order_keys = [
-        "spectrumType",
-        "spectrumMin",
-        "spectrumMax",
-        "stepSize",
-        "spectrumFormula",
-        "spectrumElement",
-        "spectrumUpload",
-        "source_purity",
-        "spectrumEdges",
-        "microscope",
-        "guntype",
-        "beamenergy",
-        "resolution",
-        "monochromated",
-        "acquisition_mode",
-        "convergence",
-        "collection",
-        "probesize",
-        "beamcurrent",
-        "integratetime",
-        "readouts",
-        "detector",
-        "darkcurrent",
-        "gainvariation",
-        "calibration",
-        "zeroloss_deconv",
-        "thickness",
-        "deconv_fourier_log",
-        "deconv_fourier_ratio",
-        "deconv_stephens_deconvolution",
-        "deconv_richardson_lucy",
-        "deconv_maximum_entropy",
-        "deconv_other",
-        "assoc_spectra",
-        "ref_freetext",
-        "ref_doi",
-        "ref_url",
-        "ref_authors",
-        "ref_journal",
-        "ref_volume",
-        "ref_issue",
-        "ref_page",
-        "ref_year",
-        "ref_title",
-        "otherURLs",
-    ]
-    if edge is not None and edge not in valid_edges:
-        raise ValueError("`edge` must be one of {}.".format(", ".join(valid_edges)))
+    Notes
+    -----
+    Set the ``EELSDB_API_URL`` environment variable to query another
+    instance of the database, for example a development server.
 
-    if order is not None and order not in valid_order_keys:
-        raise ValueError(
-            "`order` must be one of {}.".format(", ".join(valid_order_keys))
+    """
+    if order is not None and order not in _ORDER_KEYS:
+        warnings.warn(
+            f"The EELS database cannot sort by `{order}`, so this argument is "
+            f"ignored. Valid keys are: {', '.join(_ORDER_KEYS)}."
         )
-    if order_direction is not None and order_direction not in ["ASC", "DESC"]:
+    if order_direction not in ("ASC", "DESC"):
         raise ValueError('`order_direction` must be "ASC" or "DESC".')
-    for kwarg, label in (
-        (resolution_compare, "resolution_compare"),
-        (min_energy_compare, "min_energy_compare"),
-        (max_energy_compare, "max_energy_compare"),
+    for label, value, supported in (
+        ("min_energy_compare", min_energy_compare, "gt"),
+        ("max_energy_compare", max_energy_compare, "lt"),
+        ("resolution_compare", resolution_compare, "lt"),
     ):
-        if kwarg not in ("lt", "gt", "eq"):
-            raise ValueError(f'`{label}` must be "lt", "eq" or "gt".')
-    if monochromated is not None:
-        monochromated = 1 if monochromated else 0
+        if value != supported:
+            raise ValueError(f'`{label}` only supports "{supported}".')
+    if isinstance(resolution, str):
+        warnings.warn(
+            "Passing `resolution` as a string is deprecated and will be removed "
+            "in exSpy 1.0. Pass a number in eV instead.",
+            VisibleDeprecationWarning,
+        )
+        resolution = float(resolution.replace("eV", ""))
+
     params = {
         "type": spectrum_type,
-        "title": title,
+        "q": title,
         "author": author,
-        "edge": edge,
-        "min_energy": min_energy,
-        "max_energy": max_energy,
-        "resolution": resolution,
-        "resolution_compare": resolution_compare,
-        "monochromated": monochromated,
+        "element": element,
         "formula": formula,
-        "min_energy_compare": min_energy_compare,
-        "max_energy_compare": max_energy_compare,
-        "per_page": max_n,
-        "order": order,
-        "order_direction": order_direction,
+        "edge": edge,
+        "phase": phase,
+        "min_energy_ev": min_energy,
+        "max_energy_ev": max_energy,
+        "max_resolution_ev": resolution,
+        "per_page": max_n if 0 < max_n < 500 else 500,
     }
-
-    if isinstance(element, str):
-        params["element"] = element
-    else:
-        params["element[]"] = element
+    if monochromated is not None:
+        params["monochromated"] = "true" if monochromated else "false"
+    if order in _ORDER_KEYS:
+        params["sort"] = _ORDER_KEYS[order]
+        params["order"] = order_direction.lower()
 
     if show_progressbar is None:
         show_progressbar = preferences.General.show_progressbar
 
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-    }
-    request = requests.get(
-        "https://api.eelsdb.eu/spectra",
-        params=params,
-        verify=verify_certificate,
-        headers=headers,
+    session = requests.Session()
+    session.verify = verify_certificate
+    session.headers["User-Agent"] = (
+        f"exSpy/{__version__} (+https://github.com/hyperspy/exspy)"
     )
+    records = []
+    url = API_URL
+    while url and (max_n < 0 or len(records) < max_n):
+        response = session.get(url, params=params)
+        if response.status_code == 400:
+            raise ValueError(response.json()["error"]["message"])
+        response.raise_for_status()
+        page = response.json()
+        records += page["results"]
+        url, params = page["next"], None
+    if max_n >= 0:
+        records = records[:max_n]
+
     spectra = []
-    jsons = request.json()
-    if "message" in jsons:
-        # Invalid query, EELSdb raises error.
-        raise OSError(
-            "Please report the following error to the eXSpy developers: "
-            f"{jsons['message']}."
-        )
-
-    for json_spectrum in progressbar(jsons, disable=not show_progressbar):
-        download_link = json_spectrum["download_link"]
-        if download_link.split(".")[-1].lower() != "msa":
-            _logger.exception(
-                "The source file is not a msa file, please report this error "
-                "to https://eelsdb.eu/about with the following details:\n"
-                f"Title: {json_spectrum['title']}\nid: {json_spectrum['id']}\n"
-                f"Download link: {download_link}\n"
-                f"Permalink: {json_spectrum['permalink']}"
-            )
-            continue
-        msa_string = requests.get(
-            download_link, verify=verify_certificate, headers=headers
-        ).text
+    for record in progressbar(records, disable=not show_progressbar):
         try:
-            s = dict2signal(parse_msa_string(msa_string)[0])
-            emsa = s.original_metadata
-            s._original_metadata = type(s.original_metadata)({"json": json_spectrum})
-            s.original_metadata.emsa = emsa
-            spectra.append(s)
-
+            response = session.get(record["downloads"]["hspy"])
+            response.raise_for_status()
+            s = dict2signal(file_reader(io.BytesIO(response.content))[0])
         except Exception:
-            # parse_msa_string or dict2signal may fail if the EMSA file is not
-            # a valid one.
             _logger.exception(
                 "Failed to load the spectrum.\n"
-                "Title: {} id: {}.\n"
-                "Please report this error to https://eelsdb.eu/about \n".format(
-                    json_spectrum["title"], json_spectrum["id"]
-                )
+                f"Title: {record['title']} id: {record['id']}.\n"
+                "Please report this error to https://eelsdb.eu/contact/ \n"
             )
+            continue
+        s.original_metadata.set_item("json", record)
+        if record["technique"] == "xas":
+            s.set_signal_type("XAS")
+        if s.metadata.Signal.signal_type == "EELS" and record["elements"]:
+            try:
+                s.add_elements(record["elements"])
+            except ValueError:
+                _logger.warning(
+                    f"Invalid elements {record['elements']} in spectrum "
+                    f"{record['id']}, please report this to "
+                    "https://eelsdb.eu/contact/"
+                )
+        s.metadata.set_item("General.author", record["author"]["name"])
+        s.metadata.set_item("Sample.description", record["description"])
+        s.metadata.set_item("Sample.chemical_formula", record["formula"])
+        if record["acquisition"]:
+            s.metadata.set_item(
+                "Acquisition_instrument.TEM.microscope",
+                record["acquisition"]["microscope"],
+            )
+        spectra.append(s)
 
     if not spectra:
         _logger.info(
@@ -304,54 +235,6 @@ def eelsdb(
             ". If you have some, why not submitting them "
             "https://eelsdb.eu/submit-data/ ?\n"
         )
-    else:
-        # Add some info from json to metadata
-        # Values with units are not yet supported by HyperSpy (v0.8) so
-        # we can't get map those fields.
-        for s in spectra:
-            if spectrum_type == "xrayabs":
-                s.set_signal_type("XAS")
-            json_md = s.original_metadata.json
-            s.metadata.General.title = json_md.title
-            if s.metadata.Signal.signal_type == "EELS":
-                if json_md.get_item("elements"):
-                    try:
-                        # When 'No' is in the list of elements
-                        # https://api.eelsdb.eu/spectra/zero-loss-c-feg-hitachi-disp-0-214-ev/
-                        if json_md.elements[0].lower() != "no":
-                            s.add_elements(json_md.elements)
-                    except ValueError:
-                        _logger.exception(
-                            "The following spectrum contains invalid chemical "
-                            "element information:\n"
-                            f"Title: {json_md.title} id: {json_md.id}. Elements: {json_md.elements}.\n"
-                            "Please report this error in "
-                            "https://eelsdb.eu/about \n"
-                        )
-                if "collection" in json_md and " mrad" in json_md.collection:
-                    beta = float(json_md.collection.replace(" mrad", ""))
-                    s.metadata.set_item(
-                        "Acquisition_instrument.TEM.Detector.EELS.collection_angle",
-                        beta,
-                    )
-                if "convergence" in json_md and " mrad" in json_md.convergence:
-                    alpha = float(json_md.convergence.replace(" mrad", ""))
-                    s.metadata.set_item(
-                        "Acquisition_instrument.TEM.convergence_angle", alpha
-                    )
-                if "beamenergy" in json_md and " kV" in json_md.beamenergy:
-                    beam_energy = float(json_md.beamenergy.replace(" kV", ""))
-                    s.metadata.set_item(
-                        "Acquisition_instrument.TEM.beam_energy", beam_energy
-                    )
-            # We don't yet support units, so we cannot map the thickness
-            # s.metadata.set_item("Sample.thickness", json_md.thickness)
-            s.metadata.set_item("Sample.description", json_md.description)
-            s.metadata.set_item("Sample.chemical_formula", json_md.formula)
-            s.metadata.set_item("General.author", json_md.author.name)
-            s.metadata.set_item(
-                "Acquisition_instrument.TEM.microscope", json_md.microscope
-            )
 
     return spectra
 

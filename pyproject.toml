@@ -41,7 +41,7 @@ classifiers = [
 ]
 dependencies = [
   "dask[array]",
-  "hyperspy>=2.5.0",  # Modernised LineInSignal1D
+  "hyperspy>=2.6.0",  # Security vulnerability fixes
   "lazy-loader",
   "matplotlib",
   "numpy",
@@ -49,7 +49,7 @@ dependencies = [
   "pooch",
   "prettytable",
   "requests",
-  "rosettasciio>=0.14.0",
+  "rosettasciio>=0.16.0",
   "scipy",
   "traits",
 ]
@@ -133,7 +133,7 @@ include = ["exspy*"]
 [tool.setuptools_scm]
 # Presence enables setuptools_scm, the version will be determine at build time from git
 # The version will be updated by the `prepare_release.py` script
-fallback_version = "0.4.dev0"
+fallback_version = "0.5.dev0"
 
 [tool.towncrier]
 directory = "upcoming_changes/"

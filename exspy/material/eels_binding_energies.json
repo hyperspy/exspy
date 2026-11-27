@@ -315,13 +315,13 @@
       },
       "N4": {
         "edge": "",
-        "onset_energy (eV)": 879.0,
+        "onset_energy (eV)": 533.0,
         "relevance": "Minor",
         "threshold": ""
       },
       "N5": {
         "edge": "",
-        "onset_energy (eV)": 533.0,
+        "onset_energy (eV)": 507.0,
         "relevance": "Minor",
         "threshold": ""
       }
@@ -1619,15 +1619,15 @@
         "relevance": "Major",
         "threshold": ""
       },
-      "O1": {
-        "edge": "",
-        "onset_energy (eV)": 206.0,
-        "relevance": "Minor",
-        "threshold": ""
-      },
       "O2": {
         "edge": "",
         "onset_energy (eV)": 283.0,
+        "relevance": "Minor",
+        "threshold": ""
+      },
+      "O3": {
+        "edge": "",
+        "onset_energy (eV)": 206.0,
         "relevance": "Minor",
         "threshold": ""
       },
@@ -1779,13 +1779,13 @@
       },
       "O1": {
         "edge": "",
-        "onset_energy (eV)": 223.0,
+        "onset_energy (eV)": 310.0,
         "relevance": "Minor",
         "threshold": ""
       },
       "O2": {
         "edge": "",
-        "onset_energy (eV)": 310.0,
+        "onset_energy (eV)": 232.0,
         "relevance": "Minor",
         "threshold": ""
       },
@@ -1911,7 +1911,7 @@
       },
       "N5": {
         "edge": "Delayed maximum",
-        "onset_energy (eV)": 121.0,
+        "onset_energy (eV)": 120.0,
         "relevance": "Minor",
         "threshold": "Broad peak"
       },

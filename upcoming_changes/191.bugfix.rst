@@ -1,0 +1,1 @@
+Fix four impossible entries in the EELS edge table: correct the At N4 and N5, Pa O1 and O2, and Pm N5 onset energies, and replace Np O1 with Np O3.

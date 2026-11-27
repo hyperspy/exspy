@@ -1,0 +1,1 @@
+eXSpy now requires Python 3.11 or newer and supports Python 3.15.
